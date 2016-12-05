@@ -87,19 +87,14 @@ These business models will need technology. [Peter Matthews](https://twitter.com
 
 [Neha Sampat](https://twitter.com/nehasf/) predicted that CEOs will start to ask about APIs (not APPS).
 
-<center><blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">This prediction from <a href="https://twitter.com/nehasf">@nehasf</a> rings true - especially as business leaders realize APIs bring new revenue <a href="https://twitter.com/hashtag/APIDays?src=hash">#APIDays</a> <a href="https://t.co/QdXcDqXQZ8">pic.twitter.com/QdXcDqXQZ8</a></p>&mdash; Mark O&#39;Neill (@TheMarkONeill) <a href="https://twitter.com/TheMarkONeill/status/674520144647950336">December 9, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
+{% twitter https://twitter.com/TheMarkONeill/status/674520144647950336 %}
 
 Traditional IT becomes irrelevant, companies have to think out of the box. API management becomes *business* critical. Delivering, visualizing, metrics,...
 
 [Saul Caganoff](https://twitter.com/scaganoff) warned us that enterprises must become digital or others will become for them. Even if the Web is now programmable, enterprises need to enable composite enterprise. 
 There are many SAAS services (infrastructure,commodity,functionnal,industry) and a growing ecosystem of iPaas and cloud bpm. 
 
-
-<center><blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Online bookstore example <a href="https://twitter.com/scaganoff">@scaganoff</a> <a href="https://twitter.com/hashtag/APIDays?src=hash">#APIDays</a> <a href="https://twitter.com/APIdaysGlobal">@APIdaysGlobal</a> cc <a href="https://twitter.com/lukestokes">@lukestokes</a> <a href="https://t.co/bazv3XR7tk">pic.twitter.com/bazv3XR7tk</a></p>&mdash; API Handyman (@apihandyman) <a href="https://twitter.com/apihandyman/status/674510402449973248">December 9, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
+{% twitter https://twitter.com/apihandyman/status/674510402449973248 %}
 
 But unique business value will come out of how companies operate/orchestrate all this stated both Caganoff and Sempat.
 
@@ -160,10 +155,7 @@ Server should be able to modulate response size on client demand.
 
 # Event driven efficient APIs
 
-
-<center><blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">events events events events events events events events events events events events events events events events <a href="https://twitter.com/hashtag/apidays?src=hash">#apidays</a> <a href="https://twitter.com/APIdaysGlobal">@APIdaysGlobal</a></p>&mdash; API Handyman (@apihandyman) <a href="https://twitter.com/apihandyman/status/674545678094311424">December 9, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
+{% twitter https://twitter.com/apihandyman/status/674545678094311424 %}
 
 A new trending topic arose: Events.
 
@@ -171,9 +163,7 @@ A new trending topic arose: Events.
 
 [Neha Sampat](https://twitter.com/nehasf/), [Saul Caganoff](https://twitter.com/scaganoff),[Ross Garrett](https://twitter.com/gssor) and [Eric Horesnyi](https://twitter.com/EricHoresnyi) agree about the importance of events. 
 
-<center><blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">After ROAST APIs made up by <a href="https://twitter.com/apihandyman">@apihandyman</a> at APIdays London, EATNOAS, Events As The Notifiers Of A State by <a href="https://twitter.com/scaganoff">@scaganoff</a> <a href="https://twitter.com/hashtag/APIdaysParis?src=hash">#APIdaysParis</a></p>&mdash; APIdays Global (@APIdaysGlobal) <a href="https://twitter.com/APIdaysGlobal/status/674512699322159104">December 9, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
+{% twitter https://twitter.com/APIdaysGlobal/status/674512699322159104 %}
 
 Caganoff stated that there's a duality between business processes transitions and events.
 Events can be handle through webhooks and syndication.
@@ -188,10 +178,7 @@ Internet is an hostile environment especially mobile internet (latency, drop con
 
 Both Horesnyi and Garret asked us to think Reactive.
 
-<center>
-<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">SSE or WebSockets + Diff/Patch + a reactive UI sound like a winning combination <a href="https://twitter.com/EricHoresnyi">@EricHoresnyi</a> <a href="https://twitter.com/hashtag/apidays?src=hash">#apidays</a> <a href="https://t.co/OB4bdyxGtF">pic.twitter.com/OB4bdyxGtF</a></p>&mdash; Micha Mazaheri (@mittsh) <a href="https://twitter.com/mittsh/status/674544340350406656">December 9, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
+{% twitter https://twitter.com/mittsh/status/674544340350406656 %}
 
 # Automation
 
@@ -207,11 +194,7 @@ Design needs the definition of style guides, many companies have published their
 
 ## Easy automation
 
-
-<center>
-<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">No UI is the new UI: Invisible apps <a href="https://twitter.com/apidaze">@apidaze</a> <a href="https://twitter.com/hashtag/apidays?src=hash">#apidays</a> <a href="https://twitter.com/APIdaysGlobal">@APIdaysGlobal</a> <a href="https://t.co/HQNig7f15G">pic.twitter.com/HQNig7f15G</a></p>&mdash; API Handyman (@apihandyman) <a href="https://twitter.com/apihandyman/status/674547578625740800">December 9, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
+{% twitter https://twitter.com/apihandyman/status/674547578625740800 %}
 
 [Luis Borger Quina and Philippe Sultan](https://twitter.com/apidaze) told us that bots are the new apps and no UI is the new UI. 
 Slack, IFFTT, Zapier enable easy automation.

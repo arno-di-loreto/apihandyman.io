@@ -65,7 +65,7 @@ By the way, actually many people (like myself some time ago) think that *Swagger
 
 You may also have heard about another thing called ALPS.
 
-<center>![](http://apihandyman.io/wp-content/uploads/2015/04/alpspiedmont.png)</center>
+![](/images/the-data-the-hypermedia-and-the-documentation/alpspiedmont.png)
 
 Not Alps, [the european mountain range](http://en.wikipedia.org/wiki/Alps), but [ALPS](http://alps.io/), the *Application-Level Profile Semantics* created by Mike Amundsen, Leonard Richardson and Mark Foster.
 
@@ -117,9 +117,9 @@ The Omega is every single thing you think to explain and that do not fit in API'
 - How the Cobol/Pascal/Basic sdk works on an Apple ][
 - ...  
 
-<center>![](http://apihandyman.io/wp-content/uploads/2015/04/docsrocks.jpg)
+![](/images/the-data-the-hypermedia-and-the-documentation/docsrocks.png)
 
-*Oops, I did memegenerate Charlton Heston again. I just loved this picture.*</center>
+*Oops, I did memegenerate Charlton Heston again. I just loved this picture.*
 
 
 You explain these things by writting (*ed. and drawing!*) plain good old documentation with text, snippets, diagrams... You provide it to users in HTML, PDF, markdown, printed books with rich illuminations or even engraved stones (for gold users only).  
@@ -151,8 +151,8 @@ But there's more. If documentation describes what *could be*, hypermedia describ
 - Prefilled links with ids and parameters (or templates to build this links)
 - Prefilled value for actions
 
-<center>![](http://apihandyman.io/wp-content/uploads/2015/04/data_hypermedia_documentation.jpg)  
-*Let's do some cool Venn diagram*</center>
+![](/images/the-data-the-hypermedia-and-the-documentation/data-hypermedia-documentation.png)    
+*Let's do some cool Venn diagram*
 
 What I see now is that most of hypermedia data comes from the documentation and even part of the informations based on context could come from the documentation.
 

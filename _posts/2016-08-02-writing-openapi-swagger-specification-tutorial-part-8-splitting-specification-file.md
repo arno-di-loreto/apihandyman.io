@@ -31,8 +31,8 @@ In previous parts we've learned to create highly accurate API description which 
 All tutorial's files are available on [GIST](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
 
 If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-<center>![OpenAPISpecificationVisualDocumentation](/wp-content/uploads/2016/02/OpenAPI-Specification-Visual-Documentation.png "OpenAPI Specification Visual Documentation")
-</center>](http://openapi-specification-visual-documentation.apihandyman.io/)
+![OpenAPISpecificationVisualDocumentation](/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png "OpenAPI Specification Visual Documentation")
+](http://openapi-specification-visual-documentation.apihandyman.io/)
 
 # 1 JSON Pointers
 In [part 3 - Simplifying spefication file](http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/) we have learned how to simplify the specification by creating reusable elements. In the example below, the `Person` definition is defined once in `definitions` and used as
@@ -71,15 +71,15 @@ Then we can remove the `Person` definition in `definitions` and replace all exis
 Tools will look for the referenced file (`person.yaml`) in the same directory as the file containing the reference.
 But when you use the [online editor](http://editor.swagger.io) it does not make sense, such local reference cannot be resolved.
 
-<center>![editor reference error](/wp-content/uploads/2016/07/openapi8-editor-error.png)</center>
+![editor reference error](/images/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/openapi8-editor-error.png)
 
 Fortunately the editor propose a configuration allowing to set a server to resolve these local references. This configuration is accessible in the *Preferences->Preferences* menu:
 
-<center>![editor preferences](/wp-content/uploads/2016/07/openapi8-editor-preferences.png)</center>
+![editor preferences](/images/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/openapi8-editor-preferences.png)
 
 The *Pointer Resolution Base Path* configuration is on the bottom of the configuration screen:
 
-<center>![editor preferences original](/wp-content/uploads/2016/07/openapi8-editor-preferences-pointer-original.png)</center>
+![editor preferences original](/images/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/openapi8-editor-preferences-pointer-original.png)
 
 All you need to do is put the referenced yaml files into a web server (with [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) activated) and modify the editor's configuration to point this server.
 
@@ -111,13 +111,13 @@ The `--cors` flag is used to activate CORS directive and allow XHR request to th
 ### 2.2.2 Modifying online editor configuration
 Once the web server is started you can modifiy the editor to set the URL to `http://localhost:8080/`:
 
-<center>![editor preferences original](/wp-content/uploads/2016/07/openapi8-editor-preferences-pointer-modified.png)</center>
+![editor preferences original](/images/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/openapi8-editor-preferences-pointer-modified.png)
 
 Files referenced with `$ref: <filename>#/example` will be downloaded from  `http://localhost:8080/<filename>`.
 
 Once this is done, you may need to do a force refresh (clean cache) of the editor's the page to get the green bar.
 
-<center>![editor preferences original](/wp-content/uploads/2016/07/openapi8-editor-noerror.png)</center>
+![editor preferences original](/images/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/openapi8-editor-noerror.png)
 
 ### 2.2.3 Cache
 
@@ -316,7 +316,7 @@ Here's the full main file where we reference the 4 sub-files:
 # 5 Valid sub-files
 If we put the last [persons.yaml](simple_openapi_specification_46_smarter_persons.yaml) file content in the editor, it ends with these errors:
 
-<center>![editor sub-file errors](/wp-content/uploads/2016/08/openapi8-editor-subfile-error.png)</center>
+![editor sub-file errors](/images/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/openapi8-editor-subfile-error.png)
 
 Splitting a huge Open API Specification file to keep it maintainable is a great idea but if you cannot validate sub-files against the specification, you gain almost nothing.
 

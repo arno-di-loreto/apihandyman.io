@@ -13,6 +13,5 @@ categories:
   - Talk
 ---
 API Days London 2016, take 2! I was very happy when Ronnie Mitra ([@mitraman](https://twitter.com/mitraman)) from the [API Academy](http://www.apiacademy.co/) invited me to do a fireside chat on API Style Guides at API Days London. Here's the video:
-<center>
-<iframe width="853" height="480" src="https://www.youtube.com/embed/2hxTmJsVHIc" frameborder="0" allowfullscreen></iframe>
-</center>
+
+{% youtube 2hxTmJsVHIc %}

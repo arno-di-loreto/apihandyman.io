@@ -81,9 +81,8 @@ API documentation must be exhaustive and consumer friendly:
 # The hypster way: Hypermedia
 This way is a subpath of the (other) API way.
 
-<center>![hypermedia-definition](/wp-content/uploads/2015/03/HypermediaDefinition.png "Hypermedia types exist to tell clients how to interact with data, not what the data means.")
+![hypermedia-definition](/images/the-ways-of-the-api-smartness/hypermedia-definition.png "Hypermedia types exist to tell clients how to interact with data, not what the data means.")  
 *The best definition of hypermedia* 
-</center>
 
 Adding [hypermedia](http://apievangelist.com/2014/01/07/what-is-a-hypermedia-api/) will lead your API to level 3 of [Richardson Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html) and help consumers to know what they can do with your data on the fly.
 
@@ -130,9 +129,8 @@ In a nutshell, the ways of API smartness are:
 - The mad scientist way. Use code on demand to lend some of your business intelligence to the consumer.
 - The empathic listening way. Listen, learn and adapt. The alpha and omega way.
 
-<center>![repertoire-bibliographique-universel](/wp-content/uploads/2015/03/540px-RepertoireBibliographiqueUniversel.jpg "Répertoire bibliographique universel")
+![repertoire-bibliographique-universel](/images/the-ways-of-the-api-smartness/repertoire-bibliographique-universel.png "Répertoire bibliographique universel")  
 *Répertoire bibliographique universel, Paul Otlet
 "<a href="http://commons.wikimedia.org/wiki/File:Mundaneum_Tir%C3%A4ng_Karteikaarten.jpg#/media/File:Mundaneum_Tir%C3%A4ng_Karteikaarten.jpg">Mundaneum Tiräng Karteikaarten</a>" by <a href="//commons.wikimedia.org/wiki/User:Zinneke" title="User:Zinneke">Zinneke</a> - <span class="int-own-work" lang="en">Own work</span>. Licensed under <a title="Creative Commons Attribution-Share Alike 3.0" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a> via <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>.*
-</center>
 
 As I was writing this post, I was wondering if these *ways* could be used for a sort of (meta) classification/evaluation/maturity model of API and API providers including RMM, HAMM and other things... I feel like some sort of [Paul Otlet](http://www.catalogingtheworld.com/) for APIs... I'll think about it.

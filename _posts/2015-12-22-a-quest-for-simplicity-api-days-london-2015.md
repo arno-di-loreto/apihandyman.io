@@ -21,9 +21,8 @@ Join me in a *quest for simplicity* from an imaginary bank's IS depth to its API
 
 Here are this keynote's video and slidedeck.
 
-<iframe width="853" height="480" src="https://www.youtube.com/embed/ten2-fjeXTM" frameborder="0" allowfullscreen></iframe>
-
-<center><script async class="speakerdeck-embed" data-id="921e2d9bdd514bb78f8931252a34f07d" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script></center>
+{% youtube ten2-fjeXTM %}
+{% speakerdeck 921e2d9bdd514bb78f8931252a34f07d %}
 
 Here's API Days London 2015 teaser ... watch well there may be some API Handyman subliminal images...
-<iframe width="853" height="480" src="https://www.youtube.com/embed/j0FsZuFumSk" frameborder="0" allowfullscreen></iframe>
+{% youtube j0FsZuFumSk %}

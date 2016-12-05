@@ -31,8 +31,8 @@ In previous parts we've learned to write efficiently highly accurate interface d
 All tutorial's files are available on [GIST](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
 
 If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-<center>![OpenAPISpecificationVisualDocumentation](/wp-content/uploads/2016/02/OpenAPI-Specification-Visual-Documentation.png "OpenAPI Specification Visual Documentation")
-</center>](http://openapi-specification-visual-documentation.apihandyman.io/)
+![OpenAPISpecificationVisualDocumentation](/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png "OpenAPI Specification Visual Documentation")
+](http://openapi-specification-visual-documentation.apihandyman.io/)
 
 # 1 Security definitions
 Following (almost) the same principle used with `parameters` and `definitions`, security can be defined and then used on different levels.

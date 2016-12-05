@@ -19,5 +19,5 @@ Smartbear blog posts:
 - [Expert Panel: Developing an API Strategy for 2017 (Video)](http://blog.smartbear.com/software-quality/api-strategy-panel-2017/)
 
 Here's the panel video:
-<center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xdJPJ3E-nC8" frameborder="0" allowfullscreen></iframe></center>
+
+{% youtube xdJPJ3E-nC8 %}

@@ -27,13 +27,13 @@ You own coolvintageornottoys.com the famous cool vintage-or-not toys database an
 This website consists of some kind of a more or less monolithic web application plugged on some kind of service oriented architecture.
 How your data and the way you process them look like is the result of years of evolution in a close environment leading to a functional but maybe complex system including some fancy things like these...
 
-![a-bestial-back-office-title](/wp-content/uploads/2015/02/A_bestial_back_office_Page_01.jpg "A bestial back-office title")
-![crypto-data-begins](/wp-content/uploads/2015/02/A_bestial_back_office_Page_02.jpg "Crypto data begins")
-![crypto-data-returns](/wp-content/uploads/2015/02/A_bestial_back_office_Page_03.jpg "Crypto data returns")
-![inconsistent-interfaces-wars](/wp-content/uploads/2015/02/A_bestial_back_office_Page_04.jpg "Inconsistent interfaces wars")
-![inconsistent-interfaces-strikes-back](/wp-content/uploads/2015/02/A_bestial_back_office_Page_05.jpg "Inconsistent interfaces strikes back")
-![the-return-of-inconsistent-interfaces](/wp-content/uploads/2015/02/A_bestial_back_office_Page_06.jpg "The return of inconsistent interfaces")
-![consumer-over-delegation](/wp-content/uploads/2015/02/A_bestial_back_office_Page_07.jpg "Consumer over-delegation")
+![a-bestial-back-office-title](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-01.png "A bestial back-office title")
+![crypto-data-begins](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-02.png "Crypto data begins")
+![crypto-data-returns](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-03.png "Crypto data returns")
+![inconsistent-interfaces-wars](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-04.png "Inconsistent interfaces wars")
+![inconsistent-interfaces-strikes-back](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-05.png "Inconsistent interfaces strikes back")
+![the-return-of-inconsistent-interfaces](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-06.png "The return of inconsistent interfaces")
+![consumer-over-delegation](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-07.png "Consumer over-delegation")
 
 ... *functional but maybe complex system*, that's a pretty euphemism. 
 
@@ -42,8 +42,8 @@ You think it's time to have a cool mobile application.
 You've read some things about this and it seems that a mobile application needs an API, so you decide to build one.
 This is a very good idea...
 
-![a-bestial-API-title](/wp-content/uploads/2015/02/A_bestial_API_Page_01.jpg "A bestial API title")
-![a-bestial-API](/wp-content/uploads/2015/02/A_bestial_API_Page_02.jpg "A bestial API")
+![a-bestial-API-title](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-api-page-01.png "A bestial API title")
+![a-bestial-API](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-api-page-02.png "A bestial API")
 
 ... but not this way.
 

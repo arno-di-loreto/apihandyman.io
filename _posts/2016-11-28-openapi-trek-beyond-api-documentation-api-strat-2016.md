@@ -22,18 +22,12 @@ This series is composed of three talks:
 - [OpenAPI Trek Into Fastness at Nordic APIs Stockholm Summit 2016](/openapi-trek-into-fastness-nordic-apis-summit-2016/)
 - OpenAPI Trek Beyond API Documentation at APIStrat Boston 2016
 
-<center>
-<blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">This year’s <a href="https://twitter.com/hashtag/APIstrat?src=hash">#APIstrat</a> award for Star Trek-est Talk goes to <a href="https://twitter.com/apihandyman">@apihandyman</a> <a href="https://t.co/8zjYM08noy">pic.twitter.com/8zjYM08noy</a></p>&mdash; Amelia Mango (@ameliamango) <a href="https://twitter.com/ameliamango/status/795749942144876547">7 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
+{% twitter https://twitter.com/ameliamango/status/795749942144876547 %}
 
 This last talk is the (not so uncommon) story of how I came to use Swagger/OpenAPI for API documentation and how it changed many things beyond API documentation. Here are the video (very special thanks to [Matthew Reinbold](https://twitter.com/libel_vox) for recording this talk with my crappy phone) and slides:
-<center>
-<iframe width="853" height="480" src="https://www.youtube.com/embed/EtQbaZwCv5o" frameborder="0" allowfullscreen></iframe>
-</center>
 
-<center>
-<script async class="speakerdeck-embed" data-id="db304a20b4204425a43b9843ccb5d504" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-</center>
+{% youtube EtQbaZwCv5o %}
+
+{% speakerdeck db304a20b4204425a43b9843ccb5d504 %}
 
 *Boston Library Photography by [Cinzia Dosa Lauret](http://www.misterlapin.com)*

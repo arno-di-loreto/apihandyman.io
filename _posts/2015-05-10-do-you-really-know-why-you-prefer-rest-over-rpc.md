@@ -13,14 +13,11 @@ categories:
 ---
 A few weeks ago I've seen an interesting flock of tweets initiated by this question:
 
-<center><blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Is my hatred of having http endpoints with the same path but different behaviors based on the verb totally irrational? Because I HATE it</p>&mdash; Camille Fournier (@skamille) <a href="https://twitter.com/skamille/status/588713316358475776">April 16, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+{% twitter https://twitter.com/skamille/status/588713316358475776 %}
 
 This question and the tweets that followed put my brain on quite an animated discussion...
 
-<center>![voices-inside-my-head](/wp-content/uploads/2015/05/voices_inside_my_head.jpg
- "Voices inside my head")
-</center>
+![](/images/do-you-really-know-why-you-prefer-rest-over-rpc/voices-inside-my-head.png "Voices inside my head")
 
 After this internal discussion, I realized that this question (and all the tweet debate that follows it) could help me highlight a dark corner of my librainry: why should I considered REST's request style (resource oriented) better than RPC's (operation oriented)? Is RPC's request style so evil? Is REST's the panacea?  
 

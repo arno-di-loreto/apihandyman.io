@@ -340,7 +340,7 @@ Whatever, with this last level we have action/operation descriptions, href, meth
 # Frequently asked questions
 When you start defining or classifying things, some people tends to overreact, arguing over which level is better than the other, what is the perfect way of doing things, counting how many API evangelists can stand on the header of a GET request and then they start wearing funny costumes and act in utterly surreal stupid way to boldly defend a so-called *truth*...
 
-<center>![API-inquisition](/wp-content/uploads/2015/02/apiinquisition.jpg "Nobody expects the API inquisition!")</center>
+![](/images/hypermedia-api-maturity-model-part-i-hypermedia-ness/apiinquisition.png "Nobody expects the API inquisition!")
 
 > My friends/colleagues/parents are yelling at each other about "is hypermedia evil or not?". 
 > Should I call the API inquisition to settle this conflict?

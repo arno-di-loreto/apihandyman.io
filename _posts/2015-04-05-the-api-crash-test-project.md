@@ -23,8 +23,7 @@ I want something more practical to try out the things I see and imagine.
 I want something more clear to make my posts more easier to understand.
 I want something more concrete to help people understand/choose/find their way(s) in this fascinating/crazy/complex/boiling API world.
 
-<center>![api-crash-test-comic](/wp-content/uploads/2015/04/apicrashtestcomic.jpg "By the power of API crash test!")
-</center>
+![api-crash-test-comic](/images/the-api-crash-test-project/apicrashtestcomic.png "By the power of API crash test!")
 
 So, I came up with the concept of *API crash test*.
 
@@ -32,9 +31,8 @@ So, I came up with the concept of *API crash test*.
 
 To realize these *crash tests*, I will define a concrete *product* and use it in my posts and experiments to test many API related things.
 
-<center>![api-crash-test-overview](/wp-content/uploads/2015/04/apicrashtestprojectoverview.jpg "API crash test project overview")
+![api-crash-test-overview](/images/the-api-crash-test-project/apicrashtestprojectoverview.png "API crash test project overview")  
 *A big fuzzy draft overview of the API crash test project.*
-</center>
 
 The main objective is to work on the designing of (hypermedia) APIs based on this product, but through this project I also want to work on:
 
@@ -66,9 +64,8 @@ I will share with you *all* my experiments on this blog and github, the good one
 In my HAMM posts I showed some examples of hypermedia implementations.
 With the API crash test project, I would have implemented the API based on my product and gives you the hability to test and compare all hypermedia implementations with a system like this: 
 
-<center>![api-crash-test-hypermedia](/wp-content/uploads/2015/04/testinghypermediatypes.jpg
+![api-crash-test-hypermedia](/images/the-api-crash-test-project/testinghypermediatypes.png
  "API crash test project. Testing hypermedia media types")
-</center>
 
 Another example. Let's say that I want to test some kind of backend as a service or an API framework. I'll take then my crash test API definition and see how I can implement it with these things.
 

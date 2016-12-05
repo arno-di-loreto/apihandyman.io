@@ -12,9 +12,8 @@ dsq_thread_id:
 The last [API Strat 2016](http://boston2016.apistrat.com/) day, after the last talk, a man living in kentucky asked me something like *What is the one thing you will remember about this conference?*. I answered something like *People First*.  
   
 People First. This is definitely what sticks in my mind after this conference.  
-  
-<center><blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">What you can learn at <a href="https://twitter.com/hashtag/apistrat?src=hash">#apistrat</a> is that (API) technology is not only about machines but also and most importantly about humans</p>&mdash; API Handyman (@apihandyman) <a href="https://twitter.com/apihandyman/status/794546772219691008">4 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+{% twitter https://twitter.com/apihandyman/status/794546772219691008 %}
   
 But this is not the only thing.
   
@@ -29,17 +28,15 @@ It was going to be an awesome conference.
 After a few days of tourism, a [panel discussion](http://blog.smartbear.com/software-quality/api-strategy-panel-2017/) and the speakers dinner, it was time to go to API Strat.
   
 Thursday. 8 am. I grabbed my speaker badge and the API Strat 2016 official t-shirt.
-  
-<center><blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr"><a href="https://twitter.com/apievangelist">@apievangelist</a> Kin Lane fronts the History/API mashup t-shirt at <a href="https://twitter.com/hashtag/APIStrat?src=hash">#APIStrat</a> <a href="https://t.co/0MmQsvtTOm">pic.twitter.com/0MmQsvtTOm</a></p>&mdash; David J. Biesack (@davidbiesack) <a href="https://twitter.com/davidbiesack/status/794167619121250304">3 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+{% twitter https://twitter.com/davidbiesack/status/794167619121250304 %}
   
 > One if by REST  
 > Two if by SOAP
   
 This t-shirt was a bit cryptic for a foreigner like me. It seems that I was not the only one in that case.
-  
-<center><blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">Explaining the <a href="https://twitter.com/apistrat">@apistrat</a> tee shirt (since many didn&#39;t raise their hands): <a href="https://t.co/sOqd9TtqgJ">https://t.co/sOqd9TtqgJ</a></p>&mdash; Lorinda Brandon (@lindybrandon) <a href="https://twitter.com/lindybrandon/status/794172064320131072">3 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+{% twitter https://twitter.com/lindybrandon/status/794172064320131072 %}  
   
 Boston is a city steeped in history and it seemed that the american revolution hero [Paul Revere](https://en.wikipedia.org/wiki/Paul_Revere) or the american poet [Henry Wadsworth Longfellow](https://en.wikipedia.org/wiki/Paul_Revere%27s_Ride) gave a hand to design this year's t-shirt. This quote has been inspired by:
   
@@ -56,9 +53,8 @@ Whether by sea or by land, the API nerds were coming. The API community was gath
 # This is bowling, there are rules
 So many different people gathered in a friendly and inclusive event, what could go wrong?
 In an ideal world, nothing. But we do not live in an ideal world.   
-  
-<center><blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/APIStrat?src=hash">#APIStrat</a> is enforcing its code of conduct </p>&mdash; sarah jeong (@sarahjeong) <a href="https://twitter.com/sarahjeong/status/794166165278982144">3 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+{% twitter https://twitter.com/sarahjeong/status/794166165278982144 %}  
   
 Thursday 9 am. Main Stage. The staff announced that someone has been expelled from the conference (the conference has started the day before with workshops, speakers dinner and attendees meetup). 
   
@@ -70,10 +66,9 @@ Yes, a code of conduct:
 > [Ashe Dryden](https://www.ashedryden.com/blog/codes-of-conduct-101-faq)
   
 Everybody was now aware that this code was NOT a [paper tiger](https://en.wikipedia.org/wiki/Paper_tiger).
-  
-<center><blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">likes attending <a href="https://twitter.com/hashtag/APIStrat?src=hash">#APIStrat</a> because <a href="https://twitter.com/kinlane">@kinlane</a> and <a href="https://twitter.com/njyx">@njyx</a> have always taken having an inclusive event seriously.</p>&mdash; wirehead (@wirehead) <a href="https://twitter.com/wirehead/status/794167999204823040">3 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
-  
+
+{% twitter https://twitter.com/wirehead/status/794167999204823040 %}  
+
 This is sad, not for the person who has been expelled, but for the person who had to suffer inappropriate behavior.  
 This is good, not because someone had to report an inappropriate behavior, but because someone was able to report an inappropriate behavior and because the API Strat staff reacted promptly and efficiently.
   
@@ -91,10 +86,9 @@ We are so focused on providing APIs, even if we want to provide good ones, that 
 Consuming API is mainstream so providing API is more and more important. You may even, like [Susan Danziger](https://twitter.com/susandanziger), face unexpected API challenges. Ziggio was a recrutment platform before becoming a video API service. They had to build a video recording component (with an API) and realize that it was a wonderful product. This product allowed Ziggio to turn to an API based model company and turn its competitor into customers.
   
 Once you provide API, you'll have to find the right monetization model. As [Mark O'Neil](https://twitter.com/TheMarkONeill) and [Susan Danziger](https://twitter.com/susandanziger) stated: API monetization doesn't just mean charging for API calls. Finding a good model is hard. For Ziggio, the success came from the *Mickey Mouse* model, based on how Disney was monetizing its licences.
-  
-<center><blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">&quot;Mickey model&quot;: Consumers pay for feature tier, pay for overages. <a href="https://t.co/tAu6W6D6eF">https://t.co/tAu6W6D6eF</a> <a href="https://twitter.com/susandanziger">@susandanziger</a> <a href="https://twitter.com/hashtag/APIStrat?src=hash">#APIStrat</a></p>&mdash; Allen Clayton (@ajclayton) <a href="https://twitter.com/ajclayton/status/794178601998491648">3 November 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
-  
+
+{% twitter https://twitter.com/ajclayton/status/794178601998491648 %}
+
 Whatever the model you choose, allways give the means to let your customers know what the bill will be (with a simulator for instance).
   
 ## Architecture
@@ -115,9 +109,8 @@ Do you know how your microwave oven works? [Probably not](https://en.wikipedia.o
 But the design road to hell is paved with good intentions. The desire of perfection will be hit by reality. As [Matt Bernier](https://twitter.com/mbernier) tolds us: *People will not care about a bad designed canonical REST API*. 
   
 If you design API, listen to [James Higginbotham](https://twitter.com/launchany) "*Consumers don't care about what's behind the API. Be outside in and not inside out*" and [Mark O'Neil](https://twitter.com/TheMarkONeill) "*Don't dump your internal data model on your mobile clients!*" *(who said GraphQL?)*. 
-  
-<center><blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">Gordian knot of API design: The Conway&#39;s Law <a href="https://twitter.com/libel_vox">@libel_vox</a> <a href="https://twitter.com/hashtag/APIStrat?src=hash">#APIStrat</a> <a href="https://t.co/1WkZAUcQcX">https://t.co/1WkZAUcQcX</a> <a href="https://t.co/HQYLYxS6pO">pic.twitter.com/HQYLYxS6pO</a></p>&mdash; API Handyman (@apihandyman) <a href="https://twitter.com/apihandyman/status/794212165808951296">3 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+{% twitter https://twitter.com/apihandyman/status/794212165808951296 %}
   
 And don't dare to think that the outside in approach is only a technical matter or you may see a snarling [Matthew Reinbold](https://twitter.com/libel_vox) looking at you with fierce eyes. He reminded us that [Conway's law](https://en.wikipedia.org/wiki/Conway%27s_law) waits in the darkness like a sword of Damocles hanging upon your API design. Internal organization is different from external perception and mirroring it in an API may not be the best idea. [James Higginbotham](https://twitter.com/launchany) even urge enterprises to get rid of project based IT and embrace product based IT. Splitting resource on multiple teams or building separate APIs from each entity in a big group will not provide a unifed view and consistent, understandable and usable API.
   
@@ -134,24 +127,20 @@ Once designed the hard work is not over. Your API WILL evolve. You WILL introduc
 Even if developers suck at designing API (*just kidding*), some of your dev may have good ideas. At Fitbit, developers can submit API modification by making a pull request on an OpenAPI specification.
   
 ## Law and Order
-<center>
-<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">Stoked to be learning more about Oracle v Google from <a href="https://twitter.com/sarahjeong">@sarahjeong</a> at <a href="https://twitter.com/hashtag/apistrat?src=hash">#apistrat</a> <a href="https://t.co/h8tow5oY2I">pic.twitter.com/h8tow5oY2I</a></p>&mdash; Kin Lane (@kinlane) <a href="https://twitter.com/kinlane/status/794295988114640897">3 November 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+{% twitter https://twitter.com/kinlane/status/794295988114640897 %}
   
 Journalist by trade, lawyer by training, [Sarah Jeong](https://twitter.com/sarahjeong) bringed us the story of the epic Oracle vs Google battle with her amazing talk *You wouldn't reimplement an API*.
-  
-<center><blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/apistrat?src=hash">#apistrat</a> <a href="https://twitter.com/sarahjeong">@sarahjeong</a> made a timeline! <a href="https://t.co/IowcwmOqH3">pic.twitter.com/IowcwmOqH3</a></p>&mdash; Heidi @ Home (@wiredferret) <a href="https://twitter.com/wiredferret/status/794299964407107585">3 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+{% twitter https://twitter.com/wiredferret/status/794299964407107585 %}  
   
 This appalling and insightful story reminded us that explaining what is an API to non technical people (the jury), especially in a trial, is quite a challenge. Did the jury understand? Probably not. They may have abandoned after trying to read source code with notepad. *Don't get me wrong, the problem is not with the jury but with what they have faced*. 
-  
-<center><blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr">The key to the Oracle vs Google trial seems to be the understanding of what an API is. Want to copyright these? no. <a href="https://twitter.com/sarahjeong">@sarahjeong</a> <a href="https://twitter.com/hashtag/APIStrat?src=hash">#APIStrat</a> <a href="https://t.co/iZ08qNtm4U">pic.twitter.com/iZ08qNtm4U</a></p>&mdash; API Handyman (@apihandyman) <a href="https://twitter.com/apihandyman/status/794296871665729536">3 November 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+{% twitter https://twitter.com/apihandyman/status/794296871665729536 %}
   
 Finally Google won... for the time being. But what are the consequences? Nobody knows. 
-  
-<center><blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/apistrat?src=hash">#apistrat</a> <a href="https://twitter.com/sarahjeong">@sarahjeong</a> tells us some v. Important lessons learned. <a href="https://t.co/hsgmxwv3K7">pic.twitter.com/hsgmxwv3K7</a></p>&mdash; Heidi @ Home (@wiredferret) <a href="https://twitter.com/wiredferret/status/794300612984918016">3 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+{% twitter https://twitter.com/wiredferret/status/794300612984918016 %}  
   
 You can read the full story in [Sarah Jeong](https://twitter.com/sarahjeong)'s post *[In Oracle v. Google, a Nerd Subculture Is on Trial](http://motherboard.vice.com/read/in-google-v-oracle-the-nerds-are-getting-owned)*.
   
@@ -166,23 +155,16 @@ Hiroshi Yamauchi, CEO of Nintendo, chose to give the lead of this last chance pr
 [Mike]((https://twitter.com/mamund)) showed us also us we needed leaders who can maintain stability around chaos. Serendipity needs a fertile ground, we must create openness to enable new ideas. Opportunities will come from the people around us. On the contrary, asking for data and measurements is the best way to stop creative works.
   
 On a more personal level, [he]((https://twitter.com/mamund)) told us that our life is like a lego box and not like a jigsaw that has only one way to get it right. We need to create whitespace for ourselves to think. When working on something, we need a break, we need to do something else to refuel our brain and free it. *And [Jeremiah Lee](https://twitter.com/JeremiahLee) gave us this whitespace at API Strat! Before his talk he made all the room moving, jumping, running in place, yelling, refueling everyone.*
-  
-<center><blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">Cultivating Coders foundation <a href="https://t.co/CAORmxH05g">https://t.co/CAORmxH05g</a>  <a href="https://twitter.com/CAsh_The3rd">@CAsh_The3rd</a> <a href="https://twitter.com/hashtag/APIStrat?src=hash">#APIStrat</a> <a href="https://t.co/o0iXO3W1kO">pic.twitter.com/o0iXO3W1kO</a></p>&mdash; API Handyman (@apihandyman) <a href="https://twitter.com/apihandyman/status/794544774703435778">4 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+{% twitter https://twitter.com/apihandyman/status/794544774703435778 %}  
   
 [Charles Ashley](https://twitter.com/CAsh_The3rd) told us his story, how he came to create the [Cultivating Coders Foundation](https://cultivatingcoders.com/public_html/foundation/). He reminded us that we shouldn't take for granted our heavily connected life. In this world, even in developed countries, people still have to go to a library to have access to knowledge.
   
-<center>
-<blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">Are we just &quot;interested&quot; or are we &quot;committed&quot; to addressing our systemic diversity problem in tech? <a href="https://twitter.com/CAsh_The3rd">@CAsh_The3rd</a> <a href="https://twitter.com/hashtag/apistrat?src=hash">#apistrat</a> <a href="https://t.co/MkYCZkf5ax">pic.twitter.com/MkYCZkf5ax</a></p>&mdash; Kin Lane (@kinlane) <a href="https://twitter.com/kinlane/status/794544708106199040">4 novembre 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
+{% twitter https://twitter.com/kinlane/status/794544708106199040 %}  
   
 And opportunities heavily depend on what you can access. So [he](https://twitter.com/CAsh_The3rd) asked us: *are you committed or interested?*.
   
-<center>
-<blockquote class="twitter-tweet" data-lang="en-gb"><p lang="en" dir="ltr"><a href="https://twitter.com/apievangelist">@apievangelist</a> Kin Lane shares his very personal story with <a href="https://twitter.com/hashtag/APIStrat?src=hash">#APIStrat</a>. <a href="https://twitter.com/hashtag/important?src=hash">#important</a> <a href="https://t.co/0f7ydxQrrB">pic.twitter.com/0f7ydxQrrB</a></p>&mdash; David J. Biesack (@davidbiesack) <a href="https://twitter.com/davidbiesack/status/794634464475353088">4 November 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
+{% twitter https://twitter.com/davidbiesack/status/794634464475353088 %}  
   
 My friend, [Kin Lane](https://twitter.com/kinlane), the [API Evangelist](http://apievangelist.com), captured the public attention with an unvarnished talk *Drone Recovery In The Attention Economy*. He shared with us his very personal story, leaving me thoughtful on my very existence. I urge you to read this story on the [API Evangelist blog](https://apievangelist.com/2016/11/04/drone-recovery-in-the-attention-economy/).
   

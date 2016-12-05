@@ -14,9 +14,8 @@ categories:
 When watching a movie, have you ever noticed how characters *interact* with computers? If someone wants to destroy a computer, what does he or she smash?  
 The computer's screen...
 
-<center>![spock_smash_computer](/wp-content/uploads/2015/10/spock_smash_computer.gif
- "Spock smashes computer")
-</center>  
+![spock_smash_computer](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/spock-smash-computer.gif
+ "Spock smashes computer")  
 
 With *Swagger*, it's almost the same thing. Many people focus only on *generated Swagger UI* and only see Swagger as a useful way to generate documentation from an API implementation.
 
@@ -38,10 +37,9 @@ But after working for a while on this project, some concerns, not all related to
 
 ## Documentation tightly coupled with implementation
 
-<center>![indiana_jones](/wp-content/uploads/2015/10/indianajones.jpg
- "Indiana Jones")
+![indiana_jones](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/indianajones.png
+ "Indiana Jones")  
 *Documentation (Henry Jones Sr) tightly coupled with implementation (Henry Jones Jr)*
-</center>
 
 Even if our new API is not an open one, it is used by people outside our company so I started to take a closer look at the generated documentation to check if everything was ok. It was... on the surface:
 
@@ -51,10 +49,9 @@ Even if our new API is not an open one, it is used by people outside our company
 
 But when taking a closer look at this generated documentation, some problems appear.
 
-<center>![swagger_model_view](/wp-content/uploads/2015/10/modelview.png
- "Swagger model view")
+![swagger_model_view](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/modelview.png
+ "Swagger model view")  
 *Pet Store Swagger model view example*
-</center>
 
 Even if the resulting API was matching the specification, the model view of Swagger UI reveal some holes in the specification and was not satisfying:
 
@@ -70,8 +67,7 @@ Nothing serious, but to correct the generated documentation, we had to modify th
 Even if our new API is not a ROAST one (really dumb SOAP to pseudo REST conversion), it is still tightly coupled to our SOA as it was designed last and with not much hindsight. 
 Just like a by-product, just like a necessary evil.
 
-<center><blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/arno_di_loreto">@arno_di_loreto</a> the <a href="https://twitter.com/apihandyman">@apihandyman</a> needs to make it clear to the Audience that he is JOKING <a href="https://twitter.com/hashtag/BankingAPIs?src=hash">#BankingAPIs</a> <a href="https://twitter.com/hashtag/apidays?src=hash">#apidays</a> <a href="http://t.co/KJDExnLcYG">pic.twitter.com/KJDExnLcYG</a></p>&mdash; h@ckte.ch (@H4CKTECH) <a href="https://twitter.com/H4CKTECH/status/646610528907993088">September 23, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+{% twitter https://twitter.com/H4CKTECH/status/646610528907993088 %}
 
 I wanted to change that and make the API a first class citizen in our system just like our website or mobile application.
 I wanted to really have an API first approach with tools to help us design faster and mock to test easily the design to ensure a good quality from the start.
@@ -100,10 +96,9 @@ Thanks to this new version, I realized my mistake, I realized that Swagger was *
 
 Swagger is an *API definition language* and there are [so many tools](http://swagger.io/open-source-integrations/) using it.
 
-<center>![swagger_editor](/wp-content/uploads/2015/10/swaggereditor_petstore.png
- "Swagger editor")
+![swagger_editor](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/swaggereditor-petstore.png
+ "Swagger editor")  
 *Swagger API definition in Swagger Editor*
-</center>
 
 By *really* using Swagger and its ecosystem I thought we could:
 

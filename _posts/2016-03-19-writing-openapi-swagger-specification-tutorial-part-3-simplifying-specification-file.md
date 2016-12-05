@@ -29,8 +29,8 @@ This tutorial is composed of several posts:
 All tutorial's files are available on [gist](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
 
 If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-<center>![OpenAPISpecificationVisualDocumentation](/wp-content/uploads/2016/02/OpenAPI-Specification-Visual-Documentation.png "OpenAPI Specification Visual Documentation")
-</center>](http://openapi-specification-visual-documentation.apihandyman.io/)
+![OpenAPISpecificationVisualDocumentation](/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png "OpenAPI Specification Visual Documentation")
+](http://openapi-specification-visual-documentation.apihandyman.io/)
 
 In this third part you will learn how to simplifiy the specification file by defining *reusable* *definitions*, *responses* and *parameters* and using them with *references* and thus make the writing and reading of OpenAPI Specification fairly easy.
 

@@ -23,10 +23,5 @@ This series is composed of three talks:
 
 This first talk, *OpenAPI Trek*, aims to explain what is the OpenAPI specification and how it can be extensively used throughout the API lifecycle. Here are the video and slides:
 
-<center>
-<iframe width="853" height="480" src="https://www.youtube.com/embed/rUPwwAQyF_I" frameborder="0" allowfullscreen></iframe>
-</center>
-
-<center>
-<script async class="speakerdeck-embed" data-id="d615d76ab430473180b3b42aaa35b6af" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-</center>
+{% youtube rUPwwAQyF_I %}
+{% speakerdeck d615d76ab430473180b3b42aaa35b6af %}

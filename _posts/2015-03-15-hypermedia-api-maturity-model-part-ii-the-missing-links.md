@@ -41,9 +41,8 @@ I determined that if I wanted to offer the expected good user experience with th
 
 As I was documenting myself about REST APIs, I (re)discovered the notion of *hypermedia* for REST APIs in [Richardson's Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html).
 
-<center>![power-of-hypermedia](/wp-content/uploads/2015/03/heman-power-of-hypermedia.jpg "By the power of Hypermedia The Api will hande this")
+![power-of-hypermedia](/images/hypermedia-api-maturity-model-part-ii-the-missing-links/heman-power-of-hypermedia.png "By the power of Hypermedia The Api will hande this")  
 *Me, figuring that hypermedia can handle this (re-enactment)*.
-</center>
 
 If in the web application, all of these needs are handled (from the user point view) mostly via hypermedia (the user browse from page to page by clicking on links) why wouldn't we do the same with the API?
 
@@ -72,8 +71,7 @@ For many use case, these answers will fit perfectly.
 
 But sometimes not.
 
-<center>![higway-to-hell](/wp-content/uploads/2015/03/whatyoucantdo.jpg "Highway to Hell")
-</center>
+![higway-to-hell](/images/hypermedia-api-maturity-model-part-ii-the-missing-links/whatyoucantdo.png "Highway to Hell")
 
 Sometimes it would be better for user experience to explicitly say that a thing is impossible to do *before* someone actually try to do that thing. 
 
@@ -298,9 +296,8 @@ GET https://api.dummy.com/locations/IDL1
 ## How you do things
 Actual techniques for hypermedia implementation I've seen for now can tell you what actions you can do with a resource and what you need to do it but sometimes you need more information for processes involving more than one action.
 
-<center>![djiloriann-ikea-manual](/wp-content/uploads/2015/03/djiloriann.jpg "Djiloriann Ikea manual")
+![djiloriann-ikea-manual](/images/hypermedia-api-maturity-model-part-ii-the-missing-links/djiloriann.png "Djiloriann Ikea manual")  
 *[Djiloriann manual, www.collegehumor.com](http://www.collegehumor.com/post/6500868/sci-fi-ikea-manuals)*
-</center>
 
 For example, when you use Twitter API, if you want to tweet with one media you have to 
 
