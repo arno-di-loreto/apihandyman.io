@@ -35,7 +35,7 @@ This tutorial is composed of several posts:
 
 In previous parts we've learned to create highly accurate API description which can become quite large or may contain elements that can be reused, in this eighth part we'll learn how to split an OpenAPI specification file into smaller and reusable elements.
 
-All tutorial's files are available on [GIST](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
+All tutorial's files are available on [gist](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
 
 If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
 ![OpenAPISpecificationVisualDocumentation](/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png "OpenAPI Specification Visual Documentation")
@@ -47,13 +47,12 @@ In [part 3 - Simplifying spefication file](http://apihandyman.io/writing-openapi
 - A body parameter in `POST /persons`
 - A response schema in `GET /persons/{username}`
 - A sub-elements in `Persons` definition
-
-
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_06_with_definitions.yaml" highlight="65-74, 78, 60, 40" show_meta="1"]
-
+  
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_06_with_definitions.yaml highlight:"65-74, 78, 60, 40" footer:false %}
+  
 To use the `Person` definition in these different places, we use a JSON Pointer (defined by [RFC6901](https://tools.ietf.org/html/rfc6901)):
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_06_with_definitions.yaml" lines="78" show_meta="0"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_06_with_definitions.yaml lines:"78" footer:false %}
 
 This pointer describes a path in the document, pointing to `Person` in `definitions` which is as the root (`#`) of the *current* document.
  
@@ -68,11 +67,11 @@ Let's see how we can split the [file](https://gist.github.com/arno-di-loreto/5a3
 
 We can create a `person.yaml` file containing the `Person` definition:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_23_person.yaml"  show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_23_person.yaml  footer:false %}
 
 Then we can remove the `Person` definition in `definitions` and replace all existing references to person `#definitions/Person` by a reference to `Person` in the `person.yaml` file:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_24_local_reference.yaml" highlight="40, 60, 68" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_24_local_reference.yaml highlight:"40, 60, 68" footer:false %}
 
 ## 2.2 Editing splitted local files with the online editor
 Tools will look for the referenced file (`person.yaml`) in the same directory as the file containing the reference.
@@ -138,19 +137,19 @@ You're under no obligation to put all sub-files on a "root" level, you can store
 
 Let's move the `person.yaml` file into a sub-folder `folder`, the new reference will be like this:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_25_local_reference_folder.yaml" lines="40" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_25_local_reference_folder.yaml lines:"40" footer:false %}
 
 ### 2.3.1 File referencing a file from an upper folder
 You can also reference a file outside the current folder. Let's create a `persons.yaml` file into a `another-folder` folder:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_26_persons.yaml" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_26_persons.yaml footer:false %}
 
 This file reference the `person.yaml` file using `..` to get to the upper level.
 
 To use `persons.yaml`, we proceed just like with `person.yaml`. We remove the `Persons` definition from the main file and we replace its reference `#/definitions/Persons` by `another-folder/persons.yaml#Persons`.
 
 Here's the full file with all definitions externalized (the `definitions` section has been removed):
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_25_local_reference_folder.yaml" highlight="31,40,60" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_25_local_reference_folder.yaml highlight:"31,40,60" footer:false %}
 
 ## 2.4 Referencing a remote files
 As you may have guess while modifying the references in the specification and editor configuration, it is also possible to reference a remote file.
@@ -166,7 +165,7 @@ Remember that the server **MUST** have CORS activated to allow the editor to dow
 
 We have launched a web server on 8080 port, so all we have to do is add `http://localhost:8080/` to the references to `Person`:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_27_remote_reference.yaml" lines="40" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_27_remote_reference.yaml lines:"40" footer:false %}
 
 ### 2.4.2 Remote files containing local references
 What happen if the remote file reference a local file? (`Main file -> Remote file -> Local file`).
@@ -175,7 +174,7 @@ The parser will seek this "local" file on the remote server providing the remote
 
 If we replace the local to `Persons` by a remote reference...
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_27_remote_reference.yaml" lines="31" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_27_remote_reference.yaml lines:"31" footer:false %}
 
 ... the `person.yaml` file referenced "locally" in the `persons.yaml` file will be loaded from `http://localhost:8080` which has served the `persons.yaml`. 
 
@@ -185,7 +184,7 @@ If a remote file contains a remote reference (`Main file -> Remote file -> Remot
 
 We can replace the `person.yaml` file local reference by a remote reference in `persons.yaml`:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_28_persons_remote.yaml" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_28_persons_remote.yaml footer:false %}
 
 ## 2.5 Multiple items in a single sub-file
 We have put `Person` and `Persons` definitions in separate files: this is not an obligation. You can put more than one item in a single file, you only need to use the right JSON Pointer.
@@ -193,28 +192,28 @@ We have put `Person` and `Persons` definitions in separate files: this is not an
 ### 2.5.1 Person and Person in a single file
 If we concatenate `person.yaml` and `persons.yaml` into a single file called `definitions.yaml`:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_29_definitions.yaml" highlight="15" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_29_definitions.yaml highlight:"15" footer:false %}
 
 Note that in `Persons` the reference to `Person` is now `#/Person`.
 
 In the main file we only need to change the filename when reference these two definitions:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_30_subfile_multiple.yaml" lines="31" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_30_subfile_multiple.yaml lines:"31" footer:false %}
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_30_subfile_multiple.yaml" lines="40" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_30_subfile_multiple.yaml lines:"40" footer:false %}
 
 ### 2.5.2 Organizing content in a sub-file
 Within the sub-file you can organize the content as you wish. Here `Person` is in `SomeDefinitions` and Persons is in `OtherDefinitions`:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_31_organized_definitions.yaml" highlight="1,13,17" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_31_organized_definitions.yaml highlight:"1,13,17" footer:false %}
 
 Note that in `Persons` the reference to `Person` is now `#/SomeDefinitions/Person`.
 
 In the main file we have to modify the path to get the item in the sub-file for these two definitions:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_32_subfile_organized.yaml" lines="31" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_32_subfile_organized.yaml lines:"31" footer:false %}
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_32_subfile_organized.yaml" lines="40" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_32_subfile_organized.yaml lines:"40" footer:false %}
 
 ## 2.6 Definitions, Responses, Parameters
 What we have done with `Person` and `Persons` definitions can be done with any reusable items (i.e. using `$ref`) such as responses and parameters in the Open API Specification file.
@@ -227,26 +226,26 @@ We will split the [huge file](https://gist.github.com/arno-di-loreto/5a3df225072
 ## 3.1 Let the chainsaw massacre begin
 Let's start with the `info` section:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_22_documentation_with_gfm.yaml" lines="1-25" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_22_documentation_with_gfm.yaml lines:"1-25" footer:false %}
 
 We can put its whole content in a file called `info.yaml`:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_34_chainsaw_info.yaml" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_34_chainsaw_info.yaml footer:false %}
 
 And reference it just like this in `info`:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_33_chainsaw.yaml" lines="1-4" highlight="4" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_33_chainsaw.yaml lines:"1-4" highlight:"4" footer:false %}
 
 ## 3.2 The wizard of resolution
 We can do the same thing with `paths`, `definitions`, `responses` and `parameters`: copy the section content in a sub-file ([paths.yaml](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_35_chainsaw_paths-yaml), [definitions.yaml](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_36_chainsaw_definitions-yaml), [responses.yaml](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_37_chainsaw_responses-yaml) and [parameters.yaml](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_38_chainsaw_parameters-yaml)) and reference it in the main file:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_33_chainsaw.yaml" lines="29-39" highlight="30,33,36,39" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_33_chainsaw.yaml lines:"29-39" highlight:"30,33,36,39" footer:false %}
 
 If you remember previous posts, these sections references each other in many ways, for example in `paths.yaml`:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_35_chainsaw_paths.yaml" lines="144-146" highlight="146" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_35_chainsaw_paths.yaml lines:"144-146" highlight:"146" footer:false %}
 
 The `username` parameter is no longer in the main file and is not in the `paths.yaml` file but in the `parameters.yaml` file:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_38_chainsaw_parameters.yaml" lines="1-6" highlight="1" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_38_chainsaw_parameters.yaml lines:"1-6" highlight:"1" footer:false %}
 
 How could the main file be considered valid in the editor (or in any tool parsing the file)? It's simply because the sub-files are loaded and then the whole content (file + sub-files) is validated.
 
@@ -257,28 +256,28 @@ We can use JSON pointers for almost anything in the specification as as long as 
 And as seen earlier in this post we can put many items in a sub-file.
 
 The `documentation.yaml` file contains the data for `externalDocs` and `tags` (note the custom structure on line 1 and 6):
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_39_chainsaw_documentation.yaml" highlight="1,6" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_39_chainsaw_documentation.yaml highlight:"1,6" footer:false %}
 
 These data are referenced this way in the main file:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_33_chainsaw.yaml" lines="6-10" highlight="7,10" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_33_chainsaw.yaml lines:"6-10" highlight:"7,10" footer:false %}
 
 The `security.yaml` file contains the data for `securityDefinitions` and `security` (note the custom structure on line 20): 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_41_chainsaw_security.yaml" highlight="20" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_41_chainsaw_security.yaml highlight:"20" footer:false %}
 
 ### 3.2.2 Referencing a string or a simple list
 It also work for simpler value like a string or a list of string. The `schema`, `host` and `basepath` values can be moved into a single file `security.yaml` (note the custom structure on line 3 and 4):
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_39_chainsaw_endpoint.yaml" highlight="3,4" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_39_chainsaw_endpoint.yaml highlight:"3,4" footer:false %}
 
 And referenced like this
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_33_chainsaw.yaml" lines="12-17" highlight="13,15,17" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_33_chainsaw.yaml lines:"12-17" highlight:"13,15,17" footer:false %}
 
 ### 3.2.3 Reusing a value
 As long as the API consumes and produces the same media types, we define a single value in the `mediatypes.yaml` file:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_40_chainsaw_mediatypes.yaml" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_40_chainsaw_mediatypes.yaml footer:false %}
 
 And then we reference this single value in both `produces` and `consumes`: 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_33_chainsaw.yaml" lines="19-22" highlight="20,22" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_33_chainsaw.yaml lines:"19-22" highlight:"20,22" footer:false %}
 
 # 4 A smarter split
 The API we built with the previous parts could be divided in four parts:
@@ -293,18 +292,18 @@ We can create 4 sub-files and reference them from a main file.
 ## 4.1 commons.yaml
 In the `commons.yaml` file we put every items that can be reused across other files:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_43_smarter_commons.yaml" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_43_smarter_commons.yaml footer:false %}
 
 ## 4.2 images.yaml
 In the `images.yaml` file we put both `/images` and `/images/{id}` paths informations:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_44_smarter_images.yaml" highlight="3,29,31,33,36,58,62,64,66" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_44_smarter_images.yaml highlight:"3,29,31,33,36,58,62,64,66" footer:false %}
 
 Note that all references to common items point to `commons.yaml`.
 
 ## 4.3 legacy.yaml
 Same for the `/js-less-consumer-persons` path we put in `legacy.yaml` file in `js-less-consumer-persons`:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_45_smarter_legacy.yaml" highlight="3,42,46,50,52" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_45_smarter_legacy.yaml highlight:"3,42,46,50,52" footer:false %}
 
 ## 4.4 persons.yaml
 All persons items go in the `persons.yaml`:
@@ -314,11 +313,11 @@ All persons items go in the `persons.yaml`:
 - all persons specific responses goes in `responses` (and can be referenced with `#responses/name`)
 - all persons specific parameters goes in `parameters` (and can be referenced with `#parameters/name`)
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_46_smarter_persons.yaml" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_46_smarter_persons.yaml footer:false %}
 
 ## 4.5 full main file
 Here's the full main file where we reference the 4 sub-files:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_42_smarter.yaml" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_42_smarter.yaml footer:false %}
 
 # 5 Valid sub-files
 If we put the last [persons.yaml](simple_openapi_specification_46_smarter_persons.yaml) file content in the editor, it ends with these errors:
@@ -340,52 +339,52 @@ Let's see how we can fix these errors.
 ### 5.1.1 Missing swagger property
 We just need to add this line on file's top:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_48_valid_commons.yaml" lines="1" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_48_valid_commons.yaml lines:"1" footer:false %}
 
 ### 5.1.2 Missing info property
 We add an short `info` section after `swagger`:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_48_valid_commons.yaml" lines="3-6" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_48_valid_commons.yaml lines:"3-6" footer:false %}
 
 ### 5.1.3 Missing paths property
 As we do not define any path in this file we just need to add an empty `paths` section:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_48_valid_commons.yaml" lines="39" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_48_valid_commons.yaml lines:"39" footer:false %}
 
 ### 5.1.4 Property defaultSecurity not allowed
 As the `defaultSecurity` correspond to the OpenAPI `security` section we just need to rename it:
 
 Invalid `commons.yaml` file: 
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_43_smarter_commons.yaml" lines="20-23" highlight="20" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_43_smarter_commons.yaml lines:"20-23" highlight:"20" footer:false %}
 
 Valid `commons.yaml` file:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_48_valid_commons.yaml" lines="28-31" highlight="28" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_48_valid_commons.yaml lines:"28-31" highlight:"28" footer:false %}
 
 ### 5.1.5 Property defaultMediatypes not allowed
 `defaultMediaType` is not a valid OpenAPI property:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_43_smarter_commons.yaml" lines="25-27" highlight="25" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_43_smarter_commons.yaml lines:"25-27" highlight:"25" footer:false %}
 
 We will use `produces` and `consumes` to define the default media types. But as we want to define a single set of media type we will use this trick:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_48_valid_commons.yaml" lines="33-37" highlight="37" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_48_valid_commons.yaml lines:"33-37" highlight:"37" footer:false %}
 
 In the future if we want to define different sets of media types for produces and consumes, we'll be ready.
 
 ### 5.1.6 Property defaultHeaders not allowed
 `defaultHeaders` is not a valid OpenAPI property:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_43_smarter_commons.yaml" lines="29-36" highlight="29" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_43_smarter_commons.yaml lines:"29-36" highlight:"29" footer:false %}
 
 We will use a dummy response definition `DefaultHeaders` to declare these default headers:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_48_valid_commons.yaml" lines="67-77" highlight="71-77" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_48_valid_commons.yaml lines:"67-77" highlight:"71-77" footer:false %}
 
 Of course we need to update common responses to use these headers:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_48_valid_commons.yaml" lines="78-87" highlight="81,87" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_48_valid_commons.yaml lines:"78-87" highlight:"81,87" footer:false %}
 
 
 ## 5.3 Making persons.yaml valid
@@ -399,24 +398,24 @@ Just like with `commons.yaml`, if we put `persons.yaml` content in the editor we
 
 ### 5.3.1 Missing swagger and info properties
 We just add `swagger` and `info` like for `commons.yaml`:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_49_valid_persons.yaml" lines="1-9" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_49_valid_persons.yaml lines:"1-9" footer:false %}
 
 ### 5.3.2 commons.yaml#/defaultHeaders reference could not be resolved
 As the `commons.yaml` structure has been modified concerning default headers we need to replace these references:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_46_smarter_persons.yaml" lines="21" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_46_smarter_persons.yaml lines:"21" footer:false %}
 
 by this one:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_49_valid_persons.yaml" lines="32" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_49_valid_persons.yaml lines:"32" footer:false %}
 
 ### 5.3.3 Missing paths and additional properties not allowed
 We have defined custom properties for each path relative to *persons* operations, therefore there is no `paths` section and our custom properties (like `persons`) are not allowed by the OpenAPI specification.
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_46_smarter_persons.yaml" lines="1-7" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_46_smarter_persons.yaml lines:"1-7" footer:false %}
 
 We need to add a `paths` section and put all our path in it using the correct path value as key:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_49_valid_persons.yaml" lines="11-18" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_49_valid_persons.yaml lines:"11-18" footer:false %}
 
 ### 5.3 New errors: Security definition could not be resolved
 
@@ -427,16 +426,16 @@ Once this is done, 2 new errors appear:
 
 Now that we have a valid structure, the paths have been parsed and the parser detected missing security definitions. To solve this error, we add these definitions by referencing the `commons.yaml` file:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_49_valid_persons.yaml" lines="8-9" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_49_valid_persons.yaml lines:"8-9" footer:false %}
 
 ## 5.3 images.yaml and legacy.yaml
 For `images.yaml` and `legacy.yaml` we do exactly the same things as we've done with `persons.yaml`.
 
 Here the `images.yaml` file modified (partial view):
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_51_valid_images.yaml" lines="1-12" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_51_valid_images.yaml lines:"1-12" footer:false %}
 
 Here the `legacy.yaml` file modified (partial view):
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_52_valid_legacy.yaml" lines="1-12" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_52_valid_legacy.yaml lines:"1-12" footer:false %}
 
 ## 5.2 Updating the main file
 Now that we have modified all sub-files, if we try to edit the main file we get these errors
@@ -458,22 +457,22 @@ These errors are of 2 types:
 
 ### 5.2.1 Modifiying commons.yaml references
 Before:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_42_smarter.yaml" lines="59-68" highlight="60,62,68" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_42_smarter.yaml lines:"59-68" highlight:"60,62,68" footer:false %}
 
 After:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_47_valid.yaml" lines="59-68" highlight="60,62,68" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_47_valid.yaml lines:"59-68" highlight:"60,62,68" footer:false %}
 
 ### 5.2.2 Modifying paths references
 This is the trickyest part of this tutorial. To reference the `/persons` path in `persons.yaml` we used `persons.yaml#/persons`:
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_42_smarter.yaml" lines="70-72" highlight="72" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_42_smarter.yaml lines:"70-72" highlight:"72" footer:false %}
 
 But `persons.yaml` structure has changed from :
 
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_46_smarter_persons.yaml" lines="1-7" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_46_smarter_persons.yaml lines:"1-7" footer:false %}
 
 to:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_49_valid_persons.yaml" lines="11-18" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_49_valid_persons.yaml lines:"11-18" footer:false %}
 
 The new reference should be something like `persons.yaml#/paths//persons` but if we try it, the editor shows an error *Reference could not be resolved: persons.yaml#/paths//persons*. The `/` in `/persons` needs to be escaped, how can we do that?
 
@@ -481,10 +480,10 @@ The new reference should be something like `persons.yaml#/paths//persons` but if
 > *[RFC6901](https://tools.ietf.org/html/rfc6901)*
 
 Before modification:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_42_smarter.yaml" lines="70-84" highlight="72,74,76,78,80,82,84" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_42_smarter.yaml lines:"70-84" highlight:"72,74,76,78,80,82,84" footer:false %}
 
 After modification (all `/` in reference name have been replaced by `~1`):
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_47_valid.yaml" lines="70-84" highlight="72,74,76,78,80,82,84" show_meta="1"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_47_valid.yaml lines:"70-84" highlight:"72,74,76,78,80,82,84" footer:false %}
 
 And now the main file and all its sub-files are considered valid by the editor.
 

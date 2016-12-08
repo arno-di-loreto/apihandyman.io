@@ -81,10 +81,10 @@ What can we use to write an OpenAPI Specification file?
 An Open API Specification file can be written either in [JSON](https://en.wikipedia.org/wiki/JSON) or [YAML](https://en.wikipedia.org/wiki/YAML). But, if you intend to *write* and not generate this file, I urge you to do that in YAML as YAML is far more easy to write and read than JSON.
 
 A picture is worth a thousand words, let's compare a simple definition in JSON...
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_00_YAML_vs_JSON.json"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_00_YAML_vs_JSON.json %}
 
 ...to the same definition in YAML:
-[gist id="5a3df2250721fb154060" file="simple_openapi_specification_02_with_operation.yaml"]
+{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_02_with_operation.yaml %}
 
 YAML seems definitely more easy to write and read for humans. And almost every tool using OpenAPI specification files handle YAML. In last resort, you can easiliy convert YAML to JSON (and vice versa).
 
