@@ -8,8 +8,9 @@ guid: http://apihandyman.io/?p=196
 permalink: /why-you-must-design-your-private-api-in-english/
 dsq_thread_id:
   - 4866765229
-categories:
-  - API design
+category: Posts
+tags:
+  - Design
 ---
 > Why you must design your private API in english.
 > Pourquoi vous devez concevoir votre API privée en anglais.

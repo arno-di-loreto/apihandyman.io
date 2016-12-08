@@ -8,11 +8,19 @@ guid: http://apihandyman.io/?p=1306
 permalink: /openapi-trek-beyond-api-documentation-api-strat-2016/
 dsq_thread_id:
   - 5316385881
-categories:
+category: Talks
+tags:
   - Documentation
-  - OpenAPI (Swagger) Specification
-  - OpenAPI Trek
-  - Talk
+  - OpenAPI
+  - Swagger
+  - Conference
+  - API Strat
+  - API Strat Boston
+  - Video
+  - Slides
+  - Series
+series: OpenAPI Trek
+series_title: Part 3 - OpenAPI Trek Beyond API Documentation
 ---
 After API Days London, and Nordic APIs Summit in Stockholm, Scottie beamed me to API Strat Boston 2016 for the final part of my OpenAPI specification (fka. Swagger specification) talk series: *OpenAPI Trek Beyond API Documentation*.
 
@@ -29,5 +37,5 @@ This last talk is the (not so uncommon) story of how I came to use Swagger/OpenA
 {% youtube EtQbaZwCv5o %}
 
 {% speakerdeck db304a20b4204425a43b9843ccb5d504 %}
-
+  
 *Boston Library Photography by [Cinzia Dosa Lauret](http://www.misterlapin.com)*

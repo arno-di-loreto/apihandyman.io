@@ -8,9 +8,16 @@ guid: http://apihandyman.io/?p=1273
 permalink: /openapi-trek-into-fastness-nordic-apis-summit-2016/
 dsq_thread_id:
   - 5316119264
-categories:
-  - OpenAPI Trek
-  - Talk
+category: Talks
+tags:
+  - OpenAPI
+  - Swagger
+  - Conference
+  - NordicAPIs
+  - NordicAPIs Summit
+  - NordicAPIs Summit Stockholm
+series: OpenAPI Trek
+series_title: Part 2 - OpenAPI Trek Into Fastness
 ---
 After API Days London, I've been to the Nordic APIs Summit in Stockholm for the second part of my OpenAPI specification (fka. Swagger specification) talk series with *OpenAPI Trek Into Fastness*.
 

@@ -8,9 +8,14 @@ guid: http://apihandyman.io/?p=663
 permalink: /document-api-topia-api-days-paris-2015/
 dsq_thread_id:
   - 4867370925
-categories:
+category: Talks
+tags:
   - Documentation
-  - Talk
+  - Video
+  - Slides
+  - API Days
+  - API Days Paris
+  - Conference
 ---
 I gave a Star Wars themed talk with a lightsaber about my new passion, documentation, at API Days Paris 2015. 
 

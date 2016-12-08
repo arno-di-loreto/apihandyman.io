@@ -8,6 +8,10 @@ guid: http://apihandyman.io/?p=1237
 permalink: /the-api-stylebook/
 dsq_thread_id:
   - 5134492526
+category: Elsewhere
+tags:
+  - Design
+  - API Stylebook
 ---
 I'm a thrilled to announce that [apistylebook.com](http://apistylebook.com) is now online.
 

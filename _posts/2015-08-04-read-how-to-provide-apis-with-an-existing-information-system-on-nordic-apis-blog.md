@@ -8,7 +8,11 @@ guid: http://apihandyman.io/?p=538
 permalink: /read-how-to-provide-apis-with-an-existing-information-system-on-nordic-apis-blog/
 dsq_thread_id:
   - 4867280061
-categories:
-  - Other API stories
+category: Elsewhere
+tags:
+  - Governance
+  - Strategy
+  - Implementation
+  - Design
 ---
 If you want to know why an existing IS is not a good API, you should read my last post on Nordic APIs blog [How to Provide APIs With an Existing Information System](http://nordicapis.com/how-to-provide-apis-with-an-existing-information-system/).

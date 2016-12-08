@@ -8,6 +8,18 @@ guid: http://apihandyman.io/?p=1269
 permalink: /people-first-a-not-so-gonzo-api-strat-boston-2016-coverage/
 dsq_thread_id:
   - 5316685819
+category: Posts
+tags:
+  - API Strat
+  - API Strat Boston
+  - Conference
+  - Code of conduct
+  - Architecture
+  - Design
+  - Governance
+  - Strategy
+  - Monetization
+  - People
 ---
 The last [API Strat 2016](http://boston2016.apistrat.com/) day, after the last talk, a man living in kentucky asked me something like *What is the one thing you will remember about this conference?*. I answered something like *People First*.  
   

@@ -8,8 +8,15 @@ guid: http://apihandyman.io/?p=1079
 permalink: /writing-openapi-swagger-specification-tutorial-part-6-defining-security/
 dsq_thread_id:
   - 4866893028
-categories:
-  - OpenAPI (Swagger) Specification
+category: Posts
+tags:
+  - OpenAPI
+  - Swagger
+  - API Specification
+  - Documentation
+  - API First
+series: Writing OpenAPI (Swagger) Specification Tutorial
+series_title: Part 6 - Defining Security
 ---
 After mastering [input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/) like a Jedi, let's see how we can describe API's security with the [OpenAPI specification's](https://openapis.org/).
 

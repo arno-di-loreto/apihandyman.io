@@ -8,8 +8,15 @@ guid: http://apihandyman.io/?p=975
 permalink: /writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/
 dsq_thread_id:
   - 4866765285
-categories:
-  - OpenAPI (Swagger) Specification
+category: Posts
+tags:
+  - OpenAPI
+  - Swagger
+  - API Specification
+  - Documentation
+  - API First
+series: Writing OpenAPI (Swagger) Specification Tutorial
+series_title: Part 4 - Advanced Data
 ---
 After learning how to [simplify specification files](/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/), let's start delving into the [OpenAPI specification's](https://openapis.org/) and discover how to describe a high accuracy API's data model.
 

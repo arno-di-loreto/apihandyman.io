@@ -8,10 +8,19 @@ guid: http://apihandyman.io/?p=1254
 permalink: /openapi-trek-api-days-london-2016/
 dsq_thread_id:
   - 5294727726
-categories:
-  - OpenAPI (Swagger) Specification
-  - OpenAPI Trek
-  - Talk
+category: Talks
+tags:
+  - API Days
+  - API Days London
+  - Conference
+  - OpenAPI
+  - Swagger
+  - Documentation
+  - Design
+  - Video
+  - Slides
+series: OpenAPI Trek
+series_title: Part 1 - OpenAPI Trek
 ---
 I was thrilled to start my OpenAPI specification (fka. Swagger specification) talk series at API Days London with this first part simply titled OpenAPI Trek.
 

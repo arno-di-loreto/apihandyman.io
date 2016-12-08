@@ -8,12 +8,15 @@ guid: http://apihandyman.io/?p=639
 permalink: /api-days-paris-2015-with-a-lightsaber/
 dsq_thread_id:
   - 4867363066
-categories:
-  - API design
-  - API lifecycle
+category: Posts
+tags:
+  - Design
+  - Lifecycle
   - Documentation
-  - Hypermedia API
-  - Talk
+  - Hypermedia
+  - Conference
+  - API Days
+  - API Days Paris
 ---
 API Days Paris just finished this Thursday, leaving me both *sad and exhausted* and *happy and full of energy*.
 

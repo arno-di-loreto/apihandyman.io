@@ -8,7 +8,8 @@ guid: http://apihandyman.io/?p=542
 permalink: /interview-with-an-api-handyman/
 dsq_thread_id:
   - 4867286381
-categories:
-  - Other API stories
+category: Elsewhere
+tags:
+  - Interview
 ---
 I've been interviewed by Lexy Mayko from API2Cart, you can read the interview [here](https://www.api2cart.com/blog/interview-arnaud-lauret-api-handyman/).

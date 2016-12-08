@@ -1,0 +1,23 @@
+---
+layout: page
+---
+
+{% if page.content %}
+  <p>{{ page.content }}</p>
+{% endif %}
+
+{% if site.categories.[page.title]  %}
+  <ul class="post-list">
+    {% for post in site.categories.[page.title] %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No posts in this category at this time.</p>
+{% endif%}

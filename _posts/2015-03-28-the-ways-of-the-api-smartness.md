@@ -8,11 +8,14 @@ guid: http://apihandyman.io/?p=412
 permalink: /the-ways-of-the-api-smartness/
 dsq_thread_id:
   - 4867152374
-categories:
-  - API design
-  - API implementation
-  - API lifecycle
-  - Hypermedia API
+category: Posts
+tags:
+  - Design
+  - Implementation
+  - Lifecycle
+  - Documentation
+  - DX
+  - Hypermedia
 ---
 An API must be smart to ensure that consumers will want to use it and remain dumb when they consume it.
 

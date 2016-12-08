@@ -8,8 +8,13 @@ guid: http://apihandyman.io/?p=1247
 permalink: /http-status-trek-rest-fest-2016/
 dsq_thread_id:
   - 5188639088
-categories:
-  - Talk
+category: Talks
+tags:
+  - Conference
+  - REST Fest
+  - REST Fest Greenville
+  - Design
+  - HTTP
 ---
 I had the luck to go back to [REST Fest](http://www.restfest.org/), this second time was as awesome as last one. Here's the video and slides of my 5 in 5 about HTTP Status Codes.
   

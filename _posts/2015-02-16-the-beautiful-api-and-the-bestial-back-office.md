@@ -8,9 +8,10 @@ guid: http://apihandyman.io/?p=227
 permalink: /the-beautiful-api-and-the-bestial-back-office/
 dsq_thread_id:
   - 4866925040
-categories:
-  - API design
-  - API implementation
+category: Posts
+tags:
+  - Design
+  - Implementation
 ---
 When you design an API (even an internal/private one) upon an existing back office (to plug a mobile application on it for example), you should take care of one thing: an API is a display, not a window.
 An API's purpose is to expose your data and data processing but an API is only a *representation* and you're under no obligation to directly expose the crude reality.

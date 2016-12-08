@@ -8,8 +8,12 @@ guid: http://apihandyman.io/?p=545
 permalink: /starting-a-swagger-journey-beyond-generated-swagger-ui/
 dsq_thread_id:
   - 4866807412
-categories:
-  - API design
+category: Posts
+tags:
+  - Design
+  - Swagger
+  - OpenAPI
+  - Documentation
 ---
 When watching a movie, have you ever noticed how characters *interact* with computers? If someone wants to destroy a computer, what does he or she smash?  
 The computer's screen...

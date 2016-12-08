@@ -26,7 +26,6 @@ markdown: kramdown
 kramdown:
   input: GFM
 
-theme: minima
 gems:
   - jekyll-feed
   - jekyll-twitter-plugin

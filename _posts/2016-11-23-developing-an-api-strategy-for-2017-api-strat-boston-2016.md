@@ -8,8 +8,13 @@ guid: http://apihandyman.io/?p=1296
 permalink: /developing-an-api-strategy-for-2017-api-strat-boston-2016/
 dsq_thread_id:
   - 5327198098
-categories:
-  - Talk
+category: Talks
+tags:
+  - API Strat
+  - API Strat Boston
+  - Conference
+  - Strategy
+
 ---
 Shortly before API Strat, I have participated to an API experts panel on *Developing an API Strategy for 2017* organized by Smartbear with [Laura Heritage](https://twitter.com/heritagelaura), [Matt Bernier](https://twitter.com/mbernier), [Ole Lensmar](https://twitter.com/olensmar) and [Tony Tam](https://twitter.com/fehguy) hosted by [John Purcell](https://twitter.com/PurcellOutdoors).
 

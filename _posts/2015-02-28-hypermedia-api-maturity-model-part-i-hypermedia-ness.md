@@ -8,9 +8,13 @@ guid: http://apihandyman.io/?p=279
 permalink: /hypermedia-api-maturity-model-part-i-hypermedia-ness/
 dsq_thread_id:
   - 4866765231
-categories:
-  - API design
-  - Hypermedia API
+category: Posts
+tags:
+  - Design
+  - Hypermedia
+  - Series
+series: Hypermedia API maturity model
+series_title: Part I - Hypermedia-ness
 ---
 When we talk about hypermedia for an API, we're talking about making it discoverable or browsable. Adding hypermedia to an API *potentially* brings flexibility, loose coupling, better human readability on the fly and even machine readability on the fly. 
 But nowadays, the hypermedia area for APIs is still a work in progress and it can be implemented in many ways leading to different levels of *hypermedia-ness*.<!--more-->

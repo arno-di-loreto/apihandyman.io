@@ -8,8 +8,15 @@ guid: http://apihandyman.io/?p=698
 permalink: /writing-openapi-swagger-specification-tutorial-part-1-introduction/
 dsq_thread_id:
   - 4866811857
-categories:
-  - OpenAPI (Swagger) Specification
+category: Posts
+tags:
+  - OpenAPI
+  - Swagger
+  - API Specification
+  - Documentation
+  - API First
+series: Writing OpenAPI (Swagger) Specification Tutorial
+series_title: Part 1 - Introduction
 ---
 # Previously in the APIverse...
 Since I started my [*Swagger* journey](/starting-a-swagger-journey-beyond-generated-swagger-ui/), there have been *some* changes. The *Swagger Specification* has been [donated](http://swagger.io/introducing-the-open-api-initiative/) to the newly created [OpenAPI Initiative](https://openapis.org/news/announcement/2015/11/new-collaborative-project-extend-swagger-specification-building-connected) under the Linux foundation and is reborn as the *[OpenAPI Specification](http://apievangelist.com/2016/01/04/the-openapi-specification-fka-the-swagger-specification/)*. Therefore, my Swagger Journey will become an *OpenAPI Specification (fka Swagger Specification) Journey*.

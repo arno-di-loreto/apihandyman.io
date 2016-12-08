@@ -8,8 +8,13 @@ guid: http://apihandyman.io/?p=655
 permalink: /a-quest-for-simplicity-api-days-london-2015/
 dsq_thread_id:
   - 4866765276
-categories:
-  - Talk
+category: Talks
+tags:
+  - API Days
+  - API Days London
+  - Conference
+  - Design
+  - DX
 ---
 > A ROAST API is a SOAP API made by people who have vaguely heard of REST API
 

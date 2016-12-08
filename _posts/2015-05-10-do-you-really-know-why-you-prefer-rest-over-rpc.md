@@ -8,8 +8,12 @@ guid: http://apihandyman.io/?p=516
 permalink: /do-you-really-know-why-you-prefer-rest-over-rpc/
 dsq_thread_id:
   - 4866783411
-categories:
-  - API design
+category: Posts
+tags:
+  - Design
+  - API Style
+  - RPC
+  - REST
 ---
 A few weeks ago I've seen an interesting flock of tweets initiated by this question:
 

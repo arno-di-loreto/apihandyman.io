@@ -8,10 +8,14 @@ guid: http://apihandyman.io/?p=633
 permalink: /dont-mess-with-hypermedia-controls-rest-fest-2015/
 dsq_thread_id:
   - 4867385818
-categories:
-  - API design
-  - Hypermedia API
-  - Talk
+category: Talks
+tags:
+  - REST Fest
+  - REST Fest Greenville
+  - Hypermedia
+  - Conference
+  - Design
+  - DX
 ---
 I had the pleasure to participate to [REST Fest 2015](http://www.restfest.org/), here are my 5 in 5 video and slide deck about hypermedia controls. If you can attend only one API conference, this is the one.
 
