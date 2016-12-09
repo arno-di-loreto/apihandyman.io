@@ -22,7 +22,7 @@ tags:
 series: OpenAPI Trek
 series_title: Part 1 - OpenAPI Trek
 ---
-I was thrilled to start my OpenAPI specification (fka. Swagger specification) talk series at API Days London with this first part simply titled OpenAPI Trek.
+I was thrilled to start my OpenAPI specification (fka. Swagger specification) talk series at API Days London with this first part simply titled OpenAPI Trek.<!--more-->
 
 This series is composed of three talks:
 

@@ -20,7 +20,7 @@ tags:
 
 Right after REST Fest, I had the honor to give my first keynote at the first edition of [API Days London](http://london.apidays.io/) in September 2015. 
 
-Join me in a *quest for simplicity* from an imaginary bank's IS depth to its API's heights.
+Join me in a *quest for simplicity* from an imaginary bank's IS depth to its API's heights.<!--more-->
 
 > It's time to take the API matter seriously
 

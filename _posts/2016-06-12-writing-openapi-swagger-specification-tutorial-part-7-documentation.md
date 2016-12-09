@@ -18,7 +18,7 @@ tags:
 series: Writing OpenAPI (Swagger) Specification Tutorial
 series_title: Part 7 - Documentation
 ---
-Previous [posts](http://apihandyman.io/category/openapi-swagger-specification/) showed how to write a highly accurate description of an API interface contract with the [OpenAPI specification](https://openapis.org/). But an interface contract, no matter how brilliant, is nothing without some explainations. A fully documented OpenAPI specification file can provide some useful information and be used as a part of an API's documentation.
+Previous [posts](http://apihandyman.io/category/openapi-swagger-specification/) showed how to write a highly accurate description of an API interface contract with the [OpenAPI specification](https://openapis.org/). But an interface contract, no matter how brilliant, is nothing without some explainations. A fully documented OpenAPI specification file can provide some useful information and be used as a part of an API's documentation.<!--more-->
 
 # Writing OpenAPI (fka Swagger) Specification tutorial
 This tutorial is composed of several posts:

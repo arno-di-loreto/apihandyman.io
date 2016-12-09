@@ -17,9 +17,9 @@ tags:
 ---
 A few weeks ago I've seen an interesting flock of tweets initiated by this question:
 
-{% twitter https://twitter.com/skamille/status/588713316358475776 %}
+{% twitter https://twitter.com/skamille/status/588713316358475776 align=center %}
 
-This question and the tweets that followed put my brain on quite an animated discussion...
+This question and the tweets that followed put my brain on quite an animated discussion...<!--more-->
 
 ![](/images/do-you-really-know-why-you-prefer-rest-over-rpc/voices-inside-my-head.png "Voices inside my head")
 

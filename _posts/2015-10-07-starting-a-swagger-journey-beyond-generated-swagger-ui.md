@@ -16,7 +16,7 @@ tags:
   - Documentation
 ---
 When watching a movie, have you ever noticed how characters *interact* with computers? If someone wants to destroy a computer, what does he or she smash?  
-The computer's screen...
+The computer's screen...<!--more-->
 
 ![spock_smash_computer](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/spock-smash-computer.gif
  "Spock smashes computer")  
@@ -71,7 +71,7 @@ Nothing serious, but to correct the generated documentation, we had to modify th
 Even if our new API is not a ROAST one (really dumb SOAP to pseudo REST conversion), it is still tightly coupled to our SOA as it was designed last and with not much hindsight. 
 Just like a by-product, just like a necessary evil.
 
-{% twitter https://twitter.com/H4CKTECH/status/646610528907993088 %}
+{% twitter https://twitter.com/H4CKTECH/status/646610528907993088 align=center %}
 
 I wanted to change that and make the API a first class citizen in our system just like our website or mobile application.
 I wanted to really have an API first approach with tools to help us design faster and mock to test easily the design to ensure a good quality from the start.

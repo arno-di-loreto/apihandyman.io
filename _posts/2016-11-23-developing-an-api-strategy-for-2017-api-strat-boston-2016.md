@@ -16,7 +16,7 @@ tags:
   - Strategy
 
 ---
-Shortly before API Strat, I have participated to an API experts panel on *Developing an API Strategy for 2017* organized by Smartbear with [Laura Heritage](https://twitter.com/heritagelaura), [Matt Bernier](https://twitter.com/mbernier), [Ole Lensmar](https://twitter.com/olensmar) and [Tony Tam](https://twitter.com/fehguy) hosted by [John Purcell](https://twitter.com/PurcellOutdoors).
+Shortly before API Strat, I have participated to an API experts panel on *Developing an API Strategy for 2017* organized by Smartbear with [Laura Heritage](https://twitter.com/heritagelaura), [Matt Bernier](https://twitter.com/mbernier), [Ole Lensmar](https://twitter.com/olensmar) and [Tony Tam](https://twitter.com/fehguy) hosted by [John Purcell](https://twitter.com/PurcellOutdoors).<!--more-->
 
 Smartbear blog posts:
 

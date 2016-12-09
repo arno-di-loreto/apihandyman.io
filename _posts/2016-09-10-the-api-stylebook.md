@@ -13,7 +13,7 @@ tags:
   - Design
   - API Stylebook
 ---
-I'm a thrilled to announce that [apistylebook.com](http://apistylebook.com) is now online.
+I'm a thrilled to announce that [apistylebook.com](http://apistylebook.com) is now online.<!--more-->
 
 > The API Stylebook aims to help API Designers to solve API design matters and build their API design guidelines by providing quick and easy access to selected and categorized resources.
 

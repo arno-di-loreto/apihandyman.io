@@ -1,23 +1,28 @@
 ---
-layout: page
+layout: default
 ---
+<div class="container blog-container">
 
-{% if page.content %}
-  <p>{{ page.content }}</p>
-{% endif %}
+  {% if page.content %}
+    <div class="row">
+      <p>{{ page.content }}</p>
+    </div>
+  {% endif %}
 
-{% if site.categories.[page.title]  %}
-  <ul class="post-list">
-    {% for post in site.categories.[page.title] %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No posts in this category at this time.</p>
-{% endif%}
+  <div class="row">
+    {% if site.categories.[page.title]  %}
+      {% for post in site.categories.[page.title] %}
+        <div class="post-summary">
+          <h2>
+            <a class="post-link" href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">{{ post.title | escape }}</a>
+          </h2>
+          <p><span class="post-meta">{{post.category}} {{ post.date | date: "%b %-d, %Y" }}</span></p>
+          {{ post.excerpt }}
+          <p><a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">Read more</a></p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No posts in this category at this time.</p>
+    {% endif%}
+  </div>
+</div>

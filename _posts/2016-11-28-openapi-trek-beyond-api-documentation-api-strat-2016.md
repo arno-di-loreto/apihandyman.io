@@ -22,7 +22,7 @@ tags:
 series: OpenAPI Trek
 series_title: Part 3 - OpenAPI Trek Beyond API Documentation
 ---
-After API Days London, and Nordic APIs Summit in Stockholm, Scottie beamed me to API Strat Boston 2016 for the final part of my OpenAPI specification (fka. Swagger specification) talk series: *OpenAPI Trek Beyond API Documentation*.
+After API Days London, and Nordic APIs Summit in Stockholm, Scottie beamed me to API Strat Boston 2016 for the final part of my OpenAPI specification (fka. Swagger specification) talk series: *OpenAPI Trek Beyond API Documentation*.<!--more-->
 
 This series is composed of three talks:
 
@@ -30,12 +30,12 @@ This series is composed of three talks:
 - [OpenAPI Trek Into Fastness at Nordic APIs Stockholm Summit 2016](/openapi-trek-into-fastness-nordic-apis-summit-2016/)
 - OpenAPI Trek Beyond API Documentation at APIStrat Boston 2016
 
-{% twitter https://twitter.com/ameliamango/status/795749942144876547 %}
+{% twitter https://twitter.com/ameliamango/status/795749942144876547 align=center %}
 
 This last talk is the (not so uncommon) story of how I came to use Swagger/OpenAPI for API documentation and how it changed many things beyond API documentation. Here are the video (very special thanks to [Matthew Reinbold](https://twitter.com/libel_vox) for recording this talk with my crappy phone) and slides:
-
+  
 {% youtube EtQbaZwCv5o %}
-
+  
 {% speakerdeck db304a20b4204425a43b9843ccb5d504 %}
   
 *Boston Library Photography by [Cinzia Dosa Lauret](http://www.misterlapin.com)*

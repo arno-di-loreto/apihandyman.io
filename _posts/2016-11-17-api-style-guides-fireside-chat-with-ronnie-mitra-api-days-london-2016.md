@@ -18,6 +18,6 @@ tags:
   - API Stylebook
 
 ---
-API Days London 2016, take 2! I was very happy when Ronnie Mitra ([@mitraman](https://twitter.com/mitraman)) from the [API Academy](http://www.apiacademy.co/) invited me to do a fireside chat on API Style Guides at API Days London. Here's the video:
+API Days London 2016, take 2! I was very happy when Ronnie Mitra ([@mitraman](https://twitter.com/mitraman)) from the [API Academy](http://www.apiacademy.co/) invited me to do a fireside chat on API Style Guides at API Days London.<!--more--> Here's the video:
 
 {% youtube 2hxTmJsVHIc %}

@@ -1,0 +1,63 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* For nav bar */
+  padding-top: 50px;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.main-container {
+  width: 100%;
+  padding: 0px;
+  background-color: white;
+}
+
+/* navbar */
+.navbar {
+
+  background-color: black;
+
+  a {
+    color: white
+  }
+
+  a.page-link:hover {
+    color: #124266
+  }
+
+  .navbar-header {
+    color: white;
+  }
+}
+
+.blog-container {
+  width: auto;
+  max-width: 750px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  line-height: 1.5;
+  font-size: medium;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.embedpad {
+  padding-top: 10px;
+}
+
+code {
+  padding: 0px 0px 0px 0px;
+}

@@ -6,6 +6,8 @@ author: API Handyman
 layout: page
 guid: http://apihandyman.io/?page_id=194
 permalink: /about/
+menu: true
+sort: 4
 ---
 > In API we trust.  
 > (Kin Lane, [API Evangelist](http://apievangelist.com/))
@@ -65,8 +67,4 @@ Pretty clever isn’t it?
 
 I hope you'll enjoy reading my posts and I'm looking forward to your feedback and comments, as I have said before, I want to share with you and learn from you.
   
-You can follow and contact me and the API Handyman via social networks.
-
-<div class="ahm-social-link" id="social-link">
-  <a onclick="_gaq.push(['_trackEvent', 'SocialLinks', 'About', 'TwitterAPIHandyman']);" target="_blank" href="https://twitter.com/apihandyman" class="fa fa-twitter-square fa-2x custom-header-text-color ahm-social-link"></a> API Handyman on Twitter<br /> <a onclick="_gaq.push(['_trackEvent', 'SocialLinks', 'About', 'TwitterArnaudLauret']);" target="_blank" href="https://twitter.com/arno_di_loreto" class="fa fa-twitter-square fa-2x custom-header-text-color ahm-social-link"></a> Arnaud Lauret on Twitter<br /> <a onclick="_gaq.push(['_trackEvent', 'SocialLinks', 'About', 'FacebookAPIHandyman']);" target="_blank" href="https://www.facebook.com/apihandyman" class="fa fa-facebook-square fa-2x custom-header-text-color ahm-social-link"></a> API Handyman Facebook page<br /> <a onclick="_gaq.push(['_trackEvent', 'SocialLinks', 'About', 'GithubArnaudLauret']);" target="_blank" href="https://github.com/arno-di-loreto" class="fa fa-github-square fa-2x custom-header-text-color ahm-social-link"></a> Arnaud Lauret and API Handyman on Github<br /> <a onclick="_gaq.push(['_trackEvent', 'SocialLinks', 'About', 'DelicousAPIHandyman']);" target="_blank" href="https://delicious.com/apihandyman" class="fa fa-delicious fa-2x custom-header-text-color ahm-social-link"></a> API Handyman on Delicious<br /> <a onclick="_gaq.push(['_trackEvent', 'SocialLinks', 'About', 'RSSFeedAPIHandyman']);" target="_blank" href="http://apihandyman.io/feed" class="fa fa-rss-square fa-2x custom-header-text-color ahm-social-link"></a> API Handyman RSS feed<br /> <a onclick="_gaq.push(['_trackEvent', 'SocialLinks', 'About', 'CommentsRSSFeedAPIHandyman']);" target="_blank" href="http://apihandyman.io/comments/feed" class="fa fa-rss-square fa-2x custom-header-text-color ahm-social-link"></a> API Handyman comments RSS feed
-</div>
+You can follow and contact me and the API Handyman via social networks on page's bottom.

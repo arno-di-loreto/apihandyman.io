@@ -14,7 +14,7 @@ tags:
   - Implementation
 ---
 When you design an API (even an internal/private one) upon an existing back office (to plug a mobile application on it for example), you should take care of one thing: an API is a display, not a window.
-An API's purpose is to expose your data and data processing but an API is only a *representation* and you're under no obligation to directly expose the crude reality.
+An API's purpose is to expose your data and data processing but an API is only a *representation* and you're under no obligation to directly expose the crude reality.<!--more-->
 
 > What happens in <del>Vegas</del> back office stays in <del>Vegas</del> back office
 > (*[famous tag line](http://theweek.com/articles/459434/brief-history-happens-vegas-stays-vegas)*)

@@ -15,4 +15,4 @@ tags:
   - Implementation
   - Design
 ---
-If you want to know why an existing IS is not a good API, you should read my last post on Nordic APIs blog [How to Provide APIs With an Existing Information System](http://nordicapis.com/how-to-provide-apis-with-an-existing-information-system/).
+If you want to know why an existing IS is not a good API, you should read my last post on Nordic APIs blog [How to Provide APIs With an Existing Information System](http://nordicapis.com/how-to-provide-apis-with-an-existing-information-system/).<!--more-->

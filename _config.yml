@@ -20,6 +20,9 @@ description: '{"i" : "learn", "o" : "share"}'
 url: "http://apihandyman.io" # the base hostname & protocol for your site
 twitter_username: apihandyman
 github_username:  arno-di-loreto
+linkedin_username: arnaudlauret
+
+excerpt_separator: <!--more-->
 
 # Build settings
 markdown: kramdown

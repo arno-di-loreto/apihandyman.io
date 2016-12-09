@@ -2,45 +2,29 @@
 layout: default
 ---
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-     <p class="post-meta">{{ page.category }} • <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
+    <div class="container main-container full-jumbotron">
+        <div class="jumbotron">
+            <h1 itemprop="name headline">{% if page.longtitle %}{{ page.longtitle | escape }}{% else %}{{ page.title | escape }}{% endif %}</h1>
+            {% if page.subtitle %}
+              <p>
+              {{ page.subtitle }}
+              </p>
+            {% endif %}
+            <p><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time></p>
+            <p>
+              {% if page.author %}
+                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                  <span itemprop="name">{{ page.author }}</span>
+                </span>
+              {% endif %}
+            </p>
+        </div>
+    </div>
   </header>
 
-  {% if page.tags %}
-  <div class="tags">
-    <h2>Tags:</h2> 
-    <ul>
-    {% for tag in page.tags %}
-      [{{ tag }}]
-    {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
-
-  {% if page.series %}
-  {% include series.html %}
-  {% endif %}
-
-  <div class="post-content" itemprop="articleBody">
-    {{ content }}
-  </div>
-
-  <div class="related">
-    <h2>Related Posts</h2>
-    <ul class="related-posts">
-      {% for post in site.related_posts limit:3 %}
-        <li>
-          <h3>
-            <a href="{{ site.baseurl }}{{ post.url }}">
-              {{ post.title }}
-              <small>{{ post.date | date_to_string }}</small>
-            </a>
-          </h3>
-        </li>
-      {% endfor %}
-    </ul>
+  <div class="container blog-container"  itemprop="articleBody">
+  {{ content }}
   </div>
 
   {% if site.disqus.shortname %}

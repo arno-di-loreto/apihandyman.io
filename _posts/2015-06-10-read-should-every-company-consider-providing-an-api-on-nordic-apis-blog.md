@@ -13,4 +13,4 @@ tags:
   - Governance
   - Strategy
 ---
-My other self Arnaud Lauret writes about APIs too. This week you can read [Should Every Company Consider Providing an API?](http://nordicapis.com/should-every-company-consider-providing-an-api/) on Nordic APIs blog.
+My other self Arnaud Lauret writes about APIs too. This week you can read [Should Every Company Consider Providing an API?](http://nordicapis.com/should-every-company-consider-providing-an-api/) on Nordic APIs blog.<!--more-->

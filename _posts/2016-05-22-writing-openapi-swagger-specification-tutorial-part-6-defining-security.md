@@ -18,7 +18,7 @@ tags:
 series: Writing OpenAPI (Swagger) Specification Tutorial
 series_title: Part 6 - Defining Security
 ---
-After mastering [input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/) like a Jedi, let's see how we can describe API's security with the [OpenAPI specification's](https://openapis.org/).
+After mastering [input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/) like a Jedi, let's see how we can describe API's security with the [OpenAPI specification's](https://openapis.org/).<!--more-->
 
 # Writing OpenAPI (fka Swagger) Specification tutorial
 This tutorial is composed of several posts:

@@ -21,9 +21,9 @@ I gave a Star Wars themed talk with a lightsaber about my new passion, documenta
 
 Yes, a talk about *D-O-C-U-M-E-N-T-A-T-I-O-N*. 
 Yes, a *S-T-A-R W-A-R-S* themed talk.
-Yes, I gave this talk holding a *L-I-G-H-T-S-A-B-E-R*.
+Yes, I gave this talk holding a *L-I-G-H-T-S-A-B-E-R*.<!--more-->
 
-{% twitter https://twitter.com/ClementDelaunay/status/674242384721551366 %}
+{% twitter https://twitter.com/ClementDelaunay/status/674242384721551366 align=center %}
 
 I had the luck to be helped by two great persons when preparing this talk, [Jennifer Riggins](https://twitter.com/jkriggins) and [Paul Bruce](https://twitter.com/paulsbruce). Both gave me precious feedbacks and tips. Many great thanks to them!
 

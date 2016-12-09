@@ -17,7 +17,7 @@ series: Hypermedia API maturity model
 series_title: Part II – The missing links
 ---
 Hypermedia is not only a conceptual and philosophical subject of interesting and animate debates among the API community, it's also a concrete solution we can use to cover concrete needs.
-In this second part of hypermedia API maturity model (HAMM) series I will talk about my own experience to expose two missing (in my humble opinon) notions in common implementations and include these *missing links* in an updated version of the HAMM.
+In this second part of hypermedia API maturity model (HAMM) series I will talk about my own experience to expose two missing (in my humble opinon) notions in common implementations and include these *missing links* in an updated version of the HAMM.<!--more-->
 *If you have not read part I you can read it [here](/hypermedia-api-maturity-model-part-i-hypermedia-ness/).*
 
 # Crossing the hypermedia path

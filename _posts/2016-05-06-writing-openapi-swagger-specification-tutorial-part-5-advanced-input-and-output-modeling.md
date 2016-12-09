@@ -18,7 +18,7 @@ tags:
 series: Writing OpenAPI (Swagger) Specification Tutorial
 series_title: Part 5 - Advanced Input And Output Modeling
 ---
-After learning how to [create an accurate data model](/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/), we continue to delve into the [OpenAPI specification's](https://openapis.org/) and discover how to describe tailor made API's inputs and outputs.
+After learning how to [create an accurate data model](/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/), we continue to delve into the [OpenAPI specification's](https://openapis.org/) and discover how to describe tailor made API's inputs and outputs.<!--more-->
 
 # Writing OpenAPI (fka Swagger) Specification tutorial
 This tutorial is composed of several posts:

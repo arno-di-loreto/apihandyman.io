@@ -17,7 +17,7 @@ tags:
   - DX
   - Hypermedia
 ---
-An API must be smart to ensure that consumers will want to use it and remain dumb when they consume it.
+An API must be smart to ensure that consumers will want to use it and remain dumb when they consume it.<!--more-->
 
 > smart
 > *smɑːt*

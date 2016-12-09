@@ -21,7 +21,7 @@ tags:
 
 As you might have guess, this post targets people designing APIs in non english speaking countries.
 When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it.
-*Choosing* a language for your API is one of them.
+*Choosing* a language for your API is one of them.<!--more-->
 
 # The eNut project
 You work for *Complètement Noix Cie* (*Totally Nut Co*) a small family nutgrowing company in France.

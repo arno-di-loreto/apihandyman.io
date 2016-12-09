@@ -36,7 +36,7 @@ class Gist < Liquid::Tag
   end
 
   def render(context)
-    "<div class=\"gist embedded\"><code #{@id}#{@file}#{@lines}#{@highlight}#{@footer}></code></div>"
+    "<code #{@id}#{@file}#{@lines}#{@highlight}#{@footer}></code>"
   end
 
   Liquid::Template.register_tag "gist", self

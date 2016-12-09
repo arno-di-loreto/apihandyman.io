@@ -19,7 +19,7 @@ tags:
 series: OpenAPI Trek
 series_title: Part 2 - OpenAPI Trek Into Fastness
 ---
-After API Days London, I've been to the Nordic APIs Summit in Stockholm for the second part of my OpenAPI specification (fka. Swagger specification) talk series with *OpenAPI Trek Into Fastness*.
+After API Days London, I've been to the Nordic APIs Summit in Stockholm for the second part of my OpenAPI specification (fka. Swagger specification) talk series with *OpenAPI Trek Into Fastness*.<!--more-->
 
 This series is composed of three talks:
 

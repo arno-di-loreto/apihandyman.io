@@ -21,7 +21,7 @@ tags:
 API Days Paris just finished this Thursday, leaving me both *sad and exhausted* and *happy and full of energy*.
 
 Sad and exhausted because this awesome and intense API conference is over.  
-Happy and full of energy because this awesome and intense API conference exists.
+Happy and full of energy because this awesome and intense API conference exists.<!--more-->
 
 Two days about automating IT business and the whole society with APIs.  
 Two days about humanity, society, philosophy and technology.  
@@ -90,14 +90,14 @@ These business models will need technology. [Peter Matthews](https://twitter.com
 
 [Neha Sampat](https://twitter.com/nehasf/) predicted that CEOs will start to ask about APIs (not APPS).
 
-{% twitter https://twitter.com/TheMarkONeill/status/674520144647950336 %}
+{% twitter https://twitter.com/TheMarkONeill/status/674520144647950336 align=center %}
 
 Traditional IT becomes irrelevant, companies have to think out of the box. API management becomes *business* critical. Delivering, visualizing, metrics,...
 
 [Saul Caganoff](https://twitter.com/scaganoff) warned us that enterprises must become digital or others will become for them. Even if the Web is now programmable, enterprises need to enable composite enterprise. 
 There are many SAAS services (infrastructure,commodity,functionnal,industry) and a growing ecosystem of iPaas and cloud bpm. 
 
-{% twitter https://twitter.com/apihandyman/status/674510402449973248 %}
+{% twitter https://twitter.com/apihandyman/status/674510402449973248 align=center %}
 
 But unique business value will come out of how companies operate/orchestrate all this stated both Caganoff and Sempat.
 
@@ -158,7 +158,7 @@ Server should be able to modulate response size on client demand.
 
 # Event driven efficient APIs
 
-{% twitter https://twitter.com/apihandyman/status/674545678094311424 %}
+{% twitter https://twitter.com/apihandyman/status/674545678094311424 align=center %}
 
 A new trending topic arose: Events.
 
@@ -166,7 +166,7 @@ A new trending topic arose: Events.
 
 [Neha Sampat](https://twitter.com/nehasf/), [Saul Caganoff](https://twitter.com/scaganoff),[Ross Garrett](https://twitter.com/gssor) and [Eric Horesnyi](https://twitter.com/EricHoresnyi) agree about the importance of events. 
 
-{% twitter https://twitter.com/APIdaysGlobal/status/674512699322159104 %}
+{% twitter https://twitter.com/APIdaysGlobal/status/674512699322159104 align=center %}
 
 Caganoff stated that there's a duality between business processes transitions and events.
 Events can be handle through webhooks and syndication.
@@ -181,7 +181,7 @@ Internet is an hostile environment especially mobile internet (latency, drop con
 
 Both Horesnyi and Garret asked us to think Reactive.
 
-{% twitter https://twitter.com/mittsh/status/674544340350406656 %}
+{% twitter https://twitter.com/mittsh/status/674544340350406656 align=center %}
 
 # Automation
 
@@ -197,7 +197,7 @@ Design needs the definition of style guides, many companies have published their
 
 ## Easy automation
 
-{% twitter https://twitter.com/apihandyman/status/674547578625740800 %}
+{% twitter https://twitter.com/apihandyman/status/674547578625740800 align=center %}
 
 [Luis Borger Quina and Philippe Sultan](https://twitter.com/apidaze) told us that bots are the new apps and no UI is the new UI. 
 Slack, IFFTT, Zapier enable easy automation.

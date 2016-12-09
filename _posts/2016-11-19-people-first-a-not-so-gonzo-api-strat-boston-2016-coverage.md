@@ -23,9 +23,9 @@ tags:
 ---
 The last [API Strat 2016](http://boston2016.apistrat.com/) day, after the last talk, a man living in kentucky asked me something like *What is the one thing you will remember about this conference?*. I answered something like *People First*.  
   
-People First. This is definitely what sticks in my mind after this conference.  
+People First. This is definitely what sticks in my mind after this conference.<!--more-->  
 
-{% twitter https://twitter.com/apihandyman/status/794546772219691008 %}
+{% twitter https://twitter.com/apihandyman/status/794546772219691008 align=center %}
   
 But this is not the only thing.
   
@@ -41,14 +41,14 @@ After a few days of tourism, a [panel discussion](http://blog.smartbear.com/soft
   
 Thursday. 8 am. I grabbed my speaker badge and the API Strat 2016 official t-shirt.
 
-{% twitter https://twitter.com/davidbiesack/status/794167619121250304 %}
+{% twitter https://twitter.com/davidbiesack/status/794167619121250304 align=center %}
   
 > One if by REST  
 > Two if by SOAP
   
 This t-shirt was a bit cryptic for a foreigner like me. It seems that I was not the only one in that case.
 
-{% twitter https://twitter.com/lindybrandon/status/794172064320131072 %}  
+{% twitter https://twitter.com/lindybrandon/status/794172064320131072 align=center %}  
   
 Boston is a city steeped in history and it seemed that the american revolution hero [Paul Revere](https://en.wikipedia.org/wiki/Paul_Revere) or the american poet [Henry Wadsworth Longfellow](https://en.wikipedia.org/wiki/Paul_Revere%27s_Ride) gave a hand to design this year's t-shirt. This quote has been inspired by:
   
@@ -66,7 +66,7 @@ Whether by sea or by land, the API nerds were coming. The API community was gath
 So many different people gathered in a friendly and inclusive event, what could go wrong?
 In an ideal world, nothing. But we do not live in an ideal world.   
 
-{% twitter https://twitter.com/sarahjeong/status/794166165278982144 %}  
+{% twitter https://twitter.com/sarahjeong/status/794166165278982144 align=center %}  
   
 Thursday 9 am. Main Stage. The staff announced that someone has been expelled from the conference (the conference has started the day before with workshops, speakers dinner and attendees meetup). 
   
@@ -79,7 +79,7 @@ Yes, a code of conduct:
   
 Everybody was now aware that this code was NOT a [paper tiger](https://en.wikipedia.org/wiki/Paper_tiger).
 
-{% twitter https://twitter.com/wirehead/status/794167999204823040 %}  
+{% twitter https://twitter.com/wirehead/status/794167999204823040 align=center %}  
 
 This is sad, not for the person who has been expelled, but for the person who had to suffer inappropriate behavior.  
 This is good, not because someone had to report an inappropriate behavior, but because someone was able to report an inappropriate behavior and because the API Strat staff reacted promptly and efficiently.
@@ -99,7 +99,7 @@ Consuming API is mainstream so providing API is more and more important. You may
   
 Once you provide API, you'll have to find the right monetization model. As [Mark O'Neil](https://twitter.com/TheMarkONeill) and [Susan Danziger](https://twitter.com/susandanziger) stated: API monetization doesn't just mean charging for API calls. Finding a good model is hard. For Ziggio, the success came from the *Mickey Mouse* model, based on how Disney was monetizing its licences.
 
-{% twitter https://twitter.com/ajclayton/status/794178601998491648 %}
+{% twitter https://twitter.com/ajclayton/status/794178601998491648 align=center %}
 
 Whatever the model you choose, allways give the means to let your customers know what the bill will be (with a simulator for instance).
   
@@ -122,7 +122,7 @@ But the design road to hell is paved with good intentions. The desire of perfect
   
 If you design API, listen to [James Higginbotham](https://twitter.com/launchany) "*Consumers don't care about what's behind the API. Be outside in and not inside out*" and [Mark O'Neil](https://twitter.com/TheMarkONeill) "*Don't dump your internal data model on your mobile clients!*" *(who said GraphQL?)*. 
 
-{% twitter https://twitter.com/apihandyman/status/794212165808951296 %}
+{% twitter https://twitter.com/apihandyman/status/794212165808951296 align=center %}
   
 And don't dare to think that the outside in approach is only a technical matter or you may see a snarling [Matthew Reinbold](https://twitter.com/libel_vox) looking at you with fierce eyes. He reminded us that [Conway's law](https://en.wikipedia.org/wiki/Conway%27s_law) waits in the darkness like a sword of Damocles hanging upon your API design. Internal organization is different from external perception and mirroring it in an API may not be the best idea. [James Higginbotham](https://twitter.com/launchany) even urge enterprises to get rid of project based IT and embrace product based IT. Splitting resource on multiple teams or building separate APIs from each entity in a big group will not provide a unifed view and consistent, understandable and usable API.
   
@@ -140,19 +140,19 @@ Even if developers suck at designing API (*just kidding*), some of your dev may 
   
 ## Law and Order
 
-{% twitter https://twitter.com/kinlane/status/794295988114640897 %}
+{% twitter https://twitter.com/kinlane/status/794295988114640897 align=center %}
   
 Journalist by trade, lawyer by training, [Sarah Jeong](https://twitter.com/sarahjeong) bringed us the story of the epic Oracle vs Google battle with her amazing talk *You wouldn't reimplement an API*.
 
-{% twitter https://twitter.com/wiredferret/status/794299964407107585 %}  
+{% twitter https://twitter.com/wiredferret/status/794299964407107585 align=center %}  
   
 This appalling and insightful story reminded us that explaining what is an API to non technical people (the jury), especially in a trial, is quite a challenge. Did the jury understand? Probably not. They may have abandoned after trying to read source code with notepad. *Don't get me wrong, the problem is not with the jury but with what they have faced*. 
 
-{% twitter https://twitter.com/apihandyman/status/794296871665729536 %}
+{% twitter https://twitter.com/apihandyman/status/794296871665729536 align=center %}
   
 Finally Google won... for the time being. But what are the consequences? Nobody knows. 
 
-{% twitter https://twitter.com/wiredferret/status/794300612984918016 %}  
+{% twitter https://twitter.com/wiredferret/status/794300612984918016 align=center %}  
   
 You can read the full story in [Sarah Jeong](https://twitter.com/sarahjeong)'s post *[In Oracle v. Google, a Nerd Subculture Is on Trial](http://motherboard.vice.com/read/in-google-v-oracle-the-nerds-are-getting-owned)*.
   
@@ -168,15 +168,15 @@ Hiroshi Yamauchi, CEO of Nintendo, chose to give the lead of this last chance pr
   
 On a more personal level, [he]((https://twitter.com/mamund)) told us that our life is like a lego box and not like a jigsaw that has only one way to get it right. We need to create whitespace for ourselves to think. When working on something, we need a break, we need to do something else to refuel our brain and free it. *And [Jeremiah Lee](https://twitter.com/JeremiahLee) gave us this whitespace at API Strat! Before his talk he made all the room moving, jumping, running in place, yelling, refueling everyone.*
 
-{% twitter https://twitter.com/apihandyman/status/794544774703435778 %}  
+{% twitter https://twitter.com/apihandyman/status/794544774703435778 align=center %}  
   
 [Charles Ashley](https://twitter.com/CAsh_The3rd) told us his story, how he came to create the [Cultivating Coders Foundation](https://cultivatingcoders.com/public_html/foundation/). He reminded us that we shouldn't take for granted our heavily connected life. In this world, even in developed countries, people still have to go to a library to have access to knowledge.
   
-{% twitter https://twitter.com/kinlane/status/794544708106199040 %}  
+{% twitter https://twitter.com/kinlane/status/794544708106199040 align=center %}  
   
 And opportunities heavily depend on what you can access. So [he](https://twitter.com/CAsh_The3rd) asked us: *are you committed or interested?*.
   
-{% twitter https://twitter.com/davidbiesack/status/794634464475353088 %}  
+{% twitter https://twitter.com/davidbiesack/status/794634464475353088 align=center %}  
   
 My friend, [Kin Lane](https://twitter.com/kinlane), the [API Evangelist](http://apievangelist.com), captured the public attention with an unvarnished talk *Drone Recovery In The Attention Economy*. He shared with us his very personal story, leaving me thoughtful on my very existence. I urge you to read this story on the [API Evangelist blog](https://apievangelist.com/2016/11/04/drone-recovery-in-the-attention-economy/).
   

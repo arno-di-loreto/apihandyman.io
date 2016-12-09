@@ -20,7 +20,7 @@ tags:
 series: Writing OpenAPI (Swagger) Specification Tutorial
 series_title: Part 2 - The basics
 ---
-After [discovering](/writing-openapi-swagger-specification-tutorial-part-1-introduction/) what is the OpenAPI Specification format, it's now time to write a first simple OpenAPI Specification file to learn the basics. 
+After [discovering](/writing-openapi-swagger-specification-tutorial-part-1-introduction/) what is the OpenAPI Specification format, it's now time to write a first simple OpenAPI Specification file to learn the basics.<!--more--> 
 
 # Writing OpenAPI (fka Swagger) Specification tutorial
 This tutorial is composed of several posts:

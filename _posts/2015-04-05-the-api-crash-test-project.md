@@ -12,7 +12,7 @@ category: Posts
 ---
 As I was writing my HAMM and ways of API smartness posts, I wanted more.
 As I was discussing with smart people about APIs, I wanted ever more.
-I want to delve deeply into the API ways.
+I want to delve deeply into the API ways.<!--more-->
 
 # The API crash test project
 My brain is boiling with ideas and there are so many existing concepts, techniques, best (and bad) practices concerning APIs.

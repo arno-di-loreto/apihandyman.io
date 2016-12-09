@@ -15,7 +15,7 @@ tags:
   - Documentation
   - DX
 ---
-When I look at hypermedia media-types and API definition languages I feel that the frontier between data and documentation is becoming thinner as my knowledge of the API world grows and as the API world evolves.
+When I look at hypermedia media-types and API definition languages I feel that the frontier between data and documentation is becoming thinner as my knowledge of the API world grows and as the API world evolves.<!--more-->
 
 Some complain that hypermedia APIs are overloaded with useless, redundant, ugly, complex, ...  data and/or tend to be hardly readable and/or are inefficient in environments where 1 byte is what separates total failure from awesome success (have you ever feared the *E* icon on your smartphone when using an app relying on data?) .
 
