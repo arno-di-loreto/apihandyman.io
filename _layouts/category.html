@@ -8,8 +8,8 @@ layout: default
 </div>
 <div class = "row">
   <div class="container blog-container">
-    {% if site.categories.[page.title]  %}
-      {% for post in site.categories.[page.title] %}
+    {% if site.categories[page.title]  %}
+      {% for post in site.categories[page.title] %}
         {% include post-summary.html %}
       {% endfor %}
     {% else %}
