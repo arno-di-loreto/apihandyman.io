@@ -1,19 +1,15 @@
 ---
 layout: default
 ---
-
-<div class="container blog-container">
-  {{ content }}
-  <div class="row">
+<div class="row">
+  <header class="home-header">
+    {% include jumbotron.html %}
+  </header>
+</div>
+<div class = "row">
+  <div class="container blog-container">
     {% for post in site.posts %}
-      <div class="post-summary">
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">{{ post.title | escape }}</a>
-        </h2>
-        <p><span class="post-meta">{{post.category}} {{ post.date | date: "%b %-d, %Y" }}</span></p>
-        {{ post.excerpt }}
-        <p><a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">Read more</a></p>
-      </div>
+      {% include post-summary.html %}
     {% endfor %}
   </div>
 </div>

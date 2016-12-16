@@ -1,8 +1,18 @@
-<footer class="footer navbar navbar-fixed-bottom">
-  <div class="col-sm-12 social">
-    <a href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.github.url }}"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
-    <a href="https://twitter.com/{{ site.twitter_username }}"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
-    <a href="https://github.com/{{ site.github_username }}"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
-    <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
-  </div>
+<footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.github.url }}"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/{{ site.twitter_username }}"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/{{ site.github_username }}"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
 </footer>

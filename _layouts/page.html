@@ -3,16 +3,7 @@ layout: default
 ---
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="post-header">
-    <div class="container main-container full-jumbotron">
-        <div class="jumbotron">
-            <h1 itemprop="name headline">{% if page.longtitle %}{{ page.longtitle | escape }}{% else %}{{ page.title | escape }}{% endif %}</h1>
-            {% if page.subtitle %}
-              <p>
-              {{ page.subtitle }}
-              </p>
-            {% endif %}
-        </div>
-    </div>
+    {% include jumbotron.html %}
   </header>
 
   <div class="container blog-container"  itemprop="articleBody">

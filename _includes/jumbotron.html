@@ -1,0 +1,21 @@
+
+{% if page.thumbnail %}
+  {% assign thumbnail = page.thumbnail %}
+{% else %}
+  {% assign thumbnail = site.default_thumbnail %}
+  {% assign page_thumbnail = '/images' | append: page.permalink | append: 'thumbnail.png' %}
+  {% for static_file in site.static_files %}
+    {% if static_file.path == page_thumbnail %}
+        {% assign thumbnail = page_thumbnail %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+    <div class="container main-container full-jumbotron">
+        <div class="jumbotron" style="background-image: url('{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}')">
+            <h1 class="post-title" itemprop="name headline">{% if page.shorttitle %}{{ page.shorttitle | escape }}{% else %}{{ page.title | escape }}{% endif %}</h1>
+            {% if page.subtitle %}
+              <p class="post-subtitle">{{ page.subtitle }}</p>
+            {% endif %}
+        </div>
+    </div>

@@ -21,6 +21,7 @@ url: "http://apihandyman.io" # the base hostname & protocol for your site
 twitter_username: apihandyman
 github_username:  arno-di-loreto
 linkedin_username: arnaudlauret
+default_thumbnail: /images/commons/thumbnail.png
 
 excerpt_separator: <!--more-->
 

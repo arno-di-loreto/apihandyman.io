@@ -1,6 +1,8 @@
 ---
 id: 1172
-title: 'Writing OpenAPI (Swagger) Specification Tutorial - Part 8 - Splitting specification file'
+title: Writing OpenAPI (Swagger) Specification Tutorial - Part 8 - Splitting specification file
+shorttitle: Part 8 - Splitting specification file
+subtitle: Writing OpenAPI (Swagger) Specification Tutorial
 date: 2016-08-02T19:45:17+00:00
 author: Arnaud Lauret
 layout: post

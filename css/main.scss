@@ -12,46 +12,81 @@ body {
   /* For nav bar */
   padding-top: 50px;
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .main-container {
   width: 100%;
   padding: 0px;
   background-color: white;
+  a {
+    color: #16a085;
+  }
+  a:hover, a:focus {
+    color: #19B798;
+    text-decoration: none;
+    outline: 0;
+  }  
 }
+
 
 /* navbar */
 .navbar {
 
-  background-color: black;
+  background-color:#0C2428;
 
   a {
-    color: white
-  }
-
-  a.page-link:hover {
-    color: #124266
-  }
-
-  .navbar-header {
     color: white;
+  }
+
+  a.page-link:hover, a.page-link:focus {
+    color: #19B798;
+    background-color: #0C2428;
+  }
+
+  .dropdown-menu {
+    li.disabled {
+      background-color: white;
+      a, a:hover, a:focus {
+        color: #0C2428;
+        background-color: white;
+      }
+    }
+    li {
+      a {
+        color: white;
+      }
+    }
+    background-color:#0C2428;
   }
 }
 
 .blog-container {
   width: auto;
   max-width: 750px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-left: 15px;
   line-height: 1.5;
   font-size: medium;
+
+  img {
+    max-width: 100%;
+    display:block;
+    margin:auto;
+  }
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  text-align: center;
+
+
+footer {
+  .navbar {
+    min-height: 28px;
+    text-align: center;
+  }
+  ul {
+    margin-bottom: 0px;
+  }
 }
 
 .embedpad {
@@ -61,3 +96,36 @@ body {
 code {
   padding: 0px 0px 0px 0px;
 }
+
+
+header {
+  .jumbotron {
+    min-height: 200px;
+    vertical-align: middle;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+}
+
+.post-meta {
+  color: #555;
+}
+
+.post-list-thumbnail {
+  height: 200px;
+  background-size: cover;
+  background-position: 20%;
+}
+
+/* For larger screens, increase font size and spacing */
+@media (min-width: 768px) {
+  header {
+    .jumbotron {
+      min-height: 400px;
+    }
+  }
+}
+

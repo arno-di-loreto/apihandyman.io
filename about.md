@@ -1,8 +1,9 @@
 ---
 id: 194
 title: About
+shorttitle: About the API Handyman
 date: 2015-02-07T15:07:32+00:00
-author: API Handyman
+author: Arnaud Lauret
 layout: page
 guid: http://apihandyman.io/?page_id=194
 permalink: /about/
@@ -36,7 +37,7 @@ It was time to roll up my sleeves and get my hands dirty.
 > Are you telling me that you built a time machine... out of APIs?!  
 > (Marty McApy) 
 
-Born on the seventh of February 2016, the API Handyman blog is about sharing my views and experiences on the API field from both provider and consumer points of view with (I hope) a pragmatic and unvarnished approach.
+Born on the seventh of February 2015, the API Handyman blog is about sharing my views and experiences on the API field from both provider and consumer points of view with (I hope) a pragmatic and unvarnished approach.
 
 My API awareness grown up working on my company's information system:
 

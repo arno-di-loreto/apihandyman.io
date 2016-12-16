@@ -1,8 +1,7 @@
 ---
 title: Talks
+subtitle: The API Handyman speaks as time permits.
 layout: category
 menu: true
 sort: 2
 ---
-
-The API Handyman talks in public ...

@@ -1,0 +1,26 @@
+{% if post.thumbnail %}
+  {% assign thumbnail = post.thumbnail %}
+{% else %}
+  {% assign thumbnail = site.default_thumbnail %}
+  {% assign page_thumbnail = '/images' | append: post.permalink | append: 'thumbnail.png' %}
+  {% for static_file in site.static_files %}
+    {% if static_file.path == page_thumbnail %}
+        {% assign thumbnail = page_thumbnail %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+
+      <div class="post-summary">
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">{{ post.title | escape }}</a>
+        </h2>
+        <p class="post-meta"><span>{{ post.date | date: "%b %-d, %Y" }}&nbsp;|&nbsp;{{post.category}}</span></p>
+        <div class="post-list-thumbnail" style="background-image: url('{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}')"></div>
+        {% if post.full %}
+          {{ post.content }}
+        {% else %}
+          {{ post.excerpt }}
+          <p><a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">Read more</a></p>
+        {% endif %}
+      </div>
