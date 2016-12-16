@@ -1,7 +1,7 @@
 ---
 id: 194
 title: About
-shorttitle: About the API Handyman
+alternate_title: About the API Handyman
 date: 2015-02-07T15:07:32+00:00
 author: Arnaud Lauret
 layout: page

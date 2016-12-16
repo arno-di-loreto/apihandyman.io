@@ -11,11 +11,24 @@
   {% endfor %}
 {% endif %}
 
+{% assign subtitle = page.subtitle %}
+{% if page.series %}
+  {% assign title = page.series_title %}
+  {% assign subtitle = page.series %}
+{% elsif page.alternate_title %}
+  {% assign title = page.alternate_title %}
+{% elsif page.title %}
+  {% assign title = page.title %}
+{% else %}
+  {% assign title = site.title %}
+  {% assign subtitle = site.description %}
+{% endif %}
+
     <div class="container main-container full-jumbotron">
         <div class="jumbotron" style="background-image: url('{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}')">
-            <h1 class="post-title" itemprop="name headline">{% if page.shorttitle %}{{ page.shorttitle | escape }}{% else %}{{ page.title | escape }}{% endif %}</h1>
-            {% if page.subtitle %}
-              <p class="post-subtitle">{{ page.subtitle }}</p>
+            <h1 class="post-title" itemprop="name headline">{{ title | escape }}</h1>
+            {% if subtitle %}
+              <h2 class="post-subtitle">{{ subtitle | escape }}</h2>
             {% endif %}
         </div>
     </div>

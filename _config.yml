@@ -14,14 +14,16 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: API Handyman
-email: your-email@domain.com
-description: '{"i" : "learn", "o" : "share"}'
+description: '{"input" : "learn", "output" : "share"}'
 
 url: "http://apihandyman.io" # the base hostname & protocol for your site
 twitter_username: apihandyman
 github_username:  arno-di-loreto
 linkedin_username: arnaudlauret
 default_thumbnail: /images/commons/thumbnail.png
+google_analytics: UA-58046291-1
+disqus:
+  shortname: apihandyman
 
 excerpt_separator: <!--more-->
 
