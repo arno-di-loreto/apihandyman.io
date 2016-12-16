@@ -16,7 +16,15 @@ layout: default
     </p>
     {{ content }}
   </div>
-
+  <script language="JavaScript">
+      anchors.options = {
+        //visible: 'always',
+        placement: 'left'
+      };
+      anchors.add('.blog-container h1');
+      anchors.add('.blog-container h2');
+      anchors.add('.blog-container h3');
+  </script>
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
   {% endif %}
