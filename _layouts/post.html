@@ -15,6 +15,7 @@ layout: default
       <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b. %-d, %Y" }}</time><span>&nbsp;|&nbsp;{{ page.category }}</span>
     </p>
     {{ content }}
+    {% include disqus_comments.html %}
   </div>
   <script language="JavaScript">
       anchors.options = {
@@ -25,7 +26,4 @@ layout: default
       anchors.add('.blog-container h2');
       anchors.add('.blog-container h3');
   </script>
-  {% if site.disqus.shortname %}
-    {% include disqus_comments.html %}
-  {% endif %}
 </article>
