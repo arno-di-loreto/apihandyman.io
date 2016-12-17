@@ -16,7 +16,8 @@
 title: API Handyman
 description: '{"input" : "learn", "output" : "share"}'
 
-url: "http://apihandyman.io" # the base hostname & protocol for your site
+url: "https://arno-di-loreto.github.io" # the base hostname & protocol for your site
+baseurl: /apihandyman.io
 twitter_username: apihandyman
 github_username:  arno-di-loreto
 linkedin_username: arnaudlauret
