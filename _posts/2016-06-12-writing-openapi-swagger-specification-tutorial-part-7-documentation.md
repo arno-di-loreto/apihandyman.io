@@ -38,8 +38,7 @@ In previous parts we've learned to create highly accurate API description, in th
 All tutorial's files are available on [GIST](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
 
 If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-![OpenAPISpecificationVisualDocumentation](/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png "OpenAPI Specification Visual Documentation")
-](http://openapi-specification-visual-documentation.apihandyman.io/)
+{% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
 
 # API's general informations
 First things first. When using an API, API consumers want to have some general informations about it like its version, its name, some description, term of service, how to contact the API provider, what kind of licencing it uses. The [`info`](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#infoObject) object placed on root level can be used to provide such information:

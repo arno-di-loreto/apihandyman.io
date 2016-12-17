@@ -18,8 +18,7 @@ tags:
 When watching a movie, have you ever noticed how characters *interact* with computers? If someone wants to destroy a computer, what does he or she smash?  
 The computer's screen...<!--more-->
 
-![spock_smash_computer](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/spock-smash-computer.gif
- "Spock smashes computer")  
+{% img file:spock-smash-computer.gif %}
 
 With *Swagger*, it's almost the same thing. Many people focus only on *generated Swagger UI* and only see Swagger as a useful way to generate documentation from an API implementation.
 
@@ -41,11 +40,7 @@ But after working for a while on this project, some concerns, not all related to
 
 ## Documentation tightly coupled with implementation
 
-![indiana_jones](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/indianajones.png
- "Indiana Jones")  
-  
-{: .center}
-*Documentation (Henry Jones Sr) tightly coupled with implementation (Henry Jones Jr)*  
+{% img file:indianajones.png label:"Documentation (Henry Jones Sr) tightly coupled with implementation (Henry Jones Jr)"%}
 
 Even if our new API is not an open one, it is used by people outside our company so I started to take a closer look at the generated documentation to check if everything was ok. It was... on the surface:
 
@@ -55,11 +50,7 @@ Even if our new API is not an open one, it is used by people outside our company
 
 But when taking a closer look at this generated documentation, some problems appear.
 
-![swagger_model_view](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/modelview.png
- "Swagger model view")  
-  
-{: .center}
-*Pet Store Swagger model view example*  
+{% img file:modelview.png label:"Pet Store Swagger model view example"%}
   
 Even if the resulting API was matching the specification, the model view of Swagger UI reveal some holes in the specification and was not satisfying:
 
@@ -104,11 +95,7 @@ Thanks to this new version, I realized my mistake, I realized that Swagger was *
 
 Swagger is an *API definition language* and there are [so many tools](http://swagger.io/open-source-integrations/) using it.
 
-![swagger_editor](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/swaggereditor-petstore.png
- "Swagger editor")  
-  
-{: .center}
-*Swagger API definition in Swagger Editor*  
+{% img file:swaggereditor-petstore.png label:"Swagger API definition in Swagger Editor" %}
   
 By *really* using Swagger and its ecosystem I thought we could:
 

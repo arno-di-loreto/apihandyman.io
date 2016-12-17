@@ -121,11 +121,7 @@ The Omega is every single thing you think to explain and that do not fit in API'
 - How the Cobol/Pascal/Basic sdk works on an Apple ][
 - ...  
 
-![](/images/the-data-the-hypermedia-and-the-documentation/docsrocks.png)  
-  
-{: .center}
-*Oops, I did memegenerate Charlton Heston again. I just loved this picture.*  
-  
+{% img file:docsrocks.png label:"Oops, I did memegenerate Charlton Heston again. I just loved this picture." %}
 
 You explain these things by writting (*ed. and drawing!*) plain good old documentation with text, snippets, diagrams... You provide it to users in HTML, PDF, markdown, printed books with rich illuminations or even engraved stones (for gold users only).  
 You can also use tools like API notebook to make this documentation more interactive.
@@ -156,10 +152,7 @@ But there's more. If documentation describes what *could be*, hypermedia describ
 - Prefilled links with ids and parameters (or templates to build this links)
 - Prefilled value for actions
 
-![](/images/the-data-the-hypermedia-and-the-documentation/data-hypermedia-documentation.png)    
-  
-{: .center}  
-*Let's do some cool Venn diagram*  
+{% img file:data-hypermedia-documentation.png label:"Let's do some cool Venn diagram" %}
   
 What I see now is that most of hypermedia data comes from the documentation and even part of the informations based on context could come from the documentation.
 

@@ -39,8 +39,7 @@ In this fifth part you will discover all the tips and tricks to describe highly 
 All tutorial's files are available on [GIST](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
 
 If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-![OpenAPISpecificationVisualDocumentation](/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png "OpenAPI Specification Visual Documentation")
-](http://openapi-specification-visual-documentation.apihandyman.io/)
+{% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
 
 # 1 Parameters
 In this section you will learn to define:

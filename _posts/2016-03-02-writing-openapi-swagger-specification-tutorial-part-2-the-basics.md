@@ -38,8 +38,7 @@ This tutorial is composed of several posts:
 All tutorial's files are available on [gist](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
 
 If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-![OpenAPISpecificationVisualDocumentation](/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png "OpenAPI Specification Visual Documentation")
-](http://openapi-specification-visual-documentation.apihandyman.io/)
+{% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
 
 In this second part you will learn how to give some basic informations about your API, describe endpoints using various HTTP methods with path, query and body parameters and returning various HTTP status and responses. 
 

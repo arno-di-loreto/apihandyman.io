@@ -28,13 +28,13 @@ You own coolvintageornottoys.com the famous cool vintage-or-not toys database an
 This website consists of some kind of a more or less monolithic web application plugged on some kind of service oriented architecture.
 How your data and the way you process them look like is the result of years of evolution in a close environment leading to a functional but maybe complex system including some fancy things like these...
 
-![a-bestial-back-office-title](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-01.png "A bestial back-office title")
-![crypto-data-begins](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-02.png "Crypto data begins")
-![crypto-data-returns](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-03.png "Crypto data returns")
-![inconsistent-interfaces-wars](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-04.png "Inconsistent interfaces wars")
-![inconsistent-interfaces-strikes-back](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-05.png "Inconsistent interfaces strikes back")
-![the-return-of-inconsistent-interfaces](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-06.png "The return of inconsistent interfaces")
-![consumer-over-delegation](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-07.png "Consumer over-delegation")
+{% img file:a-bestial-back-office-page-01.png %}
+{% img file:a-bestial-back-office-page-02.png %}
+{% img file:a-bestial-back-office-page-03.png %}
+{% img file:a-bestial-back-office-page-04.png %}
+{% img file:a-bestial-back-office-page-05.png %}
+{% img file:a-bestial-back-office-page-06.png %}
+{% img file:a-bestial-back-office-page-07.png %}
 
 ... *functional but maybe complex system*, that's a pretty euphemism. 
 
@@ -43,8 +43,8 @@ You think it's time to have a cool mobile application.
 You've read some things about this and it seems that a mobile application needs an API, so you decide to build one.
 This is a very good idea...
 
-![a-bestial-API-title](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-api-page-01.png "A bestial API title")
-![a-bestial-API](/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-api-page-02.png "A bestial API")
+{% img file:a-bestial-api-page-01.png %}
+{% img file:a-bestial-api-page-02.png %}
 
 ... but not this way.
 

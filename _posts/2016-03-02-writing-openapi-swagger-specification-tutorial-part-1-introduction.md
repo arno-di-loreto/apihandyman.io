@@ -48,8 +48,7 @@ The OpenAPI Specification is an API description format or API definition languag
 The Open API Specification's specification can be found in the [github repository of the Open API Initiative](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md). This document describes every aspect of the Open API Specification.
 Even if this documentation is fairly easy to read, I was sometimes a little bit lost. So, based on this *text* specification, I have created a *visual* documentation which can help to figure how a OpenAPI specification file is structured for people who are more visual like me.
 
-![OpenAPISpecificationVisualDocumentation](/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png "OpenAPI Specification Visual Documentation")
-[OpenAPI Specification Visual Documentation](http://openapi-specification-visual-documentation.apihandyman.io/)
+{% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
 
 Reading the specification is not mandatory to do this tutorial, you can dig into the specification as you discover it through this tutorial.
 
@@ -74,9 +73,7 @@ What can we use to write an OpenAPI Specification file?
 
 ## JSON vs YAML
 
-![fridopenapi](/images/writing-openapi-swagger-specification-tutorial-part-1-introduction/fridopenapi.png
- "FridopenAPI the 13th")
-  
+{% img file:fridopenapi.png %}
 
 An Open API Specification file can be written either in [JSON](https://en.wikipedia.org/wiki/JSON) or [YAML](https://en.wikipedia.org/wiki/YAML). But, if you intend to *write* and not generate this file, I urge you to do that in YAML as YAML is far more easy to write and read than JSON.
 
@@ -91,25 +88,18 @@ YAML seems definitely more easy to write and read for humans. And almost every t
 ## Editor
 Even if an OpenAPI specification is a simple text file which can be edited with any text editor, it's better to use a specialized one. The best available tool to write Open API Specification file is *Swagger Editor*. It's a set of static file allowing you to write and validate Open API Specification in YAML and see a rendering of the written specification.
 
-![swaggereditor](/images/writing-openapi-swagger-specification-tutorial-part-1-introduction/swaggereditor-petstore.png
- "Swagger Editor")
+{% img file:swaggereditor-petstore.png %}
   
-
 On the left pane, you write your API definition.
 On the right one you see a rendering of your definition and potential syntax errors.
 
 The editor also provides useful snippets to guide you:
-![swaggereditorsnippets](/images/writing-openapi-swagger-specification-tutorial-part-1-introduction/swagger.editor.gif
- "Swagger Editor Snippets")
-
+{% img file:swagger.editor.gif %}
 
 You can use the [online version](http://editor.swagger.io/) but you can also have your own editor instance on any http server. You just need to download the [lastest build](https://github.com/swagger-api/swagger-editor/releases/latest) and serve it with an http server. Go to [Swagger Editor Github repository](https://github.com/swagger-api/swagger-editor/#running-locally) for a complete how-to.
 
 # What about writing your first OpenAPI Specification?
-![jason](/images/writing-openapi-swagger-specification-tutorial-part-1-introduction/jason.gif
- "Jason")  
-  
-{: .center}
-*YAML + editor. You've been warned.*  
+
+{% img file:jason.gif label:"YAML + editor. You've been warned." %}
   
 We are now ready to proceed to [Part 2 - The basics](/writing-openapi-swagger-specification-tutorial-part-2-the-basics/) and write our first API definition using the Open API Specification.
