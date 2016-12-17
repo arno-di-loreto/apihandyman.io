@@ -11,5 +11,6 @@ tags:
   - Implementation
   - Architecture
 full: true
+comments: false
 ---
 If you wonder how to evolve a company's IS in the lego computing age, read [my post on Nordic APIs blog](http://nordicapis.com/evolving-companys-lego-computing-age-choose-brick-product/).

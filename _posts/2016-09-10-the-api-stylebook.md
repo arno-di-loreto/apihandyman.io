@@ -13,6 +13,7 @@ tags:
   - Design
   - API Stylebook
 full: true
+comments: false
 ---
 I'm a thrilled to announce that [apistylebook.com](http://apistylebook.com) is now online.
 

@@ -12,5 +12,6 @@ category: Elsewhere
 tags:
   - Interview
 full: true
+comments: false
 ---
 I've been interviewed by Lexy Mayko from API2Cart, you can read the interview [here](https://www.api2cart.com/blog/interview-arnaud-lauret-api-handyman/).

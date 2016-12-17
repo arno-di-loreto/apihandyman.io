@@ -14,5 +14,6 @@ tags:
   - Talk
   - Interview
 full: true
+comments: false
 ---
 [Jennifer Riggins](https://twitter.com/jkriggins) wrote a blog post about my Document-API-topia talk, you can read the *[Utopia of API documentation](http://blog.smartbear.com/documentation/the-utopia-of-api-documentation/)* on Smartbear blog.
