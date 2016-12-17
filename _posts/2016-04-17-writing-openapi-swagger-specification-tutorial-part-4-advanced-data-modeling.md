@@ -51,6 +51,7 @@ Using the [JSON Schema Draft 4](http://json-schema.org/documentation.html), the 
 ## 1.1 Strings length and pattern
 When defining a *string* property, we can specify its length range and its pattern:
 
+{: .table .table-bordered}
 Property  | Type   | Description 
 ----------|--------|-------------
 minLength | number | String's minimum length
@@ -63,6 +64,7 @@ The *username* in the *Person* definition is a string which length is between 8 
 ## 1.2 Dates and times
 Date and time are handled with *string* properties conforming to [RFC 3339](http://xml2rfc.ietf.org/public/rfc/html/rfc3339), all you need to do is to use the appropriate *format*:
 
+{: .table .table-bordered}
 Format   | Property contains | Property's value example
 ---------|-------------------|------------------------------
 date     | [ISO8601 full-date](http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14) | 2016-04-01
@@ -77,6 +79,7 @@ You should read the [5 laws of API dates and times](http://apiux.com/2013/03/20/
 
 When defining a number property, we can specify if this property is an integer, a long, a float or a double by using the [appropriate type and format combination](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types).
 
+{: .table .table-bordered}
 Value   |Type     | Format
 --------|---------|-------
 integer | integer | int32
@@ -87,6 +90,7 @@ double  | number  | double
 
 And just like string, we can define additional properties like the value range and also indicate if the value is a multiple of something:
 
+{: .table .table-bordered}
 Property   |Type  | Description
 --------|---------|-------
 minimum | number  | Minimum value
@@ -110,6 +114,7 @@ The property *code* of definition *Error* can take only three value (DBERR, NTER
 ## 1.5 Arrays size and uniqueness
 Arrays size and uniqueness are defined by these properties:
 
+{: .table .table-bordered}
 Property   |Type  | Description
 --------|---------|-------
 minItems    | number  | Minimum number of items in the array
@@ -123,6 +128,7 @@ The *Person* definition contains a property *items* which is an array of *Person
 ## 1.6 Binary data
 Binary data can be handled with *string* properties using the appropriate *format*:
 
+{: .table .table-bordered}
 Format   | Property contains
 ---------|------------------
 byte     | Base64 encoded characters
@@ -176,21 +182,21 @@ This is highly experimental as the content of *discriminator* field is not clear
 
 A string/string JSON map:
 
-```JavaScript
+{% highlight Json %}
 { 
   "key1": "value1",
   "key2": "value2"
 }
-```
+{% endhighlight %}
 
 A string/object JSON map:
 
-```JavaScript
+{% highlight Json %}
 { 
   "key1": {"complexValue1": "value1"},
   "key2": {"complexValue2": "value2"}
 }
-```
+{% endhighlight %}
 
 In an OpenAPI specification the key is always a string and do not need to be defined (if the key is an integer, it will be considered as a string).
 The value's type is defined within the property: [*additionalProperties*](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#model-with-mapdictionary-properties).
@@ -198,7 +204,7 @@ The value's type is defined within the property: [*additionalProperties*](https:
 ### String to String Hashmap:
 If you want to have a string to string map property in the *Person* definition explaining which languages this person speaks, the resulting data would look like this:
 
-```JavaScript
+{% highlight Json %}
 {
 "username": "apihandyman",
 "spokenLanguage": { 
@@ -206,7 +212,7 @@ If you want to have a string to string map property in the *Person* definition e
     "fr": "French"
   }
 }
-```
+{% endhighlight %}
 
 Defining the *spokenLanguage* property in the *Person* definition is done this way:
 
@@ -216,7 +222,7 @@ Defining the *spokenLanguage* property in the *Person* definition is done this w
 ### String to Object Map
 If you want to have a string to object map property in the *Error* definition to provide a multilingual long and short error message, the resulting data would look like this:
 
-```JavaScript
+{% highlight Json %}
 {
   "code": "UNERR",
   "message": { 
@@ -230,7 +236,7 @@ If you want to have a string to object map property in the *Error* definition to
     }
   }
 }
-```
+{% endhighlight %}
 
 Defining the *message* property in the *Error* definition is done this way:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_14_advanced_data_modeling.yaml lines:"150-159" highlight:"158-159" footer:false %}
@@ -240,7 +246,7 @@ Defining the *message* property in the *Error* definition is done this way:
 And finally, if you want to add a default language multilingual error message in your map (i.e. adding a default value in the map).  
 
 The returned structure do not differs from the precedent example:
-```JavaScript
+{% highlight Json %}
 {
   "code": "UNERR",
   "message": {
@@ -258,7 +264,7 @@ The returned structure do not differs from the precedent example:
     }
   }
 }
-```
+{% endhighlight %}
 
 But in the OpenAPI Specification, we add a *defaultLanguage* property to the *MultilingualErrorMessage* definition to the explicitly declare this value in the map:
 

@@ -78,6 +78,7 @@ In this example, we have defined three security definitions of `apiKey` type:
 ### 1.3.1 Flow and URLs
 When defining an `oauth2` security definition, we can define the Oauth2 `flow` used and corresponding `authorizationUrl` and/or `tokenUrl` depending on the chosen flow:
 
+{: .table .table-bordered}
 Flow        | Required URLs
 ------------|------------------------------
 implicit    | authorizationUrl

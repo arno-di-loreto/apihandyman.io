@@ -43,7 +43,9 @@ But after working for a while on this project, some concerns, not all related to
 
 ![indiana_jones](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/indianajones.png
  "Indiana Jones")  
-*Documentation (Henry Jones Sr) tightly coupled with implementation (Henry Jones Jr)*
+  
+{: .center}
+*Documentation (Henry Jones Sr) tightly coupled with implementation (Henry Jones Jr)*  
 
 Even if our new API is not an open one, it is used by people outside our company so I started to take a closer look at the generated documentation to check if everything was ok. It was... on the surface:
 
@@ -55,8 +57,10 @@ But when taking a closer look at this generated documentation, some problems app
 
 ![swagger_model_view](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/modelview.png
  "Swagger model view")  
-*Pet Store Swagger model view example*
-
+  
+{: .center}
+*Pet Store Swagger model view example*  
+  
 Even if the resulting API was matching the specification, the model view of Swagger UI reveal some holes in the specification and was not satisfying:
 
 - The model names were reflecting poorly named java classes.
@@ -102,8 +106,10 @@ Swagger is an *API definition language* and there are [so many tools](http://swa
 
 ![swagger_editor](/images/starting-a-swagger-journey-beyond-generated-swagger-ui/swaggereditor-petstore.png
  "Swagger editor")  
-*Swagger API definition in Swagger Editor*
-
+  
+{: .center}
+*Swagger API definition in Swagger Editor*  
+  
 By *really* using Swagger and its ecosystem I thought we could:
 
 - Write better and more consistent API definition once and faster, especially with the YAML editor.

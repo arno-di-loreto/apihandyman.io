@@ -16,7 +16,7 @@ tags:
 When you design an API (even an internal/private one) upon an existing back office (to plug a mobile application on it for example), you should take care of one thing: an API is a display, not a window.
 An API's purpose is to expose your data and data processing but an API is only a *representation* and you're under no obligation to directly expose the crude reality.<!--more-->
 
-> What happens in <del>Vegas</del> back office stays in <del>Vegas</del> back office
+> What happens in <del>Vegas</del> back office stays in <del>Vegas</del> back office  
 > (*[famous tag line](http://theweek.com/articles/459434/brief-history-happens-vegas-stays-vegas)*)
 
 This is even more true if you have a *bestial* back-office. It's definitely not a good idea to expose it as it is, you really must hide it behind a *beautiful* API. It might even brings unexpected benefits.
@@ -91,7 +91,7 @@ And now that you have a beautiful API in front of your bestial back office, ther
 # An happy ending
 But what about the unexpected benefits?
 
-> Beast was disappeared, and she saw, at her feet, one of the loveliest princes that eye ever beheld
+> Beast was disappeared, and she saw, at her feet, one of the loveliest princes that eye ever beheld  
 > *(The beauty and the beast, Jeanne-Marie LePrince de Beaumont)*
 
 Like in the fairy tale, the beautiful API has *improved* the bestial back-office:
@@ -102,8 +102,8 @@ Like in the fairy tale, the beautiful API has *improved* the bestial back-office
 - You have defined rules (naming, format, error handling, ...) you could apply to all your new back office components.
 - What about a web site refactoring to plug it to your new API and minimize business logic cross maintenance?
 
-> His subjects received him with joy; he married Beauty, and lived with her many years; and their happiness, as it was founded on virtue, was complete.
-> The end.
+> His subjects received him with joy; he married Beauty, and lived with her many years; and their happiness, as it was founded on virtue, was complete.  
+> The end.  
 > *(The beauty and the beast, Jeanne-Marie LePrince de Beaumont)*
 
 This is not a fairy tale, it's reality. Building an API can really help you improve your back-office.

@@ -31,8 +31,10 @@ So, I came up with the concept of *API crash test*.
 To realize these *crash tests*, I will define a concrete *product* and use it in my posts and experiments to test many API related things.
 
 ![api-crash-test-overview](/images/the-api-crash-test-project/apicrashtestprojectoverview.png "API crash test project overview")  
-*A big fuzzy draft overview of the API crash test project.*
 
+{: .center} 
+*A big fuzzy draft overview of the API crash test project.*  
+  
 The main objective is to work on the designing of (hypermedia) APIs based on this product, but through this project I also want to work on:
 
 - Defining a product.

@@ -29,8 +29,10 @@ excerpt_separator: <!--more-->
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 kramdown:
   input: GFM
+  
 
 gems:
   - jekyll-feed

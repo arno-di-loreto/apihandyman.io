@@ -108,7 +108,8 @@ You can use the [online version](http://editor.swagger.io/) but you can also hav
 # What about writing your first OpenAPI Specification?
 ![jason](/images/writing-openapi-swagger-specification-tutorial-part-1-introduction/jason.gif
  "Jason")  
-*YAML + editor. You've been warned.*
-
-
+  
+{: .center}
+*YAML + editor. You've been warned.*  
+  
 We are now ready to proceed to [Part 2 - The basics](/writing-openapi-swagger-specification-tutorial-part-2-the-basics/) and write our first API definition using the Open API Specification.

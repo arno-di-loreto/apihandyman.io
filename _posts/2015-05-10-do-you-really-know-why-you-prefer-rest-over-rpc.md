@@ -43,6 +43,7 @@ Each HTTP verb:
 - Is safe or not: *Request methods are considered "safe" if their defined semantics are essentially read-only* (see [RFC7231: Safe methods](http://tools.ietf.org/html/rfc7231#section-4.2.1)).
 - Is cacheable or not
 
+{: .table .table-bordered}
 Verb      | Meaning                                                 | &nbsp;Idempotent&nbsp;| &nbsp;Safe&nbsp; | &nbsp;Cacheable&nbsp;
 ---       | ---                                                     | ---        | ---  | ---
 GET       | Reads a resource                                        | Yes        | Yes  | Yes
@@ -50,9 +51,11 @@ POST      | Creates a resource or triggers a data-handling process  | No        
 PUT       | Fully updates (replaces) an existing resource or create a resource | Yes        | No   | No
 PATCH     | Partially updates a resources                           | No         | No   | Only cacheable if response contains explicit freshness information
 DELETE    | Deletes a resource                                      | Yes        | No   | No
+  
 
-*The table above shows only the HTTP verbs used commonly by RPC and REST APIs.*
-
+{: .center}
+*The table above shows only the HTTP verbs used commonly by RPC and REST APIs.*  
+  
 ## RPC: The operation request style
 
 The [RPC](http://www.acronymfinder.com/RPC.html) acronym has many meanings and [Remote Procedure Call](http://en.wikipedia.org/wiki/Remote_procedure_call) has many forms.  
@@ -65,7 +68,8 @@ As far as I know, there are no particular rules for this style but generally:
 - The endpoint contains the name of the operation you want to invoke.
 - This type of API generally only uses GET and POST HTTP verbs.
 
-[code gutter="false"]
+
+{% highlight text %}
 GET /someoperation?data=anId
 
 POST /anotheroperation
@@ -73,7 +77,7 @@ POST /anotheroperation
   "data":"anId"; 
   "anotherdata":"another value"
 }
-[/code]
+{% endhighlight %}
 
 
 How do people choose between GET and POST? 
@@ -91,16 +95,17 @@ To make it short and focus on the matter of this post, with a REST API you expos
 - The endpoint contains the resource you manipulate.
 - Many use the CRUD analogy to explain REST requests principles. The HTTP verb indicates what you want to do (Create/Read/Update/Delete) with that resource as defined earlier in this post and by [RFC7231 (Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content)](http://tools.ietf.org/html/rfc7231#section-4.3) and [RFC5789 (PATCH Method for HTTP)](http://tools.ietf.org/html/rfc5789).
 
-[code gutter="false"]
+{% highlight text %}
 GET /someresources/anId
 
 PUT /someresources/anId
 {"anotherdata":"another value"}
-[/code]
+{% endhighlight %}
 
 ## Examples
 Here are some of my [CarBoN API](/the-api-crash-test-project/) requests presented in RPC and REST ways:
 
+{: .table .table-bordered}
 Operation                      | RPC (operation)                           | REST (resource)
 ---                            | ---                                       | ---
 Signup                         | POST /signup                              | POST /persons
@@ -126,6 +131,7 @@ I've selected some items to compare RPC's and REST's requests styles:
 
 Even if this item is irrelevant, as beauty is in the eye of the beholder, both styles can produce beautiful API as they can produce ugly ones.
 
+{: .table .table-bordered}
 Operation                      | RPC                           | REST
 ---                            | ---                           | ---
 Read a person *pretty version* | GET /readPerson?personid=1234 | GET /persons/1234
@@ -206,6 +212,7 @@ No difference on the documentation (machine of human readable) level too.
 
 ## Totalling points
 
+{: .table .table-bordered}
 Item                        | Who wins?
 ---                         | ---
 Beauty                      | Draw

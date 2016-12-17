@@ -12,12 +12,12 @@ category: Posts
 tags:
   - Design
 ---
-> Why you must design your private API in english.
-> Pourquoi vous devez concevoir votre API privée en anglais.
-> Perché è necessario progettare la vostra API privata in inglese.
-> Por qué debe diseñar su API privada en Inglés.
-> Deshalb müssen Sie Ihre private API in Englisch entwerfen.
-> なぜあなたは英語であなたのプライベートAPIを設計する必要があります.
+> Why you must design your private API in english.  
+> Pourquoi vous devez concevoir votre API privée en anglais.  
+> Perché è necessario progettare la vostra API privata in inglese.  
+> Por qué debe diseñar su API privada en Inglés.  
+> Deshalb müssen Sie Ihre private API in Englisch entwerfen.  
+> なぜあなたは英語であなたのプライベートAPIを設計する必要があります.  
 
 As you might have guess, this post targets people designing APIs in non english speaking countries.
 When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it.
@@ -33,26 +33,26 @@ Before designing anything you have to choose a language for your API.
 I'm not talking about internationalization or choosing a programming language ...
 I'm talking about choosing a human language for the interface: english, french, italian, spanish, german, japanese... 
 
-> Jean-Philippe wants to get a list of squirrels, how does he get it?
-> GET /squirrels
-> GET /ecureuils
-> GET /scoiattoli
-> GET /ardillas
-> GET /eichhornchen
-> GET /リス
+> Jean-Philippe wants to get a list of squirrels, how does he get it?  
+> GET /squirrels  
+> GET /ecureuils  
+> GET /scoiattoli  
+> GET /ardillas  
+> GET /eichhornchen  
+> GET /リス  
 
 The choice should be quite simple because this should be a single-choice question instead of a multiple-choice question.
 The only possible response should be english.
 
 The only possible response **IS** english.
 
-> But this API is private and will only be used by squirrels or us or people understanding our language. Why should we care to design it in english instead of (whatever language you speak)?
+> But this API is private and will only be used by squirrels or us or people understanding our language. Why should we care to design it in english instead of (whatever language you speak)?  
 > *(me some time ago, I could just kick myself)*
 
 There are two reasons rhyming with "*ization*": standardization and externalization.
 
 # Follow the standards
-> Stop building super custom APIs.
+> Stop building super custom APIs.  
 > *([Steve Klabnick](http://www.steveklabnik.com/), API Days Paris 2014)*
 
 Even if your API is private, it must be *standard*, the more your conform to standards the more your API is simple to design and to use.
@@ -70,7 +70,7 @@ Using a language other than english for your API might complicate its design and
 Too much custom APIs are hard to understand and use so imagine one with two languages.
 
 # Assume that your API will not be private forever
-> Anyone who doesn’t do this will be fired.
+> Anyone who doesn’t do this will be fired.  
 > *(Jeff Bezos, [about service interface externalization and other things](http://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/))*
 
 When you create an API you must always design it as it will be externalized, exposed to the outside world (read this [post from API Evangelist](http://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/) about Amazon's internal APIs).
@@ -85,7 +85,7 @@ When you create an API you must always design it as it will be externalized, exp
 The success of this externalization may be tempered by your *non-english* API.
 
 # API design's commandment
-> English shalt be the language thou use to design an API, and the language of the API designing shalt be english.
+> English shalt be the language thou use to design an API, and the language of the API designing shalt be english.  
 > *(Book of <del>Armaments</del> API Design)*
 
 But even if you design your API in english, you can at least write documentation in your language… and in english.

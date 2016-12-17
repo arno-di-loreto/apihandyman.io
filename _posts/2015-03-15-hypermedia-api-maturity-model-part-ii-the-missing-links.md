@@ -46,7 +46,9 @@ I determined that if I wanted to offer the expected good user experience with th
 As I was documenting myself about REST APIs, I (re)discovered the notion of *hypermedia* for REST APIs in [Richardson's Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html).
 
 ![power-of-hypermedia](/images/hypermedia-api-maturity-model-part-ii-the-missing-links/heman-power-of-hypermedia.png "By the power of Hypermedia The Api will hande this")  
-*Me, figuring that hypermedia can handle this (re-enactment)*.
+
+{: .center}
+*Me, figuring that hypermedia can handle this (re-enactment)*.  
 
 If in the web application, all of these needs are handled (from the user point view) mostly via hypermedia (the user browse from page to page by clicking on links) why wouldn't we do the same with the API?
 
@@ -84,10 +86,10 @@ Sometimes it would be better for user experience to explicitly say that a thing 
 Let's take the dummy API described in part I and work with the *add photo* operation for *location* resource (still using NARWHL).
 
 How it looks like in last post:
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight json %}
 {
   "_links": 
   [
@@ -105,7 +107,7 @@ GET https://api.dummy.com/locations/IDL1
   ],
   ...
 }
-[/code]
+{% endhighlight %}
 
 Now I add a *status* property to indicate if the operation is possible or not and explain why if it's not possible:
 
@@ -117,10 +119,10 @@ In this case, the *usability* is based on two notions: *availability* and *autho
 
 
 ### The operation in unavailable due to maintenance
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight json %}
 {
   "_links": 
   [
@@ -161,13 +163,13 @@ GET https://api.dummy.com/locations/IDL1
   ],
   ...
 }
-[/code]
+{% endhighlight %}
 
 ### The operation in unauthorized for this resource (location)
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight json %}
 {
   "_links": 
   [
@@ -207,13 +209,13 @@ GET https://api.dummy.com/locations/IDL1
   ],
   ...
 }
-[/code]
+{% endhighlight %}
 
 ### The operation in unauthorized for the user
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight json %}
 {
   "_links": 
   [
@@ -253,14 +255,14 @@ GET https://api.dummy.com/locations/IDL1
   ],
   ...
 }
-[/code]
+{% endhighlight %}
 
 
 ### Everything is OK
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight json %}
 {
   "_links": 
   [
@@ -294,14 +296,16 @@ GET https://api.dummy.com/locations/IDL1
   ],
   ...
 }
-[/code]
+{% endhighlight %}
 
 
 ## How you do things
 Actual techniques for hypermedia implementation I've seen for now can tell you what actions you can do with a resource and what you need to do it but sometimes you need more information for processes involving more than one action.
 
 ![djiloriann-ikea-manual](/images/hypermedia-api-maturity-model-part-ii-the-missing-links/djiloriann.png "Djiloriann Ikea manual")  
-*[Djiloriann manual, www.collegehumor.com](http://www.collegehumor.com/post/6500868/sci-fi-ikea-manuals)*
+  
+{: .center}
+*[Djiloriann manual, www.collegehumor.com](http://www.collegehumor.com/post/6500868/sci-fi-ikea-manuals)*  
 
 For example, when you use Twitter API, if you want to tweet with one media you have to 
 
@@ -323,7 +327,7 @@ Let's see what we can do with the *media tweet* case.
 
 ### First we get the tweetWithMedia action
 This action could placed be in *_links* property of GET https://api.twitter.com/1.1/.
-[code language="js"]
+{% highlight json %}
 {
   "_links": 
   [
@@ -345,13 +349,13 @@ This action could placed be in *_links* property of GET https://api.twitter.com/
   ],
   ...
 }
-[/code]
+{% endhighlight %}
 
 We get a first step: we have to upload a media.
 
 ### So we do the POST https://api.twitter.com/1.1/media/upload.json
 
-[code language="js"]
+{% highlight json %}
 {
   "_links": 
   [
@@ -374,7 +378,7 @@ We get a first step: we have to upload a media.
   ],
   ...
 }
-[/code]
+{% endhighlight %}
 
 In return we get the next step *updateStatus* for process *tweetWithMedia* with property *media_ids* containing the id of the uploaded media.
 

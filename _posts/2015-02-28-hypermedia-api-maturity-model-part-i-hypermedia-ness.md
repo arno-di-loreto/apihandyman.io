@@ -31,60 +31,61 @@ Let's take a dummy non-hypermedia API dealing with locations and photos as an ex
 
 - Get a specific location details
 
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1
-[/code]
-[code language="js"] 
+{% endhighlight %}
+
+{% highlight Json %}
 {
   "id": "IDL1", 
   "name":"a location"
 }
-[/code]
+{% endhighlight %}
 
 - Add a photo to a location
 
-[code gutter="false"]
+{% highlight text %}
 POST https://api.dummy.com/photos
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight Json %}
 {
   "locationId": "IDL1",
   "url": "http://im.gur/myphoto"
 }
-[/code]
+{% endhighlight %}
 
 - Get photos for a location
 
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1/photos
-[/code]
-[code title="" language="js"] 
+{% endhighlight %}
+{% highlight Json %} 
 [
  {"id": "IDP1"}, 
  {"id": "IDP2"},
  ..., 
  {"id": "IDPn"}
 ]
-[/code]
+{% endhighlight %}
 
 - Get a specific photo details
 
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/photos/IDP1
-[/code]
-[code language="js"]  
+{% endhighlight %}
+{% highlight Json %}  
 {
   "id": "IDP1", 
   "locationId": "IDL1",
   "url": "https://media.dummy.com/xlvc265z"
 }
-[/code]
+{% endhighlight %}
 
 - Delete a specific photo
 
-[code gutter="false"]
+{% highlight text %}
 DELETE https://api.dummy.com/photos/IDP1
-[/code]
+{% endhighlight %}
 
 ## Level 1: Where you can go
 On level 1, you define relations/links between your resources. You can do this by using:
@@ -97,10 +98,10 @@ Let's see what we can do using jsonapi.org on our dummy API:
 
 - Get a specific location details
 
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight Json %}
 {
   "links": { "self": "https://api.dummy.com/locations/IDL1"},
   "linked":[ 
@@ -112,14 +113,14 @@ GET https://api.dummy.com/locations/IDL1
   "id": "IDL1",
   "name": "a location"
 }
-[/code]
+{% endhighlight %}
 
 - Get photos for a location
 
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1/photos 
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight Json %}
 {
   "links" : 
   {
@@ -134,14 +135,14 @@ GET https://api.dummy.com/locations/IDL1/photos
     }, ...
   ]
 }
-[/code]
+{% endhighlight %}
 
 - Get a specific photo details
 
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/photos/IDP1 
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight Json %}
 {
   "links": { "self": "https://api.dummy.com/photos/IDP1"},
   "linked":
@@ -155,7 +156,7 @@ GET https://api.dummy.com/photos/IDP1
   "locationId": "IDL1",
   "url": "https://media.dummy.com/xlvc265z"
 }
-[/code]
+{% endhighlight %}
 
 As you can see we have added links (*URL related to primary data*)  and linked (*linked resources*) values to existing data. These new data:
 
@@ -176,10 +177,10 @@ Let's see how it looks with NARWHL:
 
 - Get a specific location details
 
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight Json %}
 {
   "_links":
   [
@@ -202,14 +203,14 @@ GET https://api.dummy.com/locations/IDL1
   "id": "IDL1",
   "name": "a location"
 }
-[/code]
+{% endhighlight %}
 
 - Get photos for a location
 
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1/photos 
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight Json %}
 {
   "_links":
   [
@@ -244,14 +245,14 @@ GET https://api.dummy.com/locations/IDL1/photos
     }, ...
   ]
 }
-[/code]
+{% endhighlight %}
 
 - Get a specific photo details
 
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/photos/IDP1 
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight Json %}
 { 
   "_links":
   [
@@ -275,7 +276,7 @@ GET https://api.dummy.com/photos/IDP1
   "locationId": "IDL1",
   "url": "https://media.dummy.com/xlvc265z"
 }
-[/code]
+{% endhighlight %}
 
 With NARWHL, all links are defined within *_links* values and for each of them you explicitly define the HTTP method to use with the *method* value.
 I have to admit that I prefer the more explicits concepts of *class* or *type* brought by Siren or Hydra to describe the action/operation you can do instead of the [rel value based on IANA relation types](http://www.narwhl.com/hypermedia-linking/) (I probably miss something about this).
@@ -296,10 +297,10 @@ On level 3, you add a full description (and maybe some values) of the needed inp
 - [Collection+JSON](http://www.amundsen.com/media-types/collection/) 
 
 Let's see how NARWHL handle this on the "add photo" operation:
-[code gutter="false"]
+{% highlight text %}
 GET https://api.dummy.com/locations/IDL1
-[/code]
-[code language="js"]
+{% endhighlight %}
+{% highlight Json %}
 {
   "_links": 
   [
@@ -327,7 +328,7 @@ GET https://api.dummy.com/locations/IDL1
   "id": "IDL1",
   "name": "a location"
 }
-[/code]
+{% endhighlight %}
 
 With NARWHL, by adding *parameters* value you give a description (and some default values) of the needed inputs for the operations.
 Collection+JSON, Siren and Hydra use a more precise way of describing these inputs. You can see more examples using HAL, JSON-LD, Hydra, Collection+JSON and Siren in Kevin Sookocheff's [post](http://sookocheff.com/posts/2014-03-11-on-choosing-a-hypermedia-format/) comparing some hypermedia systems. As Kevin's post do not talk about NARWHL and jsonapi.org I have focused this post's examples on these ones.
@@ -381,6 +382,6 @@ I think I will settle this problem on my next post by transforming the progressi
 Now I'm able to evaluate the level of hypermedia-ness of an API based on common systems/techniques but this is only the tip of the hypermedia iceberg. The main point of hypermedia is finally not how you will implement it and what level of hypermedia-ness you achieve, but for what *purpose* you will implement it.
 In next post *Hypermedia API maturity model - Part II - The missing links*, I'll explain why I have crossed the path hypermedia API, what is missing in actual systems/techniques to fulfil all my needs and propose a revised version of this hypermedia API maturity model based on all this (mess).
 
-*Images credits:
+*Images credits*:
 - [Southbound lane on Jianguo Rd Exit of Kaohsuing IC on the Taiwan No2 National Highway](http://upload.wikimedia.org/wikipedia/commons/f/f6/Southbound_lane_on_Jianguo_Rd_Exit_of_Kaohsuing_IC_on_the_Taiwan_No2_National_Highway.JPG), [Howard61313](http://commons.wikimedia.org/wiki/User:Howard61313).
-- [The spanish inquisition, The Monty Python](http://en.wikipedia.org/wiki/The_Spanish_Inquisition_%28Monty_Python%29)*
+- [The spanish inquisition, The Monty Python](http://en.wikipedia.org/wiki/The_Spanish_Inquisition_%28Monty_Python%29)

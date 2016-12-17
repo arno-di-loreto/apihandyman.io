@@ -19,10 +19,10 @@ tags:
 ---
 An API must be smart to ensure that consumers will want to use it and remain dumb when they consume it.<!--more-->
 
-> smart
-> *smɑːt*
-> 1. (of a person) clean, tidy, and well dressed.
-> 2. (informal) having or showing a quick-witted intelligence.
+> smart  
+> *smɑːt*  
+> 1. (of a person) clean, tidy, and well dressed.  
+> 2. (informal) having or showing a quick-witted intelligence.  
 
 Whether an API is dark internal, open external or everything in between (cf. [Mark O'Neil classification](http://www.soatothecloud.com/2015/02/this-week-there-has-been-great.html)), its provider (both human and application) must take whatever steps to ensure that this API (and everything surrounding it) is smart enough so the consumer (both human and application) do not need to be as skilled as the provider concerning the field of this API or what run behind it to use it.
 
@@ -40,9 +40,9 @@ I'm myself only at the beginning of this journey to API smartness, I'll try with
 # The (other) APl way: Application Pleasant Interface
 If you follow only one way of the API smartness, this is *the* way.
 
-> Design, mock, test.
-> Iterate until you get something pleasant.
-> *API design mantra* 
+> Design, mock, test.  
+> Iterate until you get something pleasant.  
+> *API design mantra*  
 
 An API is designed by humans to expose data to humans building applications and not for applications only.
 An API is an *Application Programming Interface* but it should also be an *Application Pleasant Interface* ([other API acronyms](http://www.acronymfinder.com/API.html)) so the humans who build the application consuming this API do not need to struggle to understand it and its data.
@@ -63,7 +63,7 @@ Some directions for this *(other) API* way:
 # The RTCFM way: Read The Consumer Friendly Manual
 Even if you achieve the *(other) API* way brilliantly, consumers will probably need a little help to use your API.
 
-> To most developers, writing API documentation is nothing short of torture. But to a few of us, it's a fascinating area. What gets us so excited? 
+> To most developers, writing API documentation is nothing short of torture. But to a few of us, it's a fascinating area. What gets us so excited?  
 > *Kin Lane, The API Evangelist, [Why we write API documentation](http://apievangelist.com/2012/01/28/why-we-write-api-documentation/)*
  
 API documentation must be exhaustive and consumer friendly:
@@ -84,7 +84,9 @@ API documentation must be exhaustive and consumer friendly:
 # The hypster way: Hypermedia
 This way is a subpath of the (other) API way.
 
-![hypermedia-definition](/images/the-ways-of-the-api-smartness/hypermedia-definition.png "Hypermedia types exist to tell clients how to interact with data, not what the data means.")  
+{% twitter https://twitter.com/darrel_miller/status/575494956472631296 align=center %}
+
+{: .center}  
 *The best definition of hypermedia* 
 
 Adding [hypermedia](http://apievangelist.com/2014/01/07/what-is-a-hypermedia-api/) will lead your API to level 3 of [Richardson Maturity Model](http://martinfowler.com/articles/richardsonMaturityModel.html) and help consumers to know what they can do with your data on the fly.
@@ -95,7 +97,7 @@ But you really can use it to solve concrete problems for more informations you c
 # The mad scientist way: Code on demand
 Another subpath of the (other) API way. 
 
-> The final addition to our constraint set for REST comes from the code-on-demand style of Section 3.5.3 (Figure 5-8). REST allows client functionality to be extended by downloading and executing code in the form of applets or scripts
+> The final addition to our constraint set for REST comes from the code-on-demand style of Section 3.5.3 (Figure 5-8). REST allows client functionality to be extended by downloading and executing code in the form of applets or scripts  
 > Roy Fielding,  [Architectural Styles and the Design of Network-based Software Architectures](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
 
 Maybe one day you'll be confronting a problem that even a good combination of (other) API, RTFCM and Hypster ways cannot solve.
@@ -109,14 +111,14 @@ You can read [Mike Stowe's post](http://www.mikestowe.com/2015/03/code-on-demand
 # The empathic listening way
 Last but not least, he [empathic listening](http://www.beyondintractability.org/essay/empathic-listening) way.
 
-> One <del>Ring</del> Way to rule them all, One <del>Ring</del> Way to find them,
-> One <del>Ring</del> Way to bring them all and in the <del>darkness</del> brightness bind them.
+> One <del>Ring</del> Way to rule them all, One <del>Ring</del> Way to find them,  
+> One <del>Ring</del> Way to bring them all and in the <del>darkness</del> brightness bind them.  
 > *J.R.R. Tolkien,  The Lord of the <del>Rings</del> ways of API smartness*
 
 This is the alpha and omega way. Whatever the ways you choose to take, you'll have to follow this way.
 
-> Empathic listening (also called active listening or reflective listening) is a way of listening and responding to another person that improves mutual understanding and trust. 
-> It is an essential skill for third parties and disputants alike, as it enables the listener to receive and accurately interpret the speaker's message, and then provide an appropriate response.
+> Empathic listening (also called active listening or reflective listening) is a way of listening and responding to another person that improves mutual understanding and trust.  
+> It is an essential skill for third parties and disputants alike, as it enables the listener to receive and accurately interpret the speaker's message, and then provide an appropriate response.  
 > Richard Salem, [The benefits of empathic listener](http://www.beyondintractability.org/essay/empathic-listening)
 
 You must listen to consumers because everything cannot be perfect the first time.

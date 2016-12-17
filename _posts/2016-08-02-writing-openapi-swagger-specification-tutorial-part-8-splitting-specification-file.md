@@ -92,22 +92,22 @@ All you need to do is put the referenced yaml files into a web server (with [COR
 ### 2.2.1 http-server a lightweight web server
 You can use [http-server](https://www.npmjs.com/package/http-server) a lightweight node.js web server:
 
-```shell
+{% highlight shell %}
 npm install --global http-server
-```
+{% endhighlight %}
 
 You now can start a web service on any folder:
 
-```shell
+{% highlight shell %}
 http-server --cors path/to/yaml/folder
-```
+{% endhighlight %}
 
 or
 
-```shell
+{% highlight shell %}
 cd path/to/yaml/folder
 http-server --cors .
-```
+{% endhighlight %}
 
 By default, `http-server` listens on 8080 port, files will be accessble through `http://localhost:8080/<path to file within folder>`. 
 
@@ -157,9 +157,9 @@ As you may have guess while modifying the references in the specification and ed
 ### 2.4.1 Remote files
 All we need to do is to put the full file's URL in the reference:
 
-```YAML
+{% highlight yaml %}
 $ref: https://myserver.com/mypath/myfile.yaml#/example
-```
+{% endhighlight %}
 
 Remember that the server **MUST** have CORS activated to allow the editor to download the file.
 
