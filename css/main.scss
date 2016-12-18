@@ -12,7 +12,7 @@ body {
   /* For nav bar */
   padding-top: 50px;
   /* Margin bottom by footer height */
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 // Top navbar
@@ -93,6 +93,11 @@ footer {
     font-style: italic;
   }
 
+  blockquote {
+    border-left-color: #16a085;
+    color: #767676;
+  }
+
 }
 
 .post-summary-thumbnail {
@@ -100,7 +105,7 @@ footer {
 }
 
 .post-meta {
-  color: #555;
+  color: #767676;
 }
 
 header {
@@ -133,3 +138,26 @@ header {
 code {
   padding: 0px 0px 0px 0px;
 }
+
+/* TOC */
+nav[data-toggle='toc'] {
+  margin-top: 5px;
+}
+
+#toc {
+  li.active > a {
+    color:#16a085;
+    border-left-color: #16a085;
+  }
+  li > a:hover {
+    color:#16a085;
+    border-left-color: #19B798;
+    border-left-width: 2px;
+  }
+}
+
+.affix {
+  top:50px;
+  position:fixed;
+}
+
