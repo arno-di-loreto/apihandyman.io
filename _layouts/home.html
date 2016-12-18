@@ -1,15 +1,6 @@
 ---
 layout: default
 ---
-<div class="row">
-  <header class="home-header">
-    {% include jumbotron.html %}
-  </header>
-</div>
-<div class = "row">
-  <div class="container blog-container">
-    {% for post in site.posts %}
-      {% include post-summary.html %}
-    {% endfor %}
-  </div>
-</div>
+{% for post in site.posts %}
+  {% include post-summary.html %}
+{% endfor %}

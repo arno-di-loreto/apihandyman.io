@@ -2,11 +2,7 @@
 layout: default
 ---
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header class="post-header">
-    {% include jumbotron.html %}
-  </header>
-
-  <div class="container blog-container"  itemprop="articleBody">
+  <div class="blog-container" itemprop="articleBody">
     <p class="post-meta">
       {% if page.author %}
         By
@@ -19,7 +15,6 @@ layout: default
   </div>
   <script language="JavaScript">
       anchors.options = {
-        //visible: 'always',
         placement: 'left'
       };
       anchors.add('.blog-container h1');

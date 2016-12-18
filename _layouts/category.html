@@ -1,19 +1,10 @@
 ---
 layout: default
 ---
-<div class="row">
-  <header class="category-header">
-    {% include jumbotron.html %}
-  </header>
-</div>
-<div class = "row">
-  <div class="container blog-container">
-    {% if site.categories[page.title]  %}
-      {% for post in site.categories[page.title] %}
-        {% include post-summary.html %}
-      {% endfor %}
-    {% else %}
-      <p>No posts in this category at this time.</p>
-    {% endif%}
-  </div>
-</div>
+{% if site.categories[page.title]  %}
+  {% for post in site.categories[page.title] %}
+    {% include post-summary.html %}
+  {% endfor %}
+{% else %}
+  <p>No posts in this category at this time.</p>
+{% endif%}

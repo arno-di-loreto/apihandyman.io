@@ -1,41 +1,37 @@
+
+{% if page.thumbnail %}
+  {% assign thumbnail = page.thumbnail %}
+{% else %}
+  {% assign thumbnail = site.default_thumbnail %}
+  {% assign page_thumbnail = '/images' | append: page.permalink | append: 'thumbnail.png' %}
+  {% for static_file in site.static_files %}
+    {% if static_file.path == page_thumbnail %}
+        {% assign thumbnail = page_thumbnail %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign subtitle = page.subtitle %}
+{% if page.series %}
+  {% assign title = page.series_title %}
+  {% assign subtitle = page.series %}
+{% elsif page.alternate_title %}
+  {% assign title = page.alternate_title %}
+{% elsif page.title %}
+  {% assign title = page.title %}
+{% else %}
+  {% assign title = site.title %}
+  {% assign subtitle = site.description %}
+{% endif %}
 <header>
-  <!-- Static navbar -->
-  <nav class="navbar navbar-fixed-top full">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-        </button>
-        <a class="navbar-brand" href="{{ site.baseurl | prepend: site.github.url}}/">{{ site.title | escape }}</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          {% if page.series %}
-          {% assign sorted = site.posts | where:"series", page.series | sort:"series_title"  %}
-            <li class="dropdown">
-              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Series: {{ page.series }}<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                {% for my_page in sorted %}
-                    <li {% if my_page.series_title == page.series_title %} class="disabled" {% endif %}><a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_title }}</a></li>
-                {% endfor %}
-              </ul>
-            </li>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">{{ title | escape }}</h1>
+          {% if subtitle %}
+            <h2 class="post-subtitle">{{ subtitle | escape }}</h2>
           {% endif %}
-          {% assign menu_pages = (site.pages | where: 'menu', 'true' | sort: 'sort') %}
-          {% for my_page in menu_pages %}
-            <li 
-              {% if my_page.url == page.url%}
-              class="nav-item active"
-              {% else %}
-              class="nav-item"
-              {% endif %}
-            >
-              <a class="page-link" href="{{ my_page.url | prepend: site.baseurl | prepend: site.github.url }}">{{ my_page.title | escape }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
-  </nav>
+        </div>
+      </div>
+  <!--</div>-->
 </header>

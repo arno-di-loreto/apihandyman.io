@@ -15,31 +15,7 @@ body {
   margin-bottom: 50px;
 }
 
-.center {
-  text-align: center;
-}
-
-.img-label {
-  @extend .center;
-  font-style: italic;
-}
-
-.main-container {
-  width: 100%;
-  padding: 0px;
-  background-color: white;
-  a {
-    color: #16a085;
-  }
-  a:hover, a:focus {
-    color: #19B798;
-    text-decoration: none;
-    outline: 0;
-  }  
-}
-
-
-/* navbar */
+// Top navbar
 .navbar {
 
   background-color:#0C2428;
@@ -72,26 +48,14 @@ body {
   .navbar-toggle {
     color: white;
   }
-}
 
-.blog-container {
-  width: auto;
-  max-width: 750px;
-  padding-top: 5px;
-  padding-left: 15px;
-  padding-left: 15px;
-  line-height: 1.5;
-  font-size: medium;
-
-  img {
-    max-width: 100%;
-    display:block;
-    margin:auto;
+  button {
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 }
 
-
-
+// Footer navbar
 footer {
   .navbar {
     min-height: 28px;
@@ -102,38 +66,58 @@ footer {
   }
 }
 
-.embedpad {
-  padding-top: 10px;
-}
 
-code {
-  padding: 0px 0px 0px 0px;
-}
-
-
-header {
-  .jumbotron {
-    min-height: 200px;
-    vertical-align: middle;
-    text-align: center;
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+.main-container {
+  a {
+    color: #16a085;
   }
+  a:hover, a:focus {
+    color: #19B798;
+    text-decoration: none;
+    outline: 0;
+  } 
+  line-height: 1.5;
+  font-size: medium; 
+  img {
+    max-width: 100%;
+    display:block;
+    margin:auto;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .img-label {
+    @extend .center;
+    font-style: italic;
+  }
+
+}
+
+.post-summary-thumbnail {
+  padding-bottom: 10px;
 }
 
 .post-meta {
   color: #555;
 }
 
-.post-list-thumbnail {
-  height: 200px;
-  background-size: cover;
-  background-position: 20%;
+header {
+  width: 100%;
+  color: white;
+  text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  .jumbotron {
+    min-height: 200px;
+    position: relative;
+    background: #000 url("jumbotron-bg.png") center center;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;    
+  }
 }
 
-/* For larger screens, increase font size and spacing */
 @media (min-width: 768px) {
   header {
     .jumbotron {
@@ -142,3 +126,10 @@ header {
   }
 }
 
+.embedpad {
+  padding-top: 10px;
+}
+
+code {
+  padding: 0px 0px 0px 0px;
+}
