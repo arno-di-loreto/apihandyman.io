@@ -40,7 +40,7 @@ All tutorial's files are available on [GIST](https://gist.github.com/arno-di-lor
 If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
 {% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
 
-# 1 Security definitions
+# Security definitions
 Following (almost) the same principle used with `parameters` and `definitions`, security can be defined and then used on different levels.
 Security definition takes place on specification's root level in `securityDefinition` section. It contains a list of named security definitions. Each definition can be of type:
 
@@ -48,7 +48,7 @@ Security definition takes place on specification's root level in `securityDefini
 - `apiKey` when using an API key to secure the API
 - `oauth2` for Oauth 2
 
-## 1.1 Basic Authentication
+## Basic Authentication
 
 To define a `basic` security it's fairly easy, we only have to set its `type` to `basic`:
 
@@ -56,7 +56,7 @@ To define a `basic` security it's fairly easy, we only have to set its `type` to
 
 In this example we have defined three security definitions (`UserSecurity`, `AdminSecurity` and `MediaSecurity`), each of them is of `basic` type.
 
-## 1.2 API Key
+## API Key
 
 To define an `apiKey` security we have to:
 
@@ -72,9 +72,9 @@ In this example, we have defined three security definitions of `apiKey` type:
 - `AdminSecurity` uses a `header` parameter named `ADMIN-API-KEY`
 - `MediaSecurity` uses a `query` parameter named `media-api-key`
 
-## 1.3 Oauth 2
+## Oauth 2
 
-### 1.3.1 Flow and URLs
+### Flow and URLs
 When defining an `oauth2` security definition, we can define the Oauth2 `flow` used and corresponding `authorizationUrl` and/or `tokenUrl` depending on the chosen flow:
 
 {: .table .table-bordered}
@@ -89,26 +89,26 @@ accessCode  | authorizationUrl and tokenUrl
 
 In this example we have defined a `OauthSecurity` security definition of `oauth2` type using an `accessCode` flow with an authorizationUrl and a tokenUrl.
  
-### 1.3.2 Scopes
+### Scopes
 We can also define `scopes` by using a hashmap, the key is the scope's name and the value is its description.
 
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_19_defining_security_oauth2.yaml lines:"17-26" highlight:"23-26" footer:true %}
 
 In this example, we've added three scopes (`admin`, `user` and `media`) to our `OauthSecurity` security definition
 
-# 2 Using security definitions
+# Using security definitions
 
 Once we have described security definitions in `securityDefinition` we can apply them to the overall API or to specific operations with the `security` sections.
 When we apply a security definition to an operation, it overrides API security.
 
-## 2.1 Basic Authentication
+## Basic Authentication
 Let's see how we can use a `basic` security definition.
 
-### 2.1.1 API level
+### API level
 In this example the security definition which apply to ALL API operations is `UserSecurity`:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_17_defining_security_basic.yaml lines:"17-29" highlight:"25-26" footer:true %}
 
-### 2.1.2 Operation level
+### Operation level
 As `GET /persons` operation do not define a `security`, it's the `UserSecurity` defined on top level which applies:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_17_defining_security_basic.yaml lines:"28-39" highlight:"29,32" footer:true %}
 
@@ -118,14 +118,14 @@ On `POST /persons` operation, the top level security is overridden by `AdminSecu
 On `POST /images` operation, the top level security is also overridden, but this time it's by `MediaSecurity`:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_17_defining_security_basic.yaml lines:"246-252" highlight:"246,249,251-252" footer:true %}
 
-## 2.2 API Key
+## API Key
 We can do exactly the same things with an API key security definition.
 
-### 2.2.1 API level
+### API level
 In this example the security definition which apply to ALL API operations is `UserSecurity`:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_18_defining_security_apikey.yaml lines:"17-35" highlight:"31-32" footer:true %}
 
-### 2.2.2 Operation level
+### Operation level
 As `GET /persons` operation do not define a `security`, it's the `UserSecurity` defined on top level which applies:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_18_defining_security_apikey.yaml lines:"34-45" highlight:"35,38" footer:true %}
 
@@ -135,14 +135,14 @@ On `POST /persons` operation, the top level security is overridden by `AdminSecu
 On `POST /images` operation, the top level security is also overridden, but this time it's by `MediaSecurity`:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_18_defining_security_apikey.yaml lines:"252-258" highlight:"252,255,257-258" footer:true %}
 
-## 2.3 Oauth 2
+## Oauth 2
 With an `oauth2` the principle is the same but you can also define which scope(s) you use.
 
-### 2.3.1 API level
+### API level
 In this example the security definition which apply to ALL API operations is `OauthSecurity` with the `user` scope:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_19_defining_security_oauth2.yaml lines:"17-33" highlight:"28-30" footer:true %}
 
-### 2.3.2 Operation level
+### Operation level
 As `GET /persons` operation do not define a `security`, it's the `OauthSecurity` with `user`scope defined on top level which applies:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_19_defining_security_oauth2.yaml lines:"32-43" highlight:"33,36" footer:true %}
 
@@ -152,20 +152,20 @@ On `POST /persons` operation, the top level security scope is overridden by `adm
 On `POST /images` operation, the top level security is also overridden, but this time it's by `media`:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_19_defining_security_oauth2.yaml lines:"252-259" highlight:"252,255,257-259" footer:true %}
 
-# 3 Using multiple security types
+# Using multiple security types
 It's not mandatory to define a single type of security definition and use only one at a time.
 The examples below show how we can define security definitions of different types and use more than one on operations. 
 
-## 3.1 Security definitions
+## Security definitions
 Here we define there different types of security:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_20_defining_security_multiple.yaml lines:"17-31" footer:true %}
 
-## 3.2 Global security
+## Global security
 Then we choose to apply both of them globally:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_20_defining_security_multiple.yaml lines:"33-36" footer:true %}
 It means that a consumer can call any operation (which do not override security) with one of those two security types.
 
-## 3.3 Overriding global security
+## Overriding global security
 As `GET /persons` operation do not define a `security`, it's the Oauth 2 `OauthSecurity` with `user`scope OR the basic authentication `LegacySecurity` defined on top level which applies:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_20_defining_security_multiple.yaml lines:"38-49" highlight:"39,42" footer:true %}
 

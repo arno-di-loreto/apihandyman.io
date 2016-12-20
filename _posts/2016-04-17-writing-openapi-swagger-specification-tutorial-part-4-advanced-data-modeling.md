@@ -40,14 +40,14 @@ All tutorial's files are available on [gist](https://gist.github.com/arno-di-lor
 If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
 {% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
  
-# 1 Tailor made properties
+# Tailor made properties
 
 > Primitive data types in the Swagger Specification are based on the types supported by the JSON-Schema Draft 4. Models are described using the Schema Object which is a subset of JSON Schema Draft 4.
 > [OpenAPI Specification Data Types](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types)
 
 Using the [JSON Schema Draft 4](http://json-schema.org/documentation.html), the OpenAPI Specification allows to define every aspects of any type of property.
 
-## 1.1 Strings length and pattern
+## Strings length and pattern
 When defining a *string* property, we can specify its length range and its pattern:
 
 {: .table .table-bordered}
@@ -60,7 +60,7 @@ pattern   | string | Regular expression (if you're not a regex expert, you shoul
 The *username* in the *Person* definition is a string which length is between 8 and 64 and composed of lower case alphanumeric characters:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_14_advanced_data_modeling.yaml lines:"118-122" highlight:"120-122" footer:true %}
 
-## 1.2 Dates and times
+## Dates and times
 Date and time are handled with *string* properties conforming to [RFC 3339](http://xml2rfc.ietf.org/public/rfc/html/rfc3339), all you need to do is to use the appropriate *format*:
 
 {: .table .table-bordered}
@@ -74,7 +74,7 @@ In the *Person* definition, *dateOfBirth* is a date and *lastTimeOnline* is a ti
 
 You should read the [5 laws of API dates and times](http://apiux.com/2013/03/20/5-laws-api-dates-and-times/) by [Jason Harmon](https://twitter.com/jharmn) to learn how to handle date and time with an API.
 
-## 1.3 Numbers type and range
+## Numbers type and range
 
 When defining a number property, we can specify if this property is an integer, a long, a float or a double by using the [appropriate type and format combination](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types).
 
@@ -104,13 +104,13 @@ The *pageSize* parameter is an integer > 0 and <= 100 and a multiple of 10:
 The *maxPrice* property of *CollectingItem* definition is a double value > 0 and <= 10000:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_14_advanced_data_modeling.yaml lines:"190-196" highlight:"191-196" footer:true %}
 
-## 1.4 Enumerations
+## Enumerations
 On each property we can define a set of accepted value with the *enum* property.
 
 The property *code* of definition *Error* can take only three value (DBERR, NTERR and UNERR):
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_14_advanced_data_modeling.yaml lines:"169-174" highlight:"171-174" footer:true %}
 
-## 1.5 Arrays size and uniqueness
+## Arrays size and uniqueness
 Arrays size and uniqueness are defined by these properties:
 
 {: .table .table-bordered}
@@ -124,7 +124,7 @@ The *Person* definition contains a property *items* which is an array of *Person
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_14_advanced_data_modeling.yaml lines:"140-148" highlight:"144-146" footer:true %}
 
 
-## 1.6 Binary data
+## Binary data
 Binary data can be handled with *string* properties using the appropriate *format*:
 
 {: .table .table-bordered}
@@ -137,9 +137,9 @@ The property *avatarBase64PNG* of *Person* definition is a base64 encoded PNG im
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_14_advanced_data_modeling.yaml lines:"130-132" highlight:"132" footer:true %}
 
 
-# 2 Advanced definition modeling
+# Advanced definition modeling
 
-## 2.1 Using same definitions on read and write operations
+## Using same definitions on read and write operations
 It's not unusual that reading a resource returns more than the data needed when creating or updating it. To solve this problem you'll probably end having two different definitions, one for creating or updating and the other for reading. Fortunately, it can be avoided. 
 
 When describing a property in a definition, we can set a *[readOnly](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schema-object)* property to *true* to explain that this property may be sent in a response and must not be sent in a request. 
@@ -147,7 +147,7 @@ When describing a property in a definition, we can set a *[readOnly](https://git
 In the example below, the *lastTimeOnline* property in the *Person* definition does not have sense when creating an *Person*. With *readOnly* set to true on this property, we can use the same *Person* definition in both *post /persons* and *get /persons/{username}*, *lastTimeOnline* will only be of interest when using get:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_14_advanced_data_modeling.yaml lines:"126-129" highlight:"129" footer:true %}
 
-## 2.2 Combining multiple definitions to ensure consistency
+## Combining multiple definitions to ensure consistency
 When designing an API, it is highly recommended to propose a consistent design. You can for example decide that paged collection data should always be accompanied on the root level by the *same* data explaining the current paging status (totalItems, totalPage, pageSize, currentPage).
 
 A first option would be to define this attribute on every single collection:
@@ -166,7 +166,7 @@ The allOf property allow to create a new definition composed of all referenced d
 It also functions perfectly with inline definitions:
 {% gist id:5a3df2250721fb154060 file:simple_openapi_specification_14_advanced_data_modeling.yaml lines:"261-271" footer:true %}
 
-## 2.3 Create a hierarchy between definitions to implement inheritance (highly experimentatl)
+## Create a hierarchy between definitions to implement inheritance (highly experimentatl)
 As stated in the OpenAPI Specification, composition do not imply hierarchy. The use of *discriminator* indicate the property used to know which is the type of the *sub-definition* or *sub-class* (this property MUST be in the required list).
 
 Here we define a CollectingItem *super-definition*, which is subclassed using the *allOf* property. The consumer will determine which *sub-definition* used by scanning the *itemType* property.
@@ -174,7 +174,7 @@ Here we define a CollectingItem *super-definition*, which is subclassed using th
 
 This is highly experimental as the content of *discriminator* field is not clear in the specification's current version ([issue 403](https://github.com/OAI/OpenAPI-Specification/issues/403)) and as far as I know it is not supported by any tool using OpenAPI specification.
 
-## 2.4 Maps, Hashmap, Associative array
+## Maps, Hashmap, Associative array
 
 > A map is structure that can map key to value
 > [Hash table on Wikipedia](https://en.wikipedia.org/wiki/Hash_table)
