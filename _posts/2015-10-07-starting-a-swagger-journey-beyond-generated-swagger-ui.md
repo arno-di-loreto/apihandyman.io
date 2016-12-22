@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=545
 permalink: /starting-a-swagger-journey-beyond-generated-swagger-ui/
 dsq_thread_id:
   - 4866807412
-category: Posts
+category: posts
 tags:
   - Design
   - Swagger

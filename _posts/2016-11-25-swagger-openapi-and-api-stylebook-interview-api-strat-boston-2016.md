@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1302
 permalink: /swagger-openapi-and-api-stylebook-interview-api-strat-boston-2016/
 dsq_thread_id:
   - 5332131647
-category: Talks
+category: talks
 tags:
   - API Strat
   - API Strat Boston

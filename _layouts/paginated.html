@@ -1,0 +1,12 @@
+---
+layout: simple
+---
+{% if page.paginator %}
+  {% assign paginator = page.paginator %}
+{% endif %}
+
+{% for post in paginator.posts %}
+  {% include post-summary.html %}
+{% endfor %}
+
+{% include pagination.html %}

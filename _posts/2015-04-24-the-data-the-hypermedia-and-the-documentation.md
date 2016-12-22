@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=501
 permalink: /the-data-the-hypermedia-and-the-documentation/
 dsq_thread_id:
   - 4866765240
-category: Posts
+category: posts
 tags:
   - Design
   - Hypermedia

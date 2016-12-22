@@ -22,18 +22,10 @@
               </ul>
             </li>
           {% endif %}
-          {% assign menu_pages = (site.pages | where: 'menu', 'true' | sort: 'sort') %}
-          {% for my_page in menu_pages %}
-            <li 
-              {% if my_page.url == page.url%}
-              class="nav-item active"
-              {% else %}
-              class="nav-item"
-              {% endif %}
-            >
-              <a class="page-link" href="{{ my_page.url | prepend: site.baseurl | prepend: site.github.url }}">{{ my_page.title | escape }}</a>
-            </li>
+          {% for category_name in site.data.categories %}
+            <li class="nav-item"><a class="page-link" href="{{ category_name[0] | prepend: '/categories/' | prepend: site.baseurl | prepend: site.github.url }}">{{category_name[0] | capitalize }}</a></li>
           {% endfor %}
+          <li class="nav-item"><a class="page-link" href="{{ '/about/' | prepend: site.baseurl | prepend: site.github.url }}">About</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->

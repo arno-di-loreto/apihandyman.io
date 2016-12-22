@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=655
 permalink: /a-quest-for-simplicity-api-days-london-2015/
 dsq_thread_id:
   - 4866765276
-category: Talks
+category: talks
 tags:
   - API Days
   - API Days London

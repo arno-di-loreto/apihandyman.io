@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1273
 permalink: /openapi-trek-into-fastness-nordic-apis-summit-2016/
 dsq_thread_id:
   - 5316119264
-category: Talks
+category: talks
 tags:
   - OpenAPI
   - Swagger

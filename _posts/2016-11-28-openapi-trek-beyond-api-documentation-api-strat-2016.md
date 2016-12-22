@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1306
 permalink: /openapi-trek-beyond-api-documentation-api-strat-2016/
 dsq_thread_id:
   - 5316385881
-category: Talks
+category: talks
 tags:
   - Documentation
   - OpenAPI

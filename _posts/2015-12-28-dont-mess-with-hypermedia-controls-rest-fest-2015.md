@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=633
 permalink: /dont-mess-with-hypermedia-controls-rest-fest-2015/
 dsq_thread_id:
   - 4867385818
-category: Talks
+category: talks
 tags:
   - REST Fest
   - REST Fest Greenville

@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=224
 permalink: /hello-world/
 dsq_thread_id:
   - 4899761195
-category: Posts
+category: posts
 full: true
 ---
 Welcome to the API Handyman blog!

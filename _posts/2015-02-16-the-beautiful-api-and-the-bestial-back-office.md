@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=227
 permalink: /the-beautiful-api-and-the-bestial-back-office/
 dsq_thread_id:
   - 4866925040
-category: Posts
+category: posts
 tags:
   - Design
   - Implementation

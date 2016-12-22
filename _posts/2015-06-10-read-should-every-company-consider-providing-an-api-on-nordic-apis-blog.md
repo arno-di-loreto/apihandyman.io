@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=535
 permalink: /read-should-every-company-consider-providing-an-api-on-nordic-apis-blog/
 dsq_thread_id:
   - 4867274656
-category: Elsewhere
+category: elsewhere
 tags:
   - Governance
   - Strategy

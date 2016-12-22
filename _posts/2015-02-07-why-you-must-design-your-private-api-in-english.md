@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=196
 permalink: /why-you-must-design-your-private-api-in-english/
 dsq_thread_id:
   - 4866765229
-category: Posts
+category: posts
 tags:
   - Design
 ---

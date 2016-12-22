@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1237
 permalink: /the-api-stylebook/
 dsq_thread_id:
   - 5134492526
-category: Elsewhere
+category: elsewhere
 tags:
   - Design
   - API Stylebook

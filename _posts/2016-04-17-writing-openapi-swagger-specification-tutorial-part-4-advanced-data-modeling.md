@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=975
 permalink: /writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/
 dsq_thread_id:
   - 4866765285
-category: Posts
+category: posts
 tags:
   - OpenAPI
   - Swagger

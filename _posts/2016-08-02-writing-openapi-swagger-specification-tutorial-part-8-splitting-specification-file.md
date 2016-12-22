@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1172
 permalink: /writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/
 dsq_thread_id:
   - 5034655247
-category: Posts
+category: posts
 tags:
   - OpenAPI
   - Swagger

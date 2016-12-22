@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1254
 permalink: /openapi-trek-api-days-london-2016/
 dsq_thread_id:
   - 5294727726
-category: Talks
+category: talks
 tags:
   - API Days
   - API Days London

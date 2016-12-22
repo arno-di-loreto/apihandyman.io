@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1079
 permalink: /writing-openapi-swagger-specification-tutorial-part-6-defining-security/
 dsq_thread_id:
   - 4866893028
-category: Posts
+category: posts
 tags:
   - OpenAPI
   - Swagger

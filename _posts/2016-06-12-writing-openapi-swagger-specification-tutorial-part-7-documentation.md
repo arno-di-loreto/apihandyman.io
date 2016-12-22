@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1118
 permalink: /writing-openapi-swagger-specification-tutorial-part-7-documentation/
 dsq_thread_id:
   - 4905047708
-category: Posts
+category: posts
 tags:
   - OpenAPI
   - Swagger

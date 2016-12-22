@@ -38,7 +38,18 @@ kramdown:
 gems:
   - jekyll-feed
   - jekyll-twitter-plugin
+  - jekyll-paginate
+  - jekyll-paginate-category
 
 exclude:
   - Gemfile
   - Gemfile.lock
+
+paginate: 10
+paginate_path: "page:num"
+
+category_dir: "categories"
+category_layout: "_layouts/category.html"
+
+# numbers or text
+paginate_style: text

@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=639
 permalink: /api-days-paris-2015-with-a-lightsaber/
 dsq_thread_id:
   - 4867363066
-category: Posts
+category: posts
 tags:
   - Design
   - Lifecycle
