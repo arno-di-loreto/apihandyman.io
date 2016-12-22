@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>Writing OpenAPI (Swagger) Specification Tutorial - Part 4 - Advanced Data Modeling | API Handyman</title>
+  <meta name="description" content="After learning how to simplify specification files, let’s start delving into the OpenAPI specification’s and discover how to describe a high accuracy API’s d...">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/anchor.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Series: Writing OpenAPI (Swagger) Specification Tutorial<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">Part 1 - Introduction</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">Part 2 - The basics</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">Part 3 - Simplifying specification file</a></li>
+                
+                    <li  class="disabled" ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">Part 4 - Advanced Data</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">Part 5 - Advanced Input And Output Modeling</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">Part 6 - Defining Security</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">Part 7 - Documentation</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">Part 8 - Splitting specification file</a></li>
+                
+              </ul>
+            </li>
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">Part 4 - Advanced Data</h1>
+          
+            <h2 class="post-subtitle">Writing OpenAPI (Swagger) Specification Tutorial</h2>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2016-04-17T19:52:32+02:00" itemprop="datePublished">Apr. 17, 2016</time><span>&nbsp;|&nbsp;posts</span>
+      </p>
+      <p>After learning how to <a href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">simplify specification files</a>, let’s start delving into the <a href="https://openapis.org/">OpenAPI specification’s</a> and discover how to describe a high accuracy API’s data model.<!--more--></p>
+
+<h1 id="writing-openapi-fka-swagger-specification-tutorial">Writing OpenAPI (fka Swagger) Specification tutorial</h1>
+<p>This tutorial is composed of several posts:</p>
+
+<ul>
+  <li>Part 1: <a href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">Introduction</a></li>
+  <li>Part 2: <a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">The basics</a></li>
+  <li>Part 3: <a href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">Simplifying specification file</a></li>
+  <li>Part 4: <strong>Advanced data modeling</strong></li>
+  <li>Part 5: <a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">Advanced input and output modeling</a></li>
+  <li>Part 6: <a href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security">Defining security</a></li>
+  <li>Part 7: <a href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">Documentation</a></li>
+  <li>Part 8: <a href="http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">Splitting specification file</a></li>
+  <li>Part 9: Extending the OpenAPI specification (coming soon)</li>
+</ul>
+
+<p>In this fourth part you will discover all the tips and tricks you can use to describe properties and definitions to describe an accurate API’s data model.</p>
+
+<p>All tutorial’s files are available on <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060">gist</a>.</p>
+
+<p>If you’re a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>, take a look at my [<em>visual documentation:</em></p>
+<div>
+      <img src="//images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" />
+      <p class="img-label"><a href="http://openapi-specification-visual-documentation.apihandyman.io/">OpenAPI Specification Visual Documentation</a></p>
+    </div>
+
+<h1 id="tailor-made-properties">Tailor made properties</h1>
+
+<blockquote>
+  <p>Primitive data types in the Swagger Specification are based on the types supported by the JSON-Schema Draft 4. Models are described using the Schema Object which is a subset of JSON Schema Draft 4.
+<a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types">OpenAPI Specification Data Types</a></p>
+</blockquote>
+
+<p>Using the <a href="http://json-schema.org/documentation.html">JSON Schema Draft 4</a>, the OpenAPI Specification allows to define every aspects of any type of property.</p>
+
+<h2 id="strings-length-and-pattern">Strings length and pattern</h2>
+<p>When defining a <em>string</em> property, we can specify its length range and its pattern:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>minLength</td>
+      <td>number</td>
+      <td>String’s minimum length</td>
+    </tr>
+    <tr>
+      <td>maxLength</td>
+      <td>number</td>
+      <td>String’s maximum length</td>
+    </tr>
+    <tr>
+      <td>pattern</td>
+      <td>string</td>
+      <td>Regular expression (if you’re not a regex expert, you should try <a href="https://regex101.com/">Regex 101</a>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <em>username</em> in the <em>Person</em> definition is a string which length is between 8 and 64 and composed of lower case alphanumeric characters:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="118-122" data-gist-highlight-line="120-122" data-gist-footer="true"></code></p>
+
+<h2 id="dates-and-times">Dates and times</h2>
+<p>Date and time are handled with <em>string</em> properties conforming to <a href="http://xml2rfc.ietf.org/public/rfc/html/rfc3339">RFC 3339</a>, all you need to do is to use the appropriate <em>format</em>:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Format</th>
+      <th>Property contains</th>
+      <th>Property’s value example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>date</td>
+      <td><a href="http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14">ISO8601 full-date</a></td>
+      <td>2016-04-01</td>
+    </tr>
+    <tr>
+      <td>date-time</td>
+      <td><a href="http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14">ISO8601 date-time</a></td>
+      <td>2016-04-16T16:06:05Z</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In the <em>Person</em> definition, <em>dateOfBirth</em> is a date and <em>lastTimeOnline</em> is a timestamp:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="123-128" data-gist-highlight-line="125,128" data-gist-footer="true"></code></p>
+
+<p>You should read the <a href="http://apiux.com/2013/03/20/5-laws-api-dates-and-times/">5 laws of API dates and times</a> by <a href="https://twitter.com/jharmn">Jason Harmon</a> to learn how to handle date and time with an API.</p>
+
+<h2 id="numbers-type-and-range">Numbers type and range</h2>
+
+<p>When defining a number property, we can specify if this property is an integer, a long, a float or a double by using the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types">appropriate type and format combination</a>.</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Type</th>
+      <th>Format</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>integer</td>
+      <td>int32</td>
+    </tr>
+    <tr>
+      <td>long</td>
+      <td>integer</td>
+      <td>int64</td>
+    </tr>
+    <tr>
+      <td>float</td>
+      <td>number</td>
+      <td>float</td>
+    </tr>
+    <tr>
+      <td>double</td>
+      <td>number</td>
+      <td>double</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And just like string, we can define additional properties like the value range and also indicate if the value is a multiple of something:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>minimum</td>
+      <td>number</td>
+      <td>Minimum value</td>
+    </tr>
+    <tr>
+      <td>maximum</td>
+      <td>number</td>
+      <td>Maximum value</td>
+    </tr>
+    <tr>
+      <td>exclusiveMinimum</td>
+      <td>boolean</td>
+      <td>Value must be &gt; minimum</td>
+    </tr>
+    <tr>
+      <td>exclusiveMaximum</td>
+      <td>boolean</td>
+      <td>Value must be &lt; maximum</td>
+    </tr>
+    <tr>
+      <td>multipleOf</td>
+      <td>number</td>
+      <td>Value is a multiple of multipleOf</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <em>pageSize</em> parameter is an integer &gt; 0 and &lt;= 100 and a multiple of 10:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="288-298" data-gist-highlight-line="292-298" data-gist-footer="true"></code></p>
+
+<p>The <em>maxPrice</em> property of <em>CollectingItem</em> definition is a double value &gt; 0 and &lt;= 10000:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="190-196" data-gist-highlight-line="191-196" data-gist-footer="true"></code></p>
+
+<h2 id="enumerations">Enumerations</h2>
+<p>On each property we can define a set of accepted value with the <em>enum</em> property.</p>
+
+<p>The property <em>code</em> of definition <em>Error</em> can take only three value (DBERR, NTERR and UNERR):
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="169-174" data-gist-highlight-line="171-174" data-gist-footer="true"></code></p>
+
+<h2 id="arrays-size-and-uniqueness">Arrays size and uniqueness</h2>
+<p>Arrays size and uniqueness are defined by these properties:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>minItems</td>
+      <td>number</td>
+      <td>Minimum number of items in the array</td>
+    </tr>
+    <tr>
+      <td>maxItem</td>
+      <td>number</td>
+      <td>Maximum number of items in the array</td>
+    </tr>
+    <tr>
+      <td>uniqueItems</td>
+      <td>boolean</td>
+      <td>Indicate if all array’s elements are unique</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <em>Person</em> definition contains a property <em>items</em> which is an array of <em>Person</em>. This array contain only unique elements and can have between 10 and 100 items: 
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="140-148" data-gist-highlight-line="144-146" data-gist-footer="true"></code></p>
+
+<h2 id="binary-data">Binary data</h2>
+<p>Binary data can be handled with <em>string</em> properties using the appropriate <em>format</em>:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Format</th>
+      <th>Property contains</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>byte</td>
+      <td>Base64 encoded characters</td>
+    </tr>
+    <tr>
+      <td>binary</td>
+      <td>Any sequence of octets</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The property <em>avatarBase64PNG</em> of <em>Person</em> definition is a base64 encoded PNG image:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="130-132" data-gist-highlight-line="132" data-gist-footer="true"></code></p>
+
+<h1 id="advanced-definition-modeling">Advanced definition modeling</h1>
+
+<h2 id="using-same-definitions-on-read-and-write-operations">Using same definitions on read and write operations</h2>
+<p>It’s not unusual that reading a resource returns more than the data needed when creating or updating it. To solve this problem you’ll probably end having two different definitions, one for creating or updating and the other for reading. Fortunately, it can be avoided.</p>
+
+<p>When describing a property in a definition, we can set a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schema-object">readOnly</a></em> property to <em>true</em> to explain that this property may be sent in a response and must not be sent in a request.</p>
+
+<p>In the example below, the <em>lastTimeOnline</em> property in the <em>Person</em> definition does not have sense when creating an <em>Person</em>. With <em>readOnly</em> set to true on this property, we can use the same <em>Person</em> definition in both <em>post /persons</em> and <em>get /persons/{username}</em>, <em>lastTimeOnline</em> will only be of interest when using get:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="126-129" data-gist-highlight-line="129" data-gist-footer="true"></code></p>
+
+<h2 id="combining-multiple-definitions-to-ensure-consistency">Combining multiple definitions to ensure consistency</h2>
+<p>When designing an API, it is highly recommended to propose a consistent design. You can for example decide that paged collection data should always be accompanied on the root level by the <em>same</em> data explaining the current paging status (totalItems, totalPage, pageSize, currentPage).</p>
+
+<p>A first option would be to define this attribute on every single collection:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="221-234" data-gist-highlight-line="227-234" data-gist-footer="true"></code></p>
+
+<p>Having to describe again and again, endlessly the same properties on each collection is not only boring but also dangerous: you can forget some properties or misspelled them. And what will happen when you’ll want to add a new information on paging? You’ll have to update every single collection.</p>
+
+<p>A better option would be to define a Paging model and then use it in every collection:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="236-254" data-gist-highlight-line="242-243,245-254" data-gist-footer="true"></code></p>
+
+<p>But the paging attributes are not on the root level anymore.
+The <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#composition-and-inheritance-polymorphism"><em>allOf</em> JSON Schema v4 property</a> can provide an elegant and simple solution to this problem:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="256-259" data-gist-footer="true"></code></p>
+
+<p>The allOf property allow to create a new definition composed of all referenced definitions attributes.
+It also functions perfectly with inline definitions:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="261-271" data-gist-footer="true"></code></p>
+
+<h2 id="create-a-hierarchy-between-definitions-to-implement-inheritance-highly-experimentatl">Create a hierarchy between definitions to implement inheritance (highly experimentatl)</h2>
+<p>As stated in the OpenAPI Specification, composition do not imply hierarchy. The use of <em>discriminator</em> indicate the property used to know which is the type of the <em>sub-definition</em> or <em>sub-class</em> (this property MUST be in the required list).</p>
+
+<p>Here we define a CollectingItem <em>super-definition</em>, which is subclassed using the <em>allOf</em> property. The consumer will determine which <em>sub-definition</em> used by scanning the <em>itemType</em> property.
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="178-217" data-gist-highlight-line="178-181,198-200,210-212" data-gist-footer="true"></code></p>
+
+<p>This is highly experimental as the content of <em>discriminator</em> field is not clear in the specification’s current version (<a href="https://github.com/OAI/OpenAPI-Specification/issues/403">issue 403</a>) and as far as I know it is not supported by any tool using OpenAPI specification.</p>
+
+<h2 id="maps-hashmap-associative-array">Maps, Hashmap, Associative array</h2>
+
+<blockquote>
+  <p>A map is structure that can map key to value
+<a href="https://en.wikipedia.org/wiki/Hash_table">Hash table on Wikipedia</a></p>
+</blockquote>
+
+<p>A string/string JSON map:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"key1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"key2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>A string/object JSON map:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"key1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"complexValue1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value1"</span><span class="p">},</span><span class="w">
+  </span><span class="nt">"key2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"complexValue2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>In an OpenAPI specification the key is always a string and do not need to be defined (if the key is an integer, it will be considered as a string).
+The value’s type is defined within the property: <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#model-with-mapdictionary-properties"><em>additionalProperties</em></a>.</p>
+
+<h3 id="string-to-string-hashmap">String to String Hashmap:</h3>
+<p>If you want to have a string to string map property in the <em>Person</em> definition explaining which languages this person speaks, the resulting data would look like this:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+</span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"apihandyman"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"spokenLanguage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+    </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"english"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"French"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>Defining the <em>spokenLanguage</em> property in the <em>Person</em> definition is done this way:</p>
+
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="109-138" data-gist-highlight-line="133-134, 136-138" data-gist-footer="true"></code></p>
+
+<h3 id="string-to-object-map">String to Object Map</h3>
+<p>If you want to have a string to object map property in the <em>Error</em> definition to provide a multilingual long and short error message, the resulting data would look like this:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNERR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+    </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"shortMessage"</span><span class="p">:</span><span class="s2">"Error"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"longMessage"</span><span class="p">:</span><span class="s2">"Error. Sorry for the inconvenience."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"fr"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"shortMessage"</span><span class="p">:</span><span class="s2">"Erreur"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"longMessage"</span><span class="p">:</span><span class="s2">"Erreur. Désolé pour le dérangement."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>Defining the <em>message</em> property in the <em>Error</em> definition is done this way:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="150-159" data-gist-highlight-line="158-159" data-gist-footer="false"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="164-176" data-gist-highlight-line="175-176" data-gist-footer="true"></code></p>
+
+<h3 id="hashmap-with-default-values">Hashmap with default value(s)</h3>
+<p>And finally, if you want to add a default language multilingual error message in your map (i.e. adding a default value in the map).</p>
+
+<p>The returned structure do not differs from the precedent example:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNERR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"defaultLanguage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"shortMessage"</span><span class="p">:</span><span class="s2">"Error"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"longMessage"</span><span class="p">:</span><span class="s2">"Error. Sorry for the inconvenience."</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"shortMessage"</span><span class="p">:</span><span class="s2">"Error"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"longMessage"</span><span class="p">:</span><span class="s2">"Error. Sorry for the inconvenience."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"fr"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"shortMessage"</span><span class="p">:</span><span class="s2">"Erreur"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"longMessage"</span><span class="p">:</span><span class="s2">"Erreur. Désolé pour le dérangement."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>But in the OpenAPI Specification, we add a <em>defaultLanguage</em> property to the <em>MultilingualErrorMessage</em> definition to the explicitly declare this value in the map:</p>
+
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="150-176" data-gist-highlight-line="160-162" data-gist-footer="true"></code></p>
+
+<p>You can define as many as “default” values as you want.
+This also can be used for string to string map.</p>
+
+<p><em>Inspired by this <a href="(http://stackoverflow.com/questions/29666480/how-can-i-define-a-map-with-arbitrary-keys-in-a-swagger-model)">stackoverflow question</a> answered by <a href="https://twitter.com/webron">Ron Ratovsky</a></em></p>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>You now have mastered the art of defining an accurate data model with the OpenAPI Specification.
+Be aware that even if the OpenAPI Specification defines all this possibilities, some may not be supported/used by every tool working with OpenAPI specification files. But at least your API data model’s description will be highly accurate.
+In the <a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">next post</a> we’ll continue our delving in the specification and learn all tips and tricks to describe the input and outputs of an API.</p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/';
+      this.page.identifier = 'http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <script language="JavaScript">
+        anchors.options = {
+          placement: 'left'
+        };
+        anchors.add('.blog-container h1');
+        anchors.add('.blog-container h2');
+        anchors.add('.blog-container h3');
+    </script>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+  <script language="javascript">
+    $(function() {
+      console.log('here');
+      var $myNav = $('#toc');
+      var $myScope = $('#post');
+      Toc.init({
+        $nav: $myNav,
+        $scope: $myScope
+      });
+      $('body').scrollspy({
+        target: '#toc'
+      });
+    });
+  </script>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>

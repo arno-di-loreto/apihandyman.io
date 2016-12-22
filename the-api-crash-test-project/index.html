@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>The API crash test project | API Handyman</title>
+  <meta name="description" content="As I was writing my HAMM and ways of API smartness posts, I wanted more. As I was discussing with smart people about APIs, I wanted ever more. I want to delv...">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/the-api-crash-test-project/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/anchor.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/the-api-crash-test-project/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">The API crash test project</h1>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2015-04-06T01:43:28+02:00" itemprop="datePublished">Apr. 6, 2015</time><span>&nbsp;|&nbsp;posts</span>
+      </p>
+      <p>As I was writing my HAMM and ways of API smartness posts, I wanted more.
+As I was discussing with smart people about APIs, I wanted ever more.
+I want to delve deeply into the API ways.<!--more--></p>
+
+<h1 id="the-api-crash-test-project">The API crash test project</h1>
+<p>My brain is boiling with ideas and there are so many existing concepts, techniques, best (and bad) practices concerning APIs.
+For now, I have used some more or less inconsistent fictional examples for my posts and even if my examples are mainly based on what I’ve experiment, I’m not satisfied with that.</p>
+
+<p>I want something more practical to try out the things I see and imagine.
+I want something more clear to make my posts more easier to understand.
+I want something more concrete to help people understand/choose/find their way(s) in this fascinating/crazy/complex/boiling API world.</p>
+
+<div>
+      <img src="/images/the-api-crash-test-project/apicrashtestcomic.png" />
+      
+    </div>
+
+<p>So, I came up with the concept of <em>API crash test</em>.</p>
+
+<blockquote>
+  <p>An API <a href="http://en.wikipedia.org/wiki/Crash_test">crash test</a> is a form of constructive testing usually performed to ensure safe design standards in usefulness and usage compatibility for various modes of API designs or related systems and components</p>
+</blockquote>
+
+<p>To realize these <em>crash tests</em>, I will define a concrete <em>product</em> and use it in my posts and experiments to test many API related things.</p>
+
+<div>
+      <img src="/images/the-api-crash-test-project/apicrashtestprojectoverview.png" />
+      <p class="img-label">A big fuzzy draft overview of the API crash test project.</p>
+    </div>
+
+<p>The main objective is to work on the designing of (hypermedia) APIs based on this product, but through this project I also want to work on:</p>
+
+<ul>
+  <li>Defining a product.</li>
+  <li>Documenting every aspect of the project for internal (provider) and external use (consumer), for human and machine needs.</li>
+  <li>Designing software architectures.</li>
+  <li>Implementing services.</li>
+  <li>Exposing APIs.</li>
+  <li>Consuming APIs.</li>
+  <li>Handling code on demand.</li>
+  <li>Organizing my work around all this :o).</li>
+  <li>And probably many other things I’ve not think of at this time.</li>
+</ul>
+
+<p>By using a more or less <em>invariant</em> concept, I hope that:</p>
+
+<ul>
+  <li>It will be more easy to test new features as I already have a solid existing base (both conceptual and technical) with my past experiments</li>
+  <li>It will help me compare the results of tests carried out not a the same moment.</li>
+  <li>It will be more easy to upgrade past tests to handle new features.</li>
+</ul>
+
+<blockquote>
+  <p>The journey of a thousand miles begins with a single step.
+<em>Lao Tzu</em></p>
+</blockquote>
+
+<p>Of course I cannot define a <em>panacea</em> product able to cover every API related things at first try.
+I will start with a basic version of this concrete product and make it evolve with my needs.</p>
+
+<p>I will share with you <em>all</em> my experiments on this blog and github, the good ones <em>and</em> the bad ones as I believe that we can learn many things from our mistakes (and from others’ mistakes).</p>
+
+<h1 id="how-will-i-use-it">How will I use it?</h1>
+<p>In my HAMM posts I showed some examples of hypermedia implementations.
+With the API crash test project, I would have implemented the API based on my product and gives you the hability to test and compare all hypermedia implementations with a system like this:</p>
+
+<div>
+      <img src="/images/the-api-crash-test-project/testinghypermediatypes.png" />
+      
+    </div>
+
+<p>Another example. Let’s say that I want to test some kind of backend as a service or an API framework. I’ll take then my crash test API definition and see how I can implement it with these things.</p>
+
+<h1 id="the-product">The product</h1>
+<p>With my wife, we’re <em>serial car boot buyers</em>. We love to roam the countryside to find old things (70’s/80’s toys, books, vinyls, tableware, furnitures).
+We use shared Evernote notebook and Google sheet to track all the things we buy, list the things we have or we want, and manage our budget. 
+For the last two years I think about an application (and a API) to handle all this, I started and abandonned many times… but with this new project I have a good opportunity to settle this.
+I’ll give a more complete description of this <em>product</em> in later posts.</p>
+
+<h1 id="to-somewhere-and-beyond">To somewhere and beyond</h1>
+<p>I need some time to build the basic components of this project so I’ll probably have to write a few post without a concrete usable platform but I’l try at least to use the concepts of my product in my examples. I will write posts about the construction of this platform.</p>
+
+<p>I don’t know where all this gonna lead me, but I feel like this is going to be a great journey and I hope you’ll enjoy it too!</p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://apihandyman.io/the-api-crash-test-project/';
+      this.page.identifier = 'http://apihandyman.io/the-api-crash-test-project/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <script language="JavaScript">
+        anchors.options = {
+          placement: 'left'
+        };
+        anchors.add('.blog-container h1');
+        anchors.add('.blog-container h2');
+        anchors.add('.blog-container h3');
+    </script>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+  <script language="javascript">
+    $(function() {
+      console.log('here');
+      var $myNav = $('#toc');
+      var $myScope = $('#post');
+      Toc.init({
+        $nav: $myNav,
+        $scope: $myScope
+      });
+      $('body').scrollspy({
+        target: '#toc'
+      });
+    });
+  </script>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>

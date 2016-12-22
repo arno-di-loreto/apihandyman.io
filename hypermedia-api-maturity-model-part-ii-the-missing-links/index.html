@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>Hypermedia API maturity model – Part II – The missing links | API Handyman</title>
+  <meta name="description" content="Hypermedia is not only a conceptual and philosophical subject of interesting and animate debates among the API community, it’s also a concrete solution we ca...">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/hypermedia-api-maturity-model-part-ii-the-missing-links/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/anchor.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Series: Hypermedia API maturity model<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                
+                    <li ><a class="page-link" href="/hypermedia-api-maturity-model-part-i-hypermedia-ness/">Part I - Hypermedia-ness</a></li>
+                
+                    <li  class="disabled" ><a class="page-link" href="/hypermedia-api-maturity-model-part-ii-the-missing-links/">Part II – The missing links</a></li>
+                
+              </ul>
+            </li>
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/hypermedia-api-maturity-model-part-ii-the-missing-links/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">Part II – The missing links</h1>
+          
+            <h2 class="post-subtitle">Hypermedia API maturity model</h2>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2015-03-15T23:58:35+01:00" itemprop="datePublished">Mar. 15, 2015</time><span>&nbsp;|&nbsp;posts</span>
+      </p>
+      <p>Hypermedia is not only a conceptual and philosophical subject of interesting and animate debates among the API community, it’s also a concrete solution we can use to cover concrete needs.
+In this second part of hypermedia API maturity model (HAMM) series I will talk about my own experience to expose two missing (in my humble opinon) notions in common implementations and include these <em>missing links</em> in an updated version of the HAMM.<!--more-->
+<em>If you have not read part I you can read it <a href="/hypermedia-api-maturity-model-part-i-hypermedia-ness/">here</a>.</em></p>
+
+<h1 id="crossing-the-hypermedia-path">Crossing the hypermedia path</h1>
+<p>Hypermedia in general and the concepts described in this post in particular are not only concepts but also concrete solutions to needs that I had to deal with on a project.</p>
+
+<p>This project consisted in designing and building an API offering the same functionalities as my company’s web site as a prelude of a complete rewriting of this web site. This was also a first step in the (re)building of our API platform which will be used by all our websites and mobile applications.
+n.b. This API is, for now, a <del><em>ninja</em></del> <em>dark internal</em> API (cf. <a href="http://www.soatothecloud.com/2015/02/this-week-there-has-been-great.html">Mark O’Neil API’s categorization</a>).</p>
+
+<p>I wanted to offer a good user experience with our API and in particular to limit business logic implementation in consumers.
+Based on:</p>
+
+<ul>
+  <li>An analysis of the web application and what runs behind it from functionnal and technical point of view</li>
+  <li>My experience making evolve this web application and its mobile counterpart (which offers less functionnalities)</li>
+</ul>
+
+<p>I determined that if I wanted to offer the expected good user experience with this API, I needed some things, among many others, like:</p>
+
+<ul>
+  <li>the possibility of activate/deactivate some functionalities on the fly</li>
+  <li>some kind of habilitations system as
+    <ul>
+      <li>two users can have different rights on the same /resources/ID</li>
+      <li>one user can have different rights on on two resources of the same type /resources/ID1 and /resources/ID2</li>
+      <li>two resources /resources/ID1 and /resources/ID2 of the same type may not share the same possibilities (actions)</li>
+    </ul>
+  </li>
+  <li>giving informations about how to chain actions on complex processes</li>
+  <li>handling different processes on different consumers for the same action (mainly based on security matters)</li>
+  <li>and most important: being proactive and exhaustive when informing the consumer (and therefore the end user) about the points above.</li>
+</ul>
+
+<p>As I was documenting myself about REST APIs, I (re)discovered the notion of <em>hypermedia</em> for REST APIs in <a href="http://martinfowler.com/articles/richardsonMaturityModel.html">Richardson’s Maturity Model</a>.</p>
+
+<div>
+      <img src="/images/hypermedia-api-maturity-model-part-ii-the-missing-links/heman-power-of-hypermedia.png" />
+      <p class="img-label">Me, figuring that hypermedia can handle this (re-enactment).</p>
+    </div>
+
+<p>If in the web application, all of these needs are handled (from the user point view) mostly via hypermedia (the user browse from page to page by clicking on links) why wouldn’t we do the same with the API?</p>
+
+<h1 id="the-missing-links">The missing links</h1>
+
+<p>All those needs can be summarised by:</p>
+
+<ul>
+  <li>Inform at runtime about what you can do</li>
+  <li>Inform at runtime about what you can’t do and why.</li>
+  <li>Inform at runtime about how to do it</li>
+</ul>
+
+<p>The first item, as seen in <a href="/hypermedia-api-maturity-model-part-i-hypermedia-ness/">part I</a>, is well covered by common hypermedia techniques, but I did not found informations for the two others, they are the missing links.</p>
+
+<p><em>This concepts have not been implemented in reality exactly as described in this post because as I was writting I had new ideas concerning representations of this informations, but the spirit is still the same.</em></p>
+
+<h2 id="what-you-cant-do-and-why">What you can’t do and why</h2>
+
+<p>All hypermedia systems I’ve seen so far focus on what you <em>can</em> do. On each resource you get a list of things you <em>can</em> do. But what happens when you <em>can’t</em> do something?</p>
+
+<p>There are two common answers to this question:</p>
+
+<ul>
+  <li>If it’s impossible to do, it’s not in the list (you can try to do it but you’ll get an error)</li>
+  <li>If it’s impossible to do, it’s in the list but you’ll get an error when you’ll try to do it (because it’s impossible to do).</li>
+</ul>
+
+<p>For many use case, these answers will fit perfectly.</p>
+
+<p>But sometimes not.</p>
+
+<div>
+      <img src="/images/hypermedia-api-maturity-model-part-ii-the-missing-links/whatyoucantdo.png" />
+      
+    </div>
+
+<p>Sometimes it would be better for user experience to explicitly say that a thing is impossible to do <em>before</em> someone actually try to do that thing.</p>
+
+<h3 id="status-property">Status property</h3>
+
+<p>Let’s take the dummy API described in part I and work with the <em>add photo</em> operation for <em>location</em> resource (still using NARWHL).</p>
+
+<p>How it looks like in last post:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="err">...</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span></code></pre></figure>
+
+<p>Now I add a <em>status</em> property to indicate if the operation is possible or not and explain why if it’s not possible:</p>
+
+<ul>
+  <li>The <em>status.usable</em> property indicates if the operation is possible or not.</li>
+  <li>The <em>status.cause</em> property indicates the origin (<em>details[].name</em>) of the impossibility.</li>
+  <li>The <em>status.details</em> array contains all the elements used to evaluate <em>status.usable</em>.</li>
+</ul>
+
+<p>In this case, the <em>usability</em> is based on two notions: <em>availability</em> and <em>authorization</em>.</p>
+
+<h3 id="the-operation-in-unavailable-due-to-maintenance">The operation in unavailable due to maintenance</h3>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="err">...</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> 
+      </span><span class="p">{</span><span class="w"> 
+          </span><span class="nt">"usable"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"cause"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="w"> </span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
+          </span><span class="p">[</span><span class="w"> 
+              </span><span class="p">{</span><span class="w"> 
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="w">
+                  </span><span class="s2">"reason"</span><span class="err">:</span><span class="w"> </span><span class="s2">"Temporarly down for programmed maintenance"</span><span class="w">
+                  </span><span class="s2">"extraValues"</span><span class="err">:</span><span class="w"> 
+                  </span><span class="p">[</span><span class="w"> 
+                      </span><span class="p">{</span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"endDate"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1426432120002"</span><span class="p">},</span><span class="w"> 
+                      </span><span class="p">{</span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"cause"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maintenance"</span><span class="p">}</span><span class="w"> 
+                  </span><span class="p">]</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"authorized"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w"> 
+      </span><span class="p">}</span><span class="w">
+      
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span></code></pre></figure>
+
+<h3 id="the-operation-in-unauthorized-for-this-resource-location">The operation in unauthorized for this resource (location)</h3>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="err">...</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> 
+      </span><span class="p">{</span><span class="w"> 
+          </span><span class="nt">"usable"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"cause"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="w"> </span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
+          </span><span class="p">[</span><span class="w"> 
+              </span><span class="p">{</span><span class="w"> 
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"authorized"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maximum number of photos reached for this location"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"extraValues"</span><span class="p">:</span><span class="w"> 
+                  </span><span class="p">[</span><span class="w">  
+                      </span><span class="p">{</span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"cause"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"locationMaximumNumberOfPhotos"</span><span class="p">}</span><span class="w"> 
+                  </span><span class="p">]</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w"> 
+      </span><span class="p">}</span><span class="w">
+      
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span></code></pre></figure>
+
+<h3 id="the-operation-in-unauthorized-for-the-user">The operation in unauthorized for the user</h3>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="err">...</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> 
+      </span><span class="p">{</span><span class="w"> 
+          </span><span class="nt">"usable"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"cause"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="w"> </span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
+          </span><span class="p">[</span><span class="w"> 
+              </span><span class="p">{</span><span class="w"> 
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"authorized"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Daily maximum upload volume reached for this user"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"extraValues"</span><span class="p">:</span><span class="w"> 
+                  </span><span class="p">[</span><span class="w">  
+                      </span><span class="p">{</span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"cause"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userDailyMaximumUpload"</span><span class="p">}</span><span class="w">  
+                  </span><span class="p">]</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w"> 
+      </span><span class="p">}</span><span class="w">
+      
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span></code></pre></figure>
+
+<h3 id="everything-is-ok">Everything is OK</h3>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="err">...</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> 
+      </span><span class="p">{</span><span class="w"> 
+          </span><span class="nt">"usable"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">  
+          </span><span class="nt">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
+          </span><span class="p">[</span><span class="w"> 
+              </span><span class="p">{</span><span class="w"> 
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"authorized"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w"> 
+      </span><span class="p">}</span><span class="w">
+      
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span></code></pre></figure>
+
+<h2 id="how-you-do-things">How you do things</h2>
+<p>Actual techniques for hypermedia implementation I’ve seen for now can tell you what actions you can do with a resource and what you need to do it but sometimes you need more information for processes involving more than one action.</p>
+
+<div>
+      <img src="/images/hypermedia-api-maturity-model-part-ii-the-missing-links/djiloriann.png" />
+      <p class="img-label"><a href="http://www.collegehumor.com/post/6500868/sci-fi-ikea-manuals">Djiloriann manual, www.collegehumor.com</a></p>
+    </div>
+
+<p>For example, when you use Twitter API, if you want to tweet with one media you have to</p>
+
+<ul>
+  <li>upload a media using POST media/upload (you’ll get an ID in return)</li>
+  <li>then tweet using POST update/statuses with this ID in media_ids attribute</li>
+</ul>
+
+<p>This is cleary explain in the documentation, but what about machine readability? 
+For machine readibility an evolution of swagger or blueprint or RAML could handle this but what if this process could change depending on the consumer/user/whatever rule you want?
+You need information at runtime about this.</p>
+
+<h3 id="the-process-property">The process property</h3>
+<p>The process property describes how actions are chained and what is next step:</p>
+
+<ul>
+  <li>process.type: the name of the process</li>
+  <li>process.step: the next step</li>
+  <li>process.steps: lists all steps of the process</li>
+</ul>
+
+<p>Let’s see what we can do with the <em>media tweet</em> case.</p>
+
+<h3 id="first-we-get-the-tweetwithmedia-action">First we get the tweetWithMedia action</h3>
+<p>This action could placed be in <em>_links</em> property of GET https://api.twitter.com/1.1/.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="err">...</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"process"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
+      </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tweetWithMedia"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"step"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uploadMedia"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"steps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"uploadMedia"</span><span class="p">,</span><span class="w"> </span><span class="s2">"updateStatus"</span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twitter.com/1.1/media/upload.json"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="err">...</span><span class="w"> 
+      </span><span class="p">},</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span></code></pre></figure>
+
+<p>We get a first step: we have to upload a media.</p>
+
+<h3 id="so-we-do-the-post-httpsapitwittercom11mediauploadjson">So we do the POST https://api.twitter.com/1.1/media/upload.json</h3>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="err">...</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"process"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
+      </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tweetWithMedia"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"step"</span><span class="p">:</span><span class="w"> </span><span class="s2">"updateStatus"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"steps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"uploadMedia"</span><span class="p">,</span><span class="w"> </span><span class="s2">"updateStatus"</span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.twitter.com/1.1/statuses/update.json"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"media_ids"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890123456789"</span><span class="p">,</span><span class="w">
+        </span><span class="err">...</span><span class="w"> 
+      </span><span class="err">}</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span></code></pre></figure>
+
+<p>In return we get the next step <em>updateStatus</em> for process <em>tweetWithMedia</em> with property <em>media_ids</em> containing the id of the uploaded media.</p>
+
+<h3 id="so-finally-we-do-post-httpsapitwittercom11statusesupdatejson">So finally, we do POST https://api.twitter.com/1.1/statuses/update.json</h3>
+<p>This is the last step, process <em>tweetWithMedia</em> is over so it’s not present anymore in <em>_links</em>.</p>
+
+<p><em>I’m not really satisfied with that implementation of the *how you do it</em> item but the spirit is here.*</p>
+
+<h1 id="hypermedia-api-maturity-model-v100-alpha-2">Hypermedia API maturity model v1.0.0-alpha-2</h1>
+<p>It’s now time to update HAMM with these two new items and find a way to handle Collection+JSON that would not fit in v1.0.0-alpha-1 version.</p>
+
+<p>With this update, HAMM consists now in 5 characteristics, each one gets a score:</p>
+
+<ul>
+  <li>Where you can go, score 1 (00001)</li>
+  <li>What you can do, score 2 (00010)</li>
+  <li>What you need to do things, score 4 (00100)</li>
+  <li>What you can’t do and why, score 8 (01000)</li>
+  <li>How you do things, score 16 (10000)</li>
+</ul>
+
+<p>You get the level of hypermedianess by adding the scores of the characteristics you comply with.
+You can also <em>decode</em> a level to know what are its characteristics.</p>
+
+<p>With systems referenced in previous post we have:</p>
+
+<ul>
+  <li>JSON-LD, HAL, jsonapi.org: level 1 (where you can go)</li>
+  <li>Collection+JSON: level 5 (where you can go + what you need to do things)</li>
+  <li>Siren, JSON-LD+Hydra and NARWHL: level 11 (where you can go, what you can do, what you need to do things)</li>
+</ul>
+
+<h1 id="this-is-the-end">This is the end?</h1>
+<p>This is it for now about the HAMM version 1.0.0.alpha-2, this is still a work in progress I’ll write other posts about this later.
+Thank you for reading, I hope it’s not over complicated. I’m really looking forward to your comments here or on Twitter about all this. Does anybody encounter the same needs? What do you think about HAMM? Did I miss something in common hypermedia systems?</p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://apihandyman.io/hypermedia-api-maturity-model-part-ii-the-missing-links/';
+      this.page.identifier = 'http://apihandyman.io/hypermedia-api-maturity-model-part-ii-the-missing-links/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <script language="JavaScript">
+        anchors.options = {
+          placement: 'left'
+        };
+        anchors.add('.blog-container h1');
+        anchors.add('.blog-container h2');
+        anchors.add('.blog-container h3');
+    </script>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+  <script language="javascript">
+    $(function() {
+      console.log('here');
+      var $myNav = $('#toc');
+      var $myScope = $('#post');
+      Toc.init({
+        $nav: $myNav,
+        $scope: $myScope
+      });
+      $('body').scrollspy({
+        target: '#toc'
+      });
+    });
+  </script>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>

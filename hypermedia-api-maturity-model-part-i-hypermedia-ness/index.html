@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>Hypermedia API maturity model - Part I - Hypermedia-ness | API Handyman</title>
+  <meta name="description" content="When we talk about hypermedia for an API, we’re talking about making it discoverable or browsable. Adding hypermedia to an API potentially brings flexibility...">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/hypermedia-api-maturity-model-part-i-hypermedia-ness/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/anchor.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Series: Hypermedia API maturity model<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                
+                    <li  class="disabled" ><a class="page-link" href="/hypermedia-api-maturity-model-part-i-hypermedia-ness/">Part I - Hypermedia-ness</a></li>
+                
+                    <li ><a class="page-link" href="/hypermedia-api-maturity-model-part-ii-the-missing-links/">Part II – The missing links</a></li>
+                
+              </ul>
+            </li>
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/hypermedia-api-maturity-model-part-i-hypermedia-ness/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">Part I - Hypermedia-ness</h1>
+          
+            <h2 class="post-subtitle">Hypermedia API maturity model</h2>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2015-02-28T16:34:42+01:00" itemprop="datePublished">Feb. 28, 2015</time><span>&nbsp;|&nbsp;posts</span>
+      </p>
+      <p>When we talk about hypermedia for an API, we’re talking about making it discoverable or browsable. Adding hypermedia to an API <em>potentially</em> brings flexibility, loose coupling, better human readability on the fly and even machine readability on the fly. 
+But nowadays, the hypermedia area for APIs is still a work in progress and it can be implemented in many ways leading to different levels of <em>hypermedia-ness</em>.<!--more--></p>
+
+<h1 id="hypermedia-api-maturity-model-v100-alpha1">Hypermedia API maturity model v1.0.0-alpha.1</h1>
+<p>Leonard Richardson <a href="http://www.crummy.com/writing/speaking/2008-QCon/act3.html">described</a> a phased approach of <a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">REST API</a> known as Richardson Maturity Model (RMM, Martin Fowler wrote a great <a href="http://martinfowler.com/articles/richardsonMaturityModel.html">post</a> to explain it). This model ends with level 3, <em>hypermedia controls</em>, where it deals with hypermedia API.
+I tried to build a <em>hypermedia API maturity model</em> to evaluate the level of <em>hypermedia-ness</em> of an API. This model is based on current techniques and systems commonly described (<em>and sometime used</em>) to implement REST/JSON hypermedia APIs.</p>
+
+<h2 id="level-0-rtfm">Level 0: RTFM</h2>
+<p>On level 0, an API do not implement hypermedia (such an API is RMM level &lt; 3).
+If you want to know how resources are linked and what you can do with them, you’ll have to <a href="http://en.wikipedia.org/wiki/RTFM">read the documentation</a>.</p>
+
+<p>Let’s take a dummy non-hypermedia API dealing with locations and photos as an example for next levels. This API allows you to:</p>
+
+<ul>
+  <li>Get a specific location details</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w"> 
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"a location"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>Add a photo to a location</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">POST https://api.dummy.com/photos</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://im.gur/myphoto"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>Get photos for a location</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1/photos</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w"> 
+</span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="p">},</span><span class="w"> 
+ </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP2"</span><span class="p">},</span><span class="w">
+ </span><span class="err">...</span><span class="p">,</span><span class="w"> 
+ </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDPn"</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span></code></pre></figure>
+
+<ul>
+  <li>Get a specific photo details</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/photos/IDP1</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">  
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="p">,</span><span class="w"> 
+  </span><span class="nt">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.dummy.com/xlvc265z"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>Delete a specific photo</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">DELETE https://api.dummy.com/photos/IDP1</code></pre></figure>
+
+<h2 id="level-1-where-you-can-go">Level 1: Where you can go</h2>
+<p>On level 1, you define relations/links between your resources. You can do this by using:</p>
+
+<ul>
+  <li><a href="http://json-ld.org/">JSON-LD</a></li>
+  <li><a href="http://stateless.co/hal_specification.html">HAL</a></li>
+  <li><a href="http://jsonapi.org/format/">jsonapi.org</a></li>
+</ul>
+
+<p>Let’s see what we can do using jsonapi.org on our dummy API:</p>
+
+<ul>
+  <li>Get a specific location details</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1"</span><span class="p">},</span><span class="w">
+  </span><span class="nt">"linked"</span><span class="p">:[</span><span class="w"> 
+   </span><span class="p">{</span><span class="w">
+     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photos"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1/photos"</span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a location"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>Get photos for a location</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1/photos </code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"links"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"self"</span><span class="p">:</span><span class="s2">"https://api.dummy.com/locations/IDL1/photos"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"next"</span><span class="p">:</span><span class="s2">"https://api.dummy.com/locations/IDL1/photos?page=2"</span><span class="w"> 
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"links"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/IDP1"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>Get a specific photo details</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/photos/IDP1 </code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/IDP1"</span><span class="p">},</span><span class="w">
+  </span><span class="nt">"linked"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"location"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1"</span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.dummy.com/xlvc265z"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>As you can see we have added links (<em>URL related to primary data</em>)  and linked (<em>linked resources</em>) values to existing data. These new data:</p>
+
+<ul>
+  <li>Make the API browsing easier.</li>
+  <li>Allow to see the relations between locations and photos.</li>
+  <li>Bring a <em>potential</em> flexibility as you can modify the provided links without impacting the consumers hoping those consumers <em>use</em> the provided links…</li>
+</ul>
+
+<p>But there’s no clue concerning adding or deleting a photo. You’ll still have to read documentation to find informations about these operations.</p>
+
+<h2 id="level-2-what-you-can-do">Level 2: What you can do</h2>
+<p>On level 2, you add HTTP methods and description to the links to explicitly tell what you can do. You can do this using:</p>
+
+<ul>
+  <li><a href="http://www.narwhl.com/">NARWHL</a></li>
+  <li><a href="http://www.hydra-cg.com/">JSON-LD+Hydra</a></li>
+  <li><a href="https://github.com/kevinswiber/siren">Siren</a></li>
+</ul>
+
+<p>Let’s see how it looks with NARWHL:</p>
+
+<ul>
+  <li>Get a specific location details</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">   
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1/photos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a location"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>Get photos for a location</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1/photos </code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">    
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"https://api.dummy.com/locations/IDL1/photos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"https://api.dummy.com/locations/IDL1/photos?page=2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"_links"</span><span class="p">:</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"rel"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/IDP1"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">}</span><span class="w">   
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>Get a specific photo details</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/photos/IDP1 </code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/IDP1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/definition"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#delete"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/IDP1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.dummy.com/xlvc265z"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>With NARWHL, all links are defined within <em>_links</em> values and for each of them you explicitly define the HTTP method to use with the <em>method</em> value.
+I have to admit that I prefer the more explicits concepts of <em>class</em> or <em>type</em> brought by Siren or Hydra to describe the action/operation you can do instead of the <a href="http://www.narwhl.com/hypermedia-linking/">rel value based on IANA relation types</a> (I probably miss something about this).</p>
+
+<p>However you represent these informations (action description, href, method):</p>
+
+<ul>
+  <li>You explicitly know on this level all you can do on the fly. You can fully browse this API as the add and delete photos operations are now explicitely handled.</li>
+  <li>The <em>potential</em> flexibility for the consumers concerns now every possible action within the API (hoping again the consumers really use the provided links…).</li>
+</ul>
+
+<p>But you still need documentation for the add photo operation as there’s no information concerning the expected inputs.</p>
+
+<h2 id="level-3-what-you-need-to-do-it">Level 3: What you need to do it</h2>
+<p>On level 3, you add a full description (and maybe some values) of the needed inputs for an action. You can generally do this by using the same systems as on level 2:</p>
+
+<ul>
+  <li><a href="http://www.narwhl.com/">NARWHL</a></li>
+  <li><a href="http://www.hydra-cg.com/">JSON-LD+Hydra</a></li>
+  <li><a href="https://github.com/kevinswiber/siren">Siren</a></li>
+  <li><a href="http://www.amundsen.com/media-types/collection/">Collection+JSON</a></li>
+</ul>
+
+<p>Let’s see how NARWHL handle this on the “add photo” operation:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">   
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"https://api.dummy.com/locations/IDL1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1/photos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a location"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>With NARWHL, by adding <em>parameters</em> value you give a description (and some default values) of the needed inputs for the operations.
+Collection+JSON, Siren and Hydra use a more precise way of describing these inputs. You can see more examples using HAL, JSON-LD, Hydra, Collection+JSON and Siren in Kevin Sookocheff’s <a href="http://sookocheff.com/posts/2014-03-11-on-choosing-a-hypermedia-format/">post</a> comparing some hypermedia systems. As Kevin’s post do not talk about NARWHL and jsonapi.org I have focused this post’s examples on these ones.</p>
+
+<p>Whatever, with this last level we have action/operation descriptions, href, method and input description: we known exactly what we can do and how to do it on the fly.</p>
+
+<h2 id="hypermedia-api-maturity-model-v100-alpha1-in-4-lines">Hypermedia API maturity model v1.0.0-alpha.1 in 4 lines</h2>
+
+<ul>
+  <li>Level 0: RTFM.</li>
+  <li>Level 1: Where you can go.</li>
+  <li>Level 2: What you can do.</li>
+  <li>Level 3: What you need to do it.</li>
+</ul>
+
+<h1 id="frequently-asked-questions">Frequently asked questions</h1>
+<p>When you start defining or classifying things, some people tends to overreact, arguing over which level is better than the other, what is the perfect way of doing things, counting how many API evangelists can stand on the header of a GET request and then they start wearing funny costumes and act in utterly surreal stupid way to boldly defend a so-called <em>truth</em>…</p>
+
+<div>
+      <img src="/images/hypermedia-api-maturity-model-part-i-hypermedia-ness/apiinquisition.png" />
+      
+    </div>
+
+<blockquote>
+  <p>My friends/colleagues/parents are yelling at each other about “is hypermedia evil or not?”. 
+Should I call the API inquisition to settle this conflict?</p>
+</blockquote>
+
+<p>No, tell them to read <a href="http://apievangelist.com/2014/08/05/the-hypermedia-api-debate-sorry-reasonable-just-does-not-sell/">this API Evangelist’s post</a> instead.
+If they are still yelling at each other after that, you can call the API inquisition.</p>
+
+<blockquote>
+  <p>My API is level 0.
+Will the API inquisition come and put me on trial?</p>
+</blockquote>
+
+<p>No, implementing hypermedia in your API is definitely not an obligation.
+Hypermedia should be implemented only if a real need is covered by it.
+And don’t be scared, hypermedia can be added later to your existing API when needed.</p>
+
+<blockquote>
+  <p>My API is only level 1 or 2.
+Will the API inquisition come put me on trial?</p>
+</blockquote>
+
+<p>No, implementing hypermedia in your API must cover a real need.
+If you’re satisfied with level 1 or 2 it’s OK, and you can evolve to a higher level later.</p>
+
+<blockquote>
+  <p>My API is level 3.
+Will I be praised to the skies?</p>
+</blockquote>
+
+<p>If you have implemented it to cover a real need, maybe.
+If it’s just a show off and you don’t know what to do with it, the API inquisition will come and put you on trial.</p>
+
+<blockquote>
+  <p>It seems that Collection+JSON do not fit completely in this model.
+Did I miss something?</p>
+</blockquote>
+
+<p>That’s right Collection+JSON does not fit exactly in my model’s progression system because the templating mechanism puts it on level 3 but it does not explicitly define what HTTP method you can use (so it’s not level 2).
+I think I will settle this problem on my next post by transforming the progression system into a multiclass system (like in <a href="http://www.dnd-wiki.org/wiki/Multiclass">Dungeons &amp; Dragons</a>) hoping the API inquisition will not come and put me on trial for that.</p>
+
+<h1 id="to-be-continued">To be continued…</h1>
+<p>Now I’m able to evaluate the level of hypermedia-ness of an API based on common systems/techniques but this is only the tip of the hypermedia iceberg. The main point of hypermedia is finally not how you will implement it and what level of hypermedia-ness you achieve, but for what <em>purpose</em> you will implement it.
+In next post <em>Hypermedia API maturity model - Part II - The missing links</em>, I’ll explain why I have crossed the path hypermedia API, what is missing in actual systems/techniques to fulfil all my needs and propose a revised version of this hypermedia API maturity model based on all this (mess).</p>
+
+<p><em>Images credits</em>:</p>
+<ul>
+  <li><a href="http://upload.wikimedia.org/wikipedia/commons/f/f6/Southbound_lane_on_Jianguo_Rd_Exit_of_Kaohsuing_IC_on_the_Taiwan_No2_National_Highway.JPG">Southbound lane on Jianguo Rd Exit of Kaohsuing IC on the Taiwan No2 National Highway</a>, <a href="http://commons.wikimedia.org/wiki/User:Howard61313">Howard61313</a>.</li>
+  <li><a href="http://en.wikipedia.org/wiki/The_Spanish_Inquisition_%28Monty_Python%29">The spanish inquisition, The Monty Python</a></li>
+</ul>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://apihandyman.io/hypermedia-api-maturity-model-part-i-hypermedia-ness/';
+      this.page.identifier = 'http://apihandyman.io/hypermedia-api-maturity-model-part-i-hypermedia-ness/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <script language="JavaScript">
+        anchors.options = {
+          placement: 'left'
+        };
+        anchors.add('.blog-container h1');
+        anchors.add('.blog-container h2');
+        anchors.add('.blog-container h3');
+    </script>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+  <script language="javascript">
+    $(function() {
+      console.log('here');
+      var $myNav = $('#toc');
+      var $myScope = $('#post');
+      Toc.init({
+        $nav: $myNav,
+        $scope: $myScope
+      });
+      $('body').scrollspy({
+        target: '#toc'
+      });
+    });
+  </script>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>Starting a Swagger journey beyond generated Swagger UI | API Handyman</title>
+  <meta name="description" content="When watching a movie, have you ever noticed how characters interact with computers? If someone wants to destroy a computer, what does he or she smash? The c...">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/starting-a-swagger-journey-beyond-generated-swagger-ui/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/anchor.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/starting-a-swagger-journey-beyond-generated-swagger-ui/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">Starting a Swagger journey beyond generated Swagger UI</h1>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2015-10-07T23:56:37+02:00" itemprop="datePublished">Oct. 7, 2015</time><span>&nbsp;|&nbsp;posts</span>
+      </p>
+      <p>When watching a movie, have you ever noticed how characters <em>interact</em> with computers? If someone wants to destroy a computer, what does he or she smash?<br />
+The computer’s screen…<!--more--></p>
+
+<div>
+      <img src="/images/starting-a-swagger-journey-beyond-generated-swagger-ui/spock-smash-computer.gif" />
+      
+    </div>
+
+<p>With <em>Swagger</em>, it’s almost the same thing. Many people focus only on <em>generated Swagger UI</em> and only see Swagger as a useful way to generate documentation from an API implementation.</p>
+
+<p>But reducing Swagger to an auto-generated interactive API documentation is a <em>terrible mistake</em>.</p>
+
+<blockquote>
+  <p>Swagger is a simple yet powerful representation of your RESTful API.<br />
+<a href="https://swagger.io">Swagger.io</a></p>
+</blockquote>
+
+<p>… and it’s <em>far</em> from the truth.</p>
+
+<p>In this first post of a new series, I will tell you how I’ve stopped being a <em>computer’s screen smasher</em> and started my <em>Swagger journey</em>.</p>
+
+<h1 id="lessons-from-the-trenches-of-an-api-project">Lessons from the trenches of an API project</h1>
+<p>When I started to work on my company’s new API project, Swagger was only Swagger UI, <em>the thing that generate interactive API documentation using annotation in a java application</em>.</p>
+
+<p>It was only a by-product of the project.</p>
+
+<p>But after working for a while on this project, some concerns, not all related to the generated Swagger UI, arise.</p>
+
+<h2 id="documentation-tightly-coupled-with-implementation">Documentation tightly coupled with implementation</h2>
+
+<div>
+      <img src="/images/starting-a-swagger-journey-beyond-generated-swagger-ui/indianajones.png" />
+      <p class="img-label">Documentation (Henry Jones Sr) tightly coupled with implementation (Henry Jones Jr)</p>
+    </div>
+
+<p>Even if our new API is not an open one, it is used by people outside our company so I started to take a closer look at the generated documentation to check if everything was ok. It was… on the surface:</p>
+
+<ul>
+  <li>Swagger UI was working</li>
+  <li>Users could browse the documentation</li>
+  <li>Users could test the API through this interactive documentation</li>
+</ul>
+
+<p>But when taking a closer look at this generated documentation, some problems appear.</p>
+
+<div>
+      <img src="/images/starting-a-swagger-journey-beyond-generated-swagger-ui/modelview.png" />
+      <p class="img-label">Pet Store Swagger model view example</p>
+    </div>
+
+<p>Even if the resulting API was matching the specification, the model view of Swagger UI reveal some holes in the specification and was not satisfying:</p>
+
+<ul>
+  <li>The model names were reflecting poorly named java classes.</li>
+  <li>The model hierarchy was not consistent and poorly designed.</li>
+  <li>Some attributes format were not the good ones.</li>
+</ul>
+
+<p>There were also some typing errors and missing informations in operations or attributes descriptions.</p>
+
+<p>Nothing serious, but to correct the generated documentation, we had to modify the application, rebuild it and deploy it. This tight coupling between the generated API documentation and its implementation was annoying in our context.</p>
+
+<h2 id="from-api-last-to-api-first">From API last to API first</h2>
+<p>Even if our new API is not a ROAST one (really dumb SOAP to pseudo REST conversion), it is still tightly coupled to our SOA as it was designed last and with not much hindsight. 
+Just like a by-product, just like a necessary evil.</p>
+
+<div class="jekyll-twitter-plugin"><blockquote class="twitter-tweet" align="center"><p lang="en" dir="ltr"><a href="https://twitter.com/arno_di_loreto">@arno_di_loreto</a> the <a href="https://twitter.com/apihandyman">@apihandyman</a> needs to make it clear to the Audience that he is JOKING <a href="https://twitter.com/hashtag/BankingAPIs?src=hash">#BankingAPIs</a> <a href="https://twitter.com/hashtag/apidays?src=hash">#apidays</a> <a href="http://t.co/KJDExnLcYG">pic.twitter.com/KJDExnLcYG</a></p>&mdash; h@ckte.ch (@H4CKTECH) <a href="https://twitter.com/H4CKTECH/status/646610528907993088">September 23, 2015</a></blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
+<p>I wanted to change that and make the API a first class citizen in our system just like our website or mobile application.
+I wanted to really have an API first approach with tools to help us design faster and mock to test easily the design to ensure a good quality from the start.</p>
+
+<h2 id="a-good-word-specification-is-the-one-you-didnt-wrote">A good Word specification is the one you didn’t wrote</h2>
+<p>Wether you design your API last or first, you need something to describe it. We were using Word and Excel documents to describe our API, just like we’ve always done with our SOA.
+Working with such documents has never been an easy task:</p>
+
+<ul>
+  <li>Templates are not constraining enough and lead to inconsistent documentations.</li>
+  <li>If you change your template, you have to modify all previously written ones manually (and of course you don’t do it).</li>
+  <li>It takes far too long time to write a simple description.</li>
+  <li>Have you ever try to compare to different versions of a word document?</li>
+  <li>These documents are only (barely) readable by humans and you cannot use them with programs.</li>
+  <li>Documentation is written twice: on design time and on development time.</li>
+</ul>
+
+<p>I wanted to get rid of all this and have something more fast, more simple, more consistent, more maintainable, more <em>documentation as code</em> and both human and machine readable.</p>
+
+<h1 id="eureka-swagger-20">Eureka! Swagger 2.0</h1>
+<p>Hopefully, it was at that time that Swagger 2.0 was released with the <a href="http://editor.swagger.io">YAML editor</a> and its <a href="http://swagger.io/swagger-2-0-tooling-released/">tools</a>.
+Thanks to this new version, I realized my mistake, I realized that Swagger was <em>not only</em> generated Swagger UI.</p>
+
+<blockquote>
+  <p>Eureka!<br />
+<em><a href="https://en.wikipedia.org/wiki/Eureka_(word)">API handyman taking a bath</a></em></p>
+</blockquote>
+
+<p>Swagger is an <em>API definition language</em> and there are <a href="http://swagger.io/open-source-integrations/">so many tools</a> using it.</p>
+
+<div>
+      <img src="/images/starting-a-swagger-journey-beyond-generated-swagger-ui/swaggereditor-petstore.png" />
+      <p class="img-label">Swagger API definition in Swagger Editor</p>
+    </div>
+
+<p>By <em>really</em> using Swagger and its ecosystem I thought we could:</p>
+
+<ul>
+  <li>Write better and more consistent API definition once and faster, especially with the YAML editor.</li>
+  <li>Decouple API documentation from its implementation.</li>
+  <li>Have machine readable documentation useable with many existing tools (like mock generator, Postman and many others).</li>
+  <li>Treat documentation as code.</li>
+  <li>Facilitate the API first approach and the building of an API governance.</li>
+  <li>And also do many other things I couldn’t imagine at that time…</li>
+</ul>
+
+<h1 id="to-boldly-go-">To boldly go …</h1>
+<p>So this is how I started my Swagger journey, with so many ideas in mind and so many hopes. But I was confident and I knew I would not be alone on this journey as the <a href="http://swagger.io/community/">Swagger community</a> is large and friendly.
+On the next post, I’ll explain how I use <em>standard</em> Swagger tools to write API definitions.</p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://apihandyman.io/starting-a-swagger-journey-beyond-generated-swagger-ui/';
+      this.page.identifier = 'http://apihandyman.io/starting-a-swagger-journey-beyond-generated-swagger-ui/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <script language="JavaScript">
+        anchors.options = {
+          placement: 'left'
+        };
+        anchors.add('.blog-container h1');
+        anchors.add('.blog-container h2');
+        anchors.add('.blog-container h3');
+    </script>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+  <script language="javascript">
+    $(function() {
+      console.log('here');
+      var $myNav = $('#toc');
+      var $myScope = $('#post');
+      Toc.init({
+        $nav: $myNav,
+        $scope: $myScope
+      });
+      $('body').scrollspy({
+        target: '#toc'
+      });
+    });
+  </script>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>

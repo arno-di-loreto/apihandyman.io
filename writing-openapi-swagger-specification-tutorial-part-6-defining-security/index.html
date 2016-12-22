@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>Writing OpenAPI (Swagger) Specification Tutorial - Part 6 - Defining Security | API Handyman</title>
+  <meta name="description" content="After mastering input and output modeling like a Jedi, let’s see how we can describe API’s security with the OpenAPI specification’s.">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/anchor.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Series: Writing OpenAPI (Swagger) Specification Tutorial<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">Part 1 - Introduction</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">Part 2 - The basics</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">Part 3 - Simplifying specification file</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">Part 4 - Advanced Data</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">Part 5 - Advanced Input And Output Modeling</a></li>
+                
+                    <li  class="disabled" ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">Part 6 - Defining Security</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">Part 7 - Documentation</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">Part 8 - Splitting specification file</a></li>
+                
+              </ul>
+            </li>
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/writing-openapi-swagger-specification-tutorial-part-6-defining-security/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">Part 6 - Defining Security</h1>
+          
+            <h2 class="post-subtitle">Writing OpenAPI (Swagger) Specification Tutorial</h2>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2016-05-22T20:26:38+02:00" itemprop="datePublished">May. 22, 2016</time><span>&nbsp;|&nbsp;posts</span>
+      </p>
+      <p>After mastering <a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">input and output modeling</a> like a Jedi, let’s see how we can describe API’s security with the <a href="https://openapis.org/">OpenAPI specification’s</a>.<!--more--></p>
+
+<h1 id="writing-openapi-fka-swagger-specification-tutorial">Writing OpenAPI (fka Swagger) Specification tutorial</h1>
+<p>This tutorial is composed of several posts:</p>
+
+<ul>
+  <li>Part 1: <a href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">Introduction</a></li>
+  <li>Part 2: <a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">The basics</a></li>
+  <li>Part 3: <a href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">Simplifying specification file</a></li>
+  <li>Part 4: <a href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">Advanced data modeling</a></li>
+  <li>Part 5: <a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">Advanced input and output modeling</a></li>
+  <li>Part 6: <strong>Defining security</strong></li>
+  <li>Part 7: <a href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">Documentation</a></li>
+  <li>Part 8: <a href="http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">Splitting specification file</a></li>
+  <li>Part 9: Extending the OpenAPI specification (coming soon)</li>
+</ul>
+
+<p>In previous parts we’ve learned to write efficiently highly accurate interface description, in this seventh part we’ll learn how to describe how an API is secured.</p>
+
+<p>All tutorial’s files are available on <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060">GIST</a>.</p>
+
+<p>If you’re a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>, take a look at my [<em>visual documentation:</em></p>
+<div>
+      <img src="//images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" />
+      <p class="img-label"><a href="http://openapi-specification-visual-documentation.apihandyman.io/">OpenAPI Specification Visual Documentation</a></p>
+    </div>
+
+<h1 id="security-definitions">Security definitions</h1>
+<p>Following (almost) the same principle used with <code class="highlighter-rouge">parameters</code> and <code class="highlighter-rouge">definitions</code>, security can be defined and then used on different levels.
+Security definition takes place on specification’s root level in <code class="highlighter-rouge">securityDefinition</code> section. It contains a list of named security definitions. Each definition can be of type:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">basic</code> for Basic Authentication</li>
+  <li><code class="highlighter-rouge">apiKey</code> when using an API key to secure the API</li>
+  <li><code class="highlighter-rouge">oauth2</code> for Oauth 2</li>
+</ul>
+
+<h2 id="basic-authentication">Basic Authentication</h2>
+
+<p>To define a <code class="highlighter-rouge">basic</code> security it’s fairly easy, we only have to set its <code class="highlighter-rouge">type</code> to <code class="highlighter-rouge">basic</code>:</p>
+
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="17-23" data-gist-footer="true"></code></p>
+
+<p>In this example we have defined three security definitions (<code class="highlighter-rouge">UserSecurity</code>, <code class="highlighter-rouge">AdminSecurity</code> and <code class="highlighter-rouge">MediaSecurity</code>), each of them is of <code class="highlighter-rouge">basic</code> type.</p>
+
+<h2 id="api-key">API Key</h2>
+
+<p>To define an <code class="highlighter-rouge">apiKey</code> security we have to:</p>
+
+<ul>
+  <li>Set <code class="highlighter-rouge">type</code> to <code class="highlighter-rouge">apiKey</code></li>
+  <li>Indicate where the API ley is located with <code class="highlighter-rouge">in</code>. An API can be in a <code class="highlighter-rouge">header</code> or a <code class="highlighter-rouge">query</code> parameter</li>
+  <li>And then give the parameter’s <code class="highlighter-rouge">name</code></li>
+</ul>
+
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="17-29" data-gist-footer="true"></code></p>
+
+<p>In this example, we have defined three security definitions of <code class="highlighter-rouge">apiKey</code> type:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">UserSecurity</code> uses a <code class="highlighter-rouge">header</code> parameter named <code class="highlighter-rouge">SIMPLE-API-KEY</code></li>
+  <li><code class="highlighter-rouge">AdminSecurity</code> uses a <code class="highlighter-rouge">header</code> parameter named <code class="highlighter-rouge">ADMIN-API-KEY</code></li>
+  <li><code class="highlighter-rouge">MediaSecurity</code> uses a <code class="highlighter-rouge">query</code> parameter named <code class="highlighter-rouge">media-api-key</code></li>
+</ul>
+
+<h2 id="oauth-2">Oauth 2</h2>
+
+<h3 id="flow-and-urls">Flow and URLs</h3>
+<p>When defining an <code class="highlighter-rouge">oauth2</code> security definition, we can define the Oauth2 <code class="highlighter-rouge">flow</code> used and corresponding <code class="highlighter-rouge">authorizationUrl</code> and/or <code class="highlighter-rouge">tokenUrl</code> depending on the chosen flow:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Flow</th>
+      <th>Required URLs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>implicit</td>
+      <td>authorizationUrl</td>
+    </tr>
+    <tr>
+      <td>password</td>
+      <td>tokenUrl</td>
+    </tr>
+    <tr>
+      <td>application</td>
+      <td>tokenUrl</td>
+    </tr>
+    <tr>
+      <td>accessCode</td>
+      <td>authorizationUrl and tokenUrl</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-22" data-gist-footer="true"></code></p>
+
+<p>In this example we have defined a <code class="highlighter-rouge">OauthSecurity</code> security definition of <code class="highlighter-rouge">oauth2</code> type using an <code class="highlighter-rouge">accessCode</code> flow with an authorizationUrl and a tokenUrl.</p>
+
+<h3 id="scopes">Scopes</h3>
+<p>We can also define <code class="highlighter-rouge">scopes</code> by using a hashmap, the key is the scope’s name and the value is its description.</p>
+
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-26" data-gist-highlight-line="23-26" data-gist-footer="true"></code></p>
+
+<p>In this example, we’ve added three scopes (<code class="highlighter-rouge">admin</code>, <code class="highlighter-rouge">user</code> and <code class="highlighter-rouge">media</code>) to our <code class="highlighter-rouge">OauthSecurity</code> security definition</p>
+
+<h1 id="using-security-definitions">Using security definitions</h1>
+
+<p>Once we have described security definitions in <code class="highlighter-rouge">securityDefinition</code> we can apply them to the overall API or to specific operations with the <code class="highlighter-rouge">security</code> sections.
+When we apply a security definition to an operation, it overrides API security.</p>
+
+<h2 id="basic-authentication-1">Basic Authentication</h2>
+<p>Let’s see how we can use a <code class="highlighter-rouge">basic</code> security definition.</p>
+
+<h3 id="api-level">API level</h3>
+<p>In this example the security definition which apply to ALL API operations is <code class="highlighter-rouge">UserSecurity</code>:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="17-29" data-gist-highlight-line="25-26" data-gist-footer="true"></code></p>
+
+<h3 id="operation-level">Operation level</h3>
+<p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the <code class="highlighter-rouge">UserSecurity</code> defined on top level which applies:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="28-39" data-gist-highlight-line="29,32" data-gist-footer="true"></code></p>
+
+<p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security is overridden by <code class="highlighter-rouge">AdminSecurity</code>: 
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="55-59" data-gist-highlight-line="58-59" data-gist-footer="true"></code></p>
+
+<p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is also overridden, but this time it’s by <code class="highlighter-rouge">MediaSecurity</code>:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="246-252" data-gist-highlight-line="246,249,251-252" data-gist-footer="true"></code></p>
+
+<h2 id="api-key-1">API Key</h2>
+<p>We can do exactly the same things with an API key security definition.</p>
+
+<h3 id="api-level-1">API level</h3>
+<p>In this example the security definition which apply to ALL API operations is <code class="highlighter-rouge">UserSecurity</code>:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="17-35" data-gist-highlight-line="31-32" data-gist-footer="true"></code></p>
+
+<h3 id="operation-level-1">Operation level</h3>
+<p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the <code class="highlighter-rouge">UserSecurity</code> defined on top level which applies:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="34-45" data-gist-highlight-line="35,38" data-gist-footer="true"></code></p>
+
+<p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security is overridden by <code class="highlighter-rouge">AdminSecurity</code>:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="61-65" data-gist-highlight-line="61,64,65" data-gist-footer="true"></code></p>
+
+<p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is also overridden, but this time it’s by <code class="highlighter-rouge">MediaSecurity</code>:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="252-258" data-gist-highlight-line="252,255,257-258" data-gist-footer="true"></code></p>
+
+<h2 id="oauth-2-1">Oauth 2</h2>
+<p>With an <code class="highlighter-rouge">oauth2</code> the principle is the same but you can also define which scope(s) you use.</p>
+
+<h3 id="api-level-2">API level</h3>
+<p>In this example the security definition which apply to ALL API operations is <code class="highlighter-rouge">OauthSecurity</code> with the <code class="highlighter-rouge">user</code> scope:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-33" data-gist-highlight-line="28-30" data-gist-footer="true"></code></p>
+
+<h3 id="operation-level-2">Operation level</h3>
+<p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the <code class="highlighter-rouge">OauthSecurity</code> with <code class="highlighter-rouge">user</code>scope defined on top level which applies:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="32-43" data-gist-highlight-line="33,36" data-gist-footer="true"></code></p>
+
+<p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security scope is overridden by <code class="highlighter-rouge">admin</code>:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="59-64" data-gist-highlight-line="59,62-64" data-gist-footer="true"></code></p>
+
+<p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is also overridden, but this time it’s by <code class="highlighter-rouge">media</code>:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="252-259" data-gist-highlight-line="252,255,257-259" data-gist-footer="true"></code></p>
+
+<h1 id="using-multiple-security-types">Using multiple security types</h1>
+<p>It’s not mandatory to define a single type of security definition and use only one at a time.
+The examples below show how we can define security definitions of different types and use more than one on operations.</p>
+
+<h2 id="security-definitions-1">Security definitions</h2>
+<p>Here we define there different types of security:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="17-31" data-gist-footer="true"></code></p>
+
+<h2 id="global-security">Global security</h2>
+<p>Then we choose to apply both of them globally:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="33-36" data-gist-footer="true"></code>
+It means that a consumer can call any operation (which do not override security) with one of those two security types.</p>
+
+<h2 id="overriding-global-security">Overriding global security</h2>
+<p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the Oauth 2 <code class="highlighter-rouge">OauthSecurity</code> with <code class="highlighter-rouge">user</code>scope OR the basic authentication <code class="highlighter-rouge">LegacySecurity</code> defined on top level which applies:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="38-49" data-gist-highlight-line="39,42" data-gist-footer="true"></code></p>
+
+<p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security scope Oauth 2 <code class="highlighter-rouge">OauthSecurity</code> is overridden by <code class="highlighter-rouge">admin</code> and consumer can also still use the basic authentication <code class="highlighter-rouge">LegacySecurity</code>:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="65-71" data-gist-highlight-line="65,68-71" data-gist-footer="true"></code></p>
+
+<p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is fully overridden by the API Key <code class="highlighter-rouge">MediaSecurity</code>:
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="260-266" data-gist-highlight-line="260,263,265-266" data-gist-footer="true"></code></p>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>You now have mastered security. With this new post you are now a full expert when it comes to describe an API interface with the OpenAPI specification. But an interface contract alone may not be easy to understand without some explainations. In next post we’ll learn how to document this interface description (coming soon) to ease its understanding.</p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-6-defining-security/';
+      this.page.identifier = 'http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-6-defining-security/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <script language="JavaScript">
+        anchors.options = {
+          placement: 'left'
+        };
+        anchors.add('.blog-container h1');
+        anchors.add('.blog-container h2');
+        anchors.add('.blog-container h3');
+    </script>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+  <script language="javascript">
+    $(function() {
+      console.log('here');
+      var $myNav = $('#toc');
+      var $myScope = $('#post');
+      Toc.init({
+        $nav: $myNav,
+        $scope: $myScope
+      });
+      $('body').scrollspy({
+        target: '#toc'
+      });
+    });
+  </script>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>

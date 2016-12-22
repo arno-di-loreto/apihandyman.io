@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>The ways of the API smartness | API Handyman</title>
+  <meta name="description" content="An API must be smart to ensure that consumers will want to use it and remain dumb when they consume it.">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/the-ways-of-the-api-smartness/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/anchor.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/the-ways-of-the-api-smartness/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">The ways of the API smartness</h1>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2015-03-28T21:32:18+01:00" itemprop="datePublished">Mar. 28, 2015</time><span>&nbsp;|&nbsp;posts</span>
+      </p>
+      <p>An API must be smart to ensure that consumers will want to use it and remain dumb when they consume it.<!--more--></p>
+
+<blockquote>
+  <p>smart<br />
+<em>smɑːt</em></p>
+  <ol>
+    <li>(of a person) clean, tidy, and well dressed.</li>
+    <li>(informal) having or showing a quick-witted intelligence.</li>
+  </ol>
+</blockquote>
+
+<p>Whether an API is dark internal, open external or everything in between (cf. <a href="http://www.soatothecloud.com/2015/02/this-week-there-has-been-great.html">Mark O’Neil classification</a>), its provider (both human and application) must take whatever steps to ensure that this API (and everything surrounding it) is smart enough so the consumer (both human and application) do not need to be as skilled as the provider concerning the field of this API or what run behind it to use it.</p>
+
+<p>Depending on your API and your needs, you can achieve the API smartness by using some of these ways:</p>
+
+<ul>
+  <li>The (other) API way.</li>
+  <li>The RTCFM way.</li>
+  <li>The hypster way.</li>
+  <li>The mad scientist way.</li>
+  <li>The empathic listening way.</li>
+</ul>
+
+<p>Diving into a single of these ways <del>could</del> will take many posts even entire books and maybe movies, and there are probably other ways.
+I’m myself only at the beginning of this journey to API smartness, I’ll try with this post to give you a glimpse of these ways based on what I have learned and experimented so far.</p>
+
+<h1 id="the-other-apl-way-application-pleasant-interface">The (other) APl way: Application Pleasant Interface</h1>
+<p>If you follow only one way of the API smartness, this is <em>the</em> way.</p>
+
+<blockquote>
+  <p>Design, mock, test.<br />
+Iterate until you get something pleasant.<br />
+<em>API design mantra</em></p>
+</blockquote>
+
+<p>An API is designed by humans to expose data to humans building applications and not for applications only.
+An API is an <em>Application Programming Interface</em> but it should also be an <em>Application Pleasant Interface</em> (<a href="http://www.acronymfinder.com/API.html">other API acronyms</a>) so the humans who build the application consuming this API do not need to struggle to understand it and its data.</p>
+
+<p>So, whatever the <a href="http://www.soatothecloud.com/2015/02/this-week-there-has-been-great.html">type</a> of your API, <em>take time to design it</em>.</p>
+
+<p>Some directions for this <em>(other) API</em> way:</p>
+
+<ul>
+  <li>Aim at least at level 2 of <a href="http://martinfowler.com/articles/richardsonMaturityModel.html">Richardson Maturity Model</a> by using resources and HTTP protocol.</li>
+  <li>Choose a <a href="http://apihandyman.io/why-you-must-design-your-private-api-in-english/">language</a></li>
+  <li>Do not <a href="http://apihandyman.io/the-beautiful-api-and-the-bestial-back-office/">expose</a> your back-office.</li>
+  <li>Avoid inconsistency by levelling your endpoint, resources and error handling (standardize your API).</li>
+  <li>Try to stick to best practices like this describe in <a href="http://shop.oreilly.com/product/9780596801694.do">RESTful Web Services Cookbook</a> or <a href="http://www.narwhl.com/">NARWHL</a>.</li>
+  <li>Avoid <em>cryptic data</em>, for example use human readable codes instead of puzzling integer values or at least give labels corresponding to these codes.</li>
+  <li>Use API definition/description/modelling language like Swagger, Blueprint or RAML</li>
+  <li>Mock your API to test it in early stage.</li>
+</ul>
+
+<h1 id="the-rtcfm-way-read-the-consumer-friendly-manual">The RTCFM way: Read The Consumer Friendly Manual</h1>
+<p>Even if you achieve the <em>(other) API</em> way brilliantly, consumers will probably need a little help to use your API.</p>
+
+<blockquote>
+  <p>To most developers, writing API documentation is nothing short of torture. But to a few of us, it’s a fascinating area. What gets us so excited?<br />
+<em>Kin Lane, The API Evangelist, <a href="http://apievangelist.com/2012/01/28/why-we-write-api-documentation/">Why we write API documentation</a></em></p>
+</blockquote>
+
+<p>API documentation must be exhaustive and consumer friendly:</p>
+
+<ul>
+  <li>Make it human readable: so people using your APIs can actually understand it.</li>
+  <li>Make it machine readable: so people using your APIs can build clients automatically and in the future <del>Skynet could destroy humanity</del> applications can talk to your API without someone coding.</li>
+  <li>Use API definition/description/modelling language like Swagger, Blueprint or RAML to help you create both human and machine readable documentation.</li>
+  <li>Beware to include all aspects of your API. A beautiful Swagger UI or equivalent documentation is sometime not enough, there are other things to document:
+    <ul>
+      <li>How connect to your API.</li>
+      <li>Rate limits.</li>
+      <li>Service chaining.</li>
+    </ul>
+  </li>
+  <li>Keep it light, keep it simple. Consumers do not want to read a documentation as long and hard to understand as <em><a href="http://en.wikipedia.org/wiki/List_of_longest_novels">In search of lost time</a></em> to use your API and as difficult as <em><a href="http://en.wikipedia.org/wiki/The_Phenomenology_of_Spirit">The Phenomenology of Spirit</a></em>:
+    <ul>
+      <li>Use good old diagrams.</li>
+      <li>Write tutorials.</li>
+      <li>Give code snippets.</li>
+    </ul>
+  </li>
+  <li>If your documentation is <em>In search of lost time</em> or <em>The Phenomenology of Spirit</em> type, you may have missed something in the API design.</li>
+</ul>
+
+<h1 id="the-hypster-way-hypermedia">The hypster way: Hypermedia</h1>
+<p>This way is a subpath of the (other) API way.</p>
+
+<div class="jekyll-twitter-plugin"><blockquote class="twitter-tweet" align="center"><p lang="en" dir="ltr">&quot;Hypermedia types exist to tell clients how to interact with data -- not what the data means&quot;  /via <a href="https://twitter.com/_ericelliott">@_ericelliott</a> Words I have searched for</p>&mdash; Darrel Miller (@darrel_miller) <a href="https://twitter.com/darrel_miller/status/575494956472631296">March 11, 2015</a></blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
+<p class="center"><em>The best definition of hypermedia</em></p>
+
+<p>Adding <a href="http://apievangelist.com/2014/01/07/what-is-a-hypermedia-api/">hypermedia</a> will lead your API to level 3 of <a href="http://martinfowler.com/articles/richardsonMaturityModel.html">Richardson Maturity Model</a> and help consumers to know what they can do with your data on the fly.</p>
+
+<p>This way could be considered experimental by some and is the subject of many debates in the API community (<a href="http://www.mikestowe.com/2014/12/more-objections-to-hateoas.php">read, for example, Mike Stowe’s post concerning objections to HATEOAS</a>).
+But you really can use it to solve concrete problems for more informations you can read my posts concerning HAMM (Hypermedia API Maturity Model) <a href="http://apihandyman.io/hypermedia-api-maturity-model-part-i-hypermedia-ness/">part I</a> and <a href="http://apihandyman.io/hypermedia-api-maturity-model-part-ii-the-missing-links/">part II</a>.</p>
+
+<h1 id="the-mad-scientist-way-code-on-demand">The mad scientist way: Code on demand</h1>
+<p>Another subpath of the (other) API way.</p>
+
+<blockquote>
+  <p>The final addition to our constraint set for REST comes from the code-on-demand style of Section 3.5.3 (Figure 5-8). REST allows client functionality to be extended by downloading and executing code in the form of applets or scripts<br />
+Roy Fielding,  <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">Architectural Styles and the Design of Network-based Software Architectures</a></p>
+</blockquote>
+
+<p>Maybe one day you’ll be confronting a problem that even a good combination of (other) API, RTFCM and Hypster ways cannot solve.
+This day, you should try the Konami code on level 3 of Richardson Maturity Model to gain access the the secret lost level 4: code on demand.</p>
+
+<p>This way is highly experimental and I haven’t use it (yet…).
+You could use it for example to send a “control amount” function to the consumer to validate input on a money transfer locally and avoid some API calls.</p>
+
+<p>You can read <a href="http://www.mikestowe.com/2015/03/code-on-demand-today.php">Mike Stowe’s post</a> about his experiments on this field.</p>
+
+<h1 id="the-empathic-listening-way">The empathic listening way</h1>
+<p>Last but not least, he <a href="http://www.beyondintractability.org/essay/empathic-listening">empathic listening</a> way.</p>
+
+<blockquote>
+  <p>One <del>Ring</del> Way to rule them all, One <del>Ring</del> Way to find them,<br />
+One <del>Ring</del> Way to bring them all and in the <del>darkness</del> brightness bind them.<br />
+<em>J.R.R. Tolkien,  The Lord of the <del>Rings</del> ways of API smartness</em></p>
+</blockquote>
+
+<p>This is the alpha and omega way. Whatever the ways you choose to take, you’ll have to follow this way.</p>
+
+<blockquote>
+  <p>Empathic listening (also called active listening or reflective listening) is a way of listening and responding to another person that improves mutual understanding and trust.<br />
+It is an essential skill for third parties and disputants alike, as it enables the listener to receive and accurately interpret the speaker’s message, and then provide an appropriate response.<br />
+Richard Salem, <a href="http://www.beyondintractability.org/essay/empathic-listening">The benefits of empathic listener</a></p>
+</blockquote>
+
+<p>You must listen to consumers because everything cannot be perfect the first time.
+You’ll have to listen to them, learn from them and then adapt.
+You’ll also have to listen to <em>you</em> because a provider must be his <em>first</em> own consumer.</p>
+
+<h1 id="another-classification">Another classification?</h1>
+<p>In a nutshell, the ways of API smartness are:</p>
+
+<ul>
+  <li>The (other) API way. Design a Application Pleasant Interface for your data.</li>
+  <li>The RTCFM way. Read The Consumer Friendly Manual. Document all aspects of your API.</li>
+  <li>The hyptser way. Add Hypermedia to explain what you can do with the API’s data.</li>
+  <li>The mad scientist way. Use code on demand to lend some of your business intelligence to the consumer.</li>
+  <li>The empathic listening way. Listen, learn and adapt. The alpha and omega way.</li>
+</ul>
+
+<div>
+      <img src="/images/the-ways-of-the-api-smartness/repertoire-bibliographique-universel.png" />
+      
+    </div>
+
+<p><em>Répertoire bibliographique universel, Paul Otlet
+“<a href="http://commons.wikimedia.org/wiki/File:Mundaneum_Tir%C3%A4ng_Karteikaarten.jpg#/media/File:Mundaneum_Tir%C3%A4ng_Karteikaarten.jpg">Mundaneum Tiräng Karteikaarten</a>” by <a href="//commons.wikimedia.org/wiki/User:Zinneke" title="User:Zinneke">Zinneke</a> - <span class="int-own-work" lang="en">Own work</span>. Licensed under <a title="Creative Commons Attribution-Share Alike 3.0" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a> via <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>.</em></p>
+
+<p>As I was writing this post, I was wondering if these <em>ways</em> could be used for a sort of (meta) classification/evaluation/maturity model of API and API providers including RMM, HAMM and other things… I feel like some sort of <a href="http://www.catalogingtheworld.com/">Paul Otlet</a> for APIs… I’ll think about it.</p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://apihandyman.io/the-ways-of-the-api-smartness/';
+      this.page.identifier = 'http://apihandyman.io/the-ways-of-the-api-smartness/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <script language="JavaScript">
+        anchors.options = {
+          placement: 'left'
+        };
+        anchors.add('.blog-container h1');
+        anchors.add('.blog-container h2');
+        anchors.add('.blog-container h3');
+    </script>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+  <script language="javascript">
+    $(function() {
+      console.log('here');
+      var $myNav = $('#toc');
+      var $myScope = $('#post');
+      Toc.init({
+        $nav: $myNav,
+        $scope: $myScope
+      });
+      $('body').scrollspy({
+        target: '#toc'
+      });
+    });
+  </script>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>

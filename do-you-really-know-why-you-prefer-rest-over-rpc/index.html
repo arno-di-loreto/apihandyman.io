@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>Do you really know why you prefer REST over RPC? | API Handyman</title>
+  <meta name="description" content="A few weeks ago I’ve seen an interesting flock of tweets initiated by this question: Is my hatred of having http endpoints with the same path but different b...">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/do-you-really-know-why-you-prefer-rest-over-rpc/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/anchor.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/do-you-really-know-why-you-prefer-rest-over-rpc/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">Do you really know why you prefer REST over RPC?</h1>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2015-05-10T17:42:20+02:00" itemprop="datePublished">May. 10, 2015</time><span>&nbsp;|&nbsp;posts</span>
+      </p>
+      <p>A few weeks ago I’ve seen an interesting flock of tweets initiated by this question:</p>
+
+<div class="jekyll-twitter-plugin"><blockquote class="twitter-tweet" align="center"><p lang="en" dir="ltr">Is my hatred of having http endpoints with the same path but different behaviors based on the verb totally irrational? Because I HATE it</p>&mdash; Camille Fournier (@skamille) <a href="https://twitter.com/skamille/status/588713316358475776">April 16, 2015</a></blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
+<p>This question and the tweets that followed put my brain on quite an animated discussion…<!--more--></p>
+
+<div>
+      <img src="/images/do-you-really-know-why-you-prefer-rest-over-rpc/voices-inside-my-head.png" />
+      
+    </div>
+
+<p>After this internal discussion, I realized that this question (and all the tweet debate that follows it) could help me highlight a dark corner of my librainry: why should I considered REST’s request style (resource oriented) better than RPC’s (operation oriented)? Is RPC’s request style so evil? Is REST’s the panacea?</p>
+
+<h1 id="what-rpcs-and-rests-requests-styles-look-like">What RPC’s and REST’s requests styles look like</h1>
+<p>Before comparing the two request styles let’s see what they look like.</p>
+
+<h2 id="the-http-request">The HTTP request</h2>
+<p>Both RPC and REST use <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP protocol</a> which is a request/response protocol.</p>
+
+<p>A basic HTTP request consists of:</p>
+
+<ul>
+  <li>A verb (or method)</li>
+  <li>A resource (or endpoint)</li>
+</ul>
+
+<p>Each HTTP verb:</p>
+
+<ul>
+  <li>Has a meaning</li>
+  <li>Is idempotent or not: <em>A request method is considered “idempotent” if the intended effect on the server of multiple identical requests with that method is the same as the effect for a single such request</em> (see <a href="http://tools.ietf.org/html/rfc7231#section-4.2.2">RFC7231: Idempotent methods</a>).</li>
+  <li>Is safe or not: <em>Request methods are considered “safe” if their defined semantics are essentially read-only</em> (see <a href="http://tools.ietf.org/html/rfc7231#section-4.2.1">RFC7231: Safe methods</a>).</li>
+  <li>Is cacheable or not</li>
+</ul>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Verb</th>
+      <th>Meaning</th>
+      <th> Idempotent </th>
+      <th> Safe </th>
+      <th> Cacheable </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td>Reads a resource</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>Creates a resource or triggers a data-handling process</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Only cacheable if response contains explicit freshness information</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>Fully updates (replaces) an existing resource or create a resource</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>PATCH</td>
+      <td>Partially updates a resources</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Only cacheable if response contains explicit freshness information</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>Deletes a resource</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="center"><em>The table above shows only the HTTP verbs used commonly by RPC and REST APIs.</em></p>
+
+<h2 id="rpc-the-operation-request-style">RPC: The operation request style</h2>
+
+<p>The <a href="http://www.acronymfinder.com/RPC.html">RPC</a> acronym has many meanings and <a href="http://en.wikipedia.org/wiki/Remote_procedure_call">Remote Procedure Call</a> has many forms.<br />
+In this post, when I talk about RPC I talk about <em>WYGOPIAO: What You GET Or POST Is An Operation</em>.</p>
+
+<p>With this type of RPC, you expose <em>operations</em> to manipulate data through HTTP as a <em>transport protocol</em>.</p>
+
+<p>As far as I know, there are no particular rules for this style but generally:</p>
+
+<ul>
+  <li>The endpoint contains the name of the operation you want to invoke.</li>
+  <li>This type of API generally only uses GET and POST HTTP verbs.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET /someoperation?data=anId
+
+POST /anotheroperation
+{
+  "data":"anId"; 
+  "anotherdata":"another value"
+}</code></pre></figure>
+
+<p>How do people choose between GET and POST?</p>
+
+<ul>
+  <li>For those who care a little about HTTP protocol this type of API tends to use GET for operations that don’t modify anything and POST for other cases.</li>
+  <li>For those who don’t care much about HTTP protocol, this type of API tends to use GET for operations that don’t need too much parameters and POST for other cases.</li>
+  <li>Those who really don’t care or who don’t even think about it choose between GET and POST on a random basis or always use POST.</li>
+</ul>
+
+<h2 id="rest-the-resource-request-style">REST: The resource request style</h2>
+
+<p><em>I will not explain in detail what REST is, you can read Roy Fielding’s <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">dissertation</a> and <a href="http://restcookbook.com/">The REST cookbook</a> for more details.</em></p>
+
+<p>To make it short and focus on the matter of this post, with a REST API you expose data as resources that you manipulate through HTTP protocol <em>using the right HTTP verb</em> :</p>
+
+<ul>
+  <li>The endpoint contains the resource you manipulate.</li>
+  <li>Many use the CRUD analogy to explain REST requests principles. The HTTP verb indicates what you want to do (Create/Read/Update/Delete) with that resource as defined earlier in this post and by <a href="http://tools.ietf.org/html/rfc7231#section-4.3">RFC7231 (Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content)</a> and <a href="http://tools.ietf.org/html/rfc5789">RFC5789 (PATCH Method for HTTP)</a>.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">GET /someresources/anId
+
+PUT /someresources/anId
+{"anotherdata":"another value"}</code></pre></figure>
+
+<h2 id="examples">Examples</h2>
+<p>Here are some of my <a href="/the-api-crash-test-project/">CarBoN API</a> requests presented in RPC and REST ways:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Operation</th>
+      <th>RPC (operation)</th>
+      <th>REST (resource)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Signup</td>
+      <td>POST /signup</td>
+      <td>POST /persons</td>
+    </tr>
+    <tr>
+      <td>Resign</td>
+      <td>POST /resign</td>
+      <td>DELETE /persons/1234</td>
+    </tr>
+    <tr>
+      <td>Read a person</td>
+      <td>GET /readPerson?personid=1234</td>
+      <td>GET /persons/1234</td>
+    </tr>
+    <tr>
+      <td>Read a person’s items list</td>
+      <td>GET /readUsersItemsList?userid=1234</td>
+      <td>GET /persons/1234/items</td>
+    </tr>
+    <tr>
+      <td>Add an item to a person’s list</td>
+      <td>POST /addItemToUsersItemsList</td>
+      <td>POST /persons/1234/items</td>
+    </tr>
+    <tr>
+      <td>Update an item</td>
+      <td>POST /modifyItem</td>
+      <td>PUT /items/456</td>
+    </tr>
+    <tr>
+      <td>Delete an item</td>
+      <td>POST /removeItem?itemId=456</td>
+      <td>DELETE /items/456</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="comparing-rpcs-and-rests-requests-styles">Comparing RPC’s and REST’s requests styles</h1>
+<p>I’ve selected some items to compare RPC’s and REST’s requests styles:</p>
+
+<ul>
+  <li>Beauty</li>
+  <li>Designability</li>
+  <li>API definition language</li>
+  <li>Predictability and semantic</li>
+  <li>Hypermediability</li>
+  <li>Cacheability</li>
+  <li>Usability</li>
+</ul>
+
+<h2 id="beauty">Beauty</h2>
+
+<p>Even if this item is irrelevant, as beauty is in the eye of the beholder, both styles can produce beautiful API as they can produce ugly ones.</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Operation</th>
+      <th>RPC</th>
+      <th>REST</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Read a person <em>pretty version</em></td>
+      <td>GET /readPerson?personid=1234</td>
+      <td>GET /persons/1234</td>
+    </tr>
+    <tr>
+      <td>Read a person <em>ugly version</em></td>
+      <td>GET /rdXbzv01?i=1234</td>
+      <td>GET /xbzv01/1234</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>So that’s a draw for this one.</strong></p>
+
+<h2 id="designability">Designability</h2>
+<p>Is it easier to design RPC ou REST endpoints?</p>
+
+<p>Designing a RPC API may seem easier:</p>
+
+<ul>
+  <li>when you have to deal with an existing system as it is generally operation oriented but you’ll have to simplify and clean this vision to expose it.</li>
+  <li>when you deal mainly with processes and operations (as transform them into REST resources is not always trivial).</li>
+</ul>
+
+<p>The design of an RPC API needs the designers to be strict to achieve a consistant API as you do not really have constraints.</p>
+
+<p>Designing a REST API may seem easier when you deal mainly with data.</p>
+
+<p>But even if in some certain case , designing a REST API seems a little harder than an RPC one, it gives you a <em>frame</em> that let you achieve more easily a consistent API.</p>
+
+<p>And in both case you’ll have to deal with naming consistency.</p>
+
+<p>Both style have pros and cons depending on the context but I don’t find that one style is more easier to design than the other. As <em>I</em> don’t really see a winner, <strong>that’s another draw.</strong></p>
+
+<h2 id="api-definition-languages">API definition languages</h2>
+<p>You can perfectly describe both styles with API definition languages like Swagger, RAML or blueprint.</p>
+
+<p><strong>So that’s a draw, again.</strong></p>
+
+<h2 id="predictability-and-semantic">Predictability and semantic</h2>
+
+<p>With RPC the semantic relies (mostly) on the endpoint and there are no global shared understanding of its meaning.
+For example, to delete an <em>item</em> you could have:</p>
+
+<ul>
+  <li>GET (or POST) /deleteItem?itemId=456</li>
+  <li>GET (or POST) /removeIt?itemId=456</li>
+  <li>GET (or POST) /trash?itemId=456</li>
+</ul>
+
+<p>To resign from the service you could have:</p>
+
+<ul>
+  <li>POST (or GET) /resign</li>
+  <li>POST (or GET) /goodbye</li>
+  <li>POST (or GET) /seeya</li>
+</ul>
+
+<p>With RPC you rely on your human interpretation of the endpoint’s meaning to understand what it does <em>but</em> you can therefore have a fine human readable description of what is happening when you call this endpoint.</p>
+
+<p>With REST the semantic relies (mostly) on the HTTP verb. The verb’s semantic is globally shared. The only way to delete an <em>item</em> is:</p>
+
+<ul>
+  <li>DELETE /items/456</li>
+</ul>
+
+<p>If a user want to stop using your service, you’ll do this (not so obvious) call:</p>
+
+<ul>
+  <li>DELETE /users/1234</li>
+</ul>
+
+<p>REST is more predictable than RPC as it relies on the shared semantic of HTTP verbs. You don’t know what happen exactly but you have a general idea of what you do.</p>
+
+<p><strong>REST wins (but shortly).</strong></p>
+
+<h2 id="hypermediability">Hypermediability</h2>
+<p>In both style you end making HTTP request, so there is no problem do design an hypermedia API with any of these styles.</p>
+
+<p><strong>This is a draw.</strong></p>
+
+<h2 id="cacheability">Cacheability</h2>
+<p>I’ve often seen (http) caching used as a killer reason to choose REST over RPC.<br />
+But after reading HTTP RFCs, I do not agree with this argument (maybe I missed something).
+Of course if your RPC API only use POST for all requests, caching may be a little tricky to handle (but not impossible).
+If you use GET and POST wisely, your RPC API will be able to obtain the same level of cacheability as a REST API.</p>
+
+<p><strong>This is a draw.</strong></p>
+
+<h2 id="usability">Usability</h2>
+<p>From a developer point of view both styles are using HTTP protocol so there’s basically no difference between RPC and REST request.
+No difference on the documentation (machine of human readable) level too.</p>
+
+<p><strong>This is a draw.</strong></p>
+
+<h2 id="totalling-points">Totalling points</h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Who wins?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Beauty</td>
+      <td>Draw</td>
+    </tr>
+    <tr>
+      <td>Designability</td>
+      <td>Draw</td>
+    </tr>
+    <tr>
+      <td>API definition language</td>
+      <td>Draw</td>
+    </tr>
+    <tr>
+      <td>Predictability and semantic</td>
+      <td>REST</td>
+    </tr>
+    <tr>
+      <td>Hypermediability</td>
+      <td>Draw</td>
+    </tr>
+    <tr>
+      <td>Cachability</td>
+      <td>Draw</td>
+    </tr>
+    <tr>
+      <td>Usability</td>
+      <td>Draw</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="do-rest-really-wins">Do REST really wins?</h1>
+<p>REST <em>wins</em> thanks to the <em>predictability and semantic</em> item.<br />
+So, is the resource approach better than the operation one?</p>
+
+<p>No.</p>
+
+<p>RPC and REST are only different approaches with pros and cons and both are valueable <em>depending on the context</em>. You can even mix these two approaches in a single API.</p>
+
+<p>The <em>context</em>, that’s the key. There are no panacea solution, don’t follow fashion blindly, you always have to think within a context and must be <em>pragmatic</em> when <em>choosing</em> a solution.</p>
+
+<p>At least, I know now why I <em>like</em> the resource approach: its predictability and the frame given by the full use of HTTP protocol. What about you?</p>
+
+<p>One last word to leave you with food for thought: in this time of advent of functionnal programming, having operation request style could make sense…</p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://apihandyman.io/do-you-really-know-why-you-prefer-rest-over-rpc/';
+      this.page.identifier = 'http://apihandyman.io/do-you-really-know-why-you-prefer-rest-over-rpc/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <script language="JavaScript">
+        anchors.options = {
+          placement: 'left'
+        };
+        anchors.add('.blog-container h1');
+        anchors.add('.blog-container h2');
+        anchors.add('.blog-container h3');
+    </script>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+  <script language="javascript">
+    $(function() {
+      console.log('here');
+      var $myNav = $('#toc');
+      var $myScope = $('#post');
+      Toc.init({
+        $nav: $myNav,
+        $scope: $myScope
+      });
+      $('body').scrollspy({
+        target: '#toc'
+      });
+    });
+  </script>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>

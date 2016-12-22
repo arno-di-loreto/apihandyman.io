@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>Why you must design your private API in english | API Handyman</title>
+  <meta name="description" content="Why you must design your private API in english. Pourquoi vous devez concevoir votre API privée en anglais. Perché è necessario progettare la vostra API priv...">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/why-you-must-design-your-private-api-in-english/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/anchor.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/why-you-must-design-your-private-api-in-english/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">Why you must design your private API in english</h1>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2015-02-07T21:21:47+01:00" itemprop="datePublished">Feb. 7, 2015</time><span>&nbsp;|&nbsp;posts</span>
+      </p>
+      <blockquote>
+  <p>Why you must design your private API in english.<br />
+Pourquoi vous devez concevoir votre API privée en anglais.<br />
+Perché è necessario progettare la vostra API privata in inglese.<br />
+Por qué debe diseñar su API privada en Inglés.<br />
+Deshalb müssen Sie Ihre private API in Englisch entwerfen.<br />
+なぜあなたは英語であなたのプライベートAPIを設計する必要があります.</p>
+</blockquote>
+
+<p>As you might have guess, this post targets people designing APIs in non english speaking countries.
+When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it.
+<em>Choosing</em> a language for your API is one of them.<!--more--></p>
+
+<h1 id="the-enut-project">The eNut project</h1>
+<p>You work for <em>Complètement Noix Cie</em> (<em>Totally Nut Co</em>) a small family nutgrowing company in France.
+This company launches the project <em>eNoix</em> (<em>eNut</em>) based on patent <a href="http://www.google.com/patents/US2427486">US 2427486 A</a> which will cut nuts collection costs by 300%.
+You have to design a private API to control and monitor this totally awesome device. You’ll have to deal with nuts, squirrels and …. Wait! Stop!
+Before designing anything you have to choose a language for your API.</p>
+
+<h1 id="choosing-a-language-to-design-an-api">Choosing a language to design an API?</h1>
+<p>I’m not talking about internationalization or choosing a programming language …
+I’m talking about choosing a human language for the interface: english, french, italian, spanish, german, japanese…</p>
+
+<blockquote>
+  <p>Jean-Philippe wants to get a list of squirrels, how does he get it?<br />
+GET /squirrels<br />
+GET /ecureuils<br />
+GET /scoiattoli<br />
+GET /ardillas<br />
+GET /eichhornchen<br />
+GET /リス</p>
+</blockquote>
+
+<p>The choice should be quite simple because this should be a single-choice question instead of a multiple-choice question.
+The only possible response should be english.</p>
+
+<p>The only possible response <strong>IS</strong> english.</p>
+
+<blockquote>
+  <p>But this API is private and will only be used by squirrels or us or people understanding our language. Why should we care to design it in english instead of (whatever language you speak)?<br />
+<em>(me some time ago, I could just kick myself)</em></p>
+</blockquote>
+
+<p>There are two reasons rhyming with “<em>ization</em>”: standardization and externalization.</p>
+
+<h1 id="follow-the-standards">Follow the standards</h1>
+<blockquote>
+  <p>Stop building super custom APIs.<br />
+<em>(<a href="http://www.steveklabnik.com/">Steve Klabnick</a>, API Days Paris 2014)</em></p>
+</blockquote>
+
+<p>Even if your API is private, it must be <em>standard</em>, the more your conform to standards the more your API is simple to design and to use.
+In IT field, standard generally means <em>english</em>.
+You could for example want to:</p>
+
+<ul>
+  <li>use <a href="http://jsonapi.org/">{json:api}</a> format which define some attributes in english.</li>
+  <li>use <a href="http://schema.org/">schema.org</a> schemas for some of your data. Everything is in english.</li>
+  <li>use <a href="http://www.hydra-cg.com/">Hydra</a> to build a powerful hypermedia API (and use automatic tools to create a console for your API), english attributes again.</li>
+  <li>integrate other APIs with yours. These APIs will probably be in english (for example the famous <a href="http://pokeapi.co/">Poké API</a>). Depending on the integration level, the combination of two APIs using different languages might  be weird and hard to understand.</li>
+</ul>
+
+<p>And even if <em>now</em> you don’t need any of these <em>english</em> things, you may need one <em>someday</em>.</p>
+
+<p>Using a language other than english for your API might complicate its design and evolution when you want to integrate existing things and lead to a <em>too-much-custom-two-languages</em> API.
+Too much custom APIs are hard to understand and use so imagine one with two languages.</p>
+
+<h1 id="assume-that-your-api-will-not-be-private-forever">Assume that your API will not be private forever</h1>
+<blockquote>
+  <p>Anyone who doesn’t do this will be fired.<br />
+<em>(Jeff Bezos, <a href="http://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/">about service interface externalization and other things</a>)</em></p>
+</blockquote>
+
+<p>When you create an API you must always design it as it will be externalized, exposed to the outside world (read this <a href="http://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/">post from API Evangelist</a> about Amazon’s internal APIs).</p>
+
+<ul>
+  <li>You may need developers outside of your company to build the application which will consume it on the eNoix (iNut) device
+    <ul>
+      <li>They can be foreigner and not speak your language (try to explain a french API to indian developers…).</li>
+      <li>Even if they speak your language, they may have problems understanding your <em>too-much-custom-two-languages</em> API.</li>
+    </ul>
+  </li>
+  <li>You may work for a small entity in a big multinational group, your API may be used or taken as a model by other entities and/or in other countries.</li>
+  <li>You may want to show what you have done to the world because it’s cool.</li>
+  <li>And because it’s cool, everybody wants to use it, so you want to open it.</li>
+</ul>
+
+<p>The success of this externalization may be tempered by your <em>non-english</em> API.</p>
+
+<h1 id="api-designs-commandment">API design’s commandment</h1>
+<blockquote>
+  <p>English shalt be the language thou use to design an API, and the language of the API designing shalt be english.<br />
+<em>(Book of <del>Armaments</del> API Design)</em></p>
+</blockquote>
+
+<p>But even if you design your API in english, you can at least write documentation in your language… and in english.</p>
+
+<p>If my poor argumentation do not convince you to design your API in english, I hope that at least you will <em>choose</em> a language for your API in full knowledge of the facts and not build your API without thinking about it.</p>
+
+<p>If someone has a really good reason to not design an API in english (or others good reasons to design in english), let me know, I’ll be happy to discuss on this subject.</p>
+
+<p><em>Image credit: <a href="http://en.wikipedia.org/wiki/The_Tower_of_Babel_%28Bruegel%29">The tower of Babel, Peter Bruegel</a>.</em></p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://apihandyman.io/why-you-must-design-your-private-api-in-english/';
+      this.page.identifier = 'http://apihandyman.io/why-you-must-design-your-private-api-in-english/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <script language="JavaScript">
+        anchors.options = {
+          placement: 'left'
+        };
+        anchors.add('.blog-container h1');
+        anchors.add('.blog-container h2');
+        anchors.add('.blog-container h3');
+    </script>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+  <script language="javascript">
+    $(function() {
+      console.log('here');
+      var $myNav = $('#toc');
+      var $myScope = $('#post');
+      Toc.init({
+        $nav: $myNav,
+        $scope: $myScope
+      });
+      $('body').scrollspy({
+        target: '#toc'
+      });
+    });
+  </script>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>
