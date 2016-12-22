@@ -15,25 +15,40 @@
 # in the templates via {{ site.myvariable }}.
 title: API Handyman
 description: '{"input" : "learn", "output" : "share"}'
+url: "http://apihandyman.io" # the base hostname & protocol for your site
+baseurl: ""
 
-url: "https://arno-di-loreto.github.io" # the base hostname & protocol for your site
-baseurl: /apihandyman.io
+# Social links
 twitter_username: apihandyman
 github_username:  arno-di-loreto
 linkedin_username: arnaudlauret
+
+# Page default thumbnail/banner
 default_thumbnail: /images/commons/thumbnail.png
+
+# What's before this will be shown in post summary'
+excerpt_separator: <!--more-->
+
+# Pagination parameters
+## jekyll-paginate parameters
+paginate: 10
+paginate_path: "page:num"
+## jekyll-paginate-category parameters
+category_dir: "categories"
+category_layout: "_layouts/category.html"
+## pagination control style (numbers or text)
+paginate_style: text
+
+# Third party parameters
 google_analytics: UA-58046291-1
 disqus:
   shortname: apihandyman
-
-excerpt_separator: <!--more-->
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
-  
 
 gems:
   - jekyll-feed
@@ -44,12 +59,3 @@ gems:
 exclude:
   - Gemfile
   - Gemfile.lock
-
-paginate: 10
-paginate_path: "page:num"
-
-category_dir: "categories"
-category_layout: "_layouts/category.html"
-
-# numbers or text
-paginate_style: text
