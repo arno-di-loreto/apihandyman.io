@@ -9,7 +9,7 @@ layout: default
           By
           <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>&nbsp;&nbsp;|&nbsp;
         {% endif %}
-        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b. %-d, %Y" }}</time><span>&nbsp;|&nbsp;{{ page.category }}</span>
+        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b. %-d, %Y" }}</time><span>&nbsp;|&nbsp;{{ page.category | capitalize }}</span>
       </p>
       {{ content }}
       {% include disqus_comments.html %}
