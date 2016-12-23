@@ -11,7 +11,7 @@ dsq_thread_id:
 category: posts
 full: true
 ---
-Welcome to the API Handyman blog!
+Welcome to the API Handyman blog! ZIG
 
 *You can read a more complete presentation of the API Handyman blog [here]({{ site.baseurl | prepend: site.github.url}}/about/).*
 

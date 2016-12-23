@@ -1,6 +1,8 @@
 language: ruby
+
 rvm:
   - 2.0.0
+
 cache: bundler
 
 env:
@@ -8,4 +10,9 @@ env:
     - DEPLOY_BRANCH=gh-pages-test
     - JEKYLL_ENV=production
 
-script: bash ./build.sh
+script: scripts/build.sh
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: scripts/deploy.sh
