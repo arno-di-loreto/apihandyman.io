@@ -35,7 +35,7 @@ class Image < Liquid::Tag
     baseurl = context.registers[:site].config['baseurl'];
     
     if @file.start_with?('/images')
-      src = "#{baseurl}/#{@file}"
+      src = "#{baseurl}#{@file}"
     else
       permalink = lookup(context, 'page.permalink')
       src = "#{baseurl}/images#{permalink}#{@file}"
