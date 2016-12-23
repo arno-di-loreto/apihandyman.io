@@ -5,9 +5,13 @@ rvm:
 
 cache: bundler
 
+branches:
+  only:
+    - master
+
 env:
   global:
-    - DEPLOY_BRANCH=gh-pages-test
+    - DEPLOY_BRANCH=gh-pages
     - JEKYLL_ENV=production
 
 script: scripts/build.sh
@@ -17,4 +21,4 @@ deploy:
   skip_cleanup: true
   script: scripts/deploy.sh
   on:
-    branch: feature/travis
+    branch: master
