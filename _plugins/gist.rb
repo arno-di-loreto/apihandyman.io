@@ -36,7 +36,7 @@ class Gist < Liquid::Tag
   end
 
   def render(context)
-    "<code #{@id}#{@file}#{@lines}#{@highlight}#{@footer}></code>"
+    "<code #{@id}#{@file}#{@lines}#{@highlight}#{@footer} gist-enable-cache=\"true\"></code>"
   end
 
   Liquid::Template.register_tag "gist", self
