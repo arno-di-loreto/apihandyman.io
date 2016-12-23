@@ -174,7 +174,7 @@ Security definition takes place on specification’s root level in <code class="
 
 <p>To define a <code class="highlighter-rouge">basic</code> security it’s fairly easy, we only have to set its <code class="highlighter-rouge">type</code> to <code class="highlighter-rouge">basic</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="17-23" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="17-23" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>In this example we have defined three security definitions (<code class="highlighter-rouge">UserSecurity</code>, <code class="highlighter-rouge">AdminSecurity</code> and <code class="highlighter-rouge">MediaSecurity</code>), each of them is of <code class="highlighter-rouge">basic</code> type.</p>
 
@@ -188,7 +188,7 @@ Security definition takes place on specification’s root level in <code class="
   <li>And then give the parameter’s <code class="highlighter-rouge">name</code></li>
 </ul>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="17-29" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="17-29" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>In this example, we have defined three security definitions of <code class="highlighter-rouge">apiKey</code> type:</p>
 
@@ -230,14 +230,14 @@ Security definition takes place on specification’s root level in <code class="
   </tbody>
 </table>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-22" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-22" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>In this example we have defined a <code class="highlighter-rouge">OauthSecurity</code> security definition of <code class="highlighter-rouge">oauth2</code> type using an <code class="highlighter-rouge">accessCode</code> flow with an authorizationUrl and a tokenUrl.</p>
 
 <h3 id="scopes">Scopes</h3>
 <p>We can also define <code class="highlighter-rouge">scopes</code> by using a hashmap, the key is the scope’s name and the value is its description.</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-26" data-gist-highlight-line="23-26" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-26" data-gist-highlight-line="23-26" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>In this example, we’ve added three scopes (<code class="highlighter-rouge">admin</code>, <code class="highlighter-rouge">user</code> and <code class="highlighter-rouge">media</code>) to our <code class="highlighter-rouge">OauthSecurity</code> security definition</p>
 
@@ -251,51 +251,51 @@ When we apply a security definition to an operation, it overrides API security.<
 
 <h3 id="api-level">API level</h3>
 <p>In this example the security definition which apply to ALL API operations is <code class="highlighter-rouge">UserSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="17-29" data-gist-highlight-line="25-26" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="17-29" data-gist-highlight-line="25-26" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h3 id="operation-level">Operation level</h3>
 <p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the <code class="highlighter-rouge">UserSecurity</code> defined on top level which applies:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="28-39" data-gist-highlight-line="29,32" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="28-39" data-gist-highlight-line="29,32" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security is overridden by <code class="highlighter-rouge">AdminSecurity</code>: 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="55-59" data-gist-highlight-line="58-59" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="55-59" data-gist-highlight-line="58-59" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is also overridden, but this time it’s by <code class="highlighter-rouge">MediaSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="246-252" data-gist-highlight-line="246,249,251-252" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="246-252" data-gist-highlight-line="246,249,251-252" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="api-key-1">API Key</h2>
 <p>We can do exactly the same things with an API key security definition.</p>
 
 <h3 id="api-level-1">API level</h3>
 <p>In this example the security definition which apply to ALL API operations is <code class="highlighter-rouge">UserSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="17-35" data-gist-highlight-line="31-32" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="17-35" data-gist-highlight-line="31-32" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h3 id="operation-level-1">Operation level</h3>
 <p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the <code class="highlighter-rouge">UserSecurity</code> defined on top level which applies:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="34-45" data-gist-highlight-line="35,38" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="34-45" data-gist-highlight-line="35,38" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security is overridden by <code class="highlighter-rouge">AdminSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="61-65" data-gist-highlight-line="61,64,65" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="61-65" data-gist-highlight-line="61,64,65" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is also overridden, but this time it’s by <code class="highlighter-rouge">MediaSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="252-258" data-gist-highlight-line="252,255,257-258" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="252-258" data-gist-highlight-line="252,255,257-258" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="oauth-2-1">Oauth 2</h2>
 <p>With an <code class="highlighter-rouge">oauth2</code> the principle is the same but you can also define which scope(s) you use.</p>
 
 <h3 id="api-level-2">API level</h3>
 <p>In this example the security definition which apply to ALL API operations is <code class="highlighter-rouge">OauthSecurity</code> with the <code class="highlighter-rouge">user</code> scope:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-33" data-gist-highlight-line="28-30" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-33" data-gist-highlight-line="28-30" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h3 id="operation-level-2">Operation level</h3>
 <p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the <code class="highlighter-rouge">OauthSecurity</code> with <code class="highlighter-rouge">user</code>scope defined on top level which applies:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="32-43" data-gist-highlight-line="33,36" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="32-43" data-gist-highlight-line="33,36" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security scope is overridden by <code class="highlighter-rouge">admin</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="59-64" data-gist-highlight-line="59,62-64" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="59-64" data-gist-highlight-line="59,62-64" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is also overridden, but this time it’s by <code class="highlighter-rouge">media</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="252-259" data-gist-highlight-line="252,255,257-259" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="252-259" data-gist-highlight-line="252,255,257-259" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h1 id="using-multiple-security-types">Using multiple security types</h1>
 <p>It’s not mandatory to define a single type of security definition and use only one at a time.
@@ -303,22 +303,22 @@ The examples below show how we can define security definitions of different type
 
 <h2 id="security-definitions-1">Security definitions</h2>
 <p>Here we define there different types of security:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="17-31" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="17-31" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="global-security">Global security</h2>
 <p>Then we choose to apply both of them globally:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="33-36" data-gist-footer="true"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="33-36" data-gist-footer="true" gist-enable-cache="true"></code>
 It means that a consumer can call any operation (which do not override security) with one of those two security types.</p>
 
 <h2 id="overriding-global-security">Overriding global security</h2>
 <p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the Oauth 2 <code class="highlighter-rouge">OauthSecurity</code> with <code class="highlighter-rouge">user</code>scope OR the basic authentication <code class="highlighter-rouge">LegacySecurity</code> defined on top level which applies:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="38-49" data-gist-highlight-line="39,42" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="38-49" data-gist-highlight-line="39,42" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security scope Oauth 2 <code class="highlighter-rouge">OauthSecurity</code> is overridden by <code class="highlighter-rouge">admin</code> and consumer can also still use the basic authentication <code class="highlighter-rouge">LegacySecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="65-71" data-gist-highlight-line="65,68-71" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="65-71" data-gist-highlight-line="65,68-71" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is fully overridden by the API Key <code class="highlighter-rouge">MediaSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="260-266" data-gist-highlight-line="260,263,265-266" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="260-266" data-gist-highlight-line="260,263,265-266" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h1 id="conclusion">Conclusion</h1>
 <p>You now have mastered security. With this new post you are now a full expert when it comes to describe an API interface with the OpenAPI specification. But an interface contract alone may not be easy to understand without some explainations. In next post we’ll learn how to document this interface description (coming soon) to ease its understanding.</p>

@@ -169,11 +169,11 @@
   <li>A sub-elements in <code class="highlighter-rouge">Persons</code> definition</li>
 </ul>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-highlight-line="65-74, 78, 60, 40" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-highlight-line="65-74, 78, 60, 40" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>To use the <code class="highlighter-rouge">Person</code> definition in these different places, we use a JSON Pointer (defined by <a href="https://tools.ietf.org/html/rfc6901">RFC6901</a>):</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="78" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="78" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>This pointer describes a path in the document, pointing to <code class="highlighter-rouge">Person</code> in <code class="highlighter-rouge">definitions</code> which is as the root (<code class="highlighter-rouge">#</code>) of the <em>current</em> document.</p>
 
@@ -187,11 +187,11 @@
 
 <p>We can create a <code class="highlighter-rouge">person.yaml</code> file containing the <code class="highlighter-rouge">Person</code> definition:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_23_person.yaml" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_23_person.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>Then we can remove the <code class="highlighter-rouge">Person</code> definition in <code class="highlighter-rouge">definitions</code> and replace all existing references to person <code class="highlighter-rouge">#definitions/Person</code> by a reference to <code class="highlighter-rouge">Person</code> in the <code class="highlighter-rouge">person.yaml</code> file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_24_local_reference.yaml" data-gist-highlight-line="40, 60, 68" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_24_local_reference.yaml" data-gist-highlight-line="40, 60, 68" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="editing-splitted-local-files-with-the-online-editor">Editing splitted local files with the online editor</h2>
 <p>Tools will look for the referenced file (<code class="highlighter-rouge">person.yaml</code>) in the same directory as the file containing the reference.
@@ -266,19 +266,19 @@ http-server --cors .</code></pre></figure>
 
 <p>Let’s move the <code class="highlighter-rouge">person.yaml</code> file into a sub-folder <code class="highlighter-rouge">folder</code>, the new reference will be like this:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_25_local_reference_folder.yaml" data-gist-line="40" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_25_local_reference_folder.yaml" data-gist-line="40" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="file-referencing-a-file-from-an-upper-folder">File referencing a file from an upper folder</h3>
 <p>You can also reference a file outside the current folder. Let’s create a <code class="highlighter-rouge">persons.yaml</code> file into a <code class="highlighter-rouge">another-folder</code> folder:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_26_persons.yaml" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_26_persons.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>This file reference the <code class="highlighter-rouge">person.yaml</code> file using <code class="highlighter-rouge">..</code> to get to the upper level.</p>
 
 <p>To use <code class="highlighter-rouge">persons.yaml</code>, we proceed just like with <code class="highlighter-rouge">person.yaml</code>. We remove the <code class="highlighter-rouge">Persons</code> definition from the main file and we replace its reference <code class="highlighter-rouge">#/definitions/Persons</code> by <code class="highlighter-rouge">another-folder/persons.yaml#Persons</code>.</p>
 
 <p>Here’s the full file with all definitions externalized (the <code class="highlighter-rouge">definitions</code> section has been removed):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_25_local_reference_folder.yaml" data-gist-highlight-line="31,40,60" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_25_local_reference_folder.yaml" data-gist-highlight-line="31,40,60" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="referencing-a-remote-files">Referencing a remote files</h2>
 <p>As you may have guess while modifying the references in the specification and editor configuration, it is also possible to reference a remote file.</p>
@@ -292,7 +292,7 @@ http-server --cors .</code></pre></figure>
 
 <p>We have launched a web server on 8080 port, so all we have to do is add <code class="highlighter-rouge">http://localhost:8080/</code> to the references to <code class="highlighter-rouge">Person</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_27_remote_reference.yaml" data-gist-line="40" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_27_remote_reference.yaml" data-gist-line="40" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="remote-files-containing-local-references">Remote files containing local references</h3>
 <p>What happen if the remote file reference a local file? (<code class="highlighter-rouge">Main file -&gt; Remote file -&gt; Local file</code>).</p>
@@ -301,7 +301,7 @@ http-server --cors .</code></pre></figure>
 
 <p>If we replace the local to <code class="highlighter-rouge">Persons</code> by a remote reference…</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_27_remote_reference.yaml" data-gist-line="31" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_27_remote_reference.yaml" data-gist-line="31" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>… the <code class="highlighter-rouge">person.yaml</code> file referenced “locally” in the <code class="highlighter-rouge">persons.yaml</code> file will be loaded from <code class="highlighter-rouge">http://localhost:8080</code> which has served the <code class="highlighter-rouge">persons.yaml</code>.</p>
 
@@ -311,7 +311,7 @@ http-server --cors .</code></pre></figure>
 
 <p>We can replace the <code class="highlighter-rouge">person.yaml</code> file local reference by a remote reference in <code class="highlighter-rouge">persons.yaml</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_28_persons_remote.yaml" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_28_persons_remote.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="multiple-items-in-a-single-sub-file">Multiple items in a single sub-file</h2>
 <p>We have put <code class="highlighter-rouge">Person</code> and <code class="highlighter-rouge">Persons</code> definitions in separate files: this is not an obligation. You can put more than one item in a single file, you only need to use the right JSON Pointer.</p>
@@ -319,28 +319,28 @@ http-server --cors .</code></pre></figure>
 <h3 id="person-and-person-in-a-single-file">Person and Person in a single file</h3>
 <p>If we concatenate <code class="highlighter-rouge">person.yaml</code> and <code class="highlighter-rouge">persons.yaml</code> into a single file called <code class="highlighter-rouge">definitions.yaml</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_29_definitions.yaml" data-gist-highlight-line="15" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_29_definitions.yaml" data-gist-highlight-line="15" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>Note that in <code class="highlighter-rouge">Persons</code> the reference to <code class="highlighter-rouge">Person</code> is now <code class="highlighter-rouge">#/Person</code>.</p>
 
 <p>In the main file we only need to change the filename when reference these two definitions:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_30_subfile_multiple.yaml" data-gist-line="31" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_30_subfile_multiple.yaml" data-gist-line="31" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_30_subfile_multiple.yaml" data-gist-line="40" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_30_subfile_multiple.yaml" data-gist-line="40" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="organizing-content-in-a-sub-file">Organizing content in a sub-file</h3>
 <p>Within the sub-file you can organize the content as you wish. Here <code class="highlighter-rouge">Person</code> is in <code class="highlighter-rouge">SomeDefinitions</code> and Persons is in <code class="highlighter-rouge">OtherDefinitions</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_31_organized_definitions.yaml" data-gist-highlight-line="1,13,17" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_31_organized_definitions.yaml" data-gist-highlight-line="1,13,17" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>Note that in <code class="highlighter-rouge">Persons</code> the reference to <code class="highlighter-rouge">Person</code> is now <code class="highlighter-rouge">#/SomeDefinitions/Person</code>.</p>
 
 <p>In the main file we have to modify the path to get the item in the sub-file for these two definitions:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_32_subfile_organized.yaml" data-gist-line="31" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_32_subfile_organized.yaml" data-gist-line="31" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_32_subfile_organized.yaml" data-gist-line="40" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_32_subfile_organized.yaml" data-gist-line="40" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="definitions-responses-parameters">Definitions, Responses, Parameters</h2>
 <p>What we have done with <code class="highlighter-rouge">Person</code> and <code class="highlighter-rouge">Persons</code> definitions can be done with any reusable items (i.e. using <code class="highlighter-rouge">$ref</code>) such as responses and parameters in the Open API Specification file.</p>
@@ -353,26 +353,26 @@ http-server --cors .</code></pre></figure>
 <h2 id="let-the-chainsaw-massacre-begin">Let the chainsaw massacre begin</h2>
 <p>Let’s start with the <code class="highlighter-rouge">info</code> section:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="1-25" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="1-25" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>We can put its whole content in a file called <code class="highlighter-rouge">info.yaml</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_34_chainsaw_info.yaml" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_34_chainsaw_info.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>And reference it just like this in <code class="highlighter-rouge">info</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="1-4" data-gist-highlight-line="4" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="1-4" data-gist-highlight-line="4" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="the-wizard-of-resolution">The wizard of resolution</h2>
 <p>We can do the same thing with <code class="highlighter-rouge">paths</code>, <code class="highlighter-rouge">definitions</code>, <code class="highlighter-rouge">responses</code> and <code class="highlighter-rouge">parameters</code>: copy the section content in a sub-file (<a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_35_chainsaw_paths-yaml">paths.yaml</a>, <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_36_chainsaw_definitions-yaml">definitions.yaml</a>, <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_37_chainsaw_responses-yaml">responses.yaml</a> and <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_38_chainsaw_parameters-yaml">parameters.yaml</a>) and reference it in the main file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="29-39" data-gist-highlight-line="30,33,36,39" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="29-39" data-gist-highlight-line="30,33,36,39" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>If you remember previous posts, these sections references each other in many ways, for example in <code class="highlighter-rouge">paths.yaml</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_35_chainsaw_paths.yaml" data-gist-line="144-146" data-gist-highlight-line="146" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_35_chainsaw_paths.yaml" data-gist-line="144-146" data-gist-highlight-line="146" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>The <code class="highlighter-rouge">username</code> parameter is no longer in the main file and is not in the <code class="highlighter-rouge">paths.yaml</code> file but in the <code class="highlighter-rouge">parameters.yaml</code> file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_38_chainsaw_parameters.yaml" data-gist-line="1-6" data-gist-highlight-line="1" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_38_chainsaw_parameters.yaml" data-gist-line="1-6" data-gist-highlight-line="1" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>How could the main file be considered valid in the editor (or in any tool parsing the file)? It’s simply because the sub-files are loaded and then the whole content (file + sub-files) is validated.</p>
 
@@ -383,28 +383,28 @@ http-server --cors .</code></pre></figure>
 <p>And as seen earlier in this post we can put many items in a sub-file.</p>
 
 <p>The <code class="highlighter-rouge">documentation.yaml</code> file contains the data for <code class="highlighter-rouge">externalDocs</code> and <code class="highlighter-rouge">tags</code> (note the custom structure on line 1 and 6):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_39_chainsaw_documentation.yaml" data-gist-highlight-line="1,6" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_39_chainsaw_documentation.yaml" data-gist-highlight-line="1,6" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>These data are referenced this way in the main file:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="6-10" data-gist-highlight-line="7,10" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="6-10" data-gist-highlight-line="7,10" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>The <code class="highlighter-rouge">security.yaml</code> file contains the data for <code class="highlighter-rouge">securityDefinitions</code> and <code class="highlighter-rouge">security</code> (note the custom structure on line 20): 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_41_chainsaw_security.yaml" data-gist-highlight-line="20" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_41_chainsaw_security.yaml" data-gist-highlight-line="20" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="referencing-a-string-or-a-simple-list">Referencing a string or a simple list</h3>
 <p>It also work for simpler value like a string or a list of string. The <code class="highlighter-rouge">schema</code>, <code class="highlighter-rouge">host</code> and <code class="highlighter-rouge">basepath</code> values can be moved into a single file <code class="highlighter-rouge">security.yaml</code> (note the custom structure on line 3 and 4):</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_39_chainsaw_endpoint.yaml" data-gist-highlight-line="3,4" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_39_chainsaw_endpoint.yaml" data-gist-highlight-line="3,4" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>And referenced like this
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="12-17" data-gist-highlight-line="13,15,17" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="12-17" data-gist-highlight-line="13,15,17" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="reusing-a-value">Reusing a value</h3>
 <p>As long as the API consumes and produces the same media types, we define a single value in the <code class="highlighter-rouge">mediatypes.yaml</code> file:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_40_chainsaw_mediatypes.yaml" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_40_chainsaw_mediatypes.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>And then we reference this single value in both <code class="highlighter-rouge">produces</code> and <code class="highlighter-rouge">consumes</code>: 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="19-22" data-gist-highlight-line="20,22" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="19-22" data-gist-highlight-line="20,22" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h1 id="a-smarter-split">A smarter split</h1>
 <p>The API we built with the previous parts could be divided in four parts:</p>
@@ -421,18 +421,18 @@ http-server --cors .</code></pre></figure>
 <h2 id="commonsyaml">commons.yaml</h2>
 <p>In the <code class="highlighter-rouge">commons.yaml</code> file we put every items that can be reused across other files:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="imagesyaml">images.yaml</h2>
 <p>In the <code class="highlighter-rouge">images.yaml</code> file we put both <code class="highlighter-rouge">/images</code> and <code class="highlighter-rouge">/images/{id}</code> paths informations:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_44_smarter_images.yaml" data-gist-highlight-line="3,29,31,33,36,58,62,64,66" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_44_smarter_images.yaml" data-gist-highlight-line="3,29,31,33,36,58,62,64,66" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>Note that all references to common items point to <code class="highlighter-rouge">commons.yaml</code>.</p>
 
 <h2 id="legacyyaml">legacy.yaml</h2>
 <p>Same for the <code class="highlighter-rouge">/js-less-consumer-persons</code> path we put in <code class="highlighter-rouge">legacy.yaml</code> file in <code class="highlighter-rouge">js-less-consumer-persons</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_45_smarter_legacy.yaml" data-gist-highlight-line="3,42,46,50,52" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_45_smarter_legacy.yaml" data-gist-highlight-line="3,42,46,50,52" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="personsyaml">persons.yaml</h2>
 <p>All persons items go in the <code class="highlighter-rouge">persons.yaml</code>:</p>
@@ -444,11 +444,11 @@ http-server --cors .</code></pre></figure>
   <li>all persons specific parameters goes in <code class="highlighter-rouge">parameters</code> (and can be referenced with <code class="highlighter-rouge">#parameters/name</code>)</li>
 </ul>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="full-main-file">full main file</h2>
 <p>Here’s the full main file where we reference the 4 sub-files:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h1 id="valid-sub-files">Valid sub-files</h1>
 <p>If we put the last <a href="simple_openapi_specification_46_smarter_persons.yaml">persons.yaml</a> file content in the editor, it ends with these errors:</p>
@@ -475,52 +475,52 @@ http-server --cors .</code></pre></figure>
 <h3 id="missing-swagger-property">Missing swagger property</h3>
 <p>We just need to add this line on file’s top:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="1" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="1" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="missing-info-property">Missing info property</h3>
 <p>We add an short <code class="highlighter-rouge">info</code> section after <code class="highlighter-rouge">swagger</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="3-6" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="3-6" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="missing-paths-property">Missing paths property</h3>
 <p>As we do not define any path in this file we just need to add an empty <code class="highlighter-rouge">paths</code> section:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="39" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="39" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="property-defaultsecurity-not-allowed">Property defaultSecurity not allowed</h3>
 <p>As the <code class="highlighter-rouge">defaultSecurity</code> correspond to the OpenAPI <code class="highlighter-rouge">security</code> section we just need to rename it:</p>
 
 <p>Invalid <code class="highlighter-rouge">commons.yaml</code> file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-line="20-23" data-gist-highlight-line="20" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-line="20-23" data-gist-highlight-line="20" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>Valid <code class="highlighter-rouge">commons.yaml</code> file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="28-31" data-gist-highlight-line="28" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="28-31" data-gist-highlight-line="28" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="property-defaultmediatypes-not-allowed">Property defaultMediatypes not allowed</h3>
 <p><code class="highlighter-rouge">defaultMediaType</code> is not a valid OpenAPI property:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-line="25-27" data-gist-highlight-line="25" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-line="25-27" data-gist-highlight-line="25" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>We will use <code class="highlighter-rouge">produces</code> and <code class="highlighter-rouge">consumes</code> to define the default media types. But as we want to define a single set of media type we will use this trick:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="33-37" data-gist-highlight-line="37" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="33-37" data-gist-highlight-line="37" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>In the future if we want to define different sets of media types for produces and consumes, we’ll be ready.</p>
 
 <h3 id="property-defaultheaders-not-allowed">Property defaultHeaders not allowed</h3>
 <p><code class="highlighter-rouge">defaultHeaders</code> is not a valid OpenAPI property:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-line="29-36" data-gist-highlight-line="29" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-line="29-36" data-gist-highlight-line="29" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>We will use a dummy response definition <code class="highlighter-rouge">DefaultHeaders</code> to declare these default headers:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="67-77" data-gist-highlight-line="71-77" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="67-77" data-gist-highlight-line="71-77" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>Of course we need to update common responses to use these headers:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="78-87" data-gist-highlight-line="81,87" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="78-87" data-gist-highlight-line="81,87" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="making-personsyaml-valid">Making persons.yaml valid</h2>
 <p>Just like with <code class="highlighter-rouge">commons.yaml</code>, if we put <code class="highlighter-rouge">persons.yaml</code> content in the editor we get some errors:</p>
@@ -535,24 +535,24 @@ http-server --cors .</code></pre></figure>
 
 <h3 id="missing-swagger-and-info-properties">Missing swagger and info properties</h3>
 <p>We just add <code class="highlighter-rouge">swagger</code> and <code class="highlighter-rouge">info</code> like for <code class="highlighter-rouge">commons.yaml</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="1-9" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="1-9" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="commonsyamldefaultheaders-reference-could-not-be-resolved">commons.yaml#/defaultHeaders reference could not be resolved</h3>
 <p>As the <code class="highlighter-rouge">commons.yaml</code> structure has been modified concerning default headers we need to replace these references:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-line="21" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-line="21" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>by this one:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="32" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="32" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="missing-paths-and-additional-properties-not-allowed">Missing paths and additional properties not allowed</h3>
 <p>We have defined custom properties for each path relative to <em>persons</em> operations, therefore there is no <code class="highlighter-rouge">paths</code> section and our custom properties (like <code class="highlighter-rouge">persons</code>) are not allowed by the OpenAPI specification.</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-line="1-7" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-line="1-7" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>We need to add a <code class="highlighter-rouge">paths</code> section and put all our path in it using the correct path value as key:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="11-18" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="11-18" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="new-errors-security-definition-could-not-be-resolved">New errors: Security definition could not be resolved</h3>
 
@@ -565,16 +565,16 @@ http-server --cors .</code></pre></figure>
 
 <p>Now that we have a valid structure, the paths have been parsed and the parser detected missing security definitions. To solve this error, we add these definitions by referencing the <code class="highlighter-rouge">commons.yaml</code> file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="8-9" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="8-9" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="imagesyaml-and-legacyyaml">images.yaml and legacy.yaml</h2>
 <p>For <code class="highlighter-rouge">images.yaml</code> and <code class="highlighter-rouge">legacy.yaml</code> we do exactly the same things as we’ve done with <code class="highlighter-rouge">persons.yaml</code>.</p>
 
 <p>Here the <code class="highlighter-rouge">images.yaml</code> file modified (partial view):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_51_valid_images.yaml" data-gist-line="1-12" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_51_valid_images.yaml" data-gist-line="1-12" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>Here the <code class="highlighter-rouge">legacy.yaml</code> file modified (partial view):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_52_valid_legacy.yaml" data-gist-line="1-12" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_52_valid_legacy.yaml" data-gist-line="1-12" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="updating-the-main-file">Updating the main file</h2>
 <p>Now that we have modified all sub-files, if we try to edit the main file we get these errors</p>
@@ -600,22 +600,22 @@ http-server --cors .</code></pre></figure>
 
 <h3 id="modifiying-commonsyaml-references">Modifiying commons.yaml references</h3>
 <p>Before:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-line="59-68" data-gist-highlight-line="60,62,68" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-line="59-68" data-gist-highlight-line="60,62,68" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>After:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_47_valid.yaml" data-gist-line="59-68" data-gist-highlight-line="60,62,68" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_47_valid.yaml" data-gist-line="59-68" data-gist-highlight-line="60,62,68" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="modifying-paths-references">Modifying paths references</h3>
 <p>This is the trickyest part of this tutorial. To reference the <code class="highlighter-rouge">/persons</code> path in <code class="highlighter-rouge">persons.yaml</code> we used <code class="highlighter-rouge">persons.yaml#/persons</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-line="70-72" data-gist-highlight-line="72" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-line="70-72" data-gist-highlight-line="72" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>But <code class="highlighter-rouge">persons.yaml</code> structure has changed from :</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-line="1-7" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-line="1-7" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>to:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="11-18" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="11-18" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>The new reference should be something like <code class="highlighter-rouge">persons.yaml#/paths//persons</code> but if we try it, the editor shows an error <em>Reference could not be resolved: persons.yaml#/paths//persons</em>. The <code class="highlighter-rouge">/</code> in <code class="highlighter-rouge">/persons</code> needs to be escaped, how can we do that?</p>
 
@@ -625,10 +625,10 @@ http-server --cors .</code></pre></figure>
 </blockquote>
 
 <p>Before modification:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-line="70-84" data-gist-highlight-line="72,74,76,78,80,82,84" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-line="70-84" data-gist-highlight-line="72,74,76,78,80,82,84" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>After modification (all <code class="highlighter-rouge">/</code> in reference name have been replaced by <code class="highlighter-rouge">~1</code>):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_47_valid.yaml" data-gist-line="70-84" data-gist-highlight-line="72,74,76,78,80,82,84" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_47_valid.yaml" data-gist-line="70-84" data-gist-highlight-line="72,74,76,78,80,82,84" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>And now the main file and all its sub-files are considered valid by the editor.</p>
 

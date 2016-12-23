@@ -200,7 +200,7 @@
 </table>
 
 <p>The <em>username</em> in the <em>Person</em> definition is a string which length is between 8 and 64 and composed of lower case alphanumeric characters:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="118-122" data-gist-highlight-line="120-122" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="118-122" data-gist-highlight-line="120-122" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="dates-and-times">Dates and times</h2>
 <p>Date and time are handled with <em>string</em> properties conforming to <a href="http://xml2rfc.ietf.org/public/rfc/html/rfc3339">RFC 3339</a>, all you need to do is to use the appropriate <em>format</em>:</p>
@@ -228,7 +228,7 @@
 </table>
 
 <p>In the <em>Person</em> definition, <em>dateOfBirth</em> is a date and <em>lastTimeOnline</em> is a timestamp:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="123-128" data-gist-highlight-line="125,128" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="123-128" data-gist-highlight-line="125,128" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>You should read the <a href="http://apiux.com/2013/03/20/5-laws-api-dates-and-times/">5 laws of API dates and times</a> by <a href="https://twitter.com/jharmn">Jason Harmon</a> to learn how to handle date and time with an API.</p>
 
@@ -308,16 +308,16 @@
 </table>
 
 <p>The <em>pageSize</em> parameter is an integer &gt; 0 and &lt;= 100 and a multiple of 10:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="288-298" data-gist-highlight-line="292-298" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="288-298" data-gist-highlight-line="292-298" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>The <em>maxPrice</em> property of <em>CollectingItem</em> definition is a double value &gt; 0 and &lt;= 10000:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="190-196" data-gist-highlight-line="191-196" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="190-196" data-gist-highlight-line="191-196" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="enumerations">Enumerations</h2>
 <p>On each property we can define a set of accepted value with the <em>enum</em> property.</p>
 
 <p>The property <em>code</em> of definition <em>Error</em> can take only three value (DBERR, NTERR and UNERR):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="169-174" data-gist-highlight-line="171-174" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="169-174" data-gist-highlight-line="171-174" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="arrays-size-and-uniqueness">Arrays size and uniqueness</h2>
 <p>Arrays size and uniqueness are defined by these properties:</p>
@@ -350,7 +350,7 @@
 </table>
 
 <p>The <em>Person</em> definition contains a property <em>items</em> which is an array of <em>Person</em>. This array contain only unique elements and can have between 10 and 100 items: 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="140-148" data-gist-highlight-line="144-146" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="140-148" data-gist-highlight-line="144-146" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="binary-data">Binary data</h2>
 <p>Binary data can be handled with <em>string</em> properties using the appropriate <em>format</em>:</p>
@@ -375,7 +375,7 @@
 </table>
 
 <p>The property <em>avatarBase64PNG</em> of <em>Person</em> definition is a base64 encoded PNG image:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="130-132" data-gist-highlight-line="132" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="130-132" data-gist-highlight-line="132" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h1 id="advanced-definition-modeling">Advanced definition modeling</h1>
 
@@ -385,32 +385,32 @@
 <p>When describing a property in a definition, we can set a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schema-object">readOnly</a></em> property to <em>true</em> to explain that this property may be sent in a response and must not be sent in a request.</p>
 
 <p>In the example below, the <em>lastTimeOnline</em> property in the <em>Person</em> definition does not have sense when creating an <em>Person</em>. With <em>readOnly</em> set to true on this property, we can use the same <em>Person</em> definition in both <em>post /persons</em> and <em>get /persons/{username}</em>, <em>lastTimeOnline</em> will only be of interest when using get:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="126-129" data-gist-highlight-line="129" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="126-129" data-gist-highlight-line="129" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="combining-multiple-definitions-to-ensure-consistency">Combining multiple definitions to ensure consistency</h2>
 <p>When designing an API, it is highly recommended to propose a consistent design. You can for example decide that paged collection data should always be accompanied on the root level by the <em>same</em> data explaining the current paging status (totalItems, totalPage, pageSize, currentPage).</p>
 
 <p>A first option would be to define this attribute on every single collection:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="221-234" data-gist-highlight-line="227-234" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="221-234" data-gist-highlight-line="227-234" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>Having to describe again and again, endlessly the same properties on each collection is not only boring but also dangerous: you can forget some properties or misspelled them. And what will happen when you’ll want to add a new information on paging? You’ll have to update every single collection.</p>
 
 <p>A better option would be to define a Paging model and then use it in every collection:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="236-254" data-gist-highlight-line="242-243,245-254" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="236-254" data-gist-highlight-line="242-243,245-254" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>But the paging attributes are not on the root level anymore.
 The <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#composition-and-inheritance-polymorphism"><em>allOf</em> JSON Schema v4 property</a> can provide an elegant and simple solution to this problem:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="256-259" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="256-259" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>The allOf property allow to create a new definition composed of all referenced definitions attributes.
 It also functions perfectly with inline definitions:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="261-271" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="261-271" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="create-a-hierarchy-between-definitions-to-implement-inheritance-highly-experimentatl">Create a hierarchy between definitions to implement inheritance (highly experimentatl)</h2>
 <p>As stated in the OpenAPI Specification, composition do not imply hierarchy. The use of <em>discriminator</em> indicate the property used to know which is the type of the <em>sub-definition</em> or <em>sub-class</em> (this property MUST be in the required list).</p>
 
 <p>Here we define a CollectingItem <em>super-definition</em>, which is subclassed using the <em>allOf</em> property. The consumer will determine which <em>sub-definition</em> used by scanning the <em>itemType</em> property.
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="178-217" data-gist-highlight-line="178-181,198-200,210-212" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="178-217" data-gist-highlight-line="178-181,198-200,210-212" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>This is highly experimental as the content of <em>discriminator</em> field is not clear in the specification’s current version (<a href="https://github.com/OAI/OpenAPI-Specification/issues/403">issue 403</a>) and as far as I know it is not supported by any tool using OpenAPI specification.</p>
 
@@ -451,7 +451,7 @@ The value’s type is defined within the property: <a href="https://github.com/O
 
 <p>Defining the <em>spokenLanguage</em> property in the <em>Person</em> definition is done this way:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="109-138" data-gist-highlight-line="133-134, 136-138" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="109-138" data-gist-highlight-line="133-134, 136-138" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h3 id="string-to-object-map">String to Object Map</h3>
 <p>If you want to have a string to object map property in the <em>Error</em> definition to provide a multilingual long and short error message, the resulting data would look like this:</p>
@@ -471,8 +471,8 @@ The value’s type is defined within the property: <a href="https://github.com/O
 </span><span class="p">}</span></code></pre></figure>
 
 <p>Defining the <em>message</em> property in the <em>Error</em> definition is done this way:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="150-159" data-gist-highlight-line="158-159" data-gist-footer="false"></code>
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="164-176" data-gist-highlight-line="175-176" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="150-159" data-gist-highlight-line="158-159" data-gist-footer="false" gist-enable-cache="true"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="164-176" data-gist-highlight-line="175-176" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h3 id="hashmap-with-default-values">Hashmap with default value(s)</h3>
 <p>And finally, if you want to add a default language multilingual error message in your map (i.e. adding a default value in the map).</p>
@@ -499,7 +499,7 @@ The value’s type is defined within the property: <a href="https://github.com/O
 
 <p>But in the OpenAPI Specification, we add a <em>defaultLanguage</em> property to the <em>MultilingualErrorMessage</em> definition to the explicitly declare this value in the map:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="150-176" data-gist-highlight-line="160-162" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_14_advanced_data_modeling.yaml" data-gist-line="150-176" data-gist-highlight-line="160-162" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>You can define as many as “default” values as you want.
 This also can be used for string to string map.</p>

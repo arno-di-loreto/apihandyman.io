@@ -163,7 +163,7 @@
 <h1 id="apis-general-informations">API’s general informations</h1>
 <p>First things first. When using an API, API consumers want to have some general informations about it like its version, its name, some description, term of service, how to contact the API provider, what kind of licencing it uses. The <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#infoObject"><code class="highlighter-rouge">info</code></a> object placed on root level can be used to provide such information:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="3-14" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="3-14" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h1 id="categorizing-operations-with-tags">Categorizing operations with Tags</h1>
 <p>By using <code class="highlighter-rouge">tags</code> on operation level, we can categorize operations. <code class="highlighter-rouge">tags</code> is a simple list of names.</p>
@@ -171,12 +171,12 @@
 <h2 id="single-tag">Single tag</h2>
 <p>This operation belongs to the <code class="highlighter-rouge">Person</code> category:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="78-87" data-gist-highlight-line="86-87" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="78-87" data-gist-highlight-line="86-87" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="multiple-tags">Multiple tags</h2>
 <p>An operation can belong to different categories:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="152-162" data-gist-highlight-line="160-162" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="152-162" data-gist-highlight-line="160-162" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h1 id="descriptions-everywhere">Descriptions everywhere</h1>
 <p>We can add some descriptions at almost every level of the OpenAPI specification.</p>
@@ -184,54 +184,54 @@
 <h2 id="security-definitions">Security definitions</h2>
 <p>A <code class="highlighter-rouge">description</code> can be added to security definitions:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="54-71" data-gist-highlight-line="56,65,70" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="54-71" data-gist-highlight-line="56,65,70" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="schema-title-and-description">Schema title and description</h2>
 <p>Each schema (used in a definition, a parameter or a response) can have a <code class="highlighter-rouge">title</code> and a <code class="highlighter-rouge">description</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="460-463" data-gist-highlight-line="462,463" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="460-463" data-gist-highlight-line="462,463" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="500-502" data-gist-highlight-line="501,502" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="500-502" data-gist-highlight-line="501,502" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="property-description">Property description</h2>
 <p>Properties can be described with <code class="highlighter-rouge">description</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="466-469" data-gist-highlight-line="468" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="466-469" data-gist-highlight-line="468" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="parameters-description">Parameter’s description</h2>
 <p>Whether defined inline or in <code class="highlighter-rouge">parameters</code> section, a parameter can have a <code class="highlighter-rouge">description</code>.</p>
 
 <h3 id="inline-parameters-description">Inline parameter’s description</h3>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="78-79" data-gist-footer="false"></code>
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="110" data-gist-footer="false"></code>
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="120-126" data-gist-highlight-line="124" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="78-79" data-gist-footer="false" gist-enable-cache="true"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="110" data-gist-footer="false" gist-enable-cache="true"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="120-126" data-gist-highlight-line="124" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h3 id="reusable-parameters-description">Reusable parameter’s description</h3>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="702-712" data-gist-highlight-line="707,712" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="702-712" data-gist-highlight-line="707,712" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="operations-summary-description-and-operationid">Operation’s summary, description and operationId:</h2>
 <p>An operation can be described with a <code class="highlighter-rouge">summary</code> and a longer <code class="highlighter-rouge">description</code>. An <code class="highlighter-rouge">operationId</code> can be added. It can be used as a link to the implementation running behind the API for example.</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="78-85" data-gist-highlight-line="83-85" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="78-85" data-gist-highlight-line="83-85" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="responses-description">Response’s description</h2>
 <p>Whether inline or defined in <code class="highlighter-rouge">responses</code>, a response can have a <code class="highlighter-rouge">description</code>.</p>
 
 <h3 id="inline-responses-description">Inline response’s description</h3>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="78-82" data-gist-footer="false"></code>
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="93-95" data-gist-highlight-line="95" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="78-82" data-gist-footer="false" gist-enable-cache="true"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="93-95" data-gist-highlight-line="95" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h3 id="reusable-responses-description">Reusable response’s description</h3>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="668-670" data-gist-highlight-line="670" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="668-670" data-gist-highlight-line="670" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="reponses-headers-description">Reponse’s header’s description</h2>
 <p>Headers returned with a response can have a <code class="highlighter-rouge">description</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="671-678" data-gist-highlight-line="673,676" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="671-678" data-gist-highlight-line="673,676" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="tags-descriptions">Tags descriptions</h2>
 <p>Tags can have <code class="highlighter-rouge">descriptions</code>. We need to add a <code class="highlighter-rouge">tags</code> section on specification file root level, on each item in this list we set a <code class="highlighter-rouge">name</code> (corresponding to the name used in tags list on operation level) and a <code class="highlighter-rouge">description</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="20-22" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="20-22" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h1 id="using-gfm-in-descriptions">Using GFM in descriptions</h1>
 <p>In almost all <code class="highlighter-rouge">description</code>, we can use <code class="highlighter-rouge">GFM</code> (<a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Github Flavored Markdown</a>). To check if an object description support GFM, take a look at my <a href="http://openapi-specification-visual-documentation.apihandyman.io/">visual documentation</a> or the original <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>.
@@ -239,16 +239,16 @@
 
 <h2 id="simple-multiline-description">Simple multiline description</h2>
 <p>By adding a <code class="highlighter-rouge">|</code> and a new line with a new tab, we can write multiline descriptions:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="320-328" data-gist-highlight-line="326-328" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="320-328" data-gist-highlight-line="326-328" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="simple-gfm-description">Simple GFM description</h2>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="27-30" data-gist-highlight-line="28-29" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="27-30" data-gist-highlight-line="28-29" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="description-with-array">Description with array</h2>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="598-616" data-gist-highlight-line="604-611" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="598-616" data-gist-highlight-line="604-611" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="description-with-code">Description with code</h2>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="1-18" data-gist-highlight-line="6-17" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="1-18" data-gist-highlight-line="6-17" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h1 id="examples">Examples</h1>
 <p>Examples can be provided for atomic or object properties, definitions, and responses.</p>
@@ -256,25 +256,25 @@
 <h2 id="atomic-property-example">Atomic property example</h2>
 <p>Atomic properties can be illustrated with an <code class="highlighter-rouge">example</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="466-492" data-gist-highlight-line="470,474,481,486,492" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="466-492" data-gist-highlight-line="470,474,481,486,492" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="object-property-example">Object property example</h2>
 <p>Object properties, can also be illustrated with a complex <code class="highlighter-rouge">example</code> complying to the underlying JSON Schema:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="515-539" data-gist-highlight-line="529-539" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="515-539" data-gist-highlight-line="529-539" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="definition-example">Definition Example</h2>
 <p>An example can be defined for the entire definition just like for an object property (it must conforms to its underlying JSON schema):</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="553-567" data-gist-highlight-line="561-567" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="553-567" data-gist-highlight-line="561-567" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="responses-example">Response’s Example</h2>
 <p>On response level, we can provide <code class="highlighter-rouge">example</code>, each one corresponding to a media type returned by the operation. Here’s an example for an application/json media type:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="308" data-gist-footer="false"></code>
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="312" data-gist-footer="false"></code>
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="324-325" data-gist-footer="false"></code>
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="337-374" data-gist-highlight-line="337-368" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="308" data-gist-footer="false" gist-enable-cache="true"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="312" data-gist-footer="false" gist-enable-cache="true"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="324-325" data-gist-footer="false" gist-enable-cache="true"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="337-374" data-gist-highlight-line="337-368" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="examples-precedence">Examples precedence</h2>
 <p>If we defined examples on multiple levels (property, object, definition, response), it’s always the higher level which is taken into account by tools processing OpenAPI specification file.</p>
@@ -282,7 +282,7 @@
 <h1 id="operations-deprecation">Operation’s deprecation</h1>
 <p>An operation can be deprecated by setting <code class="highlighter-rouge">deprecated</code> to <code class="highlighter-rouge">true</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="152-159" data-gist-highlight-line="159" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="152-159" data-gist-highlight-line="159" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h1 id="links-to-external-api-documentation">Links to external API documentation</h1>
 <p>In most case, the OpenAPI specification file MUST NOT be the only API’s documentation. How to create an application key, use cases, operation chaining and many other things need to be documented. All these other documentations can be separated from the specification file.
@@ -291,16 +291,16 @@ However, the OpenAPI specification allow to provide links to these other documen
 <h2 id="link-to-general-api-documentation">Link to general API documentation</h2>
 <p>We can add an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#externalDocumentationObject"><code class="highlighter-rouge">externalDoc</code></a> object on root level with a link to the API documentation.</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="16-18" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="16-18" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="link-to-specific-operation-documentation">Link to specific operation documentation</h2>
 <p>Each operation can have its own link to an external documentation using the same <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#externalDocumentationObject"><code class="highlighter-rouge">externalDoc</code></a> object:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="375-384" data-gist-highlight-line="382-384" data-gist-footer="true"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="375-384" data-gist-highlight-line="382-384" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="link-to-tag-documentation">Link to tag documentation</h2>
 <p>A tag’s description can also provide an external link:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="20-25" data-gist-highlight-line="24-25" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_21_documentation.yaml" data-gist-line="20-25" data-gist-highlight-line="24-25" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h1 id="conclusion">Conclusion</h1>
 <p>Even if an OpenAPI specification MUST NOT be the only documentation for an API, it can be a good part of it, and you now have mastered this aspect of the specification. In <a href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">next post</a> we’ll see how we can split a OpenAPI specification file in different files.</p>

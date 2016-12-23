@@ -162,29 +162,29 @@
 
 <h1 id="simplifying-data-model-description">Simplifying data model description</h1>
 <p>We’ll use the final example of the <a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">previous part</a> as starting point. When taking a look at this specification file, the obvious problem is that a <em>Person</em> is defined three times:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-highlight-line="33-41,50-58,78-86" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-highlight-line="33-41,50-58,78-86" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>By using <em>reusable definitions</em> this <em>not so simple specification</em> will be transformed into this one:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-highlight-line="31,40,60,64-78" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-highlight-line="31,40,60,64-78" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>The <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">definitions section (Swagger Object)</a></em> allows you to define <em>once and for all</em> objects/entities/models that can be used anywhere in the specification (i.e. where a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject">schema</a></em> is defined).</p>
 
 <h2 id="adding-definitions-section">Adding definitions section</h2>
 <p>We’ll start by adding a new <em>definitions</em> section at the end of the document (nb: it can be placed anywhere as long as it’s on the root of the OpenAPI Specification tree structure).
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="61-64" data-gist-highlight-line="64" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="61-64" data-gist-highlight-line="64" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="defining-a-reusable-definition">Defining a reusable definition</h2>
 <p>Then we define a <em>Person</em> once and for all in the <em>definitions</em> section:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="64-74" data-gist-highlight-line="65-74" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="64-74" data-gist-highlight-line="65-74" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>Note that the information provided in <em>Person</em> are exactly the same as the one provided in the three schemas describing a person in previous version. A <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#definitionsObject">definition</a></em> is simply a named <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject">schema object</a></em>.</p>
 
 <h2 id="referencing-a-definition-from-another-definition">Referencing a definition from another definition</h2>
 <p>We’ll start using this newly created <em>definition</em> by referencing it in another one. As we have defined a <em>Person</em> we’ll also define <em>Persons</em> which is an array (or a list) of <em>Persons</em>. The information provided in <em>Persons</em> are <em>almost</em> the same as the one provided in the <em>get /persons</em> response:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="29-41" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="29-41" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>The only difference is that the schema describing the array’s <em>items</em> has been replaced by a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#referenceObject">reference ($ref)</a></em> to the <em>Persons definition</em>.
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="75-78" data-gist-highlight-line="78" data-gist-footer="false"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="75-78" data-gist-highlight-line="78" data-gist-footer="false" gist-enable-cache="true"></code>
 A reference is only a path to another declaration within the OpenAPI Specification.</p>
 
 <h2 id="using-definitions-in-responses">Using definitions in responses</h2>
@@ -192,109 +192,109 @@ A reference is only a path to another declaration within the OpenAPI Specificati
 
 <h3 id="get-persons">get /persons</h3>
 <p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="27-39" data-gist-highlight-line="31-39" data-gist-footer="false"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="27-39" data-gist-highlight-line="31-39" data-gist-footer="false" gist-enable-cache="true"></code>
 After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="27-31" data-gist-highlight-line="31" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="27-31" data-gist-highlight-line="31" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="get-personsusername">get /persons/{username}</h3>
 <p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="74-86" data-gist-highlight-line="78-86" data-gist-footer="false"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="74-86" data-gist-highlight-line="78-86" data-gist-footer="false" gist-enable-cache="true"></code>
 After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="56-60" data-gist-highlight-line="60" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="56-60" data-gist-highlight-line="60" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h2 id="using-definitions-in-parameters">Using definitions in parameters</h2>
 <p>Definitions are not only meant to be used within the <em>definitions</em> section (it would be pointless), they can also be used in operations <em>parameters</em>.</p>
 
 <h3 id="post-persons">post /persons:</h3>
 <p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="42-58" data-gist-highlight-line="50-58" data-gist-footer="false"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="42-58" data-gist-highlight-line="50-58" data-gist-footer="false" gist-enable-cache="true"></code>
 After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="32-40" data-gist-highlight-line="40" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="32-40" data-gist-highlight-line="40" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h1 id="simplifying-responses-description">Simplifying responses description</h1>
 <p>Now we have discovered references (<em>$ref</em>), we’ll see they can be used for other matters like <em>responses</em> definition. 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-highlight-line="32-33,48-49,68-69,86-91,93-97" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-highlight-line="32-33,48-49,68-69,86-91,93-97" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="defining-a-reusable-http-500-response">Defining a reusable HTTP 500 response</h2>
 <p>Let’s say, we want <em>every</em> API’s operation to return an error code and message to provide more detailed information about what happened when an operation failed with an HTTP 500 error.
 If we do that the <em>basic</em> way, we’ll end adding a 500 response on each operation like this: 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_07_with_responses_wrong.yaml" data-gist-line="13-88" data-gist-highlight-line="32-39,54-61,81-88" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_07_with_responses_wrong.yaml" data-gist-line="13-88" data-gist-highlight-line="32-39,54-61,81-88" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <p>As every operation will handle HTTP 500 error exactly the same way, it’s a pity to have to declare three times exactly the same thing.</p>
 
 <h2 id="defining-an-error-definition">Defining an Error definition</h2>
 <p>But, we have learned that we can define a schema once and for all. So let’s create an <em>Error</em> definition containing string code and message in the <em>definitions</em> section.
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="71-91" data-gist-highlight-line="86-91" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="71-91" data-gist-highlight-line="86-91" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>A first <em>almost</em> good idea would be to use this definition in every operation for 500 response schema. 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_08_with_responses_less_wrong.yaml" data-gist-line="13-74" data-gist-highlight-line="35,53,74" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_08_with_responses_less_wrong.yaml" data-gist-line="13-74" data-gist-highlight-line="35,53,74" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="defining-a-reusable-response">Defining a reusable response</h2>
 
 <p>But it can be even more simple if we declare a response once and for all within the <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">responses section (Swagger Object)</a></em>. This section allows to define reusable responses definitions.
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="71-97" data-gist-highlight-line="93-97" data-gist-footer="false"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="71-97" data-gist-highlight-line="93-97" data-gist-footer="false" gist-enable-cache="true"></code>
 <em>Note that the response use the Error definition.</em></p>
 
 <h2 id="using-the-defined-response">Using the defined response</h2>
 <p>Using a defined response is done through a <em>$ref</em> (just like we did when using definitions).</p>
 <h3 id="get-users">get /users</h3>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="27-33" data-gist-highlight-line="32-33" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="27-33" data-gist-highlight-line="32-33" data-gist-footer="false" gist-enable-cache="true"></code></p>
 <h3 id="post-users">post /users</h3>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="43-49" data-gist-highlight-line="48-49" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="43-49" data-gist-highlight-line="48-49" data-gist-footer="false" gist-enable-cache="true"></code></p>
 <h3 id="get-usersusername">get /users/{username}</h3>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="61-69" data-gist-highlight-line="68-69" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="61-69" data-gist-highlight-line="68-69" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h1 id="simplifying-parameters-description">Simplifying parameters description</h1>
 <p>Like models/schemas and responses, parameters description can be simplified easily.
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-highlight-line="18-20,46-47,72-73,77-79,123-139" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-highlight-line="18-20,46-47,72-73,77-79,123-139" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="defining-a-path-parameter-once-for-a-path">Defining a path parameter once for a path</h2>
 <p>If we add a <em>delete</em> operation to the <em>/persons/{username}</em> path, a first idea could be to do it that way:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_10_with_single_path_parameter_wrong.yaml" data-gist-line="51-85" data-gist-highlight-line="56-60,74-78" data-gist-footer="true"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_10_with_single_path_parameter_wrong.yaml" data-gist-line="51-85" data-gist-highlight-line="56-60,74-78" data-gist-footer="true" gist-enable-cache="true"></code>
 <em>Note that we had the good idea to create a reusable 404 response.</em></p>
 
 <p>But having to redefine the <em>username</em> parameter which is shared by each operation on <em>/persons/{username}</em> path is a bit cumbersome. Luckily you can define <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#pathItemObject"><em>parameters</em> on path level</a>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_11_with_single_path_parameter.yaml" data-gist-line="51-79" data-gist-highlight-line="51-57" data-gist-footer="true"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_11_with_single_path_parameter.yaml" data-gist-line="51-79" data-gist-highlight-line="51-57" data-gist-footer="true" gist-enable-cache="true"></code></p>
 
 <h2 id="defining-reusable-parameters">Defining reusable parameters</h2>
 <p>If we add a <em>get /persons/{username}/friends</em> operations to get a paginated list of a person’s friends, a first idea could be to do it that way:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="81-108" data-gist-highlight-line="82-87,91-99" data-gist-footer="true"></code>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="81-108" data-gist-highlight-line="82-87,91-99" data-gist-footer="true" gist-enable-cache="true"></code>
 <em>Note that we reuse the 500 and 404 responses</em>.</p>
 
 <p>But that way, we redefine the <em>username</em> parameter just like on path <em>/persons/{username}</em>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="51-57" data-gist-highlight-line="53-57" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="51-57" data-gist-highlight-line="53-57" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>And we also redefine the <em>pageNumber</em> and <em>pageSize</em> parameters which already exist on <em>get /persons</em>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="14-26" data-gist-highlight-line="19-26" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="14-26" data-gist-highlight-line="19-26" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="define-reusable-parameters">Define reusable parameters</h3>
 <p>As we have done with <em>definitions</em> and <em>responses</em>, we can define reusable parameters within the <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">parameters section (Swagger Object)</a></em>.</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="123-139" data-gist-footer="false"></code></p>
+<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="123-139" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h3 id="use-reusable-parameters">Use reusable parameters</h3>
 <p>These reusable parameters can be used with a reference just like definitions and responses.</p>
 
 <h4 id="get-persons-1">get /persons</h4>
 <p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="14-26" data-gist-highlight-line="19-26" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="14-26" data-gist-highlight-line="19-26" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="14-20" data-gist-highlight-line="19-20," data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="14-20" data-gist-highlight-line="19-20," data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h4 id="get-and-delete-personsusername">get and delete /persons/{username}</h4>
 <p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="51-57" data-gist-highlight-line="53-57" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="51-57" data-gist-highlight-line="53-57" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="45-47" data-gist-highlight-line="47" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="45-47" data-gist-highlight-line="47" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h4 id="get-personsusernamefriends">get /persons/{username}/friends</h4>
 <p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="81-99" data-gist-highlight-line="83-87,92-99" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="81-99" data-gist-highlight-line="83-87,92-99" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <p>After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="71-79" data-gist-highlight-line="73,78-79" data-gist-footer="false"></code></p>
+<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="71-79" data-gist-highlight-line="73,78-79" data-gist-footer="false" gist-enable-cache="true"></code></p>
 
 <h1 id="conclusion">Conclusion</h1>
 <p>By defining reusable <em>definitions</em>, <em>responses</em> and <em>parameters</em> and using them with <em>references</em> you can easily write OpenAPI Specification files which are simple and easily understandable. 
