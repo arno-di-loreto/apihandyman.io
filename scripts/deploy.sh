@@ -44,6 +44,16 @@ else
   DEPLOY_REPO_CREDENTIALS="https://${GH_TOKEN}@${TMP_URL}"
 fi
 
+if [ -z ${GH_USER+x} ]
+then 
+  echo "GH_TOKEN is not set, using default credentials"
+  DEPLOY_REPO_CREDENTIALS=$DEPLOY_REPO
+else 
+  echo "GH_TOKEN is set updating REPO_URL"
+  TMP_URL=`echo $DEPLOY_REPO | sed "s/https:\/\///"`
+  DEPLOY_REPO_CREDENTIALS="https://${GH_TOKEN}@${TMP_URL}"
+fi
+
 if [ -z ${PUBLISH_MESSAGE+x} ]
 then 
   PUBLISH_MESSAGE="publish"
@@ -84,11 +94,15 @@ function prepare {
 function publish {
   echo "publishing"
   cd $DEPLOY_TARGET
-  #git config --global user.email "<org@email>"
   if [ ${GH_USER+x} ]
   then
-    git config user.name "$GH_USER"
-    git config user.name
+    echo "setting git user.name with GH_USER env variable" 
+    git config --global user.name "$GH_USER"
+  fi
+  if [ ${GH_EMAIL+x} ]
+  then
+    echo "setting git user.email with GH_EMAIL env variable"
+    git config --global user.email "$GH_EMAIL"
   fi
   git add *
   git commit -m "$PUBLISH_MESSAGE"
