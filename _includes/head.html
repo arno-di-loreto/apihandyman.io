@@ -18,6 +18,7 @@
 
   <title>{{ title | escape }}</title>
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  {% include twittercard.html %}
 
   <link rel="stylesheet" href="{{ "/css/bootstrap.min.css" | prepend: site.baseurl | prepend: site.github.url }}">
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl | prepend: site.github.url }}">
