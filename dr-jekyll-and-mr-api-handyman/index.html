@@ -13,15 +13,15 @@
   <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
   <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
 
-  <title>Elsewhere | API Handyman</title>
-  <meta name="description" content="{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}">
+  <title>Dr Jekyll and Mr API Handyman | API Handyman</title>
+  <meta name="description" content="ICYMI, I’ve just switched from a self hosted Wordpress to a Jekyll static website hosted on Github. The code is available in the apihandyman.io repository. I...">
 
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/syntax.css">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
-  <link rel="canonical" href="/categories/elsewhere/page2/">
+  <link rel="canonical" href="/dr-jekyll-and-mr-api-handyman/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
   <script type="text/javascript" src="/js/jquery.min.js" ></script>
   <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
@@ -86,11 +86,9 @@
 
 <header>
   <!--<div class="container main-container full-jumbotron">-->
-      <div class="jumbotron" style="background-image: url('/images/commons/thumbnail.png')">
+      <div class="jumbotron" style="background-image: url('/images/dr-jekyll-and-mr-api-handyman/thumbnail.png')">
         <div class="header-caption text-center">
-          <h1 class="post-title" itemprop="name headline">Elsewhere</h1>
-          
-            <h2 class="post-subtitle">The API Handyman appears also elsewhere on the Internet</h2>
+          <h1 class="post-title" itemprop="name headline">Dr Jekyll and Mr API Handyman</h1>
           
         </div>
       </div>
@@ -99,62 +97,47 @@
       <div class="container main-container">
         <div class = "row">
           <main>
-          <div id="main" class="col-xs-12 col-md-8 col-md-offset-2">  
-    
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2016-12-23T00:00:00+00:00" itemprop="datePublished">Dec. 23, 2016</time><span>&nbsp;|&nbsp;Elsewhere</span>
+      </p>
+      <p>ICYMI, I’ve just switched from a self hosted Wordpress to a Jekyll static website hosted on Github. The code is available in the <a href="https://github.com/arno-di-loreto/apihandyman.io">apihandyman.io repository</a>. If you’re looking for information and tips about how to enable pagination on categories pages and have infinite scroll with Jekyll or how to to deploy a Jekyll website using custom plugins on Github Pages, you should take a look at it.</p>
 
+      
 
-  
-
-
-<div class="post-summary">
-  <h2>
-    <a class="post-link" href="/read-how-to-provide-apis-with-an-existing-information-system-on-nordic-apis-blog/">Read How to Provide APIs With an Existing Information System on Nordic APIs blog</a>
-  </h2>
-  <p class="post-meta"><span>Aug 4, 2015&nbsp;|&nbsp;Elsewhere</span></p>
-  <img class="img-responsive center-block post-summary-thumbnail" src="/images/read-how-to-provide-apis-with-an-existing-information-system-on-nordic-apis-blog/thumbnail.png">
-  
-    <p class="text-justify"><p>If you want to know why an existing IS is not a good API, you should read my last post on Nordic APIs blog <a href="http://nordicapis.com/how-to-provide-apis-with-an-existing-information-system/">How to Provide APIs With an Existing Information System</a>.</p>
-</p>
-  
+    </div>
+    <script language="JavaScript">
+        anchors.options = {
+          placement: 'left'
+        };
+        anchors.add('.blog-container h1');
+        anchors.add('.blog-container h2');
+        anchors.add('.blog-container h3');
+    </script>
+  </article>
 </div>
-
-  
-
-
-<div class="post-summary">
-  <h2>
-    <a class="post-link" href="/read-should-every-company-consider-providing-an-api-on-nordic-apis-blog/">Read Should Every Company Consider Providing an API? on Nordic APIs blog</a>
-  </h2>
-  <p class="post-meta"><span>Jun 10, 2015&nbsp;|&nbsp;Elsewhere</span></p>
-  <img class="img-responsive center-block post-summary-thumbnail" src="/images/read-should-every-company-consider-providing-an-api-on-nordic-apis-blog/thumbnail.png">
-  
-    <p class="text-justify"><p>My other self Arnaud Lauret writes about APIs too. This week you can read <a href="http://nordicapis.com/should-every-company-consider-providing-an-api/">Should Every Company Consider Providing an API?</a> on Nordic APIs blog.</p>
-</p>
-  
-</div>
-
-
-
-
-
-
-
-
-
-
-  <nav id="pagination" aria-label="Page navigation">
-    <ul class="pager">
-      
-      <li class="previous"><a href="/categories/elsewhere/"><span aria-hidden="true">&larr;</span> Newer</a></li>
-      
-      
-    </ul>
-  </nav>
-
-
-
-<script type="text/javascript" src="/js/infinitescroll.js" ></script>
-
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+  <script language="javascript">
+    $(function() {
+      console.log('here');
+      var $myNav = $('#toc');
+      var $myScope = $('#post');
+      Toc.init({
+        $nav: $myNav,
+        $scope: $myScope
+      });
+      $('body').scrollspy({
+        target: '#toc'
+      });
+    });
+  </script>
 </div>
           </main>
         </div>
