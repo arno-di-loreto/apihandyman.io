@@ -1,0 +1,8 @@
+language: ruby
+cache: bundler
+
+env:
+  global:
+    - DEPLOY_BRANCH=gh-pages-test
+
+script: bash ./build.sh
