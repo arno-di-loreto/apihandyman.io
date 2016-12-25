@@ -7,6 +7,8 @@ function getNextPage() {
   // hiding pagination div
   pagination.remove();
   if (url) {
+    // showing a spinner while downloading
+    $("#main").append("<div id=\"spinner\" class=\"center\"><i class=\"fa fa-spinner fa-spin fa-2x\"></i></div>");
     // adding a temp. dom object to load the next page
     var list = $("<div></div>");
     list.load(url + " #main", function(response, status, xhr) {
@@ -16,6 +18,8 @@ function getNextPage() {
         // note: jQuery load will copy the #main node as well,
         // so use the childrens and move them
         var container = $("#main");
+        // removing spinner
+        $("#spinner").remove();
         list.children("#main").children().each(
           function(key, value){
             container.append(value);
