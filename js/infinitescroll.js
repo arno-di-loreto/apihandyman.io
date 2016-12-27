@@ -4,14 +4,22 @@ function getNextPage() {
   var pagination = $("#pagination");
   // gets the next URL
   var url = $("#next a").attr('href');
-  // hiding pagination div
+  // removing pagination div
   pagination.remove();
+  // if there's no "next" in pagination div we stop here
   if (url) {
+    // list.load use http instead of https with relative url (??), so forcing a full url
+    if(!url.startsWith(document.location.origin)) {
+      url = document.location.origin + url;
+    }
     // showing a spinner while downloading
     $("#main").append("<div id=\"spinner\" class=\"center\"><i class=\"fa fa-spinner fa-spin fa-2x\"></i></div>");
     // adding a temp. dom object to load the next page
     var list = $("<div></div>");
-    list.load(url + " #main", function(response, status, xhr) {
+    
+    // Load only #main div
+    var url_id = url + " #main";
+    list.load(url_id, function(response, status, xhr) {
       // check if we doesn't get any error
       if ( status != "error" ) {
         // copy all childrens of our temp container to the real container
@@ -25,6 +33,10 @@ function getNextPage() {
             container.append(value);
           }
         );
+      }
+      else {
+        console.log(status);
+        console.log(response);
       }
     });
   }
