@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: API Handyman
 description: '{"input" : "learn", "output" : "share"}'
-url: "http://apihandyman.io" # the base hostname & protocol for your site
+url: "//apihandyman.io" # the base hostname & protocol for your site
 baseurl: ""
 
 # Social links
