@@ -1,5 +1,6 @@
 ---
 layout: default
+javascript: javascript-post.html
 ---
 <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
   <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
@@ -14,30 +15,8 @@ layout: default
       {{ content }}
       {% include disqus_comments.html %}
     </div>
-    <script language="JavaScript">
-        anchors.options = {
-          placement: 'left'
-        };
-        anchors.add('.blog-container h1');
-        anchors.add('.blog-container h2');
-        anchors.add('.blog-container h3');
-    </script>
   </article>
 </div>
 <div class="hidden-xs col-sm-3 col-md-2" role="complementary">
   <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
-  <script language="javascript">
-    $(function() {
-      console.log('here');
-      var $myNav = $('#toc');
-      var $myScope = $('#post');
-      Toc.init({
-        $nav: $myNav,
-        $scope: $myScope
-      });
-      $('body').scrollspy({
-        target: '#toc'
-      });
-    });
-  </script>
 </div>

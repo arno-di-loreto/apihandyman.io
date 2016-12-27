@@ -1,0 +1,7 @@
+  <script type="text/javascript" src="{{ "/js/jquery.min.js" | prepend: site.baseurl | prepend: site.github.url }}" ></script>
+  <script type="text/javascript" src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl | prepend: site.github.url }}" ></script>
+  {% if layout.javascript %}
+    {% include {{layout.javascript}} %}
+  {% endif %}
+  <script async type="text/javascript" src="{{ "/js/gist-embed.min.js" | prepend: site.baseurl | prepend: site.github.url }}" ></script>
+ 
