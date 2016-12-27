@@ -20,7 +20,7 @@
     <ul class="pagination">
       {% if paginator.previous_page %}
       <li>
-        <a href="{{ paginator.previous_page_path | prepend: prepend_pagination_url }}" aria-label="Previous">
+        <a href="{{ paginator.previous_page_path | prepend: prepend_pagination_url }}/" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
@@ -36,19 +36,19 @@
           {% if index == 1 %}
             <li class="active"><a href="{{ site.baseurl | prepend: site.github.url }}/">{{ index }}</a></li>
           {% else %}
-            <li class="active"><a href="{{ index | prepend: '/page' | prepend: prepend_pagination_url }}">{{ index }}</a></li>
+            <li class="active"><a href="{{ index | prepend: '/page' | prepend: prepend_pagination_url }}/">{{ index }}</a></li>
           {% endif %}
         {% else %}
           {% if index == 1 %}
             <li><a href="{{ site.baseurl | prepend: site.github.url }}/">{{ index }}</a></li>
           {% else %}
-            <li><a href="{{ index | prepend: '/page' | prepend: prepend_pagination_url }}">{{ index }}</a></li>
+            <li><a href="{{ index | prepend: '/page' | prepend: prepend_pagination_url }}/">{{ index }}</a></li>
           {% endif %}
         {% endif %}
       {% endfor %}
       {% if paginator.next_page %}
       <li>
-        <a href="{{ paginator.next_page_path | prepend: prepend_pagination_url }}" aria-label="Next">
+        <a href="{{ paginator.next_page_path | prepend: prepend_pagination_url }}/" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
@@ -65,15 +65,11 @@
   <nav id="pagination" aria-label="Page navigation">
     <ul class="pager">
       {% if paginator.previous_page %}
-      <li class="previous"><a href="{{ paginator.previous_page_path | prepend: prepend_pagination_url }}"><span aria-hidden="true">&larr;</span> Newer</a></li>
+      <li class="previous"><a href="{{ paginator.previous_page_path | prepend: prepend_pagination_url }}/"><span aria-hidden="true">&larr;</span> Newer</a></li>
       {% endif %}
       {% if paginator.next_page %}
-      <li id="next" class="next"><a href="{{ paginator.next_page_path | prepend: prepend_pagination_url }}">Older <span aria-hidden="true">&rarr;</span></a></li>
+      <li id="next" class="next"><a href="{{ paginator.next_page_path | prepend: prepend_pagination_url }}/">Older <span aria-hidden="true">&rarr;</span></a></li>
       {% endif %}
     </ul>
   </nav>
-{% endif %}
-
-{% if paginate_style == "infinite" %}
-<script type="text/javascript" src="{{ "/js/infinitescroll.js" | prepend: site.baseurl | prepend: site.github.url }}" ></script>
 {% endif %}
