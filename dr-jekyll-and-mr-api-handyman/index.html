@@ -45,11 +45,6 @@
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="canonical" href="/dr-jekyll-and-mr-api-handyman/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
-  <script type="text/javascript" src="/js/jquery.min.js" ></script>
-  <script type="text/javascript" src="/js/gist-embed.min.js" ></script>
-  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
-  <script type="text/javascript" src="/js/anchor.min.js" ></script>
-  <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
   
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -134,32 +129,10 @@
       
 
     </div>
-    <script language="JavaScript">
-        anchors.options = {
-          placement: 'left'
-        };
-        anchors.add('.blog-container h1');
-        anchors.add('.blog-container h2');
-        anchors.add('.blog-container h3');
-    </script>
   </article>
 </div>
 <div class="hidden-xs col-sm-3 col-md-2" role="complementary">
   <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
-  <script language="javascript">
-    $(function() {
-      console.log('here');
-      var $myNav = $('#toc');
-      var $myScope = $('#post');
-      Toc.init({
-        $nav: $myNav,
-        $scope: $myScope
-      });
-      $('body').scrollspy({
-        target: '#toc'
-      });
-    });
-  </script>
 </div>
           </main>
         </div>
@@ -188,6 +161,37 @@
           </div>
         </div>
       </div>
+        <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  
+    <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+<script language="javascript">
+  $(function() {
+    var $myNav = $('#toc');
+    var $myScope = $('#post');
+    Toc.init({
+      $nav: $myNav,
+      $scope: $myScope
+    });
+    $('body').scrollspy({
+      target: '#toc'
+    });
+  });
+</script>
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script language="JavaScript">
+  $(function() {
+    anchors.options = {
+      placement: 'left'
+    };
+    anchors.add('.blog-container h1');
+    anchors.add('.blog-container h2');
+    anchors.add('.blog-container h3');
+  });
+</script>
+  
+  <script async type="text/javascript" src="/js/gist-embed.min.js" ></script>
+ 
   </body>
 
 </html>
