@@ -61,7 +61,7 @@ Once written, OpenAPI specification file can also be used as:
 
 - source material for documentation
 - specification for developers
-- partial of complete code generation
+- partial or complete code generation
 - and many other things...
 
 # Writing OpenAPI Specification
