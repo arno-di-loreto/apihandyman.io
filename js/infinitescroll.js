@@ -6,39 +6,55 @@ function getNextPage() {
   var url = $("#next a").attr('href');
   // removing pagination div
   pagination.remove();
-  // if there's no "next" in pagination div we stop here
-  if (url) {
-    // list.load use http instead of https with relative url (??), so forcing a full url
-    if(!url.startsWith(document.location.origin)) {
-      url = document.location.origin + url;
-    }
-    // showing a spinner while downloading
-    $("#main").append("<div id=\"spinner\" class=\"center\"><i class=\"fa fa-spinner fa-spin fa-2x\"></i></div>");
-    // adding a temp. dom object to load the next page
-    var list = $("<div></div>");
-    
-    // Load only #main div
-    var url_id = url + " #main";
-    list.load(url_id, function(response, status, xhr) {
-      // check if we doesn't get any error
-      if ( status != "error" ) {
-        // copy all childrens of our temp container to the real container
-        // note: jQuery load will copy the #main node as well,
-        // so use the childrens and move them
-        var container = $("#main");
+  try {
+    // if there's no "next" in pagination div we stop here
+    if (url) {
+      // list.load use http instead of https with relative url (??), so forcing a full url
+      if(url.indexOf('http') != 0) {
+        //console.log(document.location.href.split('://')[0]);
+        //console.log(document.location.host);
+        var origin = document.location.href.split('://')[0] + '://' + document.location.host;
+        console.log(origin);
+        url = origin + url;
+        console.log(url);
+      }
+      // showing a spinner while downloading
+      $("#main").append("<div id=\"spinner\" class=\"center\"><i class=\"fa fa-spinner fa-spin fa-2x\"></i></div>");
+      // adding a temp. dom object to load the next page
+      var list = $("<div></div>");
+      
+      // Load only #main div
+      var url_id = url + " #main";
+      list.load(url_id, function(response, status, xhr) {
+        // check if we doesn't get any error
         // removing spinner
         $("#spinner").remove();
-        list.children("#main").children().each(
-          function(key, value){
-            container.append(value);
-          }
-        );
-      }
-      else {
-        console.log(status);
-        console.log(response);
-      }
-    });
+        if ( status != "error" ) {
+          // copy all childrens of our temp container to the real container
+          // note: jQuery load will copy the #main node as well,
+          // so use the childrens and move them
+          var container = $("#main");
+          list.children("#main").children().each(
+            function(key, value){
+              container.append(value);
+            }
+          );
+        }
+        else {
+          // if there's an error we put pagination back
+          console.log('got an error when getting next page');
+          console.log(status);
+          console.log(response);
+          $("#main").append(pagination);
+        }
+      });
+    }
+  }
+  // just in case of an unexpected problem like browser compatibility...
+  catch(error) {
+    console.log('unexpected error');
+    console.log(error);
+    $("#main").append(pagination);
   }
 }
 
