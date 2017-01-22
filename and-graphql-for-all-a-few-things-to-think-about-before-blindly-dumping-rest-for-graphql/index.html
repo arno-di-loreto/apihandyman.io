@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>...And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL | API Handyman</title>
+  <meta name="description" content="GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too! Well, why not. GraphQL could be a great tool, but like any tool, you don...">
+  
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@apihandyman">
+
+  <meta name="twitter:title" content="...And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL">
+
+
+  <meta name="twitter:url" content="https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">
+
+
+  <meta name="twitter:description" content="GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too! Well, why not. GraphQL could be a great tool, but like any tool, you don’t choose it just because. You choose it because it solves a problem in a given context. You choose it knowing its strengths and weaknesses. While discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it. From design and implementation to pricing model and analytics down to developers experience and implementations, choosing an API design style will have impact on the whole API lifecycle. Therefore, this choice must be an enligthned one and not based on simple beliefs.">
+
+  <meta name="twitter:image:src" content="https://apihandyman.io/images/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/thumbnail.png">
+
+  
+
+
+
+  <meta name="og:description" content="GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too! Well, why not. GraphQL could be a great tool, but like any tool, you don’t choose it just because. You choose it because it solves a problem in a given context. You choose it knowing its strengths and weaknesses. While discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it. From design and implementation to pricing model and analytics down to developers experience and implementations, choosing an API design style will have impact on the whole API lifecycle. Therefore, this choice must be an enligthned one and not based on simple beliefs.">
+
+<meta name="og:image" content="https://apihandyman.io/images/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/thumbnail.png">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">...And GraphQL for all?</h1>
+          
+            <h2 class="post-subtitle">A few things to think about before blindly dumping REST for GraphQL</h2>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2017-01-22T00:00:00+00:00" itemprop="datePublished">Jan. 22, 2017</time><span>&nbsp;|&nbsp;Posts</span>
+      </p>
+      <p>GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too!<br />
+Well, why not. GraphQL could be a great tool, but like any tool, you don’t choose it <em>just because</em>. You choose it because it solves a problem in a given context. You choose it knowing its strengths and weaknesses.</p>
+
+<p>While discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it. From design and implementation to pricing model and analytics down to developers experience and implementations, choosing an API design style will have impact on the whole API lifecycle. Therefore, this choice must be an enligthned one and not based on simple beliefs.<!--more--></p>
+
+<h1 id="informed-choice">Informed choice</h1>
+<p>Before talking about GraphQL, I would like to ask you two really important questions.</p>
+
+<p>The first one is:</p>
+<div>
+      <img src="/images/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/metallica-vs-iron-maiden.png" />
+      <p class="img-label">Metallica or Iron Maiden. Who is the best heavy metal band?</p>
+    </div>
+
+<p>Iron Maiden of course. You may disagre, that is your absolute right. Metallica could also the best metal band… For you. The answer to this question is only a matter of personnal feelings.</p>
+
+<p>The second question is:</p>
+<div>
+      <img src="/images/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/hammer-vs-screndriver.png" />
+      <p class="img-label">Hammer or screwdriver. Which is the best tool?</p>
+    </div>
+
+<p>It’s a pretty dumb question isn’t it? The only possible answer to this question is <em>it depends</em>.<br />
+It depends on the tools capabilities and the context (what you want to do, what is your environnement, your budget, your objective).</p>
+
+<p>Without context, my hammer cannot be better than your screwdriver.</p>
+
+<p>Acting as a fanboy may be acceptable when it comes to choose your favorite heavy metal band. But it’s definitely not a good idea when it comes to choose a tool, a product or an API style… From design and implementation to pricing model and analytics down to developers experience and backend implementations, choosing an API design style will have impact on the whole API lifecycle.</p>
+
+<p>So before blindly yelling <em>…and GraphQL for all!</em> just because Facebook created it and Github decided to use it, remember that GraphQL, just like REST, is only a tool. A tool that you choose with a purpose within a certain context.</p>
+
+<p>Let’s dig into GraphQL and see what we should think about from a REST API provider prespective when evaluating it as a possible solution for our API projects.</p>
+
+<h1 id="what-is-graphql">What is GraphQL?</h1>
+<p>GraphQL is a query language for data created in 2012 by Facebook when switching to native mobile applications.</p>
+
+<blockquote>
+  <p>We were frustrated with the differences between the data we wanted to use in our apps and the server queries they required.<br />
+GraphQL was our opportunity to rethink mobile app data-fetching from the perspective of product designers and developers. It moved the focus of development to the client apps, where designers and developers spend their time and attention.<br />
+<em><a href="https://code.facebook.com/posts/1691455094417024/graphql-a-data-query-language/">GraphQL, a data query language. Post by Lee Byron</a></em></p>
+</blockquote>
+
+<p>Facebook <a href="https://code.facebook.com/posts/1691455094417024/graphql-a-data-query-language/">open sourced it in 2015</a> and companies like <a href="http://graphql.org/users/">Pinterest, Coursera or Github</a> started to use it.</p>
+
+<p>Let’s take a look at <a href="https://developer.github.com/early-access/graphql/">Github GraphQL API</a> to discover GraphQL.</p>
+
+<h2 id="what-you-want-is-what-you-get">What you want is what you get</h2>
+<p>GraphQL motto is</p>
+
+<blockquote>
+  <p>What you want is what you get</p>
+</blockquote>
+
+<h3 id="querying-data">Querying data</h3>
+<p>The Github GraphQL API propose a <em>viewer</em> query, returning the connected User data. This query is the equivalent of <code class="highlighter-rouge">GET /user</code> in the Github REST API. The difference with the REST query is that I can select the properties I want to retrieve.</p>
+
+<p>With this query, I retrieve only the viewer’s name and avatarURL.</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+  viewer {
+    name
+    avatarURL
+  }
+}
+</code></pre>
+</div>
+<p>To get server’s response I have to POST this query in a JSON object to the GraphQL endpoint:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>POST https://api.github.com/graphql
+{
+ "query": "{ me: viewer { name avatarURL} }"
+}
+</code></pre>
+</div>
+
+<p>The result is in JSON format and the requested data are located in the data property. These data mirror perfectly my query.</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"viewer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arnaud Lauret"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"avatarURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars0.githubusercontent.com/u/10104551?v=3"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h3 id="customizing-responses">Customizing responses</h3>
+<p>You can create more custom data structures by using aliases.<br />
+Here, <code class="highlighter-rouge">viewer</code> becomes <code class="highlighter-rouge">me</code>, <code class="highlighter-rouge">name</code> becomes <code class="highlighter-rouge">fullname</code> and <code class="highlighter-rouge">avatarURL</code> becomes <code class="highlighter-rouge">picture</code>.</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+  me: viewer {
+    fullname: name
+    picture: avatarURL
+  }
+}
+</code></pre>
+</div>
+
+<p>The result is exactly what I requested:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arnaud Lauret"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars0.githubusercontent.com/u/10104551?v=3"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h3 id="querying-sub-resources">Querying sub-resources</h3>
+<p>Now let’s say I want to retrieve some viewer’s data and the names of his last two created repositories.</p>
+
+<p>To do that with the Github REST API, I need two calls:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">GET /user</code> to get the viewer information</li>
+  <li><code class="highlighter-rouge">GET /user/repos?sort=created&amp;direction=desc</code> to get the repositories list. Unfortunately the API do not propose a length parameter for the list</li>
+</ul>
+
+<p>The responses will contains all available data, the REST API do not propose to filter returned properties.</p>
+
+<p>With GraphQL, I can do that with a single query:</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+  me: viewer {
+    fullname: name
+    picture: avatarURL
+    repositories(first: 2, orderBy: {field: CREATED_AT, direction: DESC}) {
+      edges {
+        node {
+          name
+        }
+      }
+    }
+  }
+}
+</code></pre>
+</div>
+
+<p>I just have to add the repositories property in my viewer query with the good parameters and indicate the properties I want to get back for each repository. The response contains exactly what I requested.</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arnaud Lauret"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars0.githubusercontent.com/u/10104551?v=3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"repositories"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"edges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"apistylebook-api"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restfest-videos-data-postprocessor"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h3 id="agregating-queries">Agregating queries</h3>
+<p>Not only can I seamlessly retrieve a resource and its sub resources, I can also make multiple different queries in one API call.</p>
+
+<p>Here I retrieve information about:</p>
+
+<ul>
+  <li>me (the viewer)</li>
+  <li>two other users (Kin Lane and Mike Amundsen)</li>
+  <li>and a search on repositories</li>
+</ul>
+
+<p>in a single request to the GraphQL server:</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+  me:   viewer                 { name avatarURL }
+  kin:  user(login: "kinlane") { name avatarURL }
+  mike: user(login: "mamund")  { name avatarURL }
+  graphqlRepos: search(first: 2, query: "graphql", type: REPOSITORY) {
+  	edges { node { ... on Repository {
+      name
+      description
+    }}}  
+  }
+}
+</code></pre>
+</div>
+
+<p>The response contains all requested data:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arnaud Lauret"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"avatarURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars0.githubusercontent.com/u/10104551?v=3"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"kin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kin Lane"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"avatarURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars1.githubusercontent.com/u/56100?v=3"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"mike"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike Amundsen"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"avatarURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars2.githubusercontent.com/u/38344?v=3"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"graphqlRepos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"edges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"graphql"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GraphQL is a query language and execution engine tied to any backend service."</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"graphql"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An implementation of GraphQL for Go / Golang"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h3 id="graphql-is-not-sql-nor-an-etl">GraphQL is not SQL nor an ETL</h3>
+<p>GraphQL is really powerful but be warned that it’s not SQL nor an ETL, you can select the data you want, agregate queries, change names but not join queries or change the data structure.</p>
+
+<p>You cannot join queries like you would join tables in SQL.</p>
+
+<pre><code class="language-SQL">SELECT * FROM A, B WHERE A.COL = B.COL
+</code></pre>
+
+<p>You cannot select sub-properties or flatten objects. If I want to retrieve the name of my first repository without the edges and repo level, I cannot change this hierarchy:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"myFirstTwoRepos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"edges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"repo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"apistylebook-api"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>into this one:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"myFirstTwoRepos"</span><span class="p">:</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"apistylebook-api"</span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h2 id="schema-introspection-documentation">Schema, introspection, documentation</h2>
+<p>All the available data are described within a schema.
+This schema let you describe your data model like you would do with OpenAPI/Swagger, Blueprint or RAML specification.
+The schema can be queried on runtime like all of the data.</p>
+
+<p>This query let me know what are the properties of the <code class="highlighter-rouge">User</code> resource which is returned by the viewer and user query</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+  __type(name:"User") {
+    fields {
+      name
+      description
+    }
+  }
+}
+</code></pre>
+</div>
+
+<p>It can also be used to generate documentation.
+screen capture doc</p>
+
+<h2 id="ecosystem">Ecosystem</h2>
+<p>GraphQL do not comes alone, it’s a part of an ecosystem including:</p>
+
+<ul>
+  <li>Consumer libraries like <a href="https://facebook.github.io/relay/">Relay</a></li>
+  <li>API explorer <a href="https://github.com/graphql/graphiql">GraphiQL</a></li>
+  <li>And server libraries in <a href="http://graphql.org/code/">many different languages like Node, Ruby, Python, Java, Scala or Clojure</a></li>
+</ul>
+
+<h2 id="graphql-in-few-words">GraphQL in few words</h2>
+
+<p>So basically with GraphQL you can</p>
+
+<ul>
+  <li>Retrieve only the data you need on consumer side</li>
+  <li>Reduce the data volume returned by the server because you retrieve only what you need</li>
+  <li>Reduce the number of calls to retrieve data by seamlessly retrieving linked resources and agregating queries</li>
+  <li>Discover the schema you are querying</li>
+</ul>
+
+<p>And GraphQL comes with a full ecosystem which ease both API provider and consumer job.</p>
+
+<p>I have played with the <a href="https://www.npmjs.com/package/graphql">official node js library</a> to create a GraphQL server and I was really impressed by how it was easy to achieve a proof of concept. You define your schema. You define resolver function for your resources, and bang! it’s done.</p>
+
+<p>If you want to discover GraphQL you should try the <a href="https://learngraphql.com/">tutorial available at learngraphql.com</a> and play with the <a href="https://developer.github.com/early-access/graphql/">Github GraphQL API</a></p>
+
+<h1 id="what-graphql-could-mean-when-youre-acustomed-to-rest">What GraphQL could mean when you’re acustomed to REST</h1>
+<p>This is very cool. My geek side is really excited about GraphQL. But Let’s keep a cool head and try to think about what GraphQL could mean for people acustomed to REST APIs? Let’s see what are some impacts on the consumer and provider sides.</p>
+
+<h1 id="graphql-brings-a-different-developer-experience">GraphQL brings a different developer experience</h1>
+<p>When people speak of GraphQL and developer experience, the main focus is on <em>what you want is what you get</em> which is really a killer feature that can greatly enhance DX in a certain context. But as GraphQL offers a radically different DX than a REST API, some aspects should be investigated to evaluate if these changes can be real issues.</p>
+
+<h2 id="being-protocol-agnostic-has-consequences-on-predictability-and-consistency">Being protocol agnostic has consequences on predictability and consistency</h2>
+<p>GraphQL is protocol agnostic, it means that you can use it with any protocol as long as you can send and retrieve a string. This can be useful but people acustomed to using the HTTP protocol with REST API should then be aware that, when used over HTTP, GraphQL do not use any of its features and it has consequences on DX.</p>
+
+<h3 id="reading-and-writing-resources">Reading and writing resources</h3>
+<p>With a REST API, if I retrieve a user’s data with <code class="highlighter-rouge">GET /users/{id}</code>, I can try to update it with <code class="highlighter-rouge">PATCH /users/{id}</code> and delete it with <code class="highlighter-rouge">DELETE /users/{id}</code> without even reading the documentation and it will probably work… like it will work with another another resource in the same API and even with another resource in another REST API.
+And icing on the cake: both humans and machines can discover and understand the meaning of each operation.
+Using the HTTP protocol enforce a certain consistency and allow predictability.</p>
+
+<p>In a GraphQL API, reading and writing actions are separated in 2 sets of queries.</p>
+
+<ul>
+  <li>query for reading</li>
+  <li>mutation for writing</li>
+</ul>
+
+<p>Machines will only be able to understand that a query do not modify underlying system and a mutation does, all other semantic will be based on naming conventions.</p>
+
+<p>If I get a user with the query user:</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>query {
+  user(id: "{id}") {
+    name
+  }
+}
+</code></pre>
+</div>
+
+<p>Updating or deleting this user with GraphQL will not be as clear as with REST.
+How will be named the mutation allowing me to delete a user? <code class="highlighter-rouge">deleteUser</code>, <code class="highlighter-rouge">removeUser</code> or <code class="highlighter-rouge">suppressPeople</code>?
+You’ll have to dig in the documentation to find out. You cannot guess it because different API providers will have different naming conventions and these naming convention may event not be consistent within an API.</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>mutation {
+  deleteUser(id: "{id}")
+  removeUser(id: "{id}")
+  suppressPeople(id: "{id}")
+}
+</code></pre>
+</div>
+
+<h3 id="handling-errors">Handling errors</h3>
+<p>Being protocol agnostic also means that everything is going to be <code class="highlighter-rouge">200 OK</code> when using GraphQL over HTTP, wheither the query was OK or not. With REST APIs we are acustomed to be able to tell what happens just by looking at the HTTP status. Whatever the API, if we receive a <code class="highlighter-rouge">404</code> HTTP status we known what it means: <em>resource not found</em>.</p>
+
+<p>If I try to retrieve a user that do not exists with a GraphQL API:</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+  user(login: "dummy-user-123") {name}
+}
+</code></pre>
+</div>
+
+<p>I get this GraphQL standard error with a text message telling me the user do no exists.:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Could not resolve to a User with the login of 'dummy-user-123'."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"column"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"user"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>If I forget the login parameter:</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+  user { name }
+}
+</code></pre>
+</div>
+
+<p>I get exactly the same error format:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Field 'user' is missing required arguments: login"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"column"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The message shows me explicitely what the problem is, but I cannot determine the error type programmatically in a generic way. These errors are not really fit to be analyzed automatically by machines. Of course there’s obviously a pattern in the message but will this message have the same pattern for another resource or use case? Will this pattern be consistent as the API evolve? And will I find exactly the same pattern in another GraphQL API?</p>
+
+<h2 id="graphql-focuses-on-data-and-not-actions">GraphQL focuses on data and not actions</h2>
+<p>A well design REST API implementing hypermedia is able to tell you what are the resources connected to the resource you just get but it can also provide the possible affordances to tell you what you can do. With an hypermedia API you’ll be able to describe a complex process step by step providing information about the next requests you can do. But be aware that if HTTP protocol ensure a certain consistency across APIs concering resources manipulation, the hypermedia aspect of REST APIs is not standardized even if some format like Siren, Hydra or HAL exist.</p>
+
+<p>A GraphQL API focus on data, you read data, you write data. But these aspects are totally disconnected and, for now, describing affordance is not a GraphQL feature. You can of course rely on documentation to describe these processes but therefore machines will not be able to handle that automatically. Looking at how it’s implemented in REST API, I’m sure that sooner or later we will have such features in GraphQL.</p>
+
+<h2 id="cache">Cache</h2>
+<p>Caching data is always a tricky thing. With a REST API, a consumer could rely on HTTP caching system and could rely on HTTP caching data provide in response’s header to build it’s own cache.
+With GraphQL there’s no such mecanism, for now, you’ll have to rely totally on the client to handle cache. Hopefully client library like Facebook’s Relay propose a complex cache system but as GraphQL do not provide information about how long the data are valid, it will be up to the consumer to choose when to refresh the cache.
+I’m sure that as GraphQL evolve, we will have better cache mecanism in the future.</p>
+
+<h2 id="does-graphql-offer-a-good-or-bad-dx">Does GraphQL offer a good or bad DX?</h2>
+<p>So with GraphQL you gain great flexibility when querying data but you lose a certain predictability and consistency inside an API and across APIs. You may also not clearly see what you can do with these data and GraphQL gives more responsability on the client side to cache these data.
+Is this a problem?. Like always, the answer to this question will depend on the context. You just have to think about these elements (and probably others) regarding your context to determine if it’s a problem or an advantage.</p>
+
+<h1 id="graphql-does-not-ease-api-provider-job-and-brings-new-challenges">GraphQL does not ease API provider job and brings new challenges</h1>
+<p>Let’s see now what GraphQL means on the provider side.</p>
+
+<p>First, let me be clear:</p>
+
+<blockquote>
+  <p>If you suck at providing REST API, you WILL suck at providing GraphQL API.<br />
+<em>Arnaud Lauret, API Handyman</em></p>
+</blockquote>
+
+<p>GraphQL may bring new challenges and questions on the provider side but it mainly highlights matters that you should master whatever the type of API you provide.</p>
+
+<h2 id="graphql-will-not-solve-your-api-design-problems">GraphQL will not solve your API design problems</h2>
+
+<blockquote>
+  <p>What the hell is this <code class="highlighter-rouge">amsus2</code> field?
+Anonym consumer</p>
+</blockquote>
+
+<p>After a in-depth analysis of a use case or a problem, you may come to the <em>logical and enligtened</em> conclusion that GraphQL is the most appropriate solution instead of REST <em>regarding the context</em>. Be warned that GraphQL is not a magic thing that you just put on top of a good old database or existing system and it’s over.</p>
+
+<p>Don’t dare to think: <em>We have data, let people decide how to query them and what to make of them!</em>. Don’t forget that a GraphQL API is STILL an API. It’s supposed to be a consumer friendly abstraction of a usually complex underlying system.</p>
+
+<p>Remember all the terrible things you’ve done while designing crappy REST APIs. API without really defined purpose, dumb database mapping, dumb legacy service mapping, dumb internal organization and processes exposition … 
+A GraphQL API, just like a REST one, must be created with a purpose and designed from an outside in perpective and not an inside out one.</p>
+
+<p>If you don’t do that, be ready for a total failure.</p>
+
+<p>We have seen while talking about Developer Experience that queries and mutations are disconnected and that consumer can only rely on mutation’s name and documentation to know what they’re up to. You will have to increase control on design because naming thing consistently is hard and you’ll definitely need consistency to help consumers understand how your query and mutations are connected and what mutations actually do. If you know some people who were involved in SOA governance in the SOAP protocol era you may call them because they have faced such things.</p>
+
+<h2 id="graphql-will-not-solve-your-api-documentation-problems">GraphQL will not solve your API documentation problems</h2>
+<p>A GraphQL API comes with an integrated documentation system describing the schema that can be queried.
+You can discover the available queries and the data returned.</p>
+
+<blockquote>
+  <p>A5 Amsus2 B B5 B7 B7/D# C C5 C#5 Cadd9 D D5 D#5 E5 Em F#m G<br />
+<em>Master of Puppets Guitar Chords</em></p>
+</blockquote>
+
+<p>This is the list of guitar chords you need to play Master Of Puppets. Having only this list, and without being a guitar hero, will you be able to play the song? Well maybe … after a very long struggle.</p>
+
+<p>An interface contract description, an inventory of queries and objects, was, is and will <em>NEVER</em> be the API documentation, it’s only a part of it. It’s just like providing guitar chords without explaing how to chain them to play a song. How to connect? How is handled rate limiting? How is handle security? How to respond to this use case? Code snippets, SDK, tutorials …</p>
+
+<p>API documentation is something that go way beyond the description of its interface contract. Don’t forget that the API itself and its documentation are the main ingredients of a good developer experience. Without a good DX, no users, no business.</p>
+
+<p>So don’t be fooled by this kind of documentation and note that also applies to REST APIs when you use API description format like OpenAPI, Swagger, RAML of Blueprint.</p>
+
+<h2 id="graphql-may-have-unexpected-side-effects-and-data-volumes-and-server-usage">GraphQL may have unexpected side effects and data volumes and server usage</h2>
+<p>With GraphQL, what you want is what you get. But you always have to explicitely tell what you want, there’s no <code class="highlighter-rouge">select * from user</code> like in SQL. So on each request, consumers have to send a full query.</p>
+
+<p>Where you would have a simple <code class="highlighter-rouge">GET /dashboard</code> with a REST API, you may end with a huge GraphQL query.
+In some use case, you may reach your input bandwidth limit because the number of requests has not really diminished but the requests size has increased. Remember that not everybody has a fully scalable cloud infrastructure with illimited bandwidth.</p>
+
+<p>Proposing a smart system allowing consumers to retrieve in one shot what they want do not mean that it will be used wisely. Some lazy consumers may simply fired huge requests retrieving far more data than they really need. Some huge and complex request may impact all you infrastructure, so you should really think about your GraphQL schema and what runs behind it, because you’re giving the full power to consumers.</p>
+
+<h2 id="graphql-may-force-you-to-rethink-api-analytics-and-pricing-model">GraphQL may force you to rethink API analytics and pricing model</h2>
+<p>If you were relying on HTTP access logs for rate limiting, API analytics and billing you will have to find a new way to handle that. The most important impact will be on pricing model and billing: how to make people pay when you have a single endpoint allowing to do what you want like you want? Counting queries and mutations can be agood start, you’ll maybe have to include data volume and queries depth in your calculations to design a new pricing model. Getting these new variables will probably have impacts on your API tooling, especially your API gateway.</p>
+
+<h2 id="does-graphql-offer-a-good-or-a-bad-px-provider-experience">Does GraphQL offer a good or a bad PX (provider experience)?</h2>
+<p>Providing a GraphQL API will not make you magically a better API provider. You still have to design and document your API, you still have to create the best architecture and infrastructure, you still have to define a pricing model. Providing GraphQL API brings the same challenges has providing REST API with a few subtles differences that you must be aware of to choose the right API style for the right context.</p>
+
+<h1 id="should-i-choose-graphql-or-rest">Should I choose GraphQL or REST?</h1>
+<p>In conclusion, GraphQL is really a powerful and interesting technology that impacts deeply both API provider and consumer who are acustomed to REST APIs. It’s a new technology that may need some improvments, that will surely come.</p>
+
+<p>You MUST see it as a new tool in your API toolbox alongside REST and Streaming APIs. A new tool that you will choose wisely regarding your context. And don’t forget that sometime you’ll need a hammer AND a screwdriver to build awesome things.</p>
+
+<p>Now I hope you will be able to the answer this really important question:</p>
+
+<blockquote>
+  <p>REST or GraphQL.<br />
+Which one is the best API style?</p>
+</blockquote>
+
+<p>You’re supposed to yell <em>it depends!</em></p>
+
+<p><em>This post is a writeup of my <a href="https://speakerdeck.com/arnaudlauret/dot-dot-dot-and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql">API Days Paris 2017 talk</a>.</em></p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/';
+      this.page.identifier = 'https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+        <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  
+    <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+<script language="javascript">
+  $(function() {
+    var $myNav = $('#toc');
+    var $myScope = $('#post');
+    Toc.init({
+      $nav: $myNav,
+      $scope: $myScope
+    });
+    $('body').scrollspy({
+      target: '#toc'
+    });
+  });
+</script>
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script language="JavaScript">
+  $(function() {
+    anchors.options = {
+      placement: 'left'
+    };
+    anchors.add('.blog-container h1');
+    anchors.add('.blog-container h2');
+    anchors.add('.blog-container h3');
+  });
+</script>
+<script async type="text/javascript" src="/js/gist-embed.min.js" ></script>
+  
+  </body>
+
+</html>
