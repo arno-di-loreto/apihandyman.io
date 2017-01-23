@@ -169,7 +169,7 @@ I just have to add the repositories property in my viewer query with the good pa
 }
 ```
 
-### Agregating queries
+### Aggregating queries
 Not only can I seamlessly retrieve a resource and its sub resources, I can also make multiple different queries in one API call.  
   
 Here I retrieve information about:
