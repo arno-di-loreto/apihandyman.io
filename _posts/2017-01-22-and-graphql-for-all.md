@@ -294,8 +294,9 @@ This query let me know what are the properties of the `User` resource which is r
 }
 ```
 
-It can also be used to generate documentation.
-screen capture doc
+This schema can also be used to generate documentation:
+
+{% img file:documentation.png label:"GraphiQL documentation" %}
 
 ## Ecosystem
 GraphQL do not comes alone, it's a part of an ecosystem including:
