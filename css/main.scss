@@ -170,6 +170,20 @@ code {
   }
 }
 
+.code-bottom-toolbar {
+  padding: 0px;
+  width: 100%;
+  .btn:focus,.btn:active {
+    outline: none !important;
+  }
+  .btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    position: relative;
+    top: -8px;
+  }
+}
+
 /* TOC */
 nav[data-toggle='toc'] {
   margin-top: 5px;

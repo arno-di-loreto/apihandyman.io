@@ -41,17 +41,23 @@
   });
 </script>
 <script language="JavaScript">
-  function toggle(button) {
-    var precode = button.parentElement.parentElement.parentElement.lastElementChild; 
-    if($(precode).hasClass('code-collapsed')) {
-      $(precode).removeClass('code-collapsed');
+  function toggle(button, code, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
       $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
       $(button).blur();
     }
     else {
-      $(precode).addClass('code-collapsed');
+      $(code).addClass('code-collapsed');
       $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
       $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
     }
   }
 </script>

@@ -112,7 +112,8 @@ class CodeFile < Liquid::Tag
 
     if code.lines.count > 20 
       collapsed = " code-collapsed"
-      collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
+      collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this, this.parentElement.parentElement.parentElement.children[1])\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
+      collapsedbottombutton = "<div class=\"code-bottom-toolbar\"><button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"toggle(this, this.parentElement.parentElement.children[1], true)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button></div>"
     end
 
     <<-HTML
@@ -125,6 +126,7 @@ class CodeFile < Liquid::Tag
     </div>
   </div>
   <pre class="language-#{@language}#{@linenumbers}#{collapsed}"#{highlighttag}#{datastart}><code>#{code}</code></pre>
+  #{collapsedbottombutton}
 </div>
       HTML
   end

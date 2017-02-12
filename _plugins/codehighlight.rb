@@ -35,10 +35,13 @@ module Jekyll
 
     def render(context)
       code = h(super).strip
+      
       if code.lines.count > 20 
         collapsed = " code-collapsed"
-        collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
+        collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this, this.parentElement.parentElement.parentElement.children[1])\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
+        collapsedbottombutton = "<div class=\"code-bottom-toolbar\"><button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"toggle(this, this.parentElement.parentElement.children[1], true)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button></div>"
       end
+      
       <<-HTML
 <div>
   <div class="code-toolbar">
@@ -48,6 +51,7 @@ module Jekyll
     </div>
   </div>
   <pre class="language-#{@language}#{@linenumbers}#{collapsed}"#{@highlight}><code>#{code}</code></pre>
+  #{collapsedbottombutton}
 </div>
       HTML
     end
