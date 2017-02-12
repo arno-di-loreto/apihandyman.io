@@ -188,6 +188,7 @@ Languages:
   - Markup
   - C-Like
   - JavaScript
+  - Bash
   - GraphQL
   - JSON
   - SQL

@@ -83,10 +83,10 @@ Sometimes it would be better for user experience to explicitly say that a thing 
 Let's take the dummy API described in part I and work with the *add photo* operation for *location* resource (still using NARWHL).
 
 How it looks like in last post:
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1
-{% endhighlight %}
-{% highlight json %}
+{% endcode %}
+{% code language:json %}
 {
   "_links": 
   [
@@ -104,7 +104,7 @@ GET https://api.dummy.com/locations/IDL1
   ],
   ...
 }
-{% endhighlight %}
+{% endcode %}
 
 Now I add a *status* property to indicate if the operation is possible or not and explain why if it's not possible:
 
@@ -116,10 +116,10 @@ In this case, the *usability* is based on two notions: *availability* and *autho
 
 
 ### The operation in unavailable due to maintenance
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1
-{% endhighlight %}
-{% highlight json %}
+{% endcode %}
+{% code language:json %}
 {
   "_links": 
   [
@@ -160,13 +160,13 @@ GET https://api.dummy.com/locations/IDL1
   ],
   ...
 }
-{% endhighlight %}
+{% endcode %}
 
 ### The operation in unauthorized for this resource (location)
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1
-{% endhighlight %}
-{% highlight json %}
+{% endcode %}
+{% code language:json %}
 {
   "_links": 
   [
@@ -206,13 +206,13 @@ GET https://api.dummy.com/locations/IDL1
   ],
   ...
 }
-{% endhighlight %}
+{% endcode %}
 
 ### The operation in unauthorized for the user
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1
-{% endhighlight %}
-{% highlight json %}
+{% endcode %}
+{% code language:json %}
 {
   "_links": 
   [
@@ -252,14 +252,14 @@ GET https://api.dummy.com/locations/IDL1
   ],
   ...
 }
-{% endhighlight %}
+{% endcode %}
 
 
 ### Everything is OK
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1
-{% endhighlight %}
-{% highlight json %}
+{% endcode %}
+{% code language:json %}
 {
   "_links": 
   [
@@ -293,7 +293,7 @@ GET https://api.dummy.com/locations/IDL1
   ],
   ...
 }
-{% endhighlight %}
+{% endcode %}
 
 
 ## How you do things
@@ -321,7 +321,7 @@ Let's see what we can do with the *media tweet* case.
 
 ### First we get the tweetWithMedia action
 This action could placed be in *_links* property of GET https://api.twitter.com/1.1/.
-{% highlight json %}
+{% code language:json %}
 {
   "_links": 
   [
@@ -343,13 +343,13 @@ This action could placed be in *_links* property of GET https://api.twitter.com/
   ],
   ...
 }
-{% endhighlight %}
+{% endcode %}
 
 We get a first step: we have to upload a media.
 
 ### So we do the POST https://api.twitter.com/1.1/media/upload.json
 
-{% highlight json %}
+{% code language:json %}
 {
   "_links": 
   [
@@ -372,7 +372,7 @@ We get a first step: we have to upload a media.
   ],
   ...
 }
-{% endhighlight %}
+{% endcode %}
 
 In return we get the next step *updateStatus* for process *tweetWithMedia* with property *media_ids* containing the id of the uploaded media.
 

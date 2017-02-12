@@ -31,61 +31,61 @@ Let's take a dummy non-hypermedia API dealing with locations and photos as an ex
 
 - Get a specific location details
 
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1
-{% endhighlight %}
+{% endcode %}
 
-{% highlight Json %}
+{% code language:json %}
 {
   "id": "IDL1", 
   "name":"a location"
 }
-{% endhighlight %}
+{% endcode %}
 
 - Add a photo to a location
 
-{% highlight text %}
+{% code language:text %}
 POST https://api.dummy.com/photos
-{% endhighlight %}
-{% highlight Json %}
+{% endcode %}
+{% code language:json %}
 {
   "locationId": "IDL1",
   "url": "http://im.gur/myphoto"
 }
-{% endhighlight %}
+{% endcode %}
 
 - Get photos for a location
 
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1/photos
-{% endhighlight %}
-{% highlight Json %} 
+{% endcode %}
+{% code language:json %} 
 [
  {"id": "IDP1"}, 
  {"id": "IDP2"},
  ..., 
  {"id": "IDPn"}
 ]
-{% endhighlight %}
+{% endcode %}
 
 - Get a specific photo details
 
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/photos/IDP1
-{% endhighlight %}
-{% highlight Json %}  
+{% endcode %}
+{% code language:json %}  
 {
   "id": "IDP1", 
   "locationId": "IDL1",
   "url": "https://media.dummy.com/xlvc265z"
 }
-{% endhighlight %}
+{% endcode %}
 
 - Delete a specific photo
 
-{% highlight text %}
+{% code language:text %}
 DELETE https://api.dummy.com/photos/IDP1
-{% endhighlight %}
+{% endcode %}
 
 ## Level 1: Where you can go
 On level 1, you define relations/links between your resources. You can do this by using:
@@ -98,10 +98,10 @@ Let's see what we can do using jsonapi.org on our dummy API:
 
 - Get a specific location details
 
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1
-{% endhighlight %}
-{% highlight Json %}
+{% endcode %}
+{% code language:json %}
 {
   "links": { "self": "https://api.dummy.com/locations/IDL1"},
   "linked":[ 
@@ -113,14 +113,14 @@ GET https://api.dummy.com/locations/IDL1
   "id": "IDL1",
   "name": "a location"
 }
-{% endhighlight %}
+{% endcode %}
 
 - Get photos for a location
 
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1/photos 
-{% endhighlight %}
-{% highlight Json %}
+{% endcode %}
+{% code language:json %}
 {
   "links" : 
   {
@@ -135,14 +135,14 @@ GET https://api.dummy.com/locations/IDL1/photos
     }, ...
   ]
 }
-{% endhighlight %}
+{% endcode %}
 
 - Get a specific photo details
 
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/photos/IDP1 
-{% endhighlight %}
-{% highlight Json %}
+{% endcode %}
+{% code language:json %}
 {
   "links": { "self": "https://api.dummy.com/photos/IDP1"},
   "linked":
@@ -156,7 +156,7 @@ GET https://api.dummy.com/photos/IDP1
   "locationId": "IDL1",
   "url": "https://media.dummy.com/xlvc265z"
 }
-{% endhighlight %}
+{% endcode %}
 
 As you can see we have added links (*URL related to primary data*)  and linked (*linked resources*) values to existing data. These new data:
 
@@ -177,10 +177,10 @@ Let's see how it looks with NARWHL:
 
 - Get a specific location details
 
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1
-{% endhighlight %}
-{% highlight Json %}
+{% endcode %}
+{% code language:json %}
 {
   "_links":
   [
@@ -203,14 +203,14 @@ GET https://api.dummy.com/locations/IDL1
   "id": "IDL1",
   "name": "a location"
 }
-{% endhighlight %}
+{% endcode %}
 
 - Get photos for a location
 
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1/photos 
-{% endhighlight %}
-{% highlight Json %}
+{% endcode %}
+{% code language:json %}
 {
   "_links":
   [
@@ -245,14 +245,14 @@ GET https://api.dummy.com/locations/IDL1/photos
     }, ...
   ]
 }
-{% endhighlight %}
+{% endcode %}
 
 - Get a specific photo details
 
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/photos/IDP1 
-{% endhighlight %}
-{% highlight Json %}
+{% endcode %}
+{% code language:json %}
 { 
   "_links":
   [
@@ -276,7 +276,7 @@ GET https://api.dummy.com/photos/IDP1
   "locationId": "IDL1",
   "url": "https://media.dummy.com/xlvc265z"
 }
-{% endhighlight %}
+{% endcode %}
 
 With NARWHL, all links are defined within *_links* values and for each of them you explicitly define the HTTP method to use with the *method* value.
 I have to admit that I prefer the more explicits concepts of *class* or *type* brought by Siren or Hydra to describe the action/operation you can do instead of the [rel value based on IANA relation types](http://www.narwhl.com/hypermedia-linking/) (I probably miss something about this).
@@ -297,10 +297,10 @@ On level 3, you add a full description (and maybe some values) of the needed inp
 - [Collection+JSON](http://www.amundsen.com/media-types/collection/) 
 
 Let's see how NARWHL handle this on the "add photo" operation:
-{% highlight text %}
+{% code language:text %}
 GET https://api.dummy.com/locations/IDL1
-{% endhighlight %}
-{% highlight Json %}
+{% endcode %}
+{% code language:json %}
 {
   "_links": 
   [
@@ -328,7 +328,7 @@ GET https://api.dummy.com/locations/IDL1
   "id": "IDL1",
   "name": "a location"
 }
-{% endhighlight %}
+{% endcode %}
 
 With NARWHL, by adding *parameters* value you give a description (and some default values) of the needed inputs for the operations.
 Collection+JSON, Siren and Hydra use a more precise way of describing these inputs. You can see more examples using HAL, JSON-LD, Hydra, Collection+JSON and Siren in Kevin Sookocheff's [post](http://sookocheff.com/posts/2014-03-11-on-choosing-a-hypermedia-format/) comparing some hypermedia systems. As Kevin's post do not talk about NARWHL and jsonapi.org I have focused this post's examples on these ones.

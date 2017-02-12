@@ -14,9 +14,7 @@ class CodeFile < Liquid::Tag
     end
 
     if @attributes['highlight']
-      @highlight = " data-line=\"#{@attributes['highlight']}\""
-    else
-      @highlight = ""
+      @highlight = @attributes['highlight']
     end
 
     if @attributes['file']
@@ -76,12 +74,37 @@ class CodeFile < Liquid::Tag
         for index in first-1 ... last
           code = code + lines[index]
         end
-        # line numbers are modified if range do not start at line 1
         if first > 1
+          # line numbers are modified if range do not start at line 1
           datastart = " data-start=\"#{first}\""
+          # highligh must also be modified
+          firstitem = true
+          if @highlight
+            modhighlight = ""
+            @highlight.split(",").each { |range| 
+               values = range.split("-")
+               firstvalue = values[0].to_i - first + 1
+               if values[1]
+                secondvalue = values[1].to_i - first + 1
+                updateditem = "#{firstvalue}-#{secondvalue}"
+               else
+                updateditem = firstvalue
+               end 
+               if firstitem
+                 modhighlight = "#{updateditem}"
+                 firstitem = false
+               else
+                 modhighlight = "#{modhighlight},#{updateditem}"
+               end
+            }
+          end    
         end
       else
         code = File.read(path)
+        modhighlight = @highlight
+      end
+      if @highlight
+        highlighttag = " data-line=\"#{modhighlight}\""
       end  
     else
       raise SyntaxError.new("Syntax Error in 'codefile' - file #{path} do not exists")
@@ -95,7 +118,7 @@ class CodeFile < Liquid::Tag
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
   </div>
-  <pre class="language-#{@language}#{@linenumbers}"#{@highlight}#{datastart}><code>#{code}</code></pre>
+  <pre class="language-#{@language}#{@linenumbers}"#{highlighttag}#{datastart}><code>#{code}</code></pre>
 </div>
       HTML
   end
