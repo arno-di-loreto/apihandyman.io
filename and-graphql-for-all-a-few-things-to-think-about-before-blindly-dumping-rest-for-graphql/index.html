@@ -318,7 +318,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
 <div>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
   </div>
@@ -344,7 +344,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
     }
   }
 }</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h3 id="aggregating-queries">Aggregating queries</h3>
@@ -386,7 +386,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
 <div>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
   </div>
@@ -422,7 +422,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
     }
   }
 }</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h3 id="graphql-is-not-sql-nor-an-etl">GraphQL is not SQL nor an ETL</h3>
@@ -890,16 +890,18 @@ Which one is the best API style?</p>
   });
 </script>
 <script language="JavaScript">
-  function toggle(button, code, scroll) {
+  function toggle(button, code, secondarybutton, scroll) {
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
       $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
       $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

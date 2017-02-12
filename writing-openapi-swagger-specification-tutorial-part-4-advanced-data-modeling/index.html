@@ -662,7 +662,7 @@ It also functions perfectly with inline definitions:</p>
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -708,7 +708,7 @@ It also functions perfectly with inline definitions:</p>
           movieTitle:
             type: string
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>This is highly experimental as the content of <em>discriminator</em> field is not clear in the specification’s current version (<a href="https://github.com/OAI/OpenAPI-Specification/issues/403">issue 403</a>) and as far as I know it is not supported by any tool using OpenAPI specification.</p>
@@ -781,7 +781,7 @@ The value’s type is defined within the property: <a href="https://github.com/O
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -817,7 +817,7 @@ The value’s type is defined within the property: <a href="https://github.com/O
     additionalProperties:
       type: string
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h3 id="string-to-object-map">String to Object Map</h3>
@@ -933,7 +933,7 @@ The value’s type is defined within the property: <a href="https://github.com/O
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -966,7 +966,7 @@ The value’s type is defined within the property: <a href="https://github.com/O
       message:
         $ref: "#/definitions/MultilingualErrorMessage"
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>You can define as many as “default” values as you want.
@@ -1078,16 +1078,18 @@ In the <a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-
   });
 </script>
 <script language="JavaScript">
-  function toggle(button, code, scroll) {
+  function toggle(button, code, secondarybutton, scroll) {
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
       $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
       $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

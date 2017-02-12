@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://apihandyman.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2017-02-12T17:04:20+00:00</updated><id>https://apihandyman.io//</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">…And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL</title><link href="https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/" rel="alternate" type="text/html" title="...And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL" /><published>2017-01-22T00:00:00+00:00</published><updated>2017-01-22T00:00:00+00:00</updated><id>https://apihandyman.io/and-graphql-for-all</id><content type="html" xml:base="https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">&lt;p&gt;GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too!&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://apihandyman.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2017-02-12T18:15:21+00:00</updated><id>https://apihandyman.io//</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">…And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL</title><link href="https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/" rel="alternate" type="text/html" title="...And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL" /><published>2017-01-22T00:00:00+00:00</published><updated>2017-01-22T00:00:00+00:00</updated><id>https://apihandyman.io/and-graphql-for-all</id><content type="html" xml:base="https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">&lt;p&gt;GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too!&lt;br /&gt;
 Well, why not. GraphQL could be a great tool, but like any tool, you don’t choose it &lt;em&gt;just because&lt;/em&gt;. You choose it because it solves a problem in a given context. You choose it knowing its strengths and weaknesses.&lt;/p&gt;
 
 &lt;p&gt;While discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it. From design and implementation to pricing model and analytics down to developers experience and implementations, choosing an API design style will have impact on the whole API lifecycle. Therefore, this choice must be an enligthned one and not based on simple beliefs.&lt;!--more--&gt;&lt;/p&gt;
@@ -190,7 +190,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
 &lt;div&gt;
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[1])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
       &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -216,7 +216,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
     }
   }
 }&lt;/code&gt;&lt;/pre&gt;
-  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[1], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;h3 id=&quot;aggregating-queries&quot;&gt;Aggregating queries&lt;/h3&gt;
@@ -258,7 +258,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
 &lt;div&gt;
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[1])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
       &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -294,7 +294,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
     }
   }
 }&lt;/code&gt;&lt;/pre&gt;
-  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[1], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;h3 id=&quot;graphql-is-not-sql-nor-an-etl&quot;&gt;GraphQL is not SQL nor an ETL&lt;/h3&gt;

@@ -229,16 +229,18 @@
   });
 </script>
 <script language="JavaScript">
-  function toggle(button, code, scroll) {
+  function toggle(button, code, secondarybutton, scroll) {
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
       $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
       $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

@@ -190,7 +190,7 @@
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -273,7 +273,7 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/Person"</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>To use the <code>Person</code> definition in these different places, we use a JSON Pointer (defined by <a href="https://tools.ietf.org/html/rfc6901">RFC6901</a>):</p>
@@ -331,7 +331,7 @@ definitions:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_24_local_reference.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -404,7 +404,7 @@ definitions:
     type: array
     items:
       $ref: "person.yaml#/Person"</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="editing-splitted-local-files-with-the-online-editor">Editing splitted local files with the online editor</h2>
@@ -549,7 +549,7 @@ http-server --cors .</code></pre>
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_25_local_reference_folder.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -617,7 +617,7 @@ paths:
         404:
           description: The Person does not exists.
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="referencing-a-remote-files">Referencing a remote files</h2>
@@ -844,7 +844,7 @@ OtherDefinitions:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_22_documentation_with_gfm.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -875,7 +875,7 @@ info:
     name: Apache-2.0
     url: http://www.apache.org/licenses/LICENSE-2.0
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>We can put its whole content in a file called <code>info.yaml</code>:</p>
@@ -883,7 +883,7 @@ info:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_34_chainsaw_info.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -910,7 +910,7 @@ contact:
 license:
   name: Apache-2.0
   url: http://www.apache.org/licenses/LICENSE-2.0</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>And reference it just like this in <code>info</code>:</p>
@@ -1009,7 +1009,7 @@ parameters:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_39_chainsaw_documentation.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1040,7 +1040,7 @@ categories:
     externalDocs:
       description: JS Less Consumers documentation
       url: http://doc.simple.api/jsless</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>These data are referenced this way in the main file:</p>
@@ -1067,7 +1067,7 @@ tags:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_41_chainsaw_security.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1095,7 +1095,7 @@ defaultSecurity:
   - OauthSecurity:
     - user
   - LegacySecurity: []</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h3 id="referencing-a-string-or-a-simple-list">Referencing a string or a simple list</h3>
@@ -1191,7 +1191,7 @@ produces:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1333,7 +1333,7 @@ definitions:
         type: integer
       currentPage:
         type: integer</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="imagesyaml">images.yaml</h2>
@@ -1343,7 +1343,7 @@ definitions:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_44_smarter_images.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1415,7 +1415,7 @@ definitions:
         default:
           $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>Note that all references to common items point to <code>commons.yaml</code>.</p>
@@ -1426,7 +1426,7 @@ definitions:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_45_smarter_legacy.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1483,7 +1483,7 @@ definitions:
           $ref: 'commons.yaml#/defaultHeaders'
       default:
         $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="personsyaml">persons.yaml</h2>
@@ -1500,7 +1500,7 @@ definitions:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1900,7 +1900,7 @@ parameters:
         - Vinyl
         - VHS
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="full-main-file">full main file</h2>
@@ -1909,7 +1909,7 @@ parameters:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1999,7 +1999,7 @@ paths:
   /images/{imageId}:
     $ref: 'images.yaml#/images-imageId'
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h1 id="valid-sub-files">Valid sub-files</h1>
@@ -2732,16 +2732,18 @@ security:
   });
 </script>
 <script language="JavaScript">
-  function toggle(button, code, scroll) {
+  function toggle(button, code, secondarybutton, scroll) {
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
       $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
       $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

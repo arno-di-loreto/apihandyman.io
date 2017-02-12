@@ -183,7 +183,7 @@
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -276,7 +276,7 @@ paths:
                 type: string
         404:
           description: The Person does not exists.</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>By using <em>reusable definitions</em> this <em>not so simple specification</em> will be transformed into this one:</p>
@@ -284,7 +284,7 @@ paths:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -367,7 +367,7 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/Person"</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>The <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">definitions section (Swagger Object)</a></em> allows you to define <em>once and for all</em> objects/entities/models that can be used anywhere in the specification (i.e. where a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject">schema</a></em> is defined).</p>
@@ -627,7 +627,7 @@ definitions:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -729,7 +729,7 @@ responses:
     description: An unexpected error occured.
     schema:
       $ref: "#/definitions/Error"</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="defining-a-reusable-http-500-response">Defining a reusable HTTP 500 response</h2>
@@ -739,7 +739,7 @@ If we do that the <em>basic</em> way, we’ll end adding a 500 response on each 
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_07_with_responses_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -821,7 +821,7 @@ If we do that the <em>basic</em> way, we’ll end adding a 500 response on each 
               message:
                 type: string
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>As every operation will handle HTTP 500 error exactly the same way, it’s a pity to have to declare three times exactly the same thing.</p>
@@ -832,7 +832,7 @@ If we do that the <em>basic</em> way, we’ll end adding a 500 response on each 
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -859,7 +859,7 @@ If we do that the <em>basic</em> way, we’ll end adding a 500 response on each 
       message:
         type: string
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>A first <em>almost</em> good idea would be to use this definition in every operation for 500 response schema.</p>
@@ -867,7 +867,7 @@ If we do that the <em>basic</em> way, we’ll end adding a 500 response on each 
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_08_with_responses_less_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -935,7 +935,7 @@ If we do that the <em>basic</em> way, we’ll end adding a 500 response on each 
           schema:
             $ref: "#/definitions/Error"
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="defining-a-reusable-response">Defining a reusable response</h2>
@@ -945,7 +945,7 @@ If we do that the <em>basic</em> way, we’ll end adding a 500 response on each 
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -977,7 +977,7 @@ responses:
     description: An unexpected error occured.
     schema:
       $ref: "#/definitions/Error"</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p><em>Note that the response use the Error definition.</em></p>
@@ -1055,7 +1055,7 @@ responses:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1200,7 +1200,7 @@ parameters:
     description: Page number
     type: integer
     </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="defining-a-path-parameter-once-for-a-path">Defining a path parameter once for a path</h2>
@@ -1209,7 +1209,7 @@ parameters:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_10_with_single_path_parameter_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1250,7 +1250,7 @@ parameters:
         500:
           $ref: "#/responses/Standard500ErrorResponse"
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p><em>Note that we had the good idea to create a reusable 404 response.</em></p>
@@ -1260,7 +1260,7 @@ parameters:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_11_with_single_path_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1295,7 +1295,7 @@ parameters:
         500:
           $ref: "#/responses/Standard500ErrorResponse"
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="defining-reusable-parameters">Defining reusable parameters</h2>
@@ -1304,7 +1304,7 @@ parameters:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -1338,7 +1338,7 @@ parameters:
         500:
           $ref: "#/responses/Standard500ErrorResponse"
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p><em>Note that we reuse the 500 and 404 responses</em>.</p>
@@ -1675,16 +1675,18 @@ In <a href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data
   });
 </script>
 <script language="JavaScript">
-  function toggle(button, code, scroll) {
+  function toggle(button, code, secondarybutton, scroll) {
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
       $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
       $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

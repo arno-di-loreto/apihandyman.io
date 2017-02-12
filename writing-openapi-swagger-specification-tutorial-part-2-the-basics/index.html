@@ -287,7 +287,7 @@ These informations are not required, an OpenAPI specification without these data
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -324,7 +324,7 @@ paths:
                   type: string
                 username:
                   type: string</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="adding-a-path">Adding a path</h2>
@@ -417,7 +417,7 @@ A list of person is an object which <em>type</em> is <em>array</em>. Each item i
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_03_with_query_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -463,7 +463,7 @@ paths:
                   type: string
                 username:
                   type: string</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="adding-a-parameters-section-to-the-get-persons-operation">Adding a parameters section to the get /persons operation</h2>
@@ -520,7 +520,7 @@ paths:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -591,7 +591,7 @@ paths:
                 type: string
         404:
           description: The Person does not exists.</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="adding-a-get-personsusername-operation">Adding a get /persons/{username} operation</h2>
@@ -714,7 +714,7 @@ paths:
   <!-- codeblocksize: 20 -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
       <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
@@ -807,7 +807,7 @@ paths:
                 type: string
         404:
           description: The Person does not exists.</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="adding-post-persons-operation">Adding post /persons operation</h2>
@@ -994,16 +994,18 @@ paths:
   });
 </script>
 <script language="JavaScript">
-  function toggle(button, code, scroll) {
+  function toggle(button, code, secondarybutton, scroll) {
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
       $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
       $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();
