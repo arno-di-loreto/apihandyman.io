@@ -38,8 +38,8 @@ module Jekyll
       
       if code.lines.count > 20 
         collapsed = " code-collapsed"
-        collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this, this.parentElement.parentElement.parentElement.children[1])\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
-        collapsedbottombutton = "<div class=\"code-bottom-toolbar\"><button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"toggle(this, this.parentElement.parentElement.children[1], true)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button></div>"
+        collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
+        collapsedbottombutton = "<div class=\"code-bottom-toolbar\"><button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button></div>"
       end
       
       <<-HTML
