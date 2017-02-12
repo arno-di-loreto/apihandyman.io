@@ -145,7 +145,7 @@ code {
 }
 
 .code-collapsed {
-  max-height: 20em;
+  max-height: {{ site.codeblocksize }}em;
 }
 
 .code-toolbar {

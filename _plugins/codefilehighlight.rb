@@ -110,7 +110,8 @@ class CodeFile < Liquid::Tag
       raise SyntaxError.new("Syntax Error in 'codefile' - file #{path} do not exists")
     end
 
-    if code.lines.count > 20 
+    codeblocksize = lookup(context, 'site.codeblocksize')
+    if code.lines.count > codeblocksize 
       collapsed = " code-collapsed"
       collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this, this.parentElement.parentElement.parentElement.children[1])\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
       collapsedbottombutton = "<div class=\"code-bottom-toolbar\"><button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"toggle(this, this.parentElement.parentElement.children[1], true)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button></div>"
@@ -118,6 +119,7 @@ class CodeFile < Liquid::Tag
 
     <<-HTML
 <div>
+  <!-- codeblocksize: #{codeblocksize} -->
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       #{collabpedbutton}

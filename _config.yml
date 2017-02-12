@@ -53,6 +53,8 @@ kramdown:
 highlighter: none
 ### codefilehighlight parameter: where code files are stored
 coderoot: code
+### codefilehighlight parameter: number of visible lines in code block
+codeblocksize: 20
 
 gems:
   - jekyll-feed
