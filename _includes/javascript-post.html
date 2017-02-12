@@ -28,7 +28,7 @@
 <script language="JavaScript">
   var clipboard = new Clipboard('.btn-copy', {
     target: function(trigger) {
-      return trigger.parentElement.parentElement.parentElement.lastElementChild.firstElementChild;
+      return trigger.parentElement.parentElement.parentElement.children[1];
     }
   });
   clipboard.on('success', function(e) {
