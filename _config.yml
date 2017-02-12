@@ -46,9 +46,13 @@ disqus:
 
 # Build settings
 markdown: kramdown
-highlighter: none
 kramdown:
   input: GFM
+## code highlight
+### disabling default code highlighter
+highlighter: none
+### codefilehighlight parameter: where code files are stored
+coderoot: code
 
 gems:
   - jekyll-feed
