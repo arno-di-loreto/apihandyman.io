@@ -39,9 +39,9 @@
 <meta name="og:image" content="https://apihandyman.io/images/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/thumbnail.png">
 
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/syntax.css">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -178,140 +178,1399 @@
 <p>In this third part you will learn how to simplifiy the specification file by defining <em>reusable</em> <em>definitions</em>, <em>responses</em> and <em>parameters</em> and using them with <em>references</em> and thus make the writing and reading of OpenAPI Specification fairly easy.</p>
 
 <h1 id="simplifying-data-model-description">Simplifying data model description</h1>
-<p>We’ll use the final example of the <a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">previous part</a> as starting point. When taking a look at this specification file, the obvious problem is that a <em>Person</em> is defined three times:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-highlight-line="33-41,50-58,78-86" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>We’ll use the final example of the <a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">previous part</a> as starting point. When taking a look at this specification file, the obvious problem is that a <em>Person</em> is defined three times:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="33-41,50-58,78-86"><code>swagger: "2.0"
 
-<p>By using <em>reusable definitions</em> this <em>not so simple specification</em> will be transformed into this one:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-highlight-line="31,40,60,64-78" data-gist-footer="true" gist-enable-cache="true"></code></p>
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            type: array
+            items:
+              required:
+                - username
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                username:
+                  type: string
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            required:
+              - username
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            required:
+              - username
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+        404:
+          description: The Person does not exists.</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
+
+<p>By using <em>reusable definitions</em> this <em>not so simple specification</em> will be transformed into this one:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="31,40,60,64-78"><code>swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+
+definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <p>The <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">definitions section (Swagger Object)</a></em> allows you to define <em>once and for all</em> objects/entities/models that can be used anywhere in the specification (i.e. where a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject">schema</a></em> is defined).</p>
 
 <h2 id="adding-definitions-section">Adding definitions section</h2>
-<p>We’ll start by adding a new <em>definitions</em> section at the end of the document (nb: it can be placed anywhere as long as it’s on the root of the OpenAPI Specification tree structure).
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="61-64" data-gist-highlight-line="64" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>We’ll start by adding a new <em>definitions</em> section at the end of the document (nb: it can be placed anywhere as long as it’s on the root of the OpenAPI Specification tree structure).</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="4" data-start="61"><code>        404:
+          description: The Person does not exists.
+
+definitions:
+</code></pre>
+  
+</div>
 
 <h2 id="defining-a-reusable-definition">Defining a reusable definition</h2>
-<p>Then we define a <em>Person</em> once and for all in the <em>definitions</em> section:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="64-74" data-gist-highlight-line="65-74" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Then we define a <em>Person</em> once and for all in the <em>definitions</em> section:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2-11" data-start="64"><code>definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+</code></pre>
+  
+</div>
 
 <p>Note that the information provided in <em>Person</em> are exactly the same as the one provided in the three schemas describing a person in previous version. A <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#definitionsObject">definition</a></em> is simply a named <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject">schema object</a></em>.</p>
 
 <h2 id="referencing-a-definition-from-another-definition">Referencing a definition from another definition</h2>
-<p>We’ll start using this newly created <em>definition</em> by referencing it in another one. As we have defined a <em>Person</em> we’ll also define <em>Persons</em> which is an array (or a list) of <em>Persons</em>. The information provided in <em>Persons</em> are <em>almost</em> the same as the one provided in the <em>get /persons</em> response:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="29-41" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>We’ll start using this newly created <em>definition</em> by referencing it in another one. As we have defined a <em>Person</em> we’ll also define <em>Persons</em> which is an array (or a list) of <em>Persons</em>. The information provided in <em>Persons</em> are <em>almost</em> the same as the one provided in the <em>get /persons</em> response:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="29"><code>          description: A list of Person
+          schema:
+            type: array
+            items:
+              required:
+                - username
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                username:
+                  type: string
+</code></pre>
+  
+</div>
 
-<p>The only difference is that the schema describing the array’s <em>items</em> has been replaced by a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#referenceObject">reference ($ref)</a></em> to the <em>Persons definition</em>.
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="75-78" data-gist-highlight-line="78" data-gist-footer="false" gist-enable-cache="true"></code>
-A reference is only a path to another declaration within the OpenAPI Specification.</p>
+<p>The only difference is that the schema describing the array’s <em>items</em> has been replaced by a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#referenceObject">reference ($ref)</a></em> to the <em>Persons definition</em>.</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="4" data-start="75"><code>  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"</code></pre>
+  
+</div>
+
+<p>A reference is only a path to another declaration within the OpenAPI Specification.</p>
 
 <h2 id="using-definitions-in-responses">Using definitions in responses</h2>
 <p>Once we have defined <em>Person</em> and <em>Persons</em>, we can use them to replace the inline schemas by references in all operations responses.</p>
 
 <h3 id="get-persons">get /persons</h3>
-<p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="27-39" data-gist-highlight-line="31-39" data-gist-footer="false" gist-enable-cache="true"></code>
-After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="27-31" data-gist-highlight-line="31" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Before</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="5-13" data-start="27"><code>      responses:
+        200:
+          description: A list of Person
+          schema:
+            type: array
+            items:
+              required:
+                - username
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+</code></pre>
+  
+</div>
+
+<p>After</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="5" data-start="27"><code>      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+</code></pre>
+  
+</div>
 
 <h3 id="get-personsusername">get /persons/{username}</h3>
-<p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="74-86" data-gist-highlight-line="78-86" data-gist-footer="false" gist-enable-cache="true"></code>
-After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="56-60" data-gist-highlight-line="60" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Before</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="5-13" data-start="74"><code>      responses:
+        200:
+          description: A Person
+          schema:
+            required:
+              - username
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+</code></pre>
+  
+</div>
+
+<p>After</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="5" data-start="56"><code>      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+</code></pre>
+  
+</div>
 
 <h2 id="using-definitions-in-parameters">Using definitions in parameters</h2>
 <p>Definitions are not only meant to be used within the <em>definitions</em> section (it would be pointless), they can also be used in operations <em>parameters</em>.</p>
 
 <h3 id="post-persons">post /persons:</h3>
-<p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_05_with_body_parameter.yaml" data-gist-line="42-58" data-gist-highlight-line="50-58" data-gist-footer="false" gist-enable-cache="true"></code>
-After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="32-40" data-gist-highlight-line="40" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Before</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="9-17" data-start="42"><code>    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            required:
+              - username
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+</code></pre>
+  
+</div>
+
+<p>After</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="9" data-start="32"><code>    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+</code></pre>
+  
+</div>
 
 <h1 id="simplifying-responses-description">Simplifying responses description</h1>
-<p>Now we have discovered references (<em>$ref</em>), we’ll see they can be used for other matters like <em>responses</em> definition. 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-highlight-line="32-33,48-49,68-69,86-91,93-97" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>Now we have discovered references (<em>$ref</em>), we’ll see they can be used for other matters like <em>responses</em> definition.</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="32-33,48-49,68-69,86-91,93-97"><code>swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+          
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+
+definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"
+  Error:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+
+responses:
+  Standard500ErrorResponse:
+    description: An unexpected error occured.
+    schema:
+      $ref: "#/definitions/Error"</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h2 id="defining-a-reusable-http-500-response">Defining a reusable HTTP 500 response</h2>
 <p>Let’s say, we want <em>every</em> API’s operation to return an error code and message to provide more detailed information about what happened when an operation failed with an HTTP 500 error.
-If we do that the <em>basic</em> way, we’ll end adding a 500 response on each operation like this: 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_07_with_responses_wrong.yaml" data-gist-line="13-88" data-gist-highlight-line="32-39,54-61,81-88" data-gist-footer="true" gist-enable-cache="true"></code></p>
+If we do that the <em>basic</em> way, we’ll end adding a 500 response on each operation like this:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_07_with_responses_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="20-27,42-49,69-76" data-start="13"><code>paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+        500:
+          description: An unexpected error occured.
+          schema:
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+        500:
+          description: An unexpected error occured.
+          schema:
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+
+          
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+        500:
+          description: An unexpected error occured.
+          schema:
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <p>As every operation will handle HTTP 500 error exactly the same way, it’s a pity to have to declare three times exactly the same thing.</p>
 
 <h2 id="defining-an-error-definition">Defining an Error definition</h2>
-<p>But, we have learned that we can define a schema once and for all. So let’s create an <em>Error</em> definition containing string code and message in the <em>definitions</em> section.
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="71-91" data-gist-highlight-line="86-91" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>But, we have learned that we can define a schema once and for all. So let’s create an <em>Error</em> definition containing string code and message in the <em>definitions</em> section.</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="16-21" data-start="71"><code>definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"
+  Error:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
-<p>A first <em>almost</em> good idea would be to use this definition in every operation for 500 response schema. 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_08_with_responses_less_wrong.yaml" data-gist-line="13-74" data-gist-highlight-line="35,53,74" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>A first <em>almost</em> good idea would be to use this definition in every operation for 500 response schema.</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_08_with_responses_less_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="23,41,62" data-start="13"><code>paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+        500:
+          description: An unexpected error occured.
+          schema:
+            $ref: "#/definitions/Error"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+        500:
+          description: An unexpected error occured.
+          schema:
+            $ref: "#/definitions/Error"          
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+        500:
+          description: An unexpected error occured.
+          schema:
+            $ref: "#/definitions/Error"
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h2 id="defining-a-reusable-response">Defining a reusable response</h2>
 
-<p>But it can be even more simple if we declare a response once and for all within the <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">responses section (Swagger Object)</a></em>. This section allows to define reusable responses definitions.
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="71-97" data-gist-highlight-line="93-97" data-gist-footer="false" gist-enable-cache="true"></code>
-<em>Note that the response use the Error definition.</em></p>
+<p>But it can be even more simple if we declare a response once and for all within the <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">responses section (Swagger Object)</a></em>. This section allows to define reusable responses definitions.</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="23-27" data-start="71"><code>definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"
+  Error:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+
+responses:
+  Standard500ErrorResponse:
+    description: An unexpected error occured.
+    schema:
+      $ref: "#/definitions/Error"</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
+
+<p><em>Note that the response use the Error definition.</em></p>
 
 <h2 id="using-the-defined-response">Using the defined response</h2>
 <p>Using a defined response is done through a <em>$ref</em> (just like we did when using definitions).</p>
 <h3 id="get-users">get /users</h3>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="27-33" data-gist-highlight-line="32-33" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="6-7" data-start="27"><code>      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  
+</div>
+
 <h3 id="post-users">post /users</h3>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="43-49" data-gist-highlight-line="48-49" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="6-7" data-start="43"><code>      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  
+</div>
+
 <h3 id="get-usersusername">get /users/{username}</h3>
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_09_with_responses.yaml" data-gist-line="61-69" data-gist-highlight-line="68-69" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="8-9" data-start="61"><code>      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  
+</div>
 
 <h1 id="simplifying-parameters-description">Simplifying parameters description</h1>
-<p>Like models/schemas and responses, parameters description can be simplified easily.
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-highlight-line="18-20,46-47,72-73,77-79,123-139" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>Like models/schemas and responses, parameters description can be simplified easily.</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="18-20,46-47,72-73,77-79,123-139"><code>swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - $ref: "#/parameters/pageSize"
+       - $ref: "#/parameters/pageNumber"
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Person succesfully created.
+        400:
+          description: Person couldn't have been created.
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+          
+  /persons/{username}:
+    parameters:
+      - $ref: "#/parameters/username"
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+    delete:
+      summary: Deletes a person
+      description: Delete a single person identified via its username
+      responses:
+        204:
+          description: Person successfully deleted.
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+          
+  /persons/{username}/friends:
+    parameters:
+      - $ref: "#/parameters/username"
+    get:
+      summary: Gets a person's friends
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - $ref: "#/parameters/pageSize"
+       - $ref: "#/parameters/pageNumber"
+      responses:
+        200:
+          description: A person's friends list 
+          schema:
+            $ref: "#/definitions/Persons"
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+
+definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+
+responses:
+  Standard500ErrorResponse:
+    description: An unexpected error occured.
+    schema:
+      $ref: "#/definitions/Error"
+  PersonDoesNotExistResponse:
+    description: Person does not exist.
+
+parameters:
+  username:
+    name: username
+    in: path
+    required: true
+    description: The person's username
+    type: string
+  pageSize:
+    name: pageSize
+    in: query
+    description: Number of persons returned
+    type: integer
+  pageNumber:
+    name: pageNumber
+    in: query
+    description: Page number
+    type: integer
+    </code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h2 id="defining-a-path-parameter-once-for-a-path">Defining a path parameter once for a path</h2>
-<p>If we add a <em>delete</em> operation to the <em>/persons/{username}</em> path, a first idea could be to do it that way:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_10_with_single_path_parameter_wrong.yaml" data-gist-line="51-85" data-gist-highlight-line="56-60,74-78" data-gist-footer="true" gist-enable-cache="true"></code>
-<em>Note that we had the good idea to create a reusable 404 response.</em></p>
+<p>If we add a <em>delete</em> operation to the <em>/persons/{username}</em> path, a first idea could be to do it that way:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_10_with_single_path_parameter_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="6-10,24-28" data-start="51"><code>  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+    delete:
+      summary: Deletes a person
+      description: Delete a single person identified via its username
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        204:
+          description: Person successfully deleted.
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
-<p>But having to redefine the <em>username</em> parameter which is shared by each operation on <em>/persons/{username}</em> path is a bit cumbersome. Luckily you can define <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#pathItemObject"><em>parameters</em> on path level</a>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_11_with_single_path_parameter.yaml" data-gist-line="51-79" data-gist-highlight-line="51-57" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p><em>Note that we had the good idea to create a reusable 404 response.</em></p>
+
+<p>But having to redefine the <em>username</em> parameter which is shared by each operation on <em>/persons/{username}</em> path is a bit cumbersome. Luckily you can define <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#pathItemObject"><em>parameters</em> on path level</a>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_11_with_single_path_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="1-7" data-start="51"><code>  /persons/{username}:
+    parameters:
+      - name: username
+        in: path
+        required: true
+        description: The person's username
+        type: string
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+    delete:
+      summary: Deletes a person
+      description: Delete a single person identified via its username
+      responses:
+        204:
+          description: Person successfully deleted.
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h2 id="defining-reusable-parameters">Defining reusable parameters</h2>
-<p>If we add a <em>get /persons/{username}/friends</em> operations to get a paginated list of a person’s friends, a first idea could be to do it that way:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="81-108" data-gist-highlight-line="82-87,91-99" data-gist-footer="true" gist-enable-cache="true"></code>
-<em>Note that we reuse the 500 and 404 responses</em>.</p>
+<p>If we add a <em>get /persons/{username}/friends</em> operations to get a paginated list of a person’s friends, a first idea could be to do it that way:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="2-7,11-19" data-start="81"><code>  /persons/{username}/friends:
+    parameters:
+      - name: username
+        in: path
+        required: true
+        description: The person's username
+        type: string
+    get:
+      summary: Gets a person's friends
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A person's friends list 
+          schema:
+            $ref: "#/definitions/Persons"
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
-<p>But that way, we redefine the <em>username</em> parameter just like on path <em>/persons/{username}</em>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="51-57" data-gist-highlight-line="53-57" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p><em>Note that we reuse the 500 and 404 responses</em>.</p>
 
-<p>And we also redefine the <em>pageNumber</em> and <em>pageSize</em> parameters which already exist on <em>get /persons</em>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="14-26" data-gist-highlight-line="19-26" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>But that way, we redefine the <em>username</em> parameter just like on path <em>/persons/{username}</em>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="3-7" data-start="51"><code>  /persons/{username}:
+    parameters:
+      - name: username
+        in: path
+        required: true
+        description: The person's username
+        type: string
+</code></pre>
+  
+</div>
+
+<p>And we also redefine the <em>pageNumber</em> and <em>pageSize</em> parameters which already exist on <em>get /persons</em>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="6-13" data-start="14"><code>  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+</code></pre>
+  
+</div>
 
 <h3 id="define-reusable-parameters">Define reusable parameters</h3>
 <p>As we have done with <em>definitions</em> and <em>responses</em>, we can define reusable parameters within the <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">parameters section (Swagger Object)</a></em>.</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="123-139" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="123"><code>parameters:
+  username:
+    name: username
+    in: path
+    required: true
+    description: The person's username
+    type: string
+  pageSize:
+    name: pageSize
+    in: query
+    description: Number of persons returned
+    type: integer
+  pageNumber:
+    name: pageNumber
+    in: query
+    description: Page number
+    type: integer
+</code></pre>
+  
+</div>
 
 <h3 id="use-reusable-parameters">Use reusable parameters</h3>
 <p>These reusable parameters can be used with a reference just like definitions and responses.</p>
 
 <h4 id="get-persons-1">get /persons</h4>
-<p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="14-26" data-gist-highlight-line="19-26" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Before</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="6-13" data-start="14"><code>  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+</code></pre>
+  
+</div>
 
-<p>After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="14-20" data-gist-highlight-line="19-20," data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>After</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="6-7" data-start="14"><code>  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - $ref: "#/parameters/pageSize"
+       - $ref: "#/parameters/pageNumber"
+</code></pre>
+  
+</div>
 
 <h4 id="get-and-delete-personsusername">get and delete /persons/{username}</h4>
-<p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="51-57" data-gist-highlight-line="53-57" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Before</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="3-7" data-start="51"><code>  /persons/{username}:
+    parameters:
+      - name: username
+        in: path
+        required: true
+        description: The person's username
+        type: string
+</code></pre>
+  
+</div>
 
-<p>After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="45-47" data-gist-highlight-line="47" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>After</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="3" data-start="45"><code>  /persons/{username}:
+    parameters:
+      - $ref: "#/parameters/username"
+</code></pre>
+  
+</div>
 
 <h4 id="get-personsusernamefriends">get /persons/{username}/friends</h4>
-<p>Before
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_12_with_parameters_wrong.yaml" data-gist-line="81-99" data-gist-highlight-line="83-87,92-99" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Before</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="3-7,12-19" data-start="81"><code>  /persons/{username}/friends:
+    parameters:
+      - name: username
+        in: path
+        required: true
+        description: The person's username
+        type: string
+    get:
+      summary: Gets a person's friends
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+</code></pre>
+  
+</div>
 
-<p>After
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_13_with_parameters.yaml" data-gist-line="71-79" data-gist-highlight-line="73,78-79" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>After</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="3,8-9" data-start="71"><code>  /persons/{username}/friends:
+    parameters:
+      - $ref: "#/parameters/username"
+    get:
+      summary: Gets a person's friends
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - $ref: "#/parameters/pageSize"
+       - $ref: "#/parameters/pageNumber"
+</code></pre>
+  
+</div>
 
 <h1 id="conclusion">Conclusion</h1>
 <p>By defining reusable <em>definitions</em>, <em>responses</em> and <em>parameters</em> and using them with <em>references</em> you can easily write OpenAPI Specification files which are simple and easily understandable. 
@@ -398,7 +1657,44 @@ In <a href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data
     anchors.add('.blog-container h3');
   });
 </script>
-<script async type="text/javascript" src="/js/gist-embed.min.js" ></script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
   
   </body>
 

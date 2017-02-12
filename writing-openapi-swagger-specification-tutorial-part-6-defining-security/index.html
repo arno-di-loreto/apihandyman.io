@@ -39,9 +39,9 @@
 <meta name="og:image" content="https://apihandyman.io/images/writing-openapi-swagger-specification-tutorial-part-6-defining-security/thumbnail.png">
 
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/syntax.css">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -178,47 +178,89 @@
     </div>
 
 <h1 id="security-definitions">Security definitions</h1>
-<p>Following (almost) the same principle used with <code class="highlighter-rouge">parameters</code> and <code class="highlighter-rouge">definitions</code>, security can be defined and then used on different levels.
-Security definition takes place on specification’s root level in <code class="highlighter-rouge">securityDefinition</code> section. It contains a list of named security definitions. Each definition can be of type:</p>
+<p>Following (almost) the same principle used with <code>parameters</code> and <code>definitions</code>, security can be defined and then used on different levels.
+Security definition takes place on specification’s root level in <code>securityDefinition</code> section. It contains a list of named security definitions. Each definition can be of type:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">basic</code> for Basic Authentication</li>
-  <li><code class="highlighter-rouge">apiKey</code> when using an API key to secure the API</li>
-  <li><code class="highlighter-rouge">oauth2</code> for Oauth 2</li>
+  <li><code>basic</code> for Basic Authentication</li>
+  <li><code>apiKey</code> when using an API key to secure the API</li>
+  <li><code>oauth2</code> for Oauth 2</li>
 </ul>
 
 <h2 id="basic-authentication">Basic Authentication</h2>
 
-<p>To define a <code class="highlighter-rouge">basic</code> security it’s fairly easy, we only have to set its <code class="highlighter-rouge">type</code> to <code class="highlighter-rouge">basic</code>:</p>
+<p>To define a <code>basic</code> security it’s fairly easy, we only have to set its <code>type</code> to <code>basic</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="17-23" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="17"><code>securityDefinitions:
+  UserSecurity:
+    type: basic
+  AdminSecurity:
+    type: basic
+  MediaSecurity:
+    type: basic
+</code></pre>
+  
+</div>
 
-<p>In this example we have defined three security definitions (<code class="highlighter-rouge">UserSecurity</code>, <code class="highlighter-rouge">AdminSecurity</code> and <code class="highlighter-rouge">MediaSecurity</code>), each of them is of <code class="highlighter-rouge">basic</code> type.</p>
+<p>In this example we have defined three security definitions (<code>UserSecurity</code>, <code>AdminSecurity</code> and <code>MediaSecurity</code>), each of them is of <code>basic</code> type.</p>
 
 <h2 id="api-key">API Key</h2>
 
-<p>To define an <code class="highlighter-rouge">apiKey</code> security we have to:</p>
+<p>To define an <code>apiKey</code> security we have to:</p>
 
 <ul>
-  <li>Set <code class="highlighter-rouge">type</code> to <code class="highlighter-rouge">apiKey</code></li>
-  <li>Indicate where the API ley is located with <code class="highlighter-rouge">in</code>. An API can be in a <code class="highlighter-rouge">header</code> or a <code class="highlighter-rouge">query</code> parameter</li>
-  <li>And then give the parameter’s <code class="highlighter-rouge">name</code></li>
+  <li>Set <code>type</code> to <code>apiKey</code></li>
+  <li>Indicate where the API ley is located with <code>in</code>. An API can be in a <code>header</code> or a <code>query</code> parameter</li>
+  <li>And then give the parameter’s <code>name</code></li>
 </ul>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="17-29" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="17"><code>securityDefinitions:
+  UserSecurity:
+    type: apiKey
+    in: header
+    name: SIMPLE-API-KEY
+  AdminSecurity:
+    type: apiKey
+    in: header
+    name: ADMIN-API-KEY
+  MediaSecurity:
+    type: apiKey
+    in: query
+    name: media-api-key
+</code></pre>
+  
+</div>
 
-<p>In this example, we have defined three security definitions of <code class="highlighter-rouge">apiKey</code> type:</p>
+<p>In this example, we have defined three security definitions of <code>apiKey</code> type:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">UserSecurity</code> uses a <code class="highlighter-rouge">header</code> parameter named <code class="highlighter-rouge">SIMPLE-API-KEY</code></li>
-  <li><code class="highlighter-rouge">AdminSecurity</code> uses a <code class="highlighter-rouge">header</code> parameter named <code class="highlighter-rouge">ADMIN-API-KEY</code></li>
-  <li><code class="highlighter-rouge">MediaSecurity</code> uses a <code class="highlighter-rouge">query</code> parameter named <code class="highlighter-rouge">media-api-key</code></li>
+  <li><code>UserSecurity</code> uses a <code>header</code> parameter named <code>SIMPLE-API-KEY</code></li>
+  <li><code>AdminSecurity</code> uses a <code>header</code> parameter named <code>ADMIN-API-KEY</code></li>
+  <li><code>MediaSecurity</code> uses a <code>query</code> parameter named <code>media-api-key</code></li>
 </ul>
 
 <h2 id="oauth-2">Oauth 2</h2>
 
 <h3 id="flow-and-urls">Flow and URLs</h3>
-<p>When defining an <code class="highlighter-rouge">oauth2</code> security definition, we can define the Oauth2 <code class="highlighter-rouge">flow</code> used and corresponding <code class="highlighter-rouge">authorizationUrl</code> and/or <code class="highlighter-rouge">tokenUrl</code> depending on the chosen flow:</p>
+<p>When defining an <code>oauth2</code> security definition, we can define the Oauth2 <code>flow</code> used and corresponding <code>authorizationUrl</code> and/or <code>tokenUrl</code> depending on the chosen flow:</p>
 
 <table class="table table-bordered">
   <thead>
@@ -247,95 +289,489 @@ Security definition takes place on specification’s root level in <code class="
   </tbody>
 </table>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-22" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="17"><code>securityDefinitions:
+  OauthSecurity:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: 'https://oauth.simple.api/authorization'
+    tokenUrl: 'https://oauth.simple.api/token'
+</code></pre>
+  
+</div>
 
-<p>In this example we have defined a <code class="highlighter-rouge">OauthSecurity</code> security definition of <code class="highlighter-rouge">oauth2</code> type using an <code class="highlighter-rouge">accessCode</code> flow with an authorizationUrl and a tokenUrl.</p>
+<p>In this example we have defined a <code>OauthSecurity</code> security definition of <code>oauth2</code> type using an <code>accessCode</code> flow with an authorizationUrl and a tokenUrl.</p>
 
 <h3 id="scopes">Scopes</h3>
-<p>We can also define <code class="highlighter-rouge">scopes</code> by using a hashmap, the key is the scope’s name and the value is its description.</p>
+<p>We can also define <code>scopes</code> by using a hashmap, the key is the scope’s name and the value is its description.</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-26" data-gist-highlight-line="23-26" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="7-10" data-start="17"><code>securityDefinitions:
+  OauthSecurity:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: 'https://oauth.simple.api/authorization'
+    tokenUrl: 'https://oauth.simple.api/token'
+    scopes:
+      admin: Admin scope
+      user: User scope
+      media: Media scope
+</code></pre>
+  
+</div>
 
-<p>In this example, we’ve added three scopes (<code class="highlighter-rouge">admin</code>, <code class="highlighter-rouge">user</code> and <code class="highlighter-rouge">media</code>) to our <code class="highlighter-rouge">OauthSecurity</code> security definition</p>
+<p>In this example, we’ve added three scopes (<code>admin</code>, <code>user</code> and <code>media</code>) to our <code>OauthSecurity</code> security definition</p>
 
 <h1 id="using-security-definitions">Using security definitions</h1>
 
-<p>Once we have described security definitions in <code class="highlighter-rouge">securityDefinition</code> we can apply them to the overall API or to specific operations with the <code class="highlighter-rouge">security</code> sections.
+<p>Once we have described security definitions in <code>securityDefinition</code> we can apply them to the overall API or to specific operations with the <code>security</code> sections.
 When we apply a security definition to an operation, it overrides API security.</p>
 
 <h2 id="basic-authentication-1">Basic Authentication</h2>
-<p>Let’s see how we can use a <code class="highlighter-rouge">basic</code> security definition.</p>
+<p>Let’s see how we can use a <code>basic</code> security definition.</p>
 
 <h3 id="api-level">API level</h3>
-<p>In this example the security definition which apply to ALL API operations is <code class="highlighter-rouge">UserSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="17-29" data-gist-highlight-line="25-26" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>In this example the security definition which apply to ALL API operations is <code>UserSecurity</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="9-10" data-start="17"><code>securityDefinitions:
+  UserSecurity:
+    type: basic
+  AdminSecurity:
+    type: basic
+  MediaSecurity:
+    type: basic
+
+security:
+  - UserSecurity: [] 
+
+paths:
+  /persons:
+</code></pre>
+  
+</div>
 
 <h3 id="operation-level">Operation level</h3>
-<p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the <code class="highlighter-rouge">UserSecurity</code> defined on top level which applies:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="28-39" data-gist-highlight-line="29,32" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>As <code>GET /persons</code> operation do not define a <code>security</code>, it’s the <code>UserSecurity</code> defined on top level which applies:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2,5" data-start="28"><code>paths:
+  /persons:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+        - $ref: '#/parameters/pageSize'
+        - $ref: '#/parameters/pageNumber'
+        - $ref: '#/parameters/includeNonVerifiedUsers'
+        - $ref: '#/parameters/sortPersons'
+</code></pre>
+  
+</div>
 
-<p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security is overridden by <code class="highlighter-rouge">AdminSecurity</code>: 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="55-59" data-gist-highlight-line="58-59" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>On <code>POST /persons</code> operation, the top level security is overridden by <code>AdminSecurity</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="4-5" data-start="55"><code>    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      security:
+        - AdminSecurity: []
+</code></pre>
+  
+</div>
 
-<p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is also overridden, but this time it’s by <code class="highlighter-rouge">MediaSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_17_defining_security_basic.yaml" data-gist-line="246-252" data-gist-highlight-line="246,249,251-252" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>On <code>POST /images</code> operation, the top level security is also overridden, but this time it’s by <code>MediaSecurity</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1,4,6-7" data-start="246"><code>  /images:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    post:
+      summary: Uploads an image
+      security:
+        - MediaSecurity: []
+</code></pre>
+  
+</div>
 
 <h2 id="api-key-1">API Key</h2>
 <p>We can do exactly the same things with an API key security definition.</p>
 
 <h3 id="api-level-1">API level</h3>
-<p>In this example the security definition which apply to ALL API operations is <code class="highlighter-rouge">UserSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="17-35" data-gist-highlight-line="31-32" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>In this example the security definition which apply to ALL API operations is <code>UserSecurity</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="15-16" data-start="17"><code>securityDefinitions:
+  UserSecurity:
+    type: apiKey
+    in: header
+    name: SIMPLE-API-KEY
+  AdminSecurity:
+    type: apiKey
+    in: header
+    name: ADMIN-API-KEY
+  MediaSecurity:
+    type: apiKey
+    in: query
+    name: media-api-key
+
+security:
+  - UserSecurity: [] 
+
+paths:
+  /persons:
+</code></pre>
+  
+</div>
 
 <h3 id="operation-level-1">Operation level</h3>
-<p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the <code class="highlighter-rouge">UserSecurity</code> defined on top level which applies:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="34-45" data-gist-highlight-line="35,38" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>As <code>GET /persons</code> operation do not define a <code>security</code>, it’s the <code>UserSecurity</code> defined on top level which applies:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2,5" data-start="34"><code>paths:
+  /persons:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+        - $ref: '#/parameters/pageSize'
+        - $ref: '#/parameters/pageNumber'
+        - $ref: '#/parameters/includeNonVerifiedUsers'
+        - $ref: '#/parameters/sortPersons'
+</code></pre>
+  
+</div>
 
-<p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security is overridden by <code class="highlighter-rouge">AdminSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="61-65" data-gist-highlight-line="61,64,65" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>On <code>POST /persons</code> operation, the top level security is overridden by <code>AdminSecurity</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1,4,5" data-start="61"><code>    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      security:
+        - AdminSecurity: []
+</code></pre>
+  
+</div>
 
-<p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is also overridden, but this time it’s by <code class="highlighter-rouge">MediaSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_18_defining_security_apikey.yaml" data-gist-line="252-258" data-gist-highlight-line="252,255,257-258" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>On <code>POST /images</code> operation, the top level security is also overridden, but this time it’s by <code>MediaSecurity</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1,4,6-7" data-start="252"><code>  /images:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    post:
+      summary: Uploads an image
+      security:
+        - MediaSecurity: []
+</code></pre>
+  
+</div>
 
 <h2 id="oauth-2-1">Oauth 2</h2>
-<p>With an <code class="highlighter-rouge">oauth2</code> the principle is the same but you can also define which scope(s) you use.</p>
+<p>With an <code>oauth2</code> the principle is the same but you can also define which scope(s) you use.</p>
 
 <h3 id="api-level-2">API level</h3>
-<p>In this example the security definition which apply to ALL API operations is <code class="highlighter-rouge">OauthSecurity</code> with the <code class="highlighter-rouge">user</code> scope:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="17-33" data-gist-highlight-line="28-30" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>In this example the security definition which apply to ALL API operations is <code>OauthSecurity</code> with the <code>user</code> scope:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="12-14" data-start="17"><code>securityDefinitions:
+  OauthSecurity:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: 'https://oauth.simple.api/authorization'
+    tokenUrl: 'https://oauth.simple.api/token'
+    scopes:
+      admin: Admin scope
+      user: User scope
+      media: Media scope
+
+security:
+  - OauthSecurity:
+    - user
+
+paths:
+  /persons:
+</code></pre>
+  
+</div>
 
 <h3 id="operation-level-2">Operation level</h3>
-<p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the <code class="highlighter-rouge">OauthSecurity</code> with <code class="highlighter-rouge">user</code>scope defined on top level which applies:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="32-43" data-gist-highlight-line="33,36" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>As <code>GET /persons</code> operation do not define a <code>security</code>, it’s the <code>OauthSecurity</code> with <code>user</code>scope defined on top level which applies:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2,5" data-start="32"><code>paths:
+  /persons:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+        - $ref: '#/parameters/pageSize'
+        - $ref: '#/parameters/pageNumber'
+        - $ref: '#/parameters/includeNonVerifiedUsers'
+        - $ref: '#/parameters/sortPersons'
+</code></pre>
+  
+</div>
 
-<p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security scope is overridden by <code class="highlighter-rouge">admin</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="59-64" data-gist-highlight-line="59,62-64" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>On <code>POST /persons</code> operation, the top level security scope is overridden by <code>admin</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1,4-6" data-start="59"><code>    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      security:
+        - OauthSecurity:
+          - admin
+</code></pre>
+  
+</div>
 
-<p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is also overridden, but this time it’s by <code class="highlighter-rouge">media</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_19_defining_security_oauth2.yaml" data-gist-line="252-259" data-gist-highlight-line="252,255,257-259" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>On <code>POST /images</code> operation, the top level security is also overridden, but this time it’s by <code>media</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1,4,6-8" data-start="252"><code>  /images:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    post:
+      summary: Uploads an image
+      security:
+        - OauthSecurity:
+          - media
+</code></pre>
+  
+</div>
 
 <h1 id="using-multiple-security-types">Using multiple security types</h1>
 <p>It’s not mandatory to define a single type of security definition and use only one at a time.
 The examples below show how we can define security definitions of different types and use more than one on operations.</p>
 
 <h2 id="security-definitions-1">Security definitions</h2>
-<p>Here we define there different types of security:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="17-31" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>Here we define there different types of security:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="17"><code>securityDefinitions:
+  OauthSecurity:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: 'https://oauth.simple.api/authorization'
+    tokenUrl: 'https://oauth.simple.api/token'
+    scopes:
+      admin: Admin scope
+      user: User scope
+  MediaSecurity:
+    type: apiKey
+    in: query
+    name: media-api-key
+  LegacySecurity:
+    type: basic
+</code></pre>
+  
+</div>
 
 <h2 id="global-security">Global security</h2>
-<p>Then we choose to apply both of them globally:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="33-36" data-gist-footer="true" gist-enable-cache="true"></code>
-It means that a consumer can call any operation (which do not override security) with one of those two security types.</p>
+<p>Then we choose to apply both of them globally:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="33"><code>security:
+  - OauthSecurity:
+    - user
+  - LegacySecurity: []
+</code></pre>
+  
+</div>
+
+<p>It means that a consumer can call any operation (which do not override security) with one of those two security types.</p>
 
 <h2 id="overriding-global-security">Overriding global security</h2>
-<p>As <code class="highlighter-rouge">GET /persons</code> operation do not define a <code class="highlighter-rouge">security</code>, it’s the Oauth 2 <code class="highlighter-rouge">OauthSecurity</code> with <code class="highlighter-rouge">user</code>scope OR the basic authentication <code class="highlighter-rouge">LegacySecurity</code> defined on top level which applies:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="38-49" data-gist-highlight-line="39,42" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>As <code>GET /persons</code> operation do not define a <code>security</code>, it’s the Oauth 2 <code>OauthSecurity</code> with <code>user</code>scope OR the basic authentication <code>LegacySecurity</code> defined on top level which applies:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2,5" data-start="38"><code>paths:
+  /persons:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+        - $ref: '#/parameters/pageSize'
+        - $ref: '#/parameters/pageNumber'
+        - $ref: '#/parameters/includeNonVerifiedUsers'
+        - $ref: '#/parameters/sortPersons'
+</code></pre>
+  
+</div>
 
-<p>On <code class="highlighter-rouge">POST /persons</code> operation, the top level security scope Oauth 2 <code class="highlighter-rouge">OauthSecurity</code> is overridden by <code class="highlighter-rouge">admin</code> and consumer can also still use the basic authentication <code class="highlighter-rouge">LegacySecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="65-71" data-gist-highlight-line="65,68-71" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>On <code>POST /persons</code> operation, the top level security scope Oauth 2 <code>OauthSecurity</code> is overridden by <code>admin</code> and consumer can also still use the basic authentication <code>LegacySecurity</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1,4-7" data-start="65"><code>    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      security:
+        - OauthSecurity:
+          - admin
+        - LegacySecurity: []
+</code></pre>
+  
+</div>
 
-<p>On <code class="highlighter-rouge">POST /images</code> operation, the top level security is fully overridden by the API Key <code class="highlighter-rouge">MediaSecurity</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_20_defining_security_multiple.yaml" data-gist-line="260-266" data-gist-highlight-line="260,263,265-266" data-gist-footer="true" gist-enable-cache="true"></code></p>
+<p>On <code>POST /images</code> operation, the top level security is fully overridden by the API Key <code>MediaSecurity</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1,4,6-7" data-start="260"><code>  /images:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    post:
+      summary: Uploads an image
+      security:
+        - MediaSecurity: []
+</code></pre>
+  
+</div>
 
 <h1 id="conclusion">Conclusion</h1>
 <p>You now have mastered security. With this new post you are now a full expert when it comes to describe an API interface with the OpenAPI specification. But an interface contract alone may not be easy to understand without some explainations. In next post we’ll learn how to document this interface description (coming soon) to ease its understanding.</p>
@@ -421,7 +857,44 @@ It means that a consumer can call any operation (which do not override security)
     anchors.add('.blog-container h3');
   });
 </script>
-<script async type="text/javascript" src="/js/gist-embed.min.js" ></script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
   
   </body>
 

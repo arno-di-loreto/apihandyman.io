@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://apihandyman.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2017-01-25T17:39:09+00:00</updated><id>https://apihandyman.io//</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">…And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL</title><link href="https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/" rel="alternate" type="text/html" title="...And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL" /><published>2017-01-22T00:00:00+00:00</published><updated>2017-01-22T00:00:00+00:00</updated><id>https://apihandyman.io/and-graphql-for-all</id><content type="html" xml:base="https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">&lt;p&gt;GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too!&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://apihandyman.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2017-02-12T17:04:20+00:00</updated><id>https://apihandyman.io//</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">…And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL</title><link href="https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/" rel="alternate" type="text/html" title="...And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL" /><published>2017-01-22T00:00:00+00:00</published><updated>2017-01-22T00:00:00+00:00</updated><id>https://apihandyman.io/and-graphql-for-all</id><content type="html" xml:base="https://apihandyman.io/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">&lt;p&gt;GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too!&lt;br /&gt;
 Well, why not. GraphQL could be a great tool, but like any tool, you don’t choose it &lt;em&gt;just because&lt;/em&gt;. You choose it because it solves a problem in a given context. You choose it knowing its strengths and weaknesses.&lt;/p&gt;
 
 &lt;p&gt;While discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it. From design and implementation to pricing model and analytics down to developers experience and implementations, choosing an API design style will have impact on the whole API lifecycle. Therefore, this choice must be an enligthned one and not based on simple beliefs.&lt;!--more--&gt;&lt;/p&gt;
@@ -52,64 +52,100 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;querying-data&quot;&gt;Querying data&lt;/h3&gt;
-&lt;p&gt;The Github GraphQL API propose a &lt;em&gt;viewer&lt;/em&gt; query, returning the connected User data. This query is the equivalent of &lt;code class=&quot;highlighter-rouge&quot;&gt;GET /user&lt;/code&gt; in the Github REST API. The difference with the REST query is that I can select the properties I want to retrieve.&lt;/p&gt;
+&lt;p&gt;The Github GraphQL API propose a &lt;em&gt;viewer&lt;/em&gt; query, returning the connected User data. This query is the equivalent of &lt;code&gt;GET /user&lt;/code&gt; in the Github REST API. The difference with the REST query is that I can select the properties I want to retrieve.&lt;/p&gt;
 
 &lt;p&gt;With this query, I retrieve only the viewer’s name and avatarURL.&lt;/p&gt;
 
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
   viewer {
     name
     avatarURL
   }
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
+
 &lt;p&gt;To get server’s response I have to POST this query in a JSON object to the GraphQL endpoint:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;POST https://api.github.com/graphql
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-text line-numbers&quot;&gt;&lt;code&gt;POST https://api.github.com/graphql
 {
- &quot;query&quot;: &quot;{ me: viewer { name avatarURL} }&quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
+ &amp;quot;query&amp;quot;: &amp;quot;{ me: viewer { name avatarURL} }&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;The result is in JSON format and the requested data are located in the data property. These data mirror perfectly my query.&lt;/p&gt;
 
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;viewer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Arnaud Lauret&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;avatarURL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;viewer&amp;quot;: {
+      &amp;quot;name&amp;quot;: &amp;quot;Arnaud Lauret&amp;quot;,
+      &amp;quot;avatarURL&amp;quot;: &amp;quot;https://avatars0.githubusercontent.com/u/10104551?v=3&amp;quot;
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;h3 id=&quot;customizing-responses&quot;&gt;Customizing responses&lt;/h3&gt;
 &lt;p&gt;You can create more custom data structures by using aliases.&lt;br /&gt;
-Here, &lt;code class=&quot;highlighter-rouge&quot;&gt;viewer&lt;/code&gt; becomes &lt;code class=&quot;highlighter-rouge&quot;&gt;me&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;name&lt;/code&gt; becomes &lt;code class=&quot;highlighter-rouge&quot;&gt;fullname&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;avatarURL&lt;/code&gt; becomes &lt;code class=&quot;highlighter-rouge&quot;&gt;picture&lt;/code&gt;.&lt;/p&gt;
+Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt; becomes &lt;code&gt;fullname&lt;/code&gt; and &lt;code&gt;avatarURL&lt;/code&gt; becomes &lt;code&gt;picture&lt;/code&gt;.&lt;/p&gt;
 
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
   me: viewer {
     fullname: name
     picture: avatarURL
   }
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;The result is exactly what I requested:&lt;/p&gt;
 
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;me&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;fullname&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Arnaud Lauret&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;picture&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;me&amp;quot;: {
+      &amp;quot;fullname&amp;quot;: &amp;quot;Arnaud Lauret&amp;quot;,
+      &amp;quot;picture&amp;quot;: &amp;quot;https://avatars0.githubusercontent.com/u/10104551?v=3&amp;quot;
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;h3 id=&quot;querying-sub-resources&quot;&gt;Querying sub-resources&lt;/h3&gt;
@@ -118,15 +154,22 @@ Here, &lt;code class=&quot;highlighter-rouge&quot;&gt;viewer&lt;/code&gt; become
 &lt;p&gt;To do that with the Github REST API, I need two calls:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;GET /user&lt;/code&gt; to get the viewer information&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;GET /user/repos?sort=created&amp;amp;direction=desc&lt;/code&gt; to get the repositories list. Unfortunately the API do not propose a length parameter for the list&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;GET /user&lt;/code&gt; to get the viewer information&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;GET /user/repos?sort=created&amp;amp;direction=desc&lt;/code&gt; to get the repositories list. Unfortunately the API do not propose a length parameter for the list&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The responses will contains all available data, the REST API do not propose to filter returned properties.&lt;/p&gt;
 
 &lt;p&gt;With GraphQL, I can do that with a single query:&lt;/p&gt;
 
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
   me: viewer {
     fullname: name
     picture: avatarURL
@@ -138,35 +181,42 @@ Here, &lt;code class=&quot;highlighter-rouge&quot;&gt;viewer&lt;/code&gt; become
       }
     }
   }
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;I just have to add the repositories property in my viewer query with the good parameters and indicate the properties I want to get back for each repository. The response contains exactly what I requested.&lt;/p&gt;
 
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;me&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;fullname&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Arnaud Lauret&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;picture&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;repositories&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;edges&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;node&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-              &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;apistylebook-api&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;node&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-              &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;restfest-videos-data-postprocessor&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[1])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json line-numbers code-collapsed&quot;&gt;&lt;code&gt;{
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;me&amp;quot;: {
+      &amp;quot;fullname&amp;quot;: &amp;quot;Arnaud Lauret&amp;quot;,
+      &amp;quot;picture&amp;quot;: &amp;quot;https://avatars0.githubusercontent.com/u/10104551?v=3&amp;quot;,
+      &amp;quot;repositories&amp;quot;: {
+        &amp;quot;edges&amp;quot;: [
+          {
+            &amp;quot;node&amp;quot;: {
+              &amp;quot;name&amp;quot;: &amp;quot;apistylebook-api&amp;quot;
+            }
+          },
+          {
+            &amp;quot;node&amp;quot;: {
+              &amp;quot;name&amp;quot;: &amp;quot;restfest-videos-data-postprocessor&amp;quot;
+            }
+          }
+        ]
+      }
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[1], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;h3 id=&quot;aggregating-queries&quot;&gt;Aggregating queries&lt;/h3&gt;
@@ -182,55 +232,69 @@ Here, &lt;code class=&quot;highlighter-rouge&quot;&gt;viewer&lt;/code&gt; become
 
 &lt;p&gt;in a single request to the GraphQL server:&lt;/p&gt;
 
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
   me:   viewer                 { name avatarURL }
-  kin:  user(login: &quot;kinlane&quot;) { name avatarURL }
-  mike: user(login: &quot;mamund&quot;)  { name avatarURL }
-  graphqlRepos: search(first: 2, query: &quot;graphql&quot;, type: REPOSITORY) {
+  kin:  user(login: &amp;quot;kinlane&amp;quot;) { name avatarURL }
+  mike: user(login: &amp;quot;mamund&amp;quot;)  { name avatarURL }
+  graphqlRepos: search(first: 2, query: &amp;quot;graphql&amp;quot;, type: REPOSITORY) {
   	edges { node { ... on Repository {
       name
       description
     }}}  
   }
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;The response contains all requested data:&lt;/p&gt;
 
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;me&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Arnaud Lauret&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;avatarURL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;kin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Kin Lane&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;avatarURL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://avatars1.githubusercontent.com/u/56100?v=3&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;mike&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Mike Amundsen&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;avatarURL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://avatars2.githubusercontent.com/u/38344?v=3&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;graphqlRepos&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;edges&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;node&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;graphql&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GraphQL is a query language and execution engine tied to any backend service.&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;node&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;graphql&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;An implementation of GraphQL for Go / Golang&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[1])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json line-numbers code-collapsed&quot;&gt;&lt;code&gt;{
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;me&amp;quot;: {
+      &amp;quot;name&amp;quot;: &amp;quot;Arnaud Lauret&amp;quot;,
+      &amp;quot;avatarURL&amp;quot;: &amp;quot;https://avatars0.githubusercontent.com/u/10104551?v=3&amp;quot;
+    },
+    &amp;quot;kin&amp;quot;: {
+      &amp;quot;name&amp;quot;: &amp;quot;Kin Lane&amp;quot;,
+      &amp;quot;avatarURL&amp;quot;: &amp;quot;https://avatars1.githubusercontent.com/u/56100?v=3&amp;quot;
+    },
+    &amp;quot;mike&amp;quot;: {
+      &amp;quot;name&amp;quot;: &amp;quot;Mike Amundsen&amp;quot;,
+      &amp;quot;avatarURL&amp;quot;: &amp;quot;https://avatars2.githubusercontent.com/u/38344?v=3&amp;quot;
+    },
+    &amp;quot;graphqlRepos&amp;quot;: {
+      &amp;quot;edges&amp;quot;: [
+        {
+          &amp;quot;node&amp;quot;: {
+            &amp;quot;name&amp;quot;: &amp;quot;graphql&amp;quot;,
+            &amp;quot;description&amp;quot;: &amp;quot;GraphQL is a query language and execution engine tied to any backend service.&amp;quot;
+          }
+        },
+        {
+          &amp;quot;node&amp;quot;: {
+            &amp;quot;name&amp;quot;: &amp;quot;graphql&amp;quot;,
+            &amp;quot;description&amp;quot;: &amp;quot;An implementation of GraphQL for Go / Golang&amp;quot;
+          }
+        }
+      ]
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[1], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;h3 id=&quot;graphql-is-not-sql-nor-an-etl&quot;&gt;GraphQL is not SQL nor an ETL&lt;/h3&gt;
@@ -238,43 +302,65 @@ Here, &lt;code class=&quot;highlighter-rouge&quot;&gt;viewer&lt;/code&gt; become
 
 &lt;p&gt;You cannot join queries like you would join tables in SQL.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-SQL&quot;&gt;SELECT * FROM A, B WHERE A.COL = B.COL
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-sql line-numbers&quot;&gt;&lt;code&gt;SELECT * FROM A, B WHERE A.COL = B.COL&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
 
 &lt;p&gt;You cannot select sub-properties or flatten objects. If I want to retrieve the name of my first repository without the edges and repo level, I cannot change this hierarchy:&lt;/p&gt;
 
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;me&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;myFirstTwoRepos&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;edges&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;repo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-              &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;apistylebook-api&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;me&amp;quot;: {
+      &amp;quot;myFirstTwoRepos&amp;quot;: {
+        &amp;quot;edges&amp;quot;: [
+          {
+            &amp;quot;repo&amp;quot;: {
+              &amp;quot;name&amp;quot;: &amp;quot;apistylebook-api&amp;quot;
+            }
+          }
+        ]
+      }
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;into this one:&lt;/p&gt;
 
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;me&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;myFirstTwoRepos&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;apistylebook-api&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;me&amp;quot;: {
+      &amp;quot;myFirstTwoRepos&amp;quot;:
+        [
+          {&amp;quot;name&amp;quot;: &amp;quot;apistylebook-api&amp;quot;}
+        ]
+      }
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;h2 id=&quot;schema-introspection-documentation&quot;&gt;Schema, introspection, documentation&lt;/h2&gt;
@@ -282,17 +368,24 @@ Here, &lt;code class=&quot;highlighter-rouge&quot;&gt;viewer&lt;/code&gt; become
 This schema let you describe your data model like you would do with OpenAPI/Swagger, Blueprint or RAML specification.
 The schema can be queried on runtime like all of the data.&lt;/p&gt;
 
-&lt;p&gt;This query let me know what are the properties of the &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; resource which is returned by the viewer and user query&lt;/p&gt;
+&lt;p&gt;This query let me know what are the properties of the &lt;code&gt;User&lt;/code&gt; resource which is returned by the viewer and user query&lt;/p&gt;
 
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
-  __type(name:&quot;User&quot;) {
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
+  __type(name:&amp;quot;User&amp;quot;) {
     fields {
       name
       description
     }
   }
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;This schema can also be used to generate documentation:&lt;/p&gt;
@@ -338,7 +431,7 @@ The schema can be queried on runtime like all of the data.&lt;/p&gt;
 &lt;p&gt;GraphQL is protocol agnostic, it means that you can use it with any protocol as long as you can send and retrieve a string. This can be useful but people acustomed to using the HTTP protocol with REST API should then be aware that, when used over HTTP, GraphQL do not use any of its features and it has consequences on DX.&lt;/p&gt;
 
 &lt;h3 id=&quot;reading-and-writing-resources&quot;&gt;Reading and writing resources&lt;/h3&gt;
-&lt;p&gt;With a REST API, if I retrieve a user’s data with &lt;code class=&quot;highlighter-rouge&quot;&gt;GET /users/{id}&lt;/code&gt;, I can try to update it with &lt;code class=&quot;highlighter-rouge&quot;&gt;PATCH /users/{id}&lt;/code&gt; and delete it with &lt;code class=&quot;highlighter-rouge&quot;&gt;DELETE /users/{id}&lt;/code&gt; without even reading the documentation and it will probably work… like it will work with another another resource in the same API and even with another resource in another REST API.
+&lt;p&gt;With a REST API, if I retrieve a user’s data with &lt;code&gt;GET /users/{id}&lt;/code&gt;, I can try to update it with &lt;code&gt;PATCH /users/{id}&lt;/code&gt; and delete it with &lt;code&gt;DELETE /users/{id}&lt;/code&gt; without even reading the documentation and it will probably work… like it will work with another another resource in the same API and even with another resource in another REST API.
 And icing on the cake: both humans and machines can discover and understand the meaning of each operation.
 Using the HTTP protocol enforce a certain consistency and allow predictability.&lt;/p&gt;
 
@@ -353,86 +446,128 @@ Using the HTTP protocol enforce a certain consistency and allow predictability.&
 
 &lt;p&gt;If I get a user with the query user:&lt;/p&gt;
 
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;query {
-  user(id: &quot;{id}&quot;) {
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;query {
+  user(id: &amp;quot;{id}&amp;quot;) {
     name
   }
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;Updating or deleting this user with GraphQL will not be as clear as with REST.
-How will be named the mutation allowing me to delete a user? &lt;code class=&quot;highlighter-rouge&quot;&gt;deleteUser&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;removeUser&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;suppressPeople&lt;/code&gt;?
+How will be named the mutation allowing me to delete a user? &lt;code&gt;deleteUser&lt;/code&gt;, &lt;code&gt;removeUser&lt;/code&gt; or &lt;code&gt;suppressPeople&lt;/code&gt;?
 You’ll have to dig in the documentation to find out. You cannot guess it because different API providers will have different naming conventions and these naming convention may event not be consistent within an API.&lt;/p&gt;
 
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mutation {
-  deleteUser(id: &quot;{id}&quot;)
-  removeUser(id: &quot;{id}&quot;)
-  suppressPeople(id: &quot;{id}&quot;)
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;mutation {
+  deleteUser(id: &amp;quot;{id}&amp;quot;)
+  removeUser(id: &amp;quot;{id}&amp;quot;)
+  suppressPeople(id: &amp;quot;{id}&amp;quot;)
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;h3 id=&quot;handling-errors&quot;&gt;Handling errors&lt;/h3&gt;
-&lt;p&gt;Being protocol agnostic also means that everything is going to be &lt;code class=&quot;highlighter-rouge&quot;&gt;200 OK&lt;/code&gt; when using GraphQL over HTTP, wheither the query was OK or not. With REST APIs we are acustomed to be able to tell what happens just by looking at the HTTP status. Whatever the API, if we receive a &lt;code class=&quot;highlighter-rouge&quot;&gt;404&lt;/code&gt; HTTP status we known what it means: &lt;em&gt;resource not found&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Being protocol agnostic also means that everything is going to be &lt;code&gt;200 OK&lt;/code&gt; when using GraphQL over HTTP, wheither the query was OK or not. With REST APIs we are acustomed to be able to tell what happens just by looking at the HTTP status. Whatever the API, if we receive a &lt;code&gt;404&lt;/code&gt; HTTP status we known what it means: &lt;em&gt;resource not found&lt;/em&gt;.&lt;/p&gt;
 
 &lt;p&gt;If I try to retrieve a user that do not exists with a GraphQL API:&lt;/p&gt;
 
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
-  user(login: &quot;dummy-user-123&quot;) {name}
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
+  user(login: &amp;quot;dummy-user-123&amp;quot;) {name}
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;I get this GraphQL standard error with a text message telling me the user do no exists.:&lt;/p&gt;
 
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;user&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;errors&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;message&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Could not resolve to a User with the login of 'dummy-user-123'.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;locations&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;line&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;column&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;user&amp;quot;: null
+  },
+  &amp;quot;errors&amp;quot;: [
+    {
+      &amp;quot;message&amp;quot;: &amp;quot;Could not resolve to a User with the login of &amp;#39;dummy-user-123&amp;#39;.&amp;quot;,
+      &amp;quot;locations&amp;quot;: [
+        {
+          &amp;quot;line&amp;quot;: 2,
+          &amp;quot;column&amp;quot;: 3
+        }
+      ],
+      &amp;quot;path&amp;quot;: [
+        &amp;quot;user&amp;quot;
+      ]
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;If I forget the login parameter:&lt;/p&gt;
 
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
   user { name }
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;I get exactly the same error format:&lt;/p&gt;
 
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;errors&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;message&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Field 'user' is missing required arguments: login&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;locations&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;line&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;column&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
+  &amp;quot;data&amp;quot;: null,
+  &amp;quot;errors&amp;quot;: [
+    {
+      &amp;quot;message&amp;quot;: &amp;quot;Field &amp;#39;user&amp;#39; is missing required arguments: login&amp;quot;,
+      &amp;quot;locations&amp;quot;: [
+        {
+          &amp;quot;line&amp;quot;: 2,
+          &amp;quot;column&amp;quot;: 3
+        }
+      ]
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+  
 &lt;/div&gt;
 
 &lt;p&gt;The message shows me explicitely what the problem is, but I cannot determine the error type programmatically in a generic way. These errors are not really fit to be analyzed automatically by machines. Of course there’s obviously a pattern in the message but will this message have the same pattern for another resource or use case? Will this pattern be consistent as the API evolve? And will I find exactly the same pattern in another GraphQL API?&lt;/p&gt;
@@ -466,7 +601,7 @@ Is this a problem?. Like always, the answer to this question will depend on the 
 &lt;h2 id=&quot;graphql-will-not-solve-your-api-design-problems&quot;&gt;GraphQL will not solve your API design problems&lt;/h2&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;What the hell is this &lt;code class=&quot;highlighter-rouge&quot;&gt;amsus2&lt;/code&gt; field?
+  &lt;p&gt;What the hell is this &lt;code&gt;amsus2&lt;/code&gt; field?
 Anonym consumer&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -499,9 +634,9 @@ You can discover the available queries and the data returned.&lt;/p&gt;
 &lt;p&gt;So don’t be fooled by this kind of documentation and note that also applies to REST APIs when you use API description format like OpenAPI, Swagger, RAML of Blueprint.&lt;/p&gt;
 
 &lt;h2 id=&quot;graphql-may-have-unexpected-side-effects-and-data-volumes-and-server-usage&quot;&gt;GraphQL may have unexpected side effects and data volumes and server usage&lt;/h2&gt;
-&lt;p&gt;With GraphQL, what you want is what you get. But you always have to explicitely tell what you want, there’s no &lt;code class=&quot;highlighter-rouge&quot;&gt;select * from user&lt;/code&gt; like in SQL. So on each request, consumers have to send a full query.&lt;/p&gt;
+&lt;p&gt;With GraphQL, what you want is what you get. But you always have to explicitely tell what you want, there’s no &lt;code&gt;select * from user&lt;/code&gt; like in SQL. So on each request, consumers have to send a full query.&lt;/p&gt;
 
-&lt;p&gt;Where you would have a simple &lt;code class=&quot;highlighter-rouge&quot;&gt;GET /dashboard&lt;/code&gt; with a REST API, you may end with a huge GraphQL query.
+&lt;p&gt;Where you would have a simple &lt;code&gt;GET /dashboard&lt;/code&gt; with a REST API, you may end with a huge GraphQL query.
 In some use case, you may reach your input bandwidth limit because the number of requests has not really diminished but the requests size has increased. Remember that not everybody has a fully scalable cloud infrastructure with illimited bandwidth.&lt;/p&gt;
 
 &lt;p&gt;Proposing a smart system allowing consumers to retrieve in one shot what they want do not mean that it will be used wisely. Some lazy consumers may simply fired huge requests retrieving far more data than they really need. Some huge and complex request may impact all you infrastructure, so you should really think about your GraphQL schema and what runs behind it, because you’re giving the full power to consumers.&lt;/p&gt;

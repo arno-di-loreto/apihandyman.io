@@ -39,9 +39,9 @@
 <meta name="og:image" content="https://apihandyman.io/images/hypermedia-api-maturity-model-part-ii-the-missing-links/thumbnail.png">
 
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/syntax.css">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="canonical" href="/hypermedia-api-maturity-model-part-ii-the-missing-links/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -222,26 +222,43 @@ Based on:</p>
 <p>Let’s take the dummy API described in part I and work with the <em>add photo</em> operation for <em>location</em> resource (still using NARWHL).</p>
 
 <p>How it looks like in last post:</p>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="err">...</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="err">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;_links&quot;: 
+  [
+    ... 
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+      &quot;method&quot;: &quot;POST&quot;,
+      &quot;parameters&quot; :
+      {
+        &quot;locationId&quot; : &quot;IDL1&quot;,
+        &quot;url&quot; : &quot;http://example.com/your/photo&quot; 
+      }
+    }
+  ],
+  ...
+}</code></pre>
+  
+</div>
 
 <p>Now I add a <em>status</em> property to indicate if the operation is possible or not and explain why if it’s not possible:</p>
 
@@ -254,175 +271,243 @@ Based on:</p>
 <p>In this case, the <em>usability</em> is based on two notions: <em>availability</em> and <em>authorization</em>.</p>
 
 <h3 id="the-operation-in-unavailable-due-to-maintenance">The operation in unavailable due to maintenance</h3>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="err">...</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> 
-      </span><span class="p">{</span><span class="w"> 
-          </span><span class="nt">"usable"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w"> 
-          </span><span class="nt">"cause"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="w"> </span><span class="p">,</span><span class="w"> 
-          </span><span class="nt">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
-          </span><span class="p">[</span><span class="w"> 
-              </span><span class="p">{</span><span class="w"> 
-                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="w">
-                  </span><span class="s2">"reason"</span><span class="err">:</span><span class="w"> </span><span class="s2">"Temporarly down for programmed maintenance"</span><span class="w">
-                  </span><span class="s2">"extraValues"</span><span class="err">:</span><span class="w"> 
-                  </span><span class="p">[</span><span class="w"> 
-                      </span><span class="p">{</span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"endDate"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1426432120002"</span><span class="p">},</span><span class="w"> 
-                      </span><span class="p">{</span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"cause"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maintenance"</span><span class="p">}</span><span class="w"> 
-                  </span><span class="p">]</span><span class="w">
-              </span><span class="p">}</span><span class="w">
-              </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"authorized"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
-              </span><span class="p">}</span><span class="w">
-          </span><span class="p">]</span><span class="w"> 
-      </span><span class="p">}</span><span class="w">
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
       
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="err">}</span></code></pre></figure>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
+  
+</div>
+
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;_links&quot;: 
+  [
+    ... 
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+      &quot;method&quot;: &quot;POST&quot;,
+      &quot;parameters&quot; :
+      {
+        &quot;locationId&quot; : &quot;IDL1&quot;,
+        &quot;url&quot; : &quot;http://example.com/your/photo&quot; 
+      },
+      &quot;status&quot;: 
+      { 
+          &quot;usable&quot;:&quot;false&quot;, 
+          &quot;cause&quot; : &quot;available&quot; , 
+          &quot;details&quot; : 
+          [ 
+              { 
+                  &quot;name&quot;: &quot;available&quot;,
+                  &quot;value&quot; : &quot;false&quot;
+                  &quot;reason&quot;: &quot;Temporarly down for programmed maintenance&quot;
+                  &quot;extraValues&quot;: 
+                  [ 
+                      {&quot;name&quot; : &quot;endDate&quot;, &quot;value&quot;: &quot;1426432120002&quot;}, 
+                      {&quot;name&quot; : &quot;cause&quot;, &quot;value&quot;: &quot;maintenance&quot;} 
+                  ]
+              }
+              {
+                  &quot;name&quot;: &quot;authorized&quot;,
+                  &quot;value&quot;: &quot;true&quot;
+              }
+          ] 
+      }
+      
+    }
+  ],
+  ...
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h3 id="the-operation-in-unauthorized-for-this-resource-location">The operation in unauthorized for this resource (location)</h3>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="err">...</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> 
-      </span><span class="p">{</span><span class="w"> 
-          </span><span class="nt">"usable"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w"> 
-          </span><span class="nt">"cause"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="w"> </span><span class="p">,</span><span class="w"> 
-          </span><span class="nt">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
-          </span><span class="p">[</span><span class="w"> 
-              </span><span class="p">{</span><span class="w"> 
-                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
-              </span><span class="p">}</span><span class="w">
-              </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"authorized"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maximum number of photos reached for this location"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"extraValues"</span><span class="p">:</span><span class="w"> 
-                  </span><span class="p">[</span><span class="w">  
-                      </span><span class="p">{</span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"cause"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"locationMaximumNumberOfPhotos"</span><span class="p">}</span><span class="w"> 
-                  </span><span class="p">]</span><span class="w">
-              </span><span class="p">}</span><span class="w">
-          </span><span class="p">]</span><span class="w"> 
-      </span><span class="p">}</span><span class="w">
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
       
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="err">}</span></code></pre></figure>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
+  
+</div>
+
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;_links&quot;: 
+  [
+    ... 
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+      &quot;method&quot;: &quot;POST&quot;,
+      &quot;parameters&quot; :
+      {
+        &quot;locationId&quot; : &quot;IDL1&quot;,
+        &quot;url&quot; : &quot;http://example.com/your/photo&quot; 
+      },
+      &quot;status&quot;: 
+      { 
+          &quot;usable&quot;:&quot;false&quot;, 
+          &quot;cause&quot; : &quot;available&quot; , 
+          &quot;details&quot; : 
+          [ 
+              { 
+                  &quot;name&quot;: &quot;available&quot;,
+                  &quot;value&quot; : &quot;true&quot;
+              }
+              {
+                  &quot;name&quot;: &quot;authorized&quot;,
+                  &quot;value&quot;: &quot;false&quot;,
+                  &quot;reason&quot;: &quot;Maximum number of photos reached for this location&quot;,
+                  &quot;extraValues&quot;: 
+                  [  
+                      {&quot;name&quot; : &quot;cause&quot;, &quot;value&quot;: &quot;locationMaximumNumberOfPhotos&quot;} 
+                  ]
+              }
+          ] 
+      }
+      
+    }
+  ],
+  ...
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h3 id="the-operation-in-unauthorized-for-the-user">The operation in unauthorized for the user</h3>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="err">...</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> 
-      </span><span class="p">{</span><span class="w"> 
-          </span><span class="nt">"usable"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w"> 
-          </span><span class="nt">"cause"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="w"> </span><span class="p">,</span><span class="w"> 
-          </span><span class="nt">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
-          </span><span class="p">[</span><span class="w"> 
-              </span><span class="p">{</span><span class="w"> 
-                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
-              </span><span class="p">}</span><span class="w">
-              </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"authorized"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Daily maximum upload volume reached for this user"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"extraValues"</span><span class="p">:</span><span class="w"> 
-                  </span><span class="p">[</span><span class="w">  
-                      </span><span class="p">{</span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"cause"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userDailyMaximumUpload"</span><span class="p">}</span><span class="w">  
-                  </span><span class="p">]</span><span class="w">
-              </span><span class="p">}</span><span class="w">
-          </span><span class="p">]</span><span class="w"> 
-      </span><span class="p">}</span><span class="w">
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
       
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="err">}</span></code></pre></figure>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
+  
+</div>
+
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;_links&quot;: 
+  [
+    ... 
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+      &quot;method&quot;: &quot;POST&quot;,
+      &quot;parameters&quot; :
+      {
+        &quot;locationId&quot; : &quot;IDL1&quot;,
+        &quot;url&quot; : &quot;http://example.com/your/photo&quot; 
+      },
+      &quot;status&quot;: 
+      { 
+          &quot;usable&quot;:&quot;false&quot;, 
+          &quot;cause&quot; : &quot;available&quot; , 
+          &quot;details&quot; : 
+          [ 
+              { 
+                  &quot;name&quot;: &quot;available&quot;,
+                  &quot;value&quot; : &quot;true&quot;
+              }
+              {
+                  &quot;name&quot;: &quot;authorized&quot;,
+                  &quot;value&quot;: &quot;false&quot;,
+                  &quot;reason&quot;: &quot;Daily maximum upload volume reached for this user&quot;,
+                  &quot;extraValues&quot;: 
+                  [  
+                      {&quot;name&quot; : &quot;cause&quot;, &quot;value&quot;: &quot;userDailyMaximumUpload&quot;}  
+                  ]
+              }
+          ] 
+      }
+      
+    }
+  ],
+  ...
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h3 id="everything-is-ok">Everything is OK</h3>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="err">...</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> 
-      </span><span class="p">{</span><span class="w"> 
-          </span><span class="nt">"usable"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">  
-          </span><span class="nt">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
-          </span><span class="p">[</span><span class="w"> 
-              </span><span class="p">{</span><span class="w"> 
-                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
-              </span><span class="p">}</span><span class="w">
-              </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"authorized"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
-              </span><span class="p">}</span><span class="w">
-          </span><span class="p">]</span><span class="w"> 
-      </span><span class="p">}</span><span class="w">
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
       
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="err">}</span></code></pre></figure>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
+  
+</div>
+
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;_links&quot;: 
+  [
+    ... 
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+      &quot;method&quot;: &quot;POST&quot;,
+      &quot;parameters&quot; :
+      {
+        &quot;locationId&quot; : &quot;IDL1&quot;,
+        &quot;url&quot; : &quot;http://example.com/your/photo&quot; 
+      },
+      &quot;status&quot;: 
+      { 
+          &quot;usable&quot;:&quot;true&quot;,  
+          &quot;details&quot; : 
+          [ 
+              { 
+                  &quot;name&quot;: &quot;available&quot;,
+                  &quot;value&quot; : &quot;true&quot;
+              }
+              {
+                  &quot;name&quot;: &quot;authorized&quot;,
+                  &quot;value&quot;: &quot;true&quot;
+              }
+          ] 
+      }
+      
+    }
+  ],
+  ...
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h2 id="how-you-do-things">How you do things</h2>
 <p>Actual techniques for hypermedia implementation I’ve seen for now can tell you what actions you can do with a resource and what you need to do it but sometimes you need more information for processes involving more than one action.</p>
@@ -456,55 +541,72 @@ You need information at runtime about this.</p>
 
 <h3 id="first-we-get-the-tweetwithmedia-action">First we get the tweetWithMedia action</h3>
 <p>This action could placed be in <em>_links</em> property of GET https://api.twitter.com/1.1/.</p>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="err">...</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"process"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
-      </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tweetWithMedia"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"step"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uploadMedia"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"steps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"uploadMedia"</span><span class="p">,</span><span class="w"> </span><span class="s2">"updateStatus"</span><span class="p">]</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twitter.com/1.1/media/upload.json"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="err">...</span><span class="w"> 
-      </span><span class="p">},</span><span class="w">
-    </span><span class="err">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="err">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;_links&quot;: 
+  [
+    ... 
+    {
+      &quot;process&quot; : 
+      {
+          &quot;type&quot;: &quot;tweetWithMedia&quot;,
+          &quot;step&quot;: &quot;uploadMedia&quot;,
+          &quot;steps&quot; : [ &quot;uploadMedia&quot;, &quot;updateStatus&quot;]
+      },
+      &quot;href&quot;: &quot;https://twitter.com/1.1/media/upload.json&quot;,
+      &quot;method&quot;: &quot;POST&quot;,
+      &quot;parameters&quot; :
+      {
+        ... 
+      },
+    }
+  ],
+  ...
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <p>We get a first step: we have to upload a media.</p>
 
 <h3 id="so-we-do-the-post-httpsapitwittercom11mediauploadjson">So we do the POST https://api.twitter.com/1.1/media/upload.json</h3>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="err">...</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"process"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
-      </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tweetWithMedia"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"step"</span><span class="p">:</span><span class="w"> </span><span class="s2">"updateStatus"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"steps"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"uploadMedia"</span><span class="p">,</span><span class="w"> </span><span class="s2">"updateStatus"</span><span class="p">]</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.twitter.com/1.1/statuses/update.json"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"media_ids"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890123456789"</span><span class="p">,</span><span class="w">
-        </span><span class="err">...</span><span class="w"> 
-      </span><span class="err">}</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="err">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;_links&quot;: 
+  [
+    ... 
+    {
+      &quot;process&quot; : 
+      {
+          &quot;type&quot;: &quot;tweetWithMedia&quot;,
+          &quot;step&quot;: &quot;updateStatus&quot;,
+          &quot;steps&quot; : [ &quot;uploadMedia&quot;, &quot;updateStatus&quot;]
+      },
+      &quot;href&quot;: &quot;https://api.twitter.com/1.1/statuses/update.json&quot;,
+      &quot;method&quot;: &quot;POST&quot;,
+      &quot;parameters&quot; :
+      {
+        &quot;media_ids&quot;: &quot;1234567890123456789&quot;,
+        ... 
+      },
+    }
+  ],
+  ...
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <p>In return we get the next step <em>updateStatus</em> for process <em>tweetWithMedia</em> with property <em>media_ids</em> containing the id of the uploaded media.</p>
 
@@ -622,7 +724,44 @@ Thank you for reading, I hope it’s not over complicated. I’m really looking 
     anchors.add('.blog-container h3');
   });
 </script>
-<script async type="text/javascript" src="/js/gist-embed.min.js" ></script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
   
   </body>
 

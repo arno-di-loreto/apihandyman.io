@@ -39,9 +39,9 @@
 <meta name="og:image" content="https://apihandyman.io/images/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/thumbnail.png">
 
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/syntax.css">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="canonical" href="/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -180,64 +180,100 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
 </blockquote>
 
 <h3 id="querying-data">Querying data</h3>
-<p>The Github GraphQL API propose a <em>viewer</em> query, returning the connected User data. This query is the equivalent of <code class="highlighter-rouge">GET /user</code> in the Github REST API. The difference with the REST query is that I can select the properties I want to retrieve.</p>
+<p>The Github GraphQL API propose a <em>viewer</em> query, returning the connected User data. This query is the equivalent of <code>GET /user</code> in the Github REST API. The difference with the REST query is that I can select the properties I want to retrieve.</p>
 
 <p>With this query, I retrieve only the viewer’s name and avatarURL.</p>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-graphql line-numbers"><code>{
   viewer {
     name
     avatarURL
   }
-}
-</code></pre>
+}</code></pre>
+  
 </div>
+
 <p>To get server’s response I have to POST this query in a JSON object to the GraphQL endpoint:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>POST https://api.github.com/graphql
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>POST https://api.github.com/graphql
 {
- "query": "{ me: viewer { name avatarURL} }"
-}
-</code></pre>
+ &quot;query&quot;: &quot;{ me: viewer { name avatarURL} }&quot;
+}</code></pre>
+  
 </div>
 
 <p>The result is in JSON format and the requested data are located in the data property. These data mirror perfectly my query.</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"viewer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arnaud Lauret"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"avatarURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars0.githubusercontent.com/u/10104551?v=3"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;data&quot;: {
+    &quot;viewer&quot;: {
+      &quot;name&quot;: &quot;Arnaud Lauret&quot;,
+      &quot;avatarURL&quot;: &quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;
+    }
+  }
+}</code></pre>
+  
 </div>
 
 <h3 id="customizing-responses">Customizing responses</h3>
 <p>You can create more custom data structures by using aliases.<br />
-Here, <code class="highlighter-rouge">viewer</code> becomes <code class="highlighter-rouge">me</code>, <code class="highlighter-rouge">name</code> becomes <code class="highlighter-rouge">fullname</code> and <code class="highlighter-rouge">avatarURL</code> becomes <code class="highlighter-rouge">picture</code>.</p>
+Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <code>fullname</code> and <code>avatarURL</code> becomes <code>picture</code>.</p>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-graphql line-numbers"><code>{
   me: viewer {
     fullname: name
     picture: avatarURL
   }
-}
-</code></pre>
+}</code></pre>
+  
 </div>
 
 <p>The result is exactly what I requested:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arnaud Lauret"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars0.githubusercontent.com/u/10104551?v=3"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;data&quot;: {
+    &quot;me&quot;: {
+      &quot;fullname&quot;: &quot;Arnaud Lauret&quot;,
+      &quot;picture&quot;: &quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;
+    }
+  }
+}</code></pre>
+  
 </div>
 
 <h3 id="querying-sub-resources">Querying sub-resources</h3>
@@ -246,15 +282,22 @@ Here, <code class="highlighter-rouge">viewer</code> becomes <code class="highlig
 <p>To do that with the Github REST API, I need two calls:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">GET /user</code> to get the viewer information</li>
-  <li><code class="highlighter-rouge">GET /user/repos?sort=created&amp;direction=desc</code> to get the repositories list. Unfortunately the API do not propose a length parameter for the list</li>
+  <li><code>GET /user</code> to get the viewer information</li>
+  <li><code>GET /user/repos?sort=created&amp;direction=desc</code> to get the repositories list. Unfortunately the API do not propose a length parameter for the list</li>
 </ul>
 
 <p>The responses will contains all available data, the REST API do not propose to filter returned properties.</p>
 
 <p>With GraphQL, I can do that with a single query:</p>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-graphql line-numbers"><code>{
   me: viewer {
     fullname: name
     picture: avatarURL
@@ -266,35 +309,42 @@ Here, <code class="highlighter-rouge">viewer</code> becomes <code class="highlig
       }
     }
   }
-}
-</code></pre>
+}</code></pre>
+  
 </div>
 
 <p>I just have to add the repositories property in my viewer query with the good parameters and indicate the properties I want to get back for each repository. The response contains exactly what I requested.</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"fullname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arnaud Lauret"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars0.githubusercontent.com/u/10104551?v=3"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"repositories"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"edges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"apistylebook-api"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restfest-videos-data-postprocessor"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;data&quot;: {
+    &quot;me&quot;: {
+      &quot;fullname&quot;: &quot;Arnaud Lauret&quot;,
+      &quot;picture&quot;: &quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;,
+      &quot;repositories&quot;: {
+        &quot;edges&quot;: [
+          {
+            &quot;node&quot;: {
+              &quot;name&quot;: &quot;apistylebook-api&quot;
+            }
+          },
+          {
+            &quot;node&quot;: {
+              &quot;name&quot;: &quot;restfest-videos-data-postprocessor&quot;
+            }
+          }
+        ]
+      }
+    }
+  }
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h3 id="aggregating-queries">Aggregating queries</h3>
@@ -310,55 +360,69 @@ Here, <code class="highlighter-rouge">viewer</code> becomes <code class="highlig
 
 <p>in a single request to the GraphQL server:</p>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-graphql line-numbers"><code>{
   me:   viewer                 { name avatarURL }
-  kin:  user(login: "kinlane") { name avatarURL }
-  mike: user(login: "mamund")  { name avatarURL }
-  graphqlRepos: search(first: 2, query: "graphql", type: REPOSITORY) {
+  kin:  user(login: &quot;kinlane&quot;) { name avatarURL }
+  mike: user(login: &quot;mamund&quot;)  { name avatarURL }
+  graphqlRepos: search(first: 2, query: &quot;graphql&quot;, type: REPOSITORY) {
   	edges { node { ... on Repository {
       name
       description
     }}}  
   }
-}
-</code></pre>
+}</code></pre>
+  
 </div>
 
 <p>The response contains all requested data:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arnaud Lauret"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"avatarURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars0.githubusercontent.com/u/10104551?v=3"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"kin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kin Lane"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"avatarURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars1.githubusercontent.com/u/56100?v=3"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"mike"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike Amundsen"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"avatarURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://avatars2.githubusercontent.com/u/38344?v=3"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"graphqlRepos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"edges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"graphql"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GraphQL is a query language and execution engine tied to any backend service."</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"node"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"graphql"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An implementation of GraphQL for Go / Golang"</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;data&quot;: {
+    &quot;me&quot;: {
+      &quot;name&quot;: &quot;Arnaud Lauret&quot;,
+      &quot;avatarURL&quot;: &quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;
+    },
+    &quot;kin&quot;: {
+      &quot;name&quot;: &quot;Kin Lane&quot;,
+      &quot;avatarURL&quot;: &quot;https://avatars1.githubusercontent.com/u/56100?v=3&quot;
+    },
+    &quot;mike&quot;: {
+      &quot;name&quot;: &quot;Mike Amundsen&quot;,
+      &quot;avatarURL&quot;: &quot;https://avatars2.githubusercontent.com/u/38344?v=3&quot;
+    },
+    &quot;graphqlRepos&quot;: {
+      &quot;edges&quot;: [
+        {
+          &quot;node&quot;: {
+            &quot;name&quot;: &quot;graphql&quot;,
+            &quot;description&quot;: &quot;GraphQL is a query language and execution engine tied to any backend service.&quot;
+          }
+        },
+        {
+          &quot;node&quot;: {
+            &quot;name&quot;: &quot;graphql&quot;,
+            &quot;description&quot;: &quot;An implementation of GraphQL for Go / Golang&quot;
+          }
+        }
+      ]
+    }
+  }
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h3 id="graphql-is-not-sql-nor-an-etl">GraphQL is not SQL nor an ETL</h3>
@@ -366,43 +430,65 @@ Here, <code class="highlighter-rouge">viewer</code> becomes <code class="highlig
 
 <p>You cannot join queries like you would join tables in SQL.</p>
 
-<pre><code class="language-SQL">SELECT * FROM A, B WHERE A.COL = B.COL
-</code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-sql line-numbers"><code>SELECT * FROM A, B WHERE A.COL = B.COL</code></pre>
+  
+</div>
 
 <p>You cannot select sub-properties or flatten objects. If I want to retrieve the name of my first repository without the edges and repo level, I cannot change this hierarchy:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"myFirstTwoRepos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"edges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"repo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"apistylebook-api"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;data&quot;: {
+    &quot;me&quot;: {
+      &quot;myFirstTwoRepos&quot;: {
+        &quot;edges&quot;: [
+          {
+            &quot;repo&quot;: {
+              &quot;name&quot;: &quot;apistylebook-api&quot;
+            }
+          }
+        ]
+      }
+    }
+  }
+}</code></pre>
+  
 </div>
 
 <p>into this one:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"myFirstTwoRepos"</span><span class="p">:</span><span class="w">
-        </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"apistylebook-api"</span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="err">}</span><span class="w">
-</span></code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;data&quot;: {
+    &quot;me&quot;: {
+      &quot;myFirstTwoRepos&quot;:
+        [
+          {&quot;name&quot;: &quot;apistylebook-api&quot;}
+        ]
+      }
+    }
+  }
+}</code></pre>
+  
 </div>
 
 <h2 id="schema-introspection-documentation">Schema, introspection, documentation</h2>
@@ -410,17 +496,24 @@ Here, <code class="highlighter-rouge">viewer</code> becomes <code class="highlig
 This schema let you describe your data model like you would do with OpenAPI/Swagger, Blueprint or RAML specification.
 The schema can be queried on runtime like all of the data.</p>
 
-<p>This query let me know what are the properties of the <code class="highlighter-rouge">User</code> resource which is returned by the viewer and user query</p>
+<p>This query let me know what are the properties of the <code>User</code> resource which is returned by the viewer and user query</p>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
-  __type(name:"User") {
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-graphql line-numbers"><code>{
+  __type(name:&quot;User&quot;) {
     fields {
       name
       description
     }
   }
-}
-</code></pre>
+}</code></pre>
+  
 </div>
 
 <p>This schema can also be used to generate documentation:</p>
@@ -466,7 +559,7 @@ The schema can be queried on runtime like all of the data.</p>
 <p>GraphQL is protocol agnostic, it means that you can use it with any protocol as long as you can send and retrieve a string. This can be useful but people acustomed to using the HTTP protocol with REST API should then be aware that, when used over HTTP, GraphQL do not use any of its features and it has consequences on DX.</p>
 
 <h3 id="reading-and-writing-resources">Reading and writing resources</h3>
-<p>With a REST API, if I retrieve a user’s data with <code class="highlighter-rouge">GET /users/{id}</code>, I can try to update it with <code class="highlighter-rouge">PATCH /users/{id}</code> and delete it with <code class="highlighter-rouge">DELETE /users/{id}</code> without even reading the documentation and it will probably work… like it will work with another another resource in the same API and even with another resource in another REST API.
+<p>With a REST API, if I retrieve a user’s data with <code>GET /users/{id}</code>, I can try to update it with <code>PATCH /users/{id}</code> and delete it with <code>DELETE /users/{id}</code> without even reading the documentation and it will probably work… like it will work with another another resource in the same API and even with another resource in another REST API.
 And icing on the cake: both humans and machines can discover and understand the meaning of each operation.
 Using the HTTP protocol enforce a certain consistency and allow predictability.</p>
 
@@ -481,86 +574,128 @@ Using the HTTP protocol enforce a certain consistency and allow predictability.<
 
 <p>If I get a user with the query user:</p>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>query {
-  user(id: "{id}") {
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-graphql line-numbers"><code>query {
+  user(id: &quot;{id}&quot;) {
     name
   }
-}
-</code></pre>
+}</code></pre>
+  
 </div>
 
 <p>Updating or deleting this user with GraphQL will not be as clear as with REST.
-How will be named the mutation allowing me to delete a user? <code class="highlighter-rouge">deleteUser</code>, <code class="highlighter-rouge">removeUser</code> or <code class="highlighter-rouge">suppressPeople</code>?
+How will be named the mutation allowing me to delete a user? <code>deleteUser</code>, <code>removeUser</code> or <code>suppressPeople</code>?
 You’ll have to dig in the documentation to find out. You cannot guess it because different API providers will have different naming conventions and these naming convention may event not be consistent within an API.</p>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>mutation {
-  deleteUser(id: "{id}")
-  removeUser(id: "{id}")
-  suppressPeople(id: "{id}")
-}
-</code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-graphql line-numbers"><code>mutation {
+  deleteUser(id: &quot;{id}&quot;)
+  removeUser(id: &quot;{id}&quot;)
+  suppressPeople(id: &quot;{id}&quot;)
+}</code></pre>
+  
 </div>
 
 <h3 id="handling-errors">Handling errors</h3>
-<p>Being protocol agnostic also means that everything is going to be <code class="highlighter-rouge">200 OK</code> when using GraphQL over HTTP, wheither the query was OK or not. With REST APIs we are acustomed to be able to tell what happens just by looking at the HTTP status. Whatever the API, if we receive a <code class="highlighter-rouge">404</code> HTTP status we known what it means: <em>resource not found</em>.</p>
+<p>Being protocol agnostic also means that everything is going to be <code>200 OK</code> when using GraphQL over HTTP, wheither the query was OK or not. With REST APIs we are acustomed to be able to tell what happens just by looking at the HTTP status. Whatever the API, if we receive a <code>404</code> HTTP status we known what it means: <em>resource not found</em>.</p>
 
 <p>If I try to retrieve a user that do not exists with a GraphQL API:</p>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
-  user(login: "dummy-user-123") {name}
-}
-</code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-graphql line-numbers"><code>{
+  user(login: &quot;dummy-user-123&quot;) {name}
+}</code></pre>
+  
 </div>
 
 <p>I get this GraphQL standard error with a text message telling me the user do no exists.:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Could not resolve to a User with the login of 'dummy-user-123'."</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"column"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"user"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;data&quot;: {
+    &quot;user&quot;: null
+  },
+  &quot;errors&quot;: [
+    {
+      &quot;message&quot;: &quot;Could not resolve to a User with the login of &#39;dummy-user-123&#39;.&quot;,
+      &quot;locations&quot;: [
+        {
+          &quot;line&quot;: 2,
+          &quot;column&quot;: 3
+        }
+      ],
+      &quot;path&quot;: [
+        &quot;user&quot;
+      ]
+    }
+  ]
+}</code></pre>
+  
 </div>
 
 <p>If I forget the login parameter:</p>
 
-<div class="language-text highlighter-rouge"><pre class="highlight"><code>{
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-graphql line-numbers"><code>{
   user { name }
-}
-</code></pre>
+}</code></pre>
+  
 </div>
 
 <p>I get exactly the same error format:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Field 'user' is missing required arguments: login"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"column"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;data&quot;: null,
+  &quot;errors&quot;: [
+    {
+      &quot;message&quot;: &quot;Field &#39;user&#39; is missing required arguments: login&quot;,
+      &quot;locations&quot;: [
+        {
+          &quot;line&quot;: 2,
+          &quot;column&quot;: 3
+        }
+      ]
+    }
+  ]
+}</code></pre>
+  
 </div>
 
 <p>The message shows me explicitely what the problem is, but I cannot determine the error type programmatically in a generic way. These errors are not really fit to be analyzed automatically by machines. Of course there’s obviously a pattern in the message but will this message have the same pattern for another resource or use case? Will this pattern be consistent as the API evolve? And will I find exactly the same pattern in another GraphQL API?</p>
@@ -594,7 +729,7 @@ Is this a problem?. Like always, the answer to this question will depend on the 
 <h2 id="graphql-will-not-solve-your-api-design-problems">GraphQL will not solve your API design problems</h2>
 
 <blockquote>
-  <p>What the hell is this <code class="highlighter-rouge">amsus2</code> field?
+  <p>What the hell is this <code>amsus2</code> field?
 Anonym consumer</p>
 </blockquote>
 
@@ -627,9 +762,9 @@ You can discover the available queries and the data returned.</p>
 <p>So don’t be fooled by this kind of documentation and note that also applies to REST APIs when you use API description format like OpenAPI, Swagger, RAML of Blueprint.</p>
 
 <h2 id="graphql-may-have-unexpected-side-effects-and-data-volumes-and-server-usage">GraphQL may have unexpected side effects and data volumes and server usage</h2>
-<p>With GraphQL, what you want is what you get. But you always have to explicitely tell what you want, there’s no <code class="highlighter-rouge">select * from user</code> like in SQL. So on each request, consumers have to send a full query.</p>
+<p>With GraphQL, what you want is what you get. But you always have to explicitely tell what you want, there’s no <code>select * from user</code> like in SQL. So on each request, consumers have to send a full query.</p>
 
-<p>Where you would have a simple <code class="highlighter-rouge">GET /dashboard</code> with a REST API, you may end with a huge GraphQL query.
+<p>Where you would have a simple <code>GET /dashboard</code> with a REST API, you may end with a huge GraphQL query.
 In some use case, you may reach your input bandwidth limit because the number of requests has not really diminished but the requests size has increased. Remember that not everybody has a fully scalable cloud infrastructure with illimited bandwidth.</p>
 
 <p>Proposing a smart system allowing consumers to retrieve in one shot what they want do not mean that it will be used wisely. Some lazy consumers may simply fired huge requests retrieving far more data than they really need. Some huge and complex request may impact all you infrastructure, so you should really think about your GraphQL schema and what runs behind it, because you’re giving the full power to consumers.</p>
@@ -737,7 +872,44 @@ Which one is the best API style?</p>
     anchors.add('.blog-container h3');
   });
 </script>
-<script async type="text/javascript" src="/js/gist-embed.min.js" ></script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
   
   </body>
 

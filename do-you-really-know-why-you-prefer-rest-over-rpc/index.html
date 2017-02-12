@@ -39,9 +39,9 @@
 <meta name="og:image" content="https://apihandyman.io/images/do-you-really-know-why-you-prefer-rest-over-rpc/thumbnail.png">
 
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/syntax.css">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="canonical" href="/do-you-really-know-why-you-prefer-rest-over-rpc/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -225,13 +225,22 @@ In this post, when I talk about RPC I talk about <em>WYGOPIAO: What You GET Or P
   <li>This type of API generally only uses GET and POST HTTP verbs.</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET /someoperation?data=anId
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET /someoperation?data=anId
 
 POST /anotheroperation
 {
-  "data":"anId"; 
-  "anotherdata":"another value"
-}</code></pre></figure>
+  &quot;data&quot;:&quot;anId&quot;; 
+  &quot;anotherdata&quot;:&quot;another value&quot;
+}</code></pre>
+  
+</div>
 
 <p>How do people choose between GET and POST?</p>
 
@@ -252,10 +261,19 @@ POST /anotheroperation
   <li>Many use the CRUD analogy to explain REST requests principles. The HTTP verb indicates what you want to do (Create/Read/Update/Delete) with that resource as defined earlier in this post and by <a href="http://tools.ietf.org/html/rfc7231#section-4.3">RFC7231 (Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content)</a> and <a href="http://tools.ietf.org/html/rfc5789">RFC5789 (PATCH Method for HTTP)</a>.</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET /someresources/anId
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET /someresources/anId
 
 PUT /someresources/anId
-{"anotherdata":"another value"}</code></pre></figure>
+{&quot;anotherdata&quot;:&quot;another value&quot;}</code></pre>
+  
+</div>
 
 <h2 id="examples">Examples</h2>
 <p>Here are some of my <a href="/the-api-crash-test-project/">CarBoN API</a> requests presented in RPC and REST ways:</p>
@@ -565,7 +583,44 @@ So, is the resource approach better than the operation one?</p>
     anchors.add('.blog-container h3');
   });
 </script>
-<script async type="text/javascript" src="/js/gist-embed.min.js" ></script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
   
   </body>
 

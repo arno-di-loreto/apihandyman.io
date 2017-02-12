@@ -88,6 +88,37 @@ header {
 code {
   padding: 0px 0px 0px 0px; }
 
+.code-collapsed {
+  max-height: 20em; }
+
+.code-toolbar {
+  position: relative;
+  padding: 0px;
+  width: 100%; }
+  .code-toolbar .btn-group {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    right: 0; }
+    .code-toolbar .btn-group .btn:focus, .code-toolbar .btn-group .btn:active {
+      outline: none !important; }
+    .code-toolbar .btn-group .btn {
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0; }
+    .code-toolbar .btn-group a {
+      color: black; }
+
+.code-bottom-toolbar {
+  padding: 0px;
+  width: 100%; }
+  .code-bottom-toolbar .btn:focus, .code-bottom-toolbar .btn:active {
+    outline: none !important; }
+  .code-bottom-toolbar .btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    position: relative;
+    top: -8px; }
+
 /* TOC */
 nav[data-toggle='toc'] {
   margin-top: 5px; }

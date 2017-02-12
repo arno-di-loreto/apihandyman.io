@@ -39,9 +39,9 @@
 <meta name="og:image" content="https://apihandyman.io/images/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/thumbnail.png">
 
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/syntax.css">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -178,21 +178,120 @@
     </div>
 
 <h1 id="json-pointers">JSON Pointers</h1>
-<p>In <a href="http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">part 3 - Simplifying spefication file</a> we have learned how to simplify the specification by creating reusable elements. In the example below, the <code class="highlighter-rouge">Person</code> definition is defined once in <code class="highlighter-rouge">definitions</code> and used as</p>
+<p>In <a href="http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">part 3 - Simplifying spefication file</a> we have learned how to simplify the specification by creating reusable elements. In the example below, the <code>Person</code> definition is defined once in <code>definitions</code> and used as</p>
 
 <ul>
-  <li>A body parameter in <code class="highlighter-rouge">POST /persons</code></li>
-  <li>A response schema in <code class="highlighter-rouge">GET /persons/{username}</code></li>
-  <li>A sub-elements in <code class="highlighter-rouge">Persons</code> definition</li>
+  <li>A body parameter in <code>POST /persons</code></li>
+  <li>A response schema in <code>GET /persons/{username}</code></li>
+  <li>A sub-elements in <code>Persons</code> definition</li>
 </ul>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-highlight-line="65-74, 78, 60, 40" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="65-74, 78, 60, 40"><code>swagger: "2.0"
 
-<p>To use the <code class="highlighter-rouge">Person</code> definition in these different places, we use a JSON Pointer (defined by <a href="https://tools.ietf.org/html/rfc6901">RFC6901</a>):</p>
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_06_with_definitions.yaml" data-gist-line="78" data-gist-footer="false" gist-enable-cache="true"></code></p>
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
 
-<p>This pointer describes a path in the document, pointing to <code class="highlighter-rouge">Person</code> in <code class="highlighter-rouge">definitions</code> which is as the root (<code class="highlighter-rouge">#</code>) of the <em>current</em> document.</p>
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+
+definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
+
+<p>To use the <code>Person</code> definition in these different places, we use a JSON Pointer (defined by <a href="https://tools.ietf.org/html/rfc6901">RFC6901</a>):</p>
+
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="78"><code>      $ref: "#/definitions/Person"</code></pre>
+  
+</div>
+
+<p>This pointer describes a path in the document, pointing to <code>Person</code> in <code>definitions</code> which is as the root (<code>#</code>) of the <em>current</em> document.</p>
 
 <p>But JSON pointers are not only meant to point something <em>within</em> the current document, they can be used to reference something in <em>another</em> document.</p>
 
@@ -202,16 +301,114 @@
 
 <h2 id="referencing-a-local-file">Referencing a local file</h2>
 
-<p>We can create a <code class="highlighter-rouge">person.yaml</code> file containing the <code class="highlighter-rouge">Person</code> definition:</p>
+<p>We can create a <code>person.yaml</code> file containing the <code>Person</code> definition:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_23_person.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_23_person.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>Person:
+  required:
+    - username
+  properties:
+    firstName:
+      type: string
+    lastName:
+      type: string
+    username:
+      type: string</code></pre>
+  
+</div>
 
-<p>Then we can remove the <code class="highlighter-rouge">Person</code> definition in <code class="highlighter-rouge">definitions</code> and replace all existing references to person <code class="highlighter-rouge">#definitions/Person</code> by a reference to <code class="highlighter-rouge">Person</code> in the <code class="highlighter-rouge">person.yaml</code> file:</p>
+<p>Then we can remove the <code>Person</code> definition in <code>definitions</code> and replace all existing references to person <code>#definitions/Person</code> by a reference to <code>Person</code> in the <code>person.yaml</code> file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_24_local_reference.yaml" data-gist-highlight-line="40, 60, 68" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_24_local_reference.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="40, 60, 68"><code>swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "person.yaml#/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "person.yaml#/Person"
+        404:
+          description: The Person does not exists.
+
+definitions:
+  Persons:
+    type: array
+    items:
+      $ref: "person.yaml#/Person"</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h2 id="editing-splitted-local-files-with-the-online-editor">Editing splitted local files with the online editor</h2>
-<p>Tools will look for the referenced file (<code class="highlighter-rouge">person.yaml</code>) in the same directory as the file containing the reference.
+<p>Tools will look for the referenced file (<code>person.yaml</code>) in the same directory as the file containing the reference.
 But when you use the <a href="http://editor.swagger.io">online editor</a> it does not make sense, such local reference cannot be resolved.</p>
 
 <div>
@@ -238,31 +435,58 @@ But when you use the <a href="http://editor.swagger.io">online editor</a> it doe
 <h3 id="http-server-a-lightweight-web-server">http-server a lightweight web server</h3>
 <p>You can use <a href="https://www.npmjs.com/package/http-server">http-server</a> a lightweight node.js web server:</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">npm install --global http-server</code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-bash line-numbers"><code>npm install --global http-server</code></pre>
+  
+</div>
 
 <p>You now can start a web service on any folder:</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">http-server --cors path/to/yaml/folder</code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-bash line-numbers"><code>http-server --cors path/to/yaml/folder</code></pre>
+  
+</div>
 
 <p>or</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd </span>path/to/yaml/folder
-http-server --cors .</code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-bash line-numbers"><code>cd path/to/yaml/folder
+http-server --cors .</code></pre>
+  
+</div>
 
-<p>By default, <code class="highlighter-rouge">http-server</code> listens on 8080 port, files will be accessble through <code class="highlighter-rouge">http://localhost:8080/&lt;path to file within folder&gt;</code>.</p>
+<p>By default, <code>http-server</code> listens on 8080 port, files will be accessble through <code>http://localhost:8080/&lt;path to file within folder&gt;</code>.</p>
 
-<p>The <code class="highlighter-rouge">--cors</code> flag is used to activate CORS directive and allow XHR request to this local webserver from the online editor page.
+<p>The <code>--cors</code> flag is used to activate CORS directive and allow XHR request to this local webserver from the online editor page.
 <strong>Without</strong> CORS activated, the editor will not be able to download files.</p>
 
 <h3 id="modifying-online-editor-configuration">Modifying online editor configuration</h3>
-<p>Once the web server is started you can modifiy the editor to set the URL to <code class="highlighter-rouge">http://localhost:8080/</code>:</p>
+<p>Once the web server is started you can modifiy the editor to set the URL to <code>http://localhost:8080/</code>:</p>
 
 <div>
       <img src="/images/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/openapi8-editor-preferences-pointer-modified.png" />
       
     </div>
 
-<p>Files referenced with <code class="highlighter-rouge">$ref: &lt;filename&gt;#/example</code> will be downloaded from  <code class="highlighter-rouge">http://localhost:8080/&lt;filename&gt;</code>.</p>
+<p>Files referenced with <code>$ref: &lt;filename&gt;#/example</code> will be downloaded from  <code>http://localhost:8080/&lt;filename&gt;</code>.</p>
 
 <p>Once this is done, you may need to do a force refresh (clean cache) of the editor’s the page to get the green bar.</p>
 
@@ -273,7 +497,7 @@ http-server --cors .</code></pre></figure>
 
 <h3 id="cache">Cache</h3>
 
-<p>When you add a reference to a new file (that was not already reference), this new file may not be downloaded automatically resulting in errors (<code class="highlighter-rouge">Reference could not be resolved: newfile.yaml</code>). You may need to refresh the editor’s page with cache cleaning to solve this error.</p>
+<p>When you add a reference to a new file (that was not already reference), this new file may not be downloaded automatically resulting in errors (<code>Reference could not be resolved: newfile.yaml</code>). You may need to refresh the editor’s page with cache cleaning to solve this error.</p>
 
 <h2 id="folders">Folders</h2>
 
@@ -281,21 +505,120 @@ http-server --cors .</code></pre></figure>
 
 <h3 id="reference-to-a-file-in-a-folder">Reference to a file in a folder</h3>
 
-<p>Let’s move the <code class="highlighter-rouge">person.yaml</code> file into a sub-folder <code class="highlighter-rouge">folder</code>, the new reference will be like this:</p>
+<p>Let’s move the <code>person.yaml</code> file into a sub-folder <code>folder</code>, the new reference will be like this:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_25_local_reference_folder.yaml" data-gist-line="40" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_25_local_reference_folder.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="40"><code>            $ref: "folder/person.yaml#/Person"
+</code></pre>
+  
+</div>
 
 <h3 id="file-referencing-a-file-from-an-upper-folder">File referencing a file from an upper folder</h3>
-<p>You can also reference a file outside the current folder. Let’s create a <code class="highlighter-rouge">persons.yaml</code> file into a <code class="highlighter-rouge">another-folder</code> folder:</p>
+<p>You can also reference a file outside the current folder. Let’s create a <code>persons.yaml</code> file into a <code>another-folder</code> folder:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_26_persons.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_26_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>Persons:
+  type: array
+  items:
+    $ref: "../folder/person.yaml#/Person"</code></pre>
+  
+</div>
 
-<p>This file reference the <code class="highlighter-rouge">person.yaml</code> file using <code class="highlighter-rouge">..</code> to get to the upper level.</p>
+<p>This file reference the <code>person.yaml</code> file using <code>..</code> to get to the upper level.</p>
 
-<p>To use <code class="highlighter-rouge">persons.yaml</code>, we proceed just like with <code class="highlighter-rouge">person.yaml</code>. We remove the <code class="highlighter-rouge">Persons</code> definition from the main file and we replace its reference <code class="highlighter-rouge">#/definitions/Persons</code> by <code class="highlighter-rouge">another-folder/persons.yaml#Persons</code>.</p>
+<p>To use <code>persons.yaml</code>, we proceed just like with <code>person.yaml</code>. We remove the <code>Persons</code> definition from the main file and we replace its reference <code>#/definitions/Persons</code> by <code>another-folder/persons.yaml#Persons</code>.</p>
 
-<p>Here’s the full file with all definitions externalized (the <code class="highlighter-rouge">definitions</code> section has been removed):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_25_local_reference_folder.yaml" data-gist-highlight-line="31,40,60" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Here’s the full file with all definitions externalized (the <code>definitions</code> section has been removed):</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_25_local_reference_folder.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="31,40,60"><code>swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "another-folder/persons.yaml#/Persons"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "folder/person.yaml#/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "folder/person.yaml#/Person"
+        404:
+          description: The Person does not exists.
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h2 id="referencing-a-remote-files">Referencing a remote files</h2>
 <p>As you may have guess while modifying the references in the specification and editor configuration, it is also possible to reference a remote file.</p>
@@ -303,64 +626,211 @@ http-server --cors .</code></pre></figure>
 <h3 id="remote-files">Remote files</h3>
 <p>All we need to do is to put the full file’s URL in the reference:</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">$ref</span><span class="pi">:</span> <span class="s">https://myserver.com/mypath/myfile.yaml#/example</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>$ref: https://myserver.com/mypath/myfile.yaml#/example</code></pre>
+  
+</div>
 
 <p>Remember that the server <strong>MUST</strong> have CORS activated to allow the editor to download the file.</p>
 
-<p>We have launched a web server on 8080 port, so all we have to do is add <code class="highlighter-rouge">http://localhost:8080/</code> to the references to <code class="highlighter-rouge">Person</code>:</p>
+<p>We have launched a web server on 8080 port, so all we have to do is add <code>http://localhost:8080/</code> to the references to <code>Person</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_27_remote_reference.yaml" data-gist-line="40" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_27_remote_reference.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="40"><code>            $ref: "http://localhost:8080/folder/person.yaml#/Person"
+</code></pre>
+  
+</div>
 
 <h3 id="remote-files-containing-local-references">Remote files containing local references</h3>
-<p>What happen if the remote file reference a local file? (<code class="highlighter-rouge">Main file -&gt; Remote file -&gt; Local file</code>).</p>
+<p>What happen if the remote file reference a local file? (<code>Main file -&gt; Remote file -&gt; Local file</code>).</p>
 
 <p>The parser will seek this “local” file on the remote server providing the remote file.</p>
 
-<p>If we replace the local to <code class="highlighter-rouge">Persons</code> by a remote reference…</p>
+<p>If we replace the local to <code>Persons</code> by a remote reference…</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_27_remote_reference.yaml" data-gist-line="31" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_27_remote_reference.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="31"><code>            $ref: "http://localhost:8080/another-folder/persons.yaml#/Persons"
+</code></pre>
+  
+</div>
 
-<p>… the <code class="highlighter-rouge">person.yaml</code> file referenced “locally” in the <code class="highlighter-rouge">persons.yaml</code> file will be loaded from <code class="highlighter-rouge">http://localhost:8080</code> which has served the <code class="highlighter-rouge">persons.yaml</code>.</p>
+<p>… the <code>person.yaml</code> file referenced “locally” in the <code>persons.yaml</code> file will be loaded from <code>http://localhost:8080</code> which has served the <code>persons.yaml</code>.</p>
 
 <h3 id="remote-files-containing-remote-references">Remote files containing remote references</h3>
-<p>If a remote file contains a remote reference (<code class="highlighter-rouge">Main file -&gt; Remote file -&gt; Remote file
+<p>If a remote file contains a remote reference (<code>Main file -&gt; Remote file -&gt; Remote file
 </code>), it will be resolved like in <em>2.4.1 Remote files</em>.</p>
 
-<p>We can replace the <code class="highlighter-rouge">person.yaml</code> file local reference by a remote reference in <code class="highlighter-rouge">persons.yaml</code>:</p>
+<p>We can replace the <code>person.yaml</code> file local reference by a remote reference in <code>persons.yaml</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_28_persons_remote.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_28_persons_remote.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>Persons:
+  type: array
+  items:
+    $ref: "http://localhost:8080/folder/person.yaml#/Person"</code></pre>
+  
+</div>
 
 <h2 id="multiple-items-in-a-single-sub-file">Multiple items in a single sub-file</h2>
-<p>We have put <code class="highlighter-rouge">Person</code> and <code class="highlighter-rouge">Persons</code> definitions in separate files: this is not an obligation. You can put more than one item in a single file, you only need to use the right JSON Pointer.</p>
+<p>We have put <code>Person</code> and <code>Persons</code> definitions in separate files: this is not an obligation. You can put more than one item in a single file, you only need to use the right JSON Pointer.</p>
 
 <h3 id="person-and-person-in-a-single-file">Person and Person in a single file</h3>
-<p>If we concatenate <code class="highlighter-rouge">person.yaml</code> and <code class="highlighter-rouge">persons.yaml</code> into a single file called <code class="highlighter-rouge">definitions.yaml</code>:</p>
+<p>If we concatenate <code>person.yaml</code> and <code>persons.yaml</code> into a single file called <code>definitions.yaml</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_29_definitions.yaml" data-gist-highlight-line="15" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_29_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="15"><code>Person:
+  required:
+    - username
+  properties:
+    firstName:
+      type: string
+    lastName:
+      type: string
+    username:
+      type: string
 
-<p>Note that in <code class="highlighter-rouge">Persons</code> the reference to <code class="highlighter-rouge">Person</code> is now <code class="highlighter-rouge">#/Person</code>.</p>
+Persons:
+  type: array
+  items:
+    $ref: "#/Person"</code></pre>
+  
+</div>
+
+<p>Note that in <code>Persons</code> the reference to <code>Person</code> is now <code>#/Person</code>.</p>
 
 <p>In the main file we only need to change the filename when reference these two definitions:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_30_subfile_multiple.yaml" data-gist-line="31" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_30_subfile_multiple.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="31"><code>            $ref: "definitions.yaml#/Persons"
+</code></pre>
+  
+</div>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_30_subfile_multiple.yaml" data-gist-line="40" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_30_subfile_multiple.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="40"><code>            $ref: "definitions.yaml#/Person"
+</code></pre>
+  
+</div>
 
 <h3 id="organizing-content-in-a-sub-file">Organizing content in a sub-file</h3>
-<p>Within the sub-file you can organize the content as you wish. Here <code class="highlighter-rouge">Person</code> is in <code class="highlighter-rouge">SomeDefinitions</code> and Persons is in <code class="highlighter-rouge">OtherDefinitions</code>:</p>
+<p>Within the sub-file you can organize the content as you wish. Here <code>Person</code> is in <code>SomeDefinitions</code> and Persons is in <code>OtherDefinitions</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_31_organized_definitions.yaml" data-gist-highlight-line="1,13,17" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_31_organized_definitions.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1,13,17"><code>SomeDefinitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
 
-<p>Note that in <code class="highlighter-rouge">Persons</code> the reference to <code class="highlighter-rouge">Person</code> is now <code class="highlighter-rouge">#/SomeDefinitions/Person</code>.</p>
+OtherDefinitions:
+  Persons:
+    type: array
+    items:
+      $ref: "#/SomeDefinitions/Person"</code></pre>
+  
+</div>
+
+<p>Note that in <code>Persons</code> the reference to <code>Person</code> is now <code>#/SomeDefinitions/Person</code>.</p>
 
 <p>In the main file we have to modify the path to get the item in the sub-file for these two definitions:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_32_subfile_organized.yaml" data-gist-line="31" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_32_subfile_organized.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="31"><code>            $ref: "definitions.yaml#/OtherDefinitions/Persons"
+</code></pre>
+  
+</div>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_32_subfile_organized.yaml" data-gist-line="40" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_32_subfile_organized.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="40"><code>            $ref: "definitions.yaml#/SomeDefinitions/Person"
+</code></pre>
+  
+</div>
 
 <h2 id="definitions-responses-parameters">Definitions, Responses, Parameters</h2>
-<p>What we have done with <code class="highlighter-rouge">Person</code> and <code class="highlighter-rouge">Persons</code> definitions can be done with any reusable items (i.e. using <code class="highlighter-rouge">$ref</code>) such as responses and parameters in the Open API Specification file.</p>
+<p>What we have done with <code>Person</code> and <code>Persons</code> definitions can be done with any reusable items (i.e. using <code>$ref</code>) such as responses and parameters in the Open API Specification file.</p>
 
 <h1 id="openapi-chainsaw-massacre">OpenAPI chainsaw massacre</h1>
 <p>Thanks to <a href="http://azimi.me/2015/07/16/split-swagger-into-smaller-files.html">Mohsen Azimi’s post</a> I’ve discovered that using sub-files for definitions, responses and parameters which obviously use $ref JSON Pointers is not the only way of using sub-files. You can use sub-files for almost anything in the specification.</p>
@@ -368,28 +838,163 @@ http-server --cors .</code></pre></figure>
 <p>We will split the <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_22_documentation_with_gfm-yaml">huge file</a> created in <a href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">previous post about documentation</a>.</p>
 
 <h2 id="let-the-chainsaw-massacre-begin">Let the chainsaw massacre begin</h2>
-<p>Let’s start with the <code class="highlighter-rouge">info</code> section:</p>
+<p>Let’s start with the <code>info</code> section:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_22_documentation_with_gfm.yaml" data-gist-line="1-25" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_22_documentation_with_gfm.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed"><code>swagger: '2.0'
 
-<p>We can put its whole content in a file called <code class="highlighter-rouge">info.yaml</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_34_chainsaw_info.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
+info:
+  version: 1.1.0
+  title: Simple API
+  description: |
+    A simple API to learn how to write OpenAPI Specification.
+    This file uses almost every single aspect of the [Open API Specification](https://openapis.org/).  
+    This API will use JSON.  
+    JSON looks like this:  
+    
+    ```JSON
+    {
+      "key": "value",
+      "anotherKey": "anotherValue"
+    }
+    ```
+  termsOfService: http://simple.api/terms-of-service
+  contact:
+    name: John Doe
+    url: http://simple.api/contact
+    email: contact@simple.api
+  license:
+    name: Apache-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
-<p>And reference it just like this in <code class="highlighter-rouge">info</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="1-4" data-gist-highlight-line="4" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>We can put its whole content in a file called <code>info.yaml</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_34_chainsaw_info.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed"><code>version: 1.1.0
+title: Simple API
+description: |
+  A simple API to learn how to write OpenAPI Specification.
+  This file uses almost every single aspect of the [Open API Specification](https://openapis.org/).  
+  This API will use JSON.  
+  JSON looks like this:  
+  
+  ```JSON
+  {
+    "key": "value",
+    "anotherKey": "anotherValue"
+  }
+  ```
+termsOfService: http://simple.api/terms-of-service
+contact:
+  name: John Doe
+  url: http://simple.api/contact
+  email: contact@simple.api
+license:
+  name: Apache-2.0
+  url: http://www.apache.org/licenses/LICENSE-2.0</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
+
+<p>And reference it just like this in <code>info</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line=""><code>swagger: '2.0'
+
+info:
+  $ref: info.yaml
+</code></pre>
+  
+</div>
 
 <h2 id="the-wizard-of-resolution">The wizard of resolution</h2>
-<p>We can do the same thing with <code class="highlighter-rouge">paths</code>, <code class="highlighter-rouge">definitions</code>, <code class="highlighter-rouge">responses</code> and <code class="highlighter-rouge">parameters</code>: copy the section content in a sub-file (<a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_35_chainsaw_paths-yaml">paths.yaml</a>, <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_36_chainsaw_definitions-yaml">definitions.yaml</a>, <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_37_chainsaw_responses-yaml">responses.yaml</a> and <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_38_chainsaw_parameters-yaml">parameters.yaml</a>) and reference it in the main file:</p>
+<p>We can do the same thing with <code>paths</code>, <code>definitions</code>, <code>responses</code> and <code>parameters</code>: copy the section content in a sub-file (<a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_35_chainsaw_paths-yaml">paths.yaml</a>, <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_36_chainsaw_definitions-yaml">definitions.yaml</a>, <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_37_chainsaw_responses-yaml">responses.yaml</a> and <a href="https://gist.github.com/arno-di-loreto/5a3df2250721fb154060#file-simple_openapi_specification_38_chainsaw_parameters-yaml">parameters.yaml</a>) and reference it in the main file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="29-39" data-gist-highlight-line="30,33,36,39" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2,5,8,11" data-start="29"><code>paths:
+  $ref: paths.yaml
 
-<p>If you remember previous posts, these sections references each other in many ways, for example in <code class="highlighter-rouge">paths.yaml</code>:</p>
+definitions:
+  $ref: definitions.yaml
+  
+responses:
+  $ref: responses.yaml
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_35_chainsaw_paths.yaml" data-gist-line="144-146" data-gist-highlight-line="146" data-gist-footer="false" gist-enable-cache="true"></code></p>
+parameters:
+  $ref: parameters.yaml</code></pre>
+  
+</div>
 
-<p>The <code class="highlighter-rouge">username</code> parameter is no longer in the main file and is not in the <code class="highlighter-rouge">paths.yaml</code> file but in the <code class="highlighter-rouge">parameters.yaml</code> file:</p>
+<p>If you remember previous posts, these sections references each other in many ways, for example in <code>paths.yaml</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_38_chainsaw_parameters.yaml" data-gist-line="1-6" data-gist-highlight-line="1" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_35_chainsaw_paths.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="3" data-start="144"><code>'/persons/{username}':
+  parameters:
+    - $ref: '#/parameters/username'
+</code></pre>
+  
+</div>
+
+<p>The <code>username</code> parameter is no longer in the main file and is not in the <code>paths.yaml</code> file but in the <code>parameters.yaml</code> file:</p>
+
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_38_chainsaw_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line=""><code>username:
+  name: username
+  in: path
+  required: true
+  description: The person's username
+  type: string
+</code></pre>
+  
+</div>
 
 <p>How could the main file be considered valid in the editor (or in any tool parsing the file)? It’s simply because the sub-files are loaded and then the whole content (file + sub-files) is validated.</p>
 
@@ -399,29 +1004,173 @@ http-server --cors .</code></pre></figure>
 <h3 id="referencing-object-in-custom-structure">Referencing object in custom structure</h3>
 <p>And as seen earlier in this post we can put many items in a sub-file.</p>
 
-<p>The <code class="highlighter-rouge">documentation.yaml</code> file contains the data for <code class="highlighter-rouge">externalDocs</code> and <code class="highlighter-rouge">tags</code> (note the custom structure on line 1 and 6):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_39_chainsaw_documentation.yaml" data-gist-highlight-line="1,6" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>The <code>documentation.yaml</code> file contains the data for <code>externalDocs</code> and <code>tags</code> (note the custom structure on line 1 and 6):</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_39_chainsaw_documentation.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="1,6"><code>external:
+  description: |
+    **Complete** documentation describing how to use this API
+  url: http://doc.simple.api/
 
-<p>These data are referenced this way in the main file:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="6-10" data-gist-highlight-line="7,10" data-gist-footer="false" gist-enable-cache="true"></code></p>
+categories:
+  - name: Persons
+    description: Everything you need to handle `users` and `friends`
+    externalDocs:
+      description: People category documentation
+      url: http://doc.simple.api/people
+  - name: Items
+    description: Everything you need to handle items collected by users
+    externalDocs:
+      description: Items category documentation
+      url: http://doc.simple.api/items
+  - name: Media
+    description: Everything you need to handle images
+    externalDocs:
+      description: Media category documentation
+      url: http://doc.simple.api/media
+  - name: JSLess
+    description: Specific operations for JS less consumers
+    externalDocs:
+      description: JS Less Consumers documentation
+      url: http://doc.simple.api/jsless</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
-<p>The <code class="highlighter-rouge">security.yaml</code> file contains the data for <code class="highlighter-rouge">securityDefinitions</code> and <code class="highlighter-rouge">security</code> (note the custom structure on line 20): 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_41_chainsaw_security.yaml" data-gist-highlight-line="20" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>These data are referenced this way in the main file:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2,5" data-start="6"><code>externalDocs: 
+  $ref: documentation.yaml#/external
+
+tags:
+  $ref: documentation.yaml#/categories
+</code></pre>
+  
+</div>
+
+<p>The <code>security.yaml</code> file contains the data for <code>securityDefinitions</code> and <code>security</code> (note the custom structure on line 20):</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_41_chainsaw_security.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="20"><code>securityDefinitions:
+  OauthSecurity:
+    description: New Oauth security system. Do not use MediaSecurity or LegacySecurity.
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: 'https://oauth.simple.api/authorization'
+    tokenUrl: 'https://oauth.simple.api/token'
+    scopes:
+      admin: Admin scope
+      user: User scope
+  MediaSecurity:
+    description: Specific media security for backward compatibility. Use OauthSecurity instead.
+    type: apiKey
+    in: query
+    name: media-api-key
+  LegacySecurity:
+    description: Legacy security system for backward compatibility. Use OauthSecurity instead.
+    type: basic
+
+defaultSecurity:
+  - OauthSecurity:
+    - user
+  - LegacySecurity: []</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h3 id="referencing-a-string-or-a-simple-list">Referencing a string or a simple list</h3>
-<p>It also work for simpler value like a string or a list of string. The <code class="highlighter-rouge">schema</code>, <code class="highlighter-rouge">host</code> and <code class="highlighter-rouge">basepath</code> values can be moved into a single file <code class="highlighter-rouge">security.yaml</code> (note the custom structure on line 3 and 4):</p>
+<p>It also work for simpler value like a string or a list of string. The <code>schema</code>, <code>host</code> and <code>basepath</code> values can be moved into a single file <code>security.yaml</code> (note the custom structure on line 3 and 4):</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_39_chainsaw_endpoint.yaml" data-gist-highlight-line="3,4" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_39_chainsaw_endpoint.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="3,4"><code>schemes:
+  - https
+server_and_port: simple.api
+path: /openapi102</code></pre>
+  
+</div>
 
-<p>And referenced like this
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="12-17" data-gist-highlight-line="13,15,17" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>And referenced like this</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2,4,6" data-start="12"><code>schemes:
+  $ref: endpoint.yaml#/schemes
+host:
+  $ref: endpoint.yaml#/server_and_port
+basePath:
+  $ref: endpoint.yaml#/path
+</code></pre>
+  
+</div>
 
 <h3 id="reusing-a-value">Reusing a value</h3>
-<p>As long as the API consumes and produces the same media types, we define a single value in the <code class="highlighter-rouge">mediatypes.yaml</code> file:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_40_chainsaw_mediatypes.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>As long as the API consumes and produces the same media types, we define a single value in the <code>mediatypes.yaml</code> file:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_40_chainsaw_mediatypes.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>default:
+  - application/json
+  - application/x-yaml</code></pre>
+  
+</div>
 
-<p>And then we reference this single value in both <code class="highlighter-rouge">produces</code> and <code class="highlighter-rouge">consumes</code>: 
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_33_chainsaw.yaml" data-gist-line="19-22" data-gist-highlight-line="20,22" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>And then we reference this single value in both <code>produces</code> and <code>consumes</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2,4" data-start="19"><code>consumes:
+  $ref: mediatypes.yaml#/default
+produces:
+  $ref: mediatypes.yaml#/default
+</code></pre>
+  
+</div>
 
 <h1 id="a-smarter-split">A smarter split</h1>
 <p>The API we built with the previous parts could be divided in four parts:</p>
@@ -436,36 +1185,822 @@ http-server --cors .</code></pre></figure>
 <p>We can create 4 sub-files and reference them from a main file.</p>
 
 <h2 id="commonsyaml">commons.yaml</h2>
-<p>In the <code class="highlighter-rouge">commons.yaml</code> file we put every items that can be reused across other files:</p>
+<p>In the <code>commons.yaml</code> file we put every items that can be reused across other files:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed"><code>securityDefinitions:
+  OauthSecurity:
+    description: New Oauth security system. Do not use MediaSecurity or LegacySecurity.
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: 'https://oauth.simple.api/authorization'
+    tokenUrl: 'https://oauth.simple.api/token'
+    scopes:
+      admin: Admin scope
+      user: User scope
+  MediaSecurity:
+    description: Specific media security for backward compatibility. Use OauthSecurity instead.
+    type: apiKey
+    in: query
+    name: media-api-key
+  LegacySecurity:
+    description: Legacy security system for backward compatibility. Use OauthSecurity instead.
+    type: basic
+
+defaultSecurity:
+  - OauthSecurity:
+    - user
+  - LegacySecurity: []
+
+defaultMediatypes:
+  - application/json
+  - application/x-yaml
+
+defaultHeaders:
+  X-Rate-Limit-Remaining:
+    description: How many calls consumer can do
+    type: integer
+  X-Rate-Limit-Reset:
+    description: When rate limit will be reset
+    type: string
+    format: date-time
+
+parameters:
+  userAgent:
+    name: User-Agent
+    description: All API consumers MUST provide a user agent
+    type: string
+    in: header
+    required: true
+  pageSize:
+    name: pageSize
+    in: query
+    description: Number of items returned
+    type: integer
+    format: int32
+    minimum: 0
+    exclusiveMinimum: true
+    maximum: 100
+    exclusiveMaximum: false
+    multipleOf: 10
+    default: 20
+  pageNumber:
+    name: pageNumber
+    in: query
+    description: Page number
+    type: integer
+    default: 1
+
+responses:
+  Standard500ErrorResponse:
+    description: An unexpected error occured.
+    headers:
+      $ref: '#/defaultHeaders'
+    schema:
+      $ref: '#/definitions/Error'
+  TotallyUnexpectedResponse:
+    description: A totally unexpected response
+    headers:
+      $ref: '#/defaultHeaders'
+
+definitions:
+  ErrorMessage:
+    title: MultiDeviceErrorMessage
+    description: An error message with a long and a short description
+    required:
+      - longMessage
+      - shortMessage
+    properties:
+      longMessage:
+        description: A long error description
+        type: string
+      shortMessage:
+        description: A short error description
+        type: string
+  MultilingualErrorMessage:
+    title: MultiLingualMultiDeviceErrorMessage
+    description: An multilingual error message (hashmap) with a long and a short description
+    additionalProperties:
+      $ref: '#/definitions/ErrorMessage'
+    properties:
+      defaultLanguage:
+        $ref: '#/definitions/ErrorMessage'
+    example:
+      defaultLanguage:
+        longMessage: We're deeply sorry but an error occured
+        shortMessage: Error
+      fr:
+        longMessage: Nous sommes désolé mais une erreur est survenu
+        shortMessage: Erreur
+        
+  Error:
+    title: MultiLingualMultiDeviceError
+    description: Give full information about the problem
+    required:
+      - code
+      - message
+    properties:
+      code:
+        description: A human readable code (death to numeric error codes!)
+        type: string
+        enum:
+          - DBERR
+          - NTERR
+          - UNERR
+        example: UNERR
+      message:
+        $ref: '#/definitions/MultilingualErrorMessage'
+  Paging:
+    required:
+      - totalItems
+      - totalPages
+      - pageSize
+      - currentPage
+    properties:
+      totalItems:
+        type: integer
+      totalPages:
+        type: integer
+      pageSize:
+        type: integer
+      currentPage:
+        type: integer</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h2 id="imagesyaml">images.yaml</h2>
-<p>In the <code class="highlighter-rouge">images.yaml</code> file we put both <code class="highlighter-rouge">/images</code> and <code class="highlighter-rouge">/images/{id}</code> paths informations:</p>
+<p>In the <code>images.yaml</code> file we put both <code>/images</code> and <code>/images/{id}</code> paths informations:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_44_smarter_images.yaml" data-gist-highlight-line="3,29,31,33,36,58,62,64,66" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_44_smarter_images.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="3,29,31,33,36,58,62,64,66"><code>  images:
+    parameters:
+      - $ref: 'commons.yaml#/parameters/userAgent'
+    post:
+      summary: Uploads an image
+      description: Upload an image, will return an image id. 
+      operationId: storeImage
+      externalDocs:
+        description: How to upload media
+        url: http://doc.simple.api/media/upload
+      tags:
+        - Media
+      security:
+        - MediaSecurity: []
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: image
+          in: formData
+          type: file
+      responses:
+        '200':
+          description: Image's ID
+          schema:
+            properties:
+              imageId:
+                type: string
+          headers:
+            $ref: commons.yaml#/defaultHeaders
+        '500':
+          $ref: 'commons.yaml#/responses/Standard500ErrorResponse'
+        default:
+          $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'
+  images-imageId:
+    parameters:
+      - $ref: 'commons.yaml#/parameters/userAgent'
+    get:
+      summary: Gets an image
+      description: Return an image 
+      operationId: readImage
+      tags:
+        - Media
+      parameters:
+        - name: imageId
+          in: path
+          required: true
+          type: string
+      produces:
+        - image/png
+        - image/gif
+        - image/jpeg
+        - application/json
+        - application/x-yaml
+      responses:
+        '200':
+          description: The image
+          headers:
+            $ref: commons.yaml#/defaultHeaders
+        '404':
+          description: Image do not exists
+          headers:
+            $ref: commons.yaml#/defaultHeaders
+        '500':
+          $ref: 'commons.yaml#/responses/Standard500ErrorResponse'
+        default:
+          $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
-<p>Note that all references to common items point to <code class="highlighter-rouge">commons.yaml</code>.</p>
+<p>Note that all references to common items point to <code>commons.yaml</code>.</p>
 
 <h2 id="legacyyaml">legacy.yaml</h2>
-<p>Same for the <code class="highlighter-rouge">/js-less-consumer-persons</code> path we put in <code class="highlighter-rouge">legacy.yaml</code> file in <code class="highlighter-rouge">js-less-consumer-persons</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_45_smarter_legacy.yaml" data-gist-highlight-line="3,42,46,50,52" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Same for the <code>/js-less-consumer-persons</code> path we put in <code>legacy.yaml</code> file in <code>js-less-consumer-persons</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_45_smarter_legacy.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="3,42,46,50,52"><code>js-less-consumer-persons:
+  parameters:
+    - $ref: 'commons.yaml#/parameters/userAgent'
+  post:
+    summary: Creates a person
+    description: For JS-less partners
+    operationId: createUserJS
+    deprecated: true
+    tags:
+      - JSLess
+      - Persons
+    security:
+      - OauthSecurity:
+        - admin
+      - LegacySecurity: []
+    consumes:
+      - application/x-www-form-urlencoded
+    produces:
+      - text/html
+    parameters:
+      - name: username
+        in: formData
+        required: true
+        pattern: '[a-z0-9]{8,64}'
+        minLength: 8
+        maxLength: 64
+        type: string
+      - name: firstname
+        in: formData
+        type: string
+      - name: lastname
+        in: formData
+        type: string
+      - name: dateOfBirth
+        in: formData
+        type: string
+        format: date
+    responses:
+      '204':
+        description: Person succesfully created.
+        headers:
+          $ref: 'commons.yaml#/defaultHeaders'
+      '400':
+        description: Person couldn't have been created.
+        headers:
+          $ref: 'commons.yaml#/defaultHeaders'
+      '500':
+        description: An error occured.
+        headers:
+          $ref: 'commons.yaml#/defaultHeaders'
+      default:
+        $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h2 id="personsyaml">persons.yaml</h2>
-<p>All persons items go in the <code class="highlighter-rouge">persons.yaml</code>:</p>
+<p>All persons items go in the <code>persons.yaml</code>:</p>
 
 <ul>
-  <li>each path go in its own named section (like <code class="highlighter-rouge">persons-username</code> for <code class="highlighter-rouge">/persons/{username}</code>)</li>
-  <li>all persons specific definitions goes in <code class="highlighter-rouge">definitions</code> (and can be referenced with <code class="highlighter-rouge">#definition/name</code>)</li>
-  <li>all persons specific responses goes in <code class="highlighter-rouge">responses</code> (and can be referenced with <code class="highlighter-rouge">#responses/name</code>)</li>
-  <li>all persons specific parameters goes in <code class="highlighter-rouge">parameters</code> (and can be referenced with <code class="highlighter-rouge">#parameters/name</code>)</li>
+  <li>each path go in its own named section (like <code>persons-username</code> for <code>/persons/{username}</code>)</li>
+  <li>all persons specific definitions goes in <code>definitions</code> (and can be referenced with <code>#definition/name</code>)</li>
+  <li>all persons specific responses goes in <code>responses</code> (and can be referenced with <code>#responses/name</code>)</li>
+  <li>all persons specific parameters goes in <code>parameters</code> (and can be referenced with <code>#parameters/name</code>)</li>
 </ul>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed"><code>persons:
+  parameters:
+    - $ref: 'commons.yaml#/parameters/userAgent'
+  get:
+    summary: Gets some persons
+    description: Returns a list containing all persons. The list supports paging.
+    operationId: searchUsers
+    tags:
+      - Persons
+    parameters:
+      - $ref: 'commons.yaml#/parameters/pageSize'
+      - $ref: 'commons.yaml#/parameters/pageNumber'
+      - $ref: '#/parameters/includeNonVerifiedUsers'
+      - $ref: '#/parameters/sortPersons'
+    responses:
+      '200':
+        description: A list of Person
+        schema:
+          $ref: '#/definitions/Persons'
+        headers:
+          $ref: commons.yaml#/defaultHeaders
+      '500':
+        $ref: 'commons.yaml#/responses/Standard500ErrorResponse'
+      default:
+        $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'
+  post:
+    summary: Creates a person
+    description: Adds a new person to the persons list.
+    operationId: createUser
+    tags:
+      - Persons
+    security:
+      - OauthSecurity:
+        - admin
+      - LegacySecurity: []
+    parameters:
+      - name: person
+        in: body
+        required: true
+        description: The person to create.
+        schema:
+          $ref: '#/definitions/Person'
+    responses:
+      '204':
+        description: Person succesfully created.
+        headers:
+          $ref: commons.yaml#/defaultHeaders
+      '400':
+        description: Person couldn't have been created.
+        headers:
+          $ref: commons.yaml#/defaultHeaders
+      '500':
+        $ref: 'commons.yaml#/responses/Standard500ErrorResponse'
+      default:
+        $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'
+
+persons-username:
+  parameters:
+    - $ref: '#/parameters/username'
+    - $ref: 'commons.yaml#/parameters/userAgent'
+  get:
+    summary: Gets a person
+    description: Returns a single person for its username.
+    operationId: readPerson
+    tags:
+      - Persons
+    responses:
+      '200':
+        description: A Person
+        schema:
+          $ref: '#/definitions/Person'
+        headers:
+          $ref: commons.yaml#/defaultHeaders
+      '404':
+        $ref: '#/responses/PersonDoesNotExistResponse'
+      '500':
+        $ref: 'commons.yaml#/responses/Standard500ErrorResponse'
+      default:
+        $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'
+  delete:
+    summary: Deletes a person
+    description: Delete a single person identified via its username
+    operationId: deletePerson
+    tags:
+      - Persons
+    responses:
+      '204':
+        description: Person successfully deleted.
+        headers:
+          $ref: commons.yaml#/defaultHeaders
+      '404':
+        $ref: '#/responses/PersonDoesNotExistResponse'
+      '500':
+        $ref: 'commons.yaml#/responses/Standard500ErrorResponse'
+      default:
+        $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'
+
+persons-username-friends:
+  parameters:
+    - $ref: '#/parameters/username'
+    - $ref: 'commons.yaml#/parameters/userAgent'
+  get:
+    summary: Gets a person's friends
+    description: Returns a list containing all persons. The list supports paging.
+    operationId: readPersonsFriends
+    tags:
+      - Persons
+    parameters:
+      - $ref: 'commons.yaml#/parameters/pageSize'
+      - $ref: 'commons.yaml#/parameters/pageNumber'
+      - $ref: '#/parameters/includeNonVerifiedUsers'
+      - $ref: '#/parameters/sortPersons'
+    responses:
+      '200':
+        description: A person's friends list
+        schema:
+          $ref: '#/definitions/PagedPersons'
+        headers:
+          $ref: commons.yaml#/defaultHeaders
+      '404':
+        $ref: '#/responses/PersonDoesNotExistResponse'
+      '500':
+        $ref: 'commons.yaml#/responses/Standard500ErrorResponse'
+      default:
+        $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'
+
+persons-username-collecting-items:
+  parameters:
+    - $ref: '#/parameters/username'
+    - $ref: 'commons.yaml#/parameters/userAgent'
+  get:
+    summary: Gets a person's collecting items list
+    description: |
+      Returns a list containing all items this person is looking for.  
+      The list supports paging.
+    operationId: readPersonsCollectingItems
+    tags:
+      - Items
+    parameters:
+      - $ref: 'commons.yaml#/parameters/pageSize'
+      - $ref: 'commons.yaml#/parameters/pageNumber'
+      - $ref: '#/parameters/filterItemTypes'
+    responses:
+      '200':
+        description: A collected items list
+        schema:
+          $ref: '#/definitions/PagedCollectingItems'
+        headers:
+          $ref: commons.yaml#/defaultHeaders
+        examples:
+          application/json:
+            {
+              "totalItems": 10,
+              "totalPage": 4,
+              "pageSize": 3,
+              "currentPage": 2,
+              "items": 
+              [
+                { 
+                  "itemType": "Vinyl",
+                  "maxPrice": 20,
+                  "imageId": "98096838-04eb-4bac-b32e-cd5b7196de71",
+                  "albumName": "Captain Future Original Soundtrack",
+                  "artist": "Yuji Ohno"
+                },
+                { 
+                  "itemType": "VHS",
+                  "maxPrice": 10,
+                  "imageId": "b74469bc-e6a1-4a90-858a-88ef94079356",
+                  "movieTitle": "Star Crash",
+                  "director": "Luigi Cozzi"
+                },
+                { 
+                  "itemType": "AudioCassette",
+                  "maxPrice": 10,
+                  "imageId": "b74469bc-e6a1-4a90-858a-88ef94079356",
+                  "albumName": "Star Wars",
+                  "artist": "John Williams"
+                }
+              ]
+            }
+      '404':
+        $ref: '#/responses/PersonDoesNotExistResponse'
+      '500':
+        $ref: 'commons.yaml#/responses/Standard500ErrorResponse'
+      default:
+        $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'
+
+definitions:
+  Person:
+    title: Human
+    description: A person which can be the user itself or one of his friend
+    required:
+      - username
+    properties:
+      firstName:
+        description: first name
+        type: string
+        example: John
+      lastName:
+        description: last name
+        type: string
+        example: Doe
+      username:
+        description: Username used to connect to the service
+        type: string
+        pattern: '[a-z0-9]{8,64}'
+        minLength: 8
+        maxLength: 64
+        example: john1doe6
+      dateOfBirth:
+        description: Date of birth
+        type: string
+        format: date
+        example: 1978-06-21
+      lastTimeOnline:
+        description: The last time this person was connected to the service as a 
+        type: string
+        format: date-time
+        readOnly: true
+        example: 2016-06-10T12:36:58.014Z
+      avatarBase64PNG:
+        description: An avatar PNG image as a base64 encoded string ready to use as an src in img html tag
+        type: string
+        format: byte
+        default: data:image/png;base64,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
+      spokenLanguages:
+        $ref: '#/definitions/SpokenLanguages'
+  SpokenLanguages:
+    title: Languages
+    description: A hashmap of spoken languages
+    additionalProperties:
+      description: An additional spoken language
+      type: string
+    properties:
+      defaultLanguage:
+        description: Default spoken language
+        type: string
+        default: english
+    example:
+      defaultLanguage: french
+      it: italian
+      fr: french
+  Persons:
+    title: Humans
+    description: A list of users or friends
+    required:
+      - items
+    properties:
+      items:
+        description: Array containg the list
+        type: array
+        minItems: 10
+        maxItems: 100
+        uniqueItems: true
+        items:
+          $ref: '#/definitions/Person'
+        example:
+          - firstname: Robert
+            lastname": Doe
+            username": robdo
+            dateOfBirth: 1970-01-28
+            lastTimeOnline: 2016-04-10T14:36:58.014Z
+          - firstname: Jane
+            lastname: Doe
+            username: jdoe123
+            dateOfBirth: 1980-05-12
+            lastTimeOnline: 2016-05-12T19:23:59.014Z
+
+  CollectingItem:
+    discriminator: itemType
+    required:
+      - itemType
+    properties:
+      itemType:
+        description: |
+          An item can be of different type:
+            
+          type | definition
+          -----|-----------
+          Vinyl| #/definitions/Vinyl
+          VHS  | #/definitions/VHS
+          AudioCassette | #/definitions/AudioCassette
+        type: string
+        enum:
+          - AudioCassette
+          - Vinyl
+          - VHS
+      imageId:
+        type: string
+      maxPrice:
+        type: number
+        format: double
+        minimum: 0
+        maximum: 10000
+        exclusiveMinimum: true
+        exclusiveMaximum: false
+  Vinyl:
+    allOf:
+      - $ref: '#/definitions/CollectingItem'
+      - required:
+          - albumName
+          - artist
+        properties:
+          albumName:
+            type: string
+          artist:
+            type: string
+  VHS:
+    allOf:
+      - $ref: '#/definitions/CollectingItem'
+      - required:
+          - movieTitle
+        properties:
+          movieTitle:
+            type: string
+          director:
+            type: string
+  AudioCassette:
+    allOf:
+      - $ref: '#/definitions/CollectingItem'
+      - required:
+          - albumName
+          - artist
+        properties:
+          albumName:
+            type: string
+          artist:
+            type: string
+
+  PagedPersons:
+    allOf:
+      - $ref: '#/definitions/Persons'
+      - $ref: 'commons.yaml#/definitions/Paging'
+  PagedCollectingItems:
+    allOf:
+      - properties:
+          items:
+            type: array
+            minItems: 10
+            maxItems: 100
+            uniqueItems: true
+            items:
+              $ref: '#/definitions/CollectingItem'
+      - $ref: 'commons.yaml#/definitions/Paging'
+
+responses:
+  PersonDoesNotExistResponse:
+    description: Person does not exist.
+    headers:
+      $ref: commons.yaml#/defaultHeaders
+
+parameters:
+  username:
+    name: username
+    in: path
+    required: true
+    description: The person's username
+    type: string
+  includeNonVerifiedUsers:
+    name: includeNonVerifiedUsers
+    in: query
+    description: Result will not include non verified user by default if this parameter is not provided
+    type: boolean
+    default: false
+    allowEmptyValue: true
+  sortPersons:
+    name: sort
+    in: query
+    description: Result will be sorted by lastTimeOnline descending and username ascending by default if this parameter is not provided
+    type: array
+    uniqueItems: true
+    minItems: 1
+    maxItems: 3
+    collectionFormat: pipes
+    items:
+      type: string
+      pattern: '[-+](username|lastTimeOnline|firstname|lastname)'
+    default:
+      - -lastTimeOnline
+      - +username
+  filterItemTypes:
+    name: itemType
+    in: query
+    description: Filter collected items on their type
+    type: array
+    collectionFormat: multi
+    uniqueItems: true
+    items:
+      type: string
+      enum:
+        - AudioCassette
+        - Vinyl
+        - VHS
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h2 id="full-main-file">full main file</h2>
-<p>Here’s the full main file where we reference the 4 sub-files:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Here’s the full main file where we reference the 4 sub-files:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed"><code>swagger: '2.0'
+
+info:
+  version: 1.1.0
+  title: Simple API
+  description: |
+    A simple API to learn how to write OpenAPI Specification.
+    This file uses almost every single aspect of the [Open API Specification](https://openapis.org/).  
+    This API will use JSON.  
+    JSON looks like this:  
+    
+    ```JSON
+    {
+      "key": "value",
+      "anotherKey": "anotherValue"
+    }
+    ```
+  termsOfService: http://simple.api/terms-of-service
+  contact:
+    name: John Doe
+    url: http://simple.api/contact
+    email: contact@simple.api
+  license:
+    name: Apache-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+
+externalDocs: 
+  description: |
+    **Complete** documentation describing how to use this API
+  url: http://doc.simple.api/
+
+tags:
+  - name: Persons
+    description: Everything you need to handle `users` and `friends`
+    externalDocs:
+      description: People category documentation
+      url: http://doc.simple.api/people
+  - name: Items
+    description: Everything you need to handle items collected by users
+    externalDocs:
+      description: Items category documentation
+      url: http://doc.simple.api/items
+  - name: Media
+    description: Everything you need to handle images
+    externalDocs:
+      description: Media category documentation
+      url: http://doc.simple.api/media
+  - name: JSLess
+    description: Specific operations for JS less consumers
+    externalDocs:
+      description: JS Less Consumers documentation
+      url: http://doc.simple.api/jsless
+      
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+consumes:
+  $ref: commons.yaml#/defaultMediatypes
+produces:
+  $ref: commons.yaml#/defaultMediatypes
+
+securityDefinitions:
+  $ref: commons.yaml#/securityDefinitions
+
+security:
+  $ref: commons.yaml#/defaultSecurity
+
+paths:
+  /persons:
+    $ref: 'persons.yaml#/persons'
+  /js-less-consumer-persons:
+    $ref: 'legacy.yaml#/js-less-consumer-persons'
+  '/persons/{username}':
+    $ref: 'persons.yaml#/persons-username'
+  '/persons/{username}/friends':
+    $ref: 'persons.yaml#/persons-username-friends'
+  '/persons/{username}/collecting-items':
+    $ref: 'persons.yaml#/persons-username-collecting-items'
+  /images:
+    $ref: 'images.yaml#/images'
+  /images/{imageId}:
+    $ref: 'images.yaml#/images-imageId'
+</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <h1 id="valid-sub-files">Valid sub-files</h1>
 <p>If we put the last <a href="simple_openapi_specification_46_smarter_persons.yaml">persons.yaml</a> file content in the editor, it ends with these errors:</p>
@@ -492,55 +2027,216 @@ http-server --cors .</code></pre></figure>
 <h3 id="missing-swagger-property">Missing swagger property</h3>
 <p>We just need to add this line on file’s top:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="1" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>swagger: "2.0"
+</code></pre>
+  
+</div>
 
 <h3 id="missing-info-property">Missing info property</h3>
-<p>We add an short <code class="highlighter-rouge">info</code> section after <code class="highlighter-rouge">swagger</code>:</p>
+<p>We add an short <code>info</code> section after <code>swagger</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="3-6" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="3"><code>info:
+  version: 1.0.0
+  title: Common elements
+  description: Shared elements in all API
+</code></pre>
+  
+</div>
 
 <h3 id="missing-paths-property">Missing paths property</h3>
-<p>As we do not define any path in this file we just need to add an empty <code class="highlighter-rouge">paths</code> section:</p>
+<p>As we do not define any path in this file we just need to add an empty <code>paths</code> section:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="39" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="39"><code>paths: {}
+</code></pre>
+  
+</div>
 
 <h3 id="property-defaultsecurity-not-allowed">Property defaultSecurity not allowed</h3>
-<p>As the <code class="highlighter-rouge">defaultSecurity</code> correspond to the OpenAPI <code class="highlighter-rouge">security</code> section we just need to rename it:</p>
+<p>As the <code>defaultSecurity</code> correspond to the OpenAPI <code>security</code> section we just need to rename it:</p>
 
-<p>Invalid <code class="highlighter-rouge">commons.yaml</code> file:</p>
+<p>Invalid <code>commons.yaml</code> file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-line="20-23" data-gist-highlight-line="20" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1" data-start="20"><code>defaultSecurity:
+  - OauthSecurity:
+    - user
+  - LegacySecurity: []
+</code></pre>
+  
+</div>
 
-<p>Valid <code class="highlighter-rouge">commons.yaml</code> file:</p>
+<p>Valid <code>commons.yaml</code> file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="28-31" data-gist-highlight-line="28" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1" data-start="28"><code>security:
+  - OauthSecurity:
+    - user
+  - LegacySecurity: []
+</code></pre>
+  
+</div>
 
 <h3 id="property-defaultmediatypes-not-allowed">Property defaultMediatypes not allowed</h3>
-<p><code class="highlighter-rouge">defaultMediaType</code> is not a valid OpenAPI property:</p>
+<p><code>defaultMediaType</code> is not a valid OpenAPI property:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-line="25-27" data-gist-highlight-line="25" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1" data-start="25"><code>defaultMediatypes:
+  - application/json
+  - application/x-yaml
+</code></pre>
+  
+</div>
 
-<p>We will use <code class="highlighter-rouge">produces</code> and <code class="highlighter-rouge">consumes</code> to define the default media types. But as we want to define a single set of media type we will use this trick:</p>
+<p>We will use <code>produces</code> and <code>consumes</code> to define the default media types. But as we want to define a single set of media type we will use this trick:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="33-37" data-gist-highlight-line="37" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="5" data-start="33"><code>produces:
+  - application/json
+  - application/x-yaml
+consumes:
+  $ref: '#/produces'
+</code></pre>
+  
+</div>
 
 <p>In the future if we want to define different sets of media types for produces and consumes, we’ll be ready.</p>
 
 <h3 id="property-defaultheaders-not-allowed">Property defaultHeaders not allowed</h3>
-<p><code class="highlighter-rouge">defaultHeaders</code> is not a valid OpenAPI property:</p>
+<p><code>defaultHeaders</code> is not a valid OpenAPI property:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_43_smarter_commons.yaml" data-gist-line="29-36" data-gist-highlight-line="29" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="1" data-start="29"><code>defaultHeaders:
+  X-Rate-Limit-Remaining:
+    description: How many calls consumer can do
+    type: integer
+  X-Rate-Limit-Reset:
+    description: When rate limit will be reset
+    type: string
+    format: date-time
+</code></pre>
+  
+</div>
 
-<p>We will use a dummy response definition <code class="highlighter-rouge">DefaultHeaders</code> to declare these default headers:</p>
+<p>We will use a dummy response definition <code>DefaultHeaders</code> to declare these default headers:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="67-77" data-gist-highlight-line="71-77" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="5-11" data-start="67"><code>responses:
+  DefaultHeaders:
+    description: A dummy response to define default header
+    headers:
+      X-Rate-Limit-Remaining:
+        description: How many calls consumer can do
+        type: integer
+      X-Rate-Limit-Reset:
+        description: When rate limit will be reset
+        type: string
+        format: date-time
+</code></pre>
+  
+</div>
 
 <p>Of course we need to update common responses to use these headers:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_48_valid_commons.yaml" data-gist-line="78-87" data-gist-highlight-line="81,87" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="4,10" data-start="78"><code>  Standard500ErrorResponse:
+    description: An unexpected error occured.
+    headers:
+      $ref: '#/responses/DefaultHeaders/headers'
+    schema:
+      $ref: '#/definitions/Error'
+  TotallyUnexpectedResponse:
+    description: A totally unexpected response
+    headers:
+      $ref: '#/responses/DefaultHeaders/headers'
+</code></pre>
+  
+</div>
 
 <h2 id="making-personsyaml-valid">Making persons.yaml valid</h2>
-<p>Just like with <code class="highlighter-rouge">commons.yaml</code>, if we put <code class="highlighter-rouge">persons.yaml</code> content in the editor we get some errors:</p>
+<p>Just like with <code>commons.yaml</code>, if we put <code>persons.yaml</code> content in the editor we get some errors:</p>
 
 <ul>
   <li>Missing required property: swagger</li>
@@ -551,25 +2247,106 @@ http-server --cors .</code></pre></figure>
 </ul>
 
 <h3 id="missing-swagger-and-info-properties">Missing swagger and info properties</h3>
-<p>We just add <code class="highlighter-rouge">swagger</code> and <code class="highlighter-rouge">info</code> like for <code class="highlighter-rouge">commons.yaml</code>:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="1-9" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>We just add <code>swagger</code> and <code>info</code> like for <code>commons.yaml</code>:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>swagger: "2.0"
+  
+info:
+  version: 1.0.0
+  title: Persons Sub-API
+  description: Persons operations, definitions, parameters and responses
+
+securityDefinitions:
+  $ref: commons.yaml#/securityDefinitions
+</code></pre>
+  
+</div>
 
 <h3 id="commonsyamldefaultheaders-reference-could-not-be-resolved">commons.yaml#/defaultHeaders reference could not be resolved</h3>
-<p>As the <code class="highlighter-rouge">commons.yaml</code> structure has been modified concerning default headers we need to replace these references:</p>
+<p>As the <code>commons.yaml</code> structure has been modified concerning default headers we need to replace these references:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-line="21" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="21"><code>          $ref: commons.yaml#/defaultHeaders
+</code></pre>
+  
+</div>
 
 <p>by this one:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="32" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="32"><code>              $ref: 'commons.yaml#/responses/DefaultHeaders/headers'
+</code></pre>
+  
+</div>
 
 <h3 id="missing-paths-and-additional-properties-not-allowed">Missing paths and additional properties not allowed</h3>
-<p>We have defined custom properties for each path relative to <em>persons</em> operations, therefore there is no <code class="highlighter-rouge">paths</code> section and our custom properties (like <code class="highlighter-rouge">persons</code>) are not allowed by the OpenAPI specification.</p>
+<p>We have defined custom properties for each path relative to <em>persons</em> operations, therefore there is no <code>paths</code> section and our custom properties (like <code>persons</code>) are not allowed by the OpenAPI specification.</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-line="1-7" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>persons:
+  parameters:
+    - $ref: 'commons.yaml#/parameters/userAgent'
+  get:
+    summary: Gets some persons
+    description: Returns a list containing all persons. The list supports paging.
+    operationId: searchUsers
+</code></pre>
+  
+</div>
 
-<p>We need to add a <code class="highlighter-rouge">paths</code> section and put all our path in it using the correct path value as key:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="11-18" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>We need to add a <code>paths</code> section and put all our path in it using the correct path value as key:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="11"><code>paths:
+  '/persons':
+      parameters:
+        - $ref: 'commons.yaml#/parameters/userAgent'
+      get:
+        summary: Gets some persons
+        description: Returns a list containing all persons. The list supports paging.
+        operationId: searchUsers
+</code></pre>
+  
+</div>
 
 <h3 id="new-errors-security-definition-could-not-be-resolved">New errors: Security definition could not be resolved</h3>
 
@@ -580,18 +2357,77 @@ http-server --cors .</code></pre></figure>
   <li>Security definition could not be resolved: LegacySecurity</li>
 </ul>
 
-<p>Now that we have a valid structure, the paths have been parsed and the parser detected missing security definitions. To solve this error, we add these definitions by referencing the <code class="highlighter-rouge">commons.yaml</code> file:</p>
+<p>Now that we have a valid structure, the paths have been parsed and the parser detected missing security definitions. To solve this error, we add these definitions by referencing the <code>commons.yaml</code> file:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="8-9" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="8"><code>securityDefinitions:
+  $ref: commons.yaml#/securityDefinitions
+</code></pre>
+  
+</div>
 
 <h2 id="imagesyaml-and-legacyyaml">images.yaml and legacy.yaml</h2>
-<p>For <code class="highlighter-rouge">images.yaml</code> and <code class="highlighter-rouge">legacy.yaml</code> we do exactly the same things as we’ve done with <code class="highlighter-rouge">persons.yaml</code>.</p>
+<p>For <code>images.yaml</code> and <code>legacy.yaml</code> we do exactly the same things as we’ve done with <code>persons.yaml</code>.</p>
 
-<p>Here the <code class="highlighter-rouge">images.yaml</code> file modified (partial view):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_51_valid_images.yaml" data-gist-line="1-12" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Here the <code>images.yaml</code> file modified (partial view):</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_51_valid_images.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>swagger: "2.0"
+  
+info:
+  version: 1.0.0
+  title: Images Sub-API
+  description: images operations
 
-<p>Here the <code class="highlighter-rouge">legacy.yaml</code> file modified (partial view):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_52_valid_legacy.yaml" data-gist-line="1-12" data-gist-footer="false" gist-enable-cache="true"></code></p>
+securityDefinitions:
+  $ref: commons.yaml#/securityDefinitions
+
+paths: 
+  /images:
+</code></pre>
+  
+</div>
+
+<p>Here the <code>legacy.yaml</code> file modified (partial view):</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_52_valid_legacy.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>swagger: "2.0"
+  
+info:
+  version: 1.0.0
+  title: Legacy Sub-API
+  description: Legacy operations
+
+securityDefinitions:
+  $ref: commons.yaml#/securityDefinitions
+
+paths:
+  /js-less-consumer-persons:
+</code></pre>
+  
+</div>
 
 <h2 id="updating-the-main-file">Updating the main file</h2>
 <p>Now that we have modified all sub-files, if we try to edit the main file we get these errors</p>
@@ -611,41 +2447,186 @@ http-server --cors .</code></pre></figure>
 <p>These errors are of 2 types:</p>
 
 <ul>
-  <li>those due to the <code class="highlighter-rouge">commons.yaml</code> structure modification</li>
-  <li>and those due to the <code class="highlighter-rouge">persons.yaml</code>, <code class="highlighter-rouge">images.yaml</code> and <code class="highlighter-rouge">legacy.yaml</code> paths structure modifications</li>
+  <li>those due to the <code>commons.yaml</code> structure modification</li>
+  <li>and those due to the <code>persons.yaml</code>, <code>images.yaml</code> and <code>legacy.yaml</code> paths structure modifications</li>
 </ul>
 
 <h3 id="modifiying-commonsyaml-references">Modifiying commons.yaml references</h3>
-<p>Before:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-line="59-68" data-gist-highlight-line="60,62,68" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Before:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2,4,10" data-start="59"><code>consumes:
+  $ref: commons.yaml#/defaultMediatypes
+produces:
+  $ref: commons.yaml#/defaultMediatypes
 
-<p>After:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_47_valid.yaml" data-gist-line="59-68" data-gist-highlight-line="60,62,68" data-gist-footer="false" gist-enable-cache="true"></code></p>
+securityDefinitions:
+  $ref: commons.yaml#/securityDefinitions
+
+security:
+  $ref: commons.yaml#/defaultSecurity
+</code></pre>
+  
+</div>
+
+<p>After:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_47_valid.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="2,4,10" data-start="59"><code>consumes:
+  $ref: 'commons.yaml#/consumes'
+produces:
+  $ref: 'commons.yaml#/produces'
+
+securityDefinitions:
+  $ref: 'commons.yaml#/securityDefinitions'
+
+security:
+  $ref: 'commons.yaml#/security'
+</code></pre>
+  
+</div>
 
 <h3 id="modifying-paths-references">Modifying paths references</h3>
-<p>This is the trickyest part of this tutorial. To reference the <code class="highlighter-rouge">/persons</code> path in <code class="highlighter-rouge">persons.yaml</code> we used <code class="highlighter-rouge">persons.yaml#/persons</code>:</p>
+<p>This is the trickyest part of this tutorial. To reference the <code>/persons</code> path in <code>persons.yaml</code> we used <code>persons.yaml#/persons</code>:</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-line="70-72" data-gist-highlight-line="72" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="3" data-start="70"><code>paths:
+  /persons:
+    $ref: 'persons.yaml#/persons'
+</code></pre>
+  
+</div>
 
-<p>But <code class="highlighter-rouge">persons.yaml</code> structure has changed from :</p>
+<p>But <code>persons.yaml</code> structure has changed from :</p>
 
-<p><code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_46_smarter_persons.yaml" data-gist-line="1-7" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>persons:
+  parameters:
+    - $ref: 'commons.yaml#/parameters/userAgent'
+  get:
+    summary: Gets some persons
+    description: Returns a list containing all persons. The list supports paging.
+    operationId: searchUsers
+</code></pre>
+  
+</div>
 
-<p>to:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_49_valid_persons.yaml" data-gist-line="11-18" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>to:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-start="11"><code>paths:
+  '/persons':
+      parameters:
+        - $ref: 'commons.yaml#/parameters/userAgent'
+      get:
+        summary: Gets some persons
+        description: Returns a list containing all persons. The list supports paging.
+        operationId: searchUsers
+</code></pre>
+  
+</div>
 
-<p>The new reference should be something like <code class="highlighter-rouge">persons.yaml#/paths//persons</code> but if we try it, the editor shows an error <em>Reference could not be resolved: persons.yaml#/paths//persons</em>. The <code class="highlighter-rouge">/</code> in <code class="highlighter-rouge">/persons</code> needs to be escaped, how can we do that?</p>
+<p>The new reference should be something like <code>persons.yaml#/paths//persons</code> but if we try it, the editor shows an error <em>Reference could not be resolved: persons.yaml#/paths//persons</em>. The <code>/</code> in <code>/persons</code> needs to be escaped, how can we do that?</p>
 
 <blockquote>
   <p>Evaluation of each reference token begins by decoding any escaped character sequence.  This is performed by first transforming any occurrence of the sequence ‘~1’ to ‘/’
 <em><a href="https://tools.ietf.org/html/rfc6901">RFC6901</a></em></p>
 </blockquote>
 
-<p>Before modification:
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_42_smarter.yaml" data-gist-line="70-84" data-gist-highlight-line="72,74,76,78,80,82,84" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>Before modification:</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="3,5,7,9,11,13,15" data-start="70"><code>paths:
+  /persons:
+    $ref: 'persons.yaml#/persons'
+  /js-less-consumer-persons:
+    $ref: 'legacy.yaml#/js-less-consumer-persons'
+  '/persons/{username}':
+    $ref: 'persons.yaml#/persons-username'
+  '/persons/{username}/friends':
+    $ref: 'persons.yaml#/persons-username-friends'
+  '/persons/{username}/collecting-items':
+    $ref: 'persons.yaml#/persons-username-collecting-items'
+  /images:
+    $ref: 'images.yaml#/images'
+  /images/{imageId}:
+    $ref: 'images.yaml#/images-imageId'
+</code></pre>
+  
+</div>
 
-<p>After modification (all <code class="highlighter-rouge">/</code> in reference name have been replaced by <code class="highlighter-rouge">~1</code>):
-<code data-gist-id="5a3df2250721fb154060" data-gist-file="simple_openapi_specification_47_valid.yaml" data-gist-line="70-84" data-gist-highlight-line="72,74,76,78,80,82,84" data-gist-footer="false" gist-enable-cache="true"></code></p>
+<p>After modification (all <code>/</code> in reference name have been replaced by <code>~1</code>):</p>
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_47_valid.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="3,5,7,9,11,13,15" data-start="70"><code>paths:
+  /persons:
+    $ref: 'persons.yaml#/paths/~1persons'
+  /js-less-consumer-persons:
+    $ref: 'legacy.yaml#/paths/~1js-less-consumer-persons'
+  '/persons/{username}':
+    $ref: 'persons.yaml#/paths/~1persons~1{username}'
+  '/persons/{username}/friends':
+    $ref: 'persons.yaml#/paths/~1persons~1{username}~1friends'
+  '/persons/{username}/collecting-items':
+    $ref: 'persons.yaml#/paths/~1persons~1{username}~1collecting-items'
+  /images:
+    $ref: 'images.yaml#/paths/~1images'
+  /images/{imageId}:
+    $ref: 'images.yaml#/paths/~1images~1{imageId}'
+</code></pre>
+  
+</div>
 
 <p>And now the main file and all its sub-files are considered valid by the editor.</p>
 
@@ -733,7 +2714,44 @@ http-server --cors .</code></pre></figure>
     anchors.add('.blog-container h3');
   });
 </script>
-<script async type="text/javascript" src="/js/gist-embed.min.js" ></script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
   
   </body>
 

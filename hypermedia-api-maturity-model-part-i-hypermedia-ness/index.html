@@ -39,9 +39,9 @@
 <meta name="og:image" content="https://apihandyman.io/images/hypermedia-api-maturity-model-part-i-hypermedia-ness/thumbnail.png">
 
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/syntax.css">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="canonical" href="/hypermedia-api-maturity-model-part-i-hypermedia-ness/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -155,56 +155,135 @@ If you want to know how resources are linked and what you can do with them, you�
   <li>Get a specific location details</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w"> 
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"a location"</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;id&quot;: &quot;IDL1&quot;, 
+  &quot;name&quot;:&quot;a location&quot;
+}</code></pre>
+  
+</div>
 
 <ul>
   <li>Add a photo to a location</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">POST https://api.dummy.com/photos</code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>POST https://api.dummy.com/photos</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://im.gur/myphoto"</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;locationId&quot;: &quot;IDL1&quot;,
+  &quot;url&quot;: &quot;http://im.gur/myphoto&quot;
+}</code></pre>
+  
+</div>
 
 <ul>
   <li>Get photos for a location</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1/photos</code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1/photos</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w"> 
-</span><span class="p">[</span><span class="w">
- </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="p">},</span><span class="w"> 
- </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP2"</span><span class="p">},</span><span class="w">
- </span><span class="err">...</span><span class="p">,</span><span class="w"> 
- </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDPn"</span><span class="p">}</span><span class="w">
-</span><span class="p">]</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>[
+ {&quot;id&quot;: &quot;IDP1&quot;}, 
+ {&quot;id&quot;: &quot;IDP2&quot;},
+ ..., 
+ {&quot;id&quot;: &quot;IDPn&quot;}
+]</code></pre>
+  
+</div>
 
 <ul>
   <li>Get a specific photo details</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/photos/IDP1</code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/photos/IDP1</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">  
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="p">,</span><span class="w"> 
-  </span><span class="nt">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.dummy.com/xlvc265z"</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;id&quot;: &quot;IDP1&quot;, 
+  &quot;locationId&quot;: &quot;IDL1&quot;,
+  &quot;url&quot;: &quot;https://media.dummy.com/xlvc265z&quot;
+}</code></pre>
+  
+</div>
 
 <ul>
   <li>Delete a specific photo</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">DELETE https://api.dummy.com/photos/IDP1</code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>DELETE https://api.dummy.com/photos/IDP1</code></pre>
+  
+</div>
 
 <h2 id="level-1-where-you-can-go">Level 1: Where you can go</h2>
 <p>On level 1, you define relations/links between your resources. You can do this by using:</p>
@@ -221,60 +300,114 @@ If you want to know how resources are linked and what you can do with them, you�
   <li>Get a specific location details</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1"</span><span class="p">},</span><span class="w">
-  </span><span class="nt">"linked"</span><span class="p">:[</span><span class="w"> 
-   </span><span class="p">{</span><span class="w">
-     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photos"</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1/photos"</span><span class="p">}</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a location"</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;links&quot;: { &quot;self&quot;: &quot;https://api.dummy.com/locations/IDL1&quot;},
+  &quot;linked&quot;:[ 
+   {
+     &quot;type&quot;: &quot;photos&quot;,
+     &quot;links&quot;: { &quot;self&quot;: &quot;https://api.dummy.com/locations/IDL1/photos&quot;}
+   }
+  ],
+  &quot;id&quot;: &quot;IDL1&quot;,
+  &quot;name&quot;: &quot;a location&quot;
+}</code></pre>
+  
+</div>
 
 <ul>
   <li>Get photos for a location</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1/photos </code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1/photos</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"links"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"self"</span><span class="p">:</span><span class="s2">"https://api.dummy.com/locations/IDL1/photos"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"next"</span><span class="p">:</span><span class="s2">"https://api.dummy.com/locations/IDL1/photos?page=2"</span><span class="w"> 
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w">
-  </span><span class="p">[</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"links"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/IDP1"</span><span class="w"> </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="w">
-    </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;links&quot; : 
+  {
+    &quot;self&quot;:&quot;https://api.dummy.com/locations/IDL1/photos&quot;,
+    &quot;next&quot;:&quot;https://api.dummy.com/locations/IDL1/photos?page=2&quot; 
+  },
+  &quot;data&quot;:
+  [ 
+    {
+      &quot;links&quot; : { &quot;self&quot;: &quot;https://api.dummy.com/photos/IDP1&quot; },
+      &quot;id&quot;: &quot;IDP1&quot;
+    }, ...
+  ]
+}</code></pre>
+  
+</div>
 
 <ul>
   <li>Get a specific photo details</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/photos/IDP1 </code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/photos/IDP1</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/IDP1"</span><span class="p">},</span><span class="w">
-  </span><span class="nt">"linked"</span><span class="p">:</span><span class="w">
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"location"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1"</span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.dummy.com/xlvc265z"</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers"><code>{
+  &quot;links&quot;: { &quot;self&quot;: &quot;https://api.dummy.com/photos/IDP1&quot;},
+  &quot;linked&quot;:
+  [
+    {
+      &quot;type&quot;: &quot;location&quot;,
+      &quot;links&quot;: { &quot;self&quot;: &quot;https://api.dummy.com/locations/IDL1&quot;}
+    }
+  ],
+  &quot;id&quot;: &quot;IDP1&quot;,
+  &quot;locationId&quot;: &quot;IDL1&quot;,
+  &quot;url&quot;: &quot;https://media.dummy.com/xlvc265z&quot;
+}</code></pre>
+  
+</div>
 
 <p>As you can see we have added links (<em>URL related to primary data</em>)  and linked (<em>linked resources</em>) values to existing data. These new data:</p>
 
@@ -301,101 +434,155 @@ If you want to know how resources are linked and what you can do with them, you�
   <li>Get a specific location details</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w">
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">   
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1/photos"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
-    </span><span class="p">},</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-       </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
-       </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
-       </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a location"</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;_links&quot;:
+  [
+    {   
+      &quot;rel&quot;: &quot;self&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/locations/IDL1&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/locations/IDL1/photos&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    }, 
+    {
+       &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+       &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+       &quot;method&quot;: &quot;POST&quot;
+    }
+  ],
+  &quot;id&quot;: &quot;IDL1&quot;,
+  &quot;name&quot;: &quot;a location&quot;
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <ul>
   <li>Get photos for a location</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1/photos </code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1/photos</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w">
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">    
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"https://api.dummy.com/locations/IDL1/photos"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"https://api.dummy.com/locations/IDL1/photos?page=2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
-    </span><span class="p">},</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"_links"</span><span class="p">:</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"rel"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/IDP1"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
-        </span><span class="p">}</span><span class="w">   
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="w">
-    </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;_links&quot;:
+  [
+    {    
+      &quot;rel&quot;:&quot;self&quot;,
+      &quot;href&quot;:&quot;https://api.dummy.com/locations/IDL1/photos&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;rel&quot;: &quot;next&quot;,
+      &quot;href&quot;:&quot;https://api.dummy.com/locations/IDL1/photos?page=2&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    }, 
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+      &quot;method&quot;: &quot;POST&quot;
+    }
+  ],
+  &quot;data&quot;: 
+  [
+    {
+      &quot;_links&quot;:
+      [
+        {
+          &quot;rel&quot; : &quot;self&quot;,
+          &quot;href&quot; : &quot;https://api.dummy.com/photos/IDP1&quot;,
+          &quot;method&quot; : &quot;GET&quot;
+        }   
+      ],
+      &quot;id&quot;: &quot;IDP1&quot;
+    }, ...
+  ]
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <ul>
   <li>Get a specific photo details</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/photos/IDP1 </code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/photos/IDP1</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w"> 
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w">
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/IDP1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/definition"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#delete"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/IDP1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDP1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.dummy.com/xlvc265z"</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{ 
+  &quot;_links&quot;:
+  [
+    {
+      &quot;rel&quot;: &quot;self&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos/IDP1&quot;,
+      &quot;method&quot; : &quot;GET&quot;
+    },
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/locations/definition&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/locations/IDL1&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;rel&quot; : &quot;https://api.dummy.com/photos/definitions#delete&quot;,
+      &quot;href&quot; : &quot;https://api.dummy.com/photos/IDP1&quot;,
+      &quot;method&quot; : &quot;DELETE&quot;
+    }
+  ],
+  &quot;id&quot;: &quot;IDP1&quot;,
+  &quot;locationId&quot;: &quot;IDL1&quot;,
+  &quot;url&quot;: &quot;https://media.dummy.com/xlvc265z&quot;
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <p>With NARWHL, all links are defined within <em>_links</em> values and for each of them you explicitly define the HTTP method to use with the <em>method</em> value.
 I have to admit that I prefer the more explicits concepts of <em>class</em> or <em>type</em> brought by Siren or Hydra to describe the action/operation you can do instead of the <a href="http://www.narwhl.com/hypermedia-linking/">rel value based on IANA relation types</a> (I probably miss something about this).</p>
@@ -420,36 +607,53 @@ I have to admit that I prefer the more explicits concepts of <em>class</em> or <
 </ul>
 
 <p>Let’s see how NARWHL handle this on the “add photo” operation:</p>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
+  
+</div>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">GET https://api.dummy.com/locations/IDL1</code></pre></figure>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="nt">"_links"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">   
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="s2">"https://api.dummy.com/locations/IDL1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/locations/IDL1/photos"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="w">
-    </span><span class="p">},</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos/definitions#add"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.dummy.com/photos"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"parameters"</span><span class="w"> </span><span class="p">:</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"locationId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/your/photo"</span><span class="w"> 
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDL1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a location"</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-json line-numbers code-collapsed"><code>{
+  &quot;_links&quot;: 
+  [
+    {   
+      &quot;rel&quot;:&quot;self&quot;,
+      &quot;href&quot;:&quot;https://api.dummy.com/locations/IDL1&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/locations/IDL1/photos&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    }, 
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+      &quot;method&quot;: &quot;POST&quot;,
+      &quot;parameters&quot; :
+      {
+        &quot;locationId&quot; : &quot;IDL1&quot;,
+        &quot;url&quot; : &quot;http://example.com/your/photo&quot; 
+      }
+    }
+  ],
+  &quot;id&quot;: &quot;IDL1&quot;,
+  &quot;name&quot;: &quot;a location&quot;
+}</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
 
 <p>With NARWHL, by adding <em>parameters</em> value you give a description (and some default values) of the needed inputs for the operations.
 Collection+JSON, Siren and Hydra use a more precise way of describing these inputs. You can see more examples using HAL, JSON-LD, Hydra, Collection+JSON and Siren in Kevin Sookocheff’s <a href="http://sookocheff.com/posts/2014-03-11-on-choosing-a-hypermedia-format/">post</a> comparing some hypermedia systems. As Kevin’s post do not talk about NARWHL and jsonapi.org I have focused this post’s examples on these ones.</p>
@@ -605,7 +809,44 @@ In next post <em>Hypermedia API maturity model - Part II - The missing links</em
     anchors.add('.blog-container h3');
   });
 </script>
-<script async type="text/javascript" src="/js/gist-embed.min.js" ></script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
   
   </body>
 
