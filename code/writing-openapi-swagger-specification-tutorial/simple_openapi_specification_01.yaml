@@ -1,0 +1,13 @@
+swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths: {}

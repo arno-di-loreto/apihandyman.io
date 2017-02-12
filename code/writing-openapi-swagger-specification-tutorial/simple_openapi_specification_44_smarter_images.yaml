@@ -1,0 +1,66 @@
+  images:
+    parameters:
+      - $ref: 'commons.yaml#/parameters/userAgent'
+    post:
+      summary: Uploads an image
+      description: Upload an image, will return an image id. 
+      operationId: storeImage
+      externalDocs:
+        description: How to upload media
+        url: http://doc.simple.api/media/upload
+      tags:
+        - Media
+      security:
+        - MediaSecurity: []
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: image
+          in: formData
+          type: file
+      responses:
+        '200':
+          description: Image's ID
+          schema:
+            properties:
+              imageId:
+                type: string
+          headers:
+            $ref: commons.yaml#/defaultHeaders
+        '500':
+          $ref: 'commons.yaml#/responses/Standard500ErrorResponse'
+        default:
+          $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'
+  images-imageId:
+    parameters:
+      - $ref: 'commons.yaml#/parameters/userAgent'
+    get:
+      summary: Gets an image
+      description: Return an image 
+      operationId: readImage
+      tags:
+        - Media
+      parameters:
+        - name: imageId
+          in: path
+          required: true
+          type: string
+      produces:
+        - image/png
+        - image/gif
+        - image/jpeg
+        - application/json
+        - application/x-yaml
+      responses:
+        '200':
+          description: The image
+          headers:
+            $ref: commons.yaml#/defaultHeaders
+        '404':
+          description: Image do not exists
+          headers:
+            $ref: commons.yaml#/defaultHeaders
+        '500':
+          $ref: 'commons.yaml#/responses/Standard500ErrorResponse'
+        default:
+          $ref: 'commons.yaml#/responses/TotallyUnexpectedResponse'

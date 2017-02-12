@@ -179,6 +179,27 @@ The principle is:
 - the next page's URL is retrieved from the `#next` link
 - once the next page is load is `#main` div content is added to the current `#main` div
 
+## Code highlight
+
+### [Prism](http://prismjs.com/)
+Theme: Default
+Languages:
+
+  - Markup
+  - C-Like
+  - JavaScript
+  - GraphQL
+  - JSON
+  - SQL
+  - YAML
+
+Plugins:
+
+  - Line highlight
+  - Line numbers
+
+### [ClipboardJS](https://clipboardjs.com/)
+
 # Deployment on Github pages with Travis
 
 As this website use custom Jekyll plugins it can't be deployed automatically by [Github Page](https://pages.github.com/), I'm using [Travis CI](https://travis-ci.org/) to handle that.

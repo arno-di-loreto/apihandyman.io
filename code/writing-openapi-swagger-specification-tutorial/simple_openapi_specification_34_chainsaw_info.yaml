@@ -1,0 +1,22 @@
+version: 1.1.0
+title: Simple API
+description: |
+  A simple API to learn how to write OpenAPI Specification.
+  This file uses almost every single aspect of the [Open API Specification](https://openapis.org/).  
+  This API will use JSON.  
+  JSON looks like this:  
+  
+  ```JSON
+  {
+    "key": "value",
+    "anotherKey": "anotherValue"
+  }
+  ```
+termsOfService: http://simple.api/terms-of-service
+contact:
+  name: John Doe
+  url: http://simple.api/contact
+  email: contact@simple.api
+license:
+  name: Apache-2.0
+  url: http://www.apache.org/licenses/LICENSE-2.0

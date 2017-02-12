@@ -46,7 +46,7 @@ disqus:
 
 # Build settings
 markdown: kramdown
-highlighter: rouge
+highlighter: none
 kramdown:
   input: GFM
 
