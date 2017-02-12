@@ -46,9 +46,15 @@ disqus:
 
 # Build settings
 markdown: kramdown
-highlighter: rouge
 kramdown:
   input: GFM
+## code highlight
+### disabling default code highlighter
+highlighter: none
+### codefilehighlight parameter: where code files are stored
+coderoot: code
+### codefilehighlight parameter: number of visible lines in code block
+codeblocksize: 20
 
 gems:
   - jekyll-feed

@@ -1,0 +1,84 @@
+swagger: '2.0'
+
+info:
+  version: 1.1.0
+  title: Simple API
+  description: |
+    A simple API to learn how to write OpenAPI Specification.
+    This file uses almost every single aspect of the [Open API Specification](https://openapis.org/).  
+    This API will use JSON.  
+    JSON looks like this:  
+    
+    ```JSON
+    {
+      "key": "value",
+      "anotherKey": "anotherValue"
+    }
+    ```
+  termsOfService: http://simple.api/terms-of-service
+  contact:
+    name: John Doe
+    url: http://simple.api/contact
+    email: contact@simple.api
+  license:
+    name: Apache-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+
+externalDocs: 
+  description: |
+    **Complete** documentation describing how to use this API
+  url: http://doc.simple.api/
+
+tags:
+  - name: Persons
+    description: Everything you need to handle `users` and `friends`
+    externalDocs:
+      description: People category documentation
+      url: http://doc.simple.api/people
+  - name: Items
+    description: Everything you need to handle items collected by users
+    externalDocs:
+      description: Items category documentation
+      url: http://doc.simple.api/items
+  - name: Media
+    description: Everything you need to handle images
+    externalDocs:
+      description: Media category documentation
+      url: http://doc.simple.api/media
+  - name: JSLess
+    description: Specific operations for JS less consumers
+    externalDocs:
+      description: JS Less Consumers documentation
+      url: http://doc.simple.api/jsless
+      
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+consumes:
+  $ref: commons.yaml#/defaultMediatypes
+produces:
+  $ref: commons.yaml#/defaultMediatypes
+
+securityDefinitions:
+  $ref: commons.yaml#/securityDefinitions
+
+security:
+  $ref: commons.yaml#/defaultSecurity
+
+paths:
+  /persons:
+    $ref: 'persons.yaml#/persons'
+  /js-less-consumer-persons:
+    $ref: 'legacy.yaml#/js-less-consumer-persons'
+  '/persons/{username}':
+    $ref: 'persons.yaml#/persons-username'
+  '/persons/{username}/friends':
+    $ref: 'persons.yaml#/persons-username-friends'
+  '/persons/{username}/collecting-items':
+    $ref: 'persons.yaml#/persons-username-collecting-items'
+  /images:
+    $ref: 'images.yaml#/images'
+  /images/{imageId}:
+    $ref: 'images.yaml#/images-imageId'

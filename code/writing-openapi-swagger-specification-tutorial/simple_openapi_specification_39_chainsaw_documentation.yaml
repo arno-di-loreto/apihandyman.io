@@ -1,0 +1,26 @@
+external:
+  description: |
+    **Complete** documentation describing how to use this API
+  url: http://doc.simple.api/
+
+categories:
+  - name: Persons
+    description: Everything you need to handle `users` and `friends`
+    externalDocs:
+      description: People category documentation
+      url: http://doc.simple.api/people
+  - name: Items
+    description: Everything you need to handle items collected by users
+    externalDocs:
+      description: Items category documentation
+      url: http://doc.simple.api/items
+  - name: Media
+    description: Everything you need to handle images
+    externalDocs:
+      description: Media category documentation
+      url: http://doc.simple.api/media
+  - name: JSLess
+    description: Specific operations for JS less consumers
+    externalDocs:
+      description: JS Less Consumers documentation
+      url: http://doc.simple.api/jsless

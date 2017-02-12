@@ -69,7 +69,7 @@ As far as I know, there are no particular rules for this style but generally:
 - This type of API generally only uses GET and POST HTTP verbs.
 
 
-{% highlight text %}
+{% code language:text %}
 GET /someoperation?data=anId
 
 POST /anotheroperation
@@ -77,7 +77,7 @@ POST /anotheroperation
   "data":"anId"; 
   "anotherdata":"another value"
 }
-{% endhighlight %}
+{% endcode %}
 
 
 How do people choose between GET and POST? 
@@ -95,12 +95,12 @@ To make it short and focus on the matter of this post, with a REST API you expos
 - The endpoint contains the resource you manipulate.
 - Many use the CRUD analogy to explain REST requests principles. The HTTP verb indicates what you want to do (Create/Read/Update/Delete) with that resource as defined earlier in this post and by [RFC7231 (Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content)](http://tools.ietf.org/html/rfc7231#section-4.3) and [RFC5789 (PATCH Method for HTTP)](http://tools.ietf.org/html/rfc5789).
 
-{% highlight text %}
+{% code language:text %}
 GET /someresources/anId
 
 PUT /someresources/anId
 {"anotherdata":"another value"}
-{% endhighlight %}
+{% endcode %}
 
 ## Examples
 Here are some of my [CarBoN API](/the-api-crash-test-project/) requests presented in RPC and REST ways:

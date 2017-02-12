@@ -58,26 +58,26 @@ The Github GraphQL API propose a *viewer* query, returning the connected User da
 
 With this query, I retrieve only the viewer's name and avatarURL. 
 
-```text
+{% code language:graphql %}
 {
   viewer {
     name
     avatarURL
   }
 }
-```
+{% endcode %}
 To get server's response I have to POST this query in a JSON object to the GraphQL endpoint:
 
-```
+{% code language:text %}
 POST https://api.github.com/graphql
 {
  "query": "{ me: viewer { name avatarURL} }"
 }
-````
+{% endcode %}
 
 The result is in JSON format and the requested data are located in the data property. These data mirror perfectly my query.
 
-```json
+{% code language:json %}
 {
   "data": {
     "viewer": {
@@ -86,24 +86,24 @@ The result is in JSON format and the requested data are located in the data prop
     }
   }
 }
-```
+{% endcode %}
 
 ### Customizing responses
 You can create more custom data structures by using aliases.  
 Here, `viewer` becomes `me`, `name` becomes `fullname` and `avatarURL` becomes `picture`.
 
-```text
+{% code language:graphql %}
 {
   me: viewer {
     fullname: name
     picture: avatarURL
   }
 }
-````
+{% endcode %}
 
 The result is exactly what I requested:
 
-```json
+{% code language:json %}
 {
   "data": {
     "me": {
@@ -112,7 +112,7 @@ The result is exactly what I requested:
     }
   }
 }
-```
+{% endcode %}
 
 ### Querying sub-resources
 Now let's say I want to retrieve some viewer's data and the names of his last two created repositories.
@@ -126,7 +126,7 @@ The responses will contains all available data, the REST API do not propose to f
   
 With GraphQL, I can do that with a single query: 
 
-```text
+{% code language:graphql %}
 {
   me: viewer {
     fullname: name
@@ -140,11 +140,11 @@ With GraphQL, I can do that with a single query:
     }
   }
 }
-```
+{% endcode %}
 
 I just have to add the repositories property in my viewer query with the good parameters and indicate the properties I want to get back for each repository. The response contains exactly what I requested.  
 
-```json
+{% code language:json %}
 {
   "data": {
     "me": {
@@ -167,7 +167,7 @@ I just have to add the repositories property in my viewer query with the good pa
     }
   }
 }
-```
+{% endcode %}
 
 ### Aggregating queries
 Not only can I seamlessly retrieve a resource and its sub resources, I can also make multiple different queries in one API call.  
@@ -180,7 +180,7 @@ Here I retrieve information about:
 
 in a single request to the GraphQL server:
 
-```text
+{% code language:graphql %}
 {
   me:   viewer                 { name avatarURL }
   kin:  user(login: "kinlane") { name avatarURL }
@@ -192,11 +192,11 @@ in a single request to the GraphQL server:
     }}}  
   }
 }
-```
+{% endcode %}
 
 The response contains all requested data:
 
-```json
+{% code language:json %}
 {
   "data": {
     "me": {
@@ -229,20 +229,20 @@ The response contains all requested data:
     }
   }
 }
-```
+{% endcode %}
 
 ### GraphQL is not SQL nor an ETL
 GraphQL is really powerful but be warned that it's not SQL nor an ETL, you can select the data you want, agregate queries, change names but not join queries or change the data structure.
 
 You cannot join queries like you would join tables in SQL.
 
-```SQL
+{% code language:sql %}
 SELECT * FROM A, B WHERE A.COL = B.COL
-```
+{% endcode %}
 
 You cannot select sub-properties or flatten objects. If I want to retrieve the name of my first repository without the edges and repo level, I cannot change this hierarchy:
 
-```json
+{% code language:json %}
 {
   "data": {
     "me": {
@@ -258,11 +258,11 @@ You cannot select sub-properties or flatten objects. If I want to retrieve the n
     }
   }
 }
-```
+{% endcode %}
 
 into this one:
 
-```json
+{% code language:json %}
 {
   "data": {
     "me": {
@@ -274,7 +274,7 @@ into this one:
     }
   }
 }
-```
+{% endcode %}
 
 ## Schema, introspection, documentation
 All the available data are described within a schema.
@@ -283,7 +283,7 @@ The schema can be queried on runtime like all of the data.
 
 This query let me know what are the properties of the `User` resource which is returned by the viewer and user query
 
-```text
+{% code language:graphql %}
 {
   __type(name:"User") {
     fields {
@@ -292,7 +292,7 @@ This query let me know what are the properties of the `User` resource which is r
     }
   }
 }
-```
+{% endcode %}
 
 This schema can also be used to generate documentation:
 
@@ -343,40 +343,40 @@ Machines will only be able to understand that a query do not modify underlying s
 
 If I get a user with the query user:
 
-```text
+{% code language:graphql %}
 query {
   user(id: "{id}") {
     name
   }
 }
-```
+{% endcode %}
 
 Updating or deleting this user with GraphQL will not be as clear as with REST.
 How will be named the mutation allowing me to delete a user? `deleteUser`, `removeUser` or `suppressPeople`?
 You'll have to dig in the documentation to find out. You cannot guess it because different API providers will have different naming conventions and these naming convention may event not be consistent within an API. 
 
-```text
+{% code language:graphql %}
 mutation {
   deleteUser(id: "{id}")
   removeUser(id: "{id}")
   suppressPeople(id: "{id}")
 }
-````
+{% endcode %}
 
 ### Handling errors
 Being protocol agnostic also means that everything is going to be `200 OK` when using GraphQL over HTTP, wheither the query was OK or not. With REST APIs we are acustomed to be able to tell what happens just by looking at the HTTP status. Whatever the API, if we receive a `404` HTTP status we known what it means: *resource not found*.
 
 If I try to retrieve a user that do not exists with a GraphQL API:
 
-```text
+{% code language:graphql %}
 {
   user(login: "dummy-user-123") {name}
 }
-```
+{% endcode %}
 
 I get this GraphQL standard error with a text message telling me the user do no exists.:
 
-```json
+{% code language:json %}
 {
   "data": {
     "user": null
@@ -396,19 +396,19 @@ I get this GraphQL standard error with a text message telling me the user do no 
     }
   ]
 }
-```
+{% endcode %}
 
 If I forget the login parameter:
 
-```text
+{% code language:graphql %}
 {
   user { name }
 }
-```
+{% endcode %}
 
 I get exactly the same error format:
 
-```json
+{% code language:json %}
 {
   "data": null,
   "errors": [
@@ -423,7 +423,7 @@ I get exactly the same error format:
     }
   ]
 }
-```
+{% endcode %}
 
 The message shows me explicitely what the problem is, but I cannot determine the error type programmatically in a generic way. These errors are not really fit to be analyzed automatically by machines. Of course there's obviously a pattern in the message but will this message have the same pattern for another resource or use case? Will this pattern be consistent as the API evolve? And will I find exactly the same pattern in another GraphQL API?
 

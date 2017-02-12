@@ -17,6 +17,7 @@ tags:
   - API First
 series: Writing OpenAPI (Swagger) Specification Tutorial
 series_title: Part 1 - Introduction
+codefiles: writing-openapi-swagger-specification-tutorial
 ---
 Previously in the APIverse...  
 Since I started my [*Swagger* journey](/starting-a-swagger-journey-beyond-generated-swagger-ui/), there have been *some* changes. The *Swagger Specification* has been [donated](http://swagger.io/introducing-the-open-api-initiative/) to the newly created [OpenAPI Initiative](https://openapis.org/news/announcement/2015/11/new-collaborative-project-extend-swagger-specification-building-connected) under the Linux foundation and is reborn as the *[OpenAPI Specification](http://apievangelist.com/2016/01/04/the-openapi-specification-fka-the-swagger-specification/)*. Therefore, my Swagger Journey will become an *OpenAPI Specification (fka Swagger Specification) Journey*.<!--more-->
@@ -78,10 +79,10 @@ What can we use to write an OpenAPI Specification file?
 An Open API Specification file can be written either in [JSON](https://en.wikipedia.org/wiki/JSON) or [YAML](https://en.wikipedia.org/wiki/YAML). But, if you intend to *write* and not generate this file, I urge you to do that in YAML as YAML is far more easy to write and read than JSON.
 
 A picture is worth a thousand words, let's compare a simple definition in JSON...
-{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_00_YAML_vs_JSON.json %}
+{% codefile file:simple_openapi_specification_00_YAML_vs_JSON.json %}
 
 ...to the same definition in YAML:
-{% gist id:5a3df2250721fb154060 file:simple_openapi_specification_02_with_operation.yaml %}
+{% codefile file:simple_openapi_specification_02_with_operation.yaml %}
 
 YAML seems definitely more easy to write and read for humans. And almost every tool using OpenAPI specification files handle YAML. In last resort, you can easiliy convert YAML to JSON (and vice versa).
 

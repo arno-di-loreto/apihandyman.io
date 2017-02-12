@@ -1,0 +1,137 @@
+securityDefinitions:
+  OauthSecurity:
+    description: New Oauth security system. Do not use MediaSecurity or LegacySecurity.
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: 'https://oauth.simple.api/authorization'
+    tokenUrl: 'https://oauth.simple.api/token'
+    scopes:
+      admin: Admin scope
+      user: User scope
+  MediaSecurity:
+    description: Specific media security for backward compatibility. Use OauthSecurity instead.
+    type: apiKey
+    in: query
+    name: media-api-key
+  LegacySecurity:
+    description: Legacy security system for backward compatibility. Use OauthSecurity instead.
+    type: basic
+
+defaultSecurity:
+  - OauthSecurity:
+    - user
+  - LegacySecurity: []
+
+defaultMediatypes:
+  - application/json
+  - application/x-yaml
+
+defaultHeaders:
+  X-Rate-Limit-Remaining:
+    description: How many calls consumer can do
+    type: integer
+  X-Rate-Limit-Reset:
+    description: When rate limit will be reset
+    type: string
+    format: date-time
+
+parameters:
+  userAgent:
+    name: User-Agent
+    description: All API consumers MUST provide a user agent
+    type: string
+    in: header
+    required: true
+  pageSize:
+    name: pageSize
+    in: query
+    description: Number of items returned
+    type: integer
+    format: int32
+    minimum: 0
+    exclusiveMinimum: true
+    maximum: 100
+    exclusiveMaximum: false
+    multipleOf: 10
+    default: 20
+  pageNumber:
+    name: pageNumber
+    in: query
+    description: Page number
+    type: integer
+    default: 1
+
+responses:
+  Standard500ErrorResponse:
+    description: An unexpected error occured.
+    headers:
+      $ref: '#/defaultHeaders'
+    schema:
+      $ref: '#/definitions/Error'
+  TotallyUnexpectedResponse:
+    description: A totally unexpected response
+    headers:
+      $ref: '#/defaultHeaders'
+
+definitions:
+  ErrorMessage:
+    title: MultiDeviceErrorMessage
+    description: An error message with a long and a short description
+    required:
+      - longMessage
+      - shortMessage
+    properties:
+      longMessage:
+        description: A long error description
+        type: string
+      shortMessage:
+        description: A short error description
+        type: string
+  MultilingualErrorMessage:
+    title: MultiLingualMultiDeviceErrorMessage
+    description: An multilingual error message (hashmap) with a long and a short description
+    additionalProperties:
+      $ref: '#/definitions/ErrorMessage'
+    properties:
+      defaultLanguage:
+        $ref: '#/definitions/ErrorMessage'
+    example:
+      defaultLanguage:
+        longMessage: We're deeply sorry but an error occured
+        shortMessage: Error
+      fr:
+        longMessage: Nous sommes désolé mais une erreur est survenu
+        shortMessage: Erreur
+        
+  Error:
+    title: MultiLingualMultiDeviceError
+    description: Give full information about the problem
+    required:
+      - code
+      - message
+    properties:
+      code:
+        description: A human readable code (death to numeric error codes!)
+        type: string
+        enum:
+          - DBERR
+          - NTERR
+          - UNERR
+        example: UNERR
+      message:
+        $ref: '#/definitions/MultilingualErrorMessage'
+  Paging:
+    required:
+      - totalItems
+      - totalPages
+      - pageSize
+      - currentPage
+    properties:
+      totalItems:
+        type: integer
+      totalPages:
+        type: integer
+      pageSize:
+        type: integer
+      currentPage:
+        type: integer
