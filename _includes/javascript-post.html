@@ -40,3 +40,18 @@
     }, 1000);
   });
 </script>
+<script language="JavaScript">
+  function toggle(button) {
+    var precode = button.parentElement.parentElement.parentElement.lastElementChild; 
+    if($(precode).hasClass('code-collapsed')) {
+      $(precode).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(precode).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+  }
+</script>

@@ -110,15 +110,21 @@ class CodeFile < Liquid::Tag
       raise SyntaxError.new("Syntax Error in 'codefile' - file #{path} do not exists")
     end
 
+    if code.lines.count > 20 
+      collapsed = " code-collapsed"
+      collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
+    end
+
     <<-HTML
 <div>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
+      #{collabpedbutton}
       <button type="button" class="btn btn-default"><a target="_blank" href="#{url}"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
   </div>
-  <pre class="language-#{@language}#{@linenumbers}"#{highlighttag}#{datastart}><code>#{code}</code></pre>
+  <pre class="language-#{@language}#{@linenumbers}#{collapsed}"#{highlighttag}#{datastart}><code>#{code}</code></pre>
 </div>
       HTML
   end

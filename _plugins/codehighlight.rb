@@ -35,15 +35,19 @@ module Jekyll
 
     def render(context)
       code = h(super).strip
-
+      if code.lines.count > 20 
+        collapsed = " code-collapsed"
+        collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
+      end
       <<-HTML
 <div>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
+      #{collabpedbutton}
       <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
     </div>
   </div>
-  <pre class="language-#{@language}#{@linenumbers}"#{@highlight}><code>#{code}</code></pre>
+  <pre class="language-#{@language}#{@linenumbers}#{collapsed}"#{@highlight}><code>#{code}</code></pre>
 </div>
       HTML
     end
