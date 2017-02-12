@@ -179,12 +179,25 @@ The principle is:
 - the next page's URL is retrieved from the `#next` link
 - once the next page is load is `#main` div content is added to the current `#main` div
 
-## Code highlight
+## Code blocks
 
-### [Prism](http://prismjs.com/)
-Theme: Default
-Languages:
+![](_readme/codeblock.png)
 
+### Tools used
+- Code blocks are styled with [Prism](http://prismjs.com/)
+- the top left and bottom toolbars are created using bootstrap
+- the copy button use [ClipboardJS](https://clipboardjs.com/)
+- and there's also some CSS/JavaScript/JQuery
+
+### Prism configuration
+
+The `css/prism.css` and `js/prism.js`are generated with the [Prism download page](http://prismjs.com/download.html) which allow you to choose exactly what you need.
+
+My configuration:
+
+- Theme:
+  - Default
+- Languages:
   - Markup
   - C-Like
   - JavaScript
@@ -193,17 +206,68 @@ Languages:
   - JSON
   - SQL
   - YAML
-
-Plugins:
-
+- Plugins:
   - Line highlight
   - Line numbers
 
-### [ClipboardJS](https://clipboardjs.com/)
+### Jekyll plugins
+This website uses two custom jekyll plugins to highlight code:
+
+- _plugins/codefilehighlight.rb (`codefile`) to highlight included code files
+- _plugins/codehighlight.rb (`code`) to highlight inline code
+
+#### configuration
+Both plugins use configuration in `_config.yml`:
+
+```
+## code highlight
+### disabling default code highlighter
+highlighter: none
+### codefilehighlight parameter: where code files are stored
+coderoot: code
+### codefilehighlight parameter: number of visible lines in code block
+codeblocksize: 20
+```
+
+#### code
+
+Highlight code between `code` and `endcode`.
+
+```
+{% code language:yaml numbers:false highlight:"1, 3-4" %}
+some: inline
+code: which
+will: be
+hightlighted: by prism
+{% endcode %}
+```
+
+Parameters:
+
+- language (mandatory): the language used
+- numbers (optional): showing line numbers or not (true by default)
+- highlight (optional): a set of line index (`1`) or range (`3-4`) separated by `,` to highlight
+
+#### codefile
+
+Include a code file and highlight it.
+```
+{% code file:somefile.yaml language:yaml numbers:false highlight:"1, 3-4" %}
+```
+
+Parameters:
+
+- file (mandatory): the name of the file to include. The file is loaded from
+  - `coderoot` folder (defined in `_config.yml`) if filename starts with `coderoot` value
+  - `coderoot/page.codefiles` if value provided in document's yaml front
+  - `coderoot/page.permalin` by default
+- language (optional): the language used, if not provied the filename extension is used
+- numbers (optional): showing line numbers or not (true by default)
+- highlight (optional): a set of line index (`1`) or range (`3-4`) separated by `,` to highlight
 
 # Deployment on Github pages with Travis
 
-As this website use custom Jekyll plugins it can't be deployed automatically by [Github Page](https://pages.github.com/), I'm using [Travis CI](https://travis-ci.org/) to handle that.
+As this website uses custom Jekyll plugins it can't be deployed automatically by [Github Page](https://pages.github.com/), I'm using [Travis CI](https://travis-ci.org/) to handle that.
 
 ## Build
 On each commit on the master branch, travis builds the website using `scripts/build.sh` as defined in `.travis.yml` configuration.
@@ -265,3 +329,5 @@ Here's the list of tools used:
 - [Jekyll Twitter Plugin](https://github.com/rob-murray/jekyll-twitter-plugin) to embed tweets easily
 - [Github Page](https://pages.github.com/) to host the generate static website
 - [Travis CI](https://travis-ci.org/) to build and deploy the static website
+- [Prism](http://prismjs.com/) to highlight code blocks
+- [ClipboardJS](https://clipboardjs.com/) for copy button on code blocks
