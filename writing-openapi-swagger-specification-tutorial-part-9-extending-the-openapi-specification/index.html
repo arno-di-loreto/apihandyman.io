@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>Writing OpenAPI (Swagger) Specification Tutorial - Part 9 - Extending the OpenAPI specification | API Handyman</title>
+  <meta name="description" content="This is the end, my OpenAPI friends, the end. The end? Not really. This last part of the OpenAPI tutorial is a new beginning. With previous parts we have lea...">
+  
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@apihandyman">
+
+  <meta name="twitter:title" content="Writing OpenAPI (Swagger) Specification Tutorial - Part 9 - Extending the OpenAPI specification">
+
+
+  <meta name="twitter:url" content="https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">
+
+
+  <meta name="twitter:description" content="This is the end, my OpenAPI friends, the end. The end? Not really. This last part of the OpenAPI tutorial is a new beginning. With previous parts we have learned to master the OpenAPI specification but there’s a last thing to learn to unleash its full power: extensions. This format is easily extensible, it allows to add custom data within an API description. But for what purposes? Let’s have a glimpse of these extensions endless possibilities.">
+
+  <meta name="twitter:image:src" content="https://apihandyman.io/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/thumbnail.png">
+
+  
+
+
+
+  <meta name="og:description" content="This is the end, my OpenAPI friends, the end. The end? Not really. This last part of the OpenAPI tutorial is a new beginning. With previous parts we have learned to master the OpenAPI specification but there’s a last thing to learn to unleash its full power: extensions. This format is easily extensible, it allows to add custom data within an API description. But for what purposes? Let’s have a glimpse of these extensions endless possibilities.">
+
+<meta name="og:image" content="https://apihandyman.io/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/thumbnail.png">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Series: Writing OpenAPI (Swagger) Specification Tutorial<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">Part 1 - Introduction</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">Part 2 - The basics</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">Part 3 - Simplifying specification file</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">Part 4 - Advanced Data</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">Part 5 - Advanced Input And Output Modeling</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">Part 6 - Defining Security</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">Part 7 - Documentation</a></li>
+                
+                    <li ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">Part 8 - Splitting specification file</a></li>
+                
+                    <li  class="disabled" ><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">Part 9 - Extending the OpenAPI specification</a></li>
+                
+              </ul>
+            </li>
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">Part 9 - Extending the OpenAPI specification</h1>
+          
+            <h2 class="post-subtitle">Writing OpenAPI (Swagger) Specification Tutorial</h2>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2017-02-19T00:00:00+00:00" itemprop="datePublished">Feb. 19, 2017</time><span>&nbsp;|&nbsp;Posts</span>
+      </p>
+      <p>This is the end, my OpenAPI friends, the end. The end? Not really. This last part of the OpenAPI tutorial is a new beginning. With previous parts we have learned to master the OpenAPI specification but there’s a last thing to learn to unleash its full power: extensions. This format is easily extensible, it allows to add custom data within an API description. But for what purposes? Let’s have a glimpse of these extensions endless possibilities.
+<!--more--></p>
+
+<h1 id="writing-openapi-fka-swagger-specification-tutorial">Writing OpenAPI (fka Swagger) Specification tutorial</h1>
+<p>This tutorial is composed of several posts:</p>
+
+<ul>
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">Part 1 - Introduction</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">Part 2 - The basics</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">Part 3 - Simplifying specification file</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">Part 4 - Advanced Data</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">Part 5 - Advanced Input And Output Modeling</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">Part 6 - Defining Security</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">Part 7 - Documentation</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">Part 8 - Splitting specification file</a></li>
+    
+  
+    
+    <li><strong>Part 9 - Extending the OpenAPI specification</strong></li>
+    
+  
+</ul>
+
+<p>If you’re a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>, take a look at my <em>visual documentation:</em></p>
+<div>
+      <img src="/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" />
+      <p class="img-label"><a href="http://openapi-specification-visual-documentation.apihandyman.io/">OpenAPI Specification Visual Documentation</a></p>
+    </div>
+
+<p>In this final part we’ll learn how to extend the OpenAPI specification to add custom data and most important, we’ll discover why we would do that.</p>
+
+<h1 id="one-size-may-not-fit-all">One size may not fit all</h1>
+
+<p>After working for a while with the OpenAPI format, you WILL want to add other data into you API descriptions, this is your destiny. Fortunately, the creator of the format had foreseen that:</p>
+
+<blockquote>
+  <p>While the Swagger Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.<br />
+<em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#vendorExtensions">OpenAPI Specification</a></em></p>
+</blockquote>
+
+<p>Once known as <em>Vendor Extensions</em>, these <em>Specification Extensions</em> can be created by anyone, don’t be fooled by their original name.</p>
+
+<h1 id="custom-property">Custom property</h1>
+
+<p>To add a custom property with an OpenAPI definition file you only need to prefix its name by <code>x-</code>:</p>
+
+<div>
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers"><code>x-&lt;what you want&gt;: &lt;value&gt;</code></pre>
+  
+</div>
+
+<p>Here’s a custom property <code>x-custom-info</code> in the <code>info</code> section of an OpenAPI file:</p>
+
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_53_custom_property.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="5" data-start="3"><code>info:
+  version: 1.0.0
+  title: x-tended OpenAPI Specification
+  description: An OpenAPI specification containing custom data
+  x-custom-info: Here's some custom information
+</code></pre>
+  
+</div>
+
+<p>If a standard Swagger/OpenAPI parser encounters such property, it will ignore it because it’s prefixed with <code>x-</code>. This <code>info</code> section with a custom property is valid:</p>
+
+<div>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/custom-property.png" />
+      
+    </div>
+
+<h1 id="custom-object">Custom object</h1>
+
+<p>Extensions are not only meant to be atomic properties, they can also be objects:</p>
+
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_54_custom_object.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers" data-line="5-11" data-start="3"><code>info:
+  version: 1.0.0
+  title: x-tended OpenAPI Specification
+  description: An OpenAPI specification containing custom data
+  x-custom-info:
+    comment: Here's some custom information
+    authors:
+      - name: John Doe
+        email: john@doe.com
+      - name: Jane Doe
+        email: jane@doe.com
+</code></pre>
+  
+</div>
+
+<p>Note that sub-properties names do not need to be prefixed with <code>x-</code>.</p>
+
+<h1 id="extensions-almost-anywhere">Extensions almost anywhere</h1>
+
+<p>These custom data structures can be added almost anywhere in the specification. You can test if a location is ok by simply adding your extension where you want within the online editor and see if the validator complains or not.</p>
+
+<p>You can also take a look at my <a href="http://openapi-specification-visual-documentation.apihandyman.io/">visual documentation</a> to check if the location you want to use allows extension or not:</p>
+
+<div>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/almost-anywhere.png" />
+      
+    </div>
+
+<p>Here’s an example using various location (non-exhaustive example):</p>
+
+<div>
+  <!-- codeblocksize: 20 -->
+  <div class="code-toolbar">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_55_extensions_almost_anywhere.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <pre class="language-yaml line-numbers code-collapsed" data-line="3,9-15,24,32,37"><code>swagger: '2.0'
+
+x-root: some custom root data
+
+info:
+  version: 1.0.0
+  title: x-tended OpenAPI Specification
+  description: An OpenAPI specification containing custom data
+  x-custom-info:
+    comment: Here's some custom information
+    authors:
+      - name: John Doe
+        email: john@doe.com
+      - name: Jane Doe
+        email: jane@doe.com
+
+paths:
+  /resources:
+    get:
+      description: gets some resource
+      responses:
+        200:
+          description: everything is ok
+          x-custom-response-data: I told you everything was really OK!
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Resource"
+
+definitions:
+  Resource:
+    x-custom-definition-data: some.dummy.class.Resource
+    properties:
+      data:
+        description: some data
+        type: string
+        x-custom-property-data: More blah blah about this property</code></pre>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+</div>
+
+<h1 id="why-customizing-the-openapi-specification">Why customizing the OpenAPI specification?</h1>
+
+<p>So, adding custom information within an OpenAPI specification file is fairly easy. But the question is less about the how and more about the why. Why would you add custom data to your OpenAPI files?</p>
+
+<p>You can use some extensions provided by open source or commercial tools or create your own. You can simply add custom data without processing them for documentation purpose or use these informations to generate documentation, client code, server code or tests or even configure some tools.</p>
+
+<p>Let’s see some examples.  <br />
+<em>nb: This post is not a sponsored one.</em></p>
+
+<h1 id="example-1-documentation">Example 1: Documentation</h1>
+<p><a href="https://docs.gelato.io/guides/control-grouping-with-swagger">Gelato, the Mashape Developer Portal solution</a>, uses the <a href="https://docs.gelato.io/guides/control-grouping-with-swagger"><code>x-gelato-group</code></a> extension to group operations in the portal navigation.</p>
+
+<div>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/gelato.png" />
+      
+    </div>
+
+<p>Of course, as an OpenAPI expert you would have use tags to do that. Beware to not reinvent the wheel when creating your extensions.</p>
+
+<h1 id="example-2-client-code-generation">Example 2: Client code generation</h1>
+
+<p><a href="https://docs.apimatic.io/advanced/swagger-test-cases-extensions/">API Matic, a SDK/DX kits generator</a> uses extension ton control SDK generation.</p>
+
+<div>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/apimatic.png" />
+      
+    </div>
+
+<h1 id="example-3-server-code-generation">Example 3: Server code generation</h1>
+
+<p><a href="https://github.com/swagger-api/swagger-node">Swagger Node, a node module which help to build API implementation with a design first approach</a> uses a <code>x-swagger-router-controller</code> extension to link an API endpoint to its controller implementation.</p>
+
+<div>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/swagger-node.png" />
+      
+    </div>
+
+<h1 id="example-4-api-gateway-configuration">Example 4: API gateway configuration</h1>
+
+<p>Not only the AWS API gateway allows to import a Swagger/OpenAPI file but it also provides a <a href="(http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-swagger-extensions.html)">complete set of extensions</a> to configure how the API is linked to backend systems (like lambda).</p>
+
+<div>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/aws-api-gateway.png" />
+      
+    </div>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>This post concludes the OpenAPI/Swagger specification tutorial. You master now every single aspect of the OpenAPI specification and with this last post I hope to have given you some ideas to be creative to include this format in each step of the API lifecycle.</p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/';
+      this.page.identifier = 'https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </article>
+</div>
+<div class="hidden-xs col-sm-3 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+        <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  
+    <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+<script language="javascript">
+  $(function() {
+    var $myNav = $('#toc');
+    var $myScope = $('#post');
+    Toc.init({
+      $nav: $myNav,
+      $scope: $myScope
+    });
+    $('body').scrollspy({
+      target: '#toc'
+    });
+  });
+</script>
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script language="JavaScript">
+  $(function() {
+    anchors.options = {
+      placement: 'left'
+    };
+    anchors.add('.blog-container h1');
+    anchors.add('.blog-container h2');
+    anchors.add('.blog-container h3');
+  });
+</script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, secondarybutton, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
+  
+  </body>
+
+</html>
