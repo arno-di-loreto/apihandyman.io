@@ -1,7 +1,10 @@
-<h2>{{ page.series }} Series</h2>
 {% assign sorted = site.posts | where:"series", page.series | sort:"series_title"  %}
 <ul>
   {% for my_page in sorted %}
-    <li {% if my_page.series_title == page.series_title %} class="disabled" {% endif %}><a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_title }}</a></li>
+    {% if my_page.series_title == page.series_title %}
+    <li><strong>{{ my_page.series_title }}</strong></li>
+    {% else %}
+    <li><a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_title }}</a></li>
+    {% endif %}
   {% endfor %}
 </ul>

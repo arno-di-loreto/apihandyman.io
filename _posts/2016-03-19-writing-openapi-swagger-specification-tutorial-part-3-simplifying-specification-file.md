@@ -20,27 +20,10 @@ series_title: Part 3 - Simplifying specification file
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After [learning the basics](/writing-openapi-swagger-specification-tutorial-part-2-the-basics/) and having written a *little bit huge* file for a *so simple* API, you may be concerned by what nightmare it could be to handle a bigger and more complex API. REST assured that the [OpenAPI Specification (formerly Swagger Specification)](https://openapis.org/) format offers all means to write really *small and simple* specification files whatever the described API's size and complexity.<!--more--> 
- 
-# Writing OpenAPI (fka Swagger) Specification tutorial
-This tutorial is composed of several posts:
 
-- Part 1: [Introduction](/writing-openapi-swagger-specification-tutorial-part-1-introduction/)
-- Part 2: [The basics](/writing-openapi-swagger-specification-tutorial-part-2-the-basics/)
-- Part 3: **Simplifying specification file**
-- Part 4: [Advanced data modeling](/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling)
-- Part 5: [Advanced input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/)
-- Part 6: [Defining security](/writing-openapi-swagger-specification-tutorial-part-6-defining-security)
-- Part 7: [Documentation](/writing-openapi-swagger-specification-tutorial-part-7-documentation/)
-- Part 8: [Splitting specification file](http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/)
-- Part 9: Extending the OpenAPI specification (coming soon)
-
-All tutorial's files are available on [gist](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
-
-If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-{% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
+{% include _postincludes/writing-openapi-swagger-specification-tutorial.md %} 
 
 In this third part you will learn how to simplifiy the specification file by defining *reusable* *definitions*, *responses* and *parameters* and using them with *references* and thus make the writing and reading of OpenAPI Specification fairly easy.
-
 
 # Simplifying data model description
 We'll use the final example of the [previous part](/writing-openapi-swagger-specification-tutorial-part-2-the-basics/) as starting point. When taking a look at this specification file, the obvious problem is that a *Person* is defined three times:

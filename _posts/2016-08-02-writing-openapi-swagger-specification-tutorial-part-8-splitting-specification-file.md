@@ -21,25 +21,9 @@ codefiles: writing-openapi-swagger-specification-tutorial
 ---
 With [previous posts]((http://apihandyman.io/category/openapi-swagger-specification/)) we have learned to produce an [OpenAPI specification](https://openapis.org/) containing all OpenAPI specification subtleties. Some specification files may become quite large or may contain elements which could be reused in other APIs. Splitting a specification file will help to keep it maintainable by creating smaller files and also help to ensure consistency throughout APIs by sharing common elements.<!--more--> 
 
-# Writing OpenAPI (fka Swagger) Specification tutorial
-This tutorial is composed of several posts:
-
-- Part 1: [Introduction](/writing-openapi-swagger-specification-tutorial-part-1-introduction/)
-- Part 2: [The basics](/writing-openapi-swagger-specification-tutorial-part-2-the-basics/)
-- Part 3: [Simplifying specification file](/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/)
-- Part 4: [Advanced data modeling](/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/)
-- Part 5: [Advanced input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/)
-- Part 6: [Defining security](/writing-openapi-swagger-specification-tutorial-part-6-defining-security)
-- Part 7: [Documentation]()
-- Part 8: **Splitting specification file**
-- Part 9: Extending the OpenAPI specification (coming soon)
+{% include _postincludes/writing-openapi-swagger-specification-tutorial.md %}
 
 In previous parts we've learned to create highly accurate API description which can become quite large or may contain elements that can be reused, in this eighth part we'll learn how to split an OpenAPI specification file into smaller and reusable elements.
-
-All tutorial's files are available on [gist](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
-
-If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-{% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
 
 # JSON Pointers
 In [part 3 - Simplifying spefication file](http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/) we have learned how to simplify the specification by creating reusable elements. In the example below, the `Person` definition is defined once in `definitions` and used as

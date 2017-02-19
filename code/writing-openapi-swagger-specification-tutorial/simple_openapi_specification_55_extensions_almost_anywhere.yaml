@@ -1,0 +1,37 @@
+swagger: '2.0'
+
+x-root: some custom root data
+
+info:
+  version: 1.0.0
+  title: x-tended OpenAPI Specification
+  description: An OpenAPI specification containing custom data
+  x-custom-info:
+    comment: Here's some custom information
+    authors:
+      - name: John Doe
+        email: john@doe.com
+      - name: Jane Doe
+        email: jane@doe.com
+
+paths:
+  /resources:
+    get:
+      description: gets some resource
+      responses:
+        200:
+          description: everything is ok
+          x-custom-response-data: I told you everything was really OK!
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Resource"
+
+definitions:
+  Resource:
+    x-custom-definition-data: some.dummy.class.Resource
+    properties:
+      data:
+        description: some data
+        type: string
+        x-custom-property-data: More blah blah about this property

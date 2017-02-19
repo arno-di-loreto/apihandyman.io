@@ -23,23 +23,7 @@ codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After [discovering](/writing-openapi-swagger-specification-tutorial-part-1-introduction/) what is the OpenAPI Specification format, it's now time to write a first simple OpenAPI Specification file to learn the basics.<!--more--> 
 
-# Writing OpenAPI (fka Swagger) Specification tutorial
-This tutorial is composed of several posts:
-
-- Part 1: [Introduction](/writing-openapi-swagger-specification-tutorial-part-1-introduction/)
-- Part 2: **The basics**
-- Part 3: [Simplifying specification file](/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/)
-- Part 4: [Advanced data modeling](/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling)
-- Part 5: [Advanced input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/)
-- Part 6: [Defining security](/writing-openapi-swagger-specification-tutorial-part-6-defining-security)
-- Part 7: [Documentation](/writing-openapi-swagger-specification-tutorial-part-7-documentation/)
-- Part 8: [Splitting specification file](http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/)
-- Part 9: Extending the OpenAPI specification (coming soon)
-
-All tutorial's files are available on [gist](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
-
-If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-{% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
+{% include _postincludes/writing-openapi-swagger-specification-tutorial.md %}
 
 In this second part you will learn how to give some basic informations about your API, describe endpoints using various HTTP methods with path, query and body parameters and returning various HTTP status and responses. 
 
