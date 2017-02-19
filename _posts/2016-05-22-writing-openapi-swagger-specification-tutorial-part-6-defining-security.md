@@ -21,25 +21,9 @@ codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After mastering [input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/) like a Jedi, let's see how we can describe API's security with the [OpenAPI specification's](https://openapis.org/).<!--more-->
 
-# Writing OpenAPI (fka Swagger) Specification tutorial
-This tutorial is composed of several posts:
-
-- Part 1: [Introduction](/writing-openapi-swagger-specification-tutorial-part-1-introduction/)
-- Part 2: [The basics](/writing-openapi-swagger-specification-tutorial-part-2-the-basics/)
-- Part 3: [Simplifying specification file](/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/)
-- Part 4: [Advanced data modeling](/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/)
-- Part 5: [Advanced input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/)
-- Part 6: **Defining security**
-- Part 7: [Documentation](/writing-openapi-swagger-specification-tutorial-part-7-documentation/)
-- Part 8: [Splitting specification file](http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/)
-- Part 9: Extending the OpenAPI specification (coming soon)
+{% include _postincludes/writing-openapi-swagger-specification-tutorial.md %}
 
 In previous parts we've learned to write efficiently highly accurate interface description, in this seventh part we'll learn how to describe how an API is secured.
-
-All tutorial's files are available on [GIST](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
-
-If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-{% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
 
 # Security definitions
 Following (almost) the same principle used with `parameters` and `definitions`, security can be defined and then used on different levels.

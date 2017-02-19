@@ -21,25 +21,9 @@ codefiles: writing-openapi-swagger-specification-tutorial
 ---
 Previous [posts](http://apihandyman.io/category/openapi-swagger-specification/) showed how to write a highly accurate description of an API interface contract with the [OpenAPI specification](https://openapis.org/). But an interface contract, no matter how brilliant, is nothing without some explainations. A fully documented OpenAPI specification file can provide some useful information and be used as a part of an API's documentation.<!--more-->
 
-# Writing OpenAPI (fka Swagger) Specification tutorial
-This tutorial is composed of several posts:
-
-- Part 1: [Introduction](/writing-openapi-swagger-specification-tutorial-part-1-introduction/)
-- Part 2: [The basics](/writing-openapi-swagger-specification-tutorial-part-2-the-basics/)
-- Part 3: [Simplifying specification file](/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/)
-- Part 4: [Advanced data modeling](/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/)
-- Part 5: [Advanced input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/)
-- Part 6: [Defining security](/writing-openapi-swagger-specification-tutorial-part-6-defining-security)
-- Part 7: **Documentation**
-- Part 8: [Splitting specification file](/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/)
-- Part 9: Extending the OpenAPI specification (coming soon)
+{% include _postincludes/writing-openapi-swagger-specification-tutorial.md %}
 
 In previous parts we've learned to create highly accurate API description, in this seventh part we'll learn how to use the OpenAPI specification to make it a valuable part of an API documentation.
-
-All tutorial's files are available on [GIST](https://gist.github.com/arno-di-loreto/5a3df2250721fb154060).
-
-If you're a bit lost in the [specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), take a look at my [*visual documentation:*
-{% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
 
 # API's general informations
 First things first. When using an API, API consumers want to have some general informations about it like its version, its name, some description, term of service, how to contact the API provider, what kind of licencing it uses. The [`info`](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#infoObject) object placed on root level can be used to provide such information:
