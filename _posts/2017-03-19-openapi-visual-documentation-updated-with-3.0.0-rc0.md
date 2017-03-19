@@ -1,6 +1,6 @@
 ---
 title: OpenAPI Visual Documentation updated with 3.0.0-rc0
-date: 2017-03-20
+date: 2017-03-19
 author: Arnaud Lauret
 layout: post
 permalink: /openapi-visual-documentation-updated-with-3.0.0-rc0/
