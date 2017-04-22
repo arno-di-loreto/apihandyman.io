@@ -1,4 +1,522 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://apihandyman.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2017-03-19T23:52:28+00:00</updated><id>https://apihandyman.io//</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">OpenAPI Visual Documentation updated with 3.0.0-rc0</title><link href="https://apihandyman.io/openapi-visual-documentation-updated-with-3.0.0-rc0/" rel="alternate" type="text/html" title="OpenAPI Visual Documentation updated with 3.0.0-rc0" /><published>2017-03-19T00:00:00+00:00</published><updated>2017-03-19T00:00:00+00:00</updated><id>https://apihandyman.io/openapi-visual-documentation-updated-with-3.0.0-rc0</id><content type="html" xml:base="https://apihandyman.io/openapi-visual-documentation-updated-with-3.0.0-rc0/">&lt;p&gt;The &lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;OpenAPI Visual Documentation has been updated&lt;/a&gt;. The new version 3.0.0-rc0 of the OpenAPI specification has been added. The addition brings a fully detailed change log of what has change from version 2.&lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://apihandyman.io/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2017-04-22T16:11:55+00:00</updated><id>https://apihandyman.io//</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">API Design Tips And Tricks - Getting, creating, updating or deleting multiple resources in one API call</title><link href="https://apihandyman.io/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/" rel="alternate" type="text/html" title="API Design Tips And Tricks - Getting, creating, updating or deleting multiple resources in one API call" /><published>2017-04-22T00:00:00+00:00</published><updated>2017-04-22T00:00:00+00:00</updated><id>https://apihandyman.io/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call</id><content type="html" xml:base="https://apihandyman.io/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/">&lt;p&gt;Getting, creating, updating or deleting multiple resources in a single API call is a common need in REST APIs. But how to achieve that in a consistent way accomodating how we work with a single resource and REST principles? This is what we’ll see in this post.&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;working-with-a-single-resource&quot;&gt;Working with a single resource&lt;/h1&gt;
+
+&lt;p&gt;Before talking about how to work with multiple resources all at once, let’s see how to handle a single resource with a REST API.&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-a-resource&quot;&gt;Creating a resource&lt;/h2&gt;
+&lt;p&gt;The common way of creating a &lt;code&gt;resource&lt;/code&gt; is to do a &lt;code&gt;POST&lt;/code&gt; request on &lt;code&gt;/resources&lt;/code&gt;. The body of the request containing the resource to create.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;POST /resources HTTP/1.1
+
+{
+  &amp;quot;some&amp;quot;: &amp;quot;some data&amp;quot;,
+  &amp;quot;other&amp;quot;: &amp;quot;some other data&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;If everything is OK and the resource created, the response’s status to this request will be a &lt;code&gt;201 Created&lt;/code&gt; and the response’s body will contain at least the ID (&lt;code&gt;id&lt;/code&gt;) or the URL/URI (&lt;code&gt;href&lt;/code&gt;) of the created resources. It may also contain the full resource itself.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;HTTP/1.1 201 Created
+
+{
+  &amp;quot;id&amp;quot;: &amp;quot;ID&amp;quot;,
+  &amp;quot;href&amp;quot;: &amp;quot;/resources/ID&amp;quot;,
+  &amp;quot;some&amp;quot;: &amp;quot;some data&amp;quot;,
+  &amp;quot;other&amp;quot;: &amp;quot;some other data&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;If there’s something wrong, the response’s status will be an error, for example a &lt;code&gt;400 Bad Request&lt;/code&gt; because of some missing data and the response’s body will contain information about the error.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;HTTP/1.1 400 Bad Request
+
+{
+  &amp;quot;message&amp;quot;: &amp;quot;missing some data&amp;quot; 
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;h2 id=&quot;getting-a-resource&quot;&gt;Getting a resource&lt;/h2&gt;
+
+&lt;p&gt;Once created a resource can be accessed with a &lt;code&gt;GET /resources/ID&lt;/code&gt; request. If everything is OK, the server will return a &lt;code&gt;200 Accepted&lt;/code&gt; and the resource. If there’s something wrong, it will return an error like &lt;code&gt;404 Not Found&lt;/code&gt; if the resource does not exist or a &lt;code&gt;403 Forbidden&lt;/code&gt; if the user is not allowed to access that resource.&lt;/p&gt;
+
+&lt;h2 id=&quot;updating-a-resource&quot;&gt;Updating a resource&lt;/h2&gt;
+&lt;p&gt;A &lt;code&gt;PATCH /resources/ID&lt;/code&gt; request will update partially a resource:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;PATCH /resources HTTP/1.1
+
+{
+  &amp;quot;other&amp;quot;: &amp;quot;modified data&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;If everything is OK, the server will return a OK status like &lt;code&gt;200 Accepted&lt;/code&gt;, and just like with the &lt;code&gt;POST&lt;/code&gt; request, the body may contain the updated resource.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;HTTP/1.1 200 Accepted
+
+{
+  &amp;quot;id&amp;quot;: &amp;quot;ID&amp;quot;,
+  &amp;quot;href&amp;quot;: &amp;quot;/resources/ID&amp;quot;,
+  &amp;quot;some&amp;quot;: &amp;quot;some data&amp;quot;,
+  &amp;quot;other&amp;quot;: &amp;quot;modified data&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;If there’s a problem, the server will return an error. This error could be, for example, a &lt;code&gt;404 Not Found&lt;/code&gt; due to an invalid ID.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;HTTP/1.1 404 Not Found
+
+{
+  &amp;quot;message&amp;quot;: &amp;quot;Resource &amp;lt;ID&amp;gt; not found&amp;quot; 
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;h2 id=&quot;replacing-or-creating-a-resource&quot;&gt;Replacing or creating a resource&lt;/h2&gt;
+
+&lt;p&gt;While a &lt;code&gt;PATCH /resources/ID&lt;/code&gt; updates partially a resource, a &lt;code&gt;PUT /resources/ID&lt;/code&gt; one will replace the resource. It may also create a new resource with the provided ID if it does not exist (and if it is allowed).&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;PUT /resources/ID HTTP/1.1
+
+{
+  &amp;quot;some&amp;quot;: &amp;quot;some new data&amp;quot;,
+  &amp;quot;other&amp;quot;: &amp;quot;some other new data&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;If everything is OK, the server will return a OK status. Depending on what happened the status may be, for example, a &lt;code&gt;200 Accepted&lt;/code&gt; for a replacement of an existing resource or a &lt;code&gt;201 Created&lt;/code&gt; when a resource has been created.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;HTTP/1.1 200 Accepted
+
+{
+  &amp;quot;id&amp;quot;: &amp;quot;ID&amp;quot;,
+  &amp;quot;href&amp;quot;: &amp;quot;/resources/ID&amp;quot;,
+  &amp;quot;some&amp;quot;: &amp;quot;some new data&amp;quot;,
+  &amp;quot;other&amp;quot;: &amp;quot;some other new data&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;h2 id=&quot;deleting-a-resource&quot;&gt;Deleting a resource&lt;/h2&gt;
+&lt;p&gt;And finally, to delete a resource, the request is &lt;code&gt;DELETE /resources/ID&lt;/code&gt; without a body. If everything is OK, the server will return a &lt;code&gt;200 Accepted&lt;/code&gt;. If there’s something wrong, it will return an error like &lt;code&gt;404 Not Found&lt;/code&gt; if the resource does not exist or a &lt;code&gt;403 Forbidden&lt;/code&gt; if the user is not allowed to delete that resource.&lt;/p&gt;
+
+&lt;h2 id=&quot;but-why-explaining-all-that-i-want-to-work-with-multiple-resources&quot;&gt;But why explaining all that? I want to work with multiple resources!&lt;/h2&gt;
+
+&lt;p&gt;To work with multiple resources with a REST APIs, you definitely need to know how to work properly with a single one. This quick reminder is there to show how we use the HTTP protocol in REST APIs to express what we want to do and what happened in &lt;strong&gt;a clear and consistent way&lt;/strong&gt; when working with a single resource:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the URI define which resource we are using&lt;/li&gt;
+  &lt;li&gt;the HTTP method express what we want to do&lt;/li&gt;
+  &lt;li&gt;the HTTP response status explain what happened&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now we’ll see how continue to do so when working with multiple resources.&lt;/p&gt;
+
+&lt;h1 id=&quot;same-action-on-resources-of-the-same-type&quot;&gt;Same action on resources of the same type&lt;/h1&gt;
+
+&lt;p&gt;So what if I want to &lt;code&gt;PATCH /resources/ID1&lt;/code&gt; and &lt;code&gt;PATCH /resources/ID2&lt;/code&gt; at the same time? When it comes to do one thing with multiple resources of the same type all at once:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;We send a request providing:
+    &lt;ul&gt;
+      &lt;li&gt;the &lt;strong&gt;type&lt;/strong&gt; of &lt;strong&gt;all&lt;/strong&gt; resources&lt;/li&gt;
+      &lt;li&gt;the &lt;strong&gt;action&lt;/strong&gt; which will be applied to all these resources&lt;/li&gt;
+      &lt;li&gt;the &lt;strong&gt;identified&lt;/strong&gt; data for &lt;strong&gt;all&lt;/strong&gt; resources&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;We expect &lt;strong&gt;a&lt;/strong&gt; response providing the result for &lt;strong&gt;each&lt;/strong&gt; resource containing exactly the same information as if we had made a single request&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;a-request-containing-multiple-resources&quot;&gt;A request containing multiple resources&lt;/h2&gt;
+
+&lt;p&gt;To tell the resources type we’re working with, we will use the endpoint corresponding to a collection of resources, for example &lt;code&gt;/resources&lt;/code&gt; or &lt;code&gt;/users/bob/friends&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To identify the action we want to apply on the resources we’ll simply use the matching HTTP verb:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;GET /resources&lt;/code&gt; to get multiple resources&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;POST /resources&lt;/code&gt; to create new resources&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;PATCH /resources&lt;/code&gt; to update multiple resources&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;PUT /resources&lt;/code&gt; to replace multiple resources&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;DELETE /resources&lt;/code&gt; to delete multiple resources&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;How to provide resources data and identifier will slightly vary depending on the action.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-multiple-resources&quot;&gt;Create multiple resources&lt;/h3&gt;
+
+&lt;p&gt;To provide all needed information for a creation, we have to send an array of items containing a unique identifier determined by the consumer (&lt;code&gt;id&lt;/code&gt;) and the resource’s data (&lt;code&gt;body&lt;/code&gt;):&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;[
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;CREATION1&amp;quot;,
+    &amp;quot;body&amp;quot;: {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}
+  },
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;CREATION2&amp;quot;,
+    &amp;quot;body&amp;quot;: {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}
+  }
+]&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;It can also be done with a key/value map, the resource’s ID being the key and its data the value:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{
+  &amp;quot;CREATION1&amp;quot; : {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;},
+  &amp;quot;CREATION2&amp;quot; : {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;Receiving these data with a &lt;code&gt;POST /resources&lt;/code&gt; request, the server will create the 2 resources provided. The provided &lt;code&gt;id&lt;/code&gt; will be used in the response to identify the response corresponding to this resource.&lt;/p&gt;
+
+&lt;h3 id=&quot;update-or-replace-multiple-resources&quot;&gt;Update or replace multiple resources&lt;/h3&gt;
+&lt;p&gt;To update or replace multiple resources, it’s exactly the same thing, besides the value of the resource’s id, which will be the one we would have use for a single resource (&lt;code&gt;/resources/ID&lt;/code&gt;).&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{
+  &amp;quot;ID1&amp;quot; : {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;},
+  &amp;quot;ID2&amp;quot; : {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;Receiving these data with a &lt;code&gt;PATCH /resources&lt;/code&gt; request, the server will execute both &lt;code&gt;PATCH /resources/ID1&lt;/code&gt; and &lt;code&gt;PATCH /resources/ID2&lt;/code&gt; (it works the same with &lt;code&gt;PUT&lt;/code&gt;). Just like with &lt;code&gt;POST&lt;/code&gt;, the provided ids will be used to identify each response.&lt;/p&gt;
+
+&lt;h3 id=&quot;get-or-delete-multiple-resources&quot;&gt;Get or delete multiple resources&lt;/h3&gt;
+&lt;p&gt;To get or delete multiple resources we will again use the resources ids but as a &lt;code&gt;GET&lt;/code&gt; or &lt;code&gt;DELETE&lt;/code&gt; request does not have a body, they will be provided in a query parameter like this &lt;code&gt;DELETE /resources?ids=ID1,ID2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-response-containing-responses&quot;&gt;A response containing responses&lt;/h2&gt;
+
+&lt;p&gt;A response to such a request will have to contain exactly the same data we would have had doing single calls. We need to provide a response containing multiple responses, how can we do that?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;One Status Code to bring them all and in the lightness bind them&lt;br /&gt;
+&lt;em&gt;The Lord of the HTTP Status Codes&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The 207 HTTP status code is exactly what we’re looking for:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The 207 (Multi-Status) status code provides status for multiple independent operations&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This status has been defined by &lt;a href=&quot;https://tools.ietf.org/html/rfc4918#section-11.1&quot;&gt;RFC 4918&lt;/a&gt; &lt;em&gt;HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV)&lt;/em&gt;. Here’s an example of a WebDAV 207 response when deleting some resources:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-xml&quot;&gt;&lt;code&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot; ?&amp;gt;
+&amp;lt;d:multistatus xmlns:d=&amp;quot;DAV:&amp;quot;&amp;gt;
+  &amp;lt;d:response&amp;gt;
+    &amp;lt;d:href&amp;gt;http://www.example.com/container/resource3&amp;lt;/d:href&amp;gt;
+    &amp;lt;d:status&amp;gt;HTTP/1.1 423 Locked&amp;lt;/d:status&amp;gt;
+    &amp;lt;d:error&amp;gt;&amp;lt;d:lock-token-submitted/&amp;gt;&amp;lt;/d:error&amp;gt;
+  &amp;lt;/d:response&amp;gt;
+  &amp;lt;d:response&amp;gt;
+    &amp;lt;d:href&amp;gt;http://www.example.com/container/resource4&amp;lt;/d:href&amp;gt;
+    &amp;lt;d:status&amp;gt;HTTP/1.1 200 OK&amp;lt;/d:status&amp;gt;
+  &amp;lt;/d:response&amp;gt;
+&amp;lt;/d:multistatus&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;div&gt;
+      &lt;img src=&quot;/images/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/whatthehellisthat.gif&quot; /&gt;
+      
+    &lt;/div&gt;
+
+&lt;p&gt;Oops, sorry for the XML, it’s only to show that a WebDAV &lt;em&gt;207&lt;/em&gt; response contains a list of response. Each of this response point to a resource (href) and contains also the response itself, how could it look in a less frightening JSON way:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;[
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;ID1&amp;quot;,
+    &amp;quot;status&amp;quot;: &amp;quot;201&amp;quot;,
+    &amp;quot;headers&amp;quot;: [
+      {&amp;quot;header&amp;#39;s name&amp;quot;: &amp;quot;header&amp;#39;s value&amp;quot;}
+    ],
+    &amp;quot;body&amp;quot;: { &amp;quot;the&amp;quot;: &amp;quot;response&amp;#39;s body&amp;quot;}
+  },
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;ID2&amp;quot;,
+    &amp;quot;status&amp;quot;: &amp;quot;400&amp;quot;,
+    &amp;quot;headers&amp;quot;: [
+      {&amp;quot;header&amp;#39;s name&amp;quot;: &amp;quot;header&amp;#39;s value&amp;quot;}
+    ],
+    &amp;quot;body&amp;quot;: { &amp;quot;the&amp;quot;: &amp;quot;response&amp;#39;s body&amp;quot;}
+  }
+]&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;A 207 will response will contain a list of responses, each response containing:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;An identifier (&lt;code&gt;id&lt;/code&gt;) matching the one provided in the request&lt;/li&gt;
+  &lt;li&gt;The HTTP response’s data composed of a &lt;code&gt;status&lt;/code&gt;, &lt;code&gt;headers&lt;/code&gt; and a &lt;code&gt;body&lt;/code&gt;. These data are exactly the same we would have received for a single call.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note that we can also use a map in which the keys are the responses identifiers:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{
+  &amp;quot;ID1&amp;quot;: {
+    &amp;quot;status&amp;quot;: &amp;quot;201&amp;quot;,
+    &amp;quot;headers&amp;quot;: [
+      {&amp;quot;header&amp;#39;s name&amp;quot;: &amp;quot;header&amp;#39;s value&amp;quot;}
+    ],
+    &amp;quot;body&amp;quot;: { &amp;quot;the&amp;quot;: &amp;quot;response&amp;#39;s body&amp;quot;}
+  },
+  &amp;quot;ID2&amp;quot;: {
+    &amp;quot;status&amp;quot;: &amp;quot;400&amp;quot;,
+    &amp;quot;headers&amp;quot;: [
+      {&amp;quot;header&amp;#39;s name&amp;quot;: &amp;quot;header&amp;#39;s value&amp;quot;}
+    ],
+    &amp;quot;body&amp;quot;: { &amp;quot;the&amp;quot;: &amp;quot;response&amp;#39;s body&amp;quot;}
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;We could even match request and response based on position in the list.&lt;/p&gt;
+
+&lt;h2 id=&quot;two-levels-of-error&quot;&gt;Two levels of error&lt;/h2&gt;
+
+&lt;p&gt;In that case, we must be aware that there are two types of errors, the one concerning one or more of the resources and the one concerning the &lt;em&gt;multiple&lt;/em&gt; request itself.&lt;/p&gt;
+
+&lt;p&gt;For errors concerning the action on each resource), the HTTP status returned by the server will be a 207 and each sub-response will contains the status for each sub-request (as explained in previous paragraph).&lt;/p&gt;
+
+&lt;p&gt;For errors concerning the main request (misspelled query parameter for DELETE, or invalid body map/list structure for example), the server may return a &lt;em&gt;400 Bad Request&lt;/em&gt; for example.&lt;/p&gt;
+
+&lt;h2 id=&quot;single-and-multiple-creations-with-the-same-endpoint&quot;&gt;Single and multiple creations with the same endpoint&lt;/h2&gt;
+
+&lt;p&gt;Note that &lt;code&gt;POST /resources&lt;/code&gt; was supposed to be used to create a single resource. If we want to handle the single/multiple duality we have two options:&lt;/p&gt;
+
+&lt;h3 id=&quot;use-a-listmap-for-both-case&quot;&gt;Use a list/map for both case&lt;/h3&gt;
+
+&lt;p&gt;The input is exactly the same for 1 or more resources, we will only provide a single one item to create a single resource.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{
+  &amp;quot;CREATION1&amp;quot; : {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;The server’s response should be always be the one described earlier for multiple creations even if there’s only a single item.&lt;/p&gt;
+
+&lt;h3 id=&quot;accept-both-a-listmap-and-single-object&quot;&gt;Accept both a list/map and single object&lt;/h3&gt;
+
+&lt;p&gt;The input for a single resource contains only the resource’s data:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;The server response will be the one expected for a single creation.&lt;/p&gt;
+
+&lt;p&gt;The input for multiple resource contains a list/map:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{
+  &amp;quot;CREATION1&amp;quot; : {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}
+  &amp;quot;CREATION2&amp;quot; : {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;The server response will be the one expected for a multiple creations as seen earlier.&lt;/p&gt;
+
+&lt;h1 id=&quot;different-actions-on-resources-of-the-same-type&quot;&gt;Different actions on resources of the same type&lt;/h1&gt;
+&lt;p&gt;What if we want to &lt;code&gt;DELETE /resources/ID1&lt;/code&gt; and &lt;code&gt;PATCH /resources/ID2&lt;/code&gt; at the same time? As it is an action that impacts the data in various way we should use the &lt;code&gt;POST&lt;/code&gt; HTTP verb. Concerning the URI, we have two options, use &lt;code&gt;/resources&lt;/code&gt; or create a specific resources for this use case like &lt;code&gt;/resource-modifications&lt;/code&gt; for example. The request will be then something like &lt;code&gt;POST /resources&lt;/code&gt; or &lt;code&gt;POST /resource-modifications&lt;/code&gt; and we will have to provide the action (&lt;code&gt;method&lt;/code&gt;) for each resource:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;[
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;ID1&amp;quot;,
+    &amp;quot;method&amp;quot;: &amp;quot;DELETE&amp;quot;
+  },
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;ID2&amp;quot;,
+    &amp;quot;method&amp;quot;: &amp;quot;PATCH&amp;quot;,
+    &amp;quot;body&amp;quot;: {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}
+  }
+]&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;The server will do &lt;code&gt;DELETE /resources/ID1&lt;/code&gt; and &lt;code&gt;PATCH /resources/ID2&lt;/code&gt; and the response will be a &lt;em&gt;207&lt;/em&gt; using the structure using the provided &lt;code&gt;id&lt;/code&gt; as seen previously in his post.&lt;/p&gt;
+
+&lt;h1 id=&quot;different-actions-on-resources-of-different-types&quot;&gt;Different actions on resources of different types&lt;/h1&gt;
+&lt;p&gt;What if I want to do &lt;code&gt;DELETE /resources/ID1&lt;/code&gt; and &lt;code&gt;PATCH /another-resources/ID2&lt;/code&gt; at the same time?&lt;/p&gt;
+
+&lt;div&gt;
+      &lt;img src=&quot;/images/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/waitwhat.gif&quot; /&gt;
+      
+    &lt;/div&gt;
+
+&lt;p&gt;This is really nasty and definitely not REST, but it can be useful for &lt;a href=&quot;https://www.infoq.com/articles/api-facades&quot;&gt;backend for frontend or experience API&lt;/a&gt; for example.&lt;/p&gt;
+
+&lt;p&gt;To do that we’ll need to &lt;code&gt;POST&lt;/code&gt; data on a specific endpoint which could something like &lt;code&gt;/batch&lt;/code&gt;, &lt;code&gt;/bulk&lt;/code&gt; or even &lt;code&gt;/&lt;/code&gt; and we will have to add a &lt;code&gt;uri&lt;/code&gt; and replace the &lt;code&gt;id&lt;/code&gt; value by something provided by the consumer:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;[
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;ACTION1&amp;quot;,
+    &amp;quot;uri&amp;quot;: &amp;quot;/resources/ID1&amp;quot;,
+    &amp;quot;method&amp;quot;: &amp;quot;DELETE&amp;quot;
+  },
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;ACTION2&amp;quot;,
+    &amp;quot;uri&amp;quot;: &amp;quot;/another-resources/ID2&amp;quot;,
+    &amp;quot;method&amp;quot;: &amp;quot;PATCH&amp;quot;,
+    &amp;quot;body&amp;quot;: {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}
+  }
+  ,
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;ACTION3&amp;quot;,
+    &amp;quot;uri&amp;quot;: &amp;quot;/resources&amp;quot;,
+    &amp;quot;method&amp;quot;: &amp;quot;POST&amp;quot;,
+    &amp;quot;body&amp;quot;: {&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}
+  }
+]&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;Actions number 1 is &lt;code&gt;DELETE /resources/ID1&lt;/code&gt; and its result will be identified in the 207 response by the id &lt;code&gt;ACTION1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To see a complete example you should take a look at &lt;a href=&quot;https://developers.facebook.com/docs/graph-api/making-multiple-requests&quot;&gt;Facebook’s Graph API batch endpoint&lt;/a&gt; documentation. Note that this batch endpoint match request/response based on index and does far more than just processing a bunch of request.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="posts" /><category term="API Design Tips And Tricks" /><summary type="html">Getting, creating, updating or deleting multiple resources in a single API call is a common need in REST APIs. But how to achieve that in a consistent way accomodating how we work with a single resource and REST principles? This is what we’ll see in this post.</summary></entry><entry><title type="html">OpenAPI Visual Documentation updated with 3.0.0-rc0</title><link href="https://apihandyman.io/openapi-visual-documentation-updated-with-3.0.0-rc0/" rel="alternate" type="text/html" title="OpenAPI Visual Documentation updated with 3.0.0-rc0" /><published>2017-03-19T00:00:00+00:00</published><updated>2017-03-19T00:00:00+00:00</updated><id>https://apihandyman.io/openapi-visual-documentation-updated-with-3.0.0-rc0</id><content type="html" xml:base="https://apihandyman.io/openapi-visual-documentation-updated-with-3.0.0-rc0/">&lt;p&gt;The &lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;OpenAPI Visual Documentation has been updated&lt;/a&gt;. The new version 3.0.0-rc0 of the OpenAPI specification has been added. The addition brings a fully detailed change log of what has change from version 2.&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;openapi-30&quot;&gt;OpenAPI 3.0&lt;/h1&gt;
 &lt;p&gt;The OpenAPI specification is evolving, the 3.0.0-rc0 implementer draft version has been &lt;a href=&quot;https://www.openapis.org/blog/2017/03/01/openapi-spec-3-implementers-draft-released&quot;&gt;released&lt;/a&gt;.&lt;/p&gt;
@@ -969,221 +1487,4 @@ While discovering what is GraphQL we will see what REST API providers should thi
 
 &lt;p&gt;Here’s the panel video:&lt;/p&gt;
 
-&lt;div class=&quot;embedpad&quot;&gt;&lt;div class=&quot;youtube embedded embed-responsive embed-responsive-16by9&quot;&gt;&lt;iframe width=&quot;740&quot; height=&quot;416&quot; src=&quot;//www.youtube.com/embed/xdJPJ3E-nC8?color=white&amp;amp;theme=light&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talks" /><category term="API Strat" /><category term="API Strat Boston" /><category term="Conference" /><category term="Strategy" /><summary type="html">Shortly before API Strat, I have participated to an API experts panel on Developing an API Strategy for 2017 organized by Smartbear with Laura Heritage, Matt Bernier, Ole Lensmar and Tony Tam hosted by John Purcell.</summary></entry><entry><title type="html">People First: A not so gonzo API Strat Boston 2016 coverage</title><link href="https://apihandyman.io/people-first-a-not-so-gonzo-api-strat-boston-2016-coverage/" rel="alternate" type="text/html" title="People First: A not so gonzo API Strat Boston 2016 coverage" /><published>2016-11-19T18:52:39+00:00</published><updated>2016-11-19T18:52:39+00:00</updated><id>https://apihandyman.io/people-first-a-not-so-gonzo-api-strat-boston-2016-coverage</id><content type="html" xml:base="https://apihandyman.io/people-first-a-not-so-gonzo-api-strat-boston-2016-coverage/">&lt;p&gt;The last &lt;a href=&quot;http://boston2016.apistrat.com/&quot;&gt;API Strat 2016&lt;/a&gt; day, after the last talk, a man living in kentucky asked me something like &lt;em&gt;What is the one thing you will remember about this conference?&lt;/em&gt;. I answered something like &lt;em&gt;People First&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;People First. This is definitely what sticks in my mind after this conference.&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;What you can learn at &lt;a href=&quot;https://twitter.com/hashtag/apistrat?src=hash&quot;&gt;#apistrat&lt;/a&gt; is that (API) technology is not only about machines but also and most importantly about humans&lt;/p&gt;&amp;mdash; API Handyman (@apihandyman) &lt;a href=&quot;https://twitter.com/apihandyman/status/794546772219691008&quot;&gt;November 4, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;But this is not the only thing.&lt;/p&gt;
-
-&lt;p&gt;Let’s go back a few days earlier …&lt;/p&gt;
-
-&lt;h1 id=&quot;the-british-api-nerds-are-coming&quot;&gt;The &lt;del&gt;British&lt;/del&gt; API nerds are coming&lt;/h1&gt;
-&lt;p&gt;I got off the plane with my family around noon the friday prior the event. It was freezing. It was raining. I didn’t cared. There I was in Boston. Not only to visit this wonderful city and its neighborhoods, I was there for &lt;a href=&quot;http://boston2016.apistrat.com/&quot;&gt;APIStrat 2016&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;It was going to be an awesome trip.&lt;br /&gt;
-It was going to be an awesome conference.&lt;/p&gt;
-
-&lt;p&gt;After a few days of tourism, a &lt;a href=&quot;http://blog.smartbear.com/software-quality/api-strategy-panel-2017/&quot;&gt;panel discussion&lt;/a&gt; and the speakers dinner, it was time to go to API Strat.&lt;/p&gt;
-
-&lt;p&gt;Thursday. 8 am. I grabbed my speaker badge and the API Strat 2016 official t-shirt.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/apievangelist&quot;&gt;@apievangelist&lt;/a&gt; Kin Lane fronts the History/API mashup t-shirt at &lt;a href=&quot;https://twitter.com/hashtag/APIStrat?src=hash&quot;&gt;#APIStrat&lt;/a&gt; &lt;a href=&quot;https://t.co/0MmQsvtTOm&quot;&gt;pic.twitter.com/0MmQsvtTOm&lt;/a&gt;&lt;/p&gt;&amp;mdash; David J. Biesack (@davidbiesack) &lt;a href=&quot;https://twitter.com/davidbiesack/status/794167619121250304&quot;&gt;November 3, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;One if by REST&lt;br /&gt;
-Two if by SOAP&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This t-shirt was a bit cryptic for a foreigner like me. It seems that I was not the only one in that case.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Explaining the &lt;a href=&quot;https://twitter.com/apistrat&quot;&gt;@apistrat&lt;/a&gt; tee shirt (since many didn&amp;#39;t raise their hands): &lt;a href=&quot;https://t.co/sOqd9TtqgJ&quot;&gt;https://t.co/sOqd9TtqgJ&lt;/a&gt;&lt;/p&gt;&amp;mdash; Lorinda Brandon (@lindybrandon) &lt;a href=&quot;https://twitter.com/lindybrandon/status/794172064320131072&quot;&gt;November 3, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;Boston is a city steeped in history and it seemed that the american revolution hero &lt;a href=&quot;https://en.wikipedia.org/wiki/Paul_Revere&quot;&gt;Paul Revere&lt;/a&gt; or the american poet &lt;a href=&quot;https://en.wikipedia.org/wiki/Paul_Revere%27s_Ride&quot;&gt;Henry Wadsworth Longfellow&lt;/a&gt; gave a hand to design this year’s t-shirt. This quote has been inspired by:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;One if by sea&lt;br /&gt;
-Two if by land&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;It was a signal, popularized by Henry Wadsworth Longfellow in his poem &lt;em&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Paul_Revere%27s_Ride&quot;&gt;Paul Revere’s Ride&lt;/a&gt;&lt;/em&gt; that indicated if the british troops were coming by land or by sea in the days before the first military engagement of the American Revolutionary War, the &lt;a href=&quot;https://en.wikipedia.org/wiki/Battles_of_Lexington_and_Concord&quot;&gt;battle of Lexington and Concord&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;In the days before April 18, Revere had instructed Robert Newman, the sexton of the North Church, to send a signal by lantern to alert colonists in Charlestown as to the movements of the troops when the information became known. In what is well known today by the phrase “one if by land, two if by sea”, one lantern in the steeple would signal the army’s choice of the land route while two lanterns would signal the route “by water” across the Charles River&lt;br /&gt;
-Source &lt;a href=&quot;https://en.wikipedia.org/wiki/Paul_Revere&quot;&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Whether by sea or by land, the API nerds were coming. The API community was gathering in Boston. Not for a battle of course, but for a &lt;strong&gt;very&lt;/strong&gt; friendly and inclusive conference. Speakers and attendees. Experts and beginners. Old friends and total strangers. All these people gathered to talk about APIs together whatever their so-called status. Finally, everybody got back home with new lessons learned, new ideas and most important: new friends.&lt;/p&gt;
-
-&lt;h1 id=&quot;this-is-bowling-there-are-rules&quot;&gt;This is bowling, there are rules&lt;/h1&gt;
-&lt;p&gt;So many different people gathered in a friendly and inclusive event, what could go wrong?
-In an ideal world, nothing. But we do not live in an ideal world.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/hashtag/APIStrat?src=hash&quot;&gt;#APIStrat&lt;/a&gt; is enforcing its code of conduct 👍🏼👍🏼👍🏼👍🏼👍🏼👍🏼👍🏼👍🏼👍🏼👍🏼&lt;/p&gt;&amp;mdash; 👩🏻‍💻✈️📄 (@sarahjeong) &lt;a href=&quot;https://twitter.com/sarahjeong/status/794166165278982144&quot;&gt;November 3, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;Thursday 9 am. Main Stage. The staff announced that someone has been expelled from the conference (the conference has started the day before with workshops, speakers dinner and attendees meetup).&lt;/p&gt;
-
-&lt;p&gt;In case you missed it, API Strat has &lt;a href=&quot;http://boston2016.apistrat.com/code-of-conduct/&quot;&gt;a code of conduct&lt;/a&gt;.
-A code of conduct?&lt;br /&gt;
-Yes, a code of conduct:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;A Code of Conduct is a public statement that sets the ground rules for participating in an event
-&lt;a href=&quot;https://www.ashedryden.com/blog/codes-of-conduct-101-faq&quot;&gt;Ashe Dryden&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Everybody was now aware that this code was NOT a &lt;a href=&quot;https://en.wikipedia.org/wiki/Paper_tiger&quot;&gt;paper tiger&lt;/a&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;likes attending &lt;a href=&quot;https://twitter.com/hashtag/APIStrat?src=hash&quot;&gt;#APIStrat&lt;/a&gt; because &lt;a href=&quot;https://twitter.com/kinlane&quot;&gt;@kinlane&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/njyx&quot;&gt;@njyx&lt;/a&gt; have always taken having an inclusive event seriously.&lt;/p&gt;&amp;mdash; wirehead (@wirehead) &lt;a href=&quot;https://twitter.com/wirehead/status/794167999204823040&quot;&gt;November 3, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;This is sad, not for the person who has been expelled, but for the person who had to suffer inappropriate behavior.&lt;br /&gt;
-This is good, not because someone had to report an inappropriate behavior, but because someone was able to report an inappropriate behavior and because the API Strat staff reacted promptly and efficiently.&lt;/p&gt;
-
-&lt;p&gt;Next time you attend an event, read the code of conduct and don’t be a jerk.
-Next time you get out of your home, don’t be a jerk, even if there’s no code of conduct.&lt;/p&gt;
-
-&lt;h1 id=&quot;selective-memory&quot;&gt;Selective memory&lt;/h1&gt;
-&lt;p&gt;Thusday 9:15 am. Main Stage. The show began. Here’s what stood out for me.&lt;/p&gt;
-
-&lt;h2 id=&quot;consuming-api-is-mainstream-and-you-can-make-money-out-of-it&quot;&gt;Consuming API is mainstream and you can make money out of it&lt;/h2&gt;
-&lt;p&gt;Obviously we, API nerds, are accustomed to breath, eat, sleep and live API, but &lt;a href=&quot;https://twitter.com/TheMarkONeill&quot;&gt;Mark O’Neil&lt;/a&gt; showed us that APIs are becoming maintream. They are so incredibily mainstream that anyone use them and therefore these APIs become a vector of shadow IT (for the better or the worse).&lt;br /&gt;
-We are so focused on providing APIs, even if we want to provide good ones, that we don’t see that consuming API is more common than exposing them and that there’s still an entire business to create there: helping people to consume API at large scale.&lt;/p&gt;
-
-&lt;h2 id=&quot;api-business-strategy-and-monetization&quot;&gt;API Business Strategy and Monetization&lt;/h2&gt;
-&lt;p&gt;Consuming API is mainstream so providing API is more and more important. You may even, like &lt;a href=&quot;https://twitter.com/susandanziger&quot;&gt;Susan Danziger&lt;/a&gt;, face unexpected API challenges. Ziggio was a recrutment platform before becoming a video API service. They had to build a video recording component (with an API) and realize that it was a wonderful product. This product allowed Ziggio to turn to an API based model company and turn its competitor into customers.&lt;/p&gt;
-
-&lt;p&gt;Once you provide API, you’ll have to find the right monetization model. As &lt;a href=&quot;https://twitter.com/TheMarkONeill&quot;&gt;Mark O’Neil&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/susandanziger&quot;&gt;Susan Danziger&lt;/a&gt; stated: API monetization doesn’t just mean charging for API calls. Finding a good model is hard. For Ziggio, the success came from the &lt;em&gt;Mickey Mouse&lt;/em&gt; model, based on how Disney was monetizing its licences.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&amp;quot;Mickey model&amp;quot;: Consumers pay for feature tier, pay for overages. &lt;a href=&quot;https://t.co/tAu6W6D6eF&quot;&gt;https://t.co/tAu6W6D6eF&lt;/a&gt; &lt;a href=&quot;https://twitter.com/susandanziger&quot;&gt;@susandanziger&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/APIStrat?src=hash&quot;&gt;#APIStrat&lt;/a&gt;&lt;/p&gt;&amp;mdash; Allen Clayton (@ajclayton) &lt;a href=&quot;https://twitter.com/ajclayton/status/794178601998491648&quot;&gt;November 3, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;Whatever the model you choose, allways give the means to let your customers know what the bill will be (with a simulator for instance).&lt;/p&gt;
-
-&lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;/h2&gt;
-&lt;p&gt;Architecture is not a matter of belief, it’s a matter of context and purpose. &lt;a href=&quot;https://twitter.com/emckean&quot;&gt;Erin McKean&lt;/a&gt; reminded us that in a very entertaining and insightful talk which showed us how the &lt;a href=&quot;https://www.wordnik.com/&quot;&gt;Wordnik&lt;/a&gt; architecture was being simplified. When designing architecture you MUST know the constraints to make the right decision. &lt;a href=&quot;https://twitter.com/launchany&quot;&gt;James Higginbotham&lt;/a&gt; also told us to step back from digital transformation focusing only on technology. We need to choose tools wisely with a purpose, a goal and not just because it’s cool and shining new (&lt;em&gt;who said GraphQL and microservices?&lt;/em&gt;).&lt;/p&gt;
-
-&lt;p&gt;The future of API architecture’s scalability lies in event driven architecture instead of request driven architecture told us &lt;a href=&quot;https://twitter.com/TheMarkONeill&quot;&gt;Mark O’Neil&lt;/a&gt;. But it’s mainstream present lies in managed service like AWS API Gateway and Lambda as told us &lt;a href=&quot;https://twitter.com/emckean&quot;&gt;Erin McKean&lt;/a&gt;: these solutions lower heavily the knowledge and expertise needed to handle scalability. In the last month zero time was spent on this new architecture, and it costs less money.&lt;/p&gt;
-
-&lt;p&gt;The future is dark for big API management solutions: &lt;a href=&quot;https://twitter.com/TheMarkONeill&quot;&gt;Mark O’Neil&lt;/a&gt; told us that the microgateway , a small low-footprint, scriptable, API gateway in nginx or node.js is becoming mainstream.&lt;/p&gt;
-
-&lt;h2 id=&quot;design--governance&quot;&gt;Design &amp;amp; Governance&lt;/h2&gt;
-&lt;p&gt;When you provide an API, you don’t do that &lt;em&gt;just because&lt;/em&gt;. You do that hoping that people will use it. So don’t be a jerk: take care of what you provide and how you provide it.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;My parts are showing?&lt;br /&gt;
-&lt;em&gt;C3PO&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Do you know how your microwave oven works? &lt;a href=&quot;https://en.wikipedia.org/wiki/Microwave_oven&quot;&gt;Probably not&lt;/a&gt;. But, still, you can use it by using its simple interface which do not mirror its internal organization. This is the perfect example of an &lt;em&gt;outside in&lt;/em&gt; design approach.&lt;/p&gt;
-
-&lt;p&gt;But the design road to hell is paved with good intentions. The desire of perfection will be hit by reality. As &lt;a href=&quot;https://twitter.com/mbernier&quot;&gt;Matt Bernier&lt;/a&gt; tolds us: &lt;em&gt;People will not care about a bad designed canonical REST API&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you design API, listen to &lt;a href=&quot;https://twitter.com/launchany&quot;&gt;James Higginbotham&lt;/a&gt; “&lt;em&gt;Consumers don’t care about what’s behind the API. Be outside in and not inside out&lt;/em&gt;” and &lt;a href=&quot;https://twitter.com/TheMarkONeill&quot;&gt;Mark O’Neil&lt;/a&gt; “&lt;em&gt;Don’t dump your internal data model on your mobile clients!&lt;/em&gt;” &lt;em&gt;(who said GraphQL?)&lt;/em&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Gordian knot of API design: The Conway&amp;#39;s Law &lt;a href=&quot;https://twitter.com/libel_vox&quot;&gt;@libel_vox&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/APIStrat?src=hash&quot;&gt;#APIStrat&lt;/a&gt; &lt;a href=&quot;https://t.co/1WkZAUcQcX&quot;&gt;https://t.co/1WkZAUcQcX&lt;/a&gt; &lt;a href=&quot;https://t.co/HQYLYxS6pO&quot;&gt;pic.twitter.com/HQYLYxS6pO&lt;/a&gt;&lt;/p&gt;&amp;mdash; API Handyman (@apihandyman) &lt;a href=&quot;https://twitter.com/apihandyman/status/794212165808951296&quot;&gt;November 3, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;And don’t dare to think that the outside in approach is only a technical matter or you may see a snarling &lt;a href=&quot;https://twitter.com/libel_vox&quot;&gt;Matthew Reinbold&lt;/a&gt; looking at you with fierce eyes. He reminded us that &lt;a href=&quot;https://en.wikipedia.org/wiki/Conway%27s_law&quot;&gt;Conway’s law&lt;/a&gt; waits in the darkness like a sword of Damocles hanging upon your API design. Internal organization is different from external perception and mirroring it in an API may not be the best idea. &lt;a href=&quot;https://twitter.com/launchany&quot;&gt;James Higginbotham&lt;/a&gt; even urge enterprises to get rid of project based IT and embrace product based IT. Splitting resource on multiple teams or building separate APIs from each entity in a big group will not provide a unifed view and consistent, understandable and usable API.&lt;/p&gt;
-
-&lt;p&gt;Beyond the risk of having people NOT using your API, you may even loose customers because your API sucks. &lt;a href=&quot;https://twitter.com/SmartBearAmber&quot;&gt;Amber Fallon&lt;/a&gt; asked us: “&lt;em&gt;what will happen when a bank provides a terrible API which is used in a popular pfm (personal finance management) app with other banks API?&lt;/em&gt;”, customers may just switch to the bank offering the best experience with this pfm application.&lt;/p&gt;
-
-&lt;p&gt;You get it now. You have to take care of your design and do it the best way. So, as &lt;a href=&quot;https://twitter.com/JeremiahLee&quot;&gt;Jeremiah Lee&lt;/a&gt; told us: work HARD on API design so it will be easy to use on the client side.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;DX = SPEC + DOC + LIB&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;API design is only an ingredient in the developer experience (DX) recipe. Take care of all aspects of API consuming. As &lt;a href=&quot;https://twitter.com/mbernier&quot;&gt;Matt Bernier&lt;/a&gt; explained, developer experience is a combination of API specification documentation and client libraries.&lt;/p&gt;
-
-&lt;p&gt;Once designed the hard work is not over. Your API WILL evolve. You WILL introduce breaking changes. You’ll have to find an incentive to make your consumers move to the new version of your API, especially for technical upgrades.&lt;a href=&quot;https://twitter.com/JeremiahLee&quot;&gt;Jeremiah Lee&lt;/a&gt; showed us that when migrating from Oauth1 to Oauth2, introducing new functionnalities only in the Oauth2 version of the Fitbit API was a successful strategy.&lt;/p&gt;
-
-&lt;p&gt;Even if developers suck at designing API (&lt;em&gt;just kidding&lt;/em&gt;), some of your dev may have good ideas. At Fitbit, developers can submit API modification by making a pull request on an OpenAPI specification.&lt;/p&gt;
-
-&lt;h2 id=&quot;law-and-order&quot;&gt;Law and Order&lt;/h2&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Stoked to be learning more about Oracle v Google from &lt;a href=&quot;https://twitter.com/sarahjeong&quot;&gt;@sarahjeong&lt;/a&gt; at &lt;a href=&quot;https://twitter.com/hashtag/apistrat?src=hash&quot;&gt;#apistrat&lt;/a&gt; &lt;a href=&quot;https://t.co/h8tow5oY2I&quot;&gt;pic.twitter.com/h8tow5oY2I&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kin Lane (@kinlane) &lt;a href=&quot;https://twitter.com/kinlane/status/794295988114640897&quot;&gt;November 3, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;Journalist by trade, lawyer by training, &lt;a href=&quot;https://twitter.com/sarahjeong&quot;&gt;Sarah Jeong&lt;/a&gt; bringed us the story of the epic Oracle vs Google battle with her amazing talk &lt;em&gt;You wouldn’t reimplement an API&lt;/em&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/hashtag/apistrat?src=hash&quot;&gt;#apistrat&lt;/a&gt; &lt;a href=&quot;https://twitter.com/sarahjeong&quot;&gt;@sarahjeong&lt;/a&gt; made a timeline! &lt;a href=&quot;https://t.co/IowcwmOqH3&quot;&gt;pic.twitter.com/IowcwmOqH3&lt;/a&gt;&lt;/p&gt;&amp;mdash; Heidi @ home (@wiredferret) &lt;a href=&quot;https://twitter.com/wiredferret/status/794299964407107585&quot;&gt;November 3, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;This appalling and insightful story reminded us that explaining what is an API to non technical people (the jury), especially in a trial, is quite a challenge. Did the jury understand? Probably not. They may have abandoned after trying to read source code with notepad. &lt;em&gt;Don’t get me wrong, the problem is not with the jury but with what they have faced&lt;/em&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;The key to the Oracle vs Google trial seems to be the understanding of what an API is. Want to copyright these? no. &lt;a href=&quot;https://twitter.com/sarahjeong&quot;&gt;@sarahjeong&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/APIStrat?src=hash&quot;&gt;#APIStrat&lt;/a&gt; &lt;a href=&quot;https://t.co/iZ08qNtm4U&quot;&gt;pic.twitter.com/iZ08qNtm4U&lt;/a&gt;&lt;/p&gt;&amp;mdash; API Handyman (@apihandyman) &lt;a href=&quot;https://twitter.com/apihandyman/status/794296871665729536&quot;&gt;November 3, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;Finally Google won… for the time being. But what are the consequences? Nobody knows.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/hashtag/apistrat?src=hash&quot;&gt;#apistrat&lt;/a&gt; &lt;a href=&quot;https://twitter.com/sarahjeong&quot;&gt;@sarahjeong&lt;/a&gt; tells us some v. Important lessons learned. &lt;a href=&quot;https://t.co/hsgmxwv3K7&quot;&gt;pic.twitter.com/hsgmxwv3K7&lt;/a&gt;&lt;/p&gt;&amp;mdash; Heidi @ home (@wiredferret) &lt;a href=&quot;https://twitter.com/wiredferret/status/794300612984918016&quot;&gt;November 3, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;You can read the full story in &lt;a href=&quot;https://twitter.com/sarahjeong&quot;&gt;Sarah Jeong&lt;/a&gt;’s post &lt;em&gt;&lt;a href=&quot;http://motherboard.vice.com/read/in-google-v-oracle-the-nerds-are-getting-owned&quot;&gt;In Oracle v. Google, a Nerd Subculture Is on Trial&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;chaos-opportunities-and-attention&quot;&gt;Chaos, opportunities and attention&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://twitter.com/mamund&quot;&gt;Mike Amundsen&lt;/a&gt; unleashed a life-saving chaos upon us. He showed us how chaos saved Nintendo from financial ruin.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Alas, Radar Scope was not a hit in America. In fact, it sold only 1,000 units, leaving 2,000 arcade machines with very expensive hardware sitting in Nintendo’s warehouse. The implications were potentially devastating. Nintendo could either give up, and face financial ruin, or it could develop a conversion kit that would turn those cabinets into something marketable. 
-&lt;a href=&quot;http://www.gamasutra.com/view/feature/134790/the_secret_history_of_donkey_kong.php&quot;&gt;The secret history of Donkey Kong by Travis Fahs&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Hiroshi Yamauchi, CEO of Nintendo, chose to give the lead of this last chance project to a young and inexperienced &lt;a href=&quot;https://en.wikipedia.org/wiki/Shigeru_Miyamoto&quot;&gt;Shigeru Miyamoto&lt;/a&gt; … the future creator of Super Mario. Miyamoto created of totally new type of game, Donkey Kong, that was a huge success. He broke all the existing video games rules because he was not aware of them.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;(https://twitter.com/mamund)&quot;&gt;Mike&lt;/a&gt; showed us also us we needed leaders who can maintain stability around chaos. Serendipity needs a fertile ground, we must create openness to enable new ideas. Opportunities will come from the people around us. On the contrary, asking for data and measurements is the best way to stop creative works.&lt;/p&gt;
-
-&lt;p&gt;On a more personal level, &lt;a href=&quot;(https://twitter.com/mamund)&quot;&gt;he&lt;/a&gt; told us that our life is like a lego box and not like a jigsaw that has only one way to get it right. We need to create whitespace for ourselves to think. When working on something, we need a break, we need to do something else to refuel our brain and free it. &lt;em&gt;And &lt;a href=&quot;https://twitter.com/JeremiahLee&quot;&gt;Jeremiah Lee&lt;/a&gt; gave us this whitespace at API Strat! Before his talk he made all the room moving, jumping, running in place, yelling, refueling everyone.&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Cultivating Coders foundation &lt;a href=&quot;https://t.co/CAORmxH05g&quot;&gt;https://t.co/CAORmxH05g&lt;/a&gt;  &lt;a href=&quot;https://twitter.com/CAsh_The3rd&quot;&gt;@CAsh_The3rd&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/APIStrat?src=hash&quot;&gt;#APIStrat&lt;/a&gt; &lt;a href=&quot;https://t.co/o0iXO3W1kO&quot;&gt;pic.twitter.com/o0iXO3W1kO&lt;/a&gt;&lt;/p&gt;&amp;mdash; API Handyman (@apihandyman) &lt;a href=&quot;https://twitter.com/apihandyman/status/794544774703435778&quot;&gt;November 4, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://twitter.com/CAsh_The3rd&quot;&gt;Charles Ashley&lt;/a&gt; told us his story, how he came to create the &lt;a href=&quot;https://cultivatingcoders.com/public_html/foundation/&quot;&gt;Cultivating Coders Foundation&lt;/a&gt;. He reminded us that we shouldn’t take for granted our heavily connected life. In this world, even in developed countries, people still have to go to a library to have access to knowledge.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Are we just &amp;quot;interested&amp;quot; or are we &amp;quot;committed&amp;quot; to addressing our systemic diversity problem in tech? &lt;a href=&quot;https://twitter.com/CAsh_The3rd&quot;&gt;@CAsh_The3rd&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/apistrat?src=hash&quot;&gt;#apistrat&lt;/a&gt; &lt;a href=&quot;https://t.co/MkYCZkf5ax&quot;&gt;pic.twitter.com/MkYCZkf5ax&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kin Lane (@kinlane) &lt;a href=&quot;https://twitter.com/kinlane/status/794544708106199040&quot;&gt;November 4, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;And opportunities heavily depend on what you can access. So &lt;a href=&quot;https://twitter.com/CAsh_The3rd&quot;&gt;he&lt;/a&gt; asked us: &lt;em&gt;are you committed or interested?&lt;/em&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; align=&quot;center&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/apievangelist&quot;&gt;@apievangelist&lt;/a&gt; Kin Lane shares his very personal story with &lt;a href=&quot;https://twitter.com/hashtag/APIStrat?src=hash&quot;&gt;#APIStrat&lt;/a&gt;. &lt;a href=&quot;https://twitter.com/hashtag/important?src=hash&quot;&gt;#important&lt;/a&gt; &lt;a href=&quot;https://t.co/0f7ydxQrrB&quot;&gt;pic.twitter.com/0f7ydxQrrB&lt;/a&gt;&lt;/p&gt;&amp;mdash; David J. Biesack (@davidbiesack) &lt;a href=&quot;https://twitter.com/davidbiesack/status/794634464475353088&quot;&gt;November 4, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-
-&lt;p&gt;My friend, &lt;a href=&quot;https://twitter.com/kinlane&quot;&gt;Kin Lane&lt;/a&gt;, the &lt;a href=&quot;http://apievangelist.com&quot;&gt;API Evangelist&lt;/a&gt;, captured the public attention with an unvarnished talk &lt;em&gt;Drone Recovery In The Attention Economy&lt;/em&gt;. He shared with us his very personal story, leaving me thoughtful on my very existence. I urge you to read this story on the &lt;a href=&quot;https://apievangelist.com/2016/11/04/drone-recovery-in-the-attention-economy/&quot;&gt;API Evangelist blog&lt;/a&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;“Attention” is a noun, but it refers to an action and/or a state of being. Attention is a mental activity. An earnest activity – which I particularly like.
-&lt;a href=&quot;https://apievangelist.com/2016/11/04/drone-recovery-in-the-attention-economy/&quot;&gt;Kin Lane&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Pay attention to yourself, to your life, to your job, to your family, to the people around you.&lt;/p&gt;
-
-&lt;h1 id=&quot;people-first&quot;&gt;People First&lt;/h1&gt;
-&lt;p&gt;Friday 10pm. So there we were the last API nerds standing, having a long but last discussion before flying back home. All topics and items, weither technical or personnal, sticking in my selective memory have something in common. This last discussion was about this common denominator too.&lt;/p&gt;
-
-&lt;p&gt;People.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;No single piece of technology is what truly matters, not even the API, it all depends on what I do with them, and how we empower (or hurt) humans with them. This is a human story. This is my story. It is not a technology story. It is my personal journey. The technology is just one of the tools in my toolbox. 
-&lt;a href=&quot;https://apievangelist.com/2016/11/04/drone-recovery-in-the-attention-economy/&quot;&gt;Kin Lane&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;When we do API (or anything), we must not think code first or API first. We must think people first.
-The people directly involved by our projects. What problem are we solving? Does our architecture/solution can be created and managed easily by people? Does our API/Service/Product is useable by people? People ARE what will make our projects succeed.&lt;/p&gt;
-
-&lt;p&gt;But we also need to think about the people beyond our projects. What do we do to help people around us? Are we committed?&lt;/p&gt;
-
-&lt;p&gt;So maybe in the future will we try to talk less about how we build APIs (but we still need to talk about it) and more about what we (try to) solve with them.&lt;/p&gt;
-
-&lt;p&gt;Thanks to all people involved, it was an awesome trip, it was an awesome conference.&lt;/p&gt;
-
-&lt;p&gt;See you at next API Strat.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Boston Library Photography by &lt;a href=&quot;http://www.misterlapin.com&quot;&gt;Cinzia Dosa Lauret&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="posts" /><category term="API Strat" /><category term="API Strat Boston" /><category term="Conference" /><category term="Code of conduct" /><category term="Architecture" /><category term="Design" /><category term="Governance" /><category term="Strategy" /><category term="Monetization" /><category term="People" /><summary type="html">The last API Strat 2016 day, after the last talk, a man living in kentucky asked me something like What is the one thing you will remember about this conference?. I answered something like People First.
-
-People First. This is definitely what sticks in my mind after this conference.</summary></entry></feed>
+&lt;div class=&quot;embedpad&quot;&gt;&lt;div class=&quot;youtube embedded embed-responsive embed-responsive-16by9&quot;&gt;&lt;iframe width=&quot;740&quot; height=&quot;416&quot; src=&quot;//www.youtube.com/embed/xdJPJ3E-nC8?color=white&amp;amp;theme=light&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talks" /><category term="API Strat" /><category term="API Strat Boston" /><category term="Conference" /><category term="Strategy" /><summary type="html">Shortly before API Strat, I have participated to an API experts panel on Developing an API Strategy for 2017 organized by Smartbear with Laura Heritage, Matt Bernier, Ole Lensmar and Tony Tam hosted by John Purcell.</summary></entry></feed>
