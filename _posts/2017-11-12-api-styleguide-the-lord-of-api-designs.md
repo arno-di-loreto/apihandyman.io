@@ -15,7 +15,10 @@ tags:
 ---
 
 Join Frodo, Gollum and Gandalf on an epic API design adventure.
-In this session, based on my own experience defining and sharing API design common practices in my company and based on the API styles guides that I have collected on [apistylebook.com](http://apistylebook.com), we will discover why we desperately need API style guides and how they can or cannot help us create a smooth API surface for a company.<!--more-->
+In this session, based on my own experience defining and sharing API design common practices in my company and based on the API styles guides that I have collected on [apistylebook.com](http://apistylebook.com), we will discover why we desperately need API style guides and how they can or cannot help us create a smooth API surface for a company.
+
+Very special thanks to [Mister Lapin](https://twitter.com/mrlapindesign) for designing my T-shirt and [Kristof Van Tomme](https://twitter.com/kvantomme) for recording the video with my phone.
+<!--more-->
 
 {% youtube ZUI5gHdhfwk %}
 
