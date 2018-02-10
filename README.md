@@ -25,6 +25,117 @@ bundle install
 ```
 bundle exec jekyll serve
 ```
+# Writing
+
+
+## Creating a new post
+
+To create a new post:
+
+```
+scripts/post.sh "<title>" <optional:category, posts|talks|elsewhere, default: posts> <optional:date, YYYY-MM-DD>
+```
+
+Examples:
+
+```
+scripts/post.sh "Your Awesome Title" talks 2017-09-23
+scripts/post.sh "Your Awesome Title" talks
+scripts/post.sh "Your Awesome Title"
+```
+
+The script will create:
+
+- post branch
+- md file in `_posts`
+- images directory in `images`
+
+Post banner and thumbnail are the same image (`images/<post directory>/thumbnail.png`).
+
+## Set excerpt
+
+```
+This text will be shown on posts list.<!--more-->
+But not this one
+```
+
+## Images
+
+Images are located in `images/<post url>`directory, you only need the relative filename to include them:
+
+```
+{% img file:spock-smash-computer.gif %}
+```
+
+You can add a label to image:
+
+```
+{% img file:swaggereditor-petstore.png label:"Swagger API definition in Swagger Editor" %}
+```
+
+## Embed Tweets
+
+Grab the tweet URL and you're done:
+
+```
+{% twitter https://twitter.com/apihandyman/status/794546772219691008 align=center %}
+```
+
+## Code blocks
+
+Code blocks look like this:
+
+![](_readme/codeblock.png)
+
+What the toolbar buttons do (from left to right):
+
+- the first button (double arrow) is for expanding/shrinking the code block content. This button also appear at the code block's bottom
+- the second button (file icon) opens the file which is shown in code block (when using `codefile`)
+- the third one copy the code block content to clip board
+
+## Youtube and Vimeo Videos
+
+Grab Youtube video id (https://youtu.be/8Q0Yu81rRmU) or Vimeo video id (https://vimeo.com/237468064) and use the appropriate plugin:
+
+```
+{% youtube 8Q0Yu81rRmU %}
+{% vimeo 237468064 %}
+```
+
+## Speakerdeck Slidedecks
+
+Grab slide deck ID from speakerdeck (`data-id` in the embed code you get on speakerdeck.com when clicking on the `embed` link):
+
+```
+{% speakerdeck e6ec07b2713942fab1effc17a6ad5b41 %}
+```
+
+### Inline code
+
+Highlight code between `code` and `endcode`.
+
+```
+{% code language:yaml numbers:false highlight:"1, 3-4" %}
+some: inline
+code: which
+will: be
+hightlighted: by prism
+{% endcode %}
+```
+
+Parameters:
+
+- language (mandatory): the language used
+- numbers (optional): showing line numbers or not (true by default)
+- highlight (optional): a set of line index (`1`) or range (`3-4`) separated by `,` to highlight
+
+### Code from file
+
+Include a code file and highlight it.
+
+```
+{% code file:somefile.yaml language:yaml numbers:false highlight:"1, 3-4" %}
+```
 
 # Deployment on Github pages with Travis
 
@@ -77,7 +188,7 @@ Note the `skip_cleanup: true` which allow to keep the site generated in `_site` 
 
 The GH_TOKEN, GH_USER and GH_EMAIL used by Travis are defined on the Travis website with hidden env variables for the repo.
 
-# Features
+# About some features
 
 ## Links on H1, H2, H3 sections
 To have a link appearing on H1, H2, H3 sections, you need to use [Anchor JS](http://bryanbraun.github.io/anchorjs/).
@@ -146,9 +257,11 @@ The dynamic TOC is handled by [Bootstrap TOC](https://afeld.github.io/bootstrap-
 ```
 
 ## Infinite pagination on home and categories pages 
+
 By default, jekyll return all posts on home page and categories pages. It's not really efficient. Fortunately it's possible to get an infinite pagination by using two jekyll plugins and a little bit of javascript.
 
 ### Pagination on home page
+
 Activating pagination on home page is fairly easy, you just have to follow the [instructions provided in Jekyll Documentation](https://jekyllrb.com/docs/pagination/).
 
 - include jekyll-paginate plugin in Gemfile:
@@ -184,6 +297,7 @@ paginate_path: "page:num"
 ```
 
 ### Pagination on categories
+
 But it works only for ALL posts, if you want to have pagination for categories page, you have to use another plugin [Jekyll Paginate Category Plugin](https://github.com/midnightSuyama/jekyll-paginate-category).
 
 - include jekyll-paginate-category plugin in Gemfile:
@@ -227,6 +341,7 @@ Note that it's almost the same thing as seen with jekyll-paginate, you can use e
 The bonus thing is that the plugin generates all categories pages without doing anything.
 
 ### Categories parameters
+
 I needed to define some value specific to each category (a subtitle), I've define these value in the `_data/categories.yml` file.
 These values are used in `_includes/header.html`:
 ```
@@ -237,6 +352,7 @@ These values are used in `_includes/header.html`:
 ```
 
 ### Pagination controls
+
 To add infinite scroll we need to have a next link in the page to load the next page.
 Pagination controls are defined within `_includes/pagination.html` which provides two types of controls:
 
@@ -246,6 +362,7 @@ Pagination controls are defined within `_includes/pagination.html` which provide
 Once infinite scroll is activated, these controls are hidden.
 
 ### Infinite scroll
+
 Infinite scrool is handled by some javascript in `js/infinitescroll.js`, this script is adapted from this [post](https://blog.codestack.de/2015/05/17/seo-friendly-infinite-scroll.html).
 
 The principle is:
@@ -261,17 +378,14 @@ This website uses two custom jekyll plugins to highlight code:
 - _plugins/codefilehighlight.rb (`codefile`) to highlight included code files
 - _plugins/codehighlight.rb (`code`) to highlight inline code
 
-Code blocks look like this:
+### Tools used
 
-![](_readme/codeblock.png)
+- Code blocks are styled with [Prism](http://prismjs.com/)
+- the top left and bottom toolbars are created using bootstrap
+- the copy button use [ClipboardJS](https://clipboardjs.com/)
+- and there's also some CSS/JavaScript/JQuery
 
-What the toolbar buttons do (from left to right):
-
-- the first button (double arrow) is for expanding/shrinking the code block content. This button also appear at the code block's bottom
-- the second button (file icon) opens the file which is shown in code block (when using `codefile`)
-- the third one copy the code block content to clip board
-
-### Plugins configuration
+### General configuration
 
 Both plugins use configuration in `_config.yml`:
 
@@ -285,50 +399,7 @@ coderoot: code
 codeblocksize: 20
 ```
 
-### Using the code plugin
-
-Highlight code between `code` and `endcode`.
-
-```
-{% code language:yaml numbers:false highlight:"1, 3-4" %}
-some: inline
-code: which
-will: be
-hightlighted: by prism
-{% endcode %}
-```
-
-Parameters:
-
-- language (mandatory): the language used
-- numbers (optional): showing line numbers or not (true by default)
-- highlight (optional): a set of line index (`1`) or range (`3-4`) separated by `,` to highlight
-
-### Using the codefile plugin
-
-Include a code file and highlight it.
-```
-{% code file:somefile.yaml language:yaml numbers:false highlight:"1, 3-4" %}
-```
-
-Parameters:
-
-- file (mandatory): the name of the file to include. The file is loaded from
-  - `coderoot` folder (defined in `_config.yml`) if filename starts with `coderoot` value
-  - `coderoot/page.codefiles` if value provided in document's yaml front
-  - `coderoot/page.permalink` by default
-- language (optional): the language used, if not provied the filename extension is used
-- numbers (optional): showing line numbers or not (true by default)
-- highlight (optional): a set of line index (`1`) or range (`3-4`) separated by `,` to highlight
-
-### Tools used
-
-- Code blocks are styled with [Prism](http://prismjs.com/)
-- the top left and bottom toolbars are created using bootstrap
-- the copy button use [ClipboardJS](https://clipboardjs.com/)
-- and there's also some CSS/JavaScript/JQuery
-
-#### Prism configuration
+### Prism configuration
 
 The `css/prism.css` and `js/prism.js`are generated with the [Prism download page](http://prismjs.com/download.html) which allow you to choose exactly what you need.
 

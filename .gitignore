@@ -3,3 +3,4 @@ _site
 .jekyll-metadata
 .tweet-cache
 .deploy
+Gemfile.lock
