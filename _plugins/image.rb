@@ -41,6 +41,12 @@ class Image < Liquid::Tag
       src = "#{baseurl}/images#{permalink}#{@file}"
     end
 
+    if @source == ""
+      img = "<img src=\"#{src}\">"
+    else
+      img = "<a href=\"#{@source}\"><img src=\"#{src}\"></a>"
+    end
+
     if @label != ""
       if @source == ""
         plabel = "<p class=\"img-label\">#{@label}</p>"
@@ -51,7 +57,7 @@ class Image < Liquid::Tag
 
     <<-MARKUP.strip
     <div>
-      <img src="#{src}">
+      #{img}
       #{plabel}
     </div>
     MARKUP
