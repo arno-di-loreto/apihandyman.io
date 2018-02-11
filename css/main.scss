@@ -206,3 +206,29 @@ nav[data-toggle='toc'] {
   position:fixed;
 }
 
+/* Left Banner */
+
+.book-banner {
+  background-color: #004F66;
+  a, a:hover, a:active {
+    color: #EA6A38;
+    font-size: 0.8em;
+  }
+  p {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center; 
+  }
+}
+
+#left-banner {
+  max-width: 170px;
+}
+
+
+.row-vertical-align {
+  display: flex;
+  align-items: center;
+}
