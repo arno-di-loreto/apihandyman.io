@@ -1,4 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.1">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2018-02-10T18:02:26+00:00</updated><id>https://apihandyman.io/</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">API Styleguide, the Lord of API Designs</title><link href="https://apihandyman.io/api-styleguide-the-lord-of-api-designs/" rel="alternate" type="text/html" title="API Styleguide, the Lord of API Designs" /><published>2017-11-12T00:00:00+00:00</published><updated>2017-11-12T00:00:00+00:00</updated><id>https://apihandyman.io/api-styleguide-the-lord-of-api-designs</id><content type="html" xml:base="https://apihandyman.io/api-styleguide-the-lord-of-api-designs/">&lt;p&gt;Join Frodo, Gollum and Gandalf on an epic API design adventure.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.1">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2018-02-11T12:47:04+00:00</updated><id>https://apihandyman.io/</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">The story behind The Design of Everyday APIs book</title><link href="https://apihandyman.io/the-story-behind-the-design-of-everyday-apis-book/" rel="alternate" type="text/html" title="The story behind The Design of Everyday APIs book" /><published>2018-02-10T00:00:00+00:00</published><updated>2018-02-10T00:00:00+00:00</updated><id>https://apihandyman.io/the-story-behind-the-design-of-everyday-apis-book</id><content type="html" xml:base="https://apihandyman.io/the-story-behind-the-design-of-everyday-apis-book/">&lt;p&gt;I’m thrilled to announce that I’m writing a book about API design: &lt;em&gt;The Design of Everyday APIs&lt;/em&gt;. This book is published by &lt;em&gt;Manning Publications&lt;/em&gt; and the first two chapters are now available on the Manning Early Access Program or &lt;a href=&quot;http://bit.ly/everyday-apis&quot;&gt;MEAP&lt;/a&gt; (&lt;em&gt;use &lt;strong&gt;mllauret&lt;/strong&gt; discount code to get 50% off until the 16th of February!&lt;/em&gt;). This book is for everyone who wants to learn API design.
+But, what’s the story behind this book about API design? To answer this question, let’s talk about my other passion: guitar. &lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div&gt;
+      &lt;img src=&quot;/images/the-story-behind-the-design-of-everyday-apis-book/guitar-tabs.png&quot; /&gt;
+      &lt;p class=&quot;img-label&quot;&gt;Guitar tabs&lt;/p&gt;
+    &lt;/div&gt;
+
+&lt;p&gt;I have been playing the guitar for quite a long time. I’m definitely not an outstanding guitar player, I do that just for fun. Even if I have basic knowledge of solfeggio, I mostly use tablatures (or tabs) to learn to play songs. The guitar strings are represented by lines. And numbers on the lines indicate where to put fingers on the fret board. Pretty simple. I can play any song. Well, as long as my fingers dexterity allows it. So, I can play almost any song without even kwnowing which musical note I’m doing. But it can take me a long time to master songs, because I mostly do not get immediately how it works. I cannot play a song without a tablature by just listening to it. I’m also unable to compose music, I’m unable to improvise. And if I want to play another musical instrument like the piano, I would have to relearn everything. All this because I simply (but with dexterity!) move my fingers on a guitar fretboard without really understanding what I’m doing and why. When you really know music, it’s quite different. A friend of mine is a music teacher. He knows everything about solfeggio and music theory. He can improvise and compose. He can play any musical instrument as long as he understand how doing notes.&lt;/p&gt;
+
+&lt;p&gt;But what has this to do with API design?&lt;/p&gt;
+
+&lt;div&gt;
+      &lt;a href=&quot;http://bit.ly/everyday-apis&quot;&gt;&lt;img src=&quot;/images/commons/everydayapis/meap-design-of-everyday-apis-cover-255x320.png&quot; /&gt;&lt;/a&gt;
+      &lt;p class=&quot;img-label&quot;&gt;&lt;a href=&quot;http://bit.ly/everyday-apis&quot;&gt;Use mllauret discount code to get 50% off until the 16th of February!&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+&lt;p&gt;I’ve been doing distributed software and working with web services and web APIs for a long time now, designing, building, using and providing them. Like many others, I’ve learned many things from the trenches about API design by practicing … and doing many mistakes. Mistakes, that I could have probably easily avoided if I had been warned. I have discovered the not so obvious scope of the API designer’s job and you know what? Choosing HTTP methods and designing URLs is only a part of it. I have also learned how to design APIs that do exactly what they have been created for. And I have also learned how to shape APIs in order to make them easy-to-understand and easy-to-use.&lt;/p&gt;
+
+&lt;p&gt;But I have also learned something beyond these technical tips and tricks. I have learned what really is an API and what it means to design it.&lt;/p&gt;
+
+&lt;p&gt;Knowing that &lt;code&gt;/library/books/the-design-of-everyday-apis/chapters&lt;/code&gt; is a good a way of designing some REST resource’s URL is important. Knowing that simply returning a &lt;code&gt;400 Bad Request&lt;/code&gt; HTTP status code is not enough is important. Knowing that content negociation is a solution to some use case is important. But knowing and understanding the true reasons &lt;em&gt;why&lt;/em&gt; we should or shouldn’t design API like this or that is far more important. This is guitar tablature vs solfeggio and music theory. Would you be able to improvise when facing a new use case? What would you do when designing a SOAP web services (yes, some people still have to do that), a gRPC API or whatever will come in the future?
+I could have been a better API designer faster if I had understood earlier the true essence of API design. There are reasons why designing APIs in certain ways gives outstanding results. Understanding the reasons behind techniques and tips that make APIs great is far more important than just knowing them, because it can help to face any situation and design any type of API. Just like being able to play any musical instrument, improvise and compose.&lt;/p&gt;
+
+&lt;div&gt;
+      &lt;img src=&quot;/images/the-story-behind-the-design-of-everyday-apis-book/cryptic-interface.png&quot; /&gt;
+      &lt;p class=&quot;img-label&quot;&gt;A quite cryptic interface&lt;/p&gt;
+    &lt;/div&gt;
+
+&lt;p&gt;But is it hard to master the &lt;em&gt;API design solfeggio&lt;/em&gt;? Hopefully not at all! The &lt;em&gt;API design solfeggio&lt;/em&gt; is quite simple to grasp as long as you understand what really is an API and how you can find inspiration from everyday objects.
+OK, an API is an &lt;em&gt;Application Programming Interface&lt;/em&gt;, but it’s first and foremost an &lt;em&gt;interface&lt;/em&gt; that &lt;em&gt;people&lt;/em&gt; will use in their software to interact with your software.
+APIs are interfaces like any others. Look at this &lt;em&gt;UDRC 1138&lt;/em&gt; control panel, its &lt;em&gt;interface&lt;/em&gt;. What could be this device’s purpose? How use it? hard to guess thanks to its poorly designed interface. Think about the many times you have been puzzled or you have grumbled when using a everyday object like a door, a microwave oven, a remote control, a toy, a web site, a mobile application because its design was flawed. Think about the many times you did not complain and were even quite happy using something. 
+What seems ridiculous for everyday objects interfaces is as ridiculous for application programming interface. And the opposite is quite true, what works for everyday objects interfaces works for APIs.&lt;/p&gt;
+
+&lt;p&gt;So, while &lt;em&gt;The Design of Everyday APIs&lt;/em&gt; book is a practical one showing every aspects of API design and many techniques, tips and tricks to design great APIs. It will also explain &lt;em&gt;why&lt;/em&gt; you should design APIs that way and therefore, I hope, give you the eye of the API designer.
+I hope you’ll enjoy this book and find it useful to design your everyday APIs and build an API designer mindset. As you can read it on &lt;a href=&quot;http://bit.ly/everyday-apis&quot;&gt;MEAP&lt;/a&gt; (&lt;em&gt;use &lt;strong&gt;mllauret&lt;/strong&gt; discount code to get 50% off until the 16th of February!&lt;/em&gt;) while it is written, I look forward to your feedbacks on MEAP forum.&lt;/p&gt;
+
+&lt;div class=&quot;embedpad center&quot;&gt;&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/5TyZLALORwDFHA&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt;&lt;/div&gt; 
+
+
+&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="posts" /><summary type="html">I’m thrilled to announce that I’m writing a book about API design: The Design of Everyday APIs. This book is published by Manning Publications and the first two chapters are now available on the Manning Early Access Program or MEAP (use mllauret discount code to get 50% off until the 16th of February!). This book is for everyone who wants to learn API design. But, what’s the story behind this book about API design? To answer this question, let’s talk about my other passion: guitar.</summary></entry><entry><title type="html">API Styleguide, the Lord of API Designs</title><link href="https://apihandyman.io/api-styleguide-the-lord-of-api-designs/" rel="alternate" type="text/html" title="API Styleguide, the Lord of API Designs" /><published>2017-11-12T00:00:00+00:00</published><updated>2017-11-12T00:00:00+00:00</updated><id>https://apihandyman.io/api-styleguide-the-lord-of-api-designs</id><content type="html" xml:base="https://apihandyman.io/api-styleguide-the-lord-of-api-designs/">&lt;p&gt;Join Frodo, Gollum and Gandalf on an epic API design adventure.
 In this session, based on my own experience defining and sharing API design common practices in my company and based on the API styles guides that I have collected on &lt;a href=&quot;http://apistylebook.com&quot;&gt;apistylebook.com&lt;/a&gt;, we will discover why we desperately need API style guides and how they can or cannot help us create a smooth API surface for a company.&lt;/p&gt;
 
 &lt;p&gt;Very special thanks to &lt;a href=&quot;https://twitter.com/mrlapindesign&quot;&gt;Mister Lapin&lt;/a&gt; for designing my T-shirt and &lt;a href=&quot;https://twitter.com/kvantomme&quot;&gt;Kristof Van Tomme&lt;/a&gt; for recording the video with my phone.
@@ -325,7 +365,7 @@ In this session, based on my own experience defining and sharing API design comm
 &lt;/div&gt;
 
 &lt;div&gt;
-      &lt;img src=&quot;/images/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/whatthehellisthat.gif&quot; /&gt;
+      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/whatthehellisthat.gif&quot; /&gt;&lt;/a&gt;
       
     &lt;/div&gt;
 
@@ -492,7 +532,7 @@ In this session, based on my own experience defining and sharing API design comm
 &lt;p&gt;What if I want to do &lt;code&gt;DELETE /resources/ID1&lt;/code&gt; and &lt;code&gt;PATCH /another-resources/ID2&lt;/code&gt; at the same time?&lt;/p&gt;
 
 &lt;div&gt;
-      &lt;img src=&quot;/images/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/waitwhat.gif&quot; /&gt;
+      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/waitwhat.gif&quot; /&gt;&lt;/a&gt;
       
     &lt;/div&gt;
 
@@ -543,7 +583,7 @@ In this session, based on my own experience defining and sharing API design comm
 &lt;p&gt;It was past time to update the &lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;OpenAPI Specification Visual Documentation&lt;/a&gt; to fully grasp what happens with this update.&lt;/p&gt;
 
 &lt;div&gt;
-      &lt;img src=&quot;/images/openapi-visual-documentation-updated-with-3.0.0-rc0/openapi-visual-documentation.png&quot; /&gt;
+      &lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;&lt;img src=&quot;/images/openapi-visual-documentation-updated-with-3.0.0-rc0/openapi-visual-documentation.png&quot; /&gt;&lt;/a&gt;
       &lt;p class=&quot;img-label&quot;&gt;&lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;OpenAPI Specification Visual Documentation showing v3.0.0-rc0&lt;/a&gt;&lt;/p&gt;
     &lt;/div&gt;
 
@@ -601,7 +641,7 @@ In this session, based on my own experience defining and sharing API design comm
 
 &lt;p&gt;If you’re a bit lost in the &lt;a href=&quot;https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md&quot;&gt;specification&lt;/a&gt;, take a look at my &lt;em&gt;visual documentation:&lt;/em&gt;&lt;/p&gt;
 &lt;div&gt;
-      &lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png&quot; /&gt;
+      &lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png&quot; /&gt;&lt;/a&gt;
       &lt;p class=&quot;img-label&quot;&gt;&lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;OpenAPI Specification Visual Documentation&lt;/a&gt;&lt;/p&gt;
     &lt;/div&gt;
 
@@ -656,7 +696,7 @@ In this session, based on my own experience defining and sharing API design comm
 &lt;p&gt;If a standard Swagger/OpenAPI parser encounters such property, it will ignore it because it’s prefixed with &lt;code&gt;x-&lt;/code&gt;. This &lt;code&gt;info&lt;/code&gt; section with a custom property is valid:&lt;/p&gt;
 
 &lt;div&gt;
-      &lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/custom-property.png&quot; /&gt;
+      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/custom-property.png&quot; /&gt;&lt;/a&gt;
       
     &lt;/div&gt;
 
@@ -697,7 +737,7 @@ In this session, based on my own experience defining and sharing API design comm
 &lt;p&gt;You can also take a look at my &lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;visual documentation&lt;/a&gt; to check if the location you want to use allows extension or not:&lt;/p&gt;
 
 &lt;div&gt;
-      &lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/almost-anywhere.png&quot; /&gt;
+      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/almost-anywhere.png&quot; /&gt;&lt;/a&gt;
       
     &lt;/div&gt;
 
@@ -765,7 +805,7 @@ definitions:
 &lt;p&gt;&lt;a href=&quot;https://docs.gelato.io/guides/control-grouping-with-swagger&quot;&gt;Gelato, the Mashape Developer Portal solution&lt;/a&gt;, uses the &lt;a href=&quot;https://docs.gelato.io/guides/control-grouping-with-swagger&quot;&gt;&lt;code&gt;x-gelato-group&lt;/code&gt;&lt;/a&gt; extension to group operations in the portal navigation.&lt;/p&gt;
 
 &lt;div&gt;
-      &lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/gelato.png&quot; /&gt;
+      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/gelato.png&quot; /&gt;&lt;/a&gt;
       
     &lt;/div&gt;
 
@@ -776,7 +816,7 @@ definitions:
 &lt;p&gt;&lt;a href=&quot;https://docs.apimatic.io/advanced/swagger-test-cases-extensions/&quot;&gt;API Matic, a SDK/DX kits generator&lt;/a&gt; uses extension ton control SDK generation.&lt;/p&gt;
 
 &lt;div&gt;
-      &lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/apimatic.png&quot; /&gt;
+      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/apimatic.png&quot; /&gt;&lt;/a&gt;
       
     &lt;/div&gt;
 
@@ -785,7 +825,7 @@ definitions:
 &lt;p&gt;&lt;a href=&quot;https://github.com/swagger-api/swagger-node&quot;&gt;Swagger Node, a node module which help to build API implementation with a design first approach&lt;/a&gt; uses a &lt;code&gt;x-swagger-router-controller&lt;/code&gt; extension to link an API endpoint to its controller implementation.&lt;/p&gt;
 
 &lt;div&gt;
-      &lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/swagger-node.png&quot; /&gt;
+      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/swagger-node.png&quot; /&gt;&lt;/a&gt;
       
     &lt;/div&gt;
 
@@ -794,7 +834,7 @@ definitions:
 &lt;p&gt;Not only the AWS API gateway allows to import a Swagger/OpenAPI file but it also provides a &lt;a href=&quot;(http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-swagger-extensions.html)&quot;&gt;complete set of extensions&lt;/a&gt; to configure how the API is linked to backend systems (like lambda).&lt;/p&gt;
 
 &lt;div&gt;
-      &lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/aws-api-gateway.png&quot; /&gt;
+      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/aws-api-gateway.png&quot; /&gt;&lt;/a&gt;
       
     &lt;/div&gt;
 
@@ -1462,4 +1502,4 @@ Which one is the best API style?&lt;/p&gt;
 
 &lt;p&gt;You’re supposed to yell &lt;em&gt;it depends!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;This post is a writeup of my &lt;a href=&quot;https://speakerdeck.com/arnaudlauret/dot-dot-dot-and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql&quot;&gt;API Days Paris 2017 talk&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="posts" /><summary type="html">GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too! Well, why not. GraphQL could be a great tool, but like any tool, you don’t choose it just because. You choose it because it solves a problem in a given context. You choose it knowing its strengths and weaknesses. While discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it. From design and implementation to pricing model and analytics down to developers experience and implementations, choosing an API design style will have impact on the whole API lifecycle. Therefore, this choice must be an enligthned one and not based on simple beliefs.</summary></entry><entry><title type="html">Dr Jekyll and Mr API Handyman</title><link href="https://apihandyman.io/dr-jekyll-and-mr-api-handyman/" rel="alternate" type="text/html" title="Dr Jekyll and Mr API Handyman" /><published>2016-12-23T00:00:00+00:00</published><updated>2016-12-23T00:00:00+00:00</updated><id>https://apihandyman.io/dr-jekyll-and-mr-api-handyman</id><content type="html" xml:base="https://apihandyman.io/dr-jekyll-and-mr-api-handyman/">&lt;p&gt;ICYMI, I’ve just switched from a self hosted Wordpress to a Jekyll static website hosted on Github. The code is available in the &lt;a href=&quot;https://github.com/arno-di-loreto/apihandyman.io&quot;&gt;apihandyman.io repository&lt;/a&gt;. If you’re looking for information and tips about how to enable pagination on categories pages and have infinite scroll with Jekyll or how to to deploy a Jekyll website using custom plugins on Github Pages, you should take a look at it.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="elsewhere" /><summary type="html">ICYMI, I’ve just switched from a self hosted Wordpress to a Jekyll static website hosted on Github. The code is available in the apihandyman.io repository. If you’re looking for information and tips about how to enable pagination on categories pages and have infinite scroll with Jekyll or how to to deploy a Jekyll website using custom plugins on Github Pages, you should take a look at it.</summary></entry><entry><title type="html">Read Evolving a Company’s IS in the Lego Computing Age on Nordic APIs blog</title><link href="https://apihandyman.io/read-evolving-a-companys-is-in-the-lego-computing-age-on-nordic-apis-blog/" rel="alternate" type="text/html" title="Read Evolving a Company’s IS in the Lego Computing Age on Nordic APIs blog" /><published>2016-12-06T00:00:00+00:00</published><updated>2016-12-06T00:00:00+00:00</updated><id>https://apihandyman.io/read-evolving-a-companys-is-in-the-lego-computing-age-on-nordic-apis-blog</id><content type="html" xml:base="https://apihandyman.io/read-evolving-a-companys-is-in-the-lego-computing-age-on-nordic-apis-blog/">&lt;p&gt;If you wonder how to evolve a company’s IS in the lego computing age, read &lt;a href=&quot;http://nordicapis.com/evolving-companys-lego-computing-age-choose-brick-product/&quot;&gt;my post on Nordic APIs blog&lt;/a&gt;.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="elsewhere" /><category term="Governance" /><category term="Strategy" /><category term="Implementation" /><category term="Architecture" /><summary type="html">If you wonder how to evolve a company’s IS in the lego computing age, read my post on Nordic APIs blog.</summary></entry></feed>
+&lt;p&gt;&lt;em&gt;This post is a writeup of my &lt;a href=&quot;https://speakerdeck.com/arnaudlauret/dot-dot-dot-and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql&quot;&gt;API Days Paris 2017 talk&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="posts" /><summary type="html">GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too! Well, why not. GraphQL could be a great tool, but like any tool, you don’t choose it just because. You choose it because it solves a problem in a given context. You choose it knowing its strengths and weaknesses. While discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it. From design and implementation to pricing model and analytics down to developers experience and implementations, choosing an API design style will have impact on the whole API lifecycle. Therefore, this choice must be an enligthned one and not based on simple beliefs.</summary></entry><entry><title type="html">Dr Jekyll and Mr API Handyman</title><link href="https://apihandyman.io/dr-jekyll-and-mr-api-handyman/" rel="alternate" type="text/html" title="Dr Jekyll and Mr API Handyman" /><published>2016-12-23T00:00:00+00:00</published><updated>2016-12-23T00:00:00+00:00</updated><id>https://apihandyman.io/dr-jekyll-and-mr-api-handyman</id><content type="html" xml:base="https://apihandyman.io/dr-jekyll-and-mr-api-handyman/">&lt;p&gt;ICYMI, I’ve just switched from a self hosted Wordpress to a Jekyll static website hosted on Github. The code is available in the &lt;a href=&quot;https://github.com/arno-di-loreto/apihandyman.io&quot;&gt;apihandyman.io repository&lt;/a&gt;. If you’re looking for information and tips about how to enable pagination on categories pages and have infinite scroll with Jekyll or how to to deploy a Jekyll website using custom plugins on Github Pages, you should take a look at it.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="elsewhere" /><summary type="html">ICYMI, I’ve just switched from a self hosted Wordpress to a Jekyll static website hosted on Github. The code is available in the apihandyman.io repository. If you’re looking for information and tips about how to enable pagination on categories pages and have infinite scroll with Jekyll or how to to deploy a Jekyll website using custom plugins on Github Pages, you should take a look at it.</summary></entry></feed>
