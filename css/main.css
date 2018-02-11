@@ -134,3 +134,23 @@ nav[data-toggle='toc'] {
 .affix {
   top: 50px;
   position: fixed; }
+
+/* Left Banner */
+.book-banner {
+  background-color: #004F66; }
+  .book-banner a, .book-banner a:hover, .book-banner a:active {
+    color: #EA6A38;
+    font-size: 0.8em; }
+  .book-banner p {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center; }
+
+#left-banner {
+  max-width: 170px; }
+
+.row-vertical-align {
+  display: flex;
+  align-items: center; }
