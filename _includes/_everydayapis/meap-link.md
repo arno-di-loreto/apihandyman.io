@@ -1,1 +1,1 @@
-[MEAP](http://bit.ly/everyday-apis) (_use **mllauret** discount code to get 50% off until the 16th of February!_)
+[MEAP]({% include _everydayapis/meap-url.md %}) ({% include _everydayapis/discount.md %})

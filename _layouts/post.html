@@ -2,7 +2,9 @@
 layout: default
 javascript: javascript-post.html
 ---
-<div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-2" role="main">
+    
+{% include left-banner.html %}
+<div class="col-xs-12 col-sm-9 col-md-8" role="main">
   <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <div id="post" class="blog-container" itemprop="articleBody">
       <p class="post-meta">
@@ -12,6 +14,7 @@ javascript: javascript-post.html
         {% endif %}
         <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b. %-d, %Y" }}</time><span>&nbsp;|&nbsp;{{ page.category | capitalize }}</span>
       </p>
+      {% include horizontal-banner.html %}
       {{ content }}
       {% include disqus_comments.html %}
     </div>
