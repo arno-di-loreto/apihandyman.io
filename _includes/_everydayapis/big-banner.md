@@ -1,1 +1,0 @@
-{% img file:"/images/commons/everydayapis/meap-design-of-everyday-apis-cover-vertical-medium.png" source:"http://bit.ly/everyday-apis" label:"Use mllauret discount code to get 50% off until the 16th of February!"%}

@@ -208,25 +208,85 @@ nav[data-toggle='toc'] {
 
 /* Left Banner */
 
-.book-banner {
+.book-banner-big {
+  color: #EA6A38;
+  text-align: center; 
+  font-size: 0.7em;
+}
+
+.book-banner-vertical {
+  padding: 0px;
   background-color: #004F66;
+  color: #EA6A38;
+  text-align: center; 
+  font-size: 0.7em;
+  a, a:hover, a:active {
+    color: #EA6A38;
+  }
+  .book-banner-vertical-top {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0px;
+  }
+  .book-banner-vertical-bottom {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0px;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.book-banner-horizontal {
+  background-color: #004F66;
+  color: #EA6A38;
   a, a:hover, a:active {
     color: #EA6A38;
     font-size: 0.8em;
   }
-  p {
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 5px;
-    padding-right: 5px;
-    text-align: center; 
+  .book-banner-horizontal-left {
+    padding: 0px;
+    img {
+      width: 100%
+    }
   }
 }
 
-#left-banner {
-  max-width: 170px;
+// xs - Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// sm - Small devices (landscape phones, 576px and up)
+ @media (min-width: 576px) {
+  #left-banner {
+    max-width: 100px;
+  }
+ }
+
+// md -  Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+  #left-banner {
+    max-width: 130px;
+  }
 }
 
+// ld - Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  #left-banner {
+    max-width: 130px;
+  }
+}
+
+// xl - Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  #left-banner {
+    max-width: 165px;
+  }
+}
 
 .row-vertical-align {
   display: flex;
