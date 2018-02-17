@@ -136,21 +136,57 @@ nav[data-toggle='toc'] {
   position: fixed; }
 
 /* Left Banner */
-.book-banner {
-  background-color: #004F66; }
-  .book-banner a, .book-banner a:hover, .book-banner a:active {
-    color: #EA6A38;
-    font-size: 0.8em; }
-  .book-banner p {
-    padding-top: 2px;
-    padding-bottom: 2px;
+.book-banner-big {
+  color: #EA6A38;
+  text-align: center;
+  font-size: 0.7em; }
+
+.book-banner-vertical {
+  padding: 0px;
+  background-color: #004F66;
+  color: #EA6A38;
+  text-align: center;
+  font-size: 0.7em; }
+  .book-banner-vertical a, .book-banner-vertical a:hover, .book-banner-vertical a:active {
+    color: #EA6A38; }
+  .book-banner-vertical .book-banner-vertical-top {
+    padding-top: 5px;
+    padding-bottom: 5px;
     padding-left: 5px;
     padding-right: 5px;
-    text-align: center; }
+    margin: 0px; }
+  .book-banner-vertical .book-banner-vertical-bottom {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0px; }
+  .book-banner-vertical img {
+    width: 100%; }
 
-#left-banner {
-  max-width: 170px; }
+.book-banner-horizontal {
+  background-color: #004F66;
+  color: #EA6A38; }
+  .book-banner-horizontal a, .book-banner-horizontal a:hover, .book-banner-horizontal a:active {
+    color: #EA6A38;
+    font-size: 0.8em; }
+  .book-banner-horizontal .book-banner-horizontal-left {
+    padding: 0px; }
+    .book-banner-horizontal .book-banner-horizontal-left img {
+      width: 100%; }
 
+@media (min-width: 576px) {
+  #left-banner {
+    max-width: 100px; } }
+@media (min-width: 768px) {
+  #left-banner {
+    max-width: 130px; } }
+@media (min-width: 992px) {
+  #left-banner {
+    max-width: 130px; } }
+@media (min-width: 1200px) {
+  #left-banner {
+    max-width: 165px; } }
 .row-vertical-align {
   display: flex;
   align-items: center; }
