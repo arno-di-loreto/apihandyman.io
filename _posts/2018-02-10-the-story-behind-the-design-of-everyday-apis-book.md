@@ -16,7 +16,7 @@ I have been playing the guitar for quite a long time. I'm definitely not an outs
 
 But what has this to do with API design?
 
-{% include _everydayapis/big-banner.md %}
+{% include _everydayapis/big-banner.html %}
 
 I've been doing distributed software and working with web services and web APIs for a long time now, designing, building, using and providing them. Like many others, I've learned many things from the trenches about API design by practicing ... and doing many mistakes. Mistakes, that I could have probably easily avoided if I had been warned. I have discovered the not so obvious scope of the API designer's job and you know what? Choosing HTTP methods and designing URLs is only a part of it. I have also learned how to design APIs that do exactly what they have been created for. And I have also learned how to shape APIs in order to make them easy-to-understand and easy-to-use.
 
