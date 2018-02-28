@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>How public web APIs raise software bar | API Handyman</title>
+  <meta name="description" content="While answering some question on my Design of Everyday APIs book’s forum, I wrote: Now that I have seen brilliant Web APIs that can be used so easily because...">
+  
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@apihandyman">
+
+  <meta name="twitter:title" content="How public web APIs raise software bar">
+
+
+  <meta name="twitter:url" content="https://apihandyman.io/how-public-web-apis-raise-software-bar/">
+
+
+  <meta name="twitter:description" content="While answering some question on my Design of Everyday APIs book’s forum, I wrote: Now that I have seen brilliant Web APIs that can be used so easily because of their design but also the overall experience some can provide (the famous “DX”) I have become far more demanding and challenging with software in general Yes. Public web APIs definitely raise software bar. The whole software industry should take example on them …">
+
+  <meta name="twitter:image:src" content="https://apihandyman.io/images/how-public-web-apis-raise-software-bar/thumbnail.png">
+
+  
+
+
+
+  <meta name="og:description" content="While answering some question on my Design of Everyday APIs book’s forum, I wrote: Now that I have seen brilliant Web APIs that can be used so easily because of their design but also the overall experience some can provide (the famous “DX”) I have become far more demanding and challenging with software in general Yes. Public web APIs definitely raise software bar. The whole software industry should take example on them …">
+
+<meta name="og:image" content="https://apihandyman.io/images/how-public-web-apis-raise-software-bar/thumbnail.png">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="canonical" href="/how-public-web-apis-raise-software-bar/">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          
+            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+          
+            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+          
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/how-public-web-apis-raise-software-bar/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">How public web APIs raise software bar</h1>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="hidden-xs hidden-sm col-md-2" role="complementary">
+  <nav id="left-banner" data-spy="affix" data-offset-top="400">   
+    <div class="book-banner-vertical">
+    <p class="book-banner-vertical-top"><a href="https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&a_bid=ad5a0fe0">Read my API design book!</a></p>
+    <a href="https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"><img src="/images/commons/everydayapis/meap-design-of-everyday-apis-cover-vertical-small.png"></a>
+    <p class="book-banner-vertical-bottom">use <em>mllauretlt</em> discount code to get 50% off until the 21th of February (affiliate link)</p>
+</div>
+  </nav>
+</div>
+<div class="col-xs-12 col-sm-9 col-md-8" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+        
+        <time datetime="2018-02-26T00:00:00+00:00" itemprop="datePublished">Feb. 26, 2018</time><span>&nbsp;|&nbsp;Posts</span>
+      </p>
+      <div class="row">
+  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+      <div class="row book-banner-horizontal">
+    <div class="col-xs-6 col-sm-6">
+      <br><br>
+      Read my API design book!<br>
+      use <em>mllauretlt</em> discount code to get 50% off until the 21th of February
+    </div>
+    <div class="col-xs-6 col-sm-6 book-banner-horizontal-left">
+        <a href="https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"><img src="/images/commons/everydayapis/meap-design-of-everyday-apis-cover-horizontal.png"></a>
+    </div>
+  </a>
+</div>
+  </div>
+</div>
+      <p>While answering some question on my <a href="https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&amp;a_bid=ad5a0fe0">Design of Everyday APIs</a> book’s <a href="https://forums.manning.com/posts/list/42828.page">forum</a>, I wrote:</p>
+
+<blockquote>
+  <p>Now that I have seen brilliant Web APIs that can be used so easily because of their design but also the overall experience some can provide (the famous “DX”) I have become far more demanding and challenging with software in general</p>
+</blockquote>
+
+<p>Yes. Public web APIs definitely raise software bar. The whole software industry should take example on them … <!--more--></p>
+
+<h1 id="the-ideal-world-of-public-web-apis">The Ideal world of public web APIs</h1>
+
+<p>I have been tinkering with web services and web APIs for a while now and it’s really interesting how the quite technical concept of remote Application Programming Interface moved my perception of sofware from a purely technical vision to something more human centered. I switched from <em>code software that solve problems</em> to <em>design software that people use to fulfill their needs</em>. How some companies envision providing public web APIs is even pushing this vision into <em>design software that people will love to use</em>.</p>
+
+<p>How is this possible?</p>
+
+<p>Willingly or in order to make profit or both, we don’t care, these companies design APIs that you can understand at first sight and use easily to do what you want. But that’s not all, the API comes with all needed material in order to help you seamlessly; reference documentation, tutorial, sandbox, ready to use examples, sdks, … Everything is <em>designed</em> in order to provide a wonderful experience with a minimal effort. Sometimes, this experience is so perfect, that you are just happy when using this API. Sometimes this experience so invisible that you feel incredibly smart because the whole system let you think that you use it instinctively.</p>
+
+<p>Both provider and consumer benefits from such experience. Consumers are autonomous, don’t lose time and money to use the API. They are so happy that may even promote the solution. Providers gain easily customers and lessen the need of support (or at least can focus on support where it’s really needed).</p>
+
+<p>Of course, not all public APIs provide such experience. And in some other domains of the software industry, we are at light years of that…</p>
+
+<h1 id="the-crude-reality-of-not-so-dark-corners-of-the-software-industry">The crude reality of not so dark corners of the software industry</h1>
+
+<p>Some words about me and my job: I am an architect in the banking industry…</p>
+
+<blockquote>
+  <p>Nobody expects the Architect Inquisition!</p>
+</blockquote>
+
+<p>… but not the dreaded enterprise architect living in his ivory tower. Throwing utopian or unrealistic edict. Burning the heretics who dare to not apply them. No, definitely not that kind. I come from the trenches, I have been a developer, a project manager, a developer team manager. Now as an architect from the trenches, I have to deal with real world problems and find real world solutions. Always striking a balance between the sanity of our IT system, people building it, people running it and people using it and of course … money.</p>
+
+<p>In my daily job, I work with a motley collection of software solutions: homemade, open source, vendor ones, as a service, on premise, … All these software can be roughly separated in two categories: the software I choose on a shelf and the software I design.</p>
+
+<p>To tell the truth, I’m getting tired of software solutions I have to choose on a shelf that are only <em>created to solve problems</em> and not <em>designed for people to fullfil their needs</em>.
+The gap between some enterprise grade software solutions and some (ideal) public web APIs is sometimes so wide that the Hubble telescope would probably not be able to see something from one end to the other. The cost of using some crappy designed solution is sometime really frightening.
+When I choose a software, I mainly these criterias:</p>
+
+<ul>
+  <li>Does it fullfil our business needs?</li>
+  <li>How is it complicated/easy to install, run and use it?</li>
+  <li>Does it provide an API? what’s its quality?</li>
+  <li>How does look like its documentation?</li>
+</ul>
+
+<p>If the first question is usually not a problem, the others are too often problematic. And this is usually a huge source of problems, time losed and money losed.</p>
+
+<h1 id="a-open-letter-to-enterprise-grade-vendor-solutions">A open letter to enterprise grade vendor solutions</h1>
+
+<p>Dear enterprise grade software solution vendors,</p>
+
+<p>When I use a public web API, I don’t know what’s happening behind the interface and I don’t care. I can also use it easiliy. When I have to install a software on premise, I would like to have something equivalent. Of course I may have to install something and do some configuration. But please, I don’t want to be an expert of your product implementation nor its installation. I don’t want to lose months to install you product. Do you know that you can <em>automate</em> many things when you use <em>software</em>? Do you know that now you can even package your solution to provide “one click” installation in some cloud services?</p>
+
+<p>When I use a public web API, you know what? I have an API to use. I would be glad if your product provide one. Having an API would definitely ease the job of making my motley collection of software work together.</p>
+
+<p>When I use a public web API, I have some decent and sometimes even pleasant documentation to understand how to use it on my own. I almost never have to talk to someone to get help. So, just stop to provide totally not user friendly, huge and useless documentation that you wouldn’t even use yourself. Stop selling support that you cannot afford. I have seen some product coming with a 300 pages PDF as documentation. Yes 300 pages. And that’s not the most fun, this document contained some code samples… some of them 20 pages long. Unreadable. Unusable.</p>
+
+<p>When I use a public web API, I sometimes can use it instinctively, because its design conforms to some common pratices. If your solution provides an API (which is a good thing), you would be wise to stick to these common practices. I do not want to have to learn you <em>very smart but very specific and totally different way of thinking</em> to use your API.</p>
+
+<p>When I use a public web API, it may evolve. Such evolution may bring some breaking change. But I am warned and I have time to handle them. I can even use the old and new version at the same time. Some provider even support <em>all</em> past versions seamlessly. I would love do the same thing with your software.</p>
+
+<p>Sincerely,
+Your not future customer.</p>
+
+<h1 id="theres-light-at-the-end-of-the-tunnel">There’s light at the end of the tunnel</h1>
+
+<p>Is this situation hopeless? No.</p>
+
+<p>In an ideal world, I would get rid of all these <em>on premise shitty enterprise proprietary software</em> and use only software as a service with API solutions (the brilliant ones, offering an outstanding experience, of course).
+But we do not live in an ideal and simple world. If such solutions to your need exist, some obstables may prevent its use: regulations, security, sensitive data, performance, legacy systems…</p>
+
+<p>So beside this solution, the light at the end of the tunnel may come thanks to three things.</p>
+
+<ul>
+  <li>First, as a software solutions designer myself, I now try to promote and create human centered solutions that are simple to build, deploy and operate by following what I’ve seen in the public web API space. I try to take into account <em>all</em> users of such solutions from dev to end user and also ops.</li>
+  <li>Second, when I choose software solutions, I always provide constructive feedback in order to help vendors enhance their solutions whether I select or reject them.</li>
+  <li>Third, some vendors start to understand by themselves, like I did, that creating human centered solutions is worth the cost for both vendor and customer.</li>
+</ul>
+
+<h1 id="but-is-this-really-new">But is this really new?</h1>
+
+<p>Fundamentally, what we see in the public web APIs space is only what should be done with any software solution and even with any crafted thing since the beginning of all things.
+Would you willingly buy a vegetable peeler that comes with a 200 pages user manual, needs 2 months for installation and is a total pain in the ass to use?
+Definitely no.
+Then why have we considered such experience totally normal with software for decades?
+So, yes public web APIs raise the software bar, but only to the level it should have been since the beginning of time.</p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://apihandyman.io/how-public-web-apis-raise-software-bar/';
+      this.page.identifier = 'https://apihandyman.io/how-public-web-apis-raise-software-bar/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </article>
+</div>
+<div class="hidden-xs col-sm-2 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+        <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  
+    <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+<script language="javascript">
+  $(function() {
+    var $myNav = $('#toc');
+    var $myScope = $('#post');
+    Toc.init({
+      $nav: $myNav,
+      $scope: $myScope
+    });
+    $('body').scrollspy({
+      target: '#toc'
+    });
+  });
+</script>
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script language="JavaScript">
+  $(function() {
+    anchors.options = {
+      placement: 'left'
+    };
+    anchors.add('.blog-container h1');
+    anchors.add('.blog-container h2');
+    anchors.add('.blog-container h3');
+  });
+</script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, secondarybutton, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
+  
+  </body>
+
+</html>
