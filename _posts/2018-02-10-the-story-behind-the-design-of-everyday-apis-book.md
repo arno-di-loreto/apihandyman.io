@@ -35,6 +35,4 @@ What seems ridiculous for everyday objects interfaces is as ridiculous for appli
 So, while _The Design of Everyday APIs_ book is a practical one showing every aspects of API design and many techniques, tips and tricks to design great APIs. It will also explain _why_ you should design APIs that way and therefore, I hope, give you the eye of the API designer.
 I hope you'll enjoy this book and find it useful to design your everyday APIs and build an API designer mindset. As you can read it on {% include _everydayapis/meap-link.md %} while it is written, I look forward to your feedbacks on MEAP forum.
 
-{% slideshare 5TyZLALORwDFHA %} 
-
-
+{% slideshare 6ZYXRGEODWQv5M %} 

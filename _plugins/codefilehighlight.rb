@@ -123,8 +123,8 @@ class CodeFile < Liquid::Tag
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       #{collabpedbutton}
-      <button type="button" class="btn btn-default"><a target="_blank" href="#{url}"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="#{url}"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-#{@language}#{@linenumbers}#{collapsed}"#{highlighttag}#{datastart}><code>#{code}</code></pre>

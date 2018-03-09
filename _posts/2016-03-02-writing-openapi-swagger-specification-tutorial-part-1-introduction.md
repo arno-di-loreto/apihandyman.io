@@ -22,7 +22,10 @@ codefiles: writing-openapi-swagger-specification-tutorial
 Previously in the APIverse...  
 Since I started my [*Swagger* journey](/starting-a-swagger-journey-beyond-generated-swagger-ui/), there have been *some* changes. The *Swagger Specification* has been [donated](http://swagger.io/introducing-the-open-api-initiative/) to the newly created [OpenAPI Initiative](https://openapis.org/news/announcement/2015/11/new-collaborative-project-extend-swagger-specification-building-connected) under the Linux foundation and is reborn as the *[OpenAPI Specification](http://apievangelist.com/2016/01/04/the-openapi-specification-fka-the-swagger-specification/)*. Therefore, my Swagger Journey will become an *OpenAPI Specification (fka Swagger Specification) Journey*.<!--more-->
 
-{% include _postincludes/writing-openapi-swagger-specification-tutorial.md %}
+# Writing OpenAPI (fka Swagger) Specification tutorial
+This tutorial is composed of several posts:
+
+{% include series.html %}
 
 This first part explains what is the OpenAPI Specification, why you *will* use it and what tools you can use to write these specifications.
 
@@ -36,9 +39,9 @@ The OpenAPI Specification is an API description format or API definition languag
 - Input/Output for each operation
 
 The Open API Specification's specification can be found in the [github repository of the Open API Initiative](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md). This document describes every aspect of the Open API Specification.
-Even if this documentation is fairly easy to read, I was sometimes a little bit lost. So, based on this *text* specification, I have created a *visual* documentation which can help to figure how a OpenAPI specification file is structured for people who are more visual like me.
+Even if this documentation is fairly easy to read, I was sometimes a little bit lost. So, based on this *text* specification, I have created the *[OpenAPI Map](http://openapi-map.apihandyman.io/?version=2.0)* a *visual* documentation which can help to figure how a OpenAPI specification file is structured for people who are more visual like me.
 
-{% img file:"/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" label:"OpenAPI Specification Visual Documentation" source:"http://openapi-specification-visual-documentation.apihandyman.io/"%}
+{% img file:"/images/commons/openapi/openapi-map-v2.png" label:"OpenAPI Map" source:"http://openapi-map.apihandyman.io/?version=2.0" %}
 
 Reading the specification is not mandatory to do this tutorial, you can dig into the specification as you discover it through this tutorial.
 

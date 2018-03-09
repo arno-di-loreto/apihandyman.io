@@ -54,7 +54,7 @@ module Jekyll
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       #{collabpedbutton}
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-#{@language}#{@linenumbers}#{collapsed}"#{@highlight}><code>#{code}</code></pre>
