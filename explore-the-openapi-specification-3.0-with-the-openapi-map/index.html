@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>Explore the OpenAPI Specification 3.0 with the OpenAPI Map | API Handyman</title>
+  <meta name="description" content="So you want to explore in depth the OpenAPI Specification version 3.0? You should take the OpenAPI Map with you!">
+  
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@apihandyman">
+
+  <meta name="twitter:title" content="Explore the OpenAPI Specification 3.0 with the OpenAPI Map">
+
+
+  <meta name="twitter:url" content="https://apihandyman.io/explore-the-openapi-specification-3.0-with-the-openapi-map/">
+
+
+  <meta name="twitter:description" content="So you want to explore in depth the OpenAPI Specification version 3.0? You should take the OpenAPI Map with you!">
+
+  <meta name="twitter:image:src" content="https://apihandyman.io/images/explore-the-openapi-specification-3.0-with-the-openapi-map/thumbnail.png">
+
+  
+
+
+
+  <meta name="og:description" content="So you want to explore in depth the OpenAPI Specification version 3.0? You should take the OpenAPI Map with you!">
+
+<meta name="og:image" content="https://apihandyman.io/images/explore-the-openapi-specification-3.0-with-the-openapi-map/thumbnail.png">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/explore-the-openapi-specification-3.0-with-the-openapi-map/">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58046291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          <li class="nav-item nav-dea"><a class="page-link" href="/the-story-behind-the-design-of-everyday-apis-book/">The Design Of Everyday APIs</a></li>
+          <li class="nav-item nav-asb"><a class="page-link" href="http://apistylebook.com/">API Stylebook</a></li>
+          <li class="nav-item nav-oas"><a class="page-link" href="/openapi/">OpenAPI</a></li>
+          <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              
+              <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+              
+            </ul>
+          </li>
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/explore-the-openapi-specification-3.0-with-the-openapi-map/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">Explore the OpenAPI Specification 3.0 with the OpenAPI Map</h1>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="hidden-xs hidden-sm col-md-2" role="complementary">
+  <nav id="left-banner" data-spy="affix" data-offset-top="400">   
+    <div class="book-banner-vertical">
+    <p class="book-banner-vertical-top"><a href="https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&a_bid=ad5a0fe0">Read my API design book!</a></p>
+    <a href="https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"><img src="/images/commons/everydayapis/meap-design-of-everyday-apis-cover-vertical-small.png"></a>
+    <p class="book-banner-vertical-bottom">use <em>mllauretlt</em> discount code to get 50% off until the 21th of February (affiliate link)</p>
+</div>
+  </nav>
+</div>
+<div class="col-xs-12 col-sm-9 col-md-8" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>
+        
+        
+        &nbsp;&nbsp;|&nbsp;<time datetime="2018-03-09T00:00:00+00:00" itemprop="datePublished">Mar. 9, 2018</time><span>&nbsp;|&nbsp;Elsewhere</span>
+      </p>
+      <div class="row">
+  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+      <div class="row book-banner-horizontal">
+    <div class="col-xs-6 col-sm-6">
+      <br><br>
+      Read my API design book!<br>
+      use <em>mllauretlt</em> discount code to get 50% off until the 21th of February
+    </div>
+    <div class="col-xs-6 col-sm-6 book-banner-horizontal-left">
+        <a href="https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"><img src="/images/commons/everydayapis/meap-design-of-everyday-apis-cover-horizontal.png"></a>
+    </div>
+  </a>
+</div>
+  </div>
+</div>
+      <p>So you want to explore in depth the OpenAPI Specification version 3.0? You should take the OpenAPI Map with you!<!--more--></p>
+
+<p>The OpenAPI Specification Visual Documentation is dead, long live the <a href="http://openapi-map.apihandyman.io/">OpenAPI Map</a>! Very special thanks to <a href="https://twitter.com/earth2marsh">Marsh Gardiner</a> for helping me find this name.</p>
+
+<h1 id="what-is-the-openapi-map">What is the OpenAPI Map?</h1>
+
+<p>Just in case you missed previous releases, the OpenAPI Map is a representation of the OpenAPI Specification documentation as a tree. Using it, you can see how an OpenAPI document is organized and discover all OpenAPI objects and properties dark secrets.</p>
+
+<div>
+      <a href="http://openapi-map.apihandyman.io/"><img src="/images/commons/openapi/openapi-map.png" /></a>
+      <p class="img-label"><a href="http://openapi-map.apihandyman.io/">OpenAPI Map</a></p>
+    </div>
+
+<h1 id="updated-300-rc0-to-30">Updated 3.0.0-rc0 to 3.0</h1>
+
+<p>Besides changing the tool’s name, I have replaced the OAS 3.0.0-rc0 version by 3.0 (3.0.1 precisely). You can now fully explore the OpenAPI Specification 3.0 version. This update from 3.0.0-rc0 to 3.0 was a bit longer than expected. There were quite some changes between the early 3.0.0-rc0 version and 3.0 official release. The version 3.0 is now fully documented and includes a complete changelog from version 2.0.</p>
+
+<h1 id="other-enhancements">Other enhancements</h1>
+
+<ul>
+  <li>The Open API Map shows version 3.0 by default</li>
+  <li>Version 2.0 is still available via the navigation bar and you can now even access it directly using this link: <a href="http://openapi-map.apihandyman.io/?version=2.0">http://openapi-map.apihandyman.io/?version=2.0</a>.</li>
+  <li>Mandatory properties labels are now in red, no more need to pass mouse over a property to see it <a href="https://github.com/arno-di-loreto/openapi-map/issues/10">Issue #10</a>.</li>
+</ul>
+
+<h1 id="source-available-on-github">Source available on Github</h1>
+
+<p>You can fork this project on <a href="https://github.com/arno-di-loreto/openapi-map">github</a>. I have updated the readme in order to help people understand how it works but it may need some further updates. So do not hesite to tell me if you need help to use it.</p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://apihandyman.io/explore-the-openapi-specification-3.0-with-the-openapi-map/';
+      this.page.identifier = 'https://apihandyman.io/explore-the-openapi-specification-3.0-with-the-openapi-map/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </article>
+</div>
+<div class="hidden-xs col-sm-2 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss-square fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fab fa-twitter-square fa-2x"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fab fa-github-square fa-2x"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fab fa-linkedin fa-2x"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+        <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  
+    <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+<script language="javascript">
+  $(function() {
+    var $myNav = $('#toc');
+    var $myScope = $('#post');
+    Toc.init({
+      $nav: $myNav,
+      $scope: $myScope
+    });
+    $('body').scrollspy({
+      target: '#toc'
+    });
+  });
+</script>
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script language="JavaScript">
+  $(function() {
+    anchors.options = {
+      placement: 'left'
+    };
+    anchors.add('.blog-container h1');
+    anchors.add('.blog-container h2');
+    anchors.add('.blog-container h3');
+  });
+</script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, secondarybutton, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
+  
+  </body>
+
+</html>
