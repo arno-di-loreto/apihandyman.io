@@ -41,9 +41,8 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
-  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
   
   <script>
@@ -105,13 +104,21 @@
               </ul>
             </li>
           
-          
-            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
-          
-            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
-          
-            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
-          
+          <li class="nav-item nav-dea"><a class="page-link" href="/the-story-behind-the-design-of-everyday-apis-book/">The Design Of Everyday APIs</a></li>
+          <li class="nav-item nav-asb"><a class="page-link" href="http://apistylebook.com/">API Stylebook</a></li>
+          <li class="nav-item nav-oas"><a class="page-link" href="/openapi/">OpenAPI</a></li>
+          <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              
+              <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+              
+            </ul>
+          </li>
           <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
         </ul>
       </div><!--/.nav-collapse -->
@@ -157,9 +164,10 @@
       <p class="post-meta">
         
           By
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>
         
-        <time datetime="2017-02-19T00:00:00+00:00" itemprop="datePublished">Feb. 19, 2017</time><span>&nbsp;|&nbsp;Posts</span>
+        
+        &nbsp;&nbsp;|&nbsp;<time datetime="2017-02-19T00:00:00+00:00" itemprop="datePublished">Feb. 19, 2017</time><span>&nbsp;|&nbsp;Posts</span>
       </p>
       <div class="row">
   <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
@@ -222,10 +230,10 @@
   
 </ul>
 
-<p>If you’re a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>, take a look at my <em>visual documentation:</em></p>
+<p>If you’re a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>, take a look at the <em><a href="http://openapi-map.apihandyman.io/?version=2.0">OpenAPI Map</a></em>:</p>
 <div>
-      <a href="http://openapi-specification-visual-documentation.apihandyman.io/"><img src="/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" /></a>
-      <p class="img-label"><a href="http://openapi-specification-visual-documentation.apihandyman.io/">OpenAPI Specification Visual Documentation</a></p>
+      <a href="http://openapi-map.apihandyman.io/?version=2.0"><img src="/images/commons/openapi/openapi-map-v2.png" /></a>
+      <p class="img-label"><a href="http://openapi-map.apihandyman.io/?version=2.0">OpenAPI Map</a></p>
     </div>
 
 <p>In this final part we’ll learn how to extend the OpenAPI specification to add custom data and most important, we’ll discover why we would do that.</p>
@@ -249,7 +257,7 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers"><code>x-&lt;what you want&gt;: &lt;value&gt;</code></pre>
@@ -263,8 +271,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_53_custom_property.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_53_custom_property.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="5" data-start="3"><code>info:
@@ -292,8 +300,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_54_custom_object.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_54_custom_object.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="5-11" data-start="3"><code>info:
@@ -331,8 +339,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_55_extensions_almost_anywhere.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_55_extensions_almost_anywhere.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="3,9-15,24,32,37"><code>swagger: '2.0'
@@ -460,16 +468,16 @@ definitions:
   <nav class="navbar navbar-fixed-bottom">
     <ul class="list-inline">
      <li>
-       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+       <a href="/feed.xml"><i class="fa fa-rss-square fa-2x" aria-hidden="true"></i></a>
      </li>
      <li>
-      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://twitter.com/apihandyman"><i class="fab fa-twitter-square fa-2x"></i></a>   
      </li>
      <li>
-      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://github.com/arno-di-loreto"><i class="fab fa-github-square fa-2x"></i></a>   
      </li>
      <li>
-      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fab fa-linkedin fa-2x"></i></a>   
      </li>
     </ul>
   </nav>

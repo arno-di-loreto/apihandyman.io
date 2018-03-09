@@ -41,9 +41,8 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
-  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
   
   <script>
@@ -105,13 +104,21 @@
               </ul>
             </li>
           
-          
-            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
-          
-            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
-          
-            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
-          
+          <li class="nav-item nav-dea"><a class="page-link" href="/the-story-behind-the-design-of-everyday-apis-book/">The Design Of Everyday APIs</a></li>
+          <li class="nav-item nav-asb"><a class="page-link" href="http://apistylebook.com/">API Stylebook</a></li>
+          <li class="nav-item nav-oas"><a class="page-link" href="/openapi/">OpenAPI</a></li>
+          <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              
+              <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+              
+            </ul>
+          </li>
           <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
         </ul>
       </div><!--/.nav-collapse -->
@@ -157,9 +164,10 @@
       <p class="post-meta">
         
           By
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>
         
-        <time datetime="2016-03-02T21:07:29+00:00" itemprop="datePublished">Mar. 2, 2016</time><span>&nbsp;|&nbsp;Posts</span>
+        
+        &nbsp;&nbsp;|&nbsp;<time datetime="2016-03-02T21:07:29+00:00" itemprop="datePublished">Mar. 2, 2016</time><span>&nbsp;|&nbsp;Posts</span>
       </p>
       <div class="row">
   <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
@@ -221,10 +229,10 @@
   
 </ul>
 
-<p>If you’re a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>, take a look at my <em>visual documentation:</em></p>
+<p>If you’re a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>, take a look at the <em><a href="http://openapi-map.apihandyman.io/?version=2.0">OpenAPI Map</a></em>:</p>
 <div>
-      <a href="http://openapi-specification-visual-documentation.apihandyman.io/"><img src="/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" /></a>
-      <p class="img-label"><a href="http://openapi-specification-visual-documentation.apihandyman.io/">OpenAPI Specification Visual Documentation</a></p>
+      <a href="http://openapi-map.apihandyman.io/?version=2.0"><img src="/images/commons/openapi/openapi-map-v2.png" /></a>
+      <p class="img-label"><a href="http://openapi-map.apihandyman.io/?version=2.0">OpenAPI Map</a></p>
     </div>
 
 <p>In this second part you will learn how to give some basic informations about your API, describe endpoints using various HTTP methods with path, query and body parameters and returning various HTTP status and responses.</p>
@@ -236,8 +244,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_01.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_01.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers"><code>swagger: "2.0"
@@ -264,8 +272,8 @@ paths: {}</code></pre>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_01.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_01.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers"><code>swagger: "2.0"
@@ -283,8 +291,8 @@ The only possible value is (for now) <em>2.0</em>.</p>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_01.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_01.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="3"><code>info:
@@ -303,8 +311,8 @@ This is described by <a href="https://github.com/OAI/OpenAPI-Specification/blob/
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_01.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_01.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="8"><code>schemes:
@@ -325,8 +333,8 @@ These informations are not required, an OpenAPI specification without these data
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_01.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_01.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="13"><code>paths: {}</code></pre>
@@ -340,8 +348,8 @@ These informations are not required, an OpenAPI specification without these data
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="13-32"><code>swagger: "2.0"
@@ -386,8 +394,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="13"><code>paths:
@@ -404,8 +412,8 @@ To list some <em>persons</em>, we need to apply the <em>get</em> http method to 
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="15"><code>    get:
@@ -425,8 +433,8 @@ We’ll only handle <em>200</em> when responding to get /persons and we’ll tel
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="18"><code>      responses:
@@ -444,8 +452,8 @@ A list of person is an object which <em>type</em> is <em>array</em>. Each item i
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="21"><code>          schema:
@@ -470,8 +478,8 @@ A list of person is an object which <em>type</em> is <em>array</em>. Each item i
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_03_with_query_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_03_with_query_parameters.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="18-26"><code>swagger: "2.0"
@@ -525,8 +533,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_03_with_query_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_03_with_query_parameters.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="6" data-start="13"><code>paths:
@@ -546,8 +554,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_03_with_query_parameters.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_03_with_query_parameters.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="2-9" data-start="18"><code>      parameters:
@@ -573,8 +581,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="42-66"><code>swagger: "2.0"
@@ -653,8 +661,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line=""><code>swagger: "2.0"
@@ -680,8 +688,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="3-6" data-start="40"><code>                username:
@@ -701,8 +709,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="46"><code>      parameters:
@@ -724,8 +732,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="4-13" data-start="52"><code>      responses:
@@ -751,8 +759,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_04_with_path_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="65"><code>        404:
@@ -767,8 +775,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="42-63"><code>swagger: "2.0"
@@ -869,8 +877,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="13"><code>paths:
@@ -884,8 +892,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="42"><code>    post:
@@ -902,8 +910,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="5-14" data-start="45"><code>      parameters:
@@ -931,8 +939,8 @@ paths:
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="59"><code>      responses:
@@ -983,16 +991,16 @@ paths:
   <nav class="navbar navbar-fixed-bottom">
     <ul class="list-inline">
      <li>
-       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+       <a href="/feed.xml"><i class="fa fa-rss-square fa-2x" aria-hidden="true"></i></a>
      </li>
      <li>
-      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://twitter.com/apihandyman"><i class="fab fa-twitter-square fa-2x"></i></a>   
      </li>
      <li>
-      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://github.com/arno-di-loreto"><i class="fab fa-github-square fa-2x"></i></a>   
      </li>
      <li>
-      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fab fa-linkedin fa-2x"></i></a>   
      </li>
     </ul>
   </nav>

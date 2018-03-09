@@ -41,9 +41,8 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
-  <link rel="canonical" href="/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
   
   <script>
@@ -79,13 +78,21 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           
-          
-            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
-          
-            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
-          
-            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
-          
+          <li class="nav-item nav-dea"><a class="page-link" href="/the-story-behind-the-design-of-everyday-apis-book/">The Design Of Everyday APIs</a></li>
+          <li class="nav-item nav-asb"><a class="page-link" href="http://apistylebook.com/">API Stylebook</a></li>
+          <li class="nav-item nav-oas"><a class="page-link" href="/openapi/">OpenAPI</a></li>
+          <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              
+              <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+              
+            </ul>
+          </li>
           <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
         </ul>
       </div><!--/.nav-collapse -->
@@ -131,9 +138,10 @@
       <p class="post-meta">
         
           By
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>
         
-        <time datetime="2017-01-22T00:00:00+00:00" itemprop="datePublished">Jan. 22, 2017</time><span>&nbsp;|&nbsp;Posts</span>
+        
+        &nbsp;&nbsp;|&nbsp;<time datetime="2017-01-22T00:00:00+00:00" itemprop="datePublished">Jan. 22, 2017</time><span>&nbsp;|&nbsp;Posts</span>
       </p>
       <div class="row">
   <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
@@ -212,7 +220,7 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -230,7 +238,7 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>POST https://api.github.com/graphql
@@ -246,7 +254,7 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -268,7 +276,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -286,7 +294,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -318,7 +326,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -343,7 +351,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers code-collapsed"><code>{
@@ -388,7 +396,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -411,7 +419,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers code-collapsed"><code>{
@@ -458,7 +466,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-sql line-numbers"><code>SELECT * FROM A, B WHERE A.COL = B.COL</code></pre>
@@ -471,7 +479,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -498,7 +506,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -526,7 +534,7 @@ The schema can be queried on runtime like all of the data.</p>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -602,7 +610,7 @@ Using the HTTP protocol enforce a certain consistency and allow predictability.<
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>query {
@@ -621,7 +629,7 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>mutation {
@@ -641,7 +649,7 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -656,7 +664,7 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -687,7 +695,7 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -702,7 +710,7 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -851,16 +859,16 @@ Which one is the best API style?</p>
   <nav class="navbar navbar-fixed-bottom">
     <ul class="list-inline">
      <li>
-       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+       <a href="/feed.xml"><i class="fa fa-rss-square fa-2x" aria-hidden="true"></i></a>
      </li>
      <li>
-      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://twitter.com/apihandyman"><i class="fab fa-twitter-square fa-2x"></i></a>   
      </li>
      <li>
-      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://github.com/arno-di-loreto"><i class="fab fa-github-square fa-2x"></i></a>   
      </li>
      <li>
-      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fab fa-linkedin fa-2x"></i></a>   
      </li>
     </ul>
   </nav>

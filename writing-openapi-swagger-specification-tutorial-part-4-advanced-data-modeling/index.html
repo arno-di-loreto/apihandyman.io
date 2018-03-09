@@ -41,9 +41,8 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
-  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
   
   <script>
@@ -105,13 +104,21 @@
               </ul>
             </li>
           
-          
-            <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
-          
-            <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
-          
-            <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
-          
+          <li class="nav-item nav-dea"><a class="page-link" href="/the-story-behind-the-design-of-everyday-apis-book/">The Design Of Everyday APIs</a></li>
+          <li class="nav-item nav-asb"><a class="page-link" href="http://apistylebook.com/">API Stylebook</a></li>
+          <li class="nav-item nav-oas"><a class="page-link" href="/openapi/">OpenAPI</a></li>
+          <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              
+              <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+              
+            </ul>
+          </li>
           <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
         </ul>
       </div><!--/.nav-collapse -->
@@ -157,9 +164,10 @@
       <p class="post-meta">
         
           By
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>&nbsp;&nbsp;|&nbsp;
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>
         
-        <time datetime="2016-04-17T17:52:32+00:00" itemprop="datePublished">Apr. 17, 2016</time><span>&nbsp;|&nbsp;Posts</span>
+        
+        &nbsp;&nbsp;|&nbsp;<time datetime="2016-04-17T17:52:32+00:00" itemprop="datePublished">Apr. 17, 2016</time><span>&nbsp;|&nbsp;Posts</span>
       </p>
       <div class="row">
   <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
@@ -221,10 +229,10 @@
   
 </ul>
 
-<p>If you’re a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>, take a look at my <em>visual documentation:</em></p>
+<p>If you’re a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>, take a look at the <em><a href="http://openapi-map.apihandyman.io/?version=2.0">OpenAPI Map</a></em>:</p>
 <div>
-      <a href="http://openapi-specification-visual-documentation.apihandyman.io/"><img src="/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png" /></a>
-      <p class="img-label"><a href="http://openapi-specification-visual-documentation.apihandyman.io/">OpenAPI Specification Visual Documentation</a></p>
+      <a href="http://openapi-map.apihandyman.io/?version=2.0"><img src="/images/commons/openapi/openapi-map-v2.png" /></a>
+      <p class="img-label"><a href="http://openapi-map.apihandyman.io/?version=2.0">OpenAPI Map</a></p>
     </div>
 
 <p>In this fourth part you will discover all the tips and tricks you can use to describe properties and definitions to describe an accurate API’s data model.</p>
@@ -274,8 +282,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="3-5" data-start="118"><code>      username:
@@ -318,8 +326,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="3,6" data-start="123"><code>      dateOfBirth:
@@ -415,8 +423,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="5-11" data-start="288"><code>  pageSize:
@@ -440,8 +448,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="2-7" data-start="190"><code>      maxPrice:
@@ -464,8 +472,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="3-6" data-start="169"><code>      code:
@@ -514,8 +522,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="5-7" data-start="140"><code>  Persons:
@@ -559,8 +567,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="3" data-start="130"><code>      avatarBase64PNG:
@@ -583,8 +591,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="4" data-start="126"><code>      lastTimeOnline:
@@ -604,8 +612,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="7-14" data-start="221"><code>  PagedPersonsV1:
@@ -634,8 +642,8 @@
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="7-8,10-19" data-start="236"><code>  PagedPersonsV2:
@@ -668,8 +676,8 @@ The <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="256"><code>  PagedPersons:
@@ -687,8 +695,8 @@ It also functions perfectly with inline definitions:</p>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="261"><code>  PagedCollectingItems:
@@ -715,8 +723,8 @@ It also functions perfectly with inline definitions:</p>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="1-4,21-23,33-35" data-start="178"><code>  CollectingItem:
@@ -778,7 +786,7 @@ It also functions perfectly with inline definitions:</p>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{ 
@@ -794,7 +802,7 @@ It also functions perfectly with inline definitions:</p>
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{ 
@@ -814,7 +822,7 @@ The value’s type is defined within the property: <a href="https://github.com/O
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -834,8 +842,8 @@ The value’s type is defined within the property: <a href="https://github.com/O
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="25-26,28-30" data-start="109"><code>definitions:
@@ -879,7 +887,7 @@ The value’s type is defined within the property: <a href="https://github.com/O
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -904,8 +912,8 @@ The value’s type is defined within the property: <a href="https://github.com/O
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="9-10" data-start="150"><code>  ErrorMessage:
@@ -927,8 +935,8 @@ The value’s type is defined within the property: <a href="https://github.com/O
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="12-13" data-start="164"><code>  Error:
@@ -956,7 +964,7 @@ The value’s type is defined within the property: <a href="https://github.com/O
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -986,8 +994,8 @@ The value’s type is defined within the property: <a href="https://github.com/O
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fa fa-clipboard" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="11-13" data-start="150"><code>  ErrorMessage:
@@ -1067,16 +1075,16 @@ In the <a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-
   <nav class="navbar navbar-fixed-bottom">
     <ul class="list-inline">
      <li>
-       <a href="/feed.xml"><i class="fa fa-rss fa-2x" aria-hidden="true"></i></a>
+       <a href="/feed.xml"><i class="fa fa-rss-square fa-2x" aria-hidden="true"></i></a>
      </li>
      <li>
-      <a href="https://twitter.com/apihandyman"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://twitter.com/apihandyman"><i class="fab fa-twitter-square fa-2x"></i></a>   
      </li>
      <li>
-      <a href="https://github.com/arno-di-loreto"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://github.com/arno-di-loreto"><i class="fab fa-github-square fa-2x"></i></a>   
      </li>
      <li>
-      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>   
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fab fa-linkedin fa-2x"></i></a>   
      </li>
     </ul>
   </nav>

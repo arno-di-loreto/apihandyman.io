@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.1">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2018-03-08T18:16:40+00:00</updated><id>https://apihandyman.io/</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">How public web APIs raise software bar</title><link href="https://apihandyman.io/how-public-web-apis-raise-software-bar/" rel="alternate" type="text/html" title="How public web APIs raise software bar" /><published>2018-02-26T00:00:00+00:00</published><updated>2018-02-26T00:00:00+00:00</updated><id>https://apihandyman.io/how-public-web-apis-raise-the-software-bar</id><content type="html" xml:base="https://apihandyman.io/how-public-web-apis-raise-software-bar/">&lt;p&gt;While answering some question on my &lt;a href=&quot;https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&amp;amp;a_bid=ad5a0fe0&quot;&gt;Design of Everyday APIs&lt;/a&gt; book’s &lt;a href=&quot;https://forums.manning.com/posts/list/42828.page&quot;&gt;forum&lt;/a&gt;, I wrote:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.3.1">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2018-03-09T15:24:29+00:00</updated><id>https://apihandyman.io/</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">How public web APIs raise software bar</title><link href="https://apihandyman.io/how-public-web-apis-raise-software-bar/" rel="alternate" type="text/html" title="How public web APIs raise software bar" /><published>2018-02-26T00:00:00+00:00</published><updated>2018-02-26T00:00:00+00:00</updated><id>https://apihandyman.io/how-public-web-apis-raise-the-software-bar</id><content type="html" xml:base="https://apihandyman.io/how-public-web-apis-raise-software-bar/">&lt;p&gt;While answering some question on my &lt;a href=&quot;https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&amp;amp;a_bid=ad5a0fe0&quot;&gt;Design of Everyday APIs&lt;/a&gt; book’s &lt;a href=&quot;https://forums.manning.com/posts/list/42828.page&quot;&gt;forum&lt;/a&gt;, I wrote:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Now that I have seen brilliant Web APIs that can be used so easily because of their design but also the overall experience some can provide (the famous “DX”) I have become far more demanding and challenging with software in general&lt;/p&gt;
@@ -118,9 +118,7 @@ What seems ridiculous for everyday objects interfaces is as ridiculous for appli
 &lt;p&gt;So, while &lt;em&gt;The Design of Everyday APIs&lt;/em&gt; book is a practical one showing every aspects of API design and many techniques, tips and tricks to design great APIs. It will also explain &lt;em&gt;why&lt;/em&gt; you should design APIs that way and therefore, I hope, give you the eye of the API designer.
 I hope you’ll enjoy this book and find it useful to design your everyday APIs and build an API designer mindset. As you can read it on &lt;a href=&quot;https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&amp;amp;a_bid=ad5a0fe0&quot;&gt;MEAP&lt;/a&gt; (affiliate link, use &lt;em&gt;mllauretlt&lt;/em&gt; discount code to get 50% off until the 21th of February) while it is written, I look forward to your feedbacks on MEAP forum.&lt;/p&gt;
 
-&lt;div class=&quot;embedpad center&quot;&gt;&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/5TyZLALORwDFHA&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt;&lt;/div&gt; 
-
-
+&lt;div class=&quot;embedpad center&quot;&gt;&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/6ZYXRGEODWQv5M&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt;&lt;/div&gt; 
 &lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="posts" /><summary type="html">I’m thrilled to announce that I’m writing a book about API design: The Design of Everyday APIs. This book is published by Manning Publications and the first two chapters are now available on the Manning Early Access Program or MEAP (affiliate link, use mllauretlt discount code to get 50% off until the 21th of February). This book is for everyone who wants to learn API design. But, what’s the story behind this book about API design? To answer this question, let’s talk about my other passion: guitar.</summary></entry><entry><title type="html">API Styleguide, the Lord of API Designs</title><link href="https://apihandyman.io/api-styleguide-the-lord-of-api-designs/" rel="alternate" type="text/html" title="API Styleguide, the Lord of API Designs" /><published>2017-11-12T00:00:00+00:00</published><updated>2017-11-12T00:00:00+00:00</updated><id>https://apihandyman.io/api-styleguide-the-lord-of-api-designs</id><content type="html" xml:base="https://apihandyman.io/api-styleguide-the-lord-of-api-designs/">&lt;p&gt;Join Frodo, Gollum and Gandalf on an epic API design adventure.
 In this session, based on my own experience defining and sharing API design common practices in my company and based on the API styles guides that I have collected on &lt;a href=&quot;http://apistylebook.com&quot;&gt;apistylebook.com&lt;/a&gt;, we will discover why we desperately need API style guides and how they can or cannot help us create a smooth API surface for a company.&lt;/p&gt;
 
@@ -150,7 +148,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;POST /resources HTTP/1.1
@@ -168,7 +166,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;HTTP/1.1 201 Created
@@ -188,7 +186,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;HTTP/1.1 400 Bad Request
@@ -210,7 +208,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;PATCH /resources HTTP/1.1
@@ -227,7 +225,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;HTTP/1.1 200 Accepted
@@ -247,7 +245,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;HTTP/1.1 404 Not Found
@@ -266,7 +264,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;PUT /resources/ID HTTP/1.1
@@ -284,7 +282,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-txt&quot;&gt;&lt;code&gt;HTTP/1.1 200 Accepted
@@ -352,7 +350,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;[
@@ -374,7 +372,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{
@@ -393,7 +391,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{
@@ -429,7 +427,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-xml&quot;&gt;&lt;code&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot; ?&amp;gt;
@@ -458,7 +456,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;[
@@ -495,7 +493,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{
@@ -539,7 +537,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{
@@ -558,7 +556,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{&amp;quot;resource&amp;#39;s&amp;quot;: &amp;quot;data&amp;quot;}&lt;/code&gt;&lt;/pre&gt;
@@ -573,7 +571,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;{
@@ -592,7 +590,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;[
@@ -627,7 +625,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json&quot;&gt;&lt;code&gt;[
@@ -722,10 +720,10 @@ In this session, based on my own experience defining and sharing API design comm
   
 &lt;/ul&gt;
 
-&lt;p&gt;If you’re a bit lost in the &lt;a href=&quot;https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md&quot;&gt;specification&lt;/a&gt;, take a look at my &lt;em&gt;visual documentation:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you’re a bit lost in the &lt;a href=&quot;https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md&quot;&gt;specification&lt;/a&gt;, take a look at the &lt;em&gt;&lt;a href=&quot;http://openapi-map.apihandyman.io/?version=2.0&quot;&gt;OpenAPI Map&lt;/a&gt;&lt;/em&gt;:&lt;/p&gt;
 &lt;div&gt;
-      &lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial/openapi-specification-visual-documentation.png&quot; /&gt;&lt;/a&gt;
-      &lt;p class=&quot;img-label&quot;&gt;&lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;OpenAPI Specification Visual Documentation&lt;/a&gt;&lt;/p&gt;
+      &lt;a href=&quot;http://openapi-map.apihandyman.io/?version=2.0&quot;&gt;&lt;img src=&quot;/images/commons/openapi/openapi-map-v2.png&quot; /&gt;&lt;/a&gt;
+      &lt;p class=&quot;img-label&quot;&gt;&lt;a href=&quot;http://openapi-map.apihandyman.io/?version=2.0&quot;&gt;OpenAPI Map&lt;/a&gt;&lt;/p&gt;
     &lt;/div&gt;
 
 &lt;p&gt;In this final part we’ll learn how to extend the OpenAPI specification to add custom data and most important, we’ll discover why we would do that.&lt;/p&gt;
@@ -749,7 +747,7 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-yaml line-numbers&quot;&gt;&lt;code&gt;x-&amp;lt;what you want&amp;gt;: &amp;lt;value&amp;gt;&lt;/code&gt;&lt;/pre&gt;
@@ -763,8 +761,8 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_53_custom_property.yaml&quot;&gt;&lt;i class=&quot;fa fa-file-text-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_53_custom_property.yaml&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-yaml line-numbers&quot; data-line=&quot;5&quot; data-start=&quot;3&quot;&gt;&lt;code&gt;info:
@@ -792,8 +790,8 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_54_custom_object.yaml&quot;&gt;&lt;i class=&quot;fa fa-file-text-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_54_custom_object.yaml&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-yaml line-numbers&quot; data-line=&quot;5-11&quot; data-start=&quot;3&quot;&gt;&lt;code&gt;info:
@@ -831,8 +829,8 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_55_extensions_almost_anywhere.yaml&quot;&gt;&lt;i class=&quot;fa fa-file-text-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_55_extensions_almost_anywhere.yaml&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-yaml line-numbers code-collapsed&quot; data-line=&quot;3,9-15,24,32,37&quot;&gt;&lt;code&gt;swagger: '2.0'
@@ -984,7 +982,7 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
@@ -1002,7 +1000,7 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-text line-numbers&quot;&gt;&lt;code&gt;POST https://api.github.com/graphql
@@ -1018,7 +1016,7 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
@@ -1040,7 +1038,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
@@ -1058,7 +1056,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
@@ -1090,7 +1088,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
@@ -1115,7 +1113,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json line-numbers code-collapsed&quot;&gt;&lt;code&gt;{
@@ -1160,7 +1158,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
@@ -1183,7 +1181,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json line-numbers code-collapsed&quot;&gt;&lt;code&gt;{
@@ -1230,7 +1228,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-sql line-numbers&quot;&gt;&lt;code&gt;SELECT * FROM A, B WHERE A.COL = B.COL&lt;/code&gt;&lt;/pre&gt;
@@ -1243,7 +1241,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
@@ -1270,7 +1268,7 @@ Here, &lt;code&gt;viewer&lt;/code&gt; becomes &lt;code&gt;me&lt;/code&gt;, &lt;c
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
@@ -1298,7 +1296,7 @@ The schema can be queried on runtime like all of the data.&lt;/p&gt;
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
@@ -1374,7 +1372,7 @@ Using the HTTP protocol enforce a certain consistency and allow predictability.&
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;query {
@@ -1393,7 +1391,7 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;mutation {
@@ -1413,7 +1411,7 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
@@ -1428,7 +1426,7 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
@@ -1459,7 +1457,7 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-graphql line-numbers&quot;&gt;&lt;code&gt;{
@@ -1474,7 +1472,7 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
   &lt;div class=&quot;code-toolbar&quot;&gt;
     &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
       
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fa fa-clipboard&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;pre class=&quot;language-json line-numbers&quot;&gt;&lt;code&gt;{
