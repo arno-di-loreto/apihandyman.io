@@ -26,7 +26,7 @@
           <li class="nav-item nav-asb"><a class="page-link" href="http://apistylebook.com/">API Stylebook</a></li>
           <li class="nav-item nav-oas"><a class="page-link" href="{{ '/openapi/' | prepend: site.baseurl | prepend: site.github.url }}">OpenAPI</a></li>
           <li class="dropdown">
-              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
             <ul class="dropdown-menu">
               {% for category_name in site.data.categories %}
               <li class="nav-item"><a class="page-link" href="{{ category_name[0] | prepend: '/categories/' | prepend: site.baseurl | prepend: site.github.url }}">{{category_name[0] | capitalize }}</a></li>
