@@ -39,6 +39,8 @@ footer ul {
 .main-container {
   line-height: 1.5;
   font-size: medium; }
+  .main-container h1, .main-container h2, .main-container h3 {
+    color: #16a085; }
   .main-container a, .main-container .pagination > li > a, .main-container .pagination > li > span {
     color: #16a085; }
   .main-container a:hover, .main-container a:focus, .main-container .pagination > li > a:focus, .main-container .pagination > li > a:hover, .main-container .pagination > li > span:focus, .main-container .pagination > li > span:hover {
@@ -164,16 +166,8 @@ nav[data-toggle='toc'] {
   .book-banner-vertical img {
     width: 100%; }
 
-.book-banner-horizontal {
-  background-color: #004F66;
+.book-banner-horizontal a, .book-banner-horizontal a:hover, .book-banner-horizontal a:active {
   color: #EA6A38; }
-  .book-banner-horizontal a, .book-banner-horizontal a:hover, .book-banner-horizontal a:active {
-    color: #EA6A38;
-    font-size: 0.8em; }
-  .book-banner-horizontal .book-banner-horizontal-left {
-    padding: 0px; }
-    .book-banner-horizontal .book-banner-horizontal-left img {
-      width: 100%; }
 
 @media (min-width: 576px) {
   #left-banner {
