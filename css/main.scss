@@ -246,8 +246,18 @@ nav[data-toggle='toc'] {
 }
 
 .book-banner-horizontal {
+  background-color: #004F66;
+  text-align: center;
+  padding: 0px;
   a, a:hover, a:active {
     color: #EA6A38;
+    font-size: 0.7em;
+  }
+  img {
+    padding: 0px;
+  }
+  p {
+    margin: 0px;
   }
 }
 

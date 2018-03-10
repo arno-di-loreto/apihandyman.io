@@ -6,6 +6,7 @@ javascript: javascript-post.html
 {% include left-banner.html %}
 <div class="col-xs-12 col-sm-9 col-md-8" role="main">
   <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    {% include horizontal-banner.html %}
     <div id="post" class="blog-container" itemprop="articleBody">
       <p class="post-meta">
         {% if page.author %}
@@ -15,7 +16,6 @@ javascript: javascript-post.html
         {% if page.date %}
         &nbsp;&nbsp;|&nbsp;<time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b. %-d, %Y" }}</time><span>&nbsp;|&nbsp;{{ page.category | capitalize }}</span>{% endif %}
       </p>
-      {% include horizontal-banner.html %}
       {{ content }}
       {% include disqus_comments.html %}
     </div>
