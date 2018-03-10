@@ -24,7 +24,14 @@
           {% endif %}
           <li class="nav-item nav-dea"><a class="page-link" href="{{ '/the-story-behind-the-design-of-everyday-apis-book/' | prepend: site.baseurl | prepend: site.github.url }}">The Design Of Everyday APIs</a></li>
           <li class="nav-item nav-asb"><a class="page-link" href="http://apistylebook.com/">API Stylebook</a></li>
-          <li class="nav-item nav-oas"><a class="page-link" href="{{ '/openapi/' | prepend: site.baseurl | prepend: site.github.url }}">OpenAPI</a></li>
+          <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OpenAPI<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="nav-item nav-oas"><a class="page-link" href="{{ '/openapi/' | prepend: site.baseurl | prepend: site.github.url }}">What is the OpenAPI Specification</a></li>
+              <li class="nav-item nav-oas"><a class="page-link" href="{{ '/explore-the-openapi-specification-3.0-with-the-openapi-map/' | prepend: site.baseurl | prepend: site.github.url }}">OpenAPI Map</a></li>
+              <li class="nav-item nav-oas"><a class="page-link" href="{{ '/writing-openapi-swagger-specification-tutorial-part-1-introduction/' | prepend: site.baseurl | prepend: site.github.url }}">OpenAPI 2.0 Tutorial</a></li>
+            </ul>
+          </li>
           <li class="dropdown">
               <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
             <ul class="dropdown-menu">
