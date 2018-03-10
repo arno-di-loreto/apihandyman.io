@@ -68,6 +68,9 @@ footer {
 
 
 .main-container {
+  h1, h2, h3 {
+    color: #16a085;
+  }
   a, .pagination>li>a, .pagination>li>span {
     color: #16a085;
   }
@@ -243,17 +246,8 @@ nav[data-toggle='toc'] {
 }
 
 .book-banner-horizontal {
-  background-color: #004F66;
-  color: #EA6A38;
   a, a:hover, a:active {
     color: #EA6A38;
-    font-size: 0.8em;
-  }
-  .book-banner-horizontal-left {
-    padding: 0px;
-    img {
-      width: 100%
-    }
   }
 }
 
