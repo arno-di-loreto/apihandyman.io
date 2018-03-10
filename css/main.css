@@ -166,8 +166,17 @@ nav[data-toggle='toc'] {
   .book-banner-vertical img {
     width: 100%; }
 
-.book-banner-horizontal a, .book-banner-horizontal a:hover, .book-banner-horizontal a:active {
-  color: #EA6A38; }
+.book-banner-horizontal {
+  background-color: #004F66;
+  text-align: center;
+  padding: 0px; }
+  .book-banner-horizontal a, .book-banner-horizontal a:hover, .book-banner-horizontal a:active {
+    color: #EA6A38;
+    font-size: 0.7em; }
+  .book-banner-horizontal img {
+    padding: 0px; }
+  .book-banner-horizontal p {
+    margin: 0px; }
 
 @media (min-width: 576px) {
   #left-banner {
