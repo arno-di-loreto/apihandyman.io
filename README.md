@@ -436,3 +436,7 @@ Here's the list of tools used:
 - [Travis CI](https://travis-ci.org/) to build and deploy the static website
 - [Prism](http://prismjs.com/) to highlight code blocks
 - [ClipboardJS](https://clipboardjs.com/) for copy button on code blocks
+
+# About Google Analytics
+
+This website used Google Analytics with anomized IP and disabled cookies thanks to this post: https://medium.com/jaysquared-com/implement-google-analytics-without-cookies-to-comply-with-gdpr-eu-cookie-law-and-eprivacy-a345c0fe89d7
