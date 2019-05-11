@@ -1,5 +1,5 @@
 ---
-title: "The story behind The Design of Everyday APIs book"
+title: "The story behind The Design of Web APIs book"
 date: 2018-02-10
 author: Arnaud Lauret
 layout: post
@@ -7,7 +7,7 @@ permalink: /the-story-behind-the-design-of-everyday-apis-book/
 category: posts
 ---
 
-I'm thrilled to announce that I'm writing a book about API design: _The Design of Everyday APIs_. This book is published by _Manning Publications_ and the first two chapters are now available on the Manning Early Access Program or {% include _everydayapis/meap-link.md %}. This book is for everyone who wants to learn API design.
+I'm thrilled to announce that I'm writing a book about API design: _The Design of Everyday APIs_ (edit: the book has been renamed _The Design of Web APIs_ since this post has been written). This book is published by _Manning Publications_ and the first two chapters are now available on the Manning Early Access Program or {% include _book/meap-link.md %}. This book is for everyone who wants to learn API design.
 But, what's the story behind this book about API design? To answer this question, let's talk about my other passion: guitar. <!--more-->
 
 {% img file:"guitar-tabs.png" label:"Guitar tabs"%}
@@ -16,7 +16,7 @@ I have been playing the guitar for quite a long time. I'm definitely not an outs
 
 But what has this to do with API design?
 
-{% include _everydayapis/big-banner.html %}
+{% include _book/big-banner.html %}
 
 I've been doing distributed software and working with web services and web APIs for a long time now, designing, building, using and providing them. Like many others, I've learned many things from the trenches about API design by practicing ... and doing many mistakes. Mistakes, that I could have probably easily avoided if I had been warned. I have discovered the not so obvious scope of the API designer's job and you know what? Choosing HTTP methods and designing URLs is only a part of it. I have also learned how to design APIs that do exactly what they have been created for. And I have also learned how to shape APIs in order to make them easy-to-understand and easy-to-use.
 
@@ -32,7 +32,5 @@ OK, an API is an _Application Programming Interface_, but it's first and foremos
 APIs are interfaces like any others. Look at this _UDRC 1138_ control panel, its _interface_. What could be this device's purpose? How use it? hard to guess thanks to its poorly designed interface. Think about the many times you have been puzzled or you have grumbled when using a everyday object like a door, a microwave oven, a remote control, a toy, a web site, a mobile application because its design was flawed. Think about the many times you did not complain and were even quite happy using something. 
 What seems ridiculous for everyday objects interfaces is as ridiculous for application programming interface. And the opposite is quite true, what works for everyday objects interfaces works for APIs.
 
-So, while _The Design of Everyday APIs_ book is a practical one showing every aspects of API design and many techniques, tips and tricks to design great APIs. It will also explain _why_ you should design APIs that way and therefore, I hope, give you the eye of the API designer.
-I hope you'll enjoy this book and find it useful to design your everyday APIs and build an API designer mindset. As you can read it on {% include _everydayapis/meap-link.md %} while it is written, I look forward to your feedbacks on MEAP forum.
-
-{% slideshare 6ZYXRGEODWQv5M %} 
+So, while _The Design of Everyday APIs_ (edit: the book has been renamed _The Design of Web APIs_ since this post has been written) book is a practical one showing every aspects of API design and many techniques, tips and tricks to design great APIs. It will also explain _why_ you should design APIs that way and therefore, I hope, give you the eye of the API designer.
+I hope you'll enjoy this book and find it useful to design your everyday APIs and build an API designer mindset. As you can read it on {% include _book/meap-link.md %} while it is written, I look forward to your feedbacks on MEAP forum.

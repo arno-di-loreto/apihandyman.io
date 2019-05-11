@@ -1,1 +1,0 @@
-https://www.manning.com/books/the-design-of-everyday-apis?a_aid=everyday_apis&a_bid=ad5a0fe0

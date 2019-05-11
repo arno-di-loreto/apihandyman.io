@@ -1,1 +1,0 @@
-[MEAP]({% include _everydayapis/meap-url.md %}) (affiliate link, {% include _everydayapis/discount.md %})
