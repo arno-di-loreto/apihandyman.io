@@ -56,7 +56,10 @@ coderoot: code
 ### codefilehighlight parameter: number of visible lines in code block
 codeblocksize: 20
 
-gems:
+# Links
+mybook: http://bit.ly/designwebapis
+
+plugins:
   - jekyll-feed
   - jekyll-twitter-plugin
   - jekyll-paginate
