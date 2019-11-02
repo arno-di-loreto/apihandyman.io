@@ -1,4 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2019-11-01T23:34:03+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">Explore the OpenAPI Specification 3.0 with the OpenAPI Map</title><link href="https://apihandyman.io/explore-the-openapi-specification-3.0-with-the-openapi-map/" rel="alternate" type="text/html" title="Explore the OpenAPI Specification 3.0 with the OpenAPI Map" /><published>2018-03-09T00:00:00+00:00</published><updated>2018-03-09T00:00:00+00:00</updated><id>https://apihandyman.io/explore-the-openapi-specification-3.0-with-the-openapi-map</id><content type="html" xml:base="https://apihandyman.io/explore-the-openapi-specification-3.0-with-the-openapi-map/">&lt;p&gt;So you want to explore in depth the OpenAPI Specification version 3.0? You should take the OpenAPI Map with you!&lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2019-11-02T15:22:45+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">Few things I learned writing The Design of Web APIs</title><link href="https://apihandyman.io/few-things-i-learned-writing-the-design-of-web-apis/" rel="alternate" type="text/html" title="Few things I learned writing The Design of Web APIs" /><published>2018-11-02T00:00:00+00:00</published><updated>2018-11-02T00:00:00+00:00</updated><id>https://apihandyman.io/few-things-i-learned-writing-the-design-of-web-apis</id><content type="html" xml:base="https://apihandyman.io/few-things-i-learned-writing-the-design-of-web-apis/">&lt;p&gt;At last, my book The Design of Web APIs is finished and printed! I gradually got back to a “normal” life since the end of summer as the book entered in its production phase, but it was only when I received the printed copies two weeks ago that I had the feeling that this adventure was really over. And then holding the book in my hands, I wondered if it was worth having spent two years of my life on it, what did I learn spending almost all my free time working on this book? That sounded like a good topic to revive the API Handyman blog.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;the-design-of-web-apis&quot;&gt;The Design of Web APIs&lt;/h1&gt;
+
+&lt;p&gt;The &lt;a href=&quot;http://bit.ly/designwebapis&quot;&gt;Design of Web APIs&lt;/a&gt; is my first book. Before that, I have been blogging for 2 years before being contacted by Manning to write a book about the OpenAPI Specification. It’s an interesting topic (I spend almost a year writing a extensive &lt;a href=&quot;http://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-1-introduction/&quot;&gt;tutorial&lt;/a&gt; on version 2) but I had other ideas in mind at that time: &lt;em&gt;The Design of Everyday APIs&lt;/em&gt;. I wanted to write a book that teaches API design principles and not a book about a given technology, I wanted to make a sort of API design version of The Design of Everyday Things by Don Norman. I discovered this book thanks to &lt;a href=&quot;https://twitter.com/mamund&quot;&gt;Mike Amundsen&lt;/a&gt;, it changed the way I envision software.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Design of Everyday Things is a best-selling book by cognitive scientist and usability engineer Donald Norman about how design serves as the communication between object and user, and how to optimize that conduit of communication in order to make the experience of using the object pleasurable. One of the main premises of the book is that although people are often keen to blame themselves when objects appear to malfunction, it is not the fault of the user but rather the lack of intuitive guidance that should be present in the design. (&lt;a href=&quot;https://en.wikipedia.org/wiki/The_Design_of_Everyday_Things&quot;&gt;Wikipedia&lt;/a&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The Design of Everyday APIs was only a working title, I never have been comfortable with it as I had the feeling that I was borrowing the fame of Don Norman’s book. Hopefully it was changed to the more simple and obvious &lt;em&gt;The Design of Web APIs&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The title is not the only thing that has changed during the creation of this book. The table of content and the content itself has greatly evolve during these two years to become the book I’m so proud of. But more important, I changed by learning a few things.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-to-actually-write-a-technical-book-or-other-things&quot;&gt;How to actually write a technical book (or other things)&lt;/h1&gt;
+
+&lt;p&gt;I’m glad I made this book with a publisher and did not self-publish it because the result would probably have been a terrible mess … if I actually finished it. Having a (good) publisher was great because the people working there helped me in many ways like, for example, fixing typos, challenging the book’s content or gently asking me when I planned to finish the next chapter and so help me keeping the pace. But more important, if I know quite a few things about API design and I like story telling, I didn’t knew how to actually write a book and my publisher taught me to do so. I’m not a professional writer, I may even be wrong, there are probably thousands of books and blog posts about writing, but here’s what I retain after writing this book (and what I try to reuse now when writing anything):&lt;/p&gt;
+
+&lt;p&gt;First define what you will actually talk about in your book. To do so, ask yourself:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Who are your readers?&lt;/li&gt;
+  &lt;li&gt;What do they need to know/do before reading the book?&lt;/li&gt;
+  &lt;li&gt;What will they learn/be able to do by reading it?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Once the book’s objective is defined, write the table of content (ToC). It is the backbone of the book, your battle plan. It should tell a story that will help readers to achieve the book’s objective.
+The first versions can be rough without going to deep into details, just think about the main steps of the story. You’ll fill the details by working on each chapter and maybe adjust the ToC.&lt;/p&gt;
+
+&lt;p&gt;Then for each chapter:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Make the elevator pitch of why readers should care about this chapter’s content. It shouldn’t take more than a few sentences.&lt;/li&gt;
+  &lt;li&gt;List what readers need to know/do before reading it, basically topics from previous chapters. It may help to spot missed topics.&lt;/li&gt;
+  &lt;li&gt;List new concept taught&lt;/li&gt;
+  &lt;li&gt;List the examples used to explain the new concepts&lt;/li&gt;
+  &lt;li&gt;Sketch the main diagrams that will be used&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It’s not that easy to do, don’t be afraid if it takes time but if if really doesn’t work, maybe you should get rid of this chapter and rethink your ToC. With all these elements, it’s easier to write the chapter: once you have a good view the content, you “only” need to focus on how to tell the story in an entertaining way. Without them, be ready to face the white page syndrome and rewrite the chapter endlessly.&lt;/p&gt;
+
+&lt;h1 id=&quot;theres-more-than-what-you-think-you-know-about-the-books-topic&quot;&gt;There’s more than what (you think) you know about the book’s topic&lt;/h1&gt;
+
+&lt;p&gt;By writing a 400 pages book about API design, I ending by knowing far more about this topic than what I knew before starting it. This is not specific to book’s writing, I already noticed that after I started to blog.
+Writing a book about API design forced me to actually list all the topics that readers need to be aware of and I “discovered” some topics I didn’t care much about before starting the book. I had to deeply investigate topics these topics but also ones I thought I knew. And most interesting, I had to find new ways of explaining things, finding examples and drawing diagrams while preparing chapters was of great help to do so.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-to-receive-and-provide-feedback&quot;&gt;How to receive and provide feedback&lt;/h1&gt;
+
+&lt;p&gt;I received a lot of feedback during the book’s writing. I worked with a development editor and a technical editor who provided feedback on each chapter. There have been 3 readers reviews made on the first third (6 readers), second third (10 readers) and then first complete version of the book (16 readers). There were comments on the forum/live book. And I also got feedback from my friends and colleagues.&lt;/p&gt;
+
+&lt;p&gt;The two first readers reviews, especially the second one, left me totally depressed. It was really hard to deal with them because some of them were negative. I even &lt;em&gt;felt&lt;/em&gt; that some were too harsh if not mean. I usually consider myself sufficiently adult to be able to get some negative feedback as long as it is argued and there can be a discussion. But, when you get feedback from a dozen readers at once and there is no possible discussion with the PDF file summing up their reviews, that’s really hard to manage, at least for me. Hopefully, I could get beyond that thanks to two things.&lt;/p&gt;
+
+&lt;p&gt;First, I step back and objectively analyze the reviews to split them in smaller elements. Frankly, I don’t remember how I came to do that, probably because my development editor told me to do so or because I usually work like that. But I looked at the reviews and identified every good and bad point, check how many readers talk about them. Doing so I realized that it was not that bad and, even if that always hurt a bit, I agreed with most of the identified problems. I also realized that there was actually only one or two shitty reviewers (sorry, these persons may probably not actually be like that but this is how I felt based on the review) and this lead to my second point.&lt;/p&gt;
+
+&lt;p&gt;So, the second thing that help me to go on after the reviews is that I’m lucky to know some authors who have been there and one of them gave me a really good advice. It could be summarized as “you under no obligation to give a shit about what people say”. Listen to what people say, take what is of interest for you and your book and leave the rest. And if they are not happy with that, tell them to write their own book.&lt;/p&gt;
+
+&lt;p&gt;After these reviews, I realized that I may have been one of these assholes myself. So, I’m really happy that they taught me how to provide better feedback, especially when not face to face, and (I hope) not to be an asshole anymore when providing feedback.&lt;/p&gt;
+
+&lt;h1 id=&quot;be-more-confident&quot;&gt;Be more confident&lt;/h1&gt;
+
+&lt;p&gt;Hopefully, my development and technical editors feedback were more constructive and encouraging, also were comments from my trusted friends and colleagues. That really gave me confidence. I realized that what I was creating was really good (and I just realized that I became confident enough to actually write that the book is good). Besides having good feedback, I got even more confident seeing how all the book’s pieces fit together so well. And being confident about the book’s content made me more confident about what I do in my daily job, that’s priceless.&lt;/p&gt;
+
+&lt;h1 id=&quot;trust-but-verify&quot;&gt;Trust, but verify&lt;/h1&gt;
+
+&lt;p&gt;When you finish to write a book, the work is not over. The final phase is called the production phase. It mostly deals with copy-editing, graphics-editing, typesetting.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Copy-editing consist in fixing typos, grammar and vocabulary and also ensure a certain consistency in your writing. Note that in my case there was a previous ESL (english as second language) copy-editing phase to fix my frenglish. You must check every single modification made to YOUR text in order to be sure that what is written is ok for YOU. Some modifications may not make sense at all or you may simply not like them. It is your right to not accept such modification.&lt;/li&gt;
+  &lt;li&gt;Graphics-editing is copy-editing for figures. Their texts will be copy-edited and their design may be more or less modified depending on their quality/style/size. In my case, my figures were only finally slightly modified but there has been some bug in the process. For an unknown reason, my figures were being totally remade in a new style that I totally hated. Hopefully, I noticed it and made that stopped. Everyone can make mistakes, that is why there are verifications phases, so don’t take them lightly even if you trust the third-parties modifying your work.&lt;/li&gt;
+  &lt;li&gt;My definition of typesetting is: ajdusting words (split them sometime) and figure positions to avoid empty spaces. If you ever wondered why in some books figures seem in awkward places, in my experience, that is due to typesetting. I had to request a few modifications, but taking typesetting contraints into consideration, in order to avoid such problems on a few figures.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So, you can trust, be never forget to verify. Even if it is hard and boring as hell, you must be very careful when your book is modified by third-parties. You have to exhaustively check ALL modifications. Be confident and never refrain yourself to say no if something seem wrong for you.&lt;/p&gt;
+
+&lt;h1 id=&quot;find-a-balance-between-the-book-and-the-rest&quot;&gt;Find a balance between the book and the rest&lt;/h1&gt;
+
+&lt;p&gt;Finding a balance between the book and the rest, especially my family is something that I didn’t do so well at the beginning. If you do write a book, consider defined precisely when you work on it and keep time for your family and possibly for other activities (like reading, playing video games or playing the guitar in my case). That will keep everyone happy (including you) and increase your productivity when writing.&lt;/p&gt;
+
+&lt;h1 id=&quot;never-complain-when-reading-others-books&quot;&gt;Never complain when reading others books&lt;/h1&gt;
+
+&lt;p&gt;And finally, now that I know how hard it is to write a book (and especially to spot all those fucking typos), I will never complain again when I read others books (but I may try to provide some useful and friendly feedback).&lt;/p&gt;
+
+&lt;h1 id=&quot;a-new-beginning&quot;&gt;A new beginning&lt;/h1&gt;
+
+&lt;p&gt;Don’t know if so many people will find this post interesting, but I needed to write it to not forget what I’ve been through. Know that I never regretted starting to write blog posts or the book, so maybe you should think about writing too. Whatever, I’m back on the blog, so stay tune for more API related posts.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">At last, my book The Design of Web APIs is finished and printed! I gradually got back to a “normal” life since the end of summer as the book entered in its production phase, but it was only when I received the printed copies two weeks ago that I had the feeling that this adventure was really over. And then holding the book in my hands, I wondered if it was worth having spent two years of my life on it, what did I learn spending almost all my free time working on this book? That sounded like a good topic to revive the API Handyman blog.</summary></entry><entry><title type="html">Explore the OpenAPI Specification 3.0 with the OpenAPI Map</title><link href="https://apihandyman.io/explore-the-openapi-specification-3.0-with-the-openapi-map/" rel="alternate" type="text/html" title="Explore the OpenAPI Specification 3.0 with the OpenAPI Map" /><published>2018-03-09T00:00:00+00:00</published><updated>2018-03-09T00:00:00+00:00</updated><id>https://apihandyman.io/explore-the-openapi-specification-3.0-with-the-openapi-map</id><content type="html" xml:base="https://apihandyman.io/explore-the-openapi-specification-3.0-with-the-openapi-map/">&lt;p&gt;So you want to explore in depth the OpenAPI Specification version 3.0? You should take the OpenAPI Map with you!&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;The OpenAPI Specification Visual Documentation is dead, long live the &lt;a href=&quot;http://openapi-map.apihandyman.io/&quot;&gt;OpenAPI Map&lt;/a&gt;! Very special thanks to &lt;a href=&quot;https://twitter.com/earth2marsh&quot;&gt;Marsh Gardiner&lt;/a&gt; for helping me find this name.&lt;/p&gt;
 
@@ -698,250 +781,4 @@ In this session, based on my own experience defining and sharing API design comm
   &lt;p&gt;This guide is slightly different from the other ones because it deals with REST and RPC API design focusing on gRPC APIs using Protocol Buffers v3.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;To discover this API design guide and a short review, let’s go to the &lt;a href=&quot;http://apistylebook.com/blog/google-api-design-guide-added-on-the-api-stylebook&quot;&gt;API Stylebook blog&lt;/a&gt;.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="elsewhere" /><category term="Design" /><category term="API Stylebook" /><summary type="html">I’ve just added the Google API Design Guide to the API Stylebook. This guide is slightly different from the other ones because it deals with REST and RPC API design focusing on gRPC APIs using Protocol Buffers v3. To discover this API design guide and a short review, let’s go to the API Stylebook blog.</summary></entry><entry><title type="html">Writing OpenAPI (Swagger) Specification Tutorial - Part 9 - Extending the OpenAPI specification</title><link href="https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/" rel="alternate" type="text/html" title="Writing OpenAPI (Swagger) Specification Tutorial - Part 9 - Extending the OpenAPI specification" /><published>2017-02-19T00:00:00+00:00</published><updated>2017-02-19T00:00:00+00:00</updated><id>https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification</id><content type="html" xml:base="https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">&lt;p&gt;This is the end, my OpenAPI friends, the end. The end? Not really. This last part of the OpenAPI tutorial is a new beginning. With previous parts we have learned to master the OpenAPI specification but there’s a last thing to learn to unleash its full power: extensions. This format is easily extensible, it allows to add custom data within an API description. But for what purposes? Let’s have a glimpse of these extensions endless possibilities.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;writing-openapi-fka-swagger-specification-tutorial&quot;&gt;Writing OpenAPI (fka Swagger) Specification tutorial&lt;/h1&gt;
-&lt;p&gt;This tutorial is composed of several posts:&lt;/p&gt;
-
-&lt;ul&gt;
-  
-    
-    &lt;li&gt;&lt;a class=&quot;page-link&quot; href=&quot;/writing-openapi-swagger-specification-tutorial-part-1-introduction/&quot;&gt;Part 1 - Introduction&lt;/a&gt;&lt;/li&gt;
-    
-  
-    
-    &lt;li&gt;&lt;a class=&quot;page-link&quot; href=&quot;/writing-openapi-swagger-specification-tutorial-part-2-the-basics/&quot;&gt;Part 2 - The basics&lt;/a&gt;&lt;/li&gt;
-    
-  
-    
-    &lt;li&gt;&lt;a class=&quot;page-link&quot; href=&quot;/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/&quot;&gt;Part 3 - Simplifying specification file&lt;/a&gt;&lt;/li&gt;
-    
-  
-    
-    &lt;li&gt;&lt;a class=&quot;page-link&quot; href=&quot;/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/&quot;&gt;Part 4 - Advanced Data&lt;/a&gt;&lt;/li&gt;
-    
-  
-    
-    &lt;li&gt;&lt;a class=&quot;page-link&quot; href=&quot;/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/&quot;&gt;Part 5 - Advanced Input And Output Modeling&lt;/a&gt;&lt;/li&gt;
-    
-  
-    
-    &lt;li&gt;&lt;a class=&quot;page-link&quot; href=&quot;/writing-openapi-swagger-specification-tutorial-part-6-defining-security/&quot;&gt;Part 6 - Defining Security&lt;/a&gt;&lt;/li&gt;
-    
-  
-    
-    &lt;li&gt;&lt;a class=&quot;page-link&quot; href=&quot;/writing-openapi-swagger-specification-tutorial-part-7-documentation/&quot;&gt;Part 7 - Documentation&lt;/a&gt;&lt;/li&gt;
-    
-  
-    
-    &lt;li&gt;&lt;a class=&quot;page-link&quot; href=&quot;/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/&quot;&gt;Part 8 - Splitting specification file&lt;/a&gt;&lt;/li&gt;
-    
-  
-    
-    &lt;li&gt;&lt;strong&gt;Part 9 - Extending the OpenAPI specification&lt;/strong&gt;&lt;/li&gt;
-    
-  
-&lt;/ul&gt;
-
-&lt;p&gt;If you’re a bit lost in the &lt;a href=&quot;https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md&quot;&gt;specification&lt;/a&gt;, take a look at the &lt;em&gt;&lt;a href=&quot;http://openapi-map.apihandyman.io/?version=2.0&quot;&gt;OpenAPI Map&lt;/a&gt;&lt;/em&gt;:&lt;/p&gt;
-&lt;div&gt;
-      &lt;a href=&quot;http://openapi-map.apihandyman.io/?version=2.0&quot;&gt;&lt;img src=&quot;/images/commons/openapi/openapi-map-v2.png&quot; /&gt;&lt;/a&gt;
-      &lt;p class=&quot;img-label&quot;&gt;&lt;a href=&quot;http://openapi-map.apihandyman.io/?version=2.0&quot;&gt;OpenAPI Map&lt;/a&gt;&lt;/p&gt;
-    &lt;/div&gt;
-
-&lt;p&gt;In this final part we’ll learn how to extend the OpenAPI specification to add custom data and most important, we’ll discover why we would do that.&lt;/p&gt;
-
-&lt;h1 id=&quot;one-size-may-not-fit-all&quot;&gt;One size may not fit all&lt;/h1&gt;
-
-&lt;p&gt;After working for a while with the OpenAPI format, you WILL want to add other data into you API descriptions, this is your destiny. Fortunately, the creator of the format had foreseen that:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;While the Swagger Specification tries to accommodate most use cases, additional data can be added to extend the specification at certain points.&lt;br /&gt;
-&lt;em&gt;&lt;a href=&quot;https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#vendorExtensions&quot;&gt;OpenAPI Specification&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Once known as &lt;em&gt;Vendor Extensions&lt;/em&gt;, these &lt;em&gt;Specification Extensions&lt;/em&gt; can be created by anyone, don’t be fooled by their original name.&lt;/p&gt;
-
-&lt;h1 id=&quot;custom-property&quot;&gt;Custom property&lt;/h1&gt;
-
-&lt;p&gt;To add a custom property with an OpenAPI definition file you only need to prefix its name by &lt;code&gt;x-&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div&gt;
-  &lt;div class=&quot;code-toolbar&quot;&gt;
-    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
-      
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;pre class=&quot;language-yaml line-numbers&quot;&gt;&lt;code&gt;x-&amp;lt;what you want&amp;gt;: &amp;lt;value&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-  
-&lt;/div&gt;
-
-&lt;p&gt;Here’s a custom property &lt;code&gt;x-custom-info&lt;/code&gt; in the &lt;code&gt;info&lt;/code&gt; section of an OpenAPI file:&lt;/p&gt;
-
-&lt;div&gt;
-  &lt;!-- codeblocksize: 20 --&gt;
-  &lt;div class=&quot;code-toolbar&quot;&gt;
-    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
-      
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_53_custom_property.yaml&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;pre class=&quot;language-yaml line-numbers&quot; data-line=&quot;5&quot; data-start=&quot;3&quot;&gt;&lt;code&gt;info:
-  version: 1.0.0
-  title: x-tended OpenAPI Specification
-  description: An OpenAPI specification containing custom data
-  x-custom-info: Here's some custom information
-&lt;/code&gt;&lt;/pre&gt;
-  
-&lt;/div&gt;
-
-&lt;p&gt;If a standard Swagger/OpenAPI parser encounters such property, it will ignore it because it’s prefixed with &lt;code&gt;x-&lt;/code&gt;. This &lt;code&gt;info&lt;/code&gt; section with a custom property is valid:&lt;/p&gt;
-
-&lt;div&gt;
-      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/custom-property.png&quot; /&gt;&lt;/a&gt;
-      
-    &lt;/div&gt;
-
-&lt;h1 id=&quot;custom-object&quot;&gt;Custom object&lt;/h1&gt;
-
-&lt;p&gt;Extensions are not only meant to be atomic properties, they can also be objects:&lt;/p&gt;
-
-&lt;div&gt;
-  &lt;!-- codeblocksize: 20 --&gt;
-  &lt;div class=&quot;code-toolbar&quot;&gt;
-    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
-      
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_54_custom_object.yaml&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;pre class=&quot;language-yaml line-numbers&quot; data-line=&quot;5-11&quot; data-start=&quot;3&quot;&gt;&lt;code&gt;info:
-  version: 1.0.0
-  title: x-tended OpenAPI Specification
-  description: An OpenAPI specification containing custom data
-  x-custom-info:
-    comment: Here's some custom information
-    authors:
-      - name: John Doe
-        email: john@doe.com
-      - name: Jane Doe
-        email: jane@doe.com
-&lt;/code&gt;&lt;/pre&gt;
-  
-&lt;/div&gt;
-
-&lt;p&gt;Note that sub-properties names do not need to be prefixed with &lt;code&gt;x-&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h1 id=&quot;extensions-almost-anywhere&quot;&gt;Extensions almost anywhere&lt;/h1&gt;
-
-&lt;p&gt;These custom data structures can be added almost anywhere in the specification. You can test if a location is ok by simply adding your extension where you want within the online editor and see if the validator complains or not.&lt;/p&gt;
-
-&lt;p&gt;You can also take a look at my &lt;a href=&quot;http://openapi-specification-visual-documentation.apihandyman.io/&quot;&gt;visual documentation&lt;/a&gt; to check if the location you want to use allows extension or not:&lt;/p&gt;
-
-&lt;div&gt;
-      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/almost-anywhere.png&quot; /&gt;&lt;/a&gt;
-      
-    &lt;/div&gt;
-
-&lt;p&gt;Here’s an example using various location (non-exhaustive example):&lt;/p&gt;
-
-&lt;div&gt;
-  &lt;!-- codeblocksize: 20 --&gt;
-  &lt;div class=&quot;code-toolbar&quot;&gt;
-    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_55_extensions_almost_anywhere.yaml&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;pre class=&quot;language-yaml line-numbers code-collapsed&quot; data-line=&quot;3,9-15,24,32,37&quot;&gt;&lt;code&gt;swagger: '2.0'
-
-x-root: some custom root data
-
-info:
-  version: 1.0.0
-  title: x-tended OpenAPI Specification
-  description: An OpenAPI specification containing custom data
-  x-custom-info:
-    comment: Here's some custom information
-    authors:
-      - name: John Doe
-        email: john@doe.com
-      - name: Jane Doe
-        email: jane@doe.com
-
-paths:
-  /resources:
-    get:
-      description: gets some resource
-      responses:
-        200:
-          description: everything is ok
-          x-custom-response-data: I told you everything was really OK!
-          schema:
-            type: array
-            items:
-              $ref: &quot;#/definitions/Resource&quot;
-
-definitions:
-  Resource:
-    x-custom-definition-data: some.dummy.class.Resource
-    properties:
-      data:
-        description: some data
-        type: string
-        x-custom-property-data: More blah blah about this property&lt;/code&gt;&lt;/pre&gt;
-  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;why-customizing-the-openapi-specification&quot;&gt;Why customizing the OpenAPI specification?&lt;/h1&gt;
-
-&lt;p&gt;So, adding custom information within an OpenAPI specification file is fairly easy. But the question is less about the how and more about the why. Why would you add custom data to your OpenAPI files?&lt;/p&gt;
-
-&lt;p&gt;You can use some extensions provided by open source or commercial tools or create your own. You can simply add custom data without processing them for documentation purpose or use these informations to generate documentation, client code, server code or tests or even configure some tools.&lt;/p&gt;
-
-&lt;p&gt;Let’s see some examples.  &lt;br /&gt;
-&lt;em&gt;nb: This post is not a sponsored one.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;example-1-documentation&quot;&gt;Example 1: Documentation&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.gelato.io/guides/control-grouping-with-swagger&quot;&gt;Gelato, the Mashape Developer Portal solution&lt;/a&gt;, uses the &lt;a href=&quot;https://docs.gelato.io/guides/control-grouping-with-swagger&quot;&gt;&lt;code&gt;x-gelato-group&lt;/code&gt;&lt;/a&gt; extension to group operations in the portal navigation.&lt;/p&gt;
-
-&lt;div&gt;
-      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/gelato.png&quot; /&gt;&lt;/a&gt;
-      
-    &lt;/div&gt;
-
-&lt;p&gt;Of course, as an OpenAPI expert you would have use tags to do that. Beware to not reinvent the wheel when creating your extensions.&lt;/p&gt;
-
-&lt;h1 id=&quot;example-2-client-code-generation&quot;&gt;Example 2: Client code generation&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://docs.apimatic.io/advanced/swagger-test-cases-extensions/&quot;&gt;API Matic, a SDK/DX kits generator&lt;/a&gt; uses extension ton control SDK generation.&lt;/p&gt;
-
-&lt;div&gt;
-      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/apimatic.png&quot; /&gt;&lt;/a&gt;
-      
-    &lt;/div&gt;
-
-&lt;h1 id=&quot;example-3-server-code-generation&quot;&gt;Example 3: Server code generation&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/swagger-api/swagger-node&quot;&gt;Swagger Node, a node module which help to build API implementation with a design first approach&lt;/a&gt; uses a &lt;code&gt;x-swagger-router-controller&lt;/code&gt; extension to link an API endpoint to its controller implementation.&lt;/p&gt;
-
-&lt;div&gt;
-      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/swagger-node.png&quot; /&gt;&lt;/a&gt;
-      
-    &lt;/div&gt;
-
-&lt;h1 id=&quot;example-4-api-gateway-configuration&quot;&gt;Example 4: API gateway configuration&lt;/h1&gt;
-
-&lt;p&gt;Not only the AWS API gateway allows to import a Swagger/OpenAPI file but it also provides a &lt;a href=&quot;(http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-swagger-extensions.html)&quot;&gt;complete set of extensions&lt;/a&gt; to configure how the API is linked to backend systems (like lambda).&lt;/p&gt;
-
-&lt;div&gt;
-      &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/aws-api-gateway.png&quot; /&gt;&lt;/a&gt;
-      
-    &lt;/div&gt;
-
-&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;This post concludes the OpenAPI/Swagger specification tutorial. You master now every single aspect of the OpenAPI specification and with this last post I hope to have given you some ideas to be creative to include this format in each step of the API lifecycle.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="posts" /><category term="OpenAPI" /><category term="Swagger" /><category term="API Specification" /><category term="Documentation" /><category term="API First" /><summary type="html">This is the end, my OpenAPI friends, the end. The end? Not really. This last part of the OpenAPI tutorial is a new beginning. With previous parts we have learned to master the OpenAPI specification but there’s a last thing to learn to unleash its full power: extensions. This format is easily extensible, it allows to add custom data within an API description. But for what purposes? Let’s have a glimpse of these extensions endless possibilities.</summary></entry></feed>
+&lt;p&gt;To discover this API design guide and a short review, let’s go to the &lt;a href=&quot;http://apistylebook.com/blog/google-api-design-guide-added-on-the-api-stylebook&quot;&gt;API Stylebook blog&lt;/a&gt;.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="elsewhere" /><category term="Design" /><category term="API Stylebook" /><summary type="html">I’ve just added the Google API Design Guide to the API Stylebook. This guide is slightly different from the other ones because it deals with REST and RPC API design focusing on gRPC APIs using Protocol Buffers v3. To discover this API design guide and a short review, let’s go to the API Stylebook blog.</summary></entry></feed>
