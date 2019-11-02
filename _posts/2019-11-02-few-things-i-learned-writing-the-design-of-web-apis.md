@@ -1,6 +1,6 @@
 ---
 title: Few things I learned writing The Design of Web APIs
-date: 2018-11-02
+date: 2019-11-02
 author: Arnaud Lauret
 layout: post
 permalink: /few-things-i-learned-writing-the-design-of-web-apis/
