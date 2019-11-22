@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
+
+  <title>Lessons learned while demoing API to non-developers | API Handyman</title>
+  <meta name="description" content="What would you do if you had to demo API to non-developers in a highly-constrained context? How would you do without curl, Postman or any other API tool usua...">
+  
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@apihandyman">
+
+  <meta name="twitter:title" content="Lessons learned while demoing API to non-developers">
+
+
+  <meta name="twitter:url" content="https://apihandyman.io/lessons-learned-while-demoing-api-to-non-developers/">
+
+
+  <meta name="twitter:description" content="What would you do if you had to demo API to non-developers in a highly-constrained context? How would you do without curl, Postman or any other API tool usually used? How would you do without your usual fun API examples? I had to do that a few weeks ago and was quite happy by the questions that arose and the solutions found. The whole story definitely deserves a post in order to share what I’ve learned!">
+
+  <meta name="twitter:image:src" content="https://apihandyman.io/images/lessons-learned-while-demoing-api-to-non-developers/thumbnail.png">
+
+  
+
+
+
+  <meta name="og:description" content="What would you do if you had to demo API to non-developers in a highly-constrained context? How would you do without curl, Postman or any other API tool usually used? How would you do without your usual fun API examples? I had to do that a few weeks ago and was quite happy by the questions that arose and the solutions found. The whole story definitely deserves a post in order to share what I’ve learned!">
+
+<meta name="og:image" content="https://apihandyman.io/images/lessons-learned-while-demoing-api-to-non-developers/thumbnail.png">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/prism.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/lessons-learned-while-demoing-api-to-non-developers/">
+  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+  
+  <script type="text/javascript" src="/js/fingerprint2.min.js" ></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  new Fingerprint2().get(function(clientId) {
+    ga('create', 'UA-58046291-1', {
+      'storage': 'none',
+      'clientId':clientId,
+      'storeGac': false
+    });
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+  });
+
+</script>
+  
+
+  
+</head>
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <!--<header>-->
+  <!-- Static navbar -->
+  <nav class="navbar navbar-fixed-top full">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand" href="/">API Handyman</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          <li class="nav-item nav-dea"><a class="page-link" href="http://bit.ly/designwebapis">My Book: The Design Of Web APIs</a></li>
+          <li class="nav-item nav-asb"><a class="page-link" href="http://apistylebook.com/">API Stylebook</a></li>
+          <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OpenAPI<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="nav-item nav-oas"><a class="page-link" href="/openapi/">What is the OpenAPI Specification</a></li>
+              <li class="nav-item nav-oas"><a class="page-link" href="/explore-the-openapi-specification-3.0-with-the-openapi-map/">OpenAPI Map</a></li>
+              <li class="nav-item nav-oas"><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">OpenAPI 2.0 Tutorial</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              
+              <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
+              
+              <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
+              
+            </ul>
+          </li>
+          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+<!--</header>-->
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('/images/lessons-learned-while-demoing-api-to-non-developers/thumbnail.png')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">Lessons learned while demoing API to non-developers</h1>
+          
+        </div>
+      </div>
+  <!--</div>-->
+</header>
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          <div class="hidden-xs hidden-sm col-md-2" role="complementary">
+  <nav id="left-banner" data-spy="affix" data-offset-top="400">   
+    <div class="book-banner-vertical">
+    <p class="book-banner-vertical-top"><a href="http://bit.ly/designwebapis">Read my book</a></p>
+    <a href="http://bit.ly/designwebapis"><img class="img-responsive center-block " src="/images/commons/book/book-vertical.png"></a>
+    <p class="book-banner-vertical-bottom">(affiliate link, use fcclauret discount code to get 37% off)</p>
+</div>
+  </nav>
+</div>
+<div class="col-xs-12 col-sm-9 col-md-8" role="main">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="row">
+  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+      <div class="post-summary book-banner-horizontal">
+    <p><a class="post-link" href="http://bit.ly/designwebapis">Read my book (affiliate link, use fcclauret discount code to get 37% off)</a></p>
+    <a class="post-link" href="http://bit.ly/designwebapis">
+      <img class="img-responsive center-block post-summary-thumbnail" src="/images/commons/book/book-horizontal.png"></a>
+  </div>
+  </div>
+</div>
+    <div id="post" class="blog-container" itemprop="articleBody">
+      <p class="post-meta">
+        
+          By
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>
+        
+        
+        &nbsp;&nbsp;|&nbsp;<time datetime="2019-11-22T00:00:00+00:00" itemprop="datePublished">Nov. 22, 2019</time><span>&nbsp;|&nbsp;Posts</span>
+      </p>
+      <p>What would you do if you had to demo API to non-developers in a highly-constrained context? How would you do without curl, Postman or any other API tool usually used? How would you do without your usual fun API examples? I had to do that a few weeks ago and was quite happy by the questions that arose and the solutions found. The whole story definitely deserves a post in order to share what I’ve learned!<!--more--></p>
+
+<h1 id="the-request">The request</h1>
+
+<p>A part of my job is explaining to developers and non-developers what are APIs and what can be done with them from both technical and business perspectives. I regularly do some presentations or training to do so, especially a very first API 101 session simply consisting in some slides without any hands-on. A few weeks ago, I received a request that seemed quite simple at first: “we want to organize the usual API 101 for non developers … but this time, it would be great to let them make <em>code</em> some API stuff. And you have less than 45 minutes, probably half an hour”. The objective was to make these people grasp a little bit more than usual what APIs are and let them understand their simplicity during this first session.</p>
+
+<p>At first, I was like: “oh no problem, we’ll use curl and Postman to make calls to the SWAPI API (an API providing information about the Star Wars movies) or the PokeAPI (providing information Pokemons), it shouldn’t take more than 10 minutes during the presentation, so even with half an hour that should be OK. Unfortunately that was not that simple.</p>
+
+<h1 id="beware-the-context-when-choosing-hands-on-tools">Beware the context when choosing hands-on tools</h1>
+
+<p>Problems started with the tooling. Indeed, the people attending this session have standard-for-non-developer laptops. These laptops do not come with Postman or curl, and even if the attendees were admins (highly improbable) on these laptops, installing tools would be far too complicated and would take a too long time in such a short session (and it would probably ruin the “APIs are simple” message).</p>
+
+<p>OK, no problems, only solutions. These machines come with Windows 10 and PowerShell, I’m not familiar with it but I thought “Well, a PowerShell-curl probably exists”. Yes it does, there are <code>Invoke-RestMethod</code>and <code>Invoke-WebRequest</code> that seem to do the job. Unfortunately, I did not succeed to make them work with our f****** corporate proxy. As far as I’ve seen, it would have required to make too much complicated stuff and would have taken too much time (I may have missed something).</p>
+
+<p>And there was also this “code some API stuff” idea. One of my colleagues suggested to use <a href="https://jsfiddle.net/">JSFiddle</a>. Brilliant! It’s a browser based tool and therefore it requires absolutely no installation. It allows to tinker with HTML, JS and CSS. I first checked that it was not blocked by our corporate proxy … and yes! It worked. I discovered that JSFiddle (and other similar tools) comes with some useful features (if you pay of course) for training sessions, especially private fiddles. That could be interesting to manage calls to API needing authentication (to safely store credentials). I keep that in a corner of my mind for another time as I didn’t want to use secured APIs during this session. I developed a simple example with basic HTML and JavaScript doing an API call.</p>
+
+<div>
+      <img src="/images/lessons-learned-while-demoing-api-to-non-developers/jsfiddle.png" />
+      <p class="img-label">Using JSFiddle and HTML/JS code is maybe too complex for non-developers</p>
+    </div>
+
+<p>I thought I could let attendees modify it to make some API calls themselves. From the very beginning I was not comfortable with that. Hopefully, I could test the idea with the persons (non-developers) who made the request and specifically asked for the “code some API stuff”. It didn’t take us long to realize that was a terrible idea. JSFiddle would look terribly complex and having to modify some JS code would be a nightmare for people who never have done that before.</p>
+
+<p>OK, if attendees could not actually write code in that context, they could at least use their browser to call an API, that’s web APIs we had to talk about after all. All that is needed is typing something in the browser’s address bar. And people could “code” some API stuff by tweaking the URLs and parameters. We, all agreed that was the best option in our context and it fulfilled the requirements.</p>
+
+<p>But which API to use?</p>
+
+<h1 id="take-care-of-finding-api-examples-adapted-to-the-audience">Take care of finding API examples adapted to the audience</h1>
+
+<p>I’m used to use <a href="https://swapi.co/">SWAPI</a> (Star War API) when demoing APIs in such 101 sessions. It’s simple, fun and requires no authentication. But, in that context, I realized that using SWAPI would lead to two problems.</p>
+
+<p>The first problem was simply technical. In such demo I usually use curl to call SWAPI. But in that context I had to use a browser and unfortunately SWAPI is too smart, it handles content negotiation very well. Indeed, when you call SWAPI from a browser, you don’t get raw JSON data but an HTML page. But, I wanted to show some ugly raw JSON data and not HTML! So, I found another funny API, the <a href="http://www.dnd5eapi.co">D&amp;D</a> API. Typing the <a href="http://www.dnd5eapi.co/api/classes">http://www.dnd5eapi.co/api/classes</a> URL in the browser’s address bar shows some beautifully-ugly JSON raw data listing available characters class in the fifth edition of Dungeons &amp; Dragons rule books. I thought it was perfect … but not at all: that’s the seconde problem.</p>
+
+<p>Indeed, the second problem with such fun API is functional. SWAPI or D&amp;D are totally fun from my perspective, but their fields were thousands light-years away of what matters for the attendees. For this demo we needed an API that would resonate with them. I needed an example that makes sense for people in the financial industry. Hopefully, I found a more suitable API: the <a href="https://exchangeratesapi.io/">Foreign Exchange Rate API</a>. This API provides current and historical foreign exchange rates published by the European Central Bank. Basically, if you want to know how much Japan Yen you can get for a Euro, this API is for you. OK, forex is not a field as fun as Star Wars and D&amp;D but this API provides data the attendees are familiar with (especially the ISO 4217 currency codes), it’s dead simple and provides enough functions and parameters to let total API beginners have fun with it.</p>
+
+<p>Once the API chosen, I listed the API calls the attendees would have to do and the questions I would ask them during the “API call exercises” part of the session. I was almost done but I wanted to show how this Foreign Exchange Rate API could be used in a simple application along with another API (to show how by combining easily simple API you can do interesting stuff).</p>
+
+<h1 id="build-an-all-in-one-demo-application">Build an all-in-one demo application</h1>
+
+<p>So, I wrote a simple <a href="https://arno-di-loreto.github.io/simple-api-demo/">webapp</a> (using <a href="https://jsfiddle.net/arnaudlauret/8catx91d">JS Fiddle</a> and <a href="https://github.com/arno-di-loreto/simple-api-demo">Github pages</a> by the way) combining the Foreign Exchange Rate API and the <a href="https://restcountries.eu/">REST Countries</a> API which provide information about countries such as languages, borders, flags, … It consists in a simple form that let users convert an amount in a source currency to a target currency. It also shows trivia about the selected currencies such as the countries which use them and their flags. The available currencies and exchange rate come from the exchange rate API and the country/currency relationship and country flag come from REST country API.</p>
+
+<p>And then I thought it would be interesting to show the actual API calls that were triggered when using the web application. I first though to use the browser’s developer tools. Indeed, using the network panel and filtering to XHR request, you can see the API calls made by the JavaScript code. But again, that would have been too complex just like showing them JSFiddle (IMHO).</p>
+
+<div>
+      <img src="/images/lessons-learned-while-demoing-api-to-non-developers/browser-dev-tools.png" />
+      <p class="img-label">Filtering XHR request in browser dev tools? Too scary!</p>
+    </div>
+
+<p>So I came to the idea of adding an API call log directly within the web application. This log shows which called are done and why. API calls are log during the webpage initial loading but also when users interact with it. On each new action, the new call are added to the top of the list and the previous calls are shown in light grey.</p>
+
+<div>
+      <img src="/images/lessons-learned-while-demoing-api-to-non-developers/demo-app.png" />
+      <p class="img-label">Demo application including detailed API call log? Far more non-developers friendly!</p>
+    </div>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>So I was totally ready for this special 101 session with a bonus hands-on. And hopefully everything went very well, but even if that presentation was very important (because of the very important people in the audience), I will remember more its preparation as it helped me (re)discover very interesting things. Preparing this unusual session reminded me that whatever you do: beware the context before making any choice. I’m also quite happy to have find this idea of building an all-in-one demo application which explain what happens behind the hood and will reuse and expand this concept in the future.</p>
+
+<p><em>PS: Oh, and I almost forgot … it also reminded me how so many tools are unable to deal with corporate proxies easily. I may write something about that one day.</em></p>
+
+      
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://apihandyman.io/lessons-learned-while-demoing-api-to-non-developers/';
+      this.page.identifier = 'https://apihandyman.io/lessons-learned-while-demoing-api-to-non-developers/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://apihandyman.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </article>
+</div>
+<div class="hidden-xs col-sm-2 col-md-2" role="complementary">
+  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
+</div>
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <footer>
+  <nav class="navbar navbar-fixed-bottom">
+    <ul class="list-inline">
+     <li>
+       <a href="/feed.xml"><i class="fa fa-rss-square fa-2x" aria-hidden="true"></i></a>
+     </li>
+     <li>
+      <a href="https://twitter.com/apihandyman"><i class="fab fa-twitter-square fa-2x"></i></a>   
+     </li>
+     <li>
+      <a href="https://github.com/arno-di-loreto"><i class="fab fa-github-square fa-2x"></i></a>   
+     </li>
+     <li>
+      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fab fa-linkedin fa-2x"></i></a>   
+     </li>
+    </ul>
+  </nav>
+</footer>
+          </div>
+        </div>
+      </div>
+        <script type="text/javascript" src="/js/jquery.min.js" ></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  
+    <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
+<script language="javascript">
+  $(function() {
+    var $myNav = $('#toc');
+    var $myScope = $('#post');
+    Toc.init({
+      $nav: $myNav,
+      $scope: $myScope
+    });
+    $('body').scrollspy({
+      target: '#toc'
+    });
+  });
+</script>
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script language="JavaScript">
+  $(function() {
+    anchors.options = {
+      placement: 'left'
+    };
+    anchors.add('.blog-container h1');
+    anchors.add('.blog-container h2');
+    anchors.add('.blog-container h3');
+  });
+</script>
+<script type="text/javascript" src="/js/prism.js" ></script>
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+<script language="JavaScript">
+  var clipboard = new Clipboard('.btn-copy', {
+    target: function(trigger) {
+      return trigger.parentElement.parentElement.parentElement.children[1];
+    }
+  });
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    window.setTimeout(function() {
+        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).blur();
+    }, 1000);
+  });
+</script>
+<script language="JavaScript">
+  function toggle(button, code, secondarybutton, scroll) {
+    var beforecodeheight = $(code).height(); 
+    if($(code).hasClass('code-collapsed')) {
+      $(code).removeClass('code-collapsed');
+      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).blur();
+    }
+    else {
+      $(code).addClass('code-collapsed');
+      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).blur();
+      if(scroll) {
+        var aftercodeheight = $(code).height();
+        var afterscroll = $('body').scrollTop();
+        var delta = beforecodeheight - aftercodeheight;
+        $('body').scrollTop(afterscroll - delta);
+      }
+    }
+  }
+</script>
+  
+  </body>
+
+</html>
