@@ -173,6 +173,47 @@ code {
   }
 }
 
+.code-toolbar-for-title {
+  position: relative;
+  padding: 0px;
+  //width: 100%;
+  .btn-group {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    right: 0;
+    .btn:focus,.btn:active {
+      outline: none !important;
+    }
+    .btn {
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      position: relative;
+      top: -24px;
+    }
+    a {
+      color: black;
+    }
+  }
+}
+
+.code-title {
+  padding: 0px;
+  width: 100%;
+
+  .btn:focus,.btn:active {
+    outline: none !important;
+  }
+  .btn {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+    top: +10px;
+    z-index: 10;
+  }
+}
+
 .code-bottom-toolbar {
   padding: 0px;
   width: 100%;
@@ -183,7 +224,7 @@ code {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     position: relative;
-    top: -8px;
+    top: -10px;
   }
 }
 
