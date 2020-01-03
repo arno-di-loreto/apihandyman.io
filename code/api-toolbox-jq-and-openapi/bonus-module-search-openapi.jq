@@ -1,6 +1,6 @@
-include "module-openapi"; # Looks for a module-operations.jq file
+include "module-openapi"; # Looks for a module-openapi.jq file
 
-# Filters list and their default values
+# Available filters and their default values
 def default_filters:
 {
   deprecated: null,

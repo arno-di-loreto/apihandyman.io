@@ -1,4 +1,4 @@
-include "module-openapi"; # Looks for a module-operations.jq file
+include "module-openapi"; # Looks for a module-openapi.jq file
 
 . | 
 oas_operations | # Comes from module-operations.jq
