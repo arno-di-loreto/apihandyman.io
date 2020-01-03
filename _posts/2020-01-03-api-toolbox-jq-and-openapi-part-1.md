@@ -339,6 +339,11 @@ Let's start by extracting the API's paths:
 /sources/{id}/destinations
 /transfers
 /transfers/{id}
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r -f list-paths.jq demo-api-openapi.json
+
 {% endcode %}
 
 In an OpenAPI file, the available paths are the keys of the `paths` object.
@@ -363,6 +368,11 @@ delete
 get
 patch
 post
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r -f list-http-methods.jq demo-api-openapi.json
+
 {% endcode %}
 
 In an OpenAPI file, HTTP methods are keys inside a path object. Unfortunately, path objects may have other properties than HTTP methods ones, like `summary`, `description`, `parameters` or `x-` custom properties (we take for granted that there is no `$ref` properties). So we'll need to clean this array to get rid of all other properties than HTTP methods.
@@ -397,6 +407,11 @@ Now we take another step deeper into the OpenAPI file by listing all HTTP status
 404     2
 202     1
 400     1
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r -f list-http-status-codes.jq demo-api-openapi.json
+
 {% endcode %}
 
 In an OpenAPI files, HTTP status codes used to signify how went the API call are located in the `responses` properties of all operations (identified by an HTTP method) which are located inside all paths (identified by a path like `/whatever`) in the `paths` property. In the responses object, each response object is identified by its HTTP status code or by "default". Note that the response object can also contains `x-` custom properties that we'll need to get rid of.
@@ -441,6 +456,11 @@ get     /transfers      List money transfers
 get     /transfers/{id} Get a money transfer
 patch   /transfers/{id}
 delete  /transfers/{id} Cancel a money transfer
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r -f list-operations.jq demo-api-openapi.json
+
 {% endcode %}
 
 Thanks to previous examples, we start to know an OpenAPI file structure. The operation's paths come first, then their HTTP method and a level below, we can access to summary and deprecated properties which are both optional.
@@ -542,6 +562,11 @@ It can be of interest to know which extensions are used in an OpenAPI document, 
     }
   }
 ]
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r -f list-xtensions.jq demo-api-openapi.json
+
 {% endcode %}
 
 The OpenAPI Specification is extensible, it means that custom data can be added to it for various purpose. The custom data structures can either be called extensions, x-tensions or vendor extension. In order to allow standard parsers to not raise an error, such custom data structure must be added using a specific key name starting by "x-" in order to identify them. The tricky part with extensions in our case, is that they can be located (almost) anywhere in a document, the only sure thing is that they have a key name starting by "x-". To learn more about this, check {% include link.md link=site.data.openapi.links.openapi_2_tutorial_part_9 target=site.data.openapi.link_target %} (note: extension management did not change between version 2.0 and 3).
@@ -592,6 +617,11 @@ And last, but not least, for this post, let's gather information from different 
     "operations": 14
   }
 ]
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -f list-apis.jq *.json | jq -s
+
 {% endcode%}
 
 For each file, we gather data coming from the info section but we also get the filename.To get that result, we'll learn how to use the following new JQ filters:
