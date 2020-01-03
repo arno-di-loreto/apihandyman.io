@@ -73,6 +73,11 @@ As shown in the following listing, the `demo-api-openapi.json` file is quite com
 {"openapi":"3.0.0","info":{"title":"Banking API", ...}
 # The whole document is printed one a single line
 # That's totally unreadable 😱
+
+{{site.codeblock_hidden_copy_separator}}
+
+cat demo-api-openapi.json
+
 {% endcode %}
 
 Of course we could open our favorite code editor and beautify it. But this can also be done on the command line thanks to JQ. All we need to do is piping (with `|`) the file content to JQ like this `cat api-openapi.json | jq '.'`. Icing on the cake, the output is colored. Note that you can also simply call JQ with the JSON's filename like this: `jq '.' demo-api-openapi.json`.
@@ -86,6 +91,11 @@ Of course we could open our favorite code editor and beautify it. But this can a
     ...
 }
 # JSON is beautified and colored 😍
+
+{{site.codeblock_hidden_copy_separator}}
+
+cat demo-api-openapi.json | jq '.'
+
 {% endcode %}
 
 {% code title:"JQ can also be called with a file parameter" language:bash %}
@@ -97,6 +107,11 @@ Of course we could open our favorite code editor and beautify it. But this can a
     ...
 }
 # JSON is beautified and colored 😍
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq '.' demo-api-openapi.json
+
 {% endcode %}
 
 The first parameter of a JQ command, here `'.'`, is the JQ filter that will be used to process the provided JSON. This `.` filter, named identity, is the most simple one, it only returns what it gets. Obviously, I wouldn't write such a huge blog post to talk about a tool that only beautifies and colors JSON. Let's see some basic JQ filtering in action.
@@ -123,6 +138,13 @@ Even beautified and colored, the file is still quite complex to read. Indeed, th
 
 [apihandyman.io]$ jq '.info.title' demo-api-openapi.json
 "Banking API"
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq '.' demo-api-openapi.json | wc -l
+jq '.info' demo-api-openapi.json
+jq '.info.title' demo-api-openapi.json
+
 {% endcode %}
 
 The most simple JQ filters simply consist in describing the paths of the element you want to get.
@@ -133,18 +155,20 @@ Being able to simply extract a value from a JSON is quite interesting, but that'
 
 ## Generate tailor made JSON
 
-With a JQ filter, you can generate tailor made JSON containing exactly what you want, how you want it. To do so, use the `{}` object constructor and describe what you want in it almost just like you would write a JSON object. The following listing show how to create an object containing the API name, its version and the contact's name. Each value is the result of a JQ filter applied to the JSON provided to the filter. Note that `\` is used to split the command line in order to keep it readable and has nothing to do with JQ.
+With a JQ filter, you can generate tailor made JSON containing exactly what you want, how you want it. To do so, use the `{}` object constructor and describe what you want in it almost just like you would write a JSON object. The following listing show how to create an object containing the API name, its version and the contact's name. Each value is the result of a JQ filter applied to the JSON provided to the filter.
 
 {% code title:"JQ can totally transform the provided JSON" language:bash %}
-[apihandyman.io]$ jq '{name: .info.title, \
-                       version: .info.version, \
-                       contact: .info.contact.name}' \
-                     demo-api-openapi.json
+[apihandyman.io]$ jq '{name: .info.title, version: .info.version, contact: .info.contact.name}' demo-api-openapi.json
 {
   "name": "Banking API",
   "version": "1.0.0-snapshot",
   "contact": "The Banking API team"
 }
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq '{name: .info.title, version: .info.version, contact: .info.contact.name}' demo-api-openapi.json
+
 {% endcode %}
 
 ## Generate raw text
@@ -155,17 +179,18 @@ JQ is also able to output raw text instead of JSON. To do so, a filter just need
 [apihandyman.io]$ jq '.info.title' demo-api-openapi.json
 "Banking API"
 
-[apihandyman.io]$ jq '.info.title + "\t" + \
-                      .info.version + "\t" + \
-                      .info.contact.name' 
-                     demo-api-openapi.json
+[apihandyman.io]$ jq '.info.title + "\t" + .info.version + "\t" + .info.contact.name' demo-api-openapi.json
 "Banking API\t1.0.0-snapshot\tThe Banking API team"
 
-[apihandyman.io]$ jq -r '.info.title + "\t" + \
-                         .info.version + "\t" + \
-                         .info.contact.name' \
-                        demo-api-openapi.json
+[apihandyman.io]$ jq -r '.info.title + "\t" + .info.version + "\t" + .info.contact.name' demo-api-openapi.json
 Banking API     1.0.0-snapshot  The Banking API team
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq '.info.title' demo-api-openapi.json
+jq '.info.title + "\t" + .info.version + "\t" + .info.contact.name' demo-api-openapi.json
+jq -r '.info.title + "\t" + .info.version + "\t" + .info.contact.name' demo-api-openapi.json
+
 {% endcode %}
 
 ## Pipe JQ commands and filters
@@ -174,22 +199,26 @@ Piping is a powerful command line concept: the result of a first command can be 
 
 {% code title:"JQ commands can be chained with pipe (like many other command line ones)" language:bash %}
 [apihandyman.io]$ cat demo-api-openapi.json | \
-jq '{name: .info.title, version: .info.version, \
-     contact: .info.contact.name}' | \
+jq '{name: .info.title, version: .info.version, contact: .info.contact.name}' | \
 jq -r '.name + "\t" + .version'
 Banking API     1.0.0-snapshot
+
+{{site.codeblock_hidden_copy_separator}}
+
+cat demo-api-openapi.json | jq '{name: .info.title, version: .info.version, contact: .info.contact.name}' | jq -r '.name + "\t" + .version'
+
 {% endcode %}
 
 JQ also takes advantage of this piping concept. Indeed, JQ filters can be chained using pipe as shown in the following listing. The full JSON document is (implicitly) provided to the first filter which creates an object containing a name, version and title and its result is forwarded, using `|`, to another filter which return a string containing tab separated name and version.
 
 {% code title:"More interesting, JQ filters can be chained too with (also with pipe)" language:bash %}
-[apihandyman.io]$ jq -r '{name: .info.title, \
-                          version: .info.version, \
-                          contact: .info.contact.name} 
-                         | \
-                         .name + "\t" + .version' \
-                        demo-api-openapi.json
+[apihandyman.io]$ jq -r '{name: .info.title, version: .info.version, contact: .info.contact.name} | .name + "\t" + .version' demo-api-openapi.json
 Banking API     1.0.0-snapshot
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r '{name: .info.title, version: .info.version, contact: .info.contact.name} | .name + "\t" + .version' demo-api-openapi.json
+
 {% endcode %}
 
 ## Use JQ files
@@ -199,6 +228,11 @@ As a JQ filter chain becomes complex, writing it on the command line can become 
 {% code title:"When JQ scripts become complex, better use a JQ file (-f file.jq)" language:bash %}
 [apihandyman.io]$ jq -r -f basics.jq demo-api-openapi.json
 Banking API     1.0.0-snapshot
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r -f basics.jq demo-api-openapi.json
+
 {% endcode %}
 
 {% codefile title:"$filename" file:basics.jq %}
@@ -211,6 +245,11 @@ JQ's filename parameter can contain wildcards, allowing to work on multiple file
 [apihandyman.io]$ jq -r '.info.title' *.json 
 Banking API
 Another Example API
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r '.info.title' *.json
+
 {% endcode %}
 
 If the filter outputs JSON, the result is a concatenation of the JSONs returned for each file, which is not a valid JSON document, as shown on line 1 of the following listing. In order to get something valid, like an array containing all results, you can pipe this result to a `jq -s '.'` command (line 11) which will magically creates a valid JSON array. The `-s` flag (or `--slurp`) reads the entire input stream into a large array and run the filter just once instead of running the filter for each JSON object in the input.
@@ -238,6 +277,12 @@ If the filter outputs JSON, the result is a concatenation of the JSONs returned 
     "file": "1.0.0-snapshot"
   }
 ]
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq '{name: .info.title, file: .info.version}' *.json
+jq '{name: .info.title, file: .info.version}' *.json | jq -s '.'
+
 {% endcode %}
 
 When it comes to work with multiple elements on the command line, you can obviously use xargs and/or find as shown below.
@@ -259,6 +304,13 @@ Banking API
 Another API
 # Note that find -exec is far less faster than
 # find | xargs when working a large number of files
+
+{{site.codeblock_hidden_copy_separator}}
+
+ls *.json | xargs jq -r '.info.title'
+find . -type f -name "*.json" -exec jq -r '.info.title' {} \;
+find . -type f -name "*.json" | xargs jq -r '.info.title'
+
 {% endcode %}
 
 Now that we know the basics of JQ, let's try more complex stuff on OpenAPI JSON files.
