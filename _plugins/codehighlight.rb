@@ -13,6 +13,10 @@ module Jekyll
         @attributes[key] = value.gsub("\"", "")
       end
 
+      if @attributes['title']
+        @title = @attributes['title']
+      end
+
       if @attributes['language']
         @language =  @attributes['language']
       else
@@ -41,17 +45,27 @@ module Jekyll
 
     def render(context)
       code = h(super).strip
-      
+      code = code.gsub("<","&#60;")
+      code = code.gsub(">","&#62;")
+  
       codeblocksize = lookup(context, 'site.codeblocksize')
       if code.lines.count > codeblocksize 
         collapsed = " code-collapsed"
-        collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
-        collapsedbottombutton = "<div class=\"code-bottom-toolbar\"><button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button></div>"
+        collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
+        collapsedbottombutton = "<div class=\"code-bottom-toolbar\"><button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[0].children[0].children[0], true)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button></div>"
       end
       
+      if @title
+        toolbarcss = "code-toolbar-for-title"
+        codetitle = "<div class=\"code-title\"><button type=\"button\" class=\"btn btn-default btn-block\">"+@title+"</button></div>"
+      else
+        toolbarcss = "code-toolbar"
+      end
+
       <<-HTML
 <div>
-  <div class="code-toolbar">
+  #{codetitle}
+  <div class="#{toolbarcss}">
     <div class="btn-group" role="group" aria-label="...">
       #{collabpedbutton}
       <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
