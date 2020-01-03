@@ -20,6 +20,11 @@ class Image < Liquid::Tag
 
     if attributes['source']
       @source = attributes['source']
+      if attributes['target']
+        @target = attributes['target']
+      else
+        @target = ""
+      end
     else
       @source = ""
     end
@@ -58,6 +63,7 @@ class Image < Liquid::Tag
     
     @file = errorLessLookup(context, @file)
     @source = errorLessLookup(context, @source)
+    @target = errorLessLookup(context, @target)
     @label = errorLessLookup(context, @label)
 
     if @file.start_with?('/images')
@@ -67,20 +73,24 @@ class Image < Liquid::Tag
       src = "#{baseurl}/images#{permalink}#{@file}"
     end
 
+    if @target != ""
+      target = " target=\"#{@target}\""
+    else
+      target = ""
+    end
+
     if @source == ""
       img = "<img src=\"#{src}\">"
     else
-      img = "<a href=\"#{@source}\"><img src=\"#{src}\"></a>"
+      img = "<a href=\"#{@source}\"#{target}><img src=\"#{src}\"></a>"
     end
 
     if @label != ""
       if @source == ""
         plabel = "<p class=\"img-label\">#{@label}</p>"
       else
-        plabel = "<p class=\"img-label\"><a href=\"#{@source}\">#{@label}</a></p>"
+        plabel = "<p class=\"img-label\"><a href=\"#{@source}\"#{target}>#{@label}</a></p>"
       end
-    else
-      plabel = "<!--NO LABEL-->"
     end
 
     <<-MARKUP.strip
