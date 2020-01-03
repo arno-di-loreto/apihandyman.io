@@ -126,11 +126,8 @@ class CodeFile < Liquid::Tag
 
     if @title
       toolbarcss = "code-toolbar-for-title"
-      if @title == "$filename"
-        title = @filename
-      else
-        title = @title
-      end
+      title = @title
+      title = title.gsub("\$filename",@filename)
       codetitle = "<div class=\"code-title\"><button type=\"button\" class=\"btn btn-default btn-block\">"+title+"</button></div>"
     else
       toolbarcss = "code-toolbar"
