@@ -1,0 +1,185 @@
+link_target: jq
+links:
+  main:
+    name: "JQ's website"
+    url: "https://stedolan.github.io/jq/"
+  documentation: 
+    name: "JQ's documentation"
+    url: "https://stedolan.github.io/jq/manual/v1.6/"
+  installation:
+    name: "JQ's download page"
+    url: "https://stedolan.github.io/jq/download/"
+  jq_and_openapi_git:
+    name: JQ and OpenAPI post series' github repository
+    url: https://github.com/arno-di-loreto/jq-and-openapi/
+filters:
+  identity:
+    url: "https://stedolan.github.io/jq/manual/v1.6/#Identity:."
+    description: returns what is provided
+    examples:
+      - "."
+  object_identifier_index:
+    url: https://stedolan.github.io/jq/manual/v1.6/#ObjectIdentifier-Index:.foo,.foo.bar
+    name: Object Identifier-Index
+    description: returns element targeted by period separated path
+    examples: 
+      - ".foo"
+      - ".foo.bar"
+  array_object_iterator:
+    url: "https://stedolan.github.io/jq/manual/v1.6/#Array/ObjectValueIterator:.[]"
+    name: Array Object Iterator
+    description: returns all or some elements of an object or array identified by an index
+    examples: 
+      - ".[]"
+      - ".[index]"
+  keys:
+    url: "https://stedolan.github.io/jq/manual/v1.6/#keys,keys_unsorted"
+    description: returns object's keys (properties names)
+    examples: 
+      - "keys"
+  array_construction:
+    url: https://stedolan.github.io/jq/manual/v1.6/#Arrayconstruction:[]
+    name: Array Construction
+    description: creates an array
+    examples:
+      - "[]"
+      - "[1, 2, 3]"
+      - "[.foo, .bar]"
+      - "[.items[].name]"
+  map:
+    url: "https://stedolan.github.io/jq/manual/v1.6/#map(x),map_values(x)"
+    description: applies a filter to each element of an array
+    examples: 
+      - "map(filter)"
+  select:
+    url: "https://stedolan.github.io/jq/manual/v1.6/#select(boolean_expression)"
+    description: returns element for which filter returns true
+    examples:
+      - "select(filter returning boolean)"
+  IN:
+    url: "https://stedolan.github.io/jq/manual/v1.6/#SQL-StyleOperators"
+    description: returns true if element is one of the values
+    examples:
+      - "IN(value1, value2, value3)"
+  unique:
+    url: "https://stedolan.github.io/jq/manual/v1.6/#unique,unique_by(path_exp)"
+    description: removes duplicate elements
+    examples:
+      - unique
+  optional_object_identifier:
+    url: https://stedolan.github.io/jq/manual/v1.6/#OptionalObjectIdentifier-Index:.foo?
+    name: Optional Object Identifier
+    description: does not return an error if targeted element does not exist
+    examples:
+      - .foo?
+  test:
+    url: https://stedolan.github.io/jq/manual/v1.6/#test(val),test(regex;flags)
+    description: returns true if element matches regex
+    examples:
+      - test(regex)
+      - test(regex;flags)
+  not:
+    url: https://stedolan.github.io/jq/manual/v1.6/#and/or/not
+    description: returns opposite boolean element
+    examples:
+      - not
+  group_by:
+    url: https://stedolan.github.io/jq/manual/v1.6/#group_by(path_expression)
+    description: groups array elements according to provided path (returns array of array)
+    examples:
+      - group_by(path_expression)
+      - group_by(.foo)
+  object_construction:
+    url: https://stedolan.github.io/jq/manual/v1.6/#ObjectConstruction:{}
+    description: Creates an object
+    examples:
+      - "{}"
+      - "{name1: filter, name2: another_filter}"
+  length:
+    url: https://stedolan.github.io/jq/manual/v1.6/#length
+    description: returns the length of element (array, object, string, null)
+    examples:
+      - length
+  sort_by:
+    url: https://stedolan.github.io/jq/manual/v1.6/#sort,sort_by(path_expression)
+    description: returns element sort by value or path_expression
+    examples:
+      - sort_by
+  tostring:
+    url: https://stedolan.github.io/jq/manual/v1.6/#tostring
+    description: turns any element into a string
+    examples:
+      - tostring
+  to_entries:
+    url: https://stedolan.github.io/jq/manual/v1.6/#to_entries,from_entries,with_entries
+    description: takes an object and returns an array of key and value objects
+    examples:
+      - to_entries
+  variable:
+    url: https://stedolan.github.io/jq/manual/v1.6/#Variable/SymbolicBindingOperator:...as$identifier|...
+    description: defines a reusable variable
+    examples:
+      - .foo as $some_variable
+  if_then_else:
+    url: https://stedolan.github.io/jq/manual/v1.6/#if-then-else
+    description: conditions filter execution
+    examples:
+      - if condition then filter else another_filter end
+  paths:
+    url: https://stedolan.github.io/jq/manual/v1.6/#paths,paths(node_filter),leaf_paths
+    description: returns paths
+    examples:
+      - paths
+      - paths(filter)
+  indices:
+    url: https://stedolan.github.io/jq/manual/v1.6/#indices(s)
+    description: returns the list indices (in array of string) where a string is found
+    examples:
+      - indices(string)
+      - indices("foo")
+      - indices(.foo)
+  array_string_slice:
+    url: https://stedolan.github.io/jq/manual/v1.6/#Array/StringSlice:.[10:15]
+    description: returns a subset of an array or a substring
+    examples:
+      - .[start:end]
+      - .[10:15]
+  paths:
+    url: https://stedolan.github.io/jq/manual/v1.6/#paths,paths(node_filter),leaf_paths
+    description: lists all possible paths in documents, each path is represented as an array
+    examples:
+      - paths
+  addition:
+    url: Addition:+
+    description: adds/concatenates/merges numbers/strings/arrays or objects
+    examples:
+      - +
+      - value1 + value2
+  map_values:
+    url: https://stedolan.github.io/jq/manual/v1.6/#map(x),map_values(x)
+    description: updates all provided values with filter
+    examples:
+      - map_values(filter)
+  gsub:
+    url: https://stedolan.github.io/jq/manual/v1.6/#gsub(regex;string),gsub(regex;string;flags)
+    description: replaces a string within a string
+    examples:
+      - gsub(regex;replacement)
+      - gsub("toreplace";"replaced)
+  join:
+    url: https://stedolan.github.io/jq/manual/v1.6/#join(str)
+    description: joins string with a separator
+    examples:
+      - join(separator)
+      - join(",")
+  getpath:
+    url: https://stedolan.github.io/jq/manual/v1.6/#getpath(PATHS)
+    description: returns value corresponding to a path (defined as an array), see also paths
+    examples:
+      - getpath(path)
+      - getpath(["a","path"])
+  input_filename:
+    url: https://stedolan.github.io/jq/manual/v1.6/#input_filename
+    description: returns the name of the file being processed
+    examples:
+      input_filename

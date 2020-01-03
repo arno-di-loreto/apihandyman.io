@@ -1,0 +1,14 @@
+images:
+  map_v2: /images/commons/openapi/openapi-map-v2.png
+  map_v3: /images/commons/openapi/openapi-map-v3.png
+link_target: openapi
+links:
+  map:
+    name: OpenAPI Map
+    url: http://openapi-map.apihandyman.io/
+  what:
+    name: What is the OpenAPI Specification
+    url: "/openapi/"
+  openapi_2_tutorial_part_9:
+    name: "OpenAPI (Swagger) 2.0 Tutorial - Part 9 - Extending the OpenAPI Specification"
+    url: /writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/
