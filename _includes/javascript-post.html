@@ -26,11 +26,14 @@
 <script type="text/javascript" src="{{ "/js/prism.js" | prepend: site.baseurl | prepend: site.github.url }}" ></script>
 <script type="text/javascript" src="{{ "/js/clipboard.min.js" | prepend: site.baseurl | prepend: site.github.url }}" ></script>
 <script language="JavaScript">
-  var clipboard = new Clipboard('.btn-copy', {
-    target: function(trigger) {
-      return trigger.parentElement.parentElement.parentElement.children[1];
-    }
+
+  var clipboard = new ClipboardJS('.copy-btn', {
+      target: function(trigger) {
+        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
+        return trigger.parentElement.parentElement.parentElement.children[0];
+      }
   });
+
   clipboard.on('success', function(e) {
     e.clearSelection();
     $(e.trigger).html('<i class="fa fa-check"></i>');
@@ -38,6 +41,11 @@
         $(e.trigger).html('<i class="fas fa-paste"></i>');
         $(e.trigger).blur();
     }, 1000);
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
 </script>
 <script language="JavaScript">

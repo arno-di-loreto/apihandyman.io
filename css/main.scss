@@ -214,6 +214,13 @@ code {
   }
 }
 
+.copy-hidden {
+  position:absolute;
+  left: -100000px; // ClipboardJS does not work with hidden elements
+  width: 0px;
+  height: 0px;
+}
+
 .code-bottom-toolbar {
   padding: 0px;
   width: 100%;
