@@ -14,13 +14,14 @@ class Image < Liquid::Tag
 
     if attributes['label']
       @label = attributes['label']
-      if attributes['source']
-        @source = attributes['source']
-      else
-        @source = ""
-      end
     else
       @label = ""
+    end
+
+    if attributes['source']
+      @source = attributes['source']
+    else
+      @source = ""
     end
   
   end
@@ -31,9 +32,34 @@ class Image < Liquid::Tag
     lookup
   end
 
+  # if name is like site.something or page.something it returns the actual value
+  # else it returns the original value (name)
+  def errorLessLookup(context, name)
+    if name != ""
+      begin
+        lookup = context
+        name.split(".").each { |value| lookup = lookup[value] }
+        if lookup
+          result = lookup
+        else
+          result = name
+        end
+      rescue
+        result = name
+      end
+    else
+      result = name
+    end
+    result
+  end
+
   def render(context)
     baseurl = context.registers[:site].config['baseurl'];
     
+    @file = errorLessLookup(context, @file)
+    @source = errorLessLookup(context, @source)
+    @label = errorLessLookup(context, @label)
+
     if @file.start_with?('/images')
       src = "#{baseurl}#{@file}"
     else
@@ -53,6 +79,8 @@ class Image < Liquid::Tag
       else
         plabel = "<p class=\"img-label\"><a href=\"#{@source}\">#{@label}</a></p>"
       end
+    else
+      plabel = "<!--NO LABEL-->"
     end
 
     <<-MARKUP.strip
