@@ -60,9 +60,9 @@ There is also a second OpenAPI file, which is a OpenAPI 2.0 (fka. Swagger) one, 
 
 # Invoke JQ
 
-In this first section, we'll learn how to invoke JQ and its basic principles.
+In this first section, we'll learn how to invoke JQ and its basic principles. The whole content of this section is also shown in the following Asciinema session. 
 
-<asciinema-player poster="npt:0:34" title="Let's have some fund with JQ"  rows="24" author="Arnaud Lauret" src="/code/api-tools-jq/jq-openapi.cast"></asciinema-player>
+<asciinema-player poster="npt:1:20" title="Invoke JQ" author="Arnaud Lauret" rows="24" width="100" src="/code/api-toolbox-jq-and-openapi/part-1/invoke-jq.cast"></asciinema-player>
 
 ## Beautify and color JSON
 
@@ -237,87 +237,11 @@ jq -r -f basics.jq demo-api-openapi.json
 
 {% codefile title:"$filename" file:basics.jq %}
 
-## Work on multiple JSON files
-
-JQ's filename parameter can contain wildcards, allowing to work on multiple files at once. We can, for example, extract the API name of each OpenAPI file using the following command as shown in the following listing (the github repository contains two OpenAPI demo files, both having the `.json` extension). 
-
-{% code title:"Processing multiple files with JQ" language:bash %}
-[apihandyman.io]$ jq -r '.info.title' *.json 
-Banking API
-Another Example API
-
-{{site.codeblock_hidden_copy_separator}}
-
-jq -r '.info.title' *.json
-
-{% endcode %}
-
-If the filter outputs JSON, the result is a concatenation of the JSONs returned for each file, which is not a valid JSON document, as shown on line 1 of the following listing. In order to get something valid, like an array containing all results, you can pipe this result to a `jq -s '.'` command (line 11) which will magically creates a valid JSON array. The `-s` flag (or `--slurp`) reads the entire input stream into a large array and run the filter just once instead of running the filter for each JSON object in the input.
-
-{% code title:"Pipe to jq -s (or --slurp) to create arrays" highlight:"1,11" language:bash %}
-[apihandyman.io]$ jq '{name: .info.title, file: .info.version}' *.json
-{
-  "name": "Another API",
-  "file": "1.2"
-}
-{
-  "name": "Banking API",
-  "file": "1.0.0-snapshot"
-}
-
-[apihandyman.io]$ jq '{name: .info.title, file: .info.version}' *.json \
-                | jq -s '.'
-[
-  {
-    "name": "Another API",
-    "file": "1.2"
-  },
-  {
-    "name": "Banking API",
-    "file": "1.0.0-snapshot"
-  }
-]
-
-{{site.codeblock_hidden_copy_separator}}
-
-jq '{name: .info.title, file: .info.version}' *.json
-jq '{name: .info.title, file: .info.version}' *.json | jq -s '.'
-
-{% endcode %}
-
-When it comes to work with multiple elements on the command line, you can obviously use xargs and/or find as shown below.
-
-{% code title:"Use JQ with xargs and find" language:bash %}
-[apihandyman.io]$ ls *.json | \
-                  xargs jq -r '.info.title'
-Banking API
-Another Example API
-
-[apihandyman.io]$ find . -type f -name "*.json" -exec \
-                  jq -r '.info.title' {} \;
-Banking API
-Another API
-
-[apihandyman.io]$ find . -type f -name "*.json" | \
-                xargs jq -r '.info.title'
-Banking API
-Another API
-# Note that find -exec is far less faster than
-# find | xargs when working a large number of files
-
-{{site.codeblock_hidden_copy_separator}}
-
-ls *.json | xargs jq -r '.info.title'
-find . -type f -name "*.json" -exec jq -r '.info.title' {} \;
-find . -type f -name "*.json" | xargs jq -r '.info.title'
-
-{% endcode %}
-
 Now that we know the basics of JQ, let's try more complex stuff on OpenAPI JSON files.
 
-# Use (some of the many) JQ filters on OpenAPI files
+# Use JQ filters on an OpenAPI file
 
-In this section, we'll learn to use some of the many JQ filters by extracting data from OpenAPI files. For each example, you get:
+In this section, we'll learn to use some of the many JQ filters by extracting data from an OpenAPI file. For each example, you get:
 
 - A command line and result example
 - An OpenAPI structure figure and description (based on the {% include link.md link=site.data.openapi.links.map target=site.data.openapi.target_link %})
@@ -328,6 +252,8 @@ In this section, we'll learn to use some of the many JQ filters by extracting da
 ## List paths
 
 Let's start by extracting the API's paths:
+
+<asciinema-player poster="npt:26" title="List API's paths" author="Arnaud Lauret" rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-1/list-paths.cast"></asciinema-player>
 
 {% code title:"List API's paths" language:bash %}
 [apihandyman.io]$ jq -r -f list-paths.jq demo-api-openapi.json 
@@ -357,6 +283,7 @@ To get these paths, we'll use the following JQ filters:
 To extract the paths, we only need to use the `keys` filter on the paths object identified by `.paths`. This `keys` filter returns an array containing the keys (property names, hence the paths in our case) of an object. Then we use `[]` on the result to flatten the array in order to get raw text.
 
 {% codefile title:"$filename" file:list-paths.jq %}
+
 
 ## List HTTP methods
 
@@ -587,9 +514,95 @@ The following JQ script consist in 3 steps:
 
 {% codefile title:"$filename" file:list-xtensions.jq %}
 
+# Process multiple OpenAPI files
+
+So, we have learned to use JQ filters on a single OpenAPI file, but what if we need to work on multiple files? In this section we'll learn how to invoke JQ on multiple files and see it in action on two OpenAPI files.
+
+## Invoke JQ on multiple files
+
+JQ's filename parameter can contain wildcards, allowing to work on multiple files at once. We can, for example, extract the API name of each OpenAPI file using the following command as shown in the following listing (the github repository contains two OpenAPI demo files, both having the `.json` extension). 
+
+{% code title:"Processing multiple files with JQ" language:bash %}
+[apihandyman.io]$ jq -r '.info.title' *.json 
+Banking API
+Another Example API
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r '.info.title' *.json
+
+{% endcode %}
+
+That' looks good, but if the filter outputs JSON, the result is a concatenation of the JSONs returned for each file, which is not a valid JSON document, as shown on line 1 of the following listing. In order to get something valid, like an array containing all results, you can pipe this result to a `jq -s` command (line 11) which will magically creates a valid JSON array. The `-s` flag (or `--slurp`) reads the entire input stream into a large array and run the filter just once instead of running the filter for each JSON object in the input. Not also that we didn't provide any filter to the second JQ command. The '.' filter is actually optional (either you use the -s flag or not).
+
+{% code title:"Pipe to jq -s (or --slurp) to create arrays" highlight:"1,11" language:bash %}
+[apihandyman.io]$ jq '{name: .info.title, file: .info.version}' *.json
+{
+  "name": "Another API",
+  "file": "1.2"
+}
+{
+  "name": "Banking API",
+  "file": "1.0.0-snapshot"
+}
+
+[apihandyman.io]$ jq '{name: .info.title, file: .info.version}' *.json \
+                | jq -s
+[
+  {
+    "name": "Another API",
+    "file": "1.2"
+  },
+  {
+    "name": "Banking API",
+    "file": "1.0.0-snapshot"
+  }
+]
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq '{name: .info.title, file: .info.version}' *.json
+jq '{name: .info.title, file: .info.version}' *.json | jq -s
+
+{% endcode %}
+
+Obviously, when it comes to work with multiple elements on the command line, you can use your favorite commands such as xargs and/or find as shown below.
+
+{% code title:"Use JQ with xargs and find" language:bash %}
+[apihandyman.io]$ ls *.json | \
+                  xargs jq -r '.info.title'
+Banking API
+Another Example API
+
+[apihandyman.io]$ find . -type f -name "*.json" -exec \
+                  jq -r '.info.title' {} \;
+Banking API
+Another API
+
+[apihandyman.io]$ find . -type f -name "*.json" | \
+                xargs jq -r '.info.title'
+Banking API
+Another API
+# Note that find -exec is far less faster than
+# find | xargs when working a large number of files
+
+{{site.codeblock_hidden_copy_separator}}
+
+ls *.json | xargs jq -r '.info.title'
+find . -type f -name "*.json" -exec jq -r '.info.title' {} \;
+find . -type f -name "*.json" | xargs jq -r '.info.title'
+
+{% endcode %}
+
 ## List basic API information from multiple files
 
-And last, but not least, for this post, let's gather information from different OpenAPI files as shown below. Note that now jq is used on `*.json` files and its results is piped into another jq with `-s` flag in order to generate an array (as already shown in Invoke JQ section).
+For this last (but not least) example, we'll gather basic information from different OpenAPI files. We'll build an array of objects containing for each file:
+
+- Information about the file itself (its type, version and name), 
+- A subset of the info section (API's name, version and a shorten description)
+- The number of operations
+
+Note that now jq is used on `*.json` files and its results is piped into another jq with `-s` flag in order to generate an array (as seen in previous section).
 
 {% code title:"Getting some basic information about different APIs" language:bash %}
 [apihandyman.io]$ jq -f list-apis.jq *.json | jq -s
@@ -624,14 +637,14 @@ jq -f list-apis.jq *.json | jq -s
 
 {% endcode%}
 
-For each file, we gather data coming from the info section but we also get the filename.To get that result, we'll learn how to use the following new JQ filters:
+To get that result, we need to use the following new JQ filters:
 
 {% include docarray.md title="JQ Filters" target=site.data.jq.link_target links=site.data.jq.filters names="input_filename,indices,array_string_slice" %}
 
 The following JQ scripts which generates an array of objects containing information about the specification file itself, the API and its number of operations is composed of 3 parts:
 
 1. (Line 2) Part 1 deals with file information. When working on multiple files, it can be very interesting to know from which file comes the data. It's the case here, hopefully, the `input_filename` returns the name of the file being processed (line 8).
-1. (Line 11) Part 2 deals with data coming from the info section. The summary is a shorter version of `.info.description`. If it contains a `<!--more-->` tag (found using `indices`) we split right before it using `.[0:tag position]`. If not we take the first hundred characters (or the whole string if shorter). Note how `elif` is used to have more conditions. 
+1. (Line 11) Part 2 deals with data coming from the info section. The summary is a shorter version of `.info.description`. If it contains a `<!--more-->` tag (found using `indices`) we split right before it using `.[0:tag position]`. If not we take the first hundred characters (or the whole string if shorter). Note how `elif` is used to have more conditions.
 1. (Line 28) Part 3 concerns counting operations, it is done almost like counting HTTP status codes.
 
 {% codefile title:"$filename" file:list-apis.jq %}
