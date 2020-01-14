@@ -1,6 +1,6 @@
 ---
 title: API Toolbox - JQ and OpenAPI - Part 1 - Using JQ to extract data from OpenAPI files
-date: 2019-12-18
+date: 2020-01-15
 author: Arnaud Lauret
 layout: post
 permalink: /api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/
@@ -11,9 +11,9 @@ series_title: Part 1 - Using JQ to extract data from OpenAPI files
 tags:
   - API Toolbox
 ---
-Ever wanted to quickly find, extract or modify data coming from some JSON documents? JQ is the tool you're looking for. In this 4 part post, you'll discover why and how I use JQ with OpenAPI Specification files. But more important, you'll get some basic and more advanced example of how to use JQ on any JSON document to get and modify JSON data as you want. In this first part we'll focus on what is JQ, why I use it with OpenAPI files and we'll learn how to invoke JQ and discover some of the many JQ filters that can be used to extract data from JSON.<!--more-->
+Ever wanted to quickly find, extract or modify data coming from some JSON documents? JQ is the tool you're looking for. In this 4 parts post, you'll discover why and how I use JQ with OpenAPI Specification files. But more important, you'll get some basic and more advanced example of how to use JQ on any JSON document to get and modify JSON data as you want. In this first part we'll focus on what is JQ, why I use it with OpenAPI files and we'll learn how to invoke JQ and discover some of the many JQ filters that can be used to extract data from JSON.<!--more-->
 
-This 4 part post is the first one of a new API Toolbox category in which I'll talk about the tools I use when doing API related stuff, why I use them and how. This post is also my first one using [Asciinema](https://asciinema.org/), an awesome tool allowing to record and share terminal sessions.
+This 4 parts post is the first one of a new API Toolbox category in which I'll talk about the tools I use when doing API related stuff, why I use them and how. This post is also my first one using [Asciinema](https://asciinema.org/), an awesome tool allowing to record and share terminal sessions.
 
 {% include _postincludes/api-toolbox-jq-openapi.md %}
 
@@ -28,13 +28,13 @@ I have been using JQ to transform JSON data when making API calls on the command
 The OpenAPI Specification (or OAS) is a standard and programming-language agnostic REST API description format. It can be used during the design of an API to formally describe the API's contract. It can also be used to generate documentation, generate code or to configure tools such as API gateways. An OpenAPI file can be in YAML or JSON format. If you want to learn more about this format, read {% include link.md link=site.data.openapi.links.what target=site.data.openapi.link_target %}. In order to have a good understanding of an OpenAPI document structure, you should check my {% include link.md link=site.data.openapi.links.map target=site.data.openapi.link_target %}.
 
 In my daily job I have to work with OpenAPI files when doing API design reviews. Tools such as SwaggerUI or ReDoc easily provide a user friendly view of OpenAPI files, but when it comes to have a more specific view to check various design concerns, well you need to use something else. I can use JQ when I want to know  which operations can be used with a given Oauth Scope, where a reusable schema is used or checking if an API or multiples APIs are consistent.
-I also have to deal with OpenAPI files when working on my company's API catalog. I had to generate API calls body based on OpenAPI files content or modify them to remove deprecated elements in order to avoid showing them in their documentation.
+I also have to deal with OpenAPI files when working on my company's API catalog. I had to generate API calls body to load OpenAPI files into it, I had to extract some data from them with JQ to do so. I also had to modify them to remove deprecated elements in order to avoid showing them in their documentation.
 
 The examples shown in this post are based on my regular use of JQ+OpenAPI but I expanded my original JQ scripts set with other ones in order to show more of JQ's features.
 
 # Installation
 
-If you want to play with JQ and OpenAPI as you read this post, you'll need to install JQ and download this post's related content(JQ scripts, OpenAPI demo file and Asciinema sessions).
+If you want to play with JQ and OpenAPI as you read this post, you'll need to install JQ and download this post's related content(JQ scripts, OpenAPI demo files and Asciinema sessions and their underlying scripts).
 
 ## Install JQ
 
@@ -50,13 +50,11 @@ All examples shown in this post are based on JQ 1.6 and OpenAPI 3. All examples 
 
 {% include git.md link=site.data.jq.links.jq_and_openapi_git branch="part-1" %}
 
-All of this post's examples are run against the same OpenAPI file (`demo-api-openapi.json`) which is a slightly modified version of an example coming from my book, I added a few elements here and there, convert it from YAML to JSON and uglify it.
+Most of this post's examples are run against the same OpenAPI file (`demo-api-openapi.json`) which is a slightly modified version of an example coming from my book, I added a few elements here and there, convert it from YAML to JSON and uglify it.
 
 {% codefile title:"$filename (uglyfied OpenAPI 3.0)" file:demo-api-openapi.json %}
 
-There is also a second OpenAPI file, which is a OpenAPI 2.0 (fka. Swagger) one, it is used when working on multiple files.
-
-{% codefile title:"$filename (uglyfied Swagger 2.0)" file:demo-another-api-swagger.json %}
+There are also two other almost empty examples used when working on multiple files.
 
 # Invoke JQ
 
