@@ -14,7 +14,7 @@
 # It returns ["200", "404", "200"]
 | map( # Applies a filter to each element
   select( # Keep elements for which what follows return true
-    test("^-x") # Returns true if value match the regex parameter
+    test("^x-") # Returns true if value match the regex parameter
     | not # Returns the opposite of a boolean value
   )
 ) 
@@ -25,8 +25,8 @@
 | group_by(.) # ["404", "200", "200"] ➡️ [["400"],["200", "200"]]
 | map( # Applies a filter to each element
   { # Creates an object
-    code: . | unique[], # ["200", "200"] ➡️ ["200"] ➡️ "200"
-    count: (. | length) # ["200", "200"] ➡️ 2
+    code: .[0], # ["200", "200"] ➡️ ["200"] ➡️ "200"
+    count: length # ["200", "200"] ➡️ 2
   }
 )
 # 4 - Sorts by descending count

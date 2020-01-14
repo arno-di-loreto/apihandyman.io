@@ -14,11 +14,11 @@
     | tostring # Converts to string for next step 
     | test("^x-") # Checks if leaf name starts with x-
   )
-] |
+]
 # 3 - Sets all data for each extension occurence
 #-----------------------------------------------
 # returns an array of {name, path, ref, value}
-map( # Applies a filter to each element
+| map( # Applies a filter to each element
   {
     name: .[-1], # Gets the path leaf (last item in array)
                  # Equivalent to .[.|length-1]

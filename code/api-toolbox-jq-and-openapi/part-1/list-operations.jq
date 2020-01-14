@@ -29,28 +29,12 @@
       .key | IN("get", "put", "post", "delete", 
          "options", "head", "patch", "trace")
     )
-    # Creates a new JSON object
-    | {
+    | # Creates a new JSON object
+    {
       method: .key,
       path: $path, # Using the variable defined on line 4
-      summary: (
-        # Ensures the value is "" (instead of null)
-        # if there is no summary 
-        if .value.summary? != null then 
-          .value.summary 
-        else 
-          ""
-        end
-      ),
-      deprecated: (
-        # Ensures the value is true/false instead of null
-        # if there is no deprecated property
-        if .value.deprecated? != null then 
-          .value.deprecated 
-        else 
-          false
-        end
-      )
+      summary: .value.summary?,
+      deprecated: .value.deprecated?
     }
   )[] # Flattens array to avoid having an array 
       # of array of {path, method, summary, deprecated}
