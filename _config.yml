@@ -55,6 +55,8 @@ highlighter: none
 coderoot: code
 ### codefilehighlight parameter: number of visible lines in code block
 codeblocksize: 20
+###
+codeblock_hidden_copy_separator: ---COPY_CONTENT_SEPARATOR---
 
 # Links
 mybook: http://bit.ly/designwebapis
