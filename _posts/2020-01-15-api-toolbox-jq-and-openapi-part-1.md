@@ -1,6 +1,6 @@
 ---
 title: API Toolbox - JQ and OpenAPI - Part 1 - Using JQ to extract data from OpenAPI files
-date: 2020-01-15
+date: 2020-01-14
 author: Arnaud Lauret
 layout: post
 permalink: /api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/
@@ -11,7 +11,7 @@ series_title: Part 1 - Using JQ to extract data from OpenAPI files
 tags:
   - API Toolbox
 ---
-Ever wanted to quickly find, extract or modify data coming from some JSON documents? JQ is the tool you're looking for. In this 4 parts post, you'll discover why and how I use JQ with OpenAPI Specification files. But more important, you'll get some basic and more advanced example of how to use JQ on any JSON document to get and modify JSON data as you want. In this first part we'll focus on what is JQ, why I use it with OpenAPI files and we'll learn how to invoke JQ and discover some of the many JQ filters that can be used to extract data from JSON.<!--more-->
+Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you're looking for. In this 4 parts post series, you'll discover why and how I use JQ with OpenAPI Specification files. But more important, you'll get some basic and more advanced example of how to use JQ on any JSON document to get and modify JSON data as you want. In this first part we'll focus on what is JQ, why I use it with OpenAPI files and we'll learn how to invoke JQ and discover some of the many JQ filters that can be used to extract data from JSON.<!--more-->
 
 This 4 parts post is the first one of a new API Toolbox category in which I'll talk about the tools I use when doing API related stuff, why I use them and how. This post is also my first one using [Asciinema](https://asciinema.org/), an awesome tool allowing to record and share terminal sessions.
 
@@ -27,7 +27,7 @@ I have been using JQ to transform JSON data when making API calls on the command
 
 The OpenAPI Specification (or OAS) is a standard and programming-language agnostic REST API description format. It can be used during the design of an API to formally describe the API's contract. It can also be used to generate documentation, generate code or to configure tools such as API gateways. An OpenAPI file can be in YAML or JSON format. If you want to learn more about this format, read {% include link.md link=site.data.openapi.links.what target=site.data.openapi.link_target %}. In order to have a good understanding of an OpenAPI document structure, you should check my {% include link.md link=site.data.openapi.links.map target=site.data.openapi.link_target %}.
 
-In my daily job I have to work with OpenAPI files when doing API design reviews. Tools such as SwaggerUI or ReDoc easily provide a user friendly view of OpenAPI files, but when it comes to have a more specific view to check various design concerns, well you need to use something else. I can use JQ when I want to know  which operations can be used with a given Oauth Scope, where a reusable schema is used or checking if an API or multiples APIs are consistent.
+In my daily job I have to work with OpenAPI files when doing API design reviews. Tools such as SwaggerUI or ReDoc easily provide a user friendly view of OpenAPI files, but when it comes to have a more specific view to check various design concerns, you need to use something else. I can use JQ when I want to know  which operations can be used with a given Oauth Scope, where a reusable schema is used or checking if an API or multiples APIs are consistent.
 I also have to deal with OpenAPI files when working on my company's API catalog. I had to generate API calls body to load OpenAPI files into it, I had to extract some data from them with JQ to do so. I also had to modify them to remove deprecated elements in order to avoid showing them in their documentation.
 
 The examples shown in this post are based on my regular use of JQ+OpenAPI but I expanded my original JQ scripts set with other ones in order to show more of JQ's features.
@@ -38,7 +38,7 @@ If you want to play with JQ and OpenAPI as you read this post, you'll need to in
 
 ## Install JQ
 
-JQ is a portable command line tool that's very easy to install. It's website states that _jq is written in portable C, and it has zero runtime dependencies. You can download a single binary, `scp` it to a far away machine of the same type, and expect it to work_ (`scp` is a file transfer tool). This is actually true, I have tested it on Linux servers, Windows CMS terminal, Windows Gitbash (standalone and inside VS Code) and MacOS terminal: never had a problem with it.
+JQ is a portable command line tool that's very easy to install. Its website states that _jq is written in portable C, and it has zero runtime dependencies. You can download a single binary, `scp` it to a far away machine of the same type, and expect it to work_ (`scp` is a file transfer tool). This is actually true, I have tested it on Linux servers, Windows CMD terminal, Windows Gitbash (standalone and inside VS Code) and MacOS terminal: never had a problem with it.
 
 To install JQ on my personnal Macbook, I used `brew install jq`. On my professional Windows laptop, I simply downloaded the binary and added it to my PATH environment variable. Check {%include link.md link=site.data.jq.links.installation target=site.data.jq.link_target%} to see all available versions and ways to install it.
 
@@ -50,7 +50,7 @@ All examples shown in this post are based on JQ 1.6 and OpenAPI 3. All examples 
 
 {% include git.md link=site.data.jq.links.jq_and_openapi_git branch="part-1" %}
 
-Most of this post's examples are run against the same OpenAPI file (`demo-api-openapi.json`) which is a slightly modified version of an example coming from my book, I added a few elements here and there, convert it from YAML to JSON and uglify it.
+Most of this post's examples are run against the same OpenAPI file (`demo-api-openapi.json`) which is a slightly modified version of an example coming from my book _The Design of Web APIs_, I added a few elements here and there, convert it from YAML to JSON and uglify it.
 
 {% codefile title:"$filename (uglyfied OpenAPI 3.0)" file:demo-api-openapi.json %}
 
@@ -58,7 +58,7 @@ There are also two other almost empty examples used when working on multiple fil
 
 # Invoke JQ
 
-In this first section, we'll learn how to invoke JQ and its basic principles. The whole content of this section is also shown in the following Asciinema session. 
+In this first section, we'll learn how to invoke JQ and its basic principles. The whole content of this section has been recorded with Asciinema (but is available as regular text right after the player).
 
 <asciinema-player poster="npt:1:20" title="Invoke JQ" author="Arnaud Lauret"  rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-1/invoke-jq.cast"></asciinema-player>
 
@@ -116,11 +116,11 @@ The first parameter of a JQ command, here `'.'`, is the JQ filter that will be u
 
 ## Extract data from JSON
 
-Even beautified and colored, the file is still quite complex to read. Indeed, the beautified JSON file is 750 lines long. What if we only want to see the info section? It's dead simple, we only need to use the `.info` JQ filter on the file with `jq '.info' demo-api-openapi.json` as shown below. And you probably already guessed how to get only the API's name (called title in OpenAPI): `.info.title`.
+Even beautified and colored, the file is still quite complex to read. Indeed, the beautified JSON file is around 750 lines long. What if we only want to see the info section? It's dead simple, we only need to use the `.info` JQ filter on the file with `jq '.info' demo-api-openapi.json` as shown below. And you probably already guessed how to get only the API's name (called title in OpenAPI): `.info.title`.
 
 {% code title:"Only showing the info section or the API's name (title)" language:bash %}
 [apihandyman.io]$ jq '.' demo-api-openapi.json | wc -l
-     750
+     753
 # Beautified JSON is 750 lines long 
 [apihandyman.io]$ jq '.info' demo-api-openapi.json
 {
@@ -358,19 +358,21 @@ The JQ file that follows is split in 5 steps:
 
 1. (Line 12) On the second step, we need to get rid of possible `x-` properties. This is done like in previous example with a `map(select(filter))`. In this case, the select's filter checks if the value does not start by `x-` using the `test` filter which return true if the value matches the regex parameter and then `not` to negate this result.
 
-1. (Line 21) Now we have an array containing all HTTP status codes of all operations, we can count how many times each one is used. This is done using `group_by` which group equal values together. It takes an array of something and returns an array of array of something. Each internal array containing equal values. Once that is done we can create on object for each internal array using `map`. It contains the HTTP status code which is the `unique` value of the array and a count which is the `length` of the array.
+1. (Line 21) Now we have an array containing all HTTP status codes of all operations, we can count how many times each one is used. This is done using `group_by` which group equal values together. It takes an array of something and returns an array of array of something. Each internal array containing equal values. Once that is done we can create on object for each internal array using `map`. It contains the HTTP status code which is the first value in the array (which contains the same value multiple times) and a count which is the `length` of the array.
 
 1. (Line 32) Then we can sort this array of {code, count} by descending count using `sort_by(-.count)`.
 
-1. (Line 37) And eventually we generate the tab separated raw text output with `map` and `[]`.
+1. (Line 37) And eventually we generate the tab separated raw text output with `map` and `[]`. Note how count is converted into a string before being concatenated.
 
 {% codefile title:"$filename" highlight:"1-3,12-14,21-24,32-34,37-38" file:list-http-status-codes.jq %}
 
 ## List operations
 
-Now, let's try something more interesting: extracting the API's operation list. As the following listing shows, we will extract for each operation, its HTTP method, path, summary and indicate if the operation is deprecated.
+Now, let's try something more interesting: extracting the API's operation list. 
 
 <asciinema-player poster="npt:26" title="List operations" author="Arnaud Lauret" rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-1/list-operations.cast"></asciinema-player>
+
+As the following listing shows, we will extract for each operation, its HTTP method, path, summary and indicate if the operation is deprecated.
 
 {% code title:"List operations" language:bash %}
 [apihandyman.io]$ jq -r -f list-operations.jq demo-api-openapi.json 
@@ -407,9 +409,9 @@ The following JQ script is split in 3 steps:
 
 1. (Line 1) We start by creating an array of {`key: /path, value: path content}` using `to_entries` on `.paths`. Then we filter this array to get rid of possible x-tensions checking the key value does not start by "x-" using `map`, `select`, `test` and `not` as already seen in a previous example.
 
-1. (Line 10) Then we create an array of {path, method, summary, deprecated} objects. To get rid of possible extensions we reuse the `IN` filter seen previously. The interesting thing in this step is how we define (line 13) and use (line 33) the `$path` variable. Such variable definition is very useful to keep some values for later use without impacting the data flow. Indeed the data coming out of `.key as $ path` is the exactly the same as the one that came in. See also on line 37 and 46 of `if then else` can be used.
+1. (Line 11) Then we create an array of {path, method, summary, deprecated} objects. To get rid of possible extensions we reuse the `IN` filter seen previously. The interesting thing in this step is how we define (line 15) and use (line 35) the `$path` variable. Such variable definition is very useful to keep some values for later use without impacting the data flow. Indeed the data coming out of `.key as $ path` is the exactly the same as the one that came in.
 
-1. (Line 56) And to finish, we output tab separated raw text (adding deprecated mention when necessary).
+1. (Line 42) And to finish, we output tab separated raw text (adding deprecated mention when necessary). See line 48 how an `if then else` can be used.
 
 {% codefile title:"$filename" file:list-operations.jq %}
 
