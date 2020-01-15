@@ -110,6 +110,43 @@ code {
     .code-toolbar .btn-group a {
       color: black; }
 
+.code-toolbar-for-title {
+  position: relative;
+  padding: 0px; }
+  .code-toolbar-for-title .btn-group {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    right: 0; }
+    .code-toolbar-for-title .btn-group .btn:focus, .code-toolbar-for-title .btn-group .btn:active {
+      outline: none !important; }
+    .code-toolbar-for-title .btn-group .btn {
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      position: relative;
+      top: -24px; }
+    .code-toolbar-for-title .btn-group a {
+      color: black; }
+
+.code-title {
+  padding: 0px;
+  width: 100%; }
+  .code-title .btn:focus, .code-title .btn:active {
+    outline: none !important; }
+  .code-title .btn {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+    top: +10px;
+    z-index: 10; }
+
+.copy-hidden {
+  position: absolute;
+  left: -100000px;
+  width: 0px;
+  height: 0px; }
+
 .code-bottom-toolbar {
   padding: 0px;
   width: 100%; }
@@ -119,7 +156,7 @@ code {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     position: relative;
-    top: -8px; }
+    top: -10px; }
 
 /* TOC */
 nav[data-toggle='toc'] {

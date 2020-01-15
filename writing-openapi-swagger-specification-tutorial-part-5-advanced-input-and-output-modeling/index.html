@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -270,11 +271,12 @@ In this fifth part you will discover all the tips and tricks to describe highly 
 <p>When used in a operation, the <code>username</code> parameter is mandatory:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="4" data-start="480"><code>  username:
@@ -290,11 +292,12 @@ In this fifth part you will discover all the tips and tricks to describe highly 
 <p>When used in an operation, the <code>pageSize</code> parameter is NOT mandatory (<code>required</code> is not defined and therefore is false).</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="486"><code>  pageSize:
@@ -319,11 +322,12 @@ In this fifth part you will discover all the tips and tricks to describe highly 
 <p>In the definition <code>Person</code> which is used as a body parameter in <code>POST /persons</code>, the username property is mandatory (present in <code>required</code> list) , all others are not mandatory (not referenced in <code>required</code> list).</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="2-3" data-start="297"><code>  Person:
@@ -353,7 +357,7 @@ In this fifth part you will discover all the tips and tricks to describe highly 
       spokenLanguages:
         $ref: '#/definitions/SpokenLanguages'
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="parameter-with-default-value">Parameter with default value</h2>
@@ -363,11 +367,12 @@ In this fifth part you will discover all the tips and tricks to describe highly 
 <p>On the parameter <code>pageSize</code>, we set its <code>default</code> value to <code>20</code>. If this value is not provided, the server will then return pages containing <code>20</code> elements.</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="12" data-start="486"><code>  pageSize:
@@ -389,11 +394,12 @@ In this fifth part you will discover all the tips and tricks to describe highly 
 <p>On the parameter <code>pageNumber</code>, we set its <code>default</code> value to <code>1</code>. If this value is not provided, the server will then return the <code>first</code> page.</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="6" data-start="498"><code>  pageNumber:
@@ -413,11 +419,12 @@ In this fifth part you will discover all the tips and tricks to describe highly 
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="24" data-start="297"><code>  Person:
@@ -447,7 +454,7 @@ In this fifth part you will discover all the tips and tricks to describe highly 
       spokenLanguages:
         $ref: '#/definitions/SpokenLanguages'
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h3 id="defining-a-default-value-in-a-hashmap-definition-used-as-a-parameter">Defining a default value in a hashmap definition used as a parameter</h3>
@@ -456,11 +463,12 @@ We can set a default value in a an hashmap this way:</p>
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="4-7" data-start="323"><code>  SpokenLanguages:
@@ -483,11 +491,12 @@ But why should we have to set a value when the parameters name is sufficient to 
 <p>To do that we just need to use the <code>allowEmptyValue</code> key word on the parameter’s description. We have also define a default value to false, therefore <code>GET /persons?page=2&amp;includeVerifiedUsers</code> will include verified users and <code>GET /persons?page=2</code> will not.</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="6" data-start="504"><code>  includeNonVerifiedUsers:
@@ -543,11 +552,12 @@ The sort parameters are in a pipe separated array named <code>sort</code>, each 
 <p>This <code>sort</code>parameter is defined with an <code>array</code> of <code>string</code> using a <code>pipes collectionFormat</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="4,8,4686" data-start="510"><code>  sortPersons:
@@ -569,11 +579,12 @@ The sort parameters are in a pipe separated array named <code>sort</code>, each 
 <p>In this specific use case we will define a pattern for the string within the array, just like we’ve learned on previous part when defining the <code>username</code> property. This pattern says that a value within the array may start with <code>+</code> (for ascending) and <code>-</code> (for descending) and be followed by <code>username</code>, <code>firstname</code>, <code>lastname</code> or <code>lastTimeOnline</code>.</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="11" data-start="510"><code>  sortPersons:
@@ -596,11 +607,12 @@ The sort parameters are in a pipe separated array named <code>sort</code>, each 
 <p>And icing on the cake, we can also define a default sort (last online time descending and username ascending) by adding a <code>default</code> value on the array level:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="12-14" data-start="510"><code>  sortPersons:
@@ -628,11 +640,12 @@ The filter parameters are in a multi array named <code>itemType</code>, each val
 <p>This <code>filterItemTypes</code> parameter is defined with an <code>array</code> of <code>unique string</code>using a <code>multi colectionFormat</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="4,5,6,8" data-start="524"><code>  filterItemTypes:
@@ -650,11 +663,12 @@ The filter parameters are in a multi array named <code>itemType</code>, each val
 <p>And icing on the cake we enforce the possible values by defining an <code>enum</code> on the string within the array:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="9-12" data-start="524"><code>  filterItemTypes:
@@ -705,11 +719,12 @@ We already have seen in previous parts the most common values of <code>in</code>
 <p>We define the parameter just like any other one, we just need to set the <code>header</code>value in <code>in</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="536"><code>  userAgent:
@@ -723,11 +738,12 @@ We already have seen in previous parts the most common values of <code>in</code>
 <p>And we use it (on every path) just like any other parameter:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="4" data-start="16"><code>paths:
@@ -746,11 +762,12 @@ We already have seen in previous parts the most common values of <code>in</code>
 <p>Let’s say we have a partner who need to use our API in a js-less-browser environment to create persons. He can only provide the creation information in a good old HTML form format:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_16_advanced_input_and_output_modeling_form.txt"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_16_advanced_input_and_output_modeling_form.txt"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-txt line-numbers"><code>POST /js-less-persons
@@ -762,11 +779,12 @@ username=apihandyman&amp;firstname=API&amp;lastname=Handyman</code></pre>
 <p>No problem, we just need to define all form parameters with <code>in</code> sets to  <code>formData</code> and setting the <code>consumes</code> media type to <code>application/x-www-form-urlencoded</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="4,5,10,17,20,23" data-start="77"><code>    post:
@@ -798,7 +816,7 @@ username=apihandyman&amp;firstname=API&amp;lastname=Handyman</code></pre>
         '204':
           description: Person succesfully created.
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="file-parameter">File parameter</h2>
@@ -812,11 +830,12 @@ username=apihandyman&amp;firstname=API&amp;lastname=Handyman</code></pre>
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="7,10,11" data-start="230"><code>  /images:
@@ -854,11 +873,12 @@ username=apihandyman&amp;firstname=API&amp;lastname=Handyman</code></pre>
 <p>We set the global media-type on the root level of the OpenAPI document, here our API consumes JSON and YAML:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="10"><code>consumes:
@@ -871,11 +891,12 @@ username=apihandyman&amp;firstname=API&amp;lastname=Handyman</code></pre>
 <p>This settings can be overriden on the operation level by redefining the consumes list:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="6-7" data-start="230"><code>  /images:
@@ -917,11 +938,12 @@ username=apihandyman&amp;firstname=API&amp;lastname=Handyman</code></pre>
 <p>To define a response without a body, all you have to do is set its status and description:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="12-13" data-start="43"><code>    post:
@@ -948,11 +970,12 @@ Mandatory properties are defined with the <code>required</code> list. A property
 <p>When <code>GET /persons/apihandyman</code> returns a <code>Person</code>, this person will surely contains a <code>username</code>, but all other values may not be sent:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="2-2" data-start="297"><code>  Person:
@@ -982,7 +1005,7 @@ Mandatory properties are defined with the <code>required</code> list. A property
       spokenLanguages:
         $ref: '#/definitions/SpokenLanguages'
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h2 id="responses-headers">Response’s headers</h2>
@@ -991,11 +1014,12 @@ Mandatory properties are defined with the <code>required</code> list. A property
 <p>Let’s say we want to offer something like the Twitter’s API rate limiting information to provide the remaining number of API calls and when the limit will be reset. We have to define two header X-Rate-Limit-Remaining and X-Rate-Limit-Reset and <em>each</em> API response:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="14-19" data-start="43"><code>    post:
@@ -1031,11 +1055,12 @@ Mandatory properties are defined with the <code>required</code> list. A property
 <p>A generic response defined once and for all in the <code>responses</code> section:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="470"><code>  TotallyUnexpectedResponse:
@@ -1047,11 +1072,12 @@ Mandatory properties are defined with the <code>required</code> list. A property
 <p>This response used as a <code>default</code> response on each operation:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="17" data-start="153"><code>    delete:
@@ -1084,11 +1110,12 @@ Mandatory properties are defined with the <code>required</code> list. A property
 <p>We set the global media-type on the root level of the OpenAPI document, here our API produces JSON and YAML:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="13"><code>produces:
@@ -1101,11 +1128,12 @@ Mandatory properties are defined with the <code>required</code> list. A property
 <p>This settings can be overriden on the operation level by redefining the local produces list, here’s an example on <code>GET /images/{imageId}</code> operation which return an image:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="11-16" data-start="258"><code>  /images/{imageId}:
@@ -1146,7 +1174,7 @@ Mandatory properties are defined with the <code>required</code> list. A property
         default:
           $ref: '#/responses/TotallyUnexpectedResponse'
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>Note that the produces contains images media types but also json and yaml media types as if there’s a 500 error, the message will be return with one of those 2 media types.</p>
@@ -1159,11 +1187,12 @@ Mandatory properties are defined with the <code>required</code> list. A property
 <p>In the definition <code>Person</code> which is both used as a part of the response in <code>GET /persons</code> and a body parameter in <code>POST /persons</code> the <code>lastTimeOnline</code> property has <code>readOnly</code> set to true. Therefore this property MUST NOT be provided on <code>POST /persons</code> and MAY be returned by the server on <code>GET /persons</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_15_advanced_input_and_output_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="20" data-start="297"><code>  Person:
@@ -1193,7 +1222,7 @@ Mandatory properties are defined with the <code>required</code> list. A property
       spokenLanguages:
         $ref: '#/definitions/SpokenLanguages'
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p><em>Warning: SwaggerUI does not handle this yet (<a href="https://github.com/swagger-api/swagger-ui/issues/884">issue 884</a>).</em></p>
@@ -1256,6 +1285,7 @@ Mandatory properties are defined with the <code>required</code> list. A property
       </div>
         <script type="text/javascript" src="/js/jquery.min.js" ></script>
   <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/asciinema-player.js"></script>
   
     <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
 <script language="javascript">
@@ -1285,18 +1315,26 @@ Mandatory properties are defined with the <code>required</code> list. A property
 <script type="text/javascript" src="/js/prism.js" ></script>
 <script type="text/javascript" src="/js/clipboard.min.js" ></script>
 <script language="JavaScript">
-  var clipboard = new Clipboard('.btn-copy', {
-    target: function(trigger) {
-      return trigger.parentElement.parentElement.parentElement.children[1];
-    }
+
+  var clipboard = new ClipboardJS('.copy-btn', {
+      target: function(trigger) {
+        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
+        return trigger.parentElement.parentElement.parentElement.children[0];
+      }
   });
+
   clipboard.on('success', function(e) {
     e.clearSelection();
-    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    $(e.trigger).html('<i class="fa fa-check"></i>');
     window.setTimeout(function() {
-        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).html('<i class="fas fa-paste"></i>');
         $(e.trigger).blur();
     }, 1000);
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
 </script>
 <script language="JavaScript">
@@ -1304,14 +1342,14 @@ Mandatory properties are defined with the <code>required</code> list. A property
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
-      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-compress"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
-      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-expand"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/the-beautiful-api-and-the-bestial-back-office/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -183,31 +184,31 @@ This website consists of some kind of a more or less monolithic web application 
 How your data and the way you process them look like is the result of years of evolution in a close environment leading to a functional but maybe complex system including some fancy things like these…</p>
 
 <div>
-      <a href=""><img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-01.png" /></a>
+      <img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-01.png" />
       
     </div>
 <div>
-      <a href=""><img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-02.png" /></a>
+      <img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-02.png" />
       
     </div>
 <div>
-      <a href=""><img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-03.png" /></a>
+      <img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-03.png" />
       
     </div>
 <div>
-      <a href=""><img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-04.png" /></a>
+      <img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-04.png" />
       
     </div>
 <div>
-      <a href=""><img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-05.png" /></a>
+      <img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-05.png" />
       
     </div>
 <div>
-      <a href=""><img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-06.png" /></a>
+      <img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-06.png" />
       
     </div>
 <div>
-      <a href=""><img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-07.png" /></a>
+      <img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-back-office-page-07.png" />
       
     </div>
 
@@ -219,11 +220,11 @@ You’ve read some things about this and it seems that a mobile application need
 This is a very good idea…</p>
 
 <div>
-      <a href=""><img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-api-page-01.png" /></a>
+      <img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-api-page-01.png" />
       
     </div>
 <div>
-      <a href=""><img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-api-page-02.png" /></a>
+      <img src="/images/the-beautiful-api-and-the-bestial-back-office/a-bestial-api-page-02.png" />
       
     </div>
 
@@ -360,6 +361,7 @@ I know, beauty is in the eye of the beholder, but that’s a subject for another
       </div>
         <script type="text/javascript" src="/js/jquery.min.js" ></script>
   <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/asciinema-player.js"></script>
   
     <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
 <script language="javascript">
@@ -389,18 +391,26 @@ I know, beauty is in the eye of the beholder, but that’s a subject for another
 <script type="text/javascript" src="/js/prism.js" ></script>
 <script type="text/javascript" src="/js/clipboard.min.js" ></script>
 <script language="JavaScript">
-  var clipboard = new Clipboard('.btn-copy', {
-    target: function(trigger) {
-      return trigger.parentElement.parentElement.parentElement.children[1];
-    }
+
+  var clipboard = new ClipboardJS('.copy-btn', {
+      target: function(trigger) {
+        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
+        return trigger.parentElement.parentElement.parentElement.children[0];
+      }
   });
+
   clipboard.on('success', function(e) {
     e.clearSelection();
-    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    $(e.trigger).html('<i class="fa fa-check"></i>');
     window.setTimeout(function() {
-        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).html('<i class="fas fa-paste"></i>');
         $(e.trigger).blur();
     }, 1000);
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
 </script>
 <script language="JavaScript">
@@ -408,14 +418,14 @@ I know, beauty is in the eye of the beholder, but that’s a subject for another
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
-      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-compress"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
-      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-expand"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

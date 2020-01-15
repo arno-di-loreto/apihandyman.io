@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -226,10 +227,18 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
 <p>With this query, I retrieve only the viewer’s name and avatarURL.</p>
 
 <div>
+  <pre class="copy-hidden">{
+  viewer {
+    name
+    avatarURL
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -244,10 +253,16 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
 <p>To get server’s response I have to POST this query in a JSON object to the GraphQL endpoint:</p>
 
 <div>
+  <pre class="copy-hidden">POST https://api.github.com/graphql
+{
+ &quot;query&quot;: &quot;{ me: viewer { name avatarURL} }&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>POST https://api.github.com/graphql
@@ -260,10 +275,20 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
 <p>The result is in JSON format and the requested data are located in the data property. These data mirror perfectly my query.</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;data&quot;: {
+    &quot;viewer&quot;: {
+      &quot;name&quot;: &quot;Arnaud Lauret&quot;,
+      &quot;avatarURL&quot;: &quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;
+    }
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -282,10 +307,18 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
 Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <code>fullname</code> and <code>avatarURL</code> becomes <code>picture</code>.</p>
 
 <div>
+  <pre class="copy-hidden">{
+  me: viewer {
+    fullname: name
+    picture: avatarURL
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -300,10 +333,20 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
 <p>The result is exactly what I requested:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;data&quot;: {
+    &quot;me&quot;: {
+      &quot;fullname&quot;: &quot;Arnaud Lauret&quot;,
+      &quot;picture&quot;: &quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;
+    }
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -332,10 +375,25 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
 <p>With GraphQL, I can do that with a single query:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  me: viewer {
+    fullname: name
+    picture: avatarURL
+    repositories(first: 2, orderBy: {field: CREATED_AT, direction: DESC}) {
+      edges {
+        node {
+          name
+        }
+      }
+    }
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -357,10 +415,34 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
 <p>I just have to add the repositories property in my viewer query with the good parameters and indicate the properties I want to get back for each repository. The response contains exactly what I requested.</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;data&quot;: {
+    &quot;me&quot;: {
+      &quot;fullname&quot;: &quot;Arnaud Lauret&quot;,
+      &quot;picture&quot;: &quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;,
+      &quot;repositories&quot;: {
+        &quot;edges&quot;: [
+          {
+            &quot;node&quot;: {
+              &quot;name&quot;: &quot;apistylebook-api&quot;
+            }
+          },
+          {
+            &quot;node&quot;: {
+              &quot;name&quot;: &quot;restfest-videos-data-postprocessor&quot;
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers code-collapsed"><code>{
@@ -385,7 +467,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
     }
   }
 }</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h3 id="aggregating-queries">Aggregating queries</h3>
@@ -402,10 +484,23 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
 <p>in a single request to the GraphQL server:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  me:   viewer                 { name avatarURL }
+  kin:  user(login: &quot;kinlane&quot;) { name avatarURL }
+  mike: user(login: &quot;mamund&quot;)  { name avatarURL }
+  graphqlRepos: search(first: 2, query: &quot;graphql&quot;, type: REPOSITORY) {
+  	edges { node { ... on Repository {
+      name
+      description
+    }}}  
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -425,10 +520,44 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
 <p>The response contains all requested data:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;data&quot;: {
+    &quot;me&quot;: {
+      &quot;name&quot;: &quot;Arnaud Lauret&quot;,
+      &quot;avatarURL&quot;: &quot;https://avatars0.githubusercontent.com/u/10104551?v=3&quot;
+    },
+    &quot;kin&quot;: {
+      &quot;name&quot;: &quot;Kin Lane&quot;,
+      &quot;avatarURL&quot;: &quot;https://avatars1.githubusercontent.com/u/56100?v=3&quot;
+    },
+    &quot;mike&quot;: {
+      &quot;name&quot;: &quot;Mike Amundsen&quot;,
+      &quot;avatarURL&quot;: &quot;https://avatars2.githubusercontent.com/u/38344?v=3&quot;
+    },
+    &quot;graphqlRepos&quot;: {
+      &quot;edges&quot;: [
+        {
+          &quot;node&quot;: {
+            &quot;name&quot;: &quot;graphql&quot;,
+            &quot;description&quot;: &quot;GraphQL is a query language and execution engine tied to any backend service.&quot;
+          }
+        },
+        {
+          &quot;node&quot;: {
+            &quot;name&quot;: &quot;graphql&quot;,
+            &quot;description&quot;: &quot;An implementation of GraphQL for Go / Golang&quot;
+          }
+        }
+      ]
+    }
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers code-collapsed"><code>{
@@ -463,7 +592,7 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
     }
   }
 }</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h3 id="graphql-is-not-sql-nor-an-etl">GraphQL is not SQL nor an ETL</h3>
@@ -472,10 +601,13 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
 <p>You cannot join queries like you would join tables in SQL.</p>
 
 <div>
+  <pre class="copy-hidden">SELECT * FROM A, B WHERE A.COL = B.COL
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-sql line-numbers"><code>SELECT * FROM A, B WHERE A.COL = B.COL</code></pre>
@@ -485,10 +617,27 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
 <p>You cannot select sub-properties or flatten objects. If I want to retrieve the name of my first repository without the edges and repo level, I cannot change this hierarchy:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;data&quot;: {
+    &quot;me&quot;: {
+      &quot;myFirstTwoRepos&quot;: {
+        &quot;edges&quot;: [
+          {
+            &quot;repo&quot;: {
+              &quot;name&quot;: &quot;apistylebook-api&quot;
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -512,10 +661,23 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
 <p>into this one:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;data&quot;: {
+    &quot;me&quot;: {
+      &quot;myFirstTwoRepos&quot;:
+        [
+          {&quot;name&quot;: &quot;apistylebook-api&quot;}
+        ]
+      }
+    }
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -540,10 +702,20 @@ The schema can be queried on runtime like all of the data.</p>
 <p>This query let me know what are the properties of the <code>User</code> resource which is returned by the viewer and user query</p>
 
 <div>
+  <pre class="copy-hidden">{
+  __type(name:&quot;User&quot;) {
+    fields {
+      name
+      description
+    }
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -616,10 +788,17 @@ Using the HTTP protocol enforce a certain consistency and allow predictability.<
 <p>If I get a user with the query user:</p>
 
 <div>
+  <pre class="copy-hidden">query {
+  user(id: &quot;{id}&quot;) {
+    name
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>query {
@@ -635,10 +814,17 @@ How will be named the mutation allowing me to delete a user? <code>deleteUser</c
 You’ll have to dig in the documentation to find out. You cannot guess it because different API providers will have different naming conventions and these naming convention may event not be consistent within an API.</p>
 
 <div>
+  <pre class="copy-hidden">mutation {
+  deleteUser(id: &quot;{id}&quot;)
+  removeUser(id: &quot;{id}&quot;)
+  suppressPeople(id: &quot;{id}&quot;)
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>mutation {
@@ -655,10 +841,15 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
 <p>If I try to retrieve a user that do not exists with a GraphQL API:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  user(login: &quot;dummy-user-123&quot;) {name}
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -670,10 +861,31 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
 <p>I get this GraphQL standard error with a text message telling me the user do no exists.:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;data&quot;: {
+    &quot;user&quot;: null
+  },
+  &quot;errors&quot;: [
+    {
+      &quot;message&quot;: &quot;Could not resolve to a User with the login of &#39;dummy-user-123&#39;.&quot;,
+      &quot;locations&quot;: [
+        {
+          &quot;line&quot;: 2,
+          &quot;column&quot;: 3
+        }
+      ],
+      &quot;path&quot;: [
+        &quot;user&quot;
+      ]
+    }
+  ]
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -701,10 +913,15 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
 <p>If I forget the login parameter:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  user { name }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-graphql line-numbers"><code>{
@@ -716,10 +933,26 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
 <p>I get exactly the same error format:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;data&quot;: null,
+  &quot;errors&quot;: [
+    {
+      &quot;message&quot;: &quot;Field &#39;user&#39; is missing required arguments: login&quot;,
+      &quot;locations&quot;: [
+        {
+          &quot;line&quot;: 2,
+          &quot;column&quot;: 3
+        }
+      ]
+    }
+  ]
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -887,6 +1120,7 @@ Which one is the best API style?</p>
       </div>
         <script type="text/javascript" src="/js/jquery.min.js" ></script>
   <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/asciinema-player.js"></script>
   
     <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
 <script language="javascript">
@@ -916,18 +1150,26 @@ Which one is the best API style?</p>
 <script type="text/javascript" src="/js/prism.js" ></script>
 <script type="text/javascript" src="/js/clipboard.min.js" ></script>
 <script language="JavaScript">
-  var clipboard = new Clipboard('.btn-copy', {
-    target: function(trigger) {
-      return trigger.parentElement.parentElement.parentElement.children[1];
-    }
+
+  var clipboard = new ClipboardJS('.copy-btn', {
+      target: function(trigger) {
+        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
+        return trigger.parentElement.parentElement.parentElement.children[0];
+      }
   });
+
   clipboard.on('success', function(e) {
     e.clearSelection();
-    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    $(e.trigger).html('<i class="fa fa-check"></i>');
     window.setTimeout(function() {
-        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).html('<i class="fas fa-paste"></i>');
         $(e.trigger).blur();
     }, 1000);
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
 </script>
 <script language="JavaScript">
@@ -935,14 +1177,14 @@ Which one is the best API style?</p>
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
-      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-compress"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
-      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-expand"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

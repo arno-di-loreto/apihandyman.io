@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -263,10 +264,13 @@
 <p>To add a custom property with an OpenAPI definition file you only need to prefix its name by <code>x-</code>:</p>
 
 <div>
+  <pre class="copy-hidden">x-&lt;what you want&gt;: &lt;value&gt;
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers"><code>x-&lt;what you want&gt;: &lt;value&gt;</code></pre>
@@ -277,11 +281,12 @@
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_53_custom_property.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_53_custom_property.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="5" data-start="3"><code>info:
@@ -296,7 +301,7 @@
 <p>If a standard Swagger/OpenAPI parser encounters such property, it will ignore it because it’s prefixed with <code>x-</code>. This <code>info</code> section with a custom property is valid:</p>
 
 <div>
-      <a href=""><img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/custom-property.png" /></a>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/custom-property.png" />
       
     </div>
 
@@ -306,11 +311,12 @@
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_54_custom_object.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_54_custom_object.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="5-11" data-start="3"><code>info:
@@ -337,7 +343,7 @@
 <p>You can also take a look at my <a href="http://openapi-specification-visual-documentation.apihandyman.io/">visual documentation</a> to check if the location you want to use allows extension or not:</p>
 
 <div>
-      <a href=""><img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/almost-anywhere.png" /></a>
+      <a href="http://openapi-specification-visual-documentation.apihandyman.io/"><img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/almost-anywhere.png" /></a>
       
     </div>
 
@@ -345,11 +351,12 @@
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_55_extensions_almost_anywhere.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_55_extensions_almost_anywhere.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="3,9-15,24,32,37"><code>swagger: '2.0'
@@ -389,7 +396,7 @@ definitions:
         description: some data
         type: string
         x-custom-property-data: More blah blah about this property</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h1 id="why-customizing-the-openapi-specification">Why customizing the OpenAPI specification?</h1>
@@ -405,7 +412,7 @@ definitions:
 <p><a href="https://docs.gelato.io/guides/control-grouping-with-swagger">Gelato, the Mashape Developer Portal solution</a>, uses the <a href="https://docs.gelato.io/guides/control-grouping-with-swagger"><code>x-gelato-group</code></a> extension to group operations in the portal navigation.</p>
 
 <div>
-      <a href=""><img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/gelato.png" /></a>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/gelato.png" />
       
     </div>
 
@@ -416,7 +423,7 @@ definitions:
 <p><a href="https://docs.apimatic.io/advanced/swagger-test-cases-extensions/">API Matic, a SDK/DX kits generator</a> uses extension ton control SDK generation.</p>
 
 <div>
-      <a href=""><img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/apimatic.png" /></a>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/apimatic.png" />
       
     </div>
 
@@ -425,7 +432,7 @@ definitions:
 <p><a href="https://github.com/swagger-api/swagger-node">Swagger Node, a node module which help to build API implementation with a design first approach</a> uses a <code>x-swagger-router-controller</code> extension to link an API endpoint to its controller implementation.</p>
 
 <div>
-      <a href=""><img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/swagger-node.png" /></a>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/swagger-node.png" />
       
     </div>
 
@@ -434,7 +441,7 @@ definitions:
 <p>Not only the AWS API gateway allows to import a Swagger/OpenAPI file but it also provides a <a href="(http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-swagger-extensions.html)">complete set of extensions</a> to configure how the API is linked to backend systems (like lambda).</p>
 
 <div>
-      <a href=""><img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/aws-api-gateway.png" /></a>
+      <img src="/images/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/aws-api-gateway.png" />
       
     </div>
 
@@ -496,6 +503,7 @@ definitions:
       </div>
         <script type="text/javascript" src="/js/jquery.min.js" ></script>
   <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/asciinema-player.js"></script>
   
     <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
 <script language="javascript">
@@ -525,18 +533,26 @@ definitions:
 <script type="text/javascript" src="/js/prism.js" ></script>
 <script type="text/javascript" src="/js/clipboard.min.js" ></script>
 <script language="JavaScript">
-  var clipboard = new Clipboard('.btn-copy', {
-    target: function(trigger) {
-      return trigger.parentElement.parentElement.parentElement.children[1];
-    }
+
+  var clipboard = new ClipboardJS('.copy-btn', {
+      target: function(trigger) {
+        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
+        return trigger.parentElement.parentElement.parentElement.children[0];
+      }
   });
+
   clipboard.on('success', function(e) {
     e.clearSelection();
-    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    $(e.trigger).html('<i class="fa fa-check"></i>');
     window.setTimeout(function() {
-        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).html('<i class="fas fa-paste"></i>');
         $(e.trigger).blur();
     }, 1000);
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
 </script>
 <script language="JavaScript">
@@ -544,14 +560,14 @@ definitions:
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
-      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-compress"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
-      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-expand"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

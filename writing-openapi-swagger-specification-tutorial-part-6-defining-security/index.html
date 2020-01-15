@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -262,11 +263,12 @@ Security definition takes place on specification’s root level in <code>securit
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="17"><code>securityDefinitions:
@@ -294,11 +296,12 @@ Security definition takes place on specification’s root level in <code>securit
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="17"><code>securityDefinitions:
@@ -360,11 +363,12 @@ Security definition takes place on specification’s root level in <code>securit
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="17"><code>securityDefinitions:
@@ -384,11 +388,12 @@ Security definition takes place on specification’s root level in <code>securit
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="7-10" data-start="17"><code>securityDefinitions:
@@ -419,11 +424,12 @@ When we apply a security definition to an operation, it overrides API security.<
 <p>In this example the security definition which apply to ALL API operations is <code>UserSecurity</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="9-10" data-start="17"><code>securityDefinitions:
@@ -447,11 +453,12 @@ paths:
 <p>As <code>GET /persons</code> operation do not define a <code>security</code>, it’s the <code>UserSecurity</code> defined on top level which applies:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="2,5" data-start="28"><code>paths:
@@ -473,11 +480,12 @@ paths:
 <p>On <code>POST /persons</code> operation, the top level security is overridden by <code>AdminSecurity</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="4-5" data-start="55"><code>    post:
@@ -492,11 +500,12 @@ paths:
 <p>On <code>POST /images</code> operation, the top level security is also overridden, but this time it’s by <code>MediaSecurity</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_17_defining_security_basic.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="1,4,6-7" data-start="246"><code>  /images:
@@ -517,11 +526,12 @@ paths:
 <p>In this example the security definition which apply to ALL API operations is <code>UserSecurity</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="15-16" data-start="17"><code>securityDefinitions:
@@ -551,11 +561,12 @@ paths:
 <p>As <code>GET /persons</code> operation do not define a <code>security</code>, it’s the <code>UserSecurity</code> defined on top level which applies:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="2,5" data-start="34"><code>paths:
@@ -577,11 +588,12 @@ paths:
 <p>On <code>POST /persons</code> operation, the top level security is overridden by <code>AdminSecurity</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="1,4,5" data-start="61"><code>    post:
@@ -596,11 +608,12 @@ paths:
 <p>On <code>POST /images</code> operation, the top level security is also overridden, but this time it’s by <code>MediaSecurity</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_18_defining_security_apikey.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="1,4,6-7" data-start="252"><code>  /images:
@@ -621,11 +634,12 @@ paths:
 <p>In this example the security definition which apply to ALL API operations is <code>OauthSecurity</code> with the <code>user</code> scope:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="12-14" data-start="17"><code>securityDefinitions:
@@ -653,11 +667,12 @@ paths:
 <p>As <code>GET /persons</code> operation do not define a <code>security</code>, it’s the <code>OauthSecurity</code> with <code>user</code>scope defined on top level which applies:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="2,5" data-start="32"><code>paths:
@@ -679,11 +694,12 @@ paths:
 <p>On <code>POST /persons</code> operation, the top level security scope is overridden by <code>admin</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="1,4-6" data-start="59"><code>    post:
@@ -699,11 +715,12 @@ paths:
 <p>On <code>POST /images</code> operation, the top level security is also overridden, but this time it’s by <code>media</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_19_defining_security_oauth2.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="1,4,6-8" data-start="252"><code>  /images:
@@ -726,11 +743,12 @@ The examples below show how we can define security definitions of different type
 <p>Here we define there different types of security:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="17"><code>securityDefinitions:
@@ -756,11 +774,12 @@ The examples below show how we can define security definitions of different type
 <p>Then we choose to apply both of them globally:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="33"><code>security:
@@ -777,11 +796,12 @@ The examples below show how we can define security definitions of different type
 <p>As <code>GET /persons</code> operation do not define a <code>security</code>, it’s the Oauth 2 <code>OauthSecurity</code> with <code>user</code>scope OR the basic authentication <code>LegacySecurity</code> defined on top level which applies:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="2,5" data-start="38"><code>paths:
@@ -803,11 +823,12 @@ The examples below show how we can define security definitions of different type
 <p>On <code>POST /persons</code> operation, the top level security scope Oauth 2 <code>OauthSecurity</code> is overridden by <code>admin</code> and consumer can also still use the basic authentication <code>LegacySecurity</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="1,4-7" data-start="65"><code>    post:
@@ -824,11 +845,12 @@ The examples below show how we can define security definitions of different type
 <p>On <code>POST /images</code> operation, the top level security is fully overridden by the API Key <code>MediaSecurity</code>:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_20_defining_security_multiple.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="1,4,6-7" data-start="260"><code>  /images:
@@ -900,6 +922,7 @@ The examples below show how we can define security definitions of different type
       </div>
         <script type="text/javascript" src="/js/jquery.min.js" ></script>
   <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/asciinema-player.js"></script>
   
     <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
 <script language="javascript">
@@ -929,18 +952,26 @@ The examples below show how we can define security definitions of different type
 <script type="text/javascript" src="/js/prism.js" ></script>
 <script type="text/javascript" src="/js/clipboard.min.js" ></script>
 <script language="JavaScript">
-  var clipboard = new Clipboard('.btn-copy', {
-    target: function(trigger) {
-      return trigger.parentElement.parentElement.parentElement.children[1];
-    }
+
+  var clipboard = new ClipboardJS('.copy-btn', {
+      target: function(trigger) {
+        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
+        return trigger.parentElement.parentElement.parentElement.children[0];
+      }
   });
+
   clipboard.on('success', function(e) {
     e.clearSelection();
-    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    $(e.trigger).html('<i class="fa fa-check"></i>');
     window.setTimeout(function() {
-        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).html('<i class="fas fa-paste"></i>');
         $(e.trigger).blur();
     }, 1000);
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
 </script>
 <script language="JavaScript">
@@ -948,14 +979,14 @@ The examples below show how we can define security definitions of different type
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
-      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-compress"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
-      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-expand"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

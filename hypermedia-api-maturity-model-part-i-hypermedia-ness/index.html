@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/hypermedia-api-maturity-model-part-i-hypermedia-ness/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -197,10 +198,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">GET https://api.dummy.com/locations/IDL1
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
@@ -208,10 +212,16 @@ If you want to know how resources are linked and what you can do with them, you‚
 </div>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;id&quot;: &quot;IDL1&quot;, 
+  &quot;name&quot;:&quot;a location&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -226,10 +236,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">POST https://api.dummy.com/photos
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>POST https://api.dummy.com/photos</code></pre>
@@ -237,10 +250,16 @@ If you want to know how resources are linked and what you can do with them, you‚
 </div>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;locationId&quot;: &quot;IDL1&quot;,
+  &quot;url&quot;: &quot;http://im.gur/myphoto&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -255,10 +274,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">GET https://api.dummy.com/locations/IDL1/photos
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1/photos</code></pre>
@@ -266,10 +288,18 @@ If you want to know how resources are linked and what you can do with them, you‚
 </div>
 
 <div>
+  <pre class="copy-hidden">[
+ {&quot;id&quot;: &quot;IDP1&quot;}, 
+ {&quot;id&quot;: &quot;IDP2&quot;},
+ ..., 
+ {&quot;id&quot;: &quot;IDPn&quot;}
+]
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>[
@@ -286,10 +316,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">GET https://api.dummy.com/photos/IDP1
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>GET https://api.dummy.com/photos/IDP1</code></pre>
@@ -297,10 +330,17 @@ If you want to know how resources are linked and what you can do with them, you‚
 </div>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;id&quot;: &quot;IDP1&quot;, 
+  &quot;locationId&quot;: &quot;IDL1&quot;,
+  &quot;url&quot;: &quot;https://media.dummy.com/xlvc265z&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -316,10 +356,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">DELETE https://api.dummy.com/photos/IDP1
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>DELETE https://api.dummy.com/photos/IDP1</code></pre>
@@ -342,10 +385,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">GET https://api.dummy.com/locations/IDL1
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
@@ -353,10 +399,23 @@ If you want to know how resources are linked and what you can do with them, you‚
 </div>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;links&quot;: { &quot;self&quot;: &quot;https://api.dummy.com/locations/IDL1&quot;},
+  &quot;linked&quot;:[ 
+   {
+     &quot;type&quot;: &quot;photos&quot;,
+     &quot;links&quot;: { &quot;self&quot;: &quot;https://api.dummy.com/locations/IDL1/photos&quot;}
+   }
+  ],
+  &quot;id&quot;: &quot;IDL1&quot;,
+  &quot;name&quot;: &quot;a location&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -378,10 +437,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">GET https://api.dummy.com/locations/IDL1/photos 
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1/photos</code></pre>
@@ -389,10 +451,26 @@ If you want to know how resources are linked and what you can do with them, you‚
 </div>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;links&quot; : 
+  {
+    &quot;self&quot;:&quot;https://api.dummy.com/locations/IDL1/photos&quot;,
+    &quot;next&quot;:&quot;https://api.dummy.com/locations/IDL1/photos?page=2&quot; 
+  },
+  &quot;data&quot;:
+  [ 
+    {
+      &quot;links&quot; : { &quot;self&quot;: &quot;https://api.dummy.com/photos/IDP1&quot; },
+      &quot;id&quot;: &quot;IDP1&quot;
+    }, ...
+  ]
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -417,10 +495,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">GET https://api.dummy.com/photos/IDP1 
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>GET https://api.dummy.com/photos/IDP1</code></pre>
@@ -428,10 +509,25 @@ If you want to know how resources are linked and what you can do with them, you‚
 </div>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;links&quot;: { &quot;self&quot;: &quot;https://api.dummy.com/photos/IDP1&quot;},
+  &quot;linked&quot;:
+  [
+    {
+      &quot;type&quot;: &quot;location&quot;,
+      &quot;links&quot;: { &quot;self&quot;: &quot;https://api.dummy.com/locations/IDL1&quot;}
+    }
+  ],
+  &quot;id&quot;: &quot;IDP1&quot;,
+  &quot;locationId&quot;: &quot;IDL1&quot;,
+  &quot;url&quot;: &quot;https://media.dummy.com/xlvc265z&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -476,10 +572,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">GET https://api.dummy.com/locations/IDL1
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
@@ -487,10 +586,34 @@ If you want to know how resources are linked and what you can do with them, you‚
 </div>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;_links&quot;:
+  [
+    {   
+      &quot;rel&quot;: &quot;self&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/locations/IDL1&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/locations/IDL1/photos&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    }, 
+    {
+       &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+       &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+       &quot;method&quot;: &quot;POST&quot;
+    }
+  ],
+  &quot;id&quot;: &quot;IDL1&quot;,
+  &quot;name&quot;: &quot;a location&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers code-collapsed"><code>{
@@ -515,7 +638,7 @@ If you want to know how resources are linked and what you can do with them, you‚
   &quot;id&quot;: &quot;IDL1&quot;,
   &quot;name&quot;: &quot;a location&quot;
 }</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <ul>
@@ -523,10 +646,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">GET https://api.dummy.com/locations/IDL1/photos 
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1/photos</code></pre>
@@ -534,10 +660,46 @@ If you want to know how resources are linked and what you can do with them, you‚
 </div>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;_links&quot;:
+  [
+    {    
+      &quot;rel&quot;:&quot;self&quot;,
+      &quot;href&quot;:&quot;https://api.dummy.com/locations/IDL1/photos&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;rel&quot;: &quot;next&quot;,
+      &quot;href&quot;:&quot;https://api.dummy.com/locations/IDL1/photos?page=2&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    }, 
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+      &quot;method&quot;: &quot;POST&quot;
+    }
+  ],
+  &quot;data&quot;: 
+  [
+    {
+      &quot;_links&quot;:
+      [
+        {
+          &quot;rel&quot; : &quot;self&quot;,
+          &quot;href&quot; : &quot;https://api.dummy.com/photos/IDP1&quot;,
+          &quot;method&quot; : &quot;GET&quot;
+        }   
+      ],
+      &quot;id&quot;: &quot;IDP1&quot;
+    }, ...
+  ]
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers code-collapsed"><code>{
@@ -574,7 +736,7 @@ If you want to know how resources are linked and what you can do with them, you‚
     }, ...
   ]
 }</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <ul>
@@ -582,10 +744,13 @@ If you want to know how resources are linked and what you can do with them, you‚
 </ul>
 
 <div>
+  <pre class="copy-hidden">GET https://api.dummy.com/photos/IDP1 
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>GET https://api.dummy.com/photos/IDP1</code></pre>
@@ -593,10 +758,35 @@ If you want to know how resources are linked and what you can do with them, you‚
 </div>
 
 <div>
+  <pre class="copy-hidden">{ 
+  &quot;_links&quot;:
+  [
+    {
+      &quot;rel&quot;: &quot;self&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos/IDP1&quot;,
+      &quot;method&quot; : &quot;GET&quot;
+    },
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/locations/definition&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/locations/IDL1&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;rel&quot; : &quot;https://api.dummy.com/photos/definitions#delete&quot;,
+      &quot;href&quot; : &quot;https://api.dummy.com/photos/IDP1&quot;,
+      &quot;method&quot; : &quot;DELETE&quot;
+    }
+  ],
+  &quot;id&quot;: &quot;IDP1&quot;,
+  &quot;locationId&quot;: &quot;IDL1&quot;,
+  &quot;url&quot;: &quot;https://media.dummy.com/xlvc265z&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers code-collapsed"><code>{ 
@@ -622,7 +812,7 @@ If you want to know how resources are linked and what you can do with them, you‚
   &quot;locationId&quot;: &quot;IDL1&quot;,
   &quot;url&quot;: &quot;https://media.dummy.com/xlvc265z&quot;
 }</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>With NARWHL, all links are defined within <em>_links</em> values and for each of them you explicitly define the HTTP method to use with the <em>method</em> value.
@@ -649,10 +839,13 @@ I have to admit that I prefer the more explicits concepts of <em>class</em> or <
 
 <p>Let‚Äôs see how NARWHL handle this on the ‚Äúadd photo‚Äù operation:</p>
 <div>
+  <pre class="copy-hidden">GET https://api.dummy.com/locations/IDL1
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-text line-numbers"><code>GET https://api.dummy.com/locations/IDL1</code></pre>
@@ -660,10 +853,39 @@ I have to admit that I prefer the more explicits concepts of <em>class</em> or <
 </div>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;_links&quot;: 
+  [
+    {   
+      &quot;rel&quot;:&quot;self&quot;,
+      &quot;href&quot;:&quot;https://api.dummy.com/locations/IDL1&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    },
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/locations/IDL1/photos&quot;,
+      &quot;method&quot;: &quot;GET&quot;
+    }, 
+    {
+      &quot;rel&quot;: &quot;https://api.dummy.com/photos/definitions#add&quot;,
+      &quot;href&quot;: &quot;https://api.dummy.com/photos&quot;,
+      &quot;method&quot;: &quot;POST&quot;,
+      &quot;parameters&quot; :
+      {
+        &quot;locationId&quot; : &quot;IDL1&quot;,
+        &quot;url&quot; : &quot;http://example.com/your/photo&quot; 
+      }
+    }
+  ],
+  &quot;id&quot;: &quot;IDL1&quot;,
+  &quot;name&quot;: &quot;a location&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers code-collapsed"><code>{
@@ -693,7 +915,7 @@ I have to admit that I prefer the more explicits concepts of <em>class</em> or <
   &quot;id&quot;: &quot;IDL1&quot;,
   &quot;name&quot;: &quot;a location&quot;
 }</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>With NARWHL, by adding <em>parameters</em> value you give a description (and some default values) of the needed inputs for the operations.
@@ -714,7 +936,7 @@ Collection+JSON, Siren and Hydra use a more precise way of describing these inpu
 <p>When you start defining or classifying things, some people tends to overreact, arguing over which level is better than the other, what is the perfect way of doing things, counting how many API evangelists can stand on the header of a GET request and then they start wearing funny costumes and act in utterly surreal stupid way to boldly defend a so-called <em>truth</em>‚Ä¶</p>
 
 <div>
-      <a href=""><img src="/images/hypermedia-api-maturity-model-part-i-hypermedia-ness/apiinquisition.png" /></a>
+      <img src="/images/hypermedia-api-maturity-model-part-i-hypermedia-ness/apiinquisition.png" />
       
     </div>
 
@@ -824,6 +1046,7 @@ In next post <em>Hypermedia API maturity model - Part II - The missing links</em
       </div>
         <script type="text/javascript" src="/js/jquery.min.js" ></script>
   <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/asciinema-player.js"></script>
   
     <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
 <script language="javascript">
@@ -853,18 +1076,26 @@ In next post <em>Hypermedia API maturity model - Part II - The missing links</em
 <script type="text/javascript" src="/js/prism.js" ></script>
 <script type="text/javascript" src="/js/clipboard.min.js" ></script>
 <script language="JavaScript">
-  var clipboard = new Clipboard('.btn-copy', {
-    target: function(trigger) {
-      return trigger.parentElement.parentElement.parentElement.children[1];
-    }
+
+  var clipboard = new ClipboardJS('.copy-btn', {
+      target: function(trigger) {
+        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
+        return trigger.parentElement.parentElement.parentElement.children[0];
+      }
   });
+
   clipboard.on('success', function(e) {
     e.clearSelection();
-    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    $(e.trigger).html('<i class="fa fa-check"></i>');
     window.setTimeout(function() {
-        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).html('<i class="fas fa-paste"></i>');
         $(e.trigger).blur();
     }, 1000);
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
 </script>
 <script language="JavaScript">
@@ -872,14 +1103,14 @@ In next post <em>Hypermedia API maturity model - Part II - The missing links</em
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
-      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-compress"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
-      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-expand"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

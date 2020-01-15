@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -288,11 +289,12 @@
 <p>The <em>username</em> in the <em>Person</em> definition is a string which length is between 8 and 64 and composed of lower case alphanumeric characters:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="3-5" data-start="118"><code>      username:
@@ -332,11 +334,12 @@
 <p>In the <em>Person</em> definition, <em>dateOfBirth</em> is a date and <em>lastTimeOnline</em> is a timestamp:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="3,6" data-start="123"><code>      dateOfBirth:
@@ -429,11 +432,12 @@
 <p>The <em>pageSize</em> parameter is an integer &gt; 0 and &lt;= 100 and a multiple of 10:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="5-11" data-start="288"><code>  pageSize:
@@ -454,11 +458,12 @@
 <p>The <em>maxPrice</em> property of <em>CollectingItem</em> definition is a double value &gt; 0 and &lt;= 10000:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="2-7" data-start="190"><code>      maxPrice:
@@ -478,11 +483,12 @@
 <p>The property <em>code</em> of definition <em>Error</em> can take only three value (DBERR, NTERR and UNERR):</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="3-6" data-start="169"><code>      code:
@@ -528,11 +534,12 @@
 <p>The <em>Person</em> definition contains a property <em>items</em> which is an array of <em>Person</em>. This array contain only unique elements and can have between 10 and 100 items:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="5-7" data-start="140"><code>  Persons:
@@ -573,11 +580,12 @@
 <p>The property <em>avatarBase64PNG</em> of <em>Person</em> definition is a base64 encoded PNG image:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="3" data-start="130"><code>      avatarBase64PNG:
@@ -597,11 +605,12 @@
 <p>In the example below, the <em>lastTimeOnline</em> property in the <em>Person</em> definition does not have sense when creating an <em>Person</em>. With <em>readOnly</em> set to true on this property, we can use the same <em>Person</em> definition in both <em>post /persons</em> and <em>get /persons/{username}</em>, <em>lastTimeOnline</em> will only be of interest when using get:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="4" data-start="126"><code>      lastTimeOnline:
@@ -618,11 +627,12 @@
 <p>A first option would be to define this attribute on every single collection:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="7-14" data-start="221"><code>  PagedPersonsV1:
@@ -648,11 +658,12 @@
 <p>A better option would be to define a Paging model and then use it in every collection:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="7-8,10-19" data-start="236"><code>  PagedPersonsV2:
@@ -682,11 +693,12 @@
 The <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#composition-and-inheritance-polymorphism"><em>allOf</em> JSON Schema v4 property</a> can provide an elegant and simple solution to this problem:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="256"><code>  PagedPersons:
@@ -701,11 +713,12 @@ The <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2
 It also functions perfectly with inline definitions:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-start="261"><code>  PagedCollectingItems:
@@ -729,11 +742,12 @@ It also functions perfectly with inline definitions:</p>
 <p>Here we define a CollectingItem <em>super-definition</em>, which is subclassed using the <em>allOf</em> property. The consumer will determine which <em>sub-definition</em> used by scanning the <em>itemType</em> property.</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="1-4,21-23,33-35" data-start="178"><code>  CollectingItem:
@@ -777,7 +791,7 @@ It also functions perfectly with inline definitions:</p>
           movieTitle:
             type: string
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>This is highly experimental as the content of <em>discriminator</em> field is not clear in the specification’s current version (<a href="https://github.com/OAI/OpenAPI-Specification/issues/403">issue 403</a>) and as far as I know it is not supported by any tool using OpenAPI specification.</p>
@@ -792,10 +806,16 @@ It also functions perfectly with inline definitions:</p>
 <p>A string/string JSON map:</p>
 
 <div>
+  <pre class="copy-hidden">{ 
+  &quot;key1&quot;: &quot;value1&quot;,
+  &quot;key2&quot;: &quot;value2&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{ 
@@ -808,10 +828,16 @@ It also functions perfectly with inline definitions:</p>
 <p>A string/object JSON map:</p>
 
 <div>
+  <pre class="copy-hidden">{ 
+  &quot;key1&quot;: {&quot;complexValue1&quot;: &quot;value1&quot;},
+  &quot;key2&quot;: {&quot;complexValue2&quot;: &quot;value2&quot;}
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{ 
@@ -828,10 +854,19 @@ The value’s type is defined within the property: <a href="https://github.com/O
 <p>If you want to have a string to string map property in the <em>Person</em> definition explaining which languages this person speaks, the resulting data would look like this:</p>
 
 <div>
+  <pre class="copy-hidden">{
+&quot;username&quot;: &quot;apihandyman&quot;,
+&quot;spokenLanguage&quot;: { 
+    &quot;en&quot;: &quot;english&quot;,
+    &quot;fr&quot;: &quot;French&quot;
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -848,11 +883,12 @@ The value’s type is defined within the property: <a href="https://github.com/O
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="25-26,28-30" data-start="109"><code>definitions:
@@ -886,17 +922,32 @@ The value’s type is defined within the property: <a href="https://github.com/O
     additionalProperties:
       type: string
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <h3 id="string-to-object-map">String to Object Map</h3>
 <p>If you want to have a string to object map property in the <em>Error</em> definition to provide a multilingual long and short error message, the resulting data would look like this:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;code&quot;: &quot;UNERR&quot;,
+  &quot;message&quot;: { 
+    &quot;en&quot;: {
+        &quot;shortMessage&quot;:&quot;Error&quot;, 
+        &quot;longMessage&quot;:&quot;Error. Sorry for the inconvenience.&quot;
+    },
+    &quot;fr&quot;: {
+        &quot;shortMessage&quot;:&quot;Erreur&quot;, 
+        &quot;longMessage&quot;:&quot;Erreur. Désolé pour le dérangement.&quot;
+    }
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -918,11 +969,12 @@ The value’s type is defined within the property: <a href="https://github.com/O
 <p>Defining the <em>message</em> property in the <em>Error</em> definition is done this way:</p>
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="9-10" data-start="150"><code>  ErrorMessage:
@@ -941,11 +993,12 @@ The value’s type is defined within the property: <a href="https://github.com/O
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers" data-line="12-13" data-start="164"><code>  Error:
@@ -970,10 +1023,29 @@ The value’s type is defined within the property: <a href="https://github.com/O
 
 <p>The returned structure do not differs from the precedent example:</p>
 <div>
+  <pre class="copy-hidden">{
+  &quot;code&quot;: &quot;UNERR&quot;,
+  &quot;message&quot;: {
+    &quot;defaultLanguage&quot;: {
+        &quot;shortMessage&quot;:&quot;Error&quot;, 
+        &quot;longMessage&quot;:&quot;Error. Sorry for the inconvenience.&quot;
+    }, 
+    &quot;en&quot;: {
+        &quot;shortMessage&quot;:&quot;Error&quot;, 
+        &quot;longMessage&quot;:&quot;Error. Sorry for the inconvenience.&quot;
+    },
+    &quot;fr&quot;: {
+        &quot;shortMessage&quot;:&quot;Erreur&quot;, 
+        &quot;longMessage&quot;:&quot;Erreur. Désolé pour le dérangement.&quot;
+    }
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json line-numbers"><code>{
@@ -1000,11 +1072,12 @@ The value’s type is defined within the property: <a href="https://github.com/O
 
 <div>
   <!-- codeblocksize: 20 -->
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[1], this.parentElement.parentElement.parentElement.children[2].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default"><a target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml"><i class="fas fa-file-code"></i></a></button>
+        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-yaml line-numbers code-collapsed" data-line="11-13" data-start="150"><code>  ErrorMessage:
@@ -1035,7 +1108,7 @@ The value’s type is defined within the property: <a href="https://github.com/O
       message:
         $ref: "#/definitions/MultilingualErrorMessage"
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[1], this.parentElement.parentElement.children[0].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
 </div>
 
 <p>You can define as many as “default” values as you want.
@@ -1103,6 +1176,7 @@ In the <a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-
       </div>
         <script type="text/javascript" src="/js/jquery.min.js" ></script>
   <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/asciinema-player.js"></script>
   
     <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
 <script language="javascript">
@@ -1132,18 +1206,26 @@ In the <a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-
 <script type="text/javascript" src="/js/prism.js" ></script>
 <script type="text/javascript" src="/js/clipboard.min.js" ></script>
 <script language="JavaScript">
-  var clipboard = new Clipboard('.btn-copy', {
-    target: function(trigger) {
-      return trigger.parentElement.parentElement.parentElement.children[1];
-    }
+
+  var clipboard = new ClipboardJS('.copy-btn', {
+      target: function(trigger) {
+        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
+        return trigger.parentElement.parentElement.parentElement.children[0];
+      }
   });
+
   clipboard.on('success', function(e) {
     e.clearSelection();
-    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    $(e.trigger).html('<i class="fa fa-check"></i>');
     window.setTimeout(function() {
-        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).html('<i class="fas fa-paste"></i>');
         $(e.trigger).blur();
     }, 1000);
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
 </script>
 <script language="JavaScript">
@@ -1151,14 +1233,14 @@ In the <a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
-      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-compress"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
-      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-expand"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();

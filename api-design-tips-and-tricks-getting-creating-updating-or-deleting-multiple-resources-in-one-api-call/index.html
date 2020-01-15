@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/">
   <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
   <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
@@ -175,10 +176,18 @@
 <p>The common way of creating a <code>resource</code> is to do a <code>POST</code> request on <code>/resources</code>. The body of the request containing the resource to create.</p>
 
 <div>
+  <pre class="copy-hidden">POST /resources HTTP/1.1
+
+{
+  &quot;some&quot;: &quot;some data&quot;,
+  &quot;other&quot;: &quot;some other data&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-txt"><code>POST /resources HTTP/1.1
@@ -193,10 +202,20 @@
 <p>If everything is OK and the resource created, the response’s status to this request will be a <code>201 Created</code> and the response’s body will contain at least the ID (<code>id</code>) or the URL/URI (<code>href</code>) of the created resources. It may also contain the full resource itself.</p>
 
 <div>
+  <pre class="copy-hidden">HTTP/1.1 201 Created
+
+{
+  &quot;id&quot;: &quot;ID&quot;,
+  &quot;href&quot;: &quot;/resources/ID&quot;,
+  &quot;some&quot;: &quot;some data&quot;,
+  &quot;other&quot;: &quot;some other data&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-txt"><code>HTTP/1.1 201 Created
@@ -213,10 +232,17 @@
 <p>If there’s something wrong, the response’s status will be an error, for example a <code>400 Bad Request</code> because of some missing data and the response’s body will contain information about the error.</p>
 
 <div>
+  <pre class="copy-hidden">HTTP/1.1 400 Bad Request
+
+{
+  &quot;message&quot;: &quot;missing some data&quot; 
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-txt"><code>HTTP/1.1 400 Bad Request
@@ -235,10 +261,17 @@
 <p>A <code>PATCH /resources/ID</code> request will update partially a resource:</p>
 
 <div>
+  <pre class="copy-hidden">PATCH /resources HTTP/1.1
+
+{
+  &quot;other&quot;: &quot;modified data&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-txt"><code>PATCH /resources HTTP/1.1
@@ -252,10 +285,20 @@
 <p>If everything is OK, the server will return a OK status like <code>200 Accepted</code>, and just like with the <code>POST</code> request, the body may contain the updated resource.</p>
 
 <div>
+  <pre class="copy-hidden">HTTP/1.1 200 Accepted
+
+{
+  &quot;id&quot;: &quot;ID&quot;,
+  &quot;href&quot;: &quot;/resources/ID&quot;,
+  &quot;some&quot;: &quot;some data&quot;,
+  &quot;other&quot;: &quot;modified data&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-txt"><code>HTTP/1.1 200 Accepted
@@ -272,10 +315,17 @@
 <p>If there’s a problem, the server will return an error. This error could be, for example, a <code>404 Not Found</code> due to an invalid ID.</p>
 
 <div>
+  <pre class="copy-hidden">HTTP/1.1 404 Not Found
+
+{
+  &quot;message&quot;: &quot;Resource &lt;ID&gt; not found&quot; 
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-txt"><code>HTTP/1.1 404 Not Found
@@ -291,10 +341,18 @@
 <p>While a <code>PATCH /resources/ID</code> updates partially a resource, a <code>PUT /resources/ID</code> one will replace the resource. It may also create a new resource with the provided ID if it does not exist (and if it is allowed).</p>
 
 <div>
+  <pre class="copy-hidden">PUT /resources/ID HTTP/1.1
+
+{
+  &quot;some&quot;: &quot;some new data&quot;,
+  &quot;other&quot;: &quot;some other new data&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-txt"><code>PUT /resources/ID HTTP/1.1
@@ -309,10 +367,20 @@
 <p>If everything is OK, the server will return a OK status. Depending on what happened the status may be, for example, a <code>200 Accepted</code> for a replacement of an existing resource or a <code>201 Created</code> when a resource has been created.</p>
 
 <div>
+  <pre class="copy-hidden">HTTP/1.1 200 Accepted
+
+{
+  &quot;id&quot;: &quot;ID&quot;,
+  &quot;href&quot;: &quot;/resources/ID&quot;,
+  &quot;some&quot;: &quot;some new data&quot;,
+  &quot;other&quot;: &quot;some other new data&quot;
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-txt"><code>HTTP/1.1 200 Accepted
@@ -377,10 +445,22 @@
 <p>To provide all needed information for a creation, we have to send an array of items containing a unique identifier determined by the consumer (<code>id</code>) and the resource’s data (<code>body</code>):</p>
 
 <div>
+  <pre class="copy-hidden">[
+  {
+    &quot;id&quot;: &quot;CREATION1&quot;,
+    &quot;body&quot;: {&quot;resource&#39;s&quot;: &quot;data&quot;}
+  },
+  {
+    &quot;id&quot;: &quot;CREATION2&quot;,
+    &quot;body&quot;: {&quot;resource&#39;s&quot;: &quot;data&quot;}
+  }
+]
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json"><code>[
@@ -399,10 +479,16 @@
 <p>It can also be done with a key/value map, the resource’s ID being the key and its data the value:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;CREATION1&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;},
+  &quot;CREATION2&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;}
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json"><code>{
@@ -418,10 +504,16 @@
 <p>To update or replace multiple resources, it’s exactly the same thing, besides the value of the resource’s id, which will be the one we would have use for a single resource (<code>/resources/ID</code>).</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;ID1&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;},
+  &quot;ID2&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;}
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json"><code>{
@@ -454,10 +546,24 @@
 <p>This status has been defined by <a href="https://tools.ietf.org/html/rfc4918#section-11.1">RFC 4918</a> <em>HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV)</em>. Here’s an example of a WebDAV 207 response when deleting some resources:</p>
 
 <div>
+  <pre class="copy-hidden">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+&lt;d:multistatus xmlns:d=&quot;DAV:&quot;&gt;
+  &lt;d:response&gt;
+    &lt;d:href&gt;http://www.example.com/container/resource3&lt;/d:href&gt;
+    &lt;d:status&gt;HTTP/1.1 423 Locked&lt;/d:status&gt;
+    &lt;d:error&gt;&lt;d:lock-token-submitted/&gt;&lt;/d:error&gt;
+  &lt;/d:response&gt;
+  &lt;d:response&gt;
+    &lt;d:href&gt;http://www.example.com/container/resource4&lt;/d:href&gt;
+    &lt;d:status&gt;HTTP/1.1 200 OK&lt;/d:status&gt;
+  &lt;/d:response&gt;
+&lt;/d:multistatus&gt;
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-xml"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
@@ -476,17 +582,37 @@
 </div>
 
 <div>
-      <a href=""><img src="/images/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/whatthehellisthat.gif" /></a>
+      <img src="/images/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/whatthehellisthat.gif" />
       
     </div>
 
 <p>Oops, sorry for the XML, it’s only to show that a WebDAV <em>207</em> response contains a list of response. Each of this response point to a resource (href) and contains also the response itself, how could it look in a less frightening JSON way:</p>
 
 <div>
+  <pre class="copy-hidden">[
+  {
+    &quot;id&quot;: &quot;ID1&quot;,
+    &quot;status&quot;: &quot;201&quot;,
+    &quot;headers&quot;: [
+      {&quot;header&#39;s name&quot;: &quot;header&#39;s value&quot;}
+    ],
+    &quot;body&quot;: { &quot;the&quot;: &quot;response&#39;s body&quot;}
+  },
+  {
+    &quot;id&quot;: &quot;ID2&quot;,
+    &quot;status&quot;: &quot;400&quot;,
+    &quot;headers&quot;: [
+      {&quot;header&#39;s name&quot;: &quot;header&#39;s value&quot;}
+    ],
+    &quot;body&quot;: { &quot;the&quot;: &quot;response&#39;s body&quot;}
+  }
+]
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json"><code>[
@@ -520,10 +646,28 @@
 <p>Note that we can also use a map in which the keys are the responses identifiers:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;ID1&quot;: {
+    &quot;status&quot;: &quot;201&quot;,
+    &quot;headers&quot;: [
+      {&quot;header&#39;s name&quot;: &quot;header&#39;s value&quot;}
+    ],
+    &quot;body&quot;: { &quot;the&quot;: &quot;response&#39;s body&quot;}
+  },
+  &quot;ID2&quot;: {
+    &quot;status&quot;: &quot;400&quot;,
+    &quot;headers&quot;: [
+      {&quot;header&#39;s name&quot;: &quot;header&#39;s value&quot;}
+    ],
+    &quot;body&quot;: { &quot;the&quot;: &quot;response&#39;s body&quot;}
+  }
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json"><code>{
@@ -564,10 +708,15 @@
 <p>The input is exactly the same for 1 or more resources, we will only provide a single one item to create a single resource.</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;CREATION1&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;}
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json"><code>{
@@ -583,10 +732,13 @@
 <p>The input for a single resource contains only the resource’s data:</p>
 
 <div>
+  <pre class="copy-hidden">{&quot;resource&#39;s&quot;: &quot;data&quot;}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json"><code>{&quot;resource&#39;s&quot;: &quot;data&quot;}</code></pre>
@@ -598,10 +750,16 @@
 <p>The input for multiple resource contains a list/map:</p>
 
 <div>
+  <pre class="copy-hidden">{
+  &quot;CREATION1&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;}
+  &quot;CREATION2&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;}
+}
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json"><code>{
@@ -617,10 +775,23 @@
 <p>What if we want to <code>DELETE /resources/ID1</code> and <code>PATCH /resources/ID2</code> at the same time? As it is an action that impacts the data in various way we should use the <code>POST</code> HTTP verb. Concerning the URI, we have two options, use <code>/resources</code> or create a specific resources for this use case like <code>/resource-modifications</code> for example. The request will be then something like <code>POST /resources</code> or <code>POST /resource-modifications</code> and we will have to provide the action (<code>method</code>) for each resource:</p>
 
 <div>
+  <pre class="copy-hidden">[
+  {
+    &quot;id&quot;: &quot;ID1&quot;,
+    &quot;method&quot;: &quot;DELETE&quot;
+  },
+  {
+    &quot;id&quot;: &quot;ID2&quot;,
+    &quot;method&quot;: &quot;PATCH&quot;,
+    &quot;body&quot;: {&quot;resource&#39;s&quot;: &quot;data&quot;}
+  }
+]
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json"><code>[
@@ -643,7 +814,7 @@
 <p>What if I want to do <code>DELETE /resources/ID1</code> and <code>PATCH /another-resources/ID2</code> at the same time?</p>
 
 <div>
-      <a href=""><img src="/images/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/waitwhat.gif" /></a>
+      <img src="/images/api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/waitwhat.gif" />
       
     </div>
 
@@ -652,10 +823,32 @@
 <p>To do that we’ll need to <code>POST</code> data on a specific endpoint which could something like <code>/batch</code>, <code>/bulk</code> or even <code>/</code> and we will have to add a <code>uri</code> and replace the <code>id</code> value by something provided by the consumer:</p>
 
 <div>
+  <pre class="copy-hidden">[
+  {
+    &quot;id&quot;: &quot;ACTION1&quot;,
+    &quot;uri&quot;: &quot;/resources/ID1&quot;,
+    &quot;method&quot;: &quot;DELETE&quot;
+  },
+  {
+    &quot;id&quot;: &quot;ACTION2&quot;,
+    &quot;uri&quot;: &quot;/another-resources/ID2&quot;,
+    &quot;method&quot;: &quot;PATCH&quot;,
+    &quot;body&quot;: {&quot;resource&#39;s&quot;: &quot;data&quot;}
+  }
+  ,
+  {
+    &quot;id&quot;: &quot;ACTION3&quot;,
+    &quot;uri&quot;: &quot;/resources&quot;,
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;body&quot;: {&quot;resource&#39;s&quot;: &quot;data&quot;}
+  }
+]
+</pre>
+  
   <div class="code-toolbar">
     <div class="btn-group" role="group" aria-label="...">
       
-      <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
     </div>
   </div>
   <pre class="language-json"><code>[
@@ -740,6 +933,7 @@
       </div>
         <script type="text/javascript" src="/js/jquery.min.js" ></script>
   <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="/js/asciinema-player.js"></script>
   
     <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
 <script language="javascript">
@@ -769,18 +963,26 @@
 <script type="text/javascript" src="/js/prism.js" ></script>
 <script type="text/javascript" src="/js/clipboard.min.js" ></script>
 <script language="JavaScript">
-  var clipboard = new Clipboard('.btn-copy', {
-    target: function(trigger) {
-      return trigger.parentElement.parentElement.parentElement.children[1];
-    }
+
+  var clipboard = new ClipboardJS('.copy-btn', {
+      target: function(trigger) {
+        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
+        return trigger.parentElement.parentElement.parentElement.children[0];
+      }
   });
+
   clipboard.on('success', function(e) {
     e.clearSelection();
-    $(e.trigger).html('<i class="fa fa-check" aria-hidden="true"></i>');
+    $(e.trigger).html('<i class="fa fa-check"></i>');
     window.setTimeout(function() {
-        $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        $(e.trigger).html('<i class="fas fa-paste"></i>');
         $(e.trigger).blur();
     }, 1000);
+  });
+
+  clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
 </script>
 <script language="JavaScript">
@@ -788,14 +990,14 @@
     var beforecodeheight = $(code).height(); 
     if($(code).hasClass('code-collapsed')) {
       $(code).removeClass('code-collapsed');
-      $(button).html('<i class="fa fa-compress" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-compress" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-compress"></i>');
+      $(secondarybutton).html('<i class="fa fa-compress"></i>');
       $(button).blur();
     }
     else {
       $(code).addClass('code-collapsed');
-      $(button).html('<i class="fa fa-expand" aria-hidden="true"></i>');
-      $(secondarybutton).html('<i class="fa fa-expand" aria-hidden="true"></i>');
+      $(button).html('<i class="fa fa-expand"></i>');
+      $(secondarybutton).html('<i class="fa fa-expand"></i>');
       $(button).blur();
       if(scroll) {
         var aftercodeheight = $(code).height();
