@@ -10,17 +10,15 @@
   {% endfor %}
 {% endif %}
 
+    <h2>
+      <a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">{{ post.title | escape }}</a>
+    </h2>
+    <p><span>{{ post.date | date: "%b %-d, %Y" }}&nbsp;|&nbsp;{{post.category | capitalize }}</span></p>
+    <img class="img-fluid" src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}">
+    {% if post.full %}
+      <p>{{ post.content }}</p>
+    {% else %}
+      <p>{{ post.excerpt }}</p>
+      <p><a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">Read more</a></p>
+    {% endif %}
 
-<div>
-  <h2>
-    <a class="post-link" href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">{{ post.title | escape }}</a>
-  </h2>
-  <p class="post-meta"><span>{{ post.date | date: "%b %-d, %Y" }}&nbsp;|&nbsp;{{post.category | capitalize }}</span></p>
-  <img class="img-responsive center-block post-summary-thumbnail" src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}">
-  {% if post.full %}
-    <p class="text-justify">{{ post.content }}</p>
-  {% else %}
-    <p class="text-justify">{{ post.excerpt }}</p>
-    <p><a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">Read more</a></p>
-  {% endif %}
-</div

@@ -7,7 +7,11 @@ javascript: javascript-paginated.html
 {% endif %}
 
 {% for post in paginator.posts %}
+<div class="row">
+  <div class="cols-6">
   {% include post-summary.html %}
+  </div>
+</div>
 {% endfor %}
 
 <!-- include pagination.html -->
