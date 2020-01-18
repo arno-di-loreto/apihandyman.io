@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: with-left-column
 javascript: javascript-paginated.html
 ---
 {% if page.paginator %}
@@ -7,8 +7,8 @@ javascript: javascript-paginated.html
 {% endif %}
 
 {% for post in paginator.posts %}
-<div class="row">
-  <div class="cols-6">
+<div class="row mb-3">
+  <div class="col-12"> 
   {% include post-summary.html %}
   </div>
 </div>

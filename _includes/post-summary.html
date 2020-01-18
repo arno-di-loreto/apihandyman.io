@@ -10,6 +10,7 @@
   {% endfor %}
 {% endif %}
 
+<!--
     <h2>
       <a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">{{ post.title | escape }}</a>
     </h2>
@@ -21,4 +22,20 @@
       <p>{{ post.excerpt }}</p>
       <p><a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">Read more</a></p>
     {% endif %}
-
+  -->
+    <div class="card">
+      <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top" alt="post thumbnail">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title | escape }}</h5>
+        <p class="card-text"><small class="text-muted">By {{ post.author }}, {{ post.date | date: "%b. %-d, %Y" }}</small></p>
+        {% if post.full %}
+        <p class="card-text">{{ post.content }}</p>
+        {% if post.target_link %}
+        <a href="{{ post.target_link }}" class="btn btn-primary">{{post.target_label}}</a>
+        {% endif %}
+        {% else %}
+        <p class="card-text">{{ post.excerpt }}</p>
+        <a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}" class="btn btn-primary">Read more on apihandyman.io</a>
+        {% endif %}
+      </div>
+    </div>
