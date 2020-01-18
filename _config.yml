@@ -31,7 +31,8 @@ excerpt_separator: <!--more-->
 
 # Pagination parameters
 ## jekyll-paginate parameters
-paginate: 5
+#paginate: 5
+paginate: 20
 paginate_path: "page:num"
 ## jekyll-paginate-category parameters
 category_dir: "categories"
