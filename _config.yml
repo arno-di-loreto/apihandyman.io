@@ -61,6 +61,8 @@ codeblock_hidden_copy_separator: ---COPY_CONTENT_SEPARATOR---
 
 # Links
 mybook: http://bit.ly/designwebapis
+mybook_discount_code: fcclauret
+mybook_discount_rate: 37% off
 
 plugins:
   - jekyll-feed

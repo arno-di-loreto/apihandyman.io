@@ -3,11 +3,21 @@ layout: default
 ---
 <div class="row">
   <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
-  <div class="d-none d-md-block col-md-3 col-lg-3 col-xl-3">
-    <div class="card sticky-top ">
+  <div class="d-none d-md-block col-md-3 col-lg-3 col-xl-3 text-justify">
+    <div class="card sticky-top " id="left-column">
       <img src="/images/commons/card_arnaud_lauret_figure_small.png" class="card-img-top" alt="...">
       <div class="card-body">
-        <p class="card-text">I'm Arnaud Lauret, the API Handyman, blah blah blah</p>
+        <p class="card-text"><small>I'm Arnaud Lauret, the API Handyman, blah blah blah</small></p>
+        <div class="text-center">
+          <a href="/about" class="btn btn-primary btn-sm center">About me</a> 
+        </div>
+      </div>
+      <img src="/images/commons/book/book-vertical.png" class="card-img rounded-0" alt="...">
+      <div class="card-body">
+        <p class="card-text"><small>Use code {{site.mybook_discount_code}} to get {{site.mybook_discount_rate}} my book The Design of Web APIs (works also on any Manning product)</small></p>
+        <div class="text-center">
+          <a href="{{site.mybook}}" class="btn btn-primary btn-sm center">Buy on manning.com</a> 
+        </div>
       </div>
     </div>
   </div>
