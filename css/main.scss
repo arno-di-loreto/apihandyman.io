@@ -22,3 +22,12 @@ body {
   height: calc(100vh - 80px);
   overflow: auto;
 }
+
+// Avoid having headers hidden by navbar when using inner links (with toc for example)
+[id]::before {
+  content: '';
+  display: block;
+  height:      65px;
+  margin-top: -65px;
+  visibility: hidden;
+}
