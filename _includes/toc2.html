@@ -7,7 +7,8 @@ Adapted from https://github.com/allejo/jekyll-toc
 {% assign previousHeader = minHeader %}
 {% assign firstHeader = true %}
 {% assign nodes = include.html | split: '<h' %}
-<ul class="list-group border-0">
+<nav class="navbar navbar-light bg-light" id="toc">
+  <nav class="nav nav-pills flex-column">
   {% for node in nodes %}
     {% if node == "" %}
       {% continue %}
@@ -28,26 +29,17 @@ Adapted from https://github.com/allejo/jekyll-toc
       headerName: {{headerName}}
     -->
     {% if headerLevel > previousHeader %}
-      <ul class="list-group">
-        <li class="list-group-item toc-level-{{headerLevel}}  border-0">
-          <a href="#{{headerId}}">{{headerName}}</a>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link toc-level-{{headerLevel}}" href="#{{headerId}}">{{headerName}}</a>
     {% else %}
       {% if headerLevel < previousHeader %}
-        </li>
-      </ul>
-      <li class="list-group-item toc-level-{{headerLevel}}  border-0">
-        <a href="#{{headerId}}">{{headerName}}</a>
+      </nav>
+        <a class="nav-link toc-level-{{headerLevel}}" href="#{{headerId}}">{{headerName}}</a>
       {% else %}
-      {% if firstHeader == false %}
-        </li>
-      {% else %}
-      {% assign firstHeader = false %}
-      {% endif %}
-      <li class="list-group-item toc-level-{{headerLevel}}  border-0">
-        <a href="#{{headerId}}">{{headerName}}</a>
+        <a class="nav-link toc-level-{{headerLevel}}" href="#{{headerId}}">{{headerName}}</a>
         {% endif %}
     {% endif %}
     {% assign previousHeader = headerLevel %}
   {% endfor %}
-    </li>
-  </ul>
+  </nav>
+</nav>
