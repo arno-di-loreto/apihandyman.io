@@ -1,0 +1,53 @@
+{% comment %}
+Adapted from https://github.com/allejo/jekyll-toc 
+{% endcomment %}
+
+{% assign minHeader = include.h_min | default: 1 %}
+{% assign maxHeader = include.h_max | default: 6 %}
+{% assign previousHeader = minHeader %}
+{% assign firstHeader = true %}
+{% assign nodes = include.html | split: '<h' %}
+<ul class="list-group border-0">
+  {% for node in nodes %}
+    {% if node == "" %}
+      {% continue %}
+    {% endif %}
+    {% assign headerLevel = node | replace: '"', '' | slice: 0, 1 | times: 1 %}
+    {% comment %} If header level == 0, that's not a header {% endcomment %}
+    {% if headerLevel < minHeader or headerLevel > maxHeader %}
+      {% continue %}
+    {% endif %}
+    {% assign headerId = node | split: 'id="' %}
+    {% assign headerId = headerId[1] | split: '">' %}
+    {% assign headerName = headerId[1] | split: '</h' %}
+    {% assign headerName = headerName[0] %}
+    {% assign headerId = headerId[0] %}
+    <!--
+      headerLevel: {{headerLevel}}
+      headerId: {{headerId}}
+      headerName: {{headerName}}
+    -->
+    {% if headerLevel > previousHeader %}
+      <ul class="list-group">
+        <li class="list-group-item toc-level-{{headerLevel}}  border-0">
+          <a href="#{{headerId}}">{{headerName}}</a>
+    {% else %}
+      {% if headerLevel < previousHeader %}
+        </li>
+      </ul>
+      <li class="list-group-item toc-level-{{headerLevel}}  border-0">
+        <a href="#{{headerId}}">{{headerName}}</a>
+      {% else %}
+      {% if firstHeader == false %}
+        </li>
+      {% else %}
+      {% assign firstHeader = false %}
+      {% endif %}
+      <li class="list-group-item toc-level-{{headerLevel}}  border-0">
+        <a href="#{{headerId}}">{{headerName}}</a>
+        {% endif %}
+    {% endif %}
+    {% assign previousHeader = headerLevel %}
+  {% endfor %}
+    </li>
+  </ul>
