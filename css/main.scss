@@ -19,9 +19,15 @@ body {
 }
 
 .toc {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 200px);
   overflow: auto;
 }
+
+.left-column {
+  height: calc(100vh - 100px);
+  //overflow: auto;
+}
+
 
 // Avoid having headers hidden by navbar when using inner links (with toc for example)
 [id]::before {

@@ -5,8 +5,15 @@ javascript: javascript-post.html
 
 <div class="row">
   <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
-  <div class="d-none d-md-block col-md-3 col-lg-3 col-xl-3 toc sticky-top not-behind-nav">
-      {% include toc.html html=content sanitize=true class="list-group" item_class="list-group-item" id="my_toc" h_min=1 h_max=3 %}
+  <div class="d-none d-md-block col-md-3 col-lg-3 col-xl-3 sticky-top not-behind-nav left-column">
+      <div class="card">
+        <div class="card-body px-2 pt-2">
+          <p class="card-text">To top</p>
+          <div class="toc ">
+            {% include toc.html html=content sanitize=true class="list-group" item_class="list-group-item" id="my_toc" h_min=1 h_max=3 %}
+          </div>
+        </div>
+      </div>
   </div>
   <!-- MAIN CONTENT-->
   <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
