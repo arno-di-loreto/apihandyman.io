@@ -8,9 +8,8 @@ javascript: javascript-post.html
   <div class="d-none d-md-block col-md-3 col-lg-3 col-xl-3 sticky-top not-behind-nav left-column">
       <div class="card">
         <div class="card-body px-2 pt-2">
-          <p class="card-text">To top</p>
-          <div class="toc ">
-            {% include toc2.html html=content sanitize=true class="list-group" item_class="list-group-item" id="my_toc" h_min=1 h_max=3 %}
+          <div id="scrollable-toc">
+            {% include toc.html html=content h_min=1 h_max=2 %}
           </div>
         </div>
       </div>

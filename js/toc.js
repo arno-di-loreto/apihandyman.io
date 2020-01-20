@@ -4,7 +4,7 @@ $(document).ready(function(){
       let activeItems = $("#toc .active")
       let lastActiveItem = activeItems[activeItems.length-1]
       // DIV around the #TOC
-      let toc = $(".toc")[0]
+      let toc = $("#scrollable-toc")[0]
       let tocScroll = toc.scrollTop
       let itemTopInsideToc = lastActiveItem.offsetTop
       let itemBottomInsideToc = lastActiveItem.offsetTop + lastActiveItem.offsetHeight
