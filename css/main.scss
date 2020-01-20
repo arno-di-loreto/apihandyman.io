@@ -18,16 +18,9 @@ body {
 	        box-shadow: 0 8px 6px -6px #999;
 }
 
-#scrollable-toc {
-  height: calc(100vh - 200px);
-  overflow: auto;
-}
-
 .left-column {
-  height: calc(100vh - 100px);
-  //overflow: auto;
+  height: calc(100vh - 75px);
 }
-
 
 // Avoid having headers hidden by navbar when using inner links (with toc for example)
 [id]::before {
