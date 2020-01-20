@@ -3,43 +3,5 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <!-- PAGE OR LAYOUT CUSTOM JAVASCRIPT -->
+<script type="text/javascript" src="{{ "/js/toc.js" | prepend: site.baseurl | prepend: site.github.url }}" ></script>
 <!-- include what should be included -->
-<script>
-  $(document).ready(function(){
-    $(window).on('activate.bs.scrollspy', function () {
-        var activeItems = $("#toc .active")
-        var lastActiveItem = activeItems[activeItems.length-1]
-        var toc = $(".toc")[0]
-        var tocScroll = toc.scrollTop
-        var tocTop = toc.offsetTop
-        var tocBottom = toc.offsetTop + toc.offsetHeight
-        var itemTopInsideToc = lastActiveItem.offsetTop
-        var itemBottomInsideToc = lastActiveItem.offsetTop + lastActiveItem.offsetHeight
-
-        console.log(lastActiveItem)
-        tocVisibleTop = toc.scrollTop
-        tocVisibleBottom = tocScroll + toc.offsetHeight
-        console.log("TOC height " + toc.offsetHeight)
-        console.log("TOC is visible between top/bottom: " + tocVisibleTop + "/" + tocVisibleBottom)        
-        console.log("ITEM inside TOC is top/bottom: " + itemTopInsideToc + "/" + itemBottomInsideToc)
-        if (itemTopInsideToc >= tocVisibleTop){
-          console.log("item top is visible")
-        }
-        else {
-          console.log("item top is not visible")
-          delta = itemTopInsideToc - tocVisibleTop
-          toc.scrollTop = toc.scrollTop + delta;
-        }
-        if(itemBottomInsideToc <= tocVisibleBottom){
-          console.log("item bottom is visible")
-        }
-        else {
-          console.log("item bottom is not visible")
-          delta = itemBottomInsideToc - tocVisibleBottom
-          toc.scrollTop = toc.scrollTop + delta;
-        }
-
-        
-    });
-  })
-</script>
