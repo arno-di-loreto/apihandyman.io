@@ -80,9 +80,9 @@ class Image < Liquid::Tag
     end
 
     if @source == ""
-      img = "<img src=\"#{src}\">"
+      img = "<img class=\"img-fluid\" src=\"#{src}\">"
     else
-      img = "<a href=\"#{@source}\"#{target}><img src=\"#{src}\"></a>"
+      img = "<a href=\"#{@source}\"#{target}><img class=\"img-fluid\" src=\"#{src}\"></a>"
     end
 
     if @label != ""
@@ -94,7 +94,7 @@ class Image < Liquid::Tag
     end
 
     <<-MARKUP.strip
-    <div>
+    <div class="text-center">
       #{img}
       #{plabel}
     </div>
