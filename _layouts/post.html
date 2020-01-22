@@ -2,6 +2,23 @@
 layout: default
 javascript: javascript-post.html
 ---
+{% if page.thumbnail %}
+  {% assign thumbnail = page.thumbnail %}
+{% else %}
+  {% assign thumbnail = site.default_thumbnail %}
+  {% assign page_thumbnail = '/images' | append: page.permalink | append: 'thumbnail.png' %}
+  {% for static_file in site.static_files %}
+    {% if static_file.path == page_thumbnail %}
+        {% assign thumbnail = page_thumbnail %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if page.series %}
+  {% assign title = page.series_title%}
+{% else %}
+  {% assign title = page.title %}
+{% endif %}
 
 <div class="row">
   <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
@@ -18,18 +35,23 @@ javascript: javascript-post.html
   <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
     <!-- Image and title ? comming from default? -->
       <!-- Author, date and category -->
-      <div>
-        {% if page.author %}
+      <div class="jumbotron pt-1 pb-1">
+        {% if page.series %}
+        <p class="lead mb-0">{{page.series}} Series Part {{ page.series_number }}</p>
+        {% endif%}
+        <h1 class="display-4">{{title}}</h1>
+        <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="post thumbnail">
+        <p class="font-weight-lighter">
+          {% if page.author %}
           By {{ page.author }}
         {% endif %}
         {% if page.date %}
           {{ page.date | date: "%b. %-d, %Y" }}
         {% endif %}
-        {% if page.category %}
-          {{ page.category | capitalize }}
-        {% endif %}
+        <span class="badge badge-pill badge-primary">{{ page.category }}</span>
+        </p>
       </div>
-      <div>
+      <div class="text-justify">
          {{ content }}
       </div>
   </div>

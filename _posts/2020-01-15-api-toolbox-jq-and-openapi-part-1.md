@@ -5,9 +5,10 @@ author: Arnaud Lauret
 layout: post
 permalink: /api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/
 codefiles: api-toolbox-jq-and-openapi/part-1
-category: posts
-series: API Toolbox - JQ and OpenAPI
-series_title: Part 1 - Using JQ to extract data from OpenAPI files
+category: API Toolbox
+series: JQ and OpenAPI
+series_title: Using JQ to extract data from OpenAPI files
+series_number: 1
 tags:
   - API Toolbox
 ---

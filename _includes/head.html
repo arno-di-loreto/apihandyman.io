@@ -1,5 +1,13 @@
+{% if site.data.categories[page.title] %}
+  {% assign title = page.title | capitalize | append:' | ' | append:site.title %}
+{% elsif page.title %}
+  {% assign title = page.title | append:' | ' | append:site.title %}
+{% else %}
+  {% assign title = site.title %}
+{% endif %}
+
 <head>
-  <title>no title</title>
+  <title>{{ title | escape }}</title>
   <!-- META -->
     <!-- BOOTSTRAP META -->
     <meta charset="utf-8">
