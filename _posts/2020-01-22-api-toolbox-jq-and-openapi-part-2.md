@@ -1,14 +1,14 @@
 ---
-title: API Toolbox - JQ and OpenAPI - Part 2 - Searching into OpenAPI files with JQ's command line arguments, functions and modules
-date: 2020-01-10
+title: API Toolbox - JQ and OpenAPI - Part 2 - Using JQ's command line arguments, functions and modules
+date: 2020-01-20
 author: Arnaud Lauret
 layout: post
-permalink: /api-toolbox-jq-and-openapi-part-2-searching-into-openapi-files/
-codefiles: api-tools-jq
+permalink: /api-toolbox-jq-and-openapi-part-2-using-jqs-command-line-arguments-functions-and-modules/
+codefiles: api-toolbox-jq-and-openapi/part-2
 category: posts
 series: API Toolbox - JQ and OpenAPI
-series_title: Part 2 - Searching into OpenAPI files with JQ's command line arguments, functions and modules
-published: false
+series_title: Part 2 - Using JQ's command line arguments, functions and modules
+published: true
 tags:
   - API Toolbox
 ---
