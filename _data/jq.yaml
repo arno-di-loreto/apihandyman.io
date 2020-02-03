@@ -182,4 +182,21 @@ filters:
     url: https://stedolan.github.io/jq/manual/v1.6/#input_filename
     description: returns the name of the file being processed
     examples:
-      input_filename
+      - input_filename
+  index:
+    url: https://stedolan.github.io/jq/manual/v1.6/#index(s),rindex(s)
+    description: returns the index of an element inside an array (-1 if not found)
+    examples:
+        - index(element)
+  contains:
+    url: https://stedolan.github.io/jq/manual/v1.6/#contains(element)
+    description: returns true the element is in input
+    examples:
+      - contains(element)
+      - |
+        "resources" | contains("source")
+  $ARGS.named:
+    url: https://stedolan.github.io/jq/manual/v1.6/#Invokingjq
+    description: returns the command line named argument (--arg name value)
+    examples:
+      - $ARGS.named
