@@ -1,6 +1,6 @@
 ---
 title: API Toolbox - JQ and OpenAPI - Part 2 - Using JQ command line arguments, functions and modules
-date: 2020-01-20
+date: 2020-02-03
 author: Arnaud Lauret
 layout: post
 permalink: /api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/
@@ -15,6 +15,12 @@ tags:
 Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.<!--more--> We will continue working on OpenAPI files, at the end of this second part, we'll have built a multi-criteria OpenAPI search and some reusable filters, especially one that you'll be able to reuse anytime you'll have to deal with JQ command line parameters.
 
 {% include _postincludes/api-toolbox-jq-openapi.md %}
+
+# Get post's content
+
+All examples shown in this post are based on JQ 1.6 and OpenAPI 3. All examples can be copied using the <i class="fas fa-paste"></i> button and downloaded using the <i class="fas fa-file-code"></i> one on code snippets. All source code can be retrieved from the {% include link.md link=site.data.jq.links.jq_and_openapi_git target=site.data.jq.link_target %}.
+
+{% include git.md link=site.data.jq.links.jq_and_openapi_git branch="part-2" %}
 
 # Listing operations using functions and modules
 
@@ -85,9 +91,10 @@ Let's get back to the new version of `list-operations.jq` (shown below) to see h
 
 ## Managing modules locations
 
-The following listings shows different ways of managing reusable modules (and functions) with JQ (see [modules](https://stedolan.github.io/jq/manual/#Modules) in the JQ's documentation for a complete description of what can be done).
+<asciinema-player poster="npt:1:20" title="Managing JQ modules location" author="Arnaud Lauret"  rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-2/module-location.cast"></asciinema-player>
 
-The following listing show a first command done inside the `jq-and-openapi` folder.
+The following listings shows different ways of managing reusable modules location with JQ (see [modules](https://stedolan.github.io/jq/manual/#Modules) in the JQ's documentation for a complete description of what can be done).
+It starts by a a first command done inside the `jq-and-openapi` folder.
 It simply returns the first operation's summary of the `demo-api-openapi.json` file using the `oas_operations[0]` filter composed of the `oas_operations` function and the `[]` array filter.
 As you can see, there's no need to create a JQ file to use a module, just use the `include` directive in the `'<filter>'` argument on the command line.
 Then we go a level up, and obviously redoing the same exact command does not work anymore: the `module-openapi.jq` cannot be found in the current folder as it is in the `jq-and-openapi` one.
@@ -101,8 +108,16 @@ List accounts
 jq: error: module not found: module-openapi
 
 jq: 1 compile error
-[apihandyman.io]$ jq -r -L jq-and-openapi 'include "module-openapi"; oas_operations[0].summary' part-2/demo-api-openapi.json
+[apihandyman.io]$ jq -r -L jq-and-openapi 'include "module-openapi"; oas_operations[0].summary' jq-and-openapi/demo-api-openapi.json
 List accounts
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r 'include "module-openapi"; oas_operations[0].summary' demo-api-openapi.json
+cd ..
+jq -r 'include "module-openapi"; oas_operations[0].summary' jq-and-openapi/demo-api-openapi.json
+jq -r -L jq-and-openapi 'include "module-openapi"; oas_operations[0].summary' jq-and-openapi/demo-api-openapi.json
+
 {% endcode %}
 
 If there are modules that you use extensively, it would be interesting to put them in a `~/.jq` folder. Therefore, no longer need for the `-L` argument as shown below. JQ looks for the modules mentioned in `include` directives in this folder automatically. 
@@ -112,6 +127,13 @@ If there are modules that you use extensively, it would be interesting to put th
 [apihandyman.io]$ cp jq-and-openapi/module-openapi.jq ~/.jq
 [apihandyman.io]$ jq -r 'include "module-openapi"; oas_operations[0].summary' jq-and-openapi/demo-api-openapi.json
 List accounts
+
+{{site.codeblock_hidden_copy_separator}}
+
+mkdir ~/.jq
+cp jq-and-openapi/module-openapi.jq ~/.jq
+jq -r 'include "module-openapi"; oas_operations[0].summary' jq-and-openapi/demo-api-openapi.json
+
 {% endcode %}
 
 Note that `~/.jq` can also be a file. In that case, you don't even need to `include` anything, as shown below. Any function defined in this file is usable inside any of your filters. I personally do not recommend to do this because that makes your filters dependencies invisible (and can also result in a quite huge unmaintainable `.jq` file).
@@ -121,6 +143,13 @@ Note that `~/.jq` can also be a file. In that case, you don't even need to `incl
 [apihandyman.io]$ cp jq-and-openapi/module-openapi.jq ~/.jq
 [apihandyman.io]$ jq -r 'oas_operations[0].summary' jq-and-openapi/demo-api-openapi.json
 List accounts
+
+{{site.codeblock_hidden_copy_separator}}
+
+rm -rf ~/.jq
+cp jq-and-openapi/module-openapi.jq ~/.jq
+jq -r 'oas_operations[0].summary' jq-and-openapi/demo-api-openapi.json
+
 {% endcode %}
 
 # Searching operations using command line arguments
@@ -131,11 +160,15 @@ Now that we have a reusable module that provides functions to list operations of
 
 In order to make this search flexible, we'll need to be able to accept search arguments coming from outside our filter in order to avoid having to modify it on each different search. Passing arguments to JQ is done with `--arg <name> <value>` as shown below. Inside the filter, you can access a `--arg` with `$<name>`. In this case `$foo` returns `bar`. Note also in this example the `-n` flag which is used to tell JQ to not expect any JSON input. That's pretty useful to make demos of some JQ's features but also to generate JSON from scratched based on some arguments values.
 
-{% code title:"Passing an argument with --arg (and discovering -n! flag)" language:bash %}
+{% code title:"Passing an argument with --arg (and discovering -n flag)" language:bash %}
 [apihandyman.io]$ jq -n --arg foo bar '{foo: $foo}'
 {
   "foo": "bar"
 }
+{{site.codeblock_hidden_copy_separator}}
+
+jq -n --arg foo bar '{foo: $foo}'
+
 {% endcode %}
 
 ## Searching operations accessible for a scope
@@ -148,6 +181,11 @@ post    /transfers      Transfer money
 get     /transfers      List money transfers
 get     /transfers/{id} Get a money transfer
 delete  /transfers/{id} Cancel a money transfer
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r --arg scope transfer:admin -f search-operations-using-scope.jq demo-api-openapi.json 
+
 {% endcode %}
 
 In an OpenAPI file, you'll find the scopes that will grant access to an operation in its security property under a `{name}`.
@@ -173,11 +211,18 @@ That's cool, but there's a little problem. When using the `search-operations-usi
 jq: error: $scope is not defined at <top-level>, line 12:
         $scope # $scope value is provided on the command line        
 jq: 1 compile error
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r -f search-operations-using-scope.jq demo-api-openapi.json
+
 {% endcode %}
 
 Does that mean we can't do a multi-criteria search because it requires to be able to provide multiple _optional_ parameters? Of course not, that problem can be solved.
 
 ## Solving the command line argument "problem"
+
+<asciinema-player poster="npt:1:20" title="Solving the command line argument problem" author="Arnaud Lauret"  rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-2/solving-argument-problem.cast"></asciinema-player>
 
 The following listing shows how to safely access a command line named argument using the `$ARGS.named` filter. If `$name` causes an error if no `--arg name value` is provided on the command line, `$ARGS.named['name']` will return `null` without causing any.
 
@@ -187,7 +232,7 @@ The following listing shows how to safely access a command line named argument u
   "foo": "hello",
   "bar": "world"
 }
-[apihandyman.io]$ q -n --arg foo hello '{foo: $foo, bar: $bar}'
+[apihandyman.io]$ jq -n --arg foo hello '{foo: $foo, bar: $bar}'
 jq: error: $bar is not defined at <top-level>, line 1:
 {foo: $foo, bar: $bar}                 
 jq: 1 compile error
@@ -196,6 +241,13 @@ jq: 1 compile error
   "foo": "hello",
   "bar": null
 }
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -n --arg foo hello --arg bar world '{foo: $foo, bar: $bar}'
+jq -n --arg foo hello '{foo: $foo, bar: $bar}'
+jq -n --arg foo hello '{foo: $ARGS.named["foo"], bar: $ARGS.named["bar"]}'
+
 {% endcode %}
 
 That's very handy, but what if I want to set an argument to a default value if it is not provided? I just need to use the following `module-args` module. It defines a `init_parameter(default_values)` function returning an object containing parameters set to the value coming from `--arg <name>` or a default value it is not provided. To do so, for each entry (key/value) of a `default_values` object parameter, it checks if the named arguments (`$ARGS.named`) contains the key and if so, sets the output value to the one provided on the command line. If not, it keeps the default one. By the way, that means that JQ functions can also use parameters besides their regular input. But note that you don't need to prefix their name by `$` to access them.
@@ -210,9 +262,16 @@ The following listing shows how this function can be used. Just call the `init_p
   "foo": "default foo",
   "bar": "bar from command line"
 }
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -n --arg bar "bar from command line" 'include "module-args"; init_parameters({foo: "default foo", bar: null}) as $parameters| {foo: $parameters.foo, bar: $parameters.bar}'
+
 {% endcode %}
 
 ## Searching operations on multiple criteria and multiple files
+
+<asciinema-player poster="npt:1:20" title="Searching operations demo" author="Arnaud Lauret"  rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-2/search-demo.cast"></asciinema-player>
 
 Now that we know how to provide multiple optional parameters, let's do a multi-criteria search. The following listing shows the `get` operations on paths containing `sources` across all available `*.json` files. The first value on each line is the filename (limited to 20 characters).
 
@@ -221,9 +280,14 @@ Now that we know how to provide multiple optional parameters, let's do a multi-c
 [demo-another-api-swa]  get     /resources
 [demo-api-openapi.jso]  get     /sources        List transfer sources
 [demo-api-openapi.jso]  get     /sources/{id}/destinations      List transfer source's destinations
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq --arg path_contains sources --arg method get -r -f search-operations.jq *.json
+
 {% endcode %}
 
-Here's the `serch-operations.jq` file who does that. It reuses functions we have seen before, `oas_operations` from the `module_openapi.jq` file and `init_parameters` from the `module-args.jq` file. It also uses new functions `filter_operations`, `default_filters`, `print_oas_operations` and `default_print_parameters` from `module-openapi-search.jq`. There are 3 steps: getting operations data, filtering them and finally printing them. There's nothing new on the first step, we already have used this function. Let's see what is happening on the second and after that the third step.
+Here's the `search-operations.jq` file who does that. It reuses functions we have seen before, `oas_operations` from the `module_openapi.jq` file and `init_parameters` from the `module-args.jq` file. It also uses new functions `filter_operations`, `default_filters`, `print_oas_operations` and `default_print_parameters` from `module-openapi-search.jq`. There are 3 steps: getting operations data, filtering them and finally printing them. There's nothing new on the first step, we already have used this function. Let's see what is happening on the second and after that the third step.
 
 {% codefile title:"$filename" file:search-operations.jq %}
 
