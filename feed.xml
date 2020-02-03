@@ -1,4 +1,1023 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2020-02-03T00:21:16+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">API Toolbox - JQ and OpenAPI - Part 1 - Using JQ to extract data from OpenAPI files</title><link href="https://apihandyman.io/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/" rel="alternate" type="text/html" title="API Toolbox - JQ and OpenAPI - Part 1 - Using JQ to extract data from OpenAPI files" /><published>2020-01-15T00:00:00+00:00</published><updated>2020-01-15T00:00:00+00:00</updated><id>https://apihandyman.io/api-toolbox-jq-and-openapi-part-1</id><content type="html" xml:base="https://apihandyman.io/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">&lt;p&gt;Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In this 4 parts post series, you’ll discover why and how I use JQ with OpenAPI Specification files. But more important, you’ll get some basic and more advanced example of how to use JQ on any JSON document to get and modify JSON data as you want. In this first part we’ll focus on what is JQ, why I use it with OpenAPI files and we’ll learn how to invoke JQ and discover some of the many JQ filters that can be used to extract data from JSON.&lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2020-02-03T20:23:13+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>{&quot;input&quot; : &quot;learn&quot;, &quot;output&quot; : &quot;share&quot;}</subtitle><entry><title type="html">API Toolbox - JQ and OpenAPI - Part 2 - Using JQ command line arguments, functions and modules</title><link href="https://apihandyman.io/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/" rel="alternate" type="text/html" title="API Toolbox - JQ and OpenAPI - Part 2 - Using JQ command line arguments, functions and modules" /><published>2020-02-03T00:00:00+00:00</published><updated>2020-02-03T00:00:00+00:00</updated><id>https://apihandyman.io/api-toolbox-jq-and-openapi-part-2</id><content type="html" xml:base="https://apihandyman.io/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/">&lt;p&gt;Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.&lt;!--more--&gt; We will continue working on OpenAPI files, at the end of this second part, we’ll have built a multi-criteria OpenAPI search and some reusable filters, especially one that you’ll be able to reuse anytime you’ll have to deal with JQ command line parameters.&lt;/p&gt;
+
+&lt;h1 id=&quot;jq-and-openapi-post-series&quot;&gt;JQ and OpenAPI post series&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://stedolan.github.io/jq/manual/v1.6/&quot; target=&quot;jq&quot;&gt;JQ’s documentation&lt;/a&gt; is quite complete and there are many tutorials and Stackoverflow answers, so why bother writing this series? First reason, I regularly meet people working with APIs and/or JSON files who actually don’t know JQ exists and how it could save their life (or at least their time). Second reason, I often use it with OpenAPI specification files and I found that showing how JQ can be used on such a widely adopted and familiar JSON based format could help to learn how to use it (and also writing this post actually helped me to improve my JQ skills!).&lt;/p&gt;
+
+&lt;p&gt;This JQ and OpenAPI series is composed of the following posts:&lt;/p&gt;
+
+&lt;ul&gt;
+  
+    
+    &lt;li&gt;&lt;a class=&quot;page-link&quot; href=&quot;/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/&quot;&gt;Part 1 - Using JQ to extract data from OpenAPI files&lt;/a&gt;&lt;/li&gt;
+    
+  
+    
+    &lt;li&gt;&lt;strong&gt;Part 2 - Using JQ command line arguments, functions and modules&lt;/strong&gt;&lt;/li&gt;
+    
+  
+  &lt;li&gt;Part 3 - Modifying OpenAPI files with JQ (coming soon)&lt;/li&gt;
+  &lt;li&gt;Part 4 - Bonus: coloring JQ's raw output (coming soon)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;get-posts-content&quot;&gt;Get post’s content&lt;/h1&gt;
+
+&lt;p&gt;All examples shown in this post are based on JQ 1.6 and OpenAPI 3. All examples can be copied using the &lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt; button and downloaded using the &lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt; one on code snippets. All source code can be retrieved from the &lt;a href=&quot;https://github.com/arno-di-loreto/jq-and-openapi/&quot; target=&quot;jq&quot;&gt;JQ and OpenAPI post series’ github repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;git clone https://github.com/arno-di-loreto/jq-and-openapi/
+cd jq-and-openapi
+git checkout part-2
+
+&lt;/pre&gt;
+  
+  &lt;div class=&quot;code-toolbar&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ git clone https://github.com/arno-di-loreto/jq-and-openapi/
+[apihandyman.io]$ cd jq-and-openapi
+[apihandyman.io]$ git checkout part-2&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;h1 id=&quot;listing-operations-using-functions-and-modules&quot;&gt;Listing operations using functions and modules&lt;/h1&gt;
+
+&lt;p&gt;In previous post, we built a filter that lists the operations available in an OpenAPI file. In this first section, we will just refactor the JQ code to make it more readable and reusable using functions and modules. The following listing shows what happens when using the new version of list-operations.jq on the demo OpenAPI file.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;jq -r -f list-operations.jq demo-api-openapi.json
+
+&lt;/pre&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Same result as in part 1 but list-operations.jq has changed under the hood&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ jq -r -f list-operations.jq demo-api-openapi.json
+get     /accounts       List accounts
+get     /accounts/{id}  Get an account
+post    /beneficiaries  Register a beneficiary
+get     /beneficiaries  List beneficiaries
+delete  /beneficiaries/{id}     Delete a beneficiary (deprecated)
+patch   /beneficiaries/{id}     Updates a beneficiary (deprecated)
+get     /beneficiaries/{id}     Get a beneficiary
+get     /sources        List transfer sources
+get     /sources/{id}/destinations      List transfer source&amp;#39;s destinations
+post    /transfers      Transfer money
+get     /transfers      List money transfers
+get     /transfers/{id} Get a money transfer
+patch   /transfers/{id}
+delete  /transfers/{id} Cancel a money transfer&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;It seems nothing has changed, it still outputs operations HTTP methods, paths and summaries, but under the hood, the JQ file used has changed as shown in the following listing.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;list-operations.jq&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/list-operations.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers&quot;&gt;&lt;code&gt;include &quot;module-openapi&quot;; # Imports module-openapi.jq file
+
+oas_operations | # Function coming from module-openapi.jq file
+oas_operations_to_text  # Function coming from module-openapi.jq file&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;Let’s see how it was created, we’ll discover functions and then modules.&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-functions&quot;&gt;Creating functions&lt;/h2&gt;
+
+&lt;p&gt;As a reminder, here’ the previous version of the &lt;code&gt;list-operations.jq&lt;/code&gt; file we created in previous part. It is composed of three steps. Steps 1 and 2 build an array of operation object containing a (HTTP) method, path, summary and deprecated indicator. Step 3 aims to print this array as tab separated text.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;list-operations-original.jq&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/list-operations-original.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers code-collapsed&quot;&gt;&lt;code&gt;# 1 - Selects paths objects
+#--------------------------
+# returns [{key: path, value: path value}]
+.paths # Selects the paths property content
+| to_entries # Transforms
+             # { &quot;/resources&quot;: { &quot;get&quot;: {operation data}}} 
+             # to 
+             # [ { &quot;key&quot;: &quot;/resources&quot;, 
+             #     &quot;value&quot;: { &quot;get&quot;: {operation data}} ]
+| map(select(.key | test(&quot;^x-&quot;) | not)) # Gets rid of x-tensions
+# 2 - Creates an array of operations
+#-----------------------------------
+# returns [{path, method, summary, deprecated}]
+| map ( # Applies a transformation to each element
+  .key as $path # Stores the path value (.key) 
+                  # in a variable ($path) for later use
+  | .value # Keeps only the path's content 
+           # { &quot;get&quot;: {operation data}}
+  | to_entries # Transforms 
+               # { &quot;get&quot;: {operation data}}
+               # to
+               # [ { &quot;key&quot;: &quot;get&quot;, 
+               #     &quot;value&quot;: {operation data}} ]
+  | map( # Applies a transformation to each element
+    select( # Keeps only elements for which the following is true
+      # With IN, which returns true if the value is one of its
+      # parameters, we can get rid of x- , parameters
+      # description and summary properties
+      .key | IN(&quot;get&quot;, &quot;put&quot;, &quot;post&quot;, &quot;delete&quot;, 
+         &quot;options&quot;, &quot;head&quot;, &quot;patch&quot;, &quot;trace&quot;)
+    )
+    | # Creates a new JSON object
+    {
+      method: .key,
+      path: $path, # Using the variable defined on line 4
+      summary: .value.summary?,
+      deprecated: .value.deprecated?
+    }
+  )[] # Flattens array to avoid having an array 
+      # of array of {path, method, summary, deprecated}
+) # Now we have an array of {path, method, summary, deprecated}
+# 3 - Outputs tab separated raw text
+#-----------------------------------
+| map( # Applies a transformation to each element
+  .method + &quot;\t&quot; + 
+  .path + &quot;\t&quot; + 
+  .summary + 
+  (if .deprecated then &quot; (deprecated)&quot; else &quot;&quot; end)
+)
+[] # Flattens array for raw output&lt;/code&gt;&lt;/pre&gt;
+  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Let’s focus on step 3, which is shown below, and build a function that does the same job.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;We will create a function for step 3&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/list-operations-original.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers&quot; data-start=&quot;42&quot;&gt;&lt;code&gt;# 3 - Outputs tab separated raw text
+#-----------------------------------
+| map( # Applies a transformation to each element
+  .method + &quot;\t&quot; + 
+  .path + &quot;\t&quot; + 
+  .summary + 
+  (if .deprecated then &quot; (deprecated)&quot; else &quot;&quot; end)
+)
+[] # Flattens array for raw output&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;Defining a function in JQ is quite simple: at the beginning of the file, add a &lt;code&gt;def function_name:&lt;/code&gt; put some filters and end by &lt;code&gt;;&lt;/code&gt; and you’re done. The &lt;code&gt;oas_operation_to_text&lt;/code&gt; which basically contains step 3’s filters is shown below.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Defining the oas_operation_to_text function&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers&quot;&gt;&lt;code&gt;def oas_operations_to_text: # Defining a function that
+                            # Prints operations as raw text
+  map( # Applies a transformation to each element
+    .method + &quot;\t&quot; + 
+    .path + &quot;\t&quot; + 
+    .summary + 
+    (if .deprecated then &quot; (deprecated)&quot; else &quot;&quot; end)
+  )
+  [] # Flattens array for raw output
+; # oas_operations_to_text function's end
+&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;If defining a function in JQ is quite simple, using it is even more simple. Just call it like any regular JQ filter. The following listing shows how step 3’s code has been replaced by the new &lt;code&gt;oas_operation_to_text&lt;/code&gt; custom filter which is on top of the file.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Using the oas_operation_to_text function&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers&quot; data-start=&quot;53&quot;&gt;&lt;code&gt;# 3 - Outputs tab separated raw text
+#-----------------------------------
+| oas_operations_to_text&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;Here’s the full modified list-operations.jq file including the &lt;code&gt;oas_operation_to_text&lt;/code&gt; definition at the beginning and its calling on the last line.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;list-operations-with-to-text-function.jq&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers code-collapsed&quot; data-line=&quot;1-10,55&quot;&gt;&lt;code&gt;def oas_operations_to_text: # Defining a function that
+                            # Prints operations as raw text
+  map( # Applies a transformation to each element
+    .method + &quot;\t&quot; + 
+    .path + &quot;\t&quot; + 
+    .summary + 
+    (if .deprecated then &quot; (deprecated)&quot; else &quot;&quot; end)
+  )
+  [] # Flattens array for raw output
+; # oas_operations_to_text function's end
+
+# 1 - Selects paths objects
+#--------------------------
+# returns [{key: path, value: path value}]
+.paths # Selects the paths property content
+| to_entries # Transforms
+             # { &quot;/resources&quot;: { &quot;get&quot;: {operation data}}} 
+             # to 
+             # [ { &quot;key&quot;: &quot;/resources&quot;, 
+             #     &quot;value&quot;: { &quot;get&quot;: {operation data}} ]
+| map(select(.key | test(&quot;^x-&quot;) | not)) # Gets rid of x-tensions
+# 2 - Creates an array of operations
+#-----------------------------------
+# returns [{path, method, summary, deprecated}]
+| map ( # Applies a transformation to each element
+  .key as $path # Stores the path value (.key) 
+                  # in a variable ($path) for later use
+  | .value # Keeps only the path's content 
+           # { &quot;get&quot;: {operation data}}
+  | to_entries # Transforms 
+               # { &quot;get&quot;: {operation data}}
+               # to
+               # [ { &quot;key&quot;: &quot;get&quot;, 
+               #     &quot;value&quot;: {operation data}} ]
+  | map( # Applies a transformation to each element
+    select( # Keeps only elements for which the following is true
+      # With IN, which returns true if the value is one of its
+      # parameters, we can get rid of x- , parameters
+      # description and summary properties
+      .key | IN(&quot;get&quot;, &quot;put&quot;, &quot;post&quot;, &quot;delete&quot;, 
+         &quot;options&quot;, &quot;head&quot;, &quot;patch&quot;, &quot;trace&quot;)
+    )
+    | # Creates a new JSON object
+    {
+      method: .key,
+      path: $path, # Using the variable defined on line 4
+      summary: .value.summary?,
+      deprecated: .value.deprecated?
+    }
+  )[] # Flattens array to avoid having an array 
+      # of array of {path, method, summary, deprecated}
+) # Now we have an array of {path, method, summary, deprecated}
+# 3 - Outputs tab separated raw text
+#-----------------------------------
+| oas_operations_to_text&lt;/code&gt;&lt;/pre&gt;
+  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;That’s great, using functions big JQ filters are far more readable. But what about being able to reuse these functions?&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-a-module-with-reusable-functions&quot;&gt;Creating a module with reusable functions&lt;/h2&gt;
+
+&lt;p&gt;Creating JQ &lt;em&gt;modules&lt;/em&gt; that define reusable functions is, again, quite simple. Just put some functions in a JQ file and you’re done. The following listing shows a &lt;code&gt;module-openapi.jq&lt;/code&gt; module file defining two functions. There’s the &lt;code&gt;oas_operation_to_text&lt;/code&gt; we have just created and also an &lt;code&gt;oas_operations&lt;/code&gt; which do the same as steps 1 and 2 of the &lt;code&gt;list-operations.jq&lt;/code&gt; file (returning an array of operations). Note that there’s a light modification (line 43/44), this function returns also the &lt;code&gt;input_filename&lt;/code&gt; and the original value of each operations (for a later use) besides its HTTP method, path, summary and deprecated flag.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;module-openapi.jq&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/module-openapi.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers code-collapsed&quot;&gt;&lt;code&gt;# This is a reusable JQ module defining useful
+# OpenAPI specification (OAS) processing functions
+
+def oas_operations: # Defining a listoperations function
+                    # returning {path, method, summary, original}
+  # 1 - Selects paths objects
+  #--------------------------
+  # returns [{key: path, value: path value}]
+  .paths # Selects the paths property content
+  | to_entries # Transforms
+              # { &quot;/resources&quot;: { &quot;get&quot;: {operation data}}} 
+              # to 
+              # [ { &quot;key&quot;: &quot;/resources&quot;, 
+              #     &quot;value&quot;: { &quot;get&quot;: {operation data}} ]
+  | map(select(.key | test(&quot;^x-&quot;) | not)) # Gets rid of x-tensions
+  # 2 - Creates an array of operations
+  #-----------------------------------
+  # returns [{path, method, summary, deprecated}]
+  | map ( # Applies a transformation to each element
+    .key as $path # Stores the path value (.key) 
+                    # in a variable ($path) for later use
+    | .value # Keeps only the path's content 
+            # { &quot;get&quot;: {operation data}}
+    | to_entries # Transforms 
+                # { &quot;get&quot;: {operation data}}
+                # to
+                # [ { &quot;key&quot;: &quot;get&quot;, 
+                #     &quot;value&quot;: {operation data}} ]
+    | map( # Applies a transformation to each element
+      select( # Keeps only elements for which the following is true
+        # With IN, which returns true if the value is one of its
+        # parameters, we can get rid of x- , parameters
+        # description and summary properties
+        .key | IN(&quot;get&quot;, &quot;put&quot;, &quot;post&quot;, &quot;delete&quot;, 
+          &quot;options&quot;, &quot;head&quot;, &quot;patch&quot;, &quot;trace&quot;)
+      )
+      | # Creates a new JSON object
+      {
+        method: .key,
+        path: $path, # Using the variable defined on line 4
+        summary: .value.summary?,
+        deprecated: .value.deprecated?,
+        original: .value, # Keeping original value, just in case 😉
+        source: input_filename # Adding source file, also just in case 😉
+      }
+    )[] # Flattens array to avoid having an array 
+        # of array of {path, method, summary, deprecated}
+  ) # Now we have an array of {path, method, summary, deprecated}
+; # oas_operations function's end
+
+def oas_operations_to_text: # Defining a function that
+                            # Prints operations as raw text
+  map( # Applies a transformation to each element
+    .method + &quot;\t&quot; + 
+    .path + &quot;\t&quot; + 
+    .summary + 
+    (if .deprecated then &quot; (deprecated)&quot; else &quot;&quot; end)
+  )
+  [] # Flattens array for raw output
+; # oas_operations_to_text function's end&lt;/code&gt;&lt;/pre&gt;
+  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Let’s get back to the new version of &lt;code&gt;list-operations.jq&lt;/code&gt; (shown below) to see how this module is actually used. The module is include with the &lt;code&gt;include &amp;lt;module name without extension&amp;gt;;&lt;/code&gt; line. Then any functions defined in it can be used like any other regular JQ filter as shown on line 3 and 4 where &lt;code&gt;oas_operations&lt;/code&gt; and &lt;code&gt;oas_operations_to_text&lt;/code&gt; are used.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;list-operations.jq&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/list-operations.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers&quot;&gt;&lt;code&gt;include &quot;module-openapi&quot;; # Imports module-openapi.jq file
+
+oas_operations | # Function coming from module-openapi.jq file
+oas_operations_to_text  # Function coming from module-openapi.jq file&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;h2 id=&quot;managing-modules-locations&quot;&gt;Managing modules locations&lt;/h2&gt;
+
+&lt;asciinema-player poster=&quot;npt:1:20&quot; title=&quot;Managing JQ modules location&quot; author=&quot;Arnaud Lauret&quot; rows=&quot;24&quot; cols=&quot;80&quot; src=&quot;/code/api-toolbox-jq-and-openapi/part-2/module-location.cast&quot;&gt;&lt;/asciinema-player&gt;
+
+&lt;p&gt;The following listings shows different ways of managing reusable modules location with JQ (see &lt;a href=&quot;https://stedolan.github.io/jq/manual/#Modules&quot;&gt;modules&lt;/a&gt; in the JQ’s documentation for a complete description of what can be done).
+It starts by a a first command done inside the &lt;code&gt;jq-and-openapi&lt;/code&gt; folder.
+It simply returns the first operation’s summary of the &lt;code&gt;demo-api-openapi.json&lt;/code&gt; file using the &lt;code&gt;oas_operations[0]&lt;/code&gt; filter composed of the &lt;code&gt;oas_operations&lt;/code&gt; function and the &lt;code&gt;[]&lt;/code&gt; array filter.
+As you can see, there’s no need to create a JQ file to use a module, just use the &lt;code&gt;include&lt;/code&gt; directive in the &lt;code&gt;'&amp;lt;filter&amp;gt;'&lt;/code&gt; argument on the command line.
+Then we go a level up, and obviously redoing the same exact command does not work anymore: the &lt;code&gt;module-openapi.jq&lt;/code&gt; cannot be found in the current folder as it is in the &lt;code&gt;jq-and-openapi&lt;/code&gt; one.
+Hopefully, you can use the &lt;code&gt;-L &amp;lt;path list&amp;gt;&lt;/code&gt; argument to tell JQ where to look for modules.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;jq -r &amp;#39;include &amp;quot;module-openapi&amp;quot;; oas_operations[0].summary&amp;#39; demo-api-openapi.json
+cd ..
+jq -r &amp;#39;include &amp;quot;module-openapi&amp;quot;; oas_operations[0].summary&amp;#39; jq-and-openapi/demo-api-openapi.json
+jq -r -L jq-and-openapi &amp;#39;include &amp;quot;module-openapi&amp;quot;; oas_operations[0].summary&amp;#39; jq-and-openapi/demo-api-openapi.json
+
+&lt;/pre&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Indicating where to find modules with -L argument&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ jq -r &amp;#39;include &amp;quot;module-openapi&amp;quot;; oas_operations[0].summary&amp;#39; demo-api-openapi.json
+List accounts
+[apihandyman.io]$ cd ..
+[apihandyman.io]$ jq -r &amp;#39;include &amp;quot;module-openapi&amp;quot;; oas_operations[0].summary&amp;#39; jq-and-openapi/demo-api-openapi.json
+jq: error: module not found: module-openapi
+
+jq: 1 compile error
+[apihandyman.io]$ jq -r -L jq-and-openapi &amp;#39;include &amp;quot;module-openapi&amp;quot;; oas_operations[0].summary&amp;#39; jq-and-openapi/demo-api-openapi.json
+List accounts&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;If there are modules that you use extensively, it would be interesting to put them in a &lt;code&gt;~/.jq&lt;/code&gt; folder. Therefore, no longer need for the &lt;code&gt;-L&lt;/code&gt; argument as shown below. JQ looks for the modules mentioned in &lt;code&gt;include&lt;/code&gt; directives in this folder automatically.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;mkdir ~/.jq
+cp jq-and-openapi/module-openapi.jq ~/.jq
+jq -r &amp;#39;include &amp;quot;module-openapi&amp;quot;; oas_operations[0].summary&amp;#39; jq-and-openapi/demo-api-openapi.json
+
+&lt;/pre&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Using ~/.jq default folder to store modules&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ mkdir ~/.jq
+[apihandyman.io]$ cp jq-and-openapi/module-openapi.jq ~/.jq
+[apihandyman.io]$ jq -r &amp;#39;include &amp;quot;module-openapi&amp;quot;; oas_operations[0].summary&amp;#39; jq-and-openapi/demo-api-openapi.json
+List accounts&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;Note that &lt;code&gt;~/.jq&lt;/code&gt; can also be a file. In that case, you don’t even need to &lt;code&gt;include&lt;/code&gt; anything, as shown below. Any function defined in this file is usable inside any of your filters. I personally do not recommend to do this because that makes your filters dependencies invisible (and can also result in a quite huge unmaintainable &lt;code&gt;.jq&lt;/code&gt; file).&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;rm -rf ~/.jq
+cp jq-and-openapi/module-openapi.jq ~/.jq
+jq -r &amp;#39;oas_operations[0].summary&amp;#39; jq-and-openapi/demo-api-openapi.json
+
+&lt;/pre&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Using ~/.jq default file to store functions&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ rm -rf ~/.jq
+[apihandyman.io]$ cp jq-and-openapi/module-openapi.jq ~/.jq
+[apihandyman.io]$ jq -r &amp;#39;oas_operations[0].summary&amp;#39; jq-and-openapi/demo-api-openapi.json
+List accounts&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;h1 id=&quot;searching-operations-using-command-line-arguments&quot;&gt;Searching operations using command line arguments&lt;/h1&gt;
+
+&lt;p&gt;Now that we have a reusable module that provides functions to list operations of an OpenAPI specification file and print them as tab separated text, let’s work on a multiple-criteria and multiple-file search.&lt;/p&gt;
+
+&lt;h2 id=&quot;passing-an-argument-to-jq-filters&quot;&gt;Passing an argument to JQ filters&lt;/h2&gt;
+
+&lt;p&gt;In order to make this search flexible, we’ll need to be able to accept search arguments coming from outside our filter in order to avoid having to modify it on each different search. Passing arguments to JQ is done with &lt;code&gt;--arg &amp;lt;name&amp;gt; &amp;lt;value&amp;gt;&lt;/code&gt; as shown below. Inside the filter, you can access a &lt;code&gt;--arg&lt;/code&gt; with &lt;code&gt;$&amp;lt;name&amp;gt;&lt;/code&gt;. In this case &lt;code&gt;$foo&lt;/code&gt; returns &lt;code&gt;bar&lt;/code&gt;. Note also in this example the &lt;code&gt;-n&lt;/code&gt; flag which is used to tell JQ to not expect any JSON input. That’s pretty useful to make demos of some JQ’s features but also to generate JSON from scratched based on some arguments values.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;jq -n --arg foo bar &amp;#39;{foo: $foo}&amp;#39;
+
+&lt;/pre&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Passing an argument with --arg (and discovering -n flag)&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ jq -n --arg foo bar &amp;#39;{foo: $foo}&amp;#39;
+{
+  &amp;quot;foo&amp;quot;: &amp;quot;bar&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;h2 id=&quot;searching-operations-accessible-for-a-scope&quot;&gt;Searching operations accessible for a scope&lt;/h2&gt;
+
+&lt;p&gt;The following listing shows which operations are accessible to a consumer when it is given the &lt;code&gt;transfer:admin&lt;/code&gt; security scope. The scope value is provided to the filter using &lt;code&gt;--arg &amp;lt;name&amp;gt; &amp;lt;value&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;jq -r --arg scope transfer:admin -f search-operations-using-scope.jq demo-api-openapi.json 
+
+&lt;/pre&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Searching operations using a given scope&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ jq -r --arg scope transfer:admin -f search-operations-using-scope.jq demo-api-openapi.json 
+post    /transfers      Transfer money
+get     /transfers      List money transfers
+get     /transfers/{id} Get a money transfer
+delete  /transfers/{id} Cancel a money transfer&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;In an OpenAPI file, you’ll find the scopes that will grant access to an operation in its security property under a &lt;code&gt;{name}&lt;/code&gt;.
+According the OpenAPI Specification, &lt;em&gt;each name MUST correspond to a security scheme which is declared in the Security Schemes under the Components Object. If the security scheme is of type “oauth2” or “openIdConnect”, then the value is a list of scope names required for the execution. For other security scheme types, the array MUST be empty&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div&gt;
+      &lt;img src=&quot;/images/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/jq-openapi-scopes.png&quot; /&gt;
+      
+    &lt;/div&gt;
+
+&lt;p&gt;For our use case, we just need to list all values (scopes) under all &lt;code&gt;security.{name}&lt;/code&gt; of each operation and keep the operations for which the provided scope is found in this list. The following listing shows how this is achieved in the &lt;code&gt;search-operations-using-scope.jq&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;First (line 4), it lists existing operations using the &lt;code&gt;oas_operations&lt;/code&gt; function (coming from &lt;code&gt;module-openapi&lt;/code&gt; included on line 1)&lt;/li&gt;
+  &lt;li&gt;Then (line 5), it filters the returned operations based on their scopes by working on each of the &lt;code&gt;original&lt;/code&gt; operation’s data coming from the OpenAPI file. To do so:
+    &lt;ul&gt;
+      &lt;li&gt;It first checks if there’s a &lt;code&gt;security&lt;/code&gt; property (line 7)&lt;/li&gt;
+      &lt;li&gt;Then creates a list of scopes (line 9 and 10)&lt;/li&gt;
+      &lt;li&gt;And (line 11 to 14), if the &lt;code&gt;index&lt;/code&gt; of &lt;code&gt;$scope&lt;/code&gt; (provided through the &lt;code&gt;--arg scope &amp;lt;value&amp;gt;&lt;/code&gt;) is greater than 0 (meaning it is in the list), the operation is returned&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;And finally (line 19), it prints the remaining operations as tab separated values using the &lt;code&gt;oas_operations_to_text&lt;/code&gt; function (coming from &lt;code&gt;module-openapi&lt;/code&gt; included on line 1)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;search-operations-using-scope.jq&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/search-operations-using-scope.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers&quot;&gt;&lt;code&gt;include &quot;module-openapi&quot;; # Looks for a module-openapi.jq file
+
+# Expects a --arg scope value parameter
+oas_operations # Comes from module-operations.jq
+| map(select( # Filters on operation scopes
+    # security is not always present
+    if .original.security? != null then
+      # Creating an array containg all scopes
+      [ .original.security | 
+        map(to_entries | map(.value)[])[][] ] | 
+      index( # Index returns the index of a value in array
+        $scope # $scope value is provided on the command line
+              # --arg scope value
+      ) &amp;#62;= 0 # If &amp;#60; 0, it has not been found
+    else
+      false # No security defined, so return false
+    end
+  ))
+| oas_operations_to_text  # Comes from module-operations.jq&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;That’s cool, but there’s a little problem. When using the &lt;code&gt;search-operations-using-scope.jq&lt;/code&gt; without providing the scope value, it does not work: JQ complains that &lt;code&gt;$scope&lt;/code&gt; is not defined, as shown below.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;jq -r -f search-operations-using-scope.jq demo-api-openapi.json
+
+&lt;/pre&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;What happens when scope is not provided&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ jq -r -f search-operations-using-scope.jq demo-api-openapi.json
+jq: error: $scope is not defined at &amp;lt;top-level&amp;gt;, line 12:
+        $scope # $scope value is provided on the command line        
+jq: 1 compile error&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;Does that mean we can’t do a multi-criteria search because it requires to be able to provide multiple &lt;em&gt;optional&lt;/em&gt; parameters? Of course not, that problem can be solved.&lt;/p&gt;
+
+&lt;h2 id=&quot;solving-the-command-line-argument-problem&quot;&gt;Solving the command line argument “problem”&lt;/h2&gt;
+
+&lt;asciinema-player poster=&quot;npt:1:20&quot; title=&quot;Solving the command line argument problem&quot; author=&quot;Arnaud Lauret&quot; rows=&quot;24&quot; cols=&quot;80&quot; src=&quot;/code/api-toolbox-jq-and-openapi/part-2/solving-argument-problem.cast&quot;&gt;&lt;/asciinema-player&gt;
+
+&lt;p&gt;The following listing shows how to safely access a command line named argument using the &lt;code&gt;$ARGS.named&lt;/code&gt; filter. If &lt;code&gt;$name&lt;/code&gt; causes an error if no &lt;code&gt;--arg name value&lt;/code&gt; is provided on the command line, &lt;code&gt;$ARGS.named['name']&lt;/code&gt; will return &lt;code&gt;null&lt;/code&gt; without causing any.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;jq -n --arg foo hello --arg bar world &amp;#39;{foo: $foo, bar: $bar}&amp;#39;
+jq -n --arg foo hello &amp;#39;{foo: $foo, bar: $bar}&amp;#39;
+jq -n --arg foo hello &amp;#39;{foo: $ARGS.named[&amp;quot;foo&amp;quot;], bar: $ARGS.named[&amp;quot;bar&amp;quot;]}&amp;#39;
+
+&lt;/pre&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Using $ARGS.named&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ jq -n --arg foo hello --arg bar world &amp;#39;{foo: $foo, bar: $bar}&amp;#39;
+{
+  &amp;quot;foo&amp;quot;: &amp;quot;hello&amp;quot;,
+  &amp;quot;bar&amp;quot;: &amp;quot;world&amp;quot;
+}
+[apihandyman.io]$ jq -n --arg foo hello &amp;#39;{foo: $foo, bar: $bar}&amp;#39;
+jq: error: $bar is not defined at &amp;lt;top-level&amp;gt;, line 1:
+{foo: $foo, bar: $bar}                 
+jq: 1 compile error
+[apihandyman.io]$ jq -n --arg foo hello &amp;#39;{foo: $ARGS.named[&amp;quot;foo&amp;quot;], bar: $ARGS.named[&amp;quot;bar&amp;quot;]}&amp;#39;
+{
+  &amp;quot;foo&amp;quot;: &amp;quot;hello&amp;quot;,
+  &amp;quot;bar&amp;quot;: null
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;That’s very handy, but what if I want to set an argument to a default value if it is not provided? I just need to use the following &lt;code&gt;module-args&lt;/code&gt; module. It defines a &lt;code&gt;init_parameter(default_values)&lt;/code&gt; function returning an object containing parameters set to the value coming from &lt;code&gt;--arg &amp;lt;name&amp;gt;&lt;/code&gt; or a default value it is not provided. To do so, for each entry (key/value) of a &lt;code&gt;default_values&lt;/code&gt; object parameter, it checks if the named arguments (&lt;code&gt;$ARGS.named&lt;/code&gt;) contains the key and if so, sets the output value to the one provided on the command line. If not, it keeps the default one. By the way, that means that JQ functions can also use parameters besides their regular input. But note that you don’t need to prefix their name by &lt;code&gt;$&lt;/code&gt; to access them.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;module-args.jq&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/module-args.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers&quot;&gt;&lt;code&gt;# Initializes parameters based on provided named arguments (--arg).
+# If an argument is not provided, its default value is used.
+# default_values example:
+# {
+#   argument: &quot;default value&quot;,
+#   anotherArgument: null,
+# }
+def init_parameters(default_values):
+  default_values | 
+  # Updates values for provided parameters
+  with_entries(
+    # $ARGS contains all --arg parameters
+    if $ARGS.named[.key] != null then 
+      .value = $ARGS.named[.key] 
+    else 
+      .value = .value
+    end
+  )
+;&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;The following listing shows how this function can be used. Just call the &lt;code&gt;init_parameter&lt;/code&gt; function with an object containing the default values and put its result in a variable (here &lt;code&gt;$parameter&lt;/code&gt;) for later use (&lt;code&gt;$parameter.foo&lt;/code&gt; for example). Here the default value of &lt;code&gt;foo&lt;/code&gt; is &lt;code&gt;default foo&lt;/code&gt; and &lt;code&gt;bar&lt;/code&gt;’s is &lt;code&gt;null&lt;/code&gt;. Only &lt;code&gt;bar&lt;/code&gt; is provided, so the output contains &lt;code&gt;foo&lt;/code&gt;’s default value and &lt;code&gt;bar&lt;/code&gt; command-line-provided value.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;jq -n --arg bar &amp;quot;bar from command line&amp;quot; &amp;#39;include &amp;quot;module-args&amp;quot;; init_parameters({foo: &amp;quot;default foo&amp;quot;, bar: null}) as $parameters| {foo: $parameters.foo, bar: $parameters.bar}&amp;#39;
+
+&lt;/pre&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Optional parameters with default values&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ jq -n --arg bar &amp;quot;bar from command line&amp;quot; &amp;#39;include &amp;quot;module-args&amp;quot;; init_parameters({foo: &amp;quot;default foo&amp;quot;, bar: null}) as $parameters| {foo: $parameters.foo, bar: $parameters.bar}&amp;#39;
+{
+  &amp;quot;foo&amp;quot;: &amp;quot;default foo&amp;quot;,
+  &amp;quot;bar&amp;quot;: &amp;quot;bar from command line&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;h2 id=&quot;searching-operations-on-multiple-criteria-and-multiple-files&quot;&gt;Searching operations on multiple criteria and multiple files&lt;/h2&gt;
+
+&lt;asciinema-player poster=&quot;npt:1:20&quot; title=&quot;Searching operations demo&quot; author=&quot;Arnaud Lauret&quot; rows=&quot;24&quot; cols=&quot;80&quot; src=&quot;/code/api-toolbox-jq-and-openapi/part-2/search-demo.cast&quot;&gt;&lt;/asciinema-player&gt;
+
+&lt;p&gt;Now that we know how to provide multiple optional parameters, let’s do a multi-criteria search. The following listing shows the &lt;code&gt;get&lt;/code&gt; operations on paths containing &lt;code&gt;sources&lt;/code&gt; across all available &lt;code&gt;*.json&lt;/code&gt; files. The first value on each line is the filename (limited to 20 characters).&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre class=&quot;copy-hidden&quot;&gt;jq --arg path_contains sources --arg method get -r -f search-operations.jq *.json
+
+&lt;/pre&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Operations on path containing source with method get&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+      
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-default copy-btn&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code&gt;[apihandyman.io]$ jq --arg path_contains sources --arg method get -r -f search-operations.jq *.json
+[demo-another-api-swa]  get     /resources
+[demo-api-openapi.jso]  get     /sources        List transfer sources
+[demo-api-openapi.jso]  get     /sources/{id}/destinations      List transfer source&amp;#39;s destinations&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;Here’s the &lt;code&gt;search-operations.jq&lt;/code&gt; file who does that. It reuses functions we have seen before, &lt;code&gt;oas_operations&lt;/code&gt; from the &lt;code&gt;module_openapi.jq&lt;/code&gt; file and &lt;code&gt;init_parameters&lt;/code&gt; from the &lt;code&gt;module-args.jq&lt;/code&gt; file. It also uses new functions &lt;code&gt;filter_operations&lt;/code&gt;, &lt;code&gt;default_filters&lt;/code&gt;, &lt;code&gt;print_oas_operations&lt;/code&gt; and &lt;code&gt;default_print_parameters&lt;/code&gt; from &lt;code&gt;module-openapi-search.jq&lt;/code&gt;. There are 3 steps: getting operations data, filtering them and finally printing them. There’s nothing new on the first step, we already have used this function. Let’s see what is happening on the second and after that the third step.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;search-operations.jq&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/search-operations.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers&quot;&gt;&lt;code&gt;include &quot;module-openapi&quot;;
+include &quot;module-args&quot;;
+include &quot;module-openapi-search&quot;;
+
+# Gets operations data
+oas_operations
+# Filters operations
+| filter_oas_operations(init_parameters(default_filters))
+# Prints operations
+| print_oas_operations(init_parameters(default_print_parameters).format)&lt;/code&gt;&lt;/pre&gt;
+  
+&lt;/div&gt;
+
+&lt;p&gt;The following listing shows the new functions used to filter operations. The &lt;code&gt;default_filters&lt;/code&gt; only returns the search filters default value to be used in conjunction with &lt;code&gt;init_parameters&lt;/code&gt; and so get cleans values from optional command line arguments. The &lt;code&gt;filter_oas_operation&lt;/code&gt; expects a &lt;code&gt;filter&lt;/code&gt; object whose structure is the same as the one returned by default filters. This operations runs a &lt;code&gt;map(select())&lt;/code&gt; on the operations list. Each filter is triggered if &lt;code&gt;filters.&amp;lt;name&amp;gt;&lt;/code&gt; is not null. There’s nothing really new regarding JQ’s filters besides line 41. The filtering on paths is done using the &lt;code&gt;contains&lt;/code&gt; filter which we hadn’t seen before.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Filtering operations (module-openapi-search.jq)&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers code-collapsed&quot; data-start=&quot;3&quot;&gt;&lt;code&gt;# Available filters and their default values
+# To be used with init_parameters
+def default_filters:
+{
+  deprecated: null,
+  method: null,
+  code: null,
+  scope: null,
+  path_contains: null
+};
+
+# Filters operations coming from oas_operations
+# Each filter is used only if corresponding filters.&amp;#60;name&amp;#62; parameter is provided
+def filter_oas_operations(filters):
+  map(
+    select(
+    # Filters on deprecated
+    (filters.deprecated == null or 
+      (.deprecated | tostring) == filters.deprecated) and
+    # Filters on HTTP method
+    (filters.method == null or 
+      .method == filters.method) and
+    # Filters on HTTP status code
+    (filters.code == null or 
+      (.original.responses | has(filters.code))) and
+    # Filters on security scope
+    (filters.scope == null or
+      (if .value.security? != null then
+        [ .value.security | 
+          map(to_entries | 
+          map(.value)[])[][]] | 
+        index(filters.scope) &amp;#62;= 0
+      else
+        false
+      end)
+    ) and
+    # Filters on path
+    (filters.path_contains == null or 
+      (.path | contains(filters.path_contains))
+    )
+  )
+);
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The following listing shows the new functions used to print the operations. It uses the same mechanism as the filter functions regarding the command line arguments.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Printing operations (module-openapi-search.jq)&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers code-collapsed&quot; data-start=&quot;46&quot;&gt;&lt;code&gt;# Same as oas_operations_to_text but with source
+def oas_operations_to_text_with_source: 
+  map( # Applies a transformation to each element
+    &quot;[&quot; + .source[0:20] + &quot;]\t&quot; +
+    .method + &quot;\t&quot; + 
+    .path + &quot;\t&quot; + 
+    .summary + 
+    (if .deprecated then &quot; (deprecated)&quot; else &quot;&quot; end)
+  )
+  [] # Flattens array for raw output
+; # oas_operations_to_text function's end
+
+# To be used with init_parameters
+def default_print_parameters:
+{
+  format: &quot;text_with_source&quot;
+  # All values: 
+  #  text_with_source, text_without_source, json_flat or null for json
+};
+
+# Prints oas_operations (filtered or not) in various format
+def print_oas_operations(format):
+  if format == &quot;text_with_source&quot; then
+      oas_operations_to_text_with_source
+  elif format == &quot;text_without_source&quot; then
+      oas_operations_to_text
+  elif format == &quot;json_flat&quot; then
+    .[] # Flattening for multifiles, pipe result into a jq -s
+  else
+    .
+  end
+;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here’s the full file:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;!-- codeblocksize: 20 --&gt;
+  &lt;div class=&quot;code-title&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot;&gt;Filtering operations (module-openapi-search.jq)&lt;/button&gt;&lt;/div&gt;
+  &lt;div class=&quot;code-toolbar-for-title&quot;&gt;
+    &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;...&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq&quot;&gt;&lt;i class=&quot;fas fa-file-code&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-copy&quot;&gt;&lt;i class=&quot;fas fa-paste&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;pre class=&quot;language-jq line-numbers code-collapsed&quot;&gt;&lt;code&gt;include &quot;module-openapi&quot;;
+
+# Available filters and their default values
+# To be used with init_parameters
+def default_filters:
+{
+  deprecated: null,
+  method: null,
+  code: null,
+  scope: null,
+  path_contains: null
+};
+
+# Filters operations coming from oas_operations
+# Each filter is used only if corresponding filters.&amp;#60;name&amp;#62; parameter is provided
+def filter_oas_operations(filters):
+  map(
+    select(
+    # Filters on deprecated
+    (filters.deprecated == null or 
+      (.deprecated | tostring) == filters.deprecated) and
+    # Filters on HTTP method
+    (filters.method == null or 
+      .method == filters.method) and
+    # Filters on HTTP status code
+    (filters.code == null or 
+      (.original.responses | has(filters.code))) and
+    # Filters on security scope
+    (filters.scope == null or
+      (if .value.security? != null then
+        [ .value.security | 
+          map(to_entries | 
+          map(.value)[])[][]] | 
+        index(filters.scope) &amp;#62;= 0
+      else
+        false
+      end)
+    ) and
+    # Filters on path
+    (filters.path_contains == null or 
+      (.path | contains(filters.path_contains))
+    )
+  )
+);
+
+# Same as oas_operations_to_text but with source
+def oas_operations_to_text_with_source: 
+  map( # Applies a transformation to each element
+    &quot;[&quot; + .source[0:20] + &quot;]\t&quot; +
+    .method + &quot;\t&quot; + 
+    .path + &quot;\t&quot; + 
+    .summary + 
+    (if .deprecated then &quot; (deprecated)&quot; else &quot;&quot; end)
+  )
+  [] # Flattens array for raw output
+; # oas_operations_to_text function's end
+
+# To be used with init_parameters
+def default_print_parameters:
+{
+  format: &quot;text_with_source&quot;
+  # All values: 
+  #  text_with_source, text_without_source, json_flat or null for json
+};
+
+# Prints oas_operations (filtered or not) in various format
+def print_oas_operations(format):
+  if format == &quot;text_with_source&quot; then
+      oas_operations_to_text_with_source
+  elif format == &quot;text_without_source&quot; then
+      oas_operations_to_text
+  elif format == &quot;json_flat&quot; then
+    .[] # Flattening for multifiles, pipe result into a jq -s
+  else
+    .
+  end
+;
+
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;div class=&quot;code-bottom-toolbar&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-block&quot; onclick=&quot;toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)&quot;&gt;&lt;i class=&quot;fa fa-expand&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;summary&quot;&gt;Summary&lt;/h1&gt;
+
+&lt;p&gt;That concludes this second path of the JQ and OpenAPI series. Here’s the summary of what we have seen in this post:&lt;/p&gt;
+
+&lt;h2 id=&quot;functions-and-modules&quot;&gt;Functions and modules&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Creating a function is done with &lt;code&gt;def name: &amp;lt;filters&amp;gt;;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;To invoke a function just use its &lt;code&gt;name&lt;/code&gt; like for any regular filter&lt;/li&gt;
+  &lt;li&gt;Functions can have parameters &lt;code&gt;def name(parameter)&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Inside a function a parameter can be used with &lt;code&gt;parameter&lt;/code&gt; (without $)&lt;/li&gt;
+  &lt;li&gt;A module is a JQ file containing reusable functions&lt;/li&gt;
+  &lt;li&gt;A module is loaded using the &lt;code&gt;include filename_without_extension&lt;/code&gt; directive&lt;/li&gt;
+  &lt;li&gt;Use &lt;code&gt;-L&lt;/code&gt; command line parameter to tell JQ where to find modules&lt;/li&gt;
+  &lt;li&gt;Put your favorite modules in &lt;code&gt;~/.jq&lt;/code&gt; folder so JQ can find them without using &lt;code&gt;-L&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;command-line-arguments&quot;&gt;Command line arguments&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Passing a named argument to JQ filters is done with &lt;code&gt;--arg name value&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;A named argument value can be retrieved with &lt;code&gt;$name&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Using &lt;code&gt;$name&lt;/code&gt; will provoke an error if no &lt;code&gt;--arg name value&lt;/code&gt; is provided&lt;/li&gt;
+  &lt;li&gt;All named arguments are available with &lt;code&gt;$ARGS.named&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;$ARGS.named[name]&lt;/code&gt; returns null (wihout error) if no &lt;code&gt;--arg name value&lt;/code&gt; is provided&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-null-argument&quot;&gt;The null argument&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The &lt;code&gt;-n&lt;/code&gt; (&lt;code&gt;--null&lt;/code&gt;) arguments tells JQ to not expect input JSON&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;new-filters&quot;&gt;New filters&lt;/h2&gt;
+
+&lt;table class=&quot;table table-sm&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th span=&quot;3&quot;&gt;JQ Filters&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+
+
+
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;index(element)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Returns the index of an element inside an array (-1 if not found)&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://stedolan.github.io/jq/manual/v1.6/#index(s),rindex(s)&quot; target=&quot;jq&quot;&gt;&lt;i class=&quot;fas fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+
+
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;contains(element)&lt;/code&gt;&lt;br /&gt;&lt;code&gt;&quot;resources&quot; | contains(&quot;source&quot;)
+&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Returns true the element is in input&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://stedolan.github.io/jq/manual/v1.6/#contains(element)&quot; target=&quot;jq&quot;&gt;&lt;i class=&quot;fas fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+
+
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code&gt;$ARGS.named&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Returns the command line named argument (--arg name value)&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://stedolan.github.io/jq/manual/v1.6/#Invokingjq&quot; target=&quot;jq&quot;&gt;&lt;i class=&quot;fas fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;whats-next&quot;&gt;What’s next&lt;/h1&gt;
+
+&lt;p&gt;In next post, we’ll learn to modify OpenAPI files with JQ.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="posts" /><category term="API Toolbox" /><summary type="html">Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.</summary></entry><entry><title type="html">API Toolbox - JQ and OpenAPI - Part 1 - Using JQ to extract data from OpenAPI files</title><link href="https://apihandyman.io/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/" rel="alternate" type="text/html" title="API Toolbox - JQ and OpenAPI - Part 1 - Using JQ to extract data from OpenAPI files" /><published>2020-01-15T00:00:00+00:00</published><updated>2020-01-15T00:00:00+00:00</updated><id>https://apihandyman.io/api-toolbox-jq-and-openapi-part-1</id><content type="html" xml:base="https://apihandyman.io/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">&lt;p&gt;Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In this 4 parts post series, you’ll discover why and how I use JQ with OpenAPI Specification files. But more important, you’ll get some basic and more advanced example of how to use JQ on any JSON document to get and modify JSON data as you want. In this first part we’ll focus on what is JQ, why I use it with OpenAPI files and we’ll learn how to invoke JQ and discover some of the many JQ filters that can be used to extract data from JSON.&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;This 4 parts post is the first one of a new API Toolbox category in which I’ll talk about the tools I use when doing API related stuff, why I use them and how. This post is also my first one using &lt;a href=&quot;https://asciinema.org/&quot;&gt;Asciinema&lt;/a&gt;, an awesome tool allowing to record and share terminal sessions.&lt;/p&gt;
 
@@ -9,10 +1028,17 @@
 &lt;p&gt;This JQ and OpenAPI series is composed of the following posts:&lt;/p&gt;
 
 &lt;ul&gt;
+  
+    
     &lt;li&gt;&lt;strong&gt;Part 1 - Using JQ to extract data from OpenAPI files&lt;/strong&gt;&lt;/li&gt;
-    &lt;li&gt;Part 2 - Searching into OpenAPI files with JQ's command line arguments, functions and modules (coming soon)&lt;/li&gt;
-    &lt;li&gt;Part 3 - Modifying OpenAPI files with JQ (coming soon)&lt;/li&gt;
-    &lt;li&gt;Part 4 - Bonus: coloring JQ's raw output (coming soon)&lt;/li&gt;
+    
+  
+    
+    &lt;li&gt;&lt;a class=&quot;page-link&quot; href=&quot;/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/&quot;&gt;Part 2 - Using JQ command line arguments, functions and modules&lt;/a&gt;&lt;/li&gt;
+    
+  
+  &lt;li&gt;Part 3 - Modifying OpenAPI files with JQ (coming soon)&lt;/li&gt;
+  &lt;li&gt;Part 4 - Bonus: coloring JQ's raw output (coming soon)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;what-is-jq-and-why-i-use-it-on-openapi-files&quot;&gt;What is JQ and why I use it (on OpenAPI files)&lt;/h1&gt;
@@ -2053,10 +3079,4 @@ In this session, based on my own experience defining and sharing API design comm
 
 &lt;div class=&quot;embedpad&quot;&gt;&lt;div class=&quot;speackerdeck embedded embed-responsive embed-responsive-4by3&quot;&gt;&lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;e820736b440a47119e8f3ccb090a9e7e&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talks" /><category term="API Strat" /><category term="API Days" /><category term="Conference" /><category term="Design" /><category term="API Stylebook" /><category term="Video" /><summary type="html">Join Frodo, Gollum and Gandalf on an epic API design adventure. In this session, based on my own experience defining and sharing API design common practices in my company and based on the API styles guides that I have collected on apistylebook.com, we will discover why we desperately need API style guides and how they can or cannot help us create a smooth API surface for a company. Very special thanks to Mister Lapin for designing my T-shirt and Kristof Van Tomme for recording the video with my phone.</summary></entry><entry><title type="html">…And GraphQL for all? talk video on InfoQ</title><link href="https://apihandyman.io/graphql-for-all-talk-video-on-infoq/" rel="alternate" type="text/html" title="...And GraphQL for all? talk video on InfoQ" /><published>2017-09-29T00:00:00+00:00</published><updated>2017-09-29T00:00:00+00:00</updated><id>https://apihandyman.io/graphql-for-all-video-on-infoq</id><content type="html" xml:base="https://apihandyman.io/graphql-for-all-talk-video-on-infoq/">&lt;p&gt;My talk &lt;em&gt;…And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL&lt;/em&gt; which I gave at API Days Paris 2016 last December was recorded and the video is now available on &lt;a href=&quot;https://www.infoq.com/presentations/api-rest-graphql&quot;&gt;InfoQ&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;You can also read my write up &lt;a href=&quot;/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/&quot;&gt;here on the blog&lt;/a&gt;.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="talks" /><category term="Design" /><summary type="html">My talk …And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL which I gave at API Days Paris 2016 last December was recorded and the video is now available on InfoQ. You can also read my write up here on the blog.</summary></entry><entry><title type="html">Deliveroo API Design Guidelines added to the API Stylebook</title><link href="https://apihandyman.io/deliveroo-api-design-guidelines-added-to-the-api-stylebook/" rel="alternate" type="text/html" title="Deliveroo API Design Guidelines added to the API Stylebook" /><published>2017-04-25T00:00:00+00:00</published><updated>2017-04-25T00:00:00+00:00</updated><id>https://apihandyman.io/deliveroo-api-design-guidelines-added-to-the-api-stylebook</id><content type="html" xml:base="https://apihandyman.io/deliveroo-api-design-guidelines-added-to-the-api-stylebook/">&lt;p&gt;I’ve added the Deliveroo API Design Guidelines to the API Stylebook.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;These guidelines are definitely a MUST read for any API designer.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;To discover this API design guide and a short review, let’s go to the &lt;a href=&quot;http://apistylebook.com/blog/deliveroo-api-design-styleguide-added-on-the-api-stylebook&quot;&gt;API Stylebook blog&lt;/a&gt;.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="elsewhere" /><category term="Design" /><category term="API Stylebook" /><summary type="html">I’ve added the Deliveroo API Design Guidelines to the API Stylebook. These guidelines are definitely a MUST read for any API designer. To discover this API design guide and a short review, let’s go to the API Stylebook blog.</summary></entry></feed>
+&lt;p&gt;You can also read my write up &lt;a href=&quot;/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/&quot;&gt;here on the blog&lt;/a&gt;.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="talks" /><category term="Design" /><summary type="html">My talk …And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL which I gave at API Days Paris 2016 last December was recorded and the video is now available on InfoQ. You can also read my write up here on the blog.</summary></entry></feed>
