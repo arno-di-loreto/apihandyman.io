@@ -147,7 +147,7 @@ class CodeFile < Liquid::Tag
     </nav>
   </div>
   <div class="card-body">
-    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style}"#{highlighttag}#{datastart}><code>#{code}</code></pre>
+    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style}"#{highlighttag}#{datastart}><code class="code-block">#{code}</code></pre>
   </div>
 </div>
       HTML

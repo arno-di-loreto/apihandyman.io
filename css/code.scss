@@ -2,6 +2,17 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
+// Inline code
+code:not(.code-block) {
+  background-color: black;
+  color: white;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 4px;
+}
+
 //Code blocks
 .card-code {
 

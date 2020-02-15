@@ -100,7 +100,7 @@ module Jekyll
     </nav>
   </div>
   <div class="card-body">
-    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style}"#{@highlight}><code>#{code}</code></pre>
+    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style}"#{@highlight}><code class="code-block">#{code}</code></pre>
   </div>
 </div>
       HTML
