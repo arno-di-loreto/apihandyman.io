@@ -90,7 +90,7 @@ module Jekyll
     <nav class="navbar navbar-expand-md">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <span class="navbar-text text-white small">#{code_title}</span>
+            <span class="navbar-text text-white small font-weight-bold">#{code_title}</span>
           </li>
         </ul>
         <ul class="navbar-nav ml-md-auto">
