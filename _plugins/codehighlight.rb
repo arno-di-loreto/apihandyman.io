@@ -67,34 +67,41 @@ module Jekyll
       end
 
       codeblocksize = lookup(context, 'site.codeblocksize')
+      # <i class="fas fa-compress"></i>
+      # <i class="fas fa-expand"></i>
+      # <i class="fas fa-expand-alt"></i>
+      # <i class="fas fa-compress-alt"></i>
       if code.lines.count > codeblocksize 
-        collapsed = " code-collapsed"
-        collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
-        collapsedbottombutton = "<div class=\"code-bottom-toolbar\"><button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[0].children[0].children[0], true)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button></div>"
+        collapsed_style = " code-collapsed"
+        collapsed_button = "<li class=\"nav-item\"><a class=\"btn code-expandcollapse-btn\" onclick=\"expandCollapseCode(this)\"><i class=\"fas fa-expand-alt\"></i></a></li>"
       end
       
       if @title
-        toolbarcss = "code-toolbar-for-title"
-        codetitle = "<div class=\"code-title\"><button type=\"button\" class=\"btn btn-default btn-block\">"+@title+"</button></div>"
-      else
-        toolbarcss = "code-toolbar"
+        code_title = @title
       end
 
       # Reminder: ClipboardJS does not work with hidden elements. Just put them out of sight.
       # https://github.com/zenorocha/clipboard.js/issues/353
 
       <<-HTML
-<div>
+<div class="card card-code text-white bg-dark border-dark">
   <pre class="copy-hidden">#{code_copy}</pre>
-  #{codetitle}
-  <div class="#{toolbarcss}">
-    <div class="btn-group" role="group" aria-label="...">
-      #{collabpedbutton}
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
-    </div>
+  <div class="card-header">
+    <nav class="navbar navbar-expand-md">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <span class="navbar-text text-white small">#{code_title}</span>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-md-auto">
+          <li class="nav-item"><a class="btn code-copy-btn"><i class="far fa-copy"></i></a></li>
+          #{collapsed_button}
+        </ul>
+    </nav>
   </div>
-  <pre class="language-#{@language}#{@linenumbers}#{collapsed}"#{@highlight}><code>#{code}</code></pre>
-  #{collapsedbottombutton}
+  <div class="card-body">
+    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style}"#{@highlight}><code>#{code}</code></pre>
+  </div>
 </div>
       HTML
     end
