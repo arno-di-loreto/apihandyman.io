@@ -18,6 +18,9 @@ description: '{"input" : "learn", "output" : "share"}'
 url: "https://apihandyman.io" # the base hostname & protocol for your site
 baseurl: ""
 
+sass:
+  style: compressed # possible values: nested expanded compact compressed
+
 # Social links
 twitter_username: apihandyman
 github_username:  arno-di-loreto
