@@ -52,18 +52,19 @@ module Jekyll
       code = code.gsub("<","&#60;")
       code = code.gsub(">","&#62;")
       if split_code.length() > 1
-        code_copy = split_code[1].lstrip #lstrip necessary to avoid new lines at beginnin
+        hidden_code_copy = split_code[1].lstrip #lstrip necessary to avoid new lines at beginnin
                                          # {% code %}  <- new line here
                                          # some code
-                                         # Also useful to keep ending new line fo bash 
+                                         # Also useful to keep ending new line fo bash
+        hidden_code_copy =   "<pre class=\"copy-hidden code-copy\">"+hidden_code_copy+"</pre>" 
       else
-        code_copy = code.lstrip
+        visible_code_copy_class = " code-copy"
       end
       code = code.strip
 
       if @title=="debug"
         print "\ncode:\n#{code}\n"
-        print "\ncode_copy:#{code_copy}\n"
+        print "\nhidden_code_copy:#{hidden_code_copy}\n"
       end
 
       codeblocksize = lookup(context, 'site.codeblocksize')
@@ -85,7 +86,7 @@ module Jekyll
 
       <<-HTML
 <div class="card card-code text-white bg-dark border-dark">
-  <pre class="copy-hidden">#{code_copy}</pre>
+  #{hidden_code_copy}
   <div class="card-header">
     <nav class="navbar navbar-expand-md">
         <ul class="navbar-nav">
@@ -100,7 +101,7 @@ module Jekyll
     </nav>
   </div>
   <div class="card-body">
-    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style}"#{@highlight}><code class="code-block">#{code}</code></pre>
+    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style}#{visible_code_copy_class}"#{@highlight}><code class="code-block">#{code}</code></pre>
   </div>
 </div>
       HTML

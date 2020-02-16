@@ -131,7 +131,6 @@ class CodeFile < Liquid::Tag
     <<-HTML
 
 <div class="card card-code text-white bg-dark border-dark">
-  <pre class="copy-hidden">#{code}</pre>
   <div class="card-header">
     <nav class="navbar navbar-expand-md">
         <ul class="navbar-nav">
@@ -147,7 +146,7 @@ class CodeFile < Liquid::Tag
     </nav>
   </div>
   <div class="card-body">
-    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style}"#{highlighttag}#{datastart}><code class="code-block">#{code}</code></pre>
+    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style} code-copy"#{highlighttag}#{datastart}><code class="code-block">#{code}</code></pre>
   </div>
 </div>
       HTML

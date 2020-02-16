@@ -1,50 +1,60 @@
-var clipboard = new ClipboardJS('.code-copy-btn', {
-  target: function(trigger) {
-    var target = trigger.parentElement.parentElement.parentElement.parentElement.parentElement.children[0];
-    console.log(target)
-    return target;
+function getCodeBlockCard(element) {
+  return $(element).parents('.card-code')[0]
+}
+
+function getCodeBlockCopy(element) {
+  return $(getCodeBlockCard(element)).find('.code-copy')[0]
+}
+
+function getCodeBlockPreCode(element) {
+  return $(getCodeBlockCard(element)).find('.code-block').parent()[0]
+}
+
+function getCodeBlockCardHeader(element) {
+  return $(getCodeBlockCard(element)).find('.card-header')[0]
+}
+
+function expandCollapseCode(button) {
+  const code = getCodeBlockPreCode(button)
+  const cardHeader = getCodeBlockCardHeader(button)
+   
+  if($(code).hasClass('code-collapsed')) {
+    $(code).removeClass('code-collapsed')
+    $(cardHeader).addClass('sticky-top')
+    $(cardHeader).addClass('close-to-main-navbar')
+    $(button).html('<i class="fas fa-compress-alt"></i>')
+    $(button).blur()
+
   }
-});
+  else {
+    const beforeCardHeaderOffsetTop = $(cardHeader)[0].offsetTop
+    $(code).addClass('code-collapsed')
+    $(cardHeader).removeClass('sticky-top')
+    $(cardHeader).removeClass('close-to-main-navbar')
+    $(button).html('<i class="fas fa-expand-alt"></i>')
+    $(button).blur()
+    window.scrollBy(0, -beforeCardHeaderOffsetTop)
+  }
+}
+
+const clipboard = new ClipboardJS('.code-copy-btn', {
+  target: function(trigger) {
+    const target = getCodeBlockCopy(trigger)
+    return target
+  }
+})
 
 clipboard.on('success', function(e) {
-  console.log('copied!')
-  console.log(e.text);
-  e.clearSelection();
-  $(e.trigger).html('<i class="fas fa-check"></i>');
+  e.clearSelection()
+  $(e.trigger).html('<i class="fas fa-check"></i>')
   window.setTimeout(function() {
-      $(e.trigger).html('<i class="far fa-copy"></i>');
-      $(e.trigger).blur();
-  }, 1000);
+      $(e.trigger).html('<i class="far fa-copy"></i>')
+      $(e.trigger).blur()
+  }, 1000)
 });
 
 clipboard.on('error', function(e) {
-  console.error('Action:', e.action);
-  console.error('Trigger:', e.trigger);
-});
-
-
-function expandCollapseCode(button) {
-  var code = button.parentElement.parentElement.parentElement.parentElement.parentElement.children[2].children[0]
-  //var secondarybutton = this.parentElement.parentElement.parentElement.children[3].children[0] 
-  var beforecodeheight = $(code).height(); 
-  // <i class="fas fa-expand-alt"></i>
-  // <i class="fas fa-compress-alt"></i>
-  if($(code).hasClass('code-collapsed')) {
-    $(code).removeClass('code-collapsed');
-    $(button).html('<i class="fas fa-compress-alt"></i>');
-    //$(secondarybutton).html('<i class="fa fa-compress"></i>');
-    $(button).blur();
-  }
-  else {
-    $(code).addClass('code-collapsed');
-    $(button).html('<i class="fas fa-expand-alt"></i>');
-    //$(secondarybutton).html('<i class="fa fa-expand"></i>');
-    $(button).blur();
-    if(true) {
-      var aftercodeheight = $(code).height();
-      var afterscroll = $('body').scrollTop();
-      var delta = beforecodeheight - aftercodeheight;
-      $('body').scrollTop(afterscroll - delta);
-    }
-  }
-}
+  console.error('🙇🏻‍♂️ something unexpectedly went wrong while copying with ClipboardJS 🙇🏻‍♂️')
+  console.error('Action:', e.action)
+  console.error('Trigger:', e.trigger)
+})
