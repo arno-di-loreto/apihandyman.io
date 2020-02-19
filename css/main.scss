@@ -17,13 +17,14 @@ body {
 
 .main-navbar {
   background-color: skyblue;
-  -webkit-box-shadow: 0 8px 6px -6px #999;
-	   -moz-box-shadow: 0 8px 6px -6px #999;
-	        box-shadow: 0 8px 6px -6px #999;
+//  -webkit-box-shadow: 0 8px 6px -6px #999;
+//	   -moz-box-shadow: 0 8px 6px -6px #999;
+//	        box-shadow: 0 8px 6px -6px #999;
 }
 
 .left-column {
   height: calc(100vh - 75px);
+  background-color: white;
 }
 
 // Avoid having headers hidden by navbar when using inner links (with toc for example)
@@ -36,8 +37,22 @@ body {
 }
 
 //TOC
+#scrollable-toc {
+  margin-top: 1em;
+  flex-grow : 1;
+}
+
 #toc {
+  padding-left: 0px;
+  padding-right: 0px;
   .toc-level-2 {
-    font-style: italic;
+    font-size: 0.8em;
+    padding-left: 26px;
   }
+}
+
+// Book
+.book-button {
+  padding: 0px;
+  border: 0px;
 }
