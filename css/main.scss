@@ -56,3 +56,15 @@ body {
   padding: 0px;
   border: 0px;
 }
+
+//Anchors
+.anchorjs-link {
+  color: grey;
+}
+.anchorjs-link:hover {
+  color: #2500ad;
+  text-decoration: none;
+}
+*:hover > .anchorjs-link {
+  transition: color .25s linear;
+}
