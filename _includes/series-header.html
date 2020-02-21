@@ -1,0 +1,25 @@
+<div class="card mb-3">
+  <div class="card-header">{{page.series}} Series</div>
+  <div class="row no-gutters">
+    <div class="col-md-7">
+      <div class="card-body">
+        <p class="card-text">{{include.content}}</p>
+      </div>
+    </div>
+    <div class="col-md-5 text-left">
+      {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
+      <ul class="list-group list-group-flush">
+        {% for my_page in sorted %}
+          {% if my_page.series_title == page.series_title %}
+          <li class="list-group-item active">{{ my_page.series_number }} - {{ my_page.series_title }}</li>
+          {% else %}
+          <li class="list-group-item"><a href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_number }} - {{ my_page.series_title }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% for coming_soon in site.data.series[page.series] %}
+          <li class="list-group-item disabled">{{ coming_soon.series_number }} - {{ coming_soon.series_title }} (coming soon)</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
