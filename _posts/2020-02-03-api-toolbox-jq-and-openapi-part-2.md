@@ -91,7 +91,7 @@ Let's get back to the new version of `list-operations.jq` (shown below) to see h
 
 ## Managing modules locations
 
-<asciinema-player poster="npt:1:20" title="Managing JQ modules location" author="Arnaud Lauret"  rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-2/module-location.cast"></asciinema-player>
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-2/module-location.cast" title="Managing JQ modules location" poster="npt:1:20" %}
 
 The following listings shows different ways of managing reusable modules location with JQ (see [modules](https://stedolan.github.io/jq/manual/#Modules) in the JQ's documentation for a complete description of what can be done).
 It starts by a a first command done inside the `jq-and-openapi` folder.
@@ -222,7 +222,7 @@ Does that mean we can't do a multi-criteria search because it requires to be abl
 
 ## Solving the command line argument "problem"
 
-<asciinema-player poster="npt:1:20" title="Solving the command line argument problem" author="Arnaud Lauret"  rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-2/solving-argument-problem.cast"></asciinema-player>
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-2/solving-argument-problem.cast" title="Solving the command line argument problem" poster="npt:1:20" %}
 
 The following listing shows how to safely access a command line named argument using the `$ARGS.named` filter. If `$name` causes an error if no `--arg name value` is provided on the command line, `$ARGS.named['name']` will return `null` without causing any.
 
@@ -271,7 +271,7 @@ jq -n --arg bar "bar from command line" 'include "module-args"; init_parameters(
 
 ## Searching operations on multiple criteria and multiple files
 
-<asciinema-player poster="npt:1:20" title="Searching operations demo" author="Arnaud Lauret"  rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-2/search-demo.cast"></asciinema-player>
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-2/search-demo.cast" title="Searching operations demo" poster="npt:1:20" %}
 
 Now that we know how to provide multiple optional parameters, let's do a multi-criteria search. The following listing shows the `get` operations on paths containing `sources` across all available `*.json` files. The first value on each line is the filename (limited to 20 characters).
 
