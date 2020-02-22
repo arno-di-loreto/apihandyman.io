@@ -1,3 +1,26 @@
+/*
+function synchronizeToc(scroll_position, height) {
+  console.log('scroll_position', scroll_position)
+  console.log('height', height)
+  const percent_scroll = scroll_position/height
+  console.log('scroll %', percent_scroll)
+
+  let toc = $("#scrollable-toc")[0]
+  let newTocScroll = toc.scrollHeight*percent_scroll
+  console.log(newTocScroll)
+  toc.scrollTop = newTocScroll
+  console.log(document.activeElement)
+}
+
+window.addEventListener('scroll', function(e) {
+  let body = document.body
+  let html = document.documentElement
+  let height = Math.max( body.scrollHeight, body.offsetHeight, 
+                       html.clientHeight, html.scrollHeight, html.offsetHeight );
+  synchronizeToc(window.scrollY, height)
+});
+*/
+
 $(document).ready(function(){
   // Scroll TOC when needed in order to keep active element visible
   $(window).on('activate.bs.scrollspy', function () {

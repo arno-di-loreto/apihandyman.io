@@ -2,13 +2,18 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 @charset "utf-8";
+@import "bootstrap/scss/bootstrap";
 
 body {
-  padding-top: 65px;
+  padding-top: 55px;
 }
 
 .not-behind-nav {
-  top: 65px;
+  top: 55px;
+}
+
+.below-main-navbar {
+  margin-top: 15px;
 }
 
 .close-to-main-navbar {
@@ -16,14 +21,18 @@ body {
 }
 
 .main-navbar {
-  background-color: skyblue;
+  background-color: #0C4E68;
+  color: #e66c28;
+  .navbar-brand {
+    color: #e66c28
+  }
 //  -webkit-box-shadow: 0 8px 6px -6px #999;
 //	   -moz-box-shadow: 0 8px 6px -6px #999;
 //	        box-shadow: 0 8px 6px -6px #999;
 }
 
 .left-column {
-  height: calc(100vh - 75px);
+  height: calc(100vh - 55px);
   background-color: white;
 }
 
@@ -45,9 +54,37 @@ body {
 #toc {
   padding-left: 0px;
   padding-right: 0px;
+  .nav-link {
+    color: darkgrey;
+  }
   .toc-level-2 {
     font-size: 0.8em;
     padding-left: 26px;
+  }
+  .active {
+    background-color: inherit;
+    color: black;
+    border-right-color:#e66c28;
+    border-right-style: solid;
+    border-right-width: 5px;
+  }
+}
+
+.series-header {
+  .list-group {
+    color: darkgrey;
+    .a {
+      color: darkgrey;
+    } 
+    .active {
+      border-color: $list-group-border-color;
+      background-color: $list-group-bg;
+      color: black;
+      border-left-color:#e66c28;
+      border-left-style: solid;
+      border-left-width: 5px;
+      padding-left: 15px;
+    }
   }
 }
 
@@ -55,16 +92,4 @@ body {
 .book-button {
   padding: 0px;
   border: 0px;
-}
-
-//Anchors
-.anchorjs-link {
-  color: grey;
-}
-.anchorjs-link:hover {
-  color: #2500ad;
-  text-decoration: none;
-}
-*:hover > .anchorjs-link {
-  transition: color .25s linear;
 }

@@ -1,6 +1,9 @@
 ---
 layout: default
-javascript: javascript-post.html
+libs:
+  anchor: true
+  code: true
+  toc: true
 ---
 {% if page.thumbnail %}
   {% assign thumbnail = page.thumbnail %}
@@ -42,16 +45,16 @@ javascript: javascript-post.html
 
 <div class="row">
   <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
-  <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column not-behind-nav p-0 rounded">
-    <div class="container d-flex flex-column h-100 p-0 rounded">
-      <a class="btn book-button" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100 rounded-top" alt="The Design of Web APIs book"></a>
+  <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0 close-to-main-navbar border-right">
+    <div class="container d-flex flex-column h-100 p-0">
+      <a class="btn book-button" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
       {% if page.series %}
       <!-- Split dropup button -->
       <div class="btn-group">
-        <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-sm dropdown-toggle rounded-0 bg-light border-bottom border-top" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{page.series}}
         </button>
-        <div class="dropdown-menu">
+        <div class="dropdown-menu rounded-0">
           {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
           {% for my_page in sorted %}
             {% if my_page.series_title == page.series_title %}
@@ -66,13 +69,13 @@ javascript: javascript-post.html
         </div>
       </div>
       {% endif %}
-      <div class="flex-grow-1 overflow-auto m-0 rounded-bottom" id="scrollable-toc">
+      <div class="flex-grow-1 overflow-auto m-0" id="scrollable-toc">
         {% include toc.html html=content h_min=1 h_max=2 %}
       </div>
     </div>
   </div>
   <!-- MAIN CONTENT-->
-  <div class="col-sm-12 col-md-9 col-lg-10 col-xl-10">
+  <div class="col-sm-12 col-md-9 col-lg-10 col-xl-10 below-main-navbar">
     <!-- Image and title ? comming from default? -->
       <!-- Author, date and category -->
       <div class="jumbotron pt-1 pb-1">

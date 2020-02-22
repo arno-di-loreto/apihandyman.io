@@ -1,13 +1,17 @@
+---
+libs:
+  bootstrap: true
+  main: true
+---
 <!DOCTYPE html>
+{% assign included_libs="" %}
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
-  {% include head.html %}
+  {% include head.html included_libs=included_libs %}
   <body  data-spy="scroll" data-target="#toc">
     {% include navbar.html %}
-    <!-- MAIN-->
-    <div class="container">
+    <div class="container close-to-main-navbar">
     {{ content }}
     </div>
-    <!-- FOOT JS -->
-    {% include javascript.html %}
+    {% include foot.html %}
   </body>
 </html>
