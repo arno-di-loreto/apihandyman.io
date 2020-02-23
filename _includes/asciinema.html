@@ -8,8 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-md-auto">
           <li class="nav-item"><a class="nav-link"><i class="fas fa-fast-backward"></i></a></li>
-          <li class="nav-item"><a class="nav-link" onclick="javascript:console.log('play');document.getElementById('{{include.src}}').play();"><i class="fas fa-play"></i></a></li>
-          <li class="nav-item"><a class="nav-link" onclick="javascript:console.log('pause');document.getElementById('{{include.src}}').pause();"><i class="fas fa-pause"></i></a></li>
+          <li class="nav-item"><a class="nav-link" id="play" onclick="javascript:bashPlayPause(this);"><i class="fas fa-play"></i></a></li>
           <li class="nav-item"><a class="nav-link"><i class="fas fa-fast-forward"></i></a></li>
           <li class="nav-item">
             <a class="nav-link d-none d-block d-sm-block d-md-block d-lg-none">68</a>
