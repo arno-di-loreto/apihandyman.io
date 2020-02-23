@@ -24,6 +24,10 @@ code:not(.code-block) {
     height: 10px; // If set to 0px nothing is copied 🤔
   }
 
+  .navbar-brand {
+    font-size: 0.9em;
+  }
+
   //border-color: black;
   //overflow: hidden;
   margin-bottom: 1em;
