@@ -54,20 +54,58 @@ body {
 #toc {
   padding-left: 0px;
   padding-right: 0px;
+  padding-top: 0px;
   .nav-link {
     color: darkgrey;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #e66c28;
+    border-radius: 0;
+    border-bottom-style: none;
+    border-top-style: none;
   }
   .toc-level-2 {
     font-size: 0.8em;
     padding-left: 26px;
   }
   .active {
-    background-color: inherit;
+    background-color: white;
     color: black;
-    border-right-color:#e66c28;
-    border-right-style: solid;
-    border-right-width: 5px;
+
+    border-left-color:#e66c28;
+    border-left-style: solid;
+    border-left-width: 8px;
+    border-right-style: none;
   }
+
+  .above-active {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #e66c28;
+    border-bottom-right-radius: 0.25rem;
+  }
+
+  .below-active {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #e66c28;
+    border-top-right-radius: 0.25rem;
+  }
+  /*
+  .toc-level-1.active + .nav .toc-level-2:first-child {
+    background-color: yellow;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #e66c28;
+  }
+
+  .toc-level-2.active + .toc-level-2 {
+    background-color: greenyellow;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #e66c28;
+  }
+  */
 }
 
 .series-header {

@@ -46,12 +46,12 @@ libs:
 
 <div class="row">
   <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
-  <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0 close-to-main-navbar border-right">
+  <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0 close-to-main-navbar">
     <div class="container d-flex flex-column h-100 p-0">
-      <a class="btn book-button" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
+      <a class="btn book-button border-right" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
       {% if page.series %}
       <!-- Split dropup button -->
-      <div class="btn-group">
+      <div class="btn-group  border-right">
         <button type="button" class="btn btn-sm dropdown-toggle rounded-0 bg-light border-bottom border-top" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{page.series}}
         </button>
