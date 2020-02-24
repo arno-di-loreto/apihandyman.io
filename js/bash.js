@@ -81,6 +81,11 @@ function bashPlayPause(button) {
   }
 }
 
+function bashPlayerGoTo(button, time) {
+  const player = getBashPlayer(button)
+  player[0].currentTime = time
+}
+
 function addEventListenersToBashPlayer(player) {
   player[0].addEventListener('pause', function(e) {
     updateBashPlayerPlayPauseButtonIcon(this, 'play')

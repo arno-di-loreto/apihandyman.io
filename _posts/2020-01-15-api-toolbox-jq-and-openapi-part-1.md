@@ -61,7 +61,7 @@ There are also two other almost empty examples used when working on multiple fil
 
 In this first section, we'll learn how to invoke JQ and its basic principles. The whole content of this section has been recorded with Asciinema (but is available as regular text right after the player).
 
-{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-1/invoke-jq.cast" title="Invoking JQ" poster="npt:1:20" %}
+{% include asciinema.html sections="Beautify and color JSON,11;Extract data with JQ filters,66;Generate JSON,90;Generate text,108;Pipe filters,156;Use JQ files,227" src="/code/api-toolbox-jq-and-openapi/part-1/invoke-jq.cast" title="Invoking JQ" poster="npt:1:20" %}
 
 ## Beautify and color JSON
 

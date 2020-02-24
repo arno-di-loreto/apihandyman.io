@@ -15,19 +15,22 @@
             <a class="nav-link d-none d-lg-block d-xl-none">104</a>
             <a class="nav-link d-none d-xl-block">125</a>
           </li>
+          {% if include.sections %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-list-ul"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" onclick="javascript:console.log('go to');document.getElementById('{{include.src}}').currentTime = 67;">Extract data witj JQ filter</a>
-              <a class="dropdown-item" onclick="javascript:bashPlayPause(this);">Play</a>
-              <a class="dropdown-item" onclick="javascript:bashPlayPause(this);">Pause</a>
-              <a class="dropdown-item" onclick="javascript:console.log('duration', document.getElementById('{{include.src}}').duration);">Duration</a>
-              <a class="dropdown-item" onclick="javascript:console.log('currentTime', document.getElementById('{{include.src}}').currentTime);">Current time in seconds</a>
-              <a class="dropdown-item" onclick="javascript:console.log('wtf', document.getElementById('{{include.src}}').wtf);">WTF</a>
+              <span class="dropdown-item-text">Chapters</span>
+              <div class="dropdown-divider"></div>
+              {% assign section=include.sections | split:";" %}
+              {% for section in section %}
+                {% assign sectionValues=section | split:"," %}
+                <a class="dropdown-item" onclick="javascript:bashPlayerGoTo(this, {{sectionValues[1]}})">{{sectionValues[0]}}</a>
+              {% endfor %}
             </div>
           </li>
+          {% endif %}
         </ul>
       </div>
     </nav>

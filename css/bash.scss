@@ -7,4 +7,15 @@
     position: relative;
     bottom: 0px;
   }
+
+  .dropdown-menu {
+    background-color: black;
+    color: white;
+    .dropdown-item-text {
+      color: gray
+    }
+    .dropdown-item:hover {
+      color: black
+    }
+  }
 }
