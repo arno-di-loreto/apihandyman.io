@@ -41,8 +41,7 @@ function resizePlayers() {
   const expectedCols = bashBootstrapCols[size]
   let resized = false
   $('.bash-player').each(function(index){
-    const playerDiv = $(this)
-    const player = getBashPlayer(playerDiv)
+    const player = getBashPlayer(this)
     const playerCols = player.attr('cols')
     if(playerCols !== expectedCols) {
       resized = true
@@ -61,9 +60,9 @@ function resizePlayers() {
       const html = '<asciinema-player id="player" title="'+title+'" author="'+author+'" rows="'+rows+'" cols="'+cols+'" src="'+src+poster+'"></asciinema-player>'
       const playerIsPlaying = bashPlayerIsPlaying(player)
       const playerCurrentTime = player.currentTime
+      const playerDiv = $(player).parent()
       playerDiv.html(html)
       const newPlayer = getBashPlayer(playerDiv)
-      console.log(newPlayer)
       newPlayer.currentTime = playerCurrentTime
       updateBashPlayerPlayPauseButtonIcon(playerDiv, 'play')
       addEventListenersToBashPlayer(newPlayer)
