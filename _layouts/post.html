@@ -48,12 +48,12 @@ libs:
   <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
   <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0 close-to-main-navbar">
     <div class="container d-flex flex-column h-100 p-0">
-      <a class="btn book-button border-right" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
+      <a class="btn book-button p-0 border-top-0 border-bottom-0 border-left-0" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
       {% if page.series %}
       <!-- Split dropup button -->
-      <div class="btn-group  border-right">
-        <button type="button" class="btn btn-sm dropdown-toggle rounded-0 bg-light border-bottom border-top" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{page.series}}
+      <div class="btn-group dropright">
+        <button type="button" class="btn btn-sm rounded-0 border-top-0 border-bottom-0 border-left-0 text-wrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{page.series}} Series
         </button>
         <div class="dropdown-menu rounded-0">
           {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
@@ -70,13 +70,15 @@ libs:
         </div>
       </div>
       {% endif %}
+      <div class="toc-filler toc-filler-top"></div>
       <div class="flex-grow-1 overflow-auto m-0" id="scrollable-toc">
         {% include toc.html html=content h_min=1 h_max=2 %}
       </div>
+      <div class="toc-filler toc-filler-bottom"></div>
     </div>
   </div>
   <!-- MAIN CONTENT-->
-  <div class="col-sm-12 col-md-9 col-lg-10 col-xl-10 below-main-navbar">
+  <div class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10 below-main-navbar">
     <!-- Image and title ? comming from default? -->
       <!-- Author, date and category -->
       <div class="jumbotron pt-1 pb-1">

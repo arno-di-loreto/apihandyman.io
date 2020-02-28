@@ -4,8 +4,13 @@
 @charset "utf-8";
 @import "bootstrap/scss/bootstrap";
 
+$main-sidebar-right-color: #e66c28;
+$main-sidebar-right-color: #BE5B15;
+$main-sidebar-right-color: #7E8177;
+
 body {
   padding-top: 55px;
+  background-color: #D4D6CB;
 }
 
 .not-behind-nav {
@@ -13,7 +18,8 @@ body {
 }
 
 .below-main-navbar {
-  margin-top: 15px;
+  //margin-top: 15px;
+  padding-top: 15px;
 }
 
 .close-to-main-navbar {
@@ -21,19 +27,34 @@ body {
 }
 
 .main-navbar {
-  background-color: #0C4E68;
-  color: #e66c28;
+  background-color: #1E1513;
+  //color: #e66c28;
+  color: #BE5B15;
   .navbar-brand {
-    color: #e66c28
+    //color: #e66c28
+    color: #BE5B15;
   }
 //  -webkit-box-shadow: 0 8px 6px -6px #999;
 //	   -moz-box-shadow: 0 8px 6px -6px #999;
 //	        box-shadow: 0 8px 6px -6px #999;
 }
 
+.main-content {
+  background-color: white;
+}
+
 .left-column {
   height: calc(100vh - 55px);
   background-color: white;
+
+  .btn-group {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: $main-sidebar-right-color;
+    .btn {
+      background-color: #DE9143;
+    }
+  }
 }
 
 // Avoid having headers hidden by navbar when using inner links (with toc for example)
@@ -51,15 +72,37 @@ body {
   flex-grow : 1;
 }
 
+.toc-filler {
+  padding: 4px;
+  background-color: $main-sidebar-right-color;
+}
+
+.left-column {
+
+  
+}
+
+.book-button {
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: $main-sidebar-right-color;
+  border-radius: unset;
+  .btn {
+    border-style: none;
+  }
+}
+
 #toc {
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 0px;
+  padding-bottom: 0px;
   .nav-link {
-    color: darkgrey;
+    color: #C5C6B6;
+    background-color: #7E8177;
     border-right-style: solid;
     border-right-width: 1px;
-    border-right-color: #e66c28;
+    border-right-color: $main-sidebar-right-color;
     border-radius: 0;
     border-bottom-style: none;
     border-top-style: none;
@@ -71,39 +114,24 @@ body {
   .active {
     background-color: white;
     color: black;
-
-    border-left-color:#e66c28;
+    border-left-color:$main-sidebar-right-color;
     border-left-style: solid;
     border-left-width: 8px;
     border-right-style: none;
   }
-
+/*
   .above-active {
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    border-bottom-color: #e66c28;
+    border-bottom-color: $main-sidebar-right-color;
     border-bottom-right-radius: 0.25rem;
   }
-
+  
   .below-active {
     border-top-style: solid;
     border-top-width: 1px;
-    border-top-color: #e66c28;
-    border-top-right-radius: 0.25rem;
-  }
-  /*
-  .toc-level-1.active + .nav .toc-level-2:first-child {
-    background-color: yellow;
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-top-color: #e66c28;
-  }
-
-  .toc-level-2.active + .toc-level-2 {
-    background-color: greenyellow;
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-top-color: #e66c28;
+    border-top-color: $main-sidebar-right-color;
+    //border-top-right-radius: 0.25rem;
   }
   */
 }
@@ -124,10 +152,4 @@ body {
       padding-left: 15px;
     }
   }
-}
-
-// Book
-.book-button {
-  padding: 0px;
-  border: 0px;
 }
