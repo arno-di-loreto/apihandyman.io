@@ -47,15 +47,14 @@ libs:
 <div class="row">
   <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
   <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0 close-to-main-navbar">
-    <div class="container d-flex flex-column h-100 p-0">
-      <a class="btn book-button p-0 border-top-0 border-bottom-0 border-left-0" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
+    <div class="container d-flex flex-column p-0 rounded">
+      <a class="btn book-button p-0 border-0 rounded-top" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100 rounded-top" alt="The Design of Web APIs book"></a>
       {% if page.series %}
-      <!-- Split dropup button -->
-      <div class="btn-group dropright">
-        <button type="button" class="btn btn-sm rounded-0 border-top-0 border-bottom-0 border-left-0 text-wrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="btn-group dropright border-0">
+        <button type="button" class="btn btn-sm rounded-0 border-0 text-wrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{page.series}} Series
         </button>
-        <div class="dropdown-menu rounded-0">
+        <div class="dropdown-menu border-0">
           {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
           {% for my_page in sorted %}
             {% if my_page.series_title == page.series_title %}
@@ -74,28 +73,28 @@ libs:
       <div class="flex-grow-1 overflow-auto m-0" id="scrollable-toc">
         {% include toc.html html=content h_min=1 h_max=2 %}
       </div>
-      <div class="toc-filler toc-filler-bottom"></div>
+      <div class="rounded-bottom toc-filler toc-filler-bottom"></div>
     </div>
   </div>
   <!-- MAIN CONTENT-->
   <div class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10 below-main-navbar">
     <!-- Image and title ? comming from default? -->
       <!-- Author, date and category -->
-      <div class="jumbotron pt-1 pb-1">
-        {% if page.series %}
-        <p class="lead mb-0">{{page.series}} Series Part {{ page.series_number }}</p>
-        {% endif%}
-        <h1 class="display-4">{{title}}</h1>
-        <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="post thumbnail">
-        <p class="font-weight-lighter">
-          {% if page.author %}
-          By {{ page.author }}
-        {% endif %}
-        {% if page.date %}
-          {{ page.date | date: "%b. %-d, %Y" }}
-        {% endif %}
-        <span class="badge badge-pill badge-primary">{{ page.category }}</span>
-        </p>
+      <div class="card card-page-title">
+        <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top" alt="">
+        <div class="card-body">
+          {% if page.series %}
+          <h5 class="font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
+          {% endif %}
+          <h1 class="card-title">{{title}}</h1>
+          <p class="card-text text-muted">
+            {% if page.author %}
+              By {{ page.author }}
+            {% endif %}
+            {% if page.date %}
+              , {{ page.date | date: "%b. %-d, %Y" }}
+            {% endif %}</p>
+        </div>
       </div>
       <div class="text-justify anchors">
          {{ content }}

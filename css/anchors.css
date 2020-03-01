@@ -1,8 +1,8 @@
 .anchorjs-link {
-  color: grey;
+  color: #D0DBD6;
 }
 .anchorjs-link:hover {
-  color: #2500ad;
+  color: #E66C29;
   text-decoration: none;
 }
 *:hover > .anchorjs-link {
