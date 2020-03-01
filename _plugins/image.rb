@@ -80,9 +80,9 @@ class Image < Liquid::Tag
     end
 
     if @source == ""
-      img = "<img class=\"img-fluid\" src=\"#{src}\">"
+      img = "<img class=\"img-fluid border rounded\" src=\"#{src}\">"
     else
-      img = "<a href=\"#{@source}\"#{target}><img class=\"img-fluid\" src=\"#{src}\"></a>"
+      img = "<a href=\"#{@source}\"#{target}><img class=\"img-fluid border rounded\" src=\"#{src}\"></a>"
     end
 
     if @label != ""
