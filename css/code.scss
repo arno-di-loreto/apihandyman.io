@@ -15,6 +15,7 @@ code:not(.code-block) {
 
 //Code blocks
 .card-code {
+  border-radius: 0;
   // Hiding clean code
   // Cannot make it invisible because clipboard.js will not be able to copy its content
   .copy-hidden {

@@ -43,12 +43,16 @@ libs:
         </div>
       </div>
     </div>
-
-<div class="row">
-  <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
-  <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0 close-to-main-navbar">
-    <div class="container d-flex flex-column p-0 rounded">
-      <a class="btn book-button p-0 border-0 rounded-top" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100 rounded-top" alt="The Design of Web APIs book"></a>
+<div class="row page-image">
+  <div class="col-md-12 p-0">
+    <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top" alt="">
+  </div>
+</div>
+<div class="row page-content">
+  <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN MD -->
+  <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0">
+    <div class="container d-flex flex-column p-0">
+      <a class="btn book-button p-0 border-0" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
       {% if page.series %}
       <div class="btn-group dropright border-0">
         <button type="button" class="btn btn-sm rounded-0 border-0 text-wrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -73,18 +77,17 @@ libs:
       <div class="flex-grow-1 overflow-auto m-0" id="scrollable-toc">
         {% include toc.html html=content h_min=1 h_max=2 %}
       </div>
-      <div class="rounded-bottom toc-filler toc-filler-bottom"></div>
+      <div class="toc-filler toc-filler-bottom"></div>
     </div>
   </div>
   <!-- MAIN CONTENT-->
   <div class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10 below-main-navbar">
     <!-- Image and title ? comming from default? -->
       <!-- Author, date and category -->
-      <div class="card card-page-title">
-        <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top" alt="">
-        <div class="card-body">
+      <div class="card card-page-title border-0">
+        <div class="card-body p-0">
           {% if page.series %}
-          <h5 class="font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
+          <h5 class="card-page-series-title font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
           {% endif %}
           <h1 class="card-title">{{title}}</h1>
           <p class="card-text text-muted">
@@ -96,8 +99,9 @@ libs:
             {% endif %}</p>
         </div>
       </div>
-      <div class="text-justify anchors">
-         {{ content }}
+      <hr/>
+      <div class="page-content-text text-justify anchors">
+        {{ content }}
       </div>
   </div>
 </div>  

@@ -43,8 +43,12 @@ body {
 }
 
 .card-page-title {
-  margin-top: 28px;
+  margin-top: 0px;
   margin-bottom: 15px;
+
+  .card-page-series-title, .card-title  {
+    margin-bottom: 0;
+  }
 }
 
 .below-main-navbar {
@@ -53,7 +57,7 @@ body {
 }
 
 .close-to-main-navbar {
-  top: 95px;
+  top: 55px;
 }
 
 .main-navbar {
@@ -68,16 +72,63 @@ body {
   }
 }
 
+.page-image {
+  margin-bottom: 35px
+}
+
+.page-content {
+  @media (min-width: 768px) {
+    margin-left: -5px;
+    margin-right: 15px;
+  }
+  @media (max-width: 768px) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .page-content-text-separator {
+    background-color: $background;
+    height: 1rem;
+    margin-left: -40px;
+    margin-right: -40px;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    text-align: left;
+  }
+
+  // Avoid having headers hidden by navbar when using inner links (with toc for example)
+  h1[id]::before {
+    content: '';
+    display: block;
+    height:      80px;
+    margin-top: -65px;
+    visibility: hidden;
+  }
+
+}
+
 .main-content {
   background-color: $content-background;
+  top: -120px;
+  @media (min-width: 768px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  @media (max-width: 768px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .left-column {
+  top: 95px;
   height: calc(100vh - 135px);
   background-color: $background;
 
   .d-flex {
     max-height: calc(100vh - 135px);
+    margin-right: -20px;
     box-shadow: 5px 5px 2px 1px rgba(1, 1, 1, .4);
   }
 
@@ -104,15 +155,6 @@ body {
       box-shadow: none;
     }
   }
-}
-
-// Avoid having headers hidden by navbar when using inner links (with toc for example)
-[id]::before {
-  content: '';
-  display: block;
-  height:      65px;
-  margin-top: -65px;
-  visibility: hidden;
 }
 
 //TOC
@@ -178,9 +220,10 @@ body {
   }
 
   * > .active {
-    transition: border .25s linear;
-    //transition: box-shadow .25s linear;
+    transition: padding-left .25s linear, border-left-width .25s linear, background-color .25s linear;
   }
+
+
   .nav-link:hover {
     color: $deep-carrot-orange;
   }
