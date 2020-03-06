@@ -1,0 +1,117 @@
+---
+layout: default
+---
+<div class="row me">
+  <div class="container-fluid">
+    <div class="col-12">
+      <div class="container p-0">
+        <div class="col-12 p-0">
+          <div class="card rounded-0 border-0 p-0 m-0 text-right">
+            <img src="/images/commons/top.jpg" class="banner card-img-top rounded-0" alt="...">
+            <div class="card-img-overlay">
+              <div class="card-img-overlay-text">
+              <p class="card-text text-justify">Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</p>
+              <a href="/about" class="btn btn-primary btn-sm">How can I help you?</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-book">
+  <div class="container p-0">
+    <div class="col-12 p-0">
+      <div class="card m-0 p-0 border-0 rounded-0">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{ "/images/commons/book/book-home-banner-380-300.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-xl-block" alt="The Design of Web APIs book cover">
+            <img src="{{ "/images/commons/book/book-home-banner-320-260.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-lg-block d-xl-none" alt="The Design of Web APIs book cover">
+            <img src="{{ "/images/commons/book/book-home-banner-240-310.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-md-block d-lg-none" alt="The Design of Web APIs book cover">
+            <img src="{{ "/images/commons/book/book-home-banner-1080-560.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-block d-md-none d-lg-none" alt="The Design of Web APIs book cover">
+          </div>
+          <div class="col-md-8 d-flex flex-column">
+            <div class="card-body pb-0 flex-grow-1 h-100 h-lg-75 pt-lg-5">
+              <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <blockquote class="blockquote">
+                      <p class="mb-0">Assembles the fundamental building blocks of API design in an easy-to-access way, and walks you through the vast landscape in a friendly and comfortable manner.</p>
+                      <footer class="blockquote-footer">From the Foreword by Kin Lane, The API Evangelist</footer>
+                    </blockquote>
+                  </div>
+                  <div class="carousel-item">
+                    <blockquote class="blockquote">
+                      <p class="mb-0">If you’re serious about learning or mastering web API design, Arnaud Lauret’s The Design of Web APIs should join your programming library.</p>
+                      <footer class="blockquote-footer">From The Design of Web APIs review, Nordic APIs</footer>
+                    </blockquote>
+                  </div>
+                </div>
+              </div> 
+            </div>
+            <div class="card-body text-center">
+              <a href="#" class="btn btn-primary stretched-link">Get 37% off my book! (or any other Manning product!)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row home-last-posts-title">
+  <div class="container">
+    <div class="col-12 text-center align-self-center">
+      <h1>Last posts</h1>
+    </div>
+  </div>
+</div>
+<div class="row home-last-posts">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2">
+          {% assign last_posts = site.posts | slice:0, 2 %}
+          {% for post in last_posts %}
+            {% if post.thumbnail %}
+              {% assign thumbnail = post.thumbnail %}
+            {% else %}
+              {% assign thumbnail = site.default_thumbnail %}
+              {% assign page_thumbnail = '/images' | append: post.permalink | append: 'thumbnail.png' %}
+              {% for static_file in site.static_files %}
+                {% if static_file.path == page_thumbnail %}
+                    {% assign thumbnail = page_thumbnail %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% if post.series %}
+              {% assign title = post.series_title%}
+            {% else %}
+              {% assign title = post.title %}
+            {% endif %}
+            <div class="col mb-4">
+              <div class="card card-post-summary-home rounded-0 border-0 h-100">
+                <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top rounded-0" alt="post thumbnail">
+                <div class="card-body">
+                  {% if post.series %}
+                  <h5 class="card-post-summary-home-series-title font-weight-lighter">{{post.series}} Series - Part  {{ post.series_number }}</h5>
+                  {% endif %}
+                  <a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}" class="stretched-link"><h4 class="card-title">{{title}}</h4></a>
+                  {% if post.full %}
+                    <p class="card-text ">{{ post.content }}</p>
+                  {% else %}
+                    <p class="card-text">{{ post.short_summary }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="container-fluid" style="background-color: white;min-height: 100px;margin-top: 30px">
+    <div class="cols-12 text-center">
+      
+    </div>
+  </div>
+</div>

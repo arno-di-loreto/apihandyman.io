@@ -33,18 +33,144 @@ $content-font: black;
 $series-title-background: $deep-carrot-orange;
 $series-title-font: black;
 
+
+
+$navbar-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12);
+$navbar-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.12);
+$navbar-shadow: 0px 5px 2px 1px rgba(1, 1, 1, .4);
+$navbar-shadow: 0px 2px 2px 1px rgba(0, 0, 0, .4);
+
+$floating-shadow: 5px 5px 2px 1px rgba(1, 1, 1, .4);
+$floating-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .4);
+
 body {
   padding-top: 55px;
   background-color: $background;
+  font-family: 'Roboto', sans-serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Spartan', sans-serif;
+  }
+}
+
+.row-book {
+  background: linear-gradient(to right,  $dark-imperial-blue 0%,$dark-imperial-blue 50%,white 50%,white 100%);
+  .blockquote {
+    font-family: 'Spartan', sans-serif;
+    text-align: justify;
+  }
+  .btn-primary {
+    margin-top: -50px;
+  }
+}
+
+.card-post-summary-home {
+  box-shadow: $floating-shadow;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.home-last-posts-title {
+  h1 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.background-book-home-banner {
+  background-repeat: no-repeat;
+  //background-size: contain;
+  background-size: cover;
+}
+
+@media (min-width: 1200px) {
+  .background-book-home-banner {
+    background-image:url('{{ "/images/commons/book/book-home-banner-380-300.png" | prepend: site.baseurl | prepend: site.github.url}}');
+    height: 250px;
+  }
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+  .background-book-home-banner {
+    background-image:url('{{ "/images/commons/book/book-home-banner-350.png" | prepend: site.baseurl | prepend: site.github.url}}');
+    height: 220px;
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .background-book-home-banner {
+    background-image:url('{{ "/images/commons/book/book-home-banner-350.png" | prepend: site.baseurl | prepend: site.github.url}}');
+    height: 210px;
+  }
+}
+
+
+.me {
+  background-color: white;
+  margin-top: -55px;
+
+  .card-img-overlay-text {
+    width: 400px;
+    padding: 10px;
+    background-color: $navbar-backgound;
+    color: white;
+    float: right;
+  }
+}
+
+@media (min-width: 1200px) {
+  .me .card-img-overlay-text {
+    margin-top: 75px;
+  }
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+  .me .card-img-overlay-text {
+    margin-top: 55px;
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .me .card-img-overlay-text {
+    margin-top: 35px;
+  } 
+}
+
+.btn-primary {
+  background-color: $deep-carrot-orange;
+  border: none;
+  color: white;
+  border-radius: 0em;
+}
+
+.btn-primary:hover {
+  background-color: $deep-carrot-orange;
 }
 
 .not-behind-nav {
   top: 55px;
 }
 
+.posts {
+  padding-top: 25px;
+}
+
+.card-post-summary {
+  .card-body {
+    background-color: $background;
+  }
+  .over-card-image {
+    margin-top: -100px;
+    background-color:$content-background;
+    padding: 15px;
+  }
+}
+
 .card-page-title {
   margin-top: 0px;
   margin-bottom: 15px;
+  padding-top: 20px;
 
   .card-page-series-title, .card-title  {
     margin-bottom: 0;
@@ -52,28 +178,53 @@ body {
 }
 
 .below-main-navbar {
-  //margin-top: 15px;
-  padding-top: 15px;
+  //padding-top: 15px;
 }
 
 .close-to-main-navbar {
   top: 55px;
 }
 
-.main-navbar {
+.navbar-home {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-home.scrolled {
+  box-shadow: $navbar-shadow;
   background-color: $navbar-backgound;
-  border-bottom-color: $navbar-border;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
+}
+
+.navbar-page {
+  background-color: $navbar-backgound;
+  box-shadow: $navbar-shadow;
+}
+
+.navbar-page.scrolled {
+  box-shadow: $navbar-shadow;
+}
+
+* > .scrolled, .scrolled > * {
+  transition: box-shadow .25s linear, background-color .25s linear;
+}
+
+
+.main-navbar {
   color: $navbar-font;
-  box-shadow: 0px 5px 2px 1px rgba(1, 1, 1, .4);
+  .nav-item .nav-link, .nav-item.active .nav-link {
+    color: $navbar-font;
+  }
   .navbar-brand {
     color: $navbar-font;
   }
+
 }
 
 .page-image {
   margin-bottom: 35px
+}
+
+.content-img {
+  margin-bottom: 1rem;
 }
 
 .page-content {
@@ -88,7 +239,7 @@ body {
 
   .page-content-text-separator {
     background-color: $background;
-    height: 1rem;
+    height: 2rem;
     margin-left: -40px;
     margin-right: -40px;
   }
@@ -97,20 +248,24 @@ body {
     text-align: left;
   }
 
+  .page-content-text {
   // Avoid having headers hidden by navbar when using inner links (with toc for example)
-  h1[id]::before {
-    content: '';
-    display: block;
-    height:      80px;
-    margin-top: -65px;
-    visibility: hidden;
+    [id]::before {
+      content: '';
+      display: block;
+      height:      80px;
+      margin-top: -65px;
+      visibility: hidden;
+    }
   }
+
 
 }
 
 .main-content {
   background-color: $content-background;
   top: -120px;
+  padding-top: 20px;
   @media (min-width: 768px) {
     padding-left: 40px;
     padding-right: 40px;
@@ -129,7 +284,7 @@ body {
   .d-flex {
     max-height: calc(100vh - 135px);
     margin-right: -20px;
-    box-shadow: 5px 5px 2px 1px rgba(1, 1, 1, .4);
+    box-shadow: $floating-shadow;
   }
 
   .dropdown-menu {

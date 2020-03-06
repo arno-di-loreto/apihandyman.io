@@ -80,16 +80,16 @@ class Image < Liquid::Tag
     end
 
     if @source == ""
-      img = "<img class=\"img-fluid border\" src=\"#{src}\">"
+      img = "<img class=\"content-img img-fluid border\" src=\"#{src}\">"
     else
-      img = "<a href=\"#{@source}\"#{target}><img class=\"img-fluid border\" src=\"#{src}\"></a>"
+      img = "<a href=\"#{@source}\"#{target}><img class=\"content-img img-fluid border\" src=\"#{src}\"></a>"
     end
 
     if @label != ""
       if @source == ""
-        plabel = "<p class=\"img-label\">#{@label}</p>"
+        plabel = "<p class=\"content-img-label\">#{@label}</p>"
       else
-        plabel = "<p class=\"img-label\"><a href=\"#{@source}\"#{target}>#{@label}</a></p>"
+        plabel = "<p class=\"content-img-label\"><a href=\"#{@source}\"#{target}>#{@label}</a></p>"
       end
     end
 

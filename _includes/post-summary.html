@@ -10,32 +10,38 @@
   {% endfor %}
 {% endif %}
 
-<!--
-    <h2>
-      <a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">{{ post.title | escape }}</a>
-    </h2>
-    <p><span>{{ post.date | date: "%b %-d, %Y" }}&nbsp;|&nbsp;{{post.category | capitalize }}</span></p>
-    <img class="img-fluid" src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}">
-    {% if post.full %}
-      <p>{{ post.content }}</p>
-    {% else %}
-      <p>{{ post.excerpt }}</p>
-      <p><a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}">Read more</a></p>
-    {% endif %}
-  -->
-    <div class="card text-justify">
-      <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top" alt="post thumbnail">
+{% if post.series %}
+  {% assign title = post.series_title%}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+
+    <div class="card card-post-summary border-0 rounded-0">
+      <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top rounded-0" alt="post thumbnail">
       <div class="card-body">
-        <h5 class="card-title">{{ post.title | escape }}</h5>
-        <p class="card-text"><small class="text-muted">By {{ post.author }}, {{ post.date | date: "%b. %-d, %Y" }}</small></p>
+        <div class="over-card-image">
+        {% if post.series %}
+        <h5 class="card-post-summary-series-title font-weight-lighter">{{post.series}} Series - Part  {{ post.series_number }}</h5>
+        {% endif %}
+        <h4 class="card-title">{{title}}</h4>
+        <p class="card-text text-muted">
+          {% if post.author %}
+            By {{ post.author }}
+          {% endif %}
+          {% if post.date %}
+            , {{ post.date | date: "%b. %-d, %Y" }}
+          {% endif %}
+        </p>
         {% if post.full %}
-        <p class="card-text ">{{ post.content }}</p>
-        {% if post.target_link %}
-        <a href="{{ post.target_link }}" class="btn btn-primary">{{post.target_label}}</a>
-        {% endif %}
+          <p class="card-text ">{{ post.content }}</p>
+            {% if post.target_link %}
+              <a href="{{ post.target_link }}" class="btn btn-primary">{{post.target_label}}</a>
+            {% endif %}
         {% else %}
-        <p class="card-text">{{ post.excerpt }}</p>
-        <a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}" class="btn btn-primary">Read more on apihandyman.io</a>
+            <p class="card-text">{{ post.excerpt }}</p>
+            <a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}" class="btn btn-primary">Read more on apihandyman.io</a>
         {% endif %}
+      </div>
       </div>
     </div>

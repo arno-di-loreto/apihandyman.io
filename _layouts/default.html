@@ -1,6 +1,7 @@
 ---
 libs:
   bootstrap: true
+  fontawesome: true
   main: true
 ---
 <!DOCTYPE html>
@@ -9,7 +10,7 @@ libs:
   {% include head.html included_libs=included_libs %}
   <body  data-spy="scroll" data-target="#toc">
     {% include navbar.html %}
-    <div class="container close-to-main-navbar">
+    <div class="container-fluid">
     {{ content }}
     </div>
     {% include foot.html %}

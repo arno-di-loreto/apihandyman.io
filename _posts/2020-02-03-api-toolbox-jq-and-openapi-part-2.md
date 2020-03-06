@@ -12,6 +12,7 @@ series_number: 2
 published: true
 tags:
   - API Toolbox
+short_summary: Build flexible and easily reusable JQ filters by creating functions and modules and also by using command line arguments.
 ---
 Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.<!--more--> We will continue working on OpenAPI files, at the end of this second part, we'll have built a multi-criteria OpenAPI search and some reusable filters, especially one that you'll be able to reuse anytime you'll have to deal with JQ command line parameters.
 

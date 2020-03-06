@@ -23,86 +23,90 @@ libs:
 {% else %}
   {% assign title = page.title %}
 {% endif %}
-
-    <!-- Modal -->
-    <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">The Design of Web APIs</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Use code {{site.mybook_discount_code}} to get {{site.mybook_discount_rate}} my book The Design of Web APIs (works also on any other Manning product!).
-          </div>
-          <div class="modal-footer">
-            <a href="{{site.mybook}}" target="_blank" class="btn btn-primary">Buy on manning.com</a>
+<div class="container below-main-navbar">
+  <div class="row">
+    <div class="col-12">
+      <!-- Modal -->
+      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">The Design of Web APIs</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Use code {{site.mybook_discount_code}} to get {{site.mybook_discount_rate}} my book The Design of Web APIs (works also on any other Manning product!).
+            </div>
+            <div class="modal-footer">
+              <a href="{{site.mybook}}" target="_blank" class="btn btn-primary">Buy on manning.com</a>
+            </div>
           </div>
         </div>
       </div>
+      <div class="row page-image">
+        <div class="col-md-12 p-0">
+          <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
+        </div>
+      </div>
+      <div class="row page-content">
+        <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN MD -->
+        <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0">
+          <div class="container d-flex flex-column p-0">
+            <a class="btn book-button p-0 border-0" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
+            {% if page.series %}
+            <div class="btn-group dropright border-0">
+              <button type="button" class="btn btn-sm rounded-0 border-0 text-wrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{page.series}} Series
+              </button>
+              <div class="dropdown-menu border-0 rounded-0">
+                {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
+                {% for my_page in sorted %}
+                  {% if my_page.series_title == page.series_title %}
+                  <a class="dropdown-item bold">{{ my_page.series_number }} - {{ my_page.series_title }}</a>
+                  {% else %}
+                  <a class="dropdown-item" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_number }} - {{ my_page.series_title }}</a>
+                  {% endif %}
+                {% endfor %}
+                {% for coming_soon in site.data.series[page.series] %}
+                  <a class="dropdown-item disabled">{{ coming_soon.series_number }} - {{ coming_soon.series_title }} (coming soon)</a>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            <div class="toc-filler toc-filler-top"></div>
+            <div class="flex-grow-1 overflow-auto m-0" id="scrollable-toc">
+              {% include toc.html html=content h_min=1 h_max=2 %}
+            </div>
+            <div class="toc-filler toc-filler-bottom"></div>
+          </div>
+        </div>
+        <!-- MAIN CONTENT-->
+        <div class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10">
+          <!-- Image and title ? comming from default? -->
+            <!-- Author, date and category -->
+            <div class="card card-page-title border-0">
+              <div class="card-body p-0">
+                {% if page.series %}
+                <h5 class="card-page-series-title font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
+                {% endif %}
+                <h1 class="card-title">{{title}}</h1>
+                <p class="card-text text-muted">
+                  {% if page.author %}
+                    By {{ page.author }}
+                  {% endif %}
+                  {% if page.date %}
+                    , {{ page.date | date: "%b. %-d, %Y" }}
+                  {% endif %}</p>
+              </div>
+            </div>
+            <hr/>
+            <div class="page-content-text text-justify anchors">
+              {{ content }}
+            </div>
+        </div>
+      </div>
     </div>
-<div class="row page-image">
-  <div class="col-md-12 p-0">
-    <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top" alt="">
   </div>
 </div>
-<div class="row page-content">
-  <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN MD -->
-  <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0">
-    <div class="container d-flex flex-column p-0">
-      <a class="btn book-button p-0 border-0" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
-      {% if page.series %}
-      <div class="btn-group dropright border-0">
-        <button type="button" class="btn btn-sm rounded-0 border-0 text-wrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{page.series}} Series
-        </button>
-        <div class="dropdown-menu border-0">
-          {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
-          {% for my_page in sorted %}
-            {% if my_page.series_title == page.series_title %}
-            <a class="dropdown-item bold">{{ my_page.series_number }} - {{ my_page.series_title }}</a>
-            {% else %}
-            <a class="dropdown-item" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_number }} - {{ my_page.series_title }}</a>
-            {% endif %}
-          {% endfor %}
-          {% for coming_soon in site.data.series[page.series] %}
-            <a class="dropdown-item disabled">{{ coming_soon.series_number }} - {{ coming_soon.series_title }} (coming soon)</a>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
-      <div class="toc-filler toc-filler-top"></div>
-      <div class="flex-grow-1 overflow-auto m-0" id="scrollable-toc">
-        {% include toc.html html=content h_min=1 h_max=2 %}
-      </div>
-      <div class="toc-filler toc-filler-bottom"></div>
-    </div>
-  </div>
-  <!-- MAIN CONTENT-->
-  <div class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10 below-main-navbar">
-    <!-- Image and title ? comming from default? -->
-      <!-- Author, date and category -->
-      <div class="card card-page-title border-0">
-        <div class="card-body p-0">
-          {% if page.series %}
-          <h5 class="card-page-series-title font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
-          {% endif %}
-          <h1 class="card-title">{{title}}</h1>
-          <p class="card-text text-muted">
-            {% if page.author %}
-              By {{ page.author }}
-            {% endif %}
-            {% if page.date %}
-              , {{ page.date | date: "%b. %-d, %Y" }}
-            {% endif %}</p>
-        </div>
-      </div>
-      <hr/>
-      <div class="page-content-text text-justify anchors">
-        {{ content }}
-      </div>
-  </div>
-</div>  
-
