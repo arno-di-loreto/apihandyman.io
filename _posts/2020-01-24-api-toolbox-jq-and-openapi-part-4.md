@@ -3,6 +3,7 @@ title: "API Toolbox - JQ and OpenAPI - Part 4 - Bonus: coloring JQ's terminal ra
 date: 2020-01-24
 author: Arnaud Lauret
 layout: post
+category: posts
 permalink: /api-toolbox-jq-and-openapi-part-2-searching-into-openapi-files/
 codefiles: api-tools-jq
 category: posts

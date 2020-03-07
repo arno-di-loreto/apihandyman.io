@@ -59,63 +59,18 @@ layout: default
     </div>
   </div>
 </div>
-<div class="row home-section-title">
-  <div class="container">
-    <div class="col-12 text-center align-self-center">
-      <h1><a href="/blog">Last posts from the blog</a></h1>
-    </div>
-  </div>
-</div>
-<div class="row home-last-posts">
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-          {% assign last_posts = site.posts | slice:0, 2 %}
-          {% for post in last_posts %}
-            {% if post.thumbnail %}
-              {% assign thumbnail = post.thumbnail %}
-            {% else %}
-              {% assign thumbnail = site.default_thumbnail %}
-              {% assign page_thumbnail = '/images' | append: post.permalink | append: 'thumbnail.png' %}
-              {% for static_file in site.static_files %}
-                {% if static_file.path == page_thumbnail %}
-                    {% assign thumbnail = page_thumbnail %}
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-
-            {% if post.series %}
-              {% assign title = post.series_title%}
-            {% else %}
-              {% assign title = post.title %}
-            {% endif %}
-            <div class="col mb-4">
-              <div class="card card-post-summary-home rounded-0 border-0 h-100">
-                <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top rounded-0" alt="post thumbnail">
-                <div class="card-body">
-                  {% if post.series %}
-                  <h5 class="card-post-summary-home-series-title font-weight-lighter">{{post.series}} Series - Part  {{ post.series_number }}</h5>
-                  {% endif %}
-                  <a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}" class="stretched-link"><h4 class="card-title">{{title}}</h4></a>
-                  <h6 class="card-subtitle mb-2 text-muted">By {{post.author}}</h6>
-                  {% if post.full %}
-                    <p class="card-text ">{{ post.content }}</p>
-                  {% else %}
-                    <p class="card-text">{{ post.short_summary }}</p>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-    </div>
-  </div>
-</div>
-<div class="row home-section-button">
-  <div class="container">
-    <div class="col-12 text-center align-self-center">
-      <a href="{{ '/blog' | prepend: site.baseurl | prepend: site.github.url }}" class="btn btn-primary" role="button" >Read more on the blog</a>
-    </div>
-  </div>
-</div>
+{% include home-last.html 
+  section_title="Last posts from the blog" 
+  category='posts'
+  more_link='/blog'
+  more_button='Read more posts'
+  %}
+{% include home-last.html 
+  section_title="Last talks" 
+  category='talks'
+  more_link='/talks'
+  more_button='See more talks'
+  %}
 <div class="row home-section-title">
   <div class="container">
     <div class="col-12 text-center align-self-center">

@@ -10,6 +10,7 @@ series: JQ and OpenAPI
 series_title: Using JQ command line arguments, functions and modules
 series_number: 2
 published: true
+category: posts
 tags:
   - API Toolbox
 short_summary: Build flexible and easily reusable JQ filters by creating functions and modules and also by using command line arguments.
