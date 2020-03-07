@@ -203,6 +203,16 @@ body {
   box-shadow: $navbar-shadow;
 }
 
+.navbar-toggler {
+  i {
+    color: $deep-carrot-orange;
+  }
+}
+
+.navbar-post-title {
+  color: $sidebar-font;
+}
+
 * > .scrolled, .scrolled > * {
   transition: box-shadow .25s linear, background-color .25s linear;
 }
