@@ -19,3 +19,21 @@ $(window).scroll(function(){
   $('.navbar-post-title').toggleClass('d-none', $(this).scrollTop() < titleBottom);
   //$('.navbar-page').toggleClass('scrolled', $(this).scrollTop() > 35);
 });
+
+// Privacy message
+$(document).ready(function(){
+  showPrivacyMessage()
+})
+
+function showPrivacyMessage() {
+  if(!localStorage.getItem('privacyPolicyAccepted')) {
+    $('.privacy-message').toggleClass('d-none')
+  }
+}
+
+function acceptPrivacyPolicy() {
+  if(!localStorage.getItem('privacyPolicyAccepted')) {
+    localStorage.setItem('privacyPolicyAccepted', true)
+  }
+  $('.privacy-message').toggleClass('d-none')
+}
