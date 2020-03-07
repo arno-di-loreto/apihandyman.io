@@ -31,9 +31,7 @@ $sidebar-border-active: $deep-carrot-orange;
 $content-background: white;
 $content-font: black;
 $series-title-background: $deep-carrot-orange;
-$series-title-font: black;
-
-
+$series-title-font: $dark-imperial-blue;
 
 $navbar-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12);
 $navbar-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.12);
@@ -52,8 +50,39 @@ body {
   }
 }
 
+
+// To fix strange behavior when modal open: top/bottom borders on toc navbar
+// Class modal-open is added to body and cause this mess, following trick solves the problem
+// https://stackoverflow.com/questions/25274244/twitter-bootstrap-modal-opening-closing-causes-fixed-header-to-jump
+.modal-open {
+  overflow: inherit
+}
+
+.btn-primary {
+  background-color: $deep-carrot-orange;
+  border: none;
+  color: white;
+  border-radius: 0em;
+}
+
+.btn-primary:hover {
+  background-color: $deep-carrot-orange;
+}
+
+.not-behind-nav {
+  top: 55px;
+}
+
+
+// Home
+
+@include media-breakpoint-up(md) { 
+  .row-book {
+    background: linear-gradient(to right,  $dark-imperial-blue 0%,$dark-imperial-blue 50%,white 50%,white 100%);
+  }
+}
+
 .row-book {
-  background: linear-gradient(to right,  $dark-imperial-blue 0%,$dark-imperial-blue 50%,white 50%,white 100%);
   .blockquote {
     font-family: 'Spartan', sans-serif;
     text-align: justify;
@@ -71,40 +100,16 @@ body {
   }
 }
 
-.home-last-posts-title {
+.home-section-title {
   h1 {
     margin-top: 3rem;
     margin-bottom: 3rem;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 }
-
-.background-book-home-banner {
-  background-repeat: no-repeat;
-  //background-size: contain;
-  background-size: cover;
-}
-
-@media (min-width: 1200px) {
-  .background-book-home-banner {
-    background-image:url('{{ "/images/commons/book/book-home-banner-380-300.png" | prepend: site.baseurl | prepend: site.github.url}}');
-    height: 250px;
-  }
-}
-
-@media only screen and (max-width: 1199px) and (min-width: 992px) {
-  .background-book-home-banner {
-    background-image:url('{{ "/images/commons/book/book-home-banner-350.png" | prepend: site.baseurl | prepend: site.github.url}}');
-    height: 220px;
-  }
-}
-
-@media only screen and (max-width: 991px) and (min-width: 768px) {
-  .background-book-home-banner {
-    background-image:url('{{ "/images/commons/book/book-home-banner-350.png" | prepend: site.baseurl | prepend: site.github.url}}');
-    height: 210px;
-  }
-}
-
 
 .me {
   background-color: white;
@@ -135,21 +140,6 @@ body {
   .me .card-img-overlay-text {
     margin-top: 35px;
   } 
-}
-
-.btn-primary {
-  background-color: $deep-carrot-orange;
-  border: none;
-  color: white;
-  border-radius: 0em;
-}
-
-.btn-primary:hover {
-  background-color: $deep-carrot-orange;
-}
-
-.not-behind-nav {
-  top: 55px;
 }
 
 .posts {
@@ -250,10 +240,17 @@ body {
 
   .page-content-text {
   // Avoid having headers hidden by navbar when using inner links (with toc for example)
-    [id]::before {
+    h2[id]::before, h3[id]::before, h4[id]::before, h5[id]::before, h6[id]::before {
       content: '';
       display: block;
       height:      80px;
+      margin-top: -65px;
+      visibility: hidden;
+    }
+    h1[id]::before {
+      content: '';
+      display: block;
+      height:      90px;
       margin-top: -65px;
       visibility: hidden;
     }
@@ -299,9 +296,9 @@ body {
   }
 
   .btn-group {
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-right-color: $sidebar-background;
+    //border-right-style: solid;
+    //border-right-width: 1px;
+    //border-right-color: $sidebar-background;
     .btn {
       background-color: $series-title-background;
       color: $series-title-font;
@@ -309,6 +306,14 @@ body {
     .btn:focus {
       box-shadow: none;
     }
+  }
+
+  .btn-top {
+    background-color: $dark-imperial-blue;
+    color:$sidebar-font;
+  }
+  .btn-top:hover {
+    color: $deep-carrot-orange;
   }
 }
 
@@ -324,9 +329,9 @@ body {
 }
 
 .book-button {
-  border-right-style: solid;
-  border-right-width: 1px;
-  border-right-color: $sidebar-background;
+  //border-right-style: solid;
+  //border-right-width: 1px;
+  //border-right-color: $sidebar-background;
   border-radius: unset;
   .btn {
     border-style: none;
@@ -338,9 +343,12 @@ body {
   padding-right: 0px;
   padding-top: 0px;
   padding-bottom: 0px;
+
   .nav-link {
     color: $sidebar-font;
     background-color: $sidebar-background;
+    border-style: none;
+    border-color: $sidebar-background;
     //border-right-style: solid;
     //border-right-width: 1px;
     //border-right-color: $sidebar-background;
@@ -362,7 +370,7 @@ body {
     border-left-color:$sidebar-border-active;
     border-left-style: solid;
     border-left-width: 8px;
-    border-right-style: none;
+    //border-right-style: none;
     //box-shadow: inset 2em 0em $sidebar-border-active;
   }
 

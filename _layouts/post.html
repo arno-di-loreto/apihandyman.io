@@ -26,25 +26,6 @@ libs:
 <div class="container below-main-navbar">
   <div class="row">
     <div class="col-12">
-      <!-- Modal -->
-      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">The Design of Web APIs</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Use code {{site.mybook_discount_code}} to get {{site.mybook_discount_rate}} my book The Design of Web APIs (works also on any other Manning product!).
-            </div>
-            <div class="modal-footer">
-              <a href="{{site.mybook}}" target="_blank" class="btn btn-primary">Buy on manning.com</a>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="row page-image">
         <div class="col-md-12 p-0">
           <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
@@ -79,6 +60,7 @@ libs:
             <div class="flex-grow-1 overflow-auto m-0" id="scrollable-toc">
               {% include toc.html html=content h_min=1 h_max=2 %}
             </div>
+            <a class="btn p-0 border-0 rounded-0 text-left pt-1 pl-3 btn-top" onclick="javascript:document.body.scrollTop = 0;document.documentElement.scrollTop = 0;">Back to top</a>
             <div class="toc-filler toc-filler-bottom"></div>
           </div>
         </div>
