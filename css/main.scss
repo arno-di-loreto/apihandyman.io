@@ -87,12 +87,12 @@ body {
 // Home
 
 @include media-breakpoint-up(md) { 
-  .row-book {
+  .home-book {
     background: linear-gradient(to right,  $dark-imperial-blue 0%,$dark-imperial-blue 50%,white 50%,white 100%);
   }
 }
 
-.row-book {
+.home-book {
   .blockquote {
     font-family: 'Spartan', sans-serif;
     text-align: justify;
@@ -102,7 +102,7 @@ body {
   }
 }
 
-.card-post-summary-home {
+.card-home {
   box-shadow: $floating-shadow;
   a {
     text-decoration: none;
@@ -119,9 +119,17 @@ body {
       color: inherit;
     }
   }
+
+  h1[id]::before {
+    content: '';
+    display: block;
+    height:      80px;
+    margin-top: -65px;
+    visibility: hidden;
+  }
 }
 
-.me {
+.home-banner {
   background-color: white;
   margin-top: -55px;
 
@@ -135,21 +143,27 @@ body {
 }
 
 @media (min-width: 1200px) {
-  .me .card-img-overlay-text {
+  .home-banner .card-img-overlay-text {
     margin-top: 75px;
   }
 }
 
 @media only screen and (max-width: 1199px) and (min-width: 992px) {
-  .me .card-img-overlay-text {
+  .home-banner .card-img-overlay-text {
     margin-top: 55px;
   }
 }
 
 @media only screen and (max-width: 991px) and (min-width: 768px) {
-  .me .card-img-overlay-text {
+  .home-banner .card-img-overlay-text {
     margin-top: 35px;
   } 
+}
+
+.home-footer {
+    background-color: white;
+    min-height: 100px;
+    margin-top: 30px;
 }
 
 .posts {

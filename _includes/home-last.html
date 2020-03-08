@@ -1,26 +1,16 @@
-{% assign section_title = include.section_title %}
 {% assign posts = site.categories[include.category] | slice:0, 2 %}
-{% assign more_link = include.more_link %}
-{% assign more_button = include.more_button %}
-<div class="row home-section-title">
-  <div class="container">
-    <div class="col-12 text-center align-self-center">
-      <h1><a href="{{more_link | prepend: site.baseurl | prepend: site.github.url }}">{{section_title}}</a></h1>
-    </div>
-  </div>
-</div>
-<div class="row home-last-posts">
+<div class="row home-section">
   <div class="container">
     <div class="row row-cols-1 row-cols-md-2">
           {% for post in posts %}
             {% if post.thumbnail %}
-              {% assign thumbnail = post.thumbnail %}
+              {% assign image = post.thumbnail %}
             {% else %}
-              {% assign thumbnail = site.default_thumbnail %}
-              {% assign page_thumbnail = '/images' | append: post.permalink | append: 'thumbnail.png' %}
+              {% assign image = site.default_thumbnail %}
+              {% assign page_image = '/images' | append: post.permalink | append: 'thumbnail.png' %}
               {% for static_file in site.static_files %}
-                {% if static_file.path == page_thumbnail %}
-                    {% assign thumbnail = page_thumbnail %}
+                {% if static_file.path == page_image %}
+                    {% assign image = page_image %}
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -31,21 +21,29 @@
               {% assign title = post.title %}
             {% endif %}
             <div class="col mb-4">
-              <div class="card card-post-summary-home rounded-0 border-0 h-100">
-                <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top rounded-0" alt="post thumbnail">
-                <div class="card-body">
-                  {% if post.series %}
-                  <h5 class="card-post-summary-home-series-title font-weight-lighter">{{post.series}} Series - Part  {{ post.series_number }}</h5>
-                  {% endif %}
-                  <a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}" class="stretched-link"><h4 class="card-title">{{title}}</h4></a>
-                  <h6 class="card-subtitle mb-2 text-muted">By {{post.author}}</h6>
-                  {% if post.full %}
-                    <p class="card-text ">{{ post.content }}</p>
-                  {% else %}
-                    <p class="card-text">{{ post.short_summary }}</p>
-                  {% endif %}
-                </div>
-              </div>
+              {% if post.series %}
+                {% capture surtitle %}
+                {{post.series}} Series - Part {{post.series_number}}
+                {% endcapture %}
+              {% else %}
+                {% assign surtitle="" %}
+              {% endif %}
+              {% assign subtitle = post.author | prepend: 'By '%}
+              {% if post.full %}
+                {% assign content = post.content %}
+              {% else %}
+                {% assign content = post.short_summary %}
+              {% endif %}
+              {% include card.html
+                  class="card-home" 
+                  image=image
+                  image_alt="Post's banner"
+                  surtitle=surtitle
+                  title=title
+                  subtitle=subtitle
+                  content=content
+                  url=post.url
+              %}
             </div>
           {% endfor %}
     </div>
@@ -54,7 +52,7 @@
 <div class="row home-section-button">
   <div class="container">
     <div class="col-12 text-center align-self-center">
-      <a href="{{more_link}}" class="btn btn-primary" role="button" >{{more_button}}</a>
+      <a href="{{include.more_link}}" class="btn btn-primary" role="button" >{{include.more_button}}</a>
     </div>
   </div>
 </div>

@@ -1,0 +1,10 @@
+- name: API Stylebook
+  url: http://apistylebook.com/
+  description: The API Stylebook aims to help API Designers find answers to API design questions and build their own API design guidelines by providing quick and easy access to categorized and analyzed API Design Guidelines.
+  image: /images/projects/apistylebook-1280-400.png
+  author: Arnaud Lauret
+- name: OpenAPI Map
+  url: https://openapi-map.apihandyman.io/
+  description: The OpenAPI map helps people find their way in the OpenAPI Specification. It provides a simple view of the specification and an easy access to the documentation of all of its elements. 
+  image: /images/projects/openapimap-1280-400.png
+  author: Arnaud Lauret

@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<div class="row me">
+<div class="row home-banner">
   <div class="container-fluid">
     <div class="col-12">
       <div class="container p-0">
@@ -20,7 +20,7 @@ layout: default
     </div>
   </div>
 </div>
-<div class="row row-book">
+<div class="row home-book">
   <div class="container p-0">
     <div class="col-12 p-0">
       <div class="card m-0 p-0 border-0 rounded-0">
@@ -59,45 +59,62 @@ layout: default
     </div>
   </div>
 </div>
+{% include home-section-title.html title="Last posts" %}
 {% include home-last.html 
-  section_title="Last posts from the blog" 
   category='posts'
   more_link='/blog'
   more_button='Read more posts'
   %}
+  {% include home-section-title.html title="Last talks" %}
 {% include home-last.html 
-  section_title="Last talks" 
   category='talks'
   more_link='/talks'
-  more_button='See more talks'
+  more_button='Watch more talks'
   %}
-<div class="row home-section-title">
+{% include home-section-title.html title="Tools" %}
+<div class="row home-section">
   <div class="container">
-    <div class="col-12 text-center align-self-center">
-      <h1>API newsletters and blogs you should read</h1>
-    </div>
-  </div>
-</div>
-<div class="row home-last-resources">
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-3">
-          {% assign last_resources = site.data.resources | slice:0, 3 %}
-          {% for resource in last_resources %}
+    <div class="row row-cols-1 row-cols-md-2">
+          {% assign items = site.data.tools | slice:0, 2 %}
+          {% for item in items %}
             <div class="col mb-4">
-              <div class="card card-post-summary-home rounded-0 border-0 h-100">
-                <div class="card-body">
-                  <a href="{{ resource.url }}" class="stretched-link"><h5 class="card-title">{{resource.name}}</h5></a>
-                  <h6 class="card-subtitle mb-2 text-muted">By {{resource.author}}</h6>
-                  <p class="card-text text-justify">{{ resource.description }}</p>
-                </div>
-              </div>
+            {% assign subtitle = item.author | prepend: 'By '%}
+            {% include card.html
+                class="card-home" 
+                image=item.image
+                image_alt="Project's screenshot"
+                title=item.name
+                subtitle=subtitle
+                content=item.description
+                url=item.url
+            %}
             </div>
           {% endfor %}
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="container-fluid" style="background-color: white;min-height: 100px;margin-top: 30px">
+{% include home-section-title.html title="Recommended newsletters and blogs" %}
+<div class="row home-section">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3">
+          {% assign items = site.data.resources | slice:0, 3 %}
+          {% for item in items %}
+            <div class="col mb-4">
+              {% assign subtitle = item.author | prepend: 'By '%}
+              {% include card.html
+                  class="card-home"
+                  title=item.name
+                  subtitle=subtitle
+                  content=item.description
+                  url=item.url
+              %}
+            </div>
+          {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="row home-footer">
+  <div class="container-fluid">
     <div class="cols-12 text-center">
       
     </div>
