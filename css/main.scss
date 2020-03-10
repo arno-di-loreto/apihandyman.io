@@ -5,49 +5,44 @@
 @import "bootstrap/scss/bootstrap";
 
 // book
-$dark-imperial-blue: #014E68;
-$deep-carrot-orange: #E66C29;
-$deep-carrot-orange: #e66c2a;
-$x11-gray: #BCBFBD;
-$light-gray: #D0DBD6;
-$saffron: #F3C92F;
+$book-blue: #014E68;
+$book-grey: #bcbdc0;
+$book-orange: #e66c2a;
+$glitter: #E8EFF6;
+$alice-blue: #EFF7FF;
+$white-snow: #F7F5F7;
+$ghost-white: #F9F8F9;
 
-// me motu
-$brown: rgba(46, 24, 26, 1);
-$red: #7B0A0A;
-$lightblue: rgba(141, 185, 209, 1);
-$darkblue: rgba(36, 49, 74, 1);
-$grey: rgba(174, 182, 189, 1);
+$background: $ghost-white;
+$background: pink;
 
-$background: $light-gray;
-
-$navbar-backgound: $dark-imperial-blue;
-$navbar-font: $deep-carrot-orange;
-$navbar-border: $deep-carrot-orange;
+$navbar-backgound: $book-blue;
+$navbar-font: $book-orange;
+$navbar-border: $book-orange;
 $sidebar-background: $navbar-backgound;
-$sidebar-font: $light-gray;
-$sidebar-background-active: $light-gray;
+$sidebar-font: $background;
+$sidebar-background-active: $background;
 $sidebar-font-active: $navbar-backgound;
-$sidebar-border-active: $deep-carrot-orange;
+$sidebar-border-active: $book-orange;
 $content-background: white;
 $content-font: black;
-$series-title-background: $deep-carrot-orange;
-$series-title-font: $dark-imperial-blue;
+$series-title-background: $book-orange;
+$series-title-font: $book-blue;
 
-$navbar-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12);
-$navbar-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.12);
-$navbar-shadow: 0px 5px 2px 1px rgba(1, 1, 1, .4);
+$font-title: 'Spartan', sans-serif;
+$font-regular: 'Roboto', sans-serif;
+
+
 $navbar-shadow: 0px 2px 2px 1px rgba(0, 0, 0, .4);
-
-$floating-shadow: 5px 5px 2px 1px rgba(1, 1, 1, .4);
 $floating-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .4);
+$small-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .1);
 
 body {
   padding-top: 55px;
   background-color: $background;
-  font-family: 'Roboto', sans-serif;
+  font-family: $font-regular;
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Spartan', sans-serif;
+    font-family: $font-title;
   }
 }
 
@@ -60,42 +55,31 @@ body {
 }
 
 .btn-primary {
-  background-color: $deep-carrot-orange;
+  background-color: $book-orange;
   border: none;
   color: white;
   border-radius: 0em;
 }
 
 .btn-primary:hover {
-  background-color: $deep-carrot-orange;
+  background-color: $book-orange;
 }
 
 .not-behind-nav {
   top: 55px;
 }
 
-// Privacy toast
-.privacy-message  {
-  /*
-  bottom: 20px;
-  left: 20px;
-  .close {
-    color: white;
-    margin-top: -0.15rem;
-  }*/
-}
-
 // Home
 
 @include media-breakpoint-up(md) { 
   .home-book {
-    background: linear-gradient(to right,  $dark-imperial-blue 0%,$dark-imperial-blue 50%,white 50%,white 100%);
+    background: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50%,white 100%);
   }
 }
 
 .home-book {
   .blockquote {
-    font-family: 'Spartan', sans-serif;
+    font-family: $font-title;
     text-align: justify;
   }
   .btn-primary {
@@ -104,7 +88,7 @@ body {
 }
 
 .card-home {
-  box-shadow: $floating-shadow;
+  box-shadow: $small-shadow;
   a {
     text-decoration: none;
     color: inherit;
@@ -167,38 +151,7 @@ body {
     margin-top: 30px;
 }
 
-.posts {
-  padding-top: 25px;
-}
-
-.card-post-summary {
-  .card-body {
-    background-color: $background;
-  }
-  .over-card-image {
-    margin-top: -100px;
-    background-color:$content-background;
-    padding: 15px;
-  }
-}
-
-.card-page-title {
-  margin-top: 0px;
-  margin-bottom: 15px;
-  padding-top: 20px;
-
-  .card-page-series-title, .card-title  {
-    margin-bottom: 0;
-  }
-}
-
-.below-main-navbar {
-  //padding-top: 15px;
-}
-
-.close-to-main-navbar {
-  top: 55px;
-}
+// Navbar on home and page
 
 .navbar-home {
   background-color: rgba(255, 255, 255, 0.5);
@@ -220,18 +173,23 @@ body {
 
 .navbar-toggler {
   i {
-    color: $deep-carrot-orange;
+    color: $book-orange;
   }
 }
 
-.navbar-post-title {
+.navbar-page-title {
+  color: $navbar-backgound;
+  transition: color .50s linear;
+}
+
+.navbar-page-title-visible {
   color: $sidebar-font;
+  transition: color .50s linear;
 }
 
 * > .scrolled, .scrolled > * {
   transition: box-shadow .25s linear, background-color .25s linear;
 }
-
 
 .main-navbar {
   color: $navbar-font;
@@ -244,6 +202,12 @@ body {
 
 }
 
+// Only used by expanded code blocks so far
+
+.close-to-main-navbar {
+  top: 55px;
+}
+
 .page-image {
   margin-bottom: 35px
 }
@@ -252,29 +216,13 @@ body {
   margin-bottom: 1rem;
 }
 
-.page-content {
-  @media (min-width: 768px) {
-    margin-left: -5px;
-    margin-right: 15px;
-  }
-  @media (max-width: 768px) {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
+.main-content {
+  top: -140px;
+  padding-left: 0px;
+  padding-right: 20px;
 
-  .page-content-text-separator {
-    background-color: $background;
-    height: 2rem;
-    margin-left: -40px;
-    margin-right: -40px;
-  }
-
-  h1,h2,h3,h4,h5,h6 {
-    text-align: left;
-  }
-
-  .page-content-text {
-  // Avoid having headers hidden by navbar when using inner links (with toc for example)
+  .page-section-not-title {
+    // Avoid having headers hidden by navbar when using inner links (with toc for example)
     h2[id]::before, h3[id]::before, h4[id]::before, h5[id]::before, h6[id]::before {
       content: '';
       display: block;
@@ -285,27 +233,31 @@ body {
     h1[id]::before {
       content: '';
       display: block;
-      height:      90px;
+      height:      80px;
       margin-top: -65px;
       visibility: hidden;
     }
   }
 
-
-}
-
-.main-content {
-  background-color: $content-background;
-  top: -120px;
-  padding-top: 20px;
-  @media (min-width: 768px) {
-    padding-left: 40px;
-    padding-right: 40px;
+  .page-section {
+    h1,h2,h3,h4,h5,h6 {
+      text-align: left;
+    }
+    background-color: $content-background;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 30px;
+    box-shadow: $small-shadow;
   }
-  @media (max-width: 768px) {
-    padding-left: 10px;
-    padding-right: 10px;
+
+  .page-section-not-title {
+    padding-top: 30px;
   }
+
+  .page-section-title {
+    padding-top: 50px;
+  }
+
 }
 
 .left-column {
@@ -331,9 +283,6 @@ body {
   }
 
   .btn-group {
-    //border-right-style: solid;
-    //border-right-width: 1px;
-    //border-right-color: $sidebar-background;
     .btn {
       background-color: $series-title-background;
       color: $series-title-font;
@@ -344,11 +293,11 @@ body {
   }
 
   .btn-top {
-    background-color: $dark-imperial-blue;
+    background-color: $book-blue;
     color:$sidebar-font;
   }
   .btn-top:hover {
-    color: $deep-carrot-orange;
+    color: $book-orange;
   }
 }
 
@@ -364,9 +313,6 @@ body {
 }
 
 .book-button {
-  //border-right-style: solid;
-  //border-right-width: 1px;
-  //border-right-color: $sidebar-background;
   border-radius: unset;
   .btn {
     border-style: none;
@@ -384,12 +330,7 @@ body {
     background-color: $sidebar-background;
     border-style: none;
     border-color: $sidebar-background;
-    //border-right-style: solid;
-    //border-right-width: 1px;
-    //border-right-color: $sidebar-background;
     border-radius: 0;
-    //border-bottom-style: none;
-    //border-top-style: none;
   }
   .toc-level-1 {
     font-size: 1rem;
@@ -405,8 +346,6 @@ body {
     border-left-color:$sidebar-border-active;
     border-left-style: solid;
     border-left-width: 8px;
-    //border-right-style: none;
-    //box-shadow: inset 2em 0em $sidebar-border-active;
   }
 
   .toc-level-1.active {
@@ -423,15 +362,15 @@ body {
 
 
   .nav-link:hover {
-    color: $deep-carrot-orange;
+    color: $book-orange;
   }
 }
 
 .series-header {
   .list-group {
-    color: darkgrey;
+    color: $book-grey;
     .a {
-      color: darkgrey;
+      color: $book-grey;
     } 
     .active {
       border-color: $list-group-border-color;

@@ -5,9 +5,11 @@ function offset(el) {
   return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
 }
 
+/*
 $(document).ready(function(){
   $('<div class="page-content-text-separator"></div>').insertBefore('.page-content-text h1')
 })
+*/
 
 $(window).scroll(function(){
   // Home page nav
@@ -16,7 +18,7 @@ $(window).scroll(function(){
   //console.log('scrollTop', $(this).scrollTop())
   const titleBottom = offset($('.card-page-title .card-title')[0]).top /*+ $('.card-page-title .card-title').height()*/ - 55
   //console.log('titleBottom', titleBottom)
-  $('.navbar-post-title').toggleClass('d-none', $(this).scrollTop() < titleBottom);
+  $('.navbar-page-title').toggleClass('navbar-page-title-visible', $(this).scrollTop() > titleBottom);
   //$('.navbar-page').toggleClass('scrolled', $(this).scrollTop() > 35);
 });
 

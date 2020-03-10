@@ -24,14 +24,14 @@ libs:
   {% assign title = page.title %}
 {% endif %}
 <div class="container below-main-navbar">
-  <div class="row">
-    <div class="col-12">
-      <div class="row page-image">
+  <div class="row p-0">
+    <div class="col-12 p-0">
+      <div class="row page-image p-0">
         <div class="col-md-12 p-0">
           <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
         </div>
       </div>
-      <div class="row page-content">
+      <div class="row page-content p-0">
         <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN MD -->
         <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0">
           <div class="container d-flex flex-column p-0">
@@ -66,29 +66,47 @@ libs:
         </div>
         <!-- MAIN CONTENT-->
         <div class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10">
-          <!-- Image and title ? comming from default? -->
-            <!-- Author, date and category -->
-            <div class="card card-page-title border-0">
-              <div class="card-body p-0">
-                {% if page.series %}
-                <h5 class="card-page-series-title font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
+            <div class="page-content-text text-justify anchors container p-0">
+              <div class="row row-cols-1 p-0 m-0">
+              {% assign nodes = content | split: '<h1 id=' %}
+              {% assign first = 1 %}
+              {% for node in nodes %}
+                {% if node == "" %}
+                  {% continue %}
                 {% endif %}
-                <h1 class="card-title">{{title}}</h1>
-                <p class="card-text text-muted">
-                  {% if page.author %}
-                    By {{ page.author }}
-                  {% endif %}
-                  {% if page.date %}
-                    , {{ page.date | date: "%b. %-d, %Y" }}
-                  {% endif %}</p>
-              </div>
-            </div>
-            <hr/>
-            <div class="page-content-text text-justify anchors">
-              {{ content }}
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                {% if first == 1 %}
+                <!-- First card with page title -->
+                <div class="page-section page-section-title card card-page-title border-0 rounded-0 mb-5">
+                  <div class="card-body p-0">
+                    {% if page.series %}
+                    <h5 class="card-surtitle font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
+                    {% endif %}
+                    <h1 class="card-title">{{title}}</h1>
+                    <p class="card-subtitle text-muted">
+                      {% if page.author %}
+                        By {{ page.author }}
+                      {% endif %}
+                      {% if page.date %}
+                        , {{ page.date | date: "%b. %-d, %Y" }}
+                      {% endif %}</p>
+                    <hr/>
+                    {{node}}
+                  </div>
+                </div>
+                  {% assign first = 0 %}
+                {% else %}
+                <!-- Next cards -->
+                <div class="page-section page-section-not-title card border-0 rounded-0 mb-5">
+                  <div class="card-body p-0">
+                  {%assign h1="<h1 id="%}
+                    {{h1}}{{ node}}
+                  </div>
+                </div>
+                {% endif %}
+              {% endfor %}
+            </div><!-- class="row row-cols-1"-->
+        </div><!-- class="page-content-text text-justify anchors container" -->
+      </div><!--class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10"-->
+    </div><!--class="row page-content"-->
+  </div><!--class="col-12"-->
+</div><!--class="container below-main-navbar"-->
