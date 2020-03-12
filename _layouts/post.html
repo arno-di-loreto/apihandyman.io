@@ -23,7 +23,7 @@ libs:
 {% else %}
   {% assign title = page.title %}
 {% endif %}
-<div class="container below-main-navbar">
+<div class="container-md below-main-navbar">
   <div class="row p-0">
     <div class="col-12 p-0">
       <div class="row page-image p-0">
@@ -32,8 +32,8 @@ libs:
         </div>
       </div>
       <div class="row page-content p-0">
-        <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN MD -->
-        <div class="d-none d-md-block col-md-3 col-lg-2 col-xl-2 sticky-top left-column p-0">
+        <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
+        <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block col-lg-2 col-xl-2 sticky-top left-column p-0">
           <div class="container d-flex flex-column p-0">
             <a class="btn book-button p-0 border-0" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
             {% if page.series %}
@@ -65,7 +65,7 @@ libs:
           </div>
         </div>
         <!-- MAIN CONTENT-->
-        <div class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10">
+        <div class="main-content col-sm-12 col-md-12 col-lg-10 col-xl-10">
             <div class="page-content-text text-justify anchors container p-0">
               <div class="row row-cols-1 p-0 m-0">
               {% assign nodes = content | split: '<h1 id=' %}

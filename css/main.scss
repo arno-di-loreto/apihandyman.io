@@ -193,7 +193,7 @@ body {
 
 .main-navbar {
   color: $navbar-font;
-  .nav-item .nav-link, .nav-item.active .nav-link {
+  .nav-item.nav-link, .nav-item.active.nav-link {
     color: $navbar-font;
   }
   .navbar-brand {
@@ -217,9 +217,50 @@ body {
 }
 
 .main-content {
-  top: -140px;
   padding-left: 0px;
-  padding-right: 20px;
+  padding-right: 0px;
+
+  .page-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .main-content {
+    padding-left: 0px;
+    padding-right: 30px;
+
+    .page-section {
+      padding-left: 55px;
+      padding-right: 55px;
+    }
+  }
+
+  .left-column {
+    .d-flex {
+      margin-right: -30px;
+    }
+  }
+}
+
+
+
+// below md
+/*
+.main-content {
+  padding-left: 0px;
+  padding-right: 0px;
+
+  .page-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+*/
+
+.main-content {
+  top: -140px;
 
   .page-section-not-title {
     // Avoid having headers hidden by navbar when using inner links (with toc for example)
@@ -244,8 +285,6 @@ body {
       text-align: left;
     }
     background-color: $content-background;
-    padding-left: 50px;
-    padding-right: 50px;
     padding-bottom: 30px;
     box-shadow: $small-shadow;
   }
@@ -267,7 +306,6 @@ body {
 
   .d-flex {
     max-height: calc(100vh - 135px);
-    margin-right: -20px;
     box-shadow: $floating-shadow;
   }
 
