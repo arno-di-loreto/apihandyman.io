@@ -23,90 +23,83 @@ libs:
 {% else %}
   {% assign title = page.title %}
 {% endif %}
-<div class="container-md below-main-navbar">
-  <div class="row p-0">
-    <div class="col-12 p-0">
-      <div class="row page-image p-0">
-        <div class="col-md-12 p-0">
-          <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
+<div class="row page-image p-0">
+  <div class="col-md-12 p-0">
+    <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
+  </div>
+</div>
+<div class="row page-content p-0">
+<!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
+  <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block col-lg-2 col-xl-2 sticky-top left-column p-0">
+    <div class="container d-flex flex-column p-0">
+      <a class="btn book-button p-0 border-0" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
+      {% if page.series %}
+      <div class="btn-group dropright border-0">
+        <button type="button" class="btn btn-sm rounded-0 border-0 text-wrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{page.series}} Series
+        </button>
+        <div class="dropdown-menu border-0 rounded-0">
+          {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
+          {% for my_page in sorted %}
+            {% if my_page.series_title == page.series_title %}
+            <a class="dropdown-item bold">{{ my_page.series_number }} - {{ my_page.series_title }}</a>
+            {% else %}
+            <a class="dropdown-item" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_number }} - {{ my_page.series_title }}</a>
+            {% endif %}
+          {% endfor %}
+          {% for coming_soon in site.data.series[page.series] %}
+            <a class="dropdown-item disabled">{{ coming_soon.series_number }} - {{ coming_soon.series_title }} (coming soon)</a>
+          {% endfor %}
         </div>
       </div>
-      <div class="row page-content p-0">
-        <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
-        <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block col-lg-2 col-xl-2 sticky-top left-column p-0">
-          <div class="container d-flex flex-column p-0">
-            <a class="btn book-button p-0 border-0" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
+      {% endif %}
+      <div class="toc-filler toc-filler-top"></div>
+      <div class="flex-grow-1 overflow-auto m-0" id="scrollable-toc">
+        {% include toc.html html=content h_min=1 h_max=2 %}
+      </div>
+      <a class="btn p-0 border-0 rounded-0 text-left pt-1 pl-3 btn-top" onclick="javascript:document.body.scrollTop = 0;document.documentElement.scrollTop = 0;">Back to top</a>
+      <div class="toc-filler toc-filler-bottom"></div>
+    </div>
+  </div>
+  <!-- MAIN CONTENT-->
+  <div class="main-content col-sm-12 col-md-12 col-lg-10 col-xl-10">
+    <div class="page-content-text text-justify anchors  row row-cols-1 p-0 m-0">
+      {% assign nodes = content | split: '<h1 id=' %}
+      {% assign first = 1 %}
+      {% for node in nodes %}
+        {% if node == "" %}
+          {% continue %}
+        {% endif %}
+        {% if first == 1 %}
+        <!-- First card with page title -->
+        <div class="page-section page-section-title card card-page-title border-0 rounded-0 mb-3 mb-md-4 mb-lg-5 mb-xl-5">
+          <div class="card-body p-0">
             {% if page.series %}
-            <div class="btn-group dropright border-0">
-              <button type="button" class="btn btn-sm rounded-0 border-0 text-wrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{page.series}} Series
-              </button>
-              <div class="dropdown-menu border-0 rounded-0">
-                {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
-                {% for my_page in sorted %}
-                  {% if my_page.series_title == page.series_title %}
-                  <a class="dropdown-item bold">{{ my_page.series_number }} - {{ my_page.series_title }}</a>
-                  {% else %}
-                  <a class="dropdown-item" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_number }} - {{ my_page.series_title }}</a>
-                  {% endif %}
-                {% endfor %}
-                {% for coming_soon in site.data.series[page.series] %}
-                  <a class="dropdown-item disabled">{{ coming_soon.series_number }} - {{ coming_soon.series_title }} (coming soon)</a>
-                {% endfor %}
-              </div>
-            </div>
+            <h5 class="card-surtitle font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
             {% endif %}
-            <div class="toc-filler toc-filler-top"></div>
-            <div class="flex-grow-1 overflow-auto m-0" id="scrollable-toc">
-              {% include toc.html html=content h_min=1 h_max=2 %}
-            </div>
-            <a class="btn p-0 border-0 rounded-0 text-left pt-1 pl-3 btn-top" onclick="javascript:document.body.scrollTop = 0;document.documentElement.scrollTop = 0;">Back to top</a>
-            <div class="toc-filler toc-filler-bottom"></div>
+            <h1 class="card-title">{{title}}</h1>
+            <p class="card-subtitle text-muted">
+              {% if page.author %}
+                By {{ page.author }}
+              {% endif %}
+              {% if page.date %}
+                , {{ page.date | date: "%b. %-d, %Y" }}
+              {% endif %}</p>
+            <hr/>
+            {{node}}
           </div>
-        </div>
-        <!-- MAIN CONTENT-->
-        <div class="main-content col-sm-12 col-md-12 col-lg-10 col-xl-10">
-            <div class="page-content-text text-justify anchors container p-0">
-              <div class="row row-cols-1 p-0 m-0">
-              {% assign nodes = content | split: '<h1 id=' %}
-              {% assign first = 1 %}
-              {% for node in nodes %}
-                {% if node == "" %}
-                  {% continue %}
-                {% endif %}
-                {% if first == 1 %}
-                <!-- First card with page title -->
-                <div class="page-section page-section-title card card-page-title border-0 rounded-0 mb-5">
-                  <div class="card-body p-0">
-                    {% if page.series %}
-                    <h5 class="card-surtitle font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
-                    {% endif %}
-                    <h1 class="card-title">{{title}}</h1>
-                    <p class="card-subtitle text-muted">
-                      {% if page.author %}
-                        By {{ page.author }}
-                      {% endif %}
-                      {% if page.date %}
-                        , {{ page.date | date: "%b. %-d, %Y" }}
-                      {% endif %}</p>
-                    <hr/>
-                    {{node}}
-                  </div>
-                </div>
-                  {% assign first = 0 %}
-                {% else %}
-                <!-- Next cards -->
-                <div class="page-section page-section-not-title card border-0 rounded-0 mb-5">
-                  <div class="card-body p-0">
-                  {%assign h1="<h1 id="%}
-                    {{h1}}{{ node}}
-                  </div>
-                </div>
-                {% endif %}
-              {% endfor %}
-            </div><!-- class="row row-cols-1"-->
-        </div><!-- class="page-content-text text-justify anchors container" -->
-      </div><!--class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10"-->
-    </div><!--class="row page-content"-->
-  </div><!--class="col-12"-->
-</div><!--class="container below-main-navbar"-->
+        </div><!-- First card with page title END -->
+          {% assign first = 0 %}
+        {% else %}
+        <!-- Next cards -->
+        <div class="page-section page-section-not-title card border-0 rounded-0 mb-3 mb-md-4 mb-lg-5 mb-xl-5">
+          <div class="card-body p-0">
+          {%assign h1="<h1 id="%}
+            {{h1}}{{ node}}
+          </div>
+        </div><!-- Next cards END -->
+        {% endif %}
+      {% endfor %}
+    </div><!-- class="row row-cols-1"-->
+  </div><!--class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10"-->
+</div><!--class="row page-content"-->

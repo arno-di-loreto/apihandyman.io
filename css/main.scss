@@ -217,12 +217,42 @@ body {
 }
 
 .main-content {
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   .page-section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .page-section-not-title {
+    padding-top: 10px;
+  }
+  
+  .page-section-title {
+    padding-top: 20px;
+  }
+  
+}
+
+@include media-breakpoint-up(md) {
+  .main-content {
     padding-left: 20px;
     padding-right: 20px;
+
+    .page-section {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .page-section-not-title {
+      padding-top: 20px;
+    }
+    
+    .page-section-title {
+      padding-top: 30px;
+    }
+  
   }
 }
 
@@ -235,6 +265,15 @@ body {
       padding-left: 55px;
       padding-right: 55px;
     }
+
+    .page-section-not-title {
+      padding-top: 30px;
+    }
+    
+    .page-section-title {
+      padding-top: 50px;
+    }
+  
   }
 
   .left-column {
@@ -243,21 +282,6 @@ body {
     }
   }
 }
-
-
-
-// below md
-/*
-.main-content {
-  padding-left: 0px;
-  padding-right: 0px;
-
-  .page-section {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-*/
 
 .main-content {
   top: -140px;
@@ -287,14 +311,6 @@ body {
     background-color: $content-background;
     padding-bottom: 30px;
     box-shadow: $small-shadow;
-  }
-
-  .page-section-not-title {
-    padding-top: 30px;
-  }
-
-  .page-section-title {
-    padding-top: 50px;
   }
 
 }
