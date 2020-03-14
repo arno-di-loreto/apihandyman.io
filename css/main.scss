@@ -318,15 +318,16 @@ body {
     top: 55px;
     left: 0px;
     height: calc(100vh - 55px);
+    width: calc(min(300px, 70vh, 70vw));
     //z-index: -100;
     visibility: hidden;
     transition: visibility linear 0.35s;
 
     .d-flex {
-      max-height: calc(100vh - 55px);
+      height: 100%;
       position: relative;
       left: -100%;
-      transition: left linear 0.35s;
+      transition: left linear 0.35s; 
     }
   }
 
@@ -348,7 +349,7 @@ body {
     height: calc(100vh - 135px);
   
     .d-flex {
-      max-height: calc(100vh - 135px);
+      max-height: 100%;
       margin-right: -12%;
       margin-left: -12%;
       width: 124%;
@@ -357,46 +358,35 @@ body {
 }
 
 .left-column {
-  background-color: none;
+
+  .btn:focus {
+    box-shadow: none;
+  }
 
   .d-flex {
     box-shadow: $floating-shadow;
-  }
-
-  .dropdown-menu {
-    box-shadow: 5px 5px 2px 1px rgba(1, 1, 1, .4);
-    background-color: $series-title-background;
-    color: $series-title-font;
-    margin-left: -1px;
-    border-top-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-top-right-radius : $dropdown-border-radius;
-    border-bottom-right-radius : $dropdown-border-radius;
-  }
-
-  .btn-group {
-    .btn {
+    background-color: $navbar-backgound;
+    .navbar-page-title, .navbar-page-title-series {
       background-color: $series-title-background;
       color: $series-title-font;
     }
-    .btn:focus {
-      box-shadow: none;
+
+    .dropdown-menu-series {
+      //box-shadow: 5px 5px 2px 1px rgba(1, 1, 1, .4);
+      box-shadow: $floating-shadow;
+      background-color: $series-title-background;
+      color: $series-title-font;
+      margin-left: -1px;
     }
   }
 
-  .btn-top {
-    background-color: $book-blue;
-    color:$sidebar-font;
-  }
-  .btn-top:hover {
-    color: $book-orange;
-  }
 }
 
 //TOC
 #scrollable-toc {
   margin-top: 1em;
   flex-grow : 1;
+  background-color: $navbar-backgound;
 }
 
 .toc-filler {
@@ -472,20 +462,29 @@ body {
   }
 }
 
-//Bottom TOC
+// Back to top button
+.navbar-bottom {
+  position: fixed;
+  box-shadow: $floating-shadow;
+  z-index: 1030;
+  bottom: 20px;
+}
 
-.toc-bottom-bar {
-  background-color: $navbar-backgound;
-  color: $navbar-font;
-  box-shadow: $bottom-navbar-shadow;
-  #scrollable-toc {
-    height: 40px;
-    transition: height .25s linear;
+@include media-breakpoint-down(md) {
+  .navbar-bottom {
+    right: 30px;
+  } 
+}
+
+// >= lg
+@include media-breakpoint-up(lg) {
+  .navbar-bottom {
+    right: calc(50vw - 475px);
   }
 }
 
-.toc-bottom-bar-expanded {
-  #scrollable-toc {
-    height: calc(100vh - 135px);
+@include media-breakpoint-up(xl) {
+  .navbar-bottom {
+    right: calc(50vw - 565px);
   }
 }

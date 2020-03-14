@@ -7,12 +7,11 @@
   <div class="container-lg">
     <nav class="navbar navbar-expand-lg">
       <a class="navbar-brand" href="/">API Handyman</a>
-      <a class="nav-item nav-link d-block d-md-none d-lg-none d-xl-none">SM</a>
-      <a class="nav-item nav-link d-none d-sm-none d-md-block d-lg-none d-xl-none">MD</a>
-      <a class="nav-item nav-link d-none d-sm-none d-md-none d-lg-block d-xl-none">LG</a>
-      <a class="nav-item nav-link d-none d-sm-none d-md-none d-lg-none d-xl-block">XL</a>
-      <a class="nav-item nav-link d-block d-sm-block d-md-block d-lg-none" href="#" onclick="javascript:console.log('toggle toc');$('.left-column').toggleClass('left-column-shown')">TOC</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      <span class="d-block d-md-none d-lg-none d-xl-none">SM</span>
+      <span class="d-none d-sm-none d-md-block d-lg-none d-xl-none">MD</span>
+      <span class="d-none d-sm-none d-md-none d-lg-block d-xl-none">LG</span>
+      <span class="d-none d-sm-none d-md-none d-lg-none d-xl-block">XL</span>
+      <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
       </button>
@@ -25,7 +24,7 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="/blog">Blog</a>
           <a class="nav-item nav-link" href="/talks">Talks</a>
-          <a class="nav-item nav-link" href="/#tools">Tools</a>
+          <a class="nav-item nav-link" href="/#tools">Toolbox</a>
           <a class="nav-item nav-link d-block d-sm-block d-md-block d-lg-none" data-target="#bookModal" href="#"><img src="/images/commons/book/title.png"></a>
         </div>
       </div>

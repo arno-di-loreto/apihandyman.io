@@ -1,25 +1,3 @@
-/*
-function synchronizeToc(scroll_position, height) {
-  console.log('scroll_position', scroll_position)
-  console.log('height', height)
-  const percent_scroll = scroll_position/height
-  console.log('scroll %', percent_scroll)
-
-  let toc = $("#scrollable-toc")[0]
-  let newTocScroll = toc.scrollHeight*percent_scroll
-  console.log(newTocScroll)
-  toc.scrollTop = newTocScroll
-  console.log(document.activeElement)
-}
-
-window.addEventListener('scroll', function(e) {
-  let body = document.body
-  let html = document.documentElement
-  let height = Math.max( body.scrollHeight, body.offsetHeight, 
-                       html.clientHeight, html.scrollHeight, html.offsetHeight );
-  synchronizeToc(window.scrollY, height)
-});
-*/
 
 function resetTocBorder() {
   const activeItems = $('#toc .active')
@@ -33,47 +11,18 @@ function resetTocBorder() {
   }
 }
 
-function updateTocBorder() {
-  $('.left-column .above-active').each(function(index){
-    $(this).removeClass('above-active')
-  })
-  $('.left-column .below-active').each(function(index){
-    $(this).removeClass('below-active')
-  })
-  $("#toc .active").each(function(index){
-    console.log($(this))
-    let previous = $(this).prev()
-    if(previous.hasClass('nav')){
-      previous = previous.find('.nav-link:last-child')
-    }
-    if(!previous.hasClass('active')){
-      previous.addClass('above-active')
-    }
+function toggleToc() {
+  $('.left-column').toggleClass('left-column-shown')
+}
 
-    let next = $(this).next()
-    if(next[0] === undefined){
-      next = $(this).parent().next()
-    } else if(next.hasClass('nav')){
-      next = next.find('.nav-link:first-child')
-    }
-    if(!next.hasClass('active')){
-      next.addClass('below-active')
-    }
-  })
-  const navLinks = $("#toc .nav-link")
-  if($(navLinks[0]).hasClass('active')){
-    $('.left-column').find('.toc-filler-top').addClass('above-active')
-  }
-  console.log($(navLinks[navLinks.length-1]))
-  if($(navLinks[navLinks.length-1]).hasClass('active')){
-    $('.left-column').find('.toc-filler-bottom').addClass('below-active')
-  }
+function toggleBackToTop() {
+  const titleBottom = offset($('.card-page-title .card-title')[0]).top
+  $('.navbar-bottom .back-to-top').toggleClass('d-none', $(this).scrollTop() < titleBottom)
 }
 
 $(document).ready(function(){
   // Scroll TOC when needed in order to keep active element visible
   $(window).on('activate.bs.scrollspy', function () {
-    updateTocBorder()
     let activeItems = $("#toc .active")
     let lastActiveItem = activeItems[activeItems.length-1]
     // DIV around the #TOC
@@ -93,7 +42,19 @@ $(document).ready(function(){
     }
   })
 
-  $(document).on('scroll', function(){
-    resetTocBorder()
-  });
+  $('.left-column-toggler').on('click', function(){
+    $('.left-column').toggleClass('left-column-shown')
+  })
+
+  $('.left-column-hider').on('click', function(){
+    $('.left-column').removeClass('left-column-shown')
+  })
+
+  $('.back-to-top').on('click', function() {
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
+  })
+
+  $(window).scroll(toggleBackToTop)
+  toggleBackToTop()
 })

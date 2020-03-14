@@ -30,15 +30,14 @@ libs:
 </div>
 <div class="row page-content p-0">
 <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
-  <div class="col-4 col-lg-2 col-xl-2 sticky-top left-column p-0">
+  <div class="col-lg-2 col-xl-2 sticky-top left-column p-0">
     <div class="container d-flex flex-column p-0">
-      <a class="btn book-button p-0 border-0" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
+      <a class="btn book-button p-0 border-0 left-column-toggler d-none d-lg-block" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
+      <a class="btn book-button p-0 border-0 left-column-toggler d-md-block d-lg-none p-3" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
       {% if page.series %}
-      <div class="btn-group dropright border-0">
-        <button type="button" class="btn btn-sm rounded-0 border-0 text-wrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{page.series}} Series
-        </button>
-        <div class="dropdown-menu border-0 rounded-0">
+      <div class="dropright-disabled">
+        <a class="nav-link dropdown-toggle navbar-page-title-series text-center" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{page.series}} Series</a>
+        <div class="dropdown-menu dropdown-menu-series rounded-0 border-0">
           {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
           {% for my_page in sorted %}
             {% if my_page.series_title == page.series_title %}
@@ -53,11 +52,18 @@ libs:
         </div>
       </div>
       {% endif %}
+      <span class="navbar-text navbar-page-title text-center d-md-block d-lg-none">
+        {% if page.series %}
+          {% assign title = page.series_title%}
+        {% else %}
+          {% assign title = page.title %}
+        {% endif %}
+        {{title}}
+      </span>
       <div class="toc-filler toc-filler-top"></div>
-      <div class="flex-grow-1 overflow-auto m-0" id="scrollable-toc">
+      <div class="flex-grow-1 overflow-auto m-0 left-column-toggler" id="scrollable-toc">
         {% include toc.html html=content h_min=1 h_max=2 %}
       </div>
-      <a class="btn p-0 border-0 rounded-0 text-left pt-1 pl-3 btn-top" onclick="javascript:document.body.scrollTop = 0;document.documentElement.scrollTop = 0;">Back to top</a>
       <div class="toc-filler toc-filler-bottom"></div>
     </div>
   </div>
@@ -103,3 +109,7 @@ libs:
     </div><!-- class="row row-cols-1"-->
   </div><!--class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10"-->  
 </div><!--class="row page-content"-->
+<div class="navbar-bottom btn-group-vertical rounded-0" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-primary rounded-0 back-to-top d-none"><i class="fas fa-angle-double-up"></i></button>
+  <button type="button" class="btn btn-primary rounded-0 left-column-toggler d-md-block d-lg-none"><i class="fas fa-bars"></i></button>
+</div>
