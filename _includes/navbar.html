@@ -11,6 +11,7 @@
       <a class="nav-item nav-link d-none d-sm-none d-md-block d-lg-none d-xl-none">MD</a>
       <a class="nav-item nav-link d-none d-sm-none d-md-none d-lg-block d-xl-none">LG</a>
       <a class="nav-item nav-link d-none d-sm-none d-md-none d-lg-none d-xl-block">XL</a>
+      <a class="nav-item nav-link d-block d-sm-block d-md-block d-lg-none" href="#" onclick="javascript:console.log('toggle toc');$('.left-column').toggleClass('left-column-shown')">TOC</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
@@ -25,7 +26,7 @@
           <a class="nav-item nav-link" href="/blog">Blog</a>
           <a class="nav-item nav-link" href="/talks">Talks</a>
           <a class="nav-item nav-link" href="/#tools">Tools</a>
-          <a class="nav-item nav-link d-block d-sm-block d-md-block d-lg-none" modal" data-target="#bookModal" href="#"><img src="/images/commons/book/title.png"></a>
+          <a class="nav-item nav-link d-block d-sm-block d-md-block d-lg-none" data-target="#bookModal" href="#"><img src="/images/commons/book/title.png"></a>
         </div>
       </div>
       {% if page.layout == 'post' %}

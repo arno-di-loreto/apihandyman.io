@@ -34,6 +34,7 @@ $font-regular: 'Roboto', sans-serif;
 
 
 $navbar-shadow: 0px 2px 2px 1px rgba(0, 0, 0, .4);
+$bottom-navbar-shadow: 2px 0px 2px 1px rgba(0, 0, 0, .4);
 $floating-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .4);
 $small-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .1);
 
@@ -276,11 +277,6 @@ body {
   
   }
 
-  .left-column {
-    .d-flex {
-      margin-right: -30px;
-    }
-  }
 }
 
 .main-content {
@@ -315,13 +311,55 @@ body {
 
 }
 
+// <= md
+@include media-breakpoint-down(md) {
+  .left-column {
+    position: fixed;
+    top: 55px;
+    left: 0px;
+    height: calc(100vh - 55px);
+    //z-index: -100;
+    visibility: hidden;
+    transition: visibility linear 0.35s;
+
+    .d-flex {
+      max-height: calc(100vh - 55px);
+      position: relative;
+      left: -100%;
+      transition: left linear 0.35s;
+    }
+  }
+
+  .left-column-shown {
+    //z-index: 1020;
+    //width: 100%;
+    visibility: initial;
+    .d-flex {
+      left: 0px;
+    }
+  }
+  
+}
+
+// >= lg
+@include media-breakpoint-up(lg) {
+  .left-column {
+    top: 95px;
+    height: calc(100vh - 135px);
+  
+    .d-flex {
+      max-height: calc(100vh - 135px);
+      margin-right: -12%;
+      margin-left: -12%;
+      width: 124%;
+    }
+  }
+}
+
 .left-column {
-  top: 95px;
-  height: calc(100vh - 135px);
-  background-color: $background;
+  background-color: none;
 
   .d-flex {
-    max-height: calc(100vh - 135px);
     box-shadow: $floating-shadow;
   }
 
@@ -431,5 +469,23 @@ body {
       background-color: $list-group-bg;
       color: black;
     }
+  }
+}
+
+//Bottom TOC
+
+.toc-bottom-bar {
+  background-color: $navbar-backgound;
+  color: $navbar-font;
+  box-shadow: $bottom-navbar-shadow;
+  #scrollable-toc {
+    height: 40px;
+    transition: height .25s linear;
+  }
+}
+
+.toc-bottom-bar-expanded {
+  #scrollable-toc {
+    height: calc(100vh - 135px);
   }
 }
