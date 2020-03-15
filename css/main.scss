@@ -17,12 +17,12 @@ $background: $ghost-white;
 $background: pink;
 
 $navbar-backgound: $book-blue;
-$navbar-font: $book-orange;
+$navbar-font: white;
 $navbar-border: $book-orange;
 $sidebar-background: $navbar-backgound;
-$sidebar-font: $background;
+$sidebar-font: white;
 $sidebar-background-active: $background;
-$sidebar-font-active: $navbar-backgound;
+$sidebar-font-active: $book-orange;
 $sidebar-border-active: $book-orange;
 $content-background: white;
 $content-font: black;
@@ -152,7 +152,9 @@ body {
     margin-top: 30px;
 }
 
-// Navbar on home and page
+/***********/
+/* Content */
+/***********/
 
 .navbar-home {
   background-color: rgba(255, 255, 255, 0.5);
@@ -181,10 +183,12 @@ body {
 .navbar-page-title {
   color: $navbar-backgound;
   transition: color .50s linear;
+  //font-family: $font-title;
+  //font-size: 1rem;
 }
 
 .navbar-page-title-visible {
-  color: $sidebar-font;
+  color: $book-orange;
   transition: color .50s linear;
 }
 
@@ -204,7 +208,6 @@ body {
 }
 
 // Only used by expanded code blocks so far
-
 .close-to-main-navbar {
   top: 55px;
 }
@@ -282,16 +285,9 @@ body {
 .main-content {
   top: -140px;
 
-  .page-section-not-title {
+  .page-section-not-title, .series-header {
     // Avoid having headers hidden by navbar when using inner links (with toc for example)
-    h2[id]::before, h3[id]::before, h4[id]::before, h5[id]::before, h6[id]::before {
-      content: '';
-      display: block;
-      height:      80px;
-      margin-top: -65px;
-      visibility: hidden;
-    }
-    h1[id]::before {
+    h1[id]::before, h2[id]::before, h3[id]::before, h4[id]::before, h5[id]::before, h6[id]::before {
       content: '';
       display: block;
       height:      80px;
@@ -309,15 +305,66 @@ body {
     box-shadow: $small-shadow;
   }
 
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
 }
+
+/***************/
+/* Series menu */
+/***************/
+
+// <= md
+@include media-breakpoint-down(md) {
+  .dropdown-menu-series {
+    top: -1px;
+    left: -6px;
+    width: min(400px, 90vw, 90vh);
+
+  }
+}
+
+// >= lg
+@include media-breakpoint-up(lg) {
+  .dropdown-menu-series {
+    margin-top: 7px;
+  }
+}
+
+.dropdown-menu-series {
+  background-color: $sidebar-background;
+  color: $sidebar-font;
+  box-shadow: $floating-shadow;
+
+  .active.disabled {
+    color: $book-orange;
+    box-shadow: inset 5px 0px $book-orange;
+  }
+
+  .selectable {
+    color: white;
+  }
+
+  .selectable:hover {
+    color: $book-orange;
+    background-color: $sidebar-background;
+  }
+}
+
+
+/***************/
+/* Left column */
+/***************/
 
 // <= md
 @include media-breakpoint-down(md) {
   .left-column {
     position: fixed;
-    top: 55px;
+    top: 53px;
     left: 0px;
-    height: calc(100vh - 55px);
+    bottom: 0px;
+    //height: calc(100vh - 55px);
     width: calc(min(300px, 70vh, 70vw));
     //z-index: -100;
     visibility: hidden;
@@ -359,92 +406,80 @@ body {
 
 .left-column {
 
-  .btn:focus {
-    box-shadow: none;
+  //TOC
+  #scrollable-toc {
+    margin-top: 1em;
+    flex-grow : 1;
+    background-color: $sidebar-background;
+  }
+
+  .toc-filler {
+    padding: 4px;
+    background-color: $sidebar-background;
+  }
+
+  .btn-book-small {
+    box-shadow: inset -200px 0 white;
   }
 
   .d-flex {
     box-shadow: $floating-shadow;
-    background-color: $navbar-backgound;
-    .navbar-page-title, .navbar-page-title-series {
-      background-color: $series-title-background;
-      color: $series-title-font;
-    }
-
-    .dropdown-menu-series {
-      //box-shadow: 5px 5px 2px 1px rgba(1, 1, 1, .4);
-      box-shadow: $floating-shadow;
-      background-color: $series-title-background;
-      color: $series-title-font;
-      margin-left: -1px;
-    }
-  }
-
-}
-
-//TOC
-#scrollable-toc {
-  margin-top: 1em;
-  flex-grow : 1;
-  background-color: $navbar-backgound;
-}
-
-.toc-filler {
-  padding: 4px;
-  background-color: $sidebar-background;
-}
-
-.book-button {
-  border-radius: unset;
-  .btn {
-    border-style: none;
-  }
-}
-
-#toc {
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-
-  .nav-link {
-    color: $sidebar-font;
     background-color: $sidebar-background;
-    border-style: none;
-    border-color: $sidebar-background;
-    border-radius: 0;
-  }
-  .toc-level-1 {
-    font-size: 1rem;
-  }
 
-  .toc-level-2 {
-    font-size: 0.8rem;
-    padding-left: 26px;
-  }
-  .active {
-    background-color: $sidebar-background-active;
-    color: $sidebar-font-active;
-    border-left-color:$sidebar-border-active;
-    border-left-style: solid;
-    border-left-width: 8px;
-  }
+    #toc {
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 0px;
+      padding-bottom: 0px; 
+    }
 
-  .toc-level-1.active {
-    padding-left: 8px;
-  }
+    .nav {
+      background-color: $sidebar-background;
+    }
 
-  .toc-level-2.active {
-    padding-left: 18px;
-  }
+    .nav-divider {
+      height: 0.1rem;
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-top-color: $book-orange;
+      margin-right: 15px;
+      margin-left: 15px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
 
-  * > .active {
-    transition: padding-left .25s linear, border-left-width .25s linear, background-color .25s linear;
-  }
+    .nav-link {
+      color: $sidebar-font;
+      background-color: $sidebar-background;
+      font-weight: 100;
+    }
+
+    .nav-link.navbar-page-title {
+      background-color: $sidebar-background;
+      color: $book-orange;
+      padding-left: 1rem;
+    }
 
 
-  .nav-link:hover {
-    color: $book-orange;
+    .toc-level-1 {
+      font-size: 1rem;
+    }
+  
+    .toc-level-2 {
+      font-size: 0.8rem;
+      padding-left: 26px;
+    }
+  
+    .nav-link.active {
+      color: $sidebar-font-active;
+      box-shadow: inset 5px 0px $book-orange;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+  
+    .nav-link:hover {
+      color: $book-orange;
+    }
+
   }
 }
 
@@ -462,10 +497,12 @@ body {
   }
 }
 
-// Back to top button
+// Back to top and toc buttons
 .navbar-bottom {
   position: fixed;
-  box-shadow: $floating-shadow;
+  button {
+    box-shadow: $floating-shadow;
+  }
   z-index: 1030;
   bottom: 20px;
 }

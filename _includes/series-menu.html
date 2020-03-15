@@ -1,0 +1,13 @@
+<div class="dropdown-menu dropdown-menu-series dropdown-menu-lg-right rounded-0" aria-labelledby="navbarSerieDropdown">
+  {% assign series_sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
+  {% for series_page in series_sorted %}
+    {% if series_page.series_title == page.series_title %}
+    <a class="dropdown-item active disabled text-wrap">{{ series_page.series_number }} - {{ series_page.series_title }}</a>
+  {% else %}
+   <a class="dropdown-item selectable text-wrap" href="{{ series_page.url | prepend: site.baseurl }}">{{ series_page.series_number }} - {{ series_page.series_title }}</a>
+  {% endif %}
+{% endfor %}
+{% for coming_soon in site.data.series[page.series] %}
+  <a class="dropdown-item disabled text-wrap">{{ coming_soon.series_number }} - {{ coming_soon.series_title }} (coming soon)</a>
+{% endfor %}
+</div>

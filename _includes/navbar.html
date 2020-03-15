@@ -7,10 +7,6 @@
   <div class="container-lg">
     <nav class="navbar navbar-expand-lg">
       <a class="navbar-brand" href="/">API Handyman</a>
-      <span class="d-block d-md-none d-lg-none d-xl-none">SM</span>
-      <span class="d-none d-sm-none d-md-block d-lg-none d-xl-none">MD</span>
-      <span class="d-none d-sm-none d-md-none d-lg-block d-xl-none">LG</span>
-      <span class="d-none d-sm-none d-md-none d-lg-none d-xl-block">XL</span>
       <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
@@ -20,7 +16,7 @@
       {% else %}
         {%assign class_expand="flex-fill" %}
       {% endif %}
-      <div class="collapse navbar-collapse {{class_expand}}" id="navbarNav">
+      <div class="collapse navbar-collapse flex-grow-1 {{class_expand}}" id="navbarNav">
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="/blog">Blog</a>
           <a class="nav-item nav-link" href="/talks">Talks</a>
@@ -29,17 +25,20 @@
         </div>
       </div>
       {% if page.layout == 'post' %}
-      <span class="navbar-text navbar-page-title navbar-page-title-invisible flex-fill text-center d-none d-sm-none d-md-none d-lg-block">
         {% if page.series %}
-          {% assign title = page.series_title%}
+        <div class="nav-item dropdown d-none d-sm-none d-md-none d-lg-block">
+          <a class="nav-link dropdown-toggle navbar-page-title navbar-page-title-invisible text-right text-truncate d-none d-sm-none d-md-none d-lg-block" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{page.series | append: ' Series'}} - Part {{page.series_number}}
+          </a>
+          {% include series-menu.html %}
+        </div>
         {% else %}
-          {% assign title = page.title %}
+          <span class="navbar-text navbar-page-title navbar-page-title-invisible flex-fill text-right text-truncate d-none d-sm-none d-md-none d-lg-block">
+            {{page.title}}
+          </span>
         {% endif %}
-        {{title}}
-      </span>
-      {% endif %}
-      {% if page.layout == 'home' %}
-      <a class="navbar-brand d-none d-sm-none d-md-none d-lg-block" data-toggle="modal" data-target="#bookModal" href="#"><img src="/images/commons/book/title.png"></a>
+      {% elsif page.layout == 'home' %}
+        <a class="navbar-brand d-none d-sm-none d-md-none d-lg-block" data-toggle="modal" data-target="#bookModal" href="#"><img src="/images/commons/book/title.png"></a>
       {% endif %}
     </nav> <!-- class="navbar navbar-expand-md" -->
   </div> <!--  class="container" -->

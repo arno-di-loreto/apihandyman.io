@@ -32,35 +32,21 @@ libs:
 <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
   <div class="col-lg-2 col-xl-2 sticky-top left-column p-0">
     <div class="container d-flex flex-column p-0">
-      <a class="btn book-button p-0 border-0 left-column-toggler d-none d-lg-block" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
-      <a class="btn book-button p-0 border-0 left-column-toggler d-md-block d-lg-none p-3" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
+      <a class="btn btn-book p-0 border-0 rounded-0 left-column-toggler d-none d-lg-block" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
+      <a class="btn btn-book btn-book-small p-0 border-0 rounded-0 text-left left-column-toggler d-md-block d-lg-none p-3" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
       {% if page.series %}
-      <div class="dropright-disabled">
-        <a class="nav-link dropdown-toggle navbar-page-title-series text-center" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{page.series}} Series</a>
-        <div class="dropdown-menu dropdown-menu-series rounded-0 border-0">
-          {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
-          {% for my_page in sorted %}
-            {% if my_page.series_title == page.series_title %}
-            <a class="dropdown-item bold">{{ my_page.series_number }} - {{ my_page.series_title }}</a>
-            {% else %}
-            <a class="dropdown-item" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_number }} - {{ my_page.series_title }}</a>
-            {% endif %}
-          {% endfor %}
-          {% for coming_soon in site.data.series[page.series] %}
-            <a class="dropdown-item disabled">{{ coming_soon.series_number }} - {{ coming_soon.series_title }} (coming soon)</a>
-          {% endfor %}
-        </div>
+      <div class="nav-item dropdown d-block d-sm-block d-md-block d-lg-none">
+        <a class="nav-link dropdown-toggle navbar-page-title d-block d-sm-block d-md-block d-lg-none text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{page.series | append: ' Series'}} - Part {{page.series_number}}
+        </a>
+        {% include series-menu.html %}
       </div>
+      {% else %}
+        <span class="navbar-text navbar-page-title d-block d-sm-block d-md-block d-lg-none text-wrap">
+          {{page.title}}
+        </span>
       {% endif %}
-      <span class="navbar-text navbar-page-title text-center d-md-block d-lg-none">
-        {% if page.series %}
-          {% assign title = page.series_title%}
-        {% else %}
-          {% assign title = page.title %}
-        {% endif %}
-        {{title}}
-      </span>
-      <div class="toc-filler toc-filler-top"></div>
+      <hr class="nav-divider d-block d-sm-block d-md-block d-lg-none"/>
       <div class="flex-grow-1 overflow-auto m-0 left-column-toggler" id="scrollable-toc">
         {% include toc.html html=content h_min=1 h_max=2 %}
       </div>
@@ -70,7 +56,9 @@ libs:
   <!-- MAIN CONTENT-->
   <div class="main-content col-sm-12 col-md-12 col-lg-10 col-xl-10">
     <div class="page-content-text text-justify anchors  row row-cols-1 p-0 m-0">
-      {% assign nodes = content | split: '<h1 id=' %}
+      {% assign wrapped_tables_content = content | replace: '<table', '<div class="table-wrapper"><table' %}
+      {% assign wrapped_tables_content = wrapped_tables_content | replace: 'table>', 'table></div>' %}
+      {% assign nodes = wrapped_tables_content| split: '<h1 id=' %}
       {% assign first = 1 %}
       {% for node in nodes %}
         {% if node == "" %}
@@ -110,6 +98,11 @@ libs:
   </div><!--class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10"-->  
 </div><!--class="row page-content"-->
 <div class="navbar-bottom btn-group-vertical rounded-0" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-primary rounded-0 back-to-top d-none"><i class="fas fa-angle-double-up"></i></button>
+  <button type="button" class="btn btn-primary rounded-0 mb-2 d-block d-md-none d-lg-none d-xl-none">SM</button>
+  <button type="button" class="btn btn-primary rounded-0 mb-2 d-none d-sm-none d-md-block d-lg-none d-xl-none">MD</button>
+  <button type="button" class="btn btn-primary rounded-0 mb-2 d-none d-sm-none d-md-none d-lg-block d-xl-none">LG</button>
+  <button type="button" class="btn btn-primary rounded-0 mb-2 d-none d-sm-none d-md-none d-lg-none d-xl-block">XL</button>
+
+  <button type="button" class="btn btn-primary rounded-0 back-to-top mb-2 d-none"><i class="fas fa-angle-double-up"></i></button>
   <button type="button" class="btn btn-primary rounded-0 left-column-toggler d-md-block d-lg-none"><i class="fas fa-bars"></i></button>
 </div>
