@@ -21,7 +21,7 @@
           <a class="nav-item nav-link" href="/blog">Blog</a>
           <a class="nav-item nav-link" href="/talks">Talks</a>
           <a class="nav-item nav-link" href="/#tools">Toolbox</a>
-          <a class="nav-item nav-link d-block d-sm-block d-md-block d-lg-none" data-target="#bookModal" href="#"><img src="/images/commons/book/title.png"></a>
+          <a class="btn btn-book btn-book-small pl-0 border-0 rounded-0 text-left left-column-hider d-block d-sm-block d-md-block d-lg-none" data-toggle="modal" data-target="#bookModal" role="button" ><img data-toggle="collapse" data-target="#navbarNav" src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
         </div>
       </div>
       {% if page.layout == 'post' %}
@@ -38,7 +38,7 @@
           </span>
         {% endif %}
       {% elsif page.layout == 'home' %}
-        <a class="navbar-brand d-none d-sm-none d-md-none d-lg-block" data-toggle="modal" data-target="#bookModal" href="#"><img src="/images/commons/book/title.png"></a>
+        <a class="btn btn-book btn-book-small p-0 border-0 rounded-0 text-left left-column-hider d-none d-sm-none d-md-none d-lg-block" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
       {% endif %}
     </nav> <!-- class="navbar navbar-expand-md" -->
   </div> <!--  class="container" -->

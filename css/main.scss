@@ -15,6 +15,13 @@ $ghost-white: #F9F8F9;
 
 $background: $ghost-white;
 $background: pink;
+$link-hover: $book-orange;
+$link: $book-blue;
+$link-reverse: $link-hover;
+$link-reverse-hover: white; 
+$text: black;
+$text-backgound: $white;
+$text-reverse: white;
 
 $navbar-backgound: $book-blue;
 $navbar-font: white;
@@ -24,14 +31,11 @@ $sidebar-font: white;
 $sidebar-background-active: $background;
 $sidebar-font-active: $book-orange;
 $sidebar-border-active: $book-orange;
-$content-background: white;
-$content-font: black;
-$series-title-background: $book-orange;
-$series-title-font: $book-blue;
+$content-background: $text-backgound;
+$content-font: $text;
 
 $font-title: 'Spartan', sans-serif;
 $font-regular: 'Roboto', sans-serif;
-
 
 $navbar-shadow: 0px 2px 2px 1px rgba(0, 0, 0, .4);
 $bottom-navbar-shadow: 2px 0px 2px 1px rgba(0, 0, 0, .4);
@@ -53,6 +57,17 @@ body {
 // https://stackoverflow.com/questions/25274244/twitter-bootstrap-modal-opening-closing-causes-fixed-header-to-jump
 .modal-open {
   overflow: inherit
+}
+
+/**********/
+/* Common */
+/**********/
+a {
+  color: $book-blue;
+}
+
+a:hover {
+  color: $book-orange;
 }
 
 .btn-primary {
@@ -204,6 +219,9 @@ body {
   .navbar-brand {
     color: $navbar-font;
   }
+  .nav-link:hover, .navbar-brand:hover {
+    color: $link-hover;
+  }
 
 }
 
@@ -339,7 +357,6 @@ body {
 
   .active.disabled {
     color: $book-orange;
-    box-shadow: inset 5px 0px $book-orange;
   }
 
   .selectable {
@@ -419,7 +436,9 @@ body {
   }
 
   .btn-book-small {
-    box-shadow: inset -200px 0 white;
+    //box-shadow: inset -200px 0 white;
+    z-index: 1200;
+    box-shadow: $navbar-shadow;
   }
 
   .d-flex {
@@ -454,6 +473,10 @@ body {
       font-weight: 100;
     }
 
+    .nav-link:hover {
+      color: $link-hover;
+    }
+    
     .nav-link.navbar-page-title {
       background-color: $sidebar-background;
       color: $book-orange;
@@ -472,14 +495,9 @@ body {
   
     .nav-link.active {
       color: $sidebar-font-active;
-      box-shadow: inset 5px 0px $book-orange;
-      transition: box-shadow 0.3s ease-in-out;
+      //box-shadow: inset 5px 0px $book-orange;
+      //transition: box-shadow 0.3s ease-in-out;
     }
-  
-    .nav-link:hover {
-      color: $book-orange;
-    }
-
   }
 }
 
