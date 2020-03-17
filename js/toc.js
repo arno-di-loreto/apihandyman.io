@@ -20,20 +20,25 @@ $(document).ready(function(){
       console.log('level 1 active, offsetTop', activeLevel1[0].offsetTop)
       console.log('level 1 active, offsetHeight', activeLevel1[0].offsetHeight)
       const activeLevel2 = $("#toc .toc-level-2.active")
+      let targetTop
       if(activeLevel2.length > 0) {
         console.log('level 2 active', activeLevel2[0].innerText)
         console.log('level 2 active, offsetTop', activeLevel2[0].offsetTop)
         console.log('level 2 active, offsetHeight', activeLevel2[0].offsetHeight)
         const level2Top =  activeLevel2[0].offsetTop - tocScrollableParent.offsetTop;
         console.log('level 1 and level 2 active,  move to level2 top', level2Top)
-        tocScrollableParent.scrollTop = level2Top
+        targetTop = level2Top
       }
       else {
         const level1Top = activeLevel1[0].offsetTop - tocScrollableParent.offsetTop;
         console.log('only level 1 active, move to', level1Top)
         // Move level 1 to top
-        tocScrollableParent.scrollTop = level1Top
+        targetTop = level1Top
       }
+      tocScrollableParent.scrollTo({
+        top: targetTop,
+        behavior: 'smooth'
+      });
       console.log('parent updated scrollTop', tocScrollableParent.scrollTop)
     }
 
