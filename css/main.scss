@@ -22,6 +22,8 @@ $link-reverse-hover: white;
 $text: black;
 $text-backgound: $white;
 $text-reverse: white;
+$menu-hover-background: $book-orange;
+$menu-hover-color: white;
 
 $navbar-backgound: $book-blue;
 $navbar-font: white;
@@ -364,8 +366,8 @@ a:hover {
   }
 
   .selectable:hover {
-    color: $book-orange;
-    background-color: $sidebar-background;
+    background: $menu-hover-background;
+    color: $menu-hover-color
   }
 }
 
@@ -476,8 +478,9 @@ a:hover {
       font-weight: 100;
     }
 
-    .nav-link:hover {
-      color: $link-hover;
+    .nav-link:hover, .nav-link.active:hover {
+      background: $menu-hover-background;
+      color: $menu-hover-color
     }
     
     .nav-link.navbar-page-title {
