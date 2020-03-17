@@ -76,10 +76,12 @@ $(document).ready(function(){
 
   $('.left-column-toggler').on('click', function(){
     $('.left-column').toggleClass('left-column-shown')
+    $('.left-menu-modal').toggleClass('show')
   })
 
   $('.left-column-hider').on('click', function(){
     $('.left-column').removeClass('left-column-shown')
+    $('.left-menu-modal').removeClass('show')
   })
 
   $('.back-to-top').on('click', function() {
@@ -90,4 +92,5 @@ $(document).ready(function(){
 
   $(window).scroll(toggleBackToTop)
   toggleBackToTop()
+
 })

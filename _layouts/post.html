@@ -23,6 +23,7 @@ libs:
 {% else %}
   {% assign title = page.title %}
 {% endif %}
+<div class="fade modal left-column-hider left-menu-modal d-block d-sm-block d-md-block d-lg-none"></div>
 <div class="row page-image p-0">
   <div class="col-md-12 p-0">
     <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">

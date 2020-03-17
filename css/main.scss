@@ -374,6 +374,15 @@ a:hover {
 /* Left column */
 /***************/
 
+.left-menu-modal {
+  z-index: 1020;
+  background: rgba(12,12,12,0.5);
+}
+
+.left-menu-modal.show {
+  display: block;
+}
+
 // <= md
 @include media-breakpoint-down(md) {
   .left-column {
