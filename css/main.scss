@@ -377,12 +377,13 @@ a:hover {
 /***************/
 
 .left-menu-modal {
-  z-index: 1020;
+  z-index: -1;
   background: rgba(12,12,12,0.5);
 }
 
 .left-menu-modal.show {
   display: block;
+  z-index: 1020
 }
 
 // <= md
