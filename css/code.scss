@@ -25,6 +25,17 @@ code:not(.code-block) {
     height: 10px; // If set to 0px nothing is copied 🤔
   }
 
+  .card-header {
+    background: black;
+    .btn {
+      background: black;
+      box-shadow: none;
+    }
+    .row {
+      min-height: 2.2rem;
+    }
+  }
+
   .navbar-brand {
     font-size: 0.9em;
   }
@@ -50,6 +61,15 @@ code:not(.code-block) {
     padding: 0;
     padding-left: 10px;
     background-color: black;
+  }
+
+  .navbar-nav {
+    display: block;
+    flex-direction: row;
+    i {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 
   .card-body {

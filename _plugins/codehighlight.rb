@@ -74,7 +74,8 @@ module Jekyll
       # <i class="fas fa-compress-alt"></i>
       if code.lines.count > codeblocksize 
         collapsed_style = " code-collapsed"
-        collapsed_button = "<li class=\"nav-item\"><a class=\"btn code-expandcollapse-btn\" onclick=\"expandCollapseCode(this)\"><i class=\"fas fa-expand-alt\"></i></a></li>"
+        collapsed_button = "<a role=\"button\" class=\"btn btn-secondary border-0 rounded-0 code-expandcollapse-btn\"  aria-label=\"expand or reduce content toggler\" onclick=\"expandCollapseCode(this)\"><i class=\"fas fa-expand-alt\"></i></a>"
+
       end
       
       if @title
@@ -88,17 +89,17 @@ module Jekyll
 <div class="card card-code text-white bg-dark border-dark">
   #{hidden_code_copy}
   <div class="card-header">
-    <nav class="navbar navbar-expand-md">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <span class="navbar-text text-white small font-weight-bold">#{code_title}</span>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-md-auto">
-          <li class="nav-item"><a class="btn code-copy-btn"><i class="far fa-copy"></i></a></li>
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">#{code_title}</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy"><i class="far fa-copy"></i></a>
           #{collapsed_button}
-        </ul>
-    </nav>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="card-body">
     <pre class="language-#{@language}#{@linenumbers}#{collapsed_style}#{visible_code_copy_class}"#{@highlight}><code class="code-block">#{code}</code></pre>
