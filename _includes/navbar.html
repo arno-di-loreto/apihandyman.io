@@ -9,7 +9,7 @@
       <a class="navbar-brand" href="/">API Handyman</a>
       <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
+        {% include icon.html name="menu" %}
       </button>
       {% if page.layout == 'post' %}
         {%assign class_expand="flex-grow-0" %}

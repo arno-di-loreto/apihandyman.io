@@ -57,6 +57,14 @@ body {
   }
 }
 
+.btn-icon {
+  height: 1rem;
+  filter: invert(1);
+  //height: 1rem;
+  //filter: invert(1);
+  //fill: white;
+}
+
 .btn:focus {
   box-shadow: $button-focus-shadow;
 }

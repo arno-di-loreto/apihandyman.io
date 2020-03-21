@@ -22,7 +22,7 @@ function expandCollapseCode(button) {
     $(code).removeClass('code-collapsed')
     $(cardHeader).addClass('sticky-top')
     $(cardHeader).addClass('close-to-main-navbar')
-    $(button).html('<i class="fas fa-compress-alt"></i>')
+    $(button).html('<img class="btn-icon" src="/images/commons/icons/minimize.svg">')
     $(button).blur()
 
   }
@@ -31,7 +31,7 @@ function expandCollapseCode(button) {
     $(code).addClass('code-collapsed')
     $(cardHeader).removeClass('sticky-top')
     $(cardHeader).removeClass('close-to-main-navbar')
-    $(button).html('<i class="fas fa-expand-alt"></i>')
+    $(button).html('<img class="btn-icon" src="/images/commons/icons/maximize.svg">')
     $(button).blur()
     window.scrollBy(0, -beforeCardHeaderOffsetTop)
   }
@@ -46,9 +46,9 @@ const clipboard = new ClipboardJS('.code-copy-btn', {
 
 clipboard.on('success', function(e) {
   e.clearSelection()
-  $(e.trigger).html('<i class="fas fa-check"></i>')
+  $(e.trigger).html('<img class="btn-icon" src="/images/commons/icons/copy-check.svg">')
   window.setTimeout(function() {
-      $(e.trigger).html('<i class="far fa-copy"></i>')
+      $(e.trigger).html('<img class="btn-icon" src="/images/commons/icons/copy.svg">')
       $(e.trigger).blur()
   }, 1000)
 });

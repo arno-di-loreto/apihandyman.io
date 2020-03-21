@@ -1,9 +1,9 @@
 const bashBootstrapCols = {
   xs: '68',
   sm: '68',
-  md: '68',
-  lg: '104',
-  xl: '125'
+  md: '88',
+  lg: '88',
+  xl: '108'
 }
 
 function getBashPlayer(element) {

@@ -74,7 +74,7 @@ module Jekyll
       # <i class="fas fa-compress-alt"></i>
       if code.lines.count > codeblocksize 
         collapsed_style = " code-collapsed"
-        collapsed_button = "<a role=\"button\" class=\"btn btn-secondary border-0 rounded-0 code-expandcollapse-btn\"  aria-label=\"expand or reduce content toggler\" onclick=\"expandCollapseCode(this)\"><i class=\"fas fa-expand-alt\"></i></a>"
+        collapsed_button = "<a role=\"button\" class=\"btn btn-secondary border-0 rounded-0 code-expandcollapse-btn\"  aria-label=\"expand or reduce content toggler\" onclick=\"expandCollapseCode(this)\"><img class=\"btn-icon\" src=\"/images/commons/icons/maximize.svg\"></a>"
 
       end
       
@@ -95,7 +95,7 @@ module Jekyll
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy"><i class="far fa-copy"></i></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy"><img class="btn-icon" src="/images/commons/icons/copy.svg"></a>
           #{collapsed_button}
         </div>
       </div>
