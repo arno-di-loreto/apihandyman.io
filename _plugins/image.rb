@@ -79,26 +79,28 @@ class Image < Liquid::Tag
       target = ""
     end
 
-    if @source == ""
-      img = "<img class=\"content-img img-fluid border\" src=\"#{src}\">"
-    else
-      img = "<a href=\"#{@source}\"#{target}><img class=\"content-img img-fluid border\" src=\"#{src}\"></a>"
-    end
-
     if @label != ""
-      if @source == ""
-        plabel = "<p class=\"content-img-label\">#{@label}</p>"
-      else
-        plabel = "<p class=\"content-img-label\"><a href=\"#{@source}\"#{target}>#{@label}</a></p>"
-      end
+      label = "<figcaption class=\"figure-caption text-left\">#{@label}</figcaption>"
     end
 
-    <<-MARKUP.strip
+    if @source == ""
+      linkStart = ""
+      linkEnd = ""
+    else
+      linkStart = "<a href=\"#{@source}\"#{target}>"
+      linkEnd = "</a>"
+    end
+
+    <<-HTML.strip
     <div class="text-center">
-      #{img}
-      #{plabel}
+      <figure class="figure">
+        #{linkStart}
+        <img src="#{src}" class="figure-img img-fluid">
+        #{linkEnd}
+        #{label}
+      </figure>
     </div>
-    MARKUP
+    HTML
   end
 
   Liquid::Template.register_tag "img", self
