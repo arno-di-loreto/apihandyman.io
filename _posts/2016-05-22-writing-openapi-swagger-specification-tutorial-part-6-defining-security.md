@@ -16,7 +16,8 @@ tags:
   - Documentation
   - API First
 series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Part 6 - Defining Security
+series_title: Defining Security
+series_number: 6
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After mastering [input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/) like a Jedi, let's see how we can describe API's security with the [OpenAPI specification's](https://openapis.org/).<!--more-->

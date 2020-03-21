@@ -16,7 +16,8 @@ tags:
   - Documentation
   - API First
 series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Part 4 - Advanced Data
+series_title: Advanced Data
+series_number: 4
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After learning how to [simplify specification files](/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/), let's start delving into the [OpenAPI specification's](https://openapis.org/) and discover how to describe a high accuracy API's data model.<!--more-->

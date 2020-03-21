@@ -20,7 +20,8 @@ tags:
   - Video
   - Slides
 series: OpenAPI Trek
-series_title: Part 1 - OpenAPI Trek
+series_title: OpenAPI Trek
+series_number: 1
 ---
 I was thrilled to start my OpenAPI specification (fka. Swagger specification) talk series at API Days London with this first part simply titled OpenAPI Trek.<!--more-->
 

@@ -20,7 +20,8 @@ tags:
   - Slides
   - Series
 series: OpenAPI Trek
-series_title: Part 3 - OpenAPI Trek Beyond API Documentation
+series_title: OpenAPI Trek Beyond API Documentation
+series_number: 3
 ---
 After API Days London, and Nordic APIs Summit in Stockholm, Scottie beamed me to API Strat Boston 2016 for the final part of my OpenAPI specification (fka. Swagger specification) talk series: *OpenAPI Trek Beyond API Documentation*.<!--more-->
 

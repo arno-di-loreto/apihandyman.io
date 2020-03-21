@@ -16,7 +16,8 @@ tags:
   - Documentation
   - API First
 series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Part 1 - Introduction
+series_title: Introduction
+series_number: 1
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 Previously in the APIverse...  
