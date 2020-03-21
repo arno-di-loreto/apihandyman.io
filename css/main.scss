@@ -24,6 +24,7 @@ $text-backgound: $white;
 $text-reverse: white;
 $menu-hover-background: $book-orange;
 $menu-hover-color: white;
+$button-focus-shadow: 0 0 0 0.2rem rgba(230,108,42,0.25);
 
 $navbar-backgound: $book-blue;
 $navbar-font: white;
@@ -33,8 +34,11 @@ $sidebar-font: white;
 $sidebar-background-active: $background;
 $sidebar-font-active: $book-orange;
 $sidebar-border-active: $book-orange;
+
 $content-background: $text-backgound;
 $content-font: $text;
+$content-titlebar-background: $text;
+$content-titlebar-color: $text-backgound;
 
 $font-title: 'Spartan', sans-serif;
 $font-regular: 'Roboto', sans-serif;
@@ -53,6 +57,17 @@ body {
   }
 }
 
+.btn:focus {
+  box-shadow: $button-focus-shadow;
+}
+
+table {
+  @extend .table, .table-sm, .table-striped, .table-bordered, .text-left;
+  thead {
+    background: $content-titlebar-background;
+    color: $content-titlebar-color;
+  }
+}
 
 // To fix strange behavior when modal open: top/bottom borders on toc navbar
 // Class modal-open is added to body and cause this mess, following trick solves the problem
@@ -80,6 +95,10 @@ a:hover {
 }
 
 .btn-primary:hover {
+  background-color: $book-orange;
+}
+
+.btn-primary:active {
   background-color: $book-orange;
 }
 
@@ -525,8 +544,12 @@ a:hover {
 // Back to top and toc buttons
 .navbar-bottom {
   position: fixed;
-  button {
+  .btn {
     box-shadow: $floating-shadow;
+  }
+  .btn:focus {
+    box-shadow: $floating-shadow;
+    background-color: $book-orange;
   }
   z-index: 1030;
   bottom: 20px;

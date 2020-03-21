@@ -35,7 +35,7 @@ Using the [JSON Schema Draft 4](http://json-schema.org/documentation.html), the 
 ## Strings length and pattern
 When defining a *string* property, we can specify its length range and its pattern:
 
-{: .table .table-bordered}
+
 Property  | Type   | Description 
 ----------|--------|-------------
 minLength | number | String's minimum length
@@ -48,7 +48,7 @@ The *username* in the *Person* definition is a string which length is between 8 
 ## Dates and times
 Date and time are handled with *string* properties conforming to [RFC 3339](http://xml2rfc.ietf.org/public/rfc/html/rfc3339), all you need to do is to use the appropriate *format*:
 
-{: .table .table-bordered}
+
 Format   | Property contains | Property's value example
 ---------|-------------------|------------------------------
 date     | [ISO8601 full-date](http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14) | 2016-04-01
@@ -63,7 +63,7 @@ You should read the [5 laws of API dates and times](http://apiux.com/2013/03/20/
 
 When defining a number property, we can specify if this property is an integer, a long, a float or a double by using the [appropriate type and format combination](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types).
 
-{: .table .table-bordered}
+
 Value   |Type     | Format
 --------|---------|-------
 integer | integer | int32
@@ -74,7 +74,7 @@ double  | number  | double
 
 And just like string, we can define additional properties like the value range and also indicate if the value is a multiple of something:
 
-{: .table .table-bordered}
+
 Property   |Type  | Description
 --------|---------|-------
 minimum | number  | Minimum value
@@ -98,7 +98,7 @@ The property *code* of definition *Error* can take only three value (DBERR, NTER
 ## Arrays size and uniqueness
 Arrays size and uniqueness are defined by these properties:
 
-{: .table .table-bordered}
+
 Property   |Type  | Description
 --------|---------|-------
 minItems    | number  | Minimum number of items in the array
@@ -112,7 +112,7 @@ The *Person* definition contains a property *items* which is an array of *Person
 ## Binary data
 Binary data can be handled with *string* properties using the appropriate *format*:
 
-{: .table .table-bordered}
+
 Format   | Property contains
 ---------|------------------
 byte     | Base64 encoded characters

@@ -1,9 +1,11 @@
-<table class="table table-sm">
+<table>
+  {% if include.title %}
   <thead>
     <tr>
-      <th span="3">{{include.title}}</th>
+      <th colspan="3" scope="col">{{include.title}}</th>
     </tr>
   </thead>
+  {% endif %}
   <tbody>
 {% assign names=include.names | split:"," %}
 {% for name in names %}
@@ -11,7 +13,7 @@
     <tr>
       <td><code>{{item.examples | join:"</code><br><code>" }}</code></td>
       <td>{{item.description | capitalize}}</td>
-      <td><a href="{{item.url}}" target="{{include.target}}"><i class="fas fa-external-link-alt"></i></a></td>
+      <td><a class="btn rounded-0 border-0" href="{{item.url}}" target="{{include.target}}"><i class="fas fa-external-link-alt"></i></a></td>
     </tr>
 {% endfor %}
   </tbody>
