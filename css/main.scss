@@ -233,6 +233,7 @@ a:hover {
 }
 
 .navbar-page-title {
+  @extend .text-uppercase;
   color: $navbar-backgound;
   transition: color .50s linear;
   //font-family: $font-title;
@@ -240,7 +241,7 @@ a:hover {
 }
 
 .navbar-page-title-visible {
-  color: $book-orange;
+  color: $navbar-font;
   transition: color .50s linear;
 }
 
@@ -519,9 +520,9 @@ a:hover {
       color: $menu-hover-color
     }
     
-    .nav-link.navbar-page-title {
+    .navbar-page-title {
       background-color: $sidebar-background;
-      color: $book-orange;
+      //color: $book-orange;
       padding-left: 1rem;
     }
 
