@@ -558,13 +558,18 @@ a:hover {
   }
 }
 
-// Back to top and toc buttons
+/*****************/
+/* Bottom navbar */
+/*****************/
+
 .navbar-bottom {
   position: fixed;
-  .btn {
+  @extend .btn-group-vertical, .rounded-0;
+  .navbar-bottom-btn {
+    @extend .btn, .btn-primary, .rounded-0, .mb-2;
     box-shadow: $floating-shadow;
   }
-  .btn:focus {
+  .navbar-bottom-btn:focus {
     box-shadow: $floating-shadow;
     background-color: $book-orange;
   }
@@ -590,3 +595,7 @@ a:hover {
     right: calc(50vw - 565px);
   }
 }
+
+/*********/
+/* Utils */
+/*********/
