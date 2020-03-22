@@ -39,3 +39,8 @@ function acceptPrivacyPolicy() {
   }
   $('.privacy-message').toggleClass('d-none')
 }
+
+//Enabling tooltip everywhere
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

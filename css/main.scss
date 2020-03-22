@@ -2,7 +2,6 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 @charset "utf-8";
-@import "bootstrap/scss/bootstrap";
 
 // book
 $book-blue: #014E68;
@@ -20,7 +19,7 @@ $link: $book-blue;
 $link-reverse: $link-hover;
 $link-reverse-hover: white; 
 $text: black;
-$text-backgound: $white;
+$text-backgound: white;
 $text-reverse: white;
 $menu-hover-background: $book-orange;
 $menu-hover-color: white;
@@ -47,6 +46,15 @@ $navbar-shadow: 0px 2px 2px 1px rgba(0, 0, 0, .4);
 $bottom-navbar-shadow: 2px 0px 2px 1px rgba(0, 0, 0, .4);
 $floating-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .4);
 $small-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .1);
+
+
+// Tooltips
+$tooltip-arrow-color:$book-orange;
+$tooltip-bg:$book-orange;
+
+
+@import "bootstrap/scss/bootstrap";
+
 
 body {
   padding-top: 55px;
