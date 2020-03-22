@@ -413,6 +413,43 @@ a:hover {
   background: rgba(12,12,12,0.5);
 }
 
+.card-book-left:hover {
+  cursor: pointer;
+}
+
+.card-book-left {
+  @extend .rounded-0, .border-0;
+  color: $book-orange;
+  img {
+    @extend .rounded-0;
+  }
+  .message-cropped {
+    padding-right: 80px;
+    line-height: 1rem;
+    @include media-breakpoint-down(xl) {
+      padding-top: 10px;
+      padding-left: 24px;
+    }
+    @include media-breakpoint-down(lg) {
+      padding-top: 5px;
+      padding-left: 20px;
+    }
+  }
+
+  .message-full {
+    padding-right: 80px;
+    line-height: 1rem;
+    @include media-breakpoint-down(xl) {
+      padding-top: 25px;
+      padding-left: 24px;
+    }
+    @include media-breakpoint-down(lg) {
+      padding-top: 20px;
+      padding-left: 20px;
+    }
+  }
+}
+
 .left-menu-modal.show {
   display: block;
   z-index: 1020

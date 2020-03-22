@@ -6,6 +6,14 @@ libs:
   bash: true
   toc: true
 ---
+
+{% assign header_count = content | split: '<h' | size %}
+{% if header_count == 1 or page.hide_toc %}
+  {% assign show_toc = false %}
+{% else %}
+  {% assign show_toc = true %}
+{% endif %}
+
 {% if page.thumbnail %}
   {% assign thumbnail = page.thumbnail %}
 {% else %}
@@ -32,9 +40,23 @@ libs:
 <div class="row page-content p-0">
 <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
   <div class="col-lg-2 col-xl-2 sticky-top left-column p-0">
-    <div class="container d-flex flex-column p-0">
-      <a class="btn btn-book p-0 border-0 rounded-0 left-column-toggler d-none d-lg-block" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
-      <a class="btn btn-book btn-book-small pl-3 pt-3 pb-2 border-0 rounded-0 text-left left-column-toggler d-md-block d-lg-none" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
+    <div class="container d-flex flex-column p-0">      
+        {% if show_toc %}
+          {% assign book_image = "/images/commons/book/book-left-menu-cropped.png" %}
+          {% assign book_text_class = "message-cropped" %}
+        {% else %}
+          {% assign book_image = "/images/commons/book/book-left-menu-full.png" %}
+          {% assign book_text_class = "message-full" %}
+        {% endif %}
+        <div class="card card-book-left d-desktop-only">
+          <img src="{{book_image}}" class="card-img" alt="The Design of Web APIs book cover">
+          <div class="card-img-overlay {{book_text_class}}">
+            <a class="stretched-link left-column-toggler" data-toggle="modal" data-target="#bookModal" role="button" >
+              <p class="card-text">Special offer on my book</p>
+            </a>
+          </div>
+        </div>
+      <a class="btn btn-book btn-book-small pl-3 pt-3 pb-2 border-0 rounded-0 text-left left-column-toggler d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
       {% if page.series %}
       <div class="nav-item dropdown d-mobile-only">
         <a class="nav-link dropdown-toggle navbar-page-title d-mobile-only text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,11 +69,13 @@ libs:
           {{page.title}}
         </span>
       {% endif %}
-      <hr class="nav-divider d-mobile-only"/>
-      <div class="flex-grow-1 overflow-auto m-0 left-column-toggler" id="scrollable-toc">
-        {% include toc.html html=content h_min=1 h_max=2 %}
-      </div>
-      <div class="toc-filler toc-filler-bottom"></div>
+      {% if show_toc %}
+        <hr class="nav-divider d-mobile-only"/>
+        <div class="flex-grow-1 overflow-auto m-0 left-column-toggler" id="scrollable-toc">
+          {% include toc.html html=content h_min=1 h_max=2 %}
+        </div>
+        <div class="toc-filler toc-filler-bottom"></div>
+      {% endif %}
     </div>
   </div>
   <!-- MAIN CONTENT-->
@@ -104,7 +128,8 @@ libs:
   <button type="button" class="navbar-bottom-btn d-md-only">MD</button>
   <button type="button" class="navbar-bottom-btn d-lg-only">LG</button>
   <button type="button" class="navbar-bottom-btn d-xl-only">XL</button>
-
   <button type="button" class="navbar-bottom-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top">{% include icon.html name="top"%}</button>
-  <button type="button" class="navbar-bottom-btn left-column-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content">{% include icon.html name="list" %}</button>
+  {% if show_toc %}
+    <button type="button" class="navbar-bottom-btn left-column-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content">{% include icon.html name="list" %}</button>
+  {% endif %}
 </div>
