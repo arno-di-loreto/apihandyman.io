@@ -26,19 +26,19 @@
       </div>
       {% if page.layout == 'post' %}
         {% if page.series %}
-        <div class="nav-item dropdown d-none d-sm-none d-md-none d-lg-block">
-          <a class="nav-link dropdown-toggle navbar-page-title navbar-page-title-invisible text-right text-truncate d-none d-sm-none d-md-none d-lg-block" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="nav-item dropdown d-desktop-only">
+          <a class="nav-link dropdown-toggle navbar-page-title navbar-page-title-invisible text-right text-truncate d-desktop-only" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{page.series | append: ' Series'}} - Part {{page.series_number}}
           </a>
           {% include series-menu.html %}
         </div>
         {% else %}
-          <span class="navbar-text navbar-page-title navbar-page-title-invisible flex-fill text-right text-truncate d-none d-sm-none d-md-none d-lg-block">
+          <span class="navbar-text navbar-page-title navbar-page-title-invisible flex-fill text-right text-truncate d-desktop-only">
             {{page.title}}
           </span>
         {% endif %}
       {% elsif page.layout == 'home' %}
-        <a class="btn btn-book btn-book-small p-0 border-0 rounded-0 text-left left-column-hider d-none d-sm-none d-md-none d-lg-block" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
+        <a class="btn btn-book btn-book-small p-0 border-0 rounded-0 text-left left-column-hider d-desktop-only" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
       {% endif %}
     </nav> <!-- class="navbar navbar-expand-md" -->
   </div> <!--  class="container" -->

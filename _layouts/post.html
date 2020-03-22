@@ -23,7 +23,7 @@ libs:
 {% else %}
   {% assign title = page.title %}
 {% endif %}
-<div class="fade modal left-column-hider left-menu-modal d-block d-sm-block d-md-block d-lg-none"></div>
+<div class="fade modal left-column-hider left-menu-modal d-mobile-only"></div>
 <div class="row page-image p-0">
   <div class="col-md-12 p-0">
     <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
@@ -36,18 +36,18 @@ libs:
       <a class="btn btn-book p-0 border-0 rounded-0 left-column-toggler d-none d-lg-block" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/book-vertical.png" class="img-fluid w-100" alt="The Design of Web APIs book"></a>
       <a class="btn btn-book btn-book-small pl-3 pt-3 pb-2 border-0 rounded-0 text-left left-column-toggler d-md-block d-lg-none" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
       {% if page.series %}
-      <div class="nav-item dropdown d-block d-sm-block d-md-block d-lg-none">
-        <a class="nav-link dropdown-toggle navbar-page-title d-block d-sm-block d-md-block d-lg-none text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="nav-item dropdown d-mobile-only">
+        <a class="nav-link dropdown-toggle navbar-page-title d-mobile-only text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{page.series | append: ' Series'}} - Part {{page.series_number}}
         </a>
         {% include series-menu.html wrap=true %}
       </div>
       {% else %}
-        <span class="navbar-text navbar-page-title d-block d-sm-block d-md-block d-lg-none text-wrap">
+        <span class="navbar-text navbar-page-title d-mobile-only text-wrap">
           {{page.title}}
         </span>
       {% endif %}
-      <hr class="nav-divider d-block d-sm-block d-md-block d-lg-none"/>
+      <hr class="nav-divider d-mobile-only"/>
       <div class="flex-grow-1 overflow-auto m-0 left-column-toggler" id="scrollable-toc">
         {% include toc.html html=content h_min=1 h_max=2 %}
       </div>
@@ -99,12 +99,12 @@ libs:
   </div><!--class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10"-->  
 </div><!--class="row page-content"-->
 <div class="navbar-bottom" role="group" aria-label="secondary navbar">
-  <button type="button" class="navbar-bottom-btn d-block d-sm-none">XS</button>
-  <button type="button" class="navbar-bottom-btn d-none d-sm-block d-md-none">SM</button>
-  <button type="button" class="navbar-bottom-btn d-none d-md-block d-lg-none">MD</button>
-  <button type="button" class="navbar-bottom-btn d-none d-lg-block d-xl-none">LG</button>
-  <button type="button" class="navbar-bottom-btn d-none d-xl-block">XL</button>
+  <button type="button" class="navbar-bottom-btn d-xs-only">XS</button>
+  <button type="button" class="navbar-bottom-btn d-sm-only">SM</button>
+  <button type="button" class="navbar-bottom-btn d-md-only">MD</button>
+  <button type="button" class="navbar-bottom-btn d-lg-only">LG</button>
+  <button type="button" class="navbar-bottom-btn d-xl-only">XL</button>
 
   <button type="button" class="navbar-bottom-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top">{% include icon.html name="top"%}</button>
-  <button type="button" class="navbar-bottom-btn left-column-toggler d-md-block d-lg-none" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content">{% include icon.html name="list" %}</button>
+  <button type="button" class="navbar-bottom-btn left-column-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content">{% include icon.html name="list" %}</button>
 </div>

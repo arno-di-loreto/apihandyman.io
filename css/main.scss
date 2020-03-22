@@ -272,10 +272,6 @@ a:hover {
   margin-bottom: 35px
 }
 
-.content-img {
-  margin-bottom: 1rem;
-}
-
 .main-content {
   padding-left: 10px;
   padding-right: 10px;
@@ -596,6 +592,34 @@ a:hover {
   }
 }
 
-/*********/
-/* Utils */
-/*********/
+/*****************/
+/* Display utils */
+/*****************/
+
+.d-xs-only {
+  @extend .d-block, .d-sm-none;
+}
+
+.d-sm-only {
+  @extend .d-none, .d-sm-block, .d-md-none;
+}
+
+.d-md-only {
+  @extend .d-none, .d-md-block, .d-lg-none;
+}
+
+.d-lg-only {
+  @extend .d-none, .d-lg-block, .d-xl-none;
+}
+
+.d-xl-only {
+  @extend .d-none, .d-xl-block;
+}
+
+.d-mobile-only {
+  @extend .d-md-block, .d-lg-none;
+}
+
+.d-desktop-only {
+  @extend .d-none, .d-lg-block;
+}
