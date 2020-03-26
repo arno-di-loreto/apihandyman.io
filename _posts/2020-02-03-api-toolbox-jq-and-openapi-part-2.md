@@ -5,7 +5,7 @@ author: Arnaud Lauret
 layout: post
 permalink: /api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/
 codefiles: api-toolbox-jq-and-openapi/part-2
-category: API Toolbox
+category: posts
 series: JQ and OpenAPI
 series_title: Using JQ command line arguments, functions and modules
 series_number: 2

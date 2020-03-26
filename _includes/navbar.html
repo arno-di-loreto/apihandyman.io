@@ -18,9 +18,9 @@
       {% endif %}
       <div class="collapse navbar-collapse flex-grow-1 {{class_expand}}" id="navbarNav">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/blog">Blog</a>
-          <a class="nav-item nav-link" href="/talks">Talks</a>
-          <a class="nav-item nav-link" href="/#tools">Toolbox</a>
+          {% for category in site.data.categories %}
+            <a class="nav-item nav-link" href="{{category[1].permalink}}">{{category[1].name}}</a>
+          {% endfor %}
           <a class="btn btn-book btn-book-small pl-0 border-0 rounded-0 text-left left-column-hider d-block d-sm-block d-md-block d-lg-none" data-toggle="modal" data-target="#bookModal" role="button" ><img data-toggle="collapse" data-target="#navbarNav" src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
         </div>
       </div>
@@ -32,10 +32,6 @@
           </a>
           {% include series-menu.html %}
         </div>
-        {% else %}
-          <span class="navbar-text navbar-page-title navbar-page-title-invisible flex-fill text-right text-truncate d-desktop-only">
-            {{page.title}}
-          </span>
         {% endif %}
       {% elsif page.layout == 'home' %}
         <a class="btn btn-book btn-book-small p-0 border-0 rounded-0 text-left left-column-hider d-desktop-only" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>

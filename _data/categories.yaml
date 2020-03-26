@@ -1,6 +1,12 @@
 posts:
+  name: Posts
+  permalink: /posts
   subtitle: The API Handyman writes as time permits
 talks:
+  name: Talks & Podcasts
+  permalink: /talks
   subtitle: The API Handyman talks as time permits
-elsewhere:
-  subtitle: The API Handyman appears also elsewhere on the Internet
+toolbox:
+  name: Toolbox
+  permalink: /toolbox
+  subtitle: The API Handyman's toobox

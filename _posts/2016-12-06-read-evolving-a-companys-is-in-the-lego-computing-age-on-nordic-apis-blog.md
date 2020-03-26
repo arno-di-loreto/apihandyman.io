@@ -4,7 +4,8 @@ date: 2016-12-06
 author: Arnaud Lauret
 layout: post
 permalink: /read-evolving-a-companys-is-in-the-lego-computing-age-on-nordic-apis-blog/
-category: elsewhere
+category: posts
+type: link
 tags:
   - Governance
   - Strategy

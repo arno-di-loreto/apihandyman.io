@@ -10,11 +10,11 @@ libs:
   {% include head.html included_libs=included_libs %}
   <body  data-spy="scroll" data-target="#toc">
     {% include navbar.html %}
-    <div class="container-lg below-main-navbar">
+    <div class="container-fluid">
     {{ content }}
-    </div>
     {% include foot.html %}
     {% include book-modal.html %}
     {% include privacy-message.html %}
+  </div>
   </body>
 </html>

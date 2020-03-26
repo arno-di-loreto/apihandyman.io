@@ -31,105 +31,106 @@ libs:
 {% else %}
   {% assign title = page.title %}
 {% endif %}
-<div class="fade modal left-column-hider left-menu-modal d-mobile-only"></div>
-<div class="row page-image p-0">
-  <div class="col-md-12 p-0">
-    <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
-  </div>
-</div>
-<div class="row page-content p-0">
-<!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
-  <div class="col-lg-2 col-xl-2 sticky-top left-column p-0">
-    <div class="container d-flex flex-column p-0">      
-        {% if show_toc %}
-          {% assign book_image = "/images/commons/book/book-left-menu-cropped.png" %}
-          {% assign book_text_class = "message-cropped" %}
-        {% else %}
-          {% assign book_image = "/images/commons/book/book-left-menu-full.png" %}
-          {% assign book_text_class = "message-full" %}
-        {% endif %}
-        <div class="card card-book-left d-desktop-only">
-          <img src="{{book_image}}" class="card-img" alt="The Design of Web APIs book cover">
-          <div class="card-img-overlay {{book_text_class}}">
-            <a class="stretched-link left-column-toggler" data-toggle="modal" data-target="#bookModal" role="button" >
-              <p class="card-text">Special offer on my book</p>
-            </a>
-          </div>
-        </div>
-      <a class="btn btn-book btn-book-small pl-3 pt-3 pb-2 border-0 rounded-0 text-left left-column-toggler d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
-      {% if page.series %}
-      <div class="nav-item dropdown d-mobile-only">
-        <a class="nav-link dropdown-toggle navbar-page-title d-mobile-only text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{page.series | append: ' Series'}} - Part {{page.series_number}}
-        </a>
-        {% include series-menu.html wrap=true %}
-      </div>
-      {% else %}
-        <span class="navbar-text navbar-page-title d-mobile-only text-wrap">
-          {{page.title}}
-        </span>
-      {% endif %}
-      {% if show_toc %}
-        <hr class="nav-divider d-mobile-only"/>
-        <div class="flex-grow-1 overflow-auto m-0 left-column-toggler" id="scrollable-toc">
-          {% include toc.html html=content h_min=1 h_max=2 %}
-        </div>
-        <div class="toc-filler toc-filler-bottom"></div>
-      {% endif %}
+<div class="container-lg">
+  <div class="fade modal left-column-hider left-menu-modal d-mobile-only"></div>
+  <div class="row page-image p-0">
+    <div class="col-md-12 p-0">
+      <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
     </div>
   </div>
-  <!-- MAIN CONTENT-->
-  <div class="main-content col-sm-12 col-md-12 col-lg-10 col-xl-10">
-    <div class="page-content-text text-justify anchors  row row-cols-1 p-0 m-0">
-      {% assign wrapped_tables_content = content | replace: '<table', '<div class="table-wrapper"><table' %}
-      {% assign wrapped_tables_content = wrapped_tables_content | replace: 'table>', 'table></div>' %}
-      {% assign nodes = wrapped_tables_content| split: '<h1 id=' %}
-      {% assign first = 1 %}
-      {% for node in nodes %}
-        {% if node == "" %}
-          {% continue %}
+  <div class="row page-content p-0">
+  <!-- LEFT COLUMN HIDDEN WHEN SMALLER THAN LG -->
+    <div class="col-lg-2 col-xl-2 sticky-top left-column p-0">
+      <div class="container d-flex flex-column p-0">      
+          {% if show_toc %}
+            {% assign book_image = "/images/commons/book/book-left-menu-cropped.png" %}
+            {% assign book_text_class = "message-cropped" %}
+          {% else %}
+            {% assign book_image = "/images/commons/book/book-left-menu-full.png" %}
+            {% assign book_text_class = "message-full" %}
+          {% endif %}
+          <div class="card card-book-left d-desktop-only">
+            <img src="{{book_image}}" class="card-img" alt="The Design of Web APIs book cover">
+            <div class="card-img-overlay {{book_text_class}}">
+              <a class="stretched-link left-column-toggler" data-toggle="modal" data-target="#bookModal" role="button" >
+                <p class="card-text">Special offer on my book</p>
+              </a>
+            </div>
+          </div>
+        <a class="btn btn-book btn-book-small pl-3 pt-3 pb-2 border-0 rounded-0 text-left left-column-toggler d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" >
+          <span class="card-book-left">Special offer on my book</span>
+          <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
+        </a>
+        {% if page.series %}
+        <div class="nav-item dropdown d-mobile-only">
+          <a class="nav-link dropdown-toggle navbar-page-title d-mobile-only text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{page.series | append: ' Series'}} - Part {{page.series_number}}
+          </a>
+          {% include series-menu.html wrap=true %}
+        </div>
         {% endif %}
-        {% if first == 1 %}
-        <!-- First card with page title -->
-        <div class="page-section page-section-title card card-page-title border-0 rounded-0 mb-3 mb-md-4 mb-lg-5 mb-xl-5">
-          <div class="card-body p-0">
-            {% if page.series %}
-            <h5 class="card-surtitle font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
-            {% endif %}
-            <h1 class="card-title">{{title}}</h1>
-            <p class="card-subtitle text-muted">
-              {% if page.author %}
-                By {{ page.author }}
+        {% if show_toc %}
+          <hr class="nav-divider d-mobile-only"/>
+          <div class="flex-grow-1 overflow-auto m-0 left-column-toggler" id="scrollable-toc">
+            {% include toc.html html=content h_min=1 h_max=2 %}
+          </div>
+          <div class="toc-filler toc-filler-bottom"></div>
+        {% endif %}
+      </div>
+    </div>
+    <!-- MAIN CONTENT-->
+    <div class="main-content col-sm-12 col-md-12 col-lg-10 col-xl-10">
+      <div class="page-content-text anchors row row-cols-1 p-0 m-0 text-justify ">
+        {% assign wrapped_tables_content = content | replace: '<table', '<div class="table-wrapper"><table' %}
+        {% assign wrapped_tables_content = wrapped_tables_content | replace: 'table>', 'table></div>' %}
+        {% assign nodes = wrapped_tables_content| split: '<h1 id=' %}
+        {% assign first = 1 %}
+        {% for node in nodes %}
+          {% if node == "" %}
+            {% continue %}
+          {% endif %}
+          {% if first == 1 %}
+          <!-- First card with page title -->
+          <div class="page-section page-section-title card card-page-title border-0 rounded-0 mb-3 mb-md-4 mb-lg-5 mb-xl-5">
+            <div class="card-body p-0">
+              {% if page.series %}
+              <h5 class="card-surtitle font-weight-lighter">{{page.series}} Series - Part  {{ page.series_number }}</h5>
               {% endif %}
-              {% if page.date %}
-                , {{ page.date | date: "%b. %-d, %Y" }}
-              {% endif %}</p>
-            <hr/>
-            {{node}}
-          </div>
-        </div><!-- First card with page title END -->
-          {% assign first = 0 %}
-        {% else %}
-        <!-- Next cards -->
-        <div class="page-section page-section-not-title card border-0 rounded-0 mb-3 mb-md-4 mb-lg-5 mb-xl-5">
-          <div class="card-body p-0">
-          {%assign h1="<h1 id="%}
-            {{h1}}{{ node}}
-          </div>
-        </div><!-- Next cards END -->
-        {% endif %}
-      {% endfor %}
-    </div><!-- class="row row-cols-1"-->
-  </div><!--class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10"-->  
-</div><!--class="row page-content"-->
-<div class="navbar-bottom" role="group" aria-label="secondary navbar">
-  <button type="button" class="navbar-bottom-btn d-xs-only">XS</button>
-  <button type="button" class="navbar-bottom-btn d-sm-only">SM</button>
-  <button type="button" class="navbar-bottom-btn d-md-only">MD</button>
-  <button type="button" class="navbar-bottom-btn d-lg-only">LG</button>
-  <button type="button" class="navbar-bottom-btn d-xl-only">XL</button>
-  <button type="button" class="navbar-bottom-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top">{% include icon.html name="top"%}</button>
-  {% if show_toc %}
-    <button type="button" class="navbar-bottom-btn left-column-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content">{% include icon.html name="list" %}</button>
-  {% endif %}
+              <h1 class="card-title">{{title}}</h1>
+              <p class="card-subtitle text-muted">
+                {% if page.author %}
+                  By {{ page.author }}
+                {% endif %}
+                {% if page.date %}
+                  , {{ page.date | date: "%b. %-d, %Y" }}
+                {% endif %}</p>
+              <hr/>
+              {{node}}
+            </div>
+          </div><!-- First card with page title END -->
+            {% assign first = 0 %}
+          {% else %}
+          <!-- Next cards -->
+          <div class="page-section page-section-not-title card border-0 rounded-0 mb-3 mb-md-4 mb-lg-5 mb-xl-5">
+            <div class="card-body p-0">
+            {%assign h1="<h1 id="%}
+              {{h1}}{{ node}}
+            </div>
+          </div><!-- Next cards END -->
+          {% endif %}
+        {% endfor %}
+      </div><!-- class="row row-cols-1"-->
+    </div><!--class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10"-->  
+  </div><!--class="row page-content"-->
+  <div class="navbar-bottom" role="group" aria-label="secondary navbar">
+    <button type="button" class="navbar-bottom-btn d-xs-only">XS</button>
+    <button type="button" class="navbar-bottom-btn d-sm-only">SM</button>
+    <button type="button" class="navbar-bottom-btn d-md-only">MD</button>
+    <button type="button" class="navbar-bottom-btn d-lg-only">LG</button>
+    <button type="button" class="navbar-bottom-btn d-xl-only">XL</button>
+    <button type="button" class="navbar-bottom-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top">{% include icon.html name="top"%}</button>
+    {% if show_toc %}
+      <button type="button" class="navbar-bottom-btn left-column-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content">{% include icon.html name="list" %}</button>
+    {% endif %}
+  </div>
 </div>

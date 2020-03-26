@@ -4,7 +4,8 @@ date: 2017-04-25
 author: Arnaud Lauret
 layout: post
 permalink: /deliveroo-api-design-guidelines-added-to-the-api-stylebook/
-category: elsewhere
+category: posts
+type: link
 tags:
   - Design
   - API Stylebook

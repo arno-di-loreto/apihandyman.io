@@ -1,7 +1,8 @@
+{% assign category = site.data.categories[include.category] %}
 <div class="row home-section-title">
   <div class="container">
     <div class="col-12 text-center align-self-center">
-      <h1 id="{{include.title | downcase | strip | replace: " ", "-" }}">{{include.title | upcase}}</h1>
+      <h1 id="{{include.title | downcase | strip | replace: " ", "-" }}"><a href="{{category.permalink}}">{{category.name | upcase}}</a></h1>
     </div>
   </div>
 </div>

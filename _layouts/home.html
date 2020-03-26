@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 <div class="row home-banner">
   <div class="container-fluid">
     <div class="col-12">
@@ -59,63 +60,55 @@ layout: default
     </div>
   </div>
 </div>
-{% include home-section-title.html title="Posts" %}
+{% include home-section-title.html category="posts" %}
 {% include home-last.html 
   category='posts'
   more_link='/blog'
   more_button='More posts'
   %}
-  {% include home-section-title.html title="Talks & Podcasts" %}
+  {% include home-section-title.html category="talks" %}
 {% include home-last.html 
   category='talks'
   more_link='/talks'
   more_button='More talks and podcasts'
   %}
-{% include home-section-title.html title="Toolbox" %}
+{% include home-section-title.html category="toolbox" %}
 <div class="row home-section">
   <div class="container">
     <div class="row row-cols-1 row-cols-md-2">
-          {% assign items = site.data.tools | slice:0, 2 %}
+          {% assign items = site.tools | slice:0, 2 %}
           {% for item in items %}
             <div class="col mb-4">
-            {% assign subtitle = item.author | prepend: 'By '%}
+            {% assign surtitle = item.tool_author | append: "'s" %}
             {% include card.html
                 class="card-home" 
-                image=item.image
+                image=item.thumbnail
                 image_alt="Project's screenshot"
-                title=item.name
-                subtitle=subtitle
-                content=item.description
-                url=item.url
+                title=item.title
+                surtitle=surtitle
+                content=item.excerpt
+                url=item.tool_url
             %}
             </div>
           {% endfor %}
     </div>
-  </div>
-</div>
-<div class="row home-section">
-  <div class="container">
     <div class="row row-cols-1 row-cols-md-3">
-          {% assign items = site.data.resources | slice:0, 3 %}
-          {% for item in items %}
-            <div class="col mb-4">
-              {% assign subtitle = item.author | prepend: 'By '%}
-              {% include card.html
-                  class="card-home"
-                  title=item.name
-                  subtitle=subtitle
-                  content=item.description
-                  url=item.url
-              %}
-            </div>
-          {% endfor %}
+      {% assign items = site.tools | slice:2, 3 %}
+      {% for item in items %}
+        <div class="col mb-4">
+          {% assign surtitle = item.tool_author | append: "'s" %}
+          {% include card.html
+              class="card-home" 
+              image=item.thumbnail
+              image_alt="Project's screenshot"
+              title=item.title
+              surtitle=surtitle
+              content=item.excerpt
+              url=item.tool_url
+          %}
+        </div>
+      {% endfor %}
     </div>
   </div>
 </div>
-<div class="row home-footer">
-  <div class="container-fluid">
-    <div class="cols-12 text-center">
-      
-    </div>
-  </div>
-</div>
+{% include home-more-button.html more_link="/toolbox" more_button="More tools" %}
