@@ -11,16 +11,12 @@
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         {% include icon.html name="menu" %}
       </button>
-      {% if page.layout == 'post' %}
-        {%assign class_expand="flex-grow-0" %}
-      {% else %}
-        {%assign class_expand="flex-fill" %}
-      {% endif %}
-      <div class="collapse navbar-collapse flex-grow-1 {{class_expand}}" id="navbarNav">
+      <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
         <div class="navbar-nav">
           {% for category in site.data.categories %}
             <a class="nav-item nav-link" href="{{category[1].permalink}}">{{category[1].name}}</a>
           {% endfor %}
+          <a class="nav-item nav-link" href="/about">About</a>
           <a class="btn btn-book btn-book-small pl-0 border-0 rounded-0 text-left left-column-hider d-block d-sm-block d-md-block d-lg-none" data-toggle="modal" data-target="#bookModal" role="button" ><img data-toggle="collapse" data-target="#navbarNav" src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
         </div>
       </div>

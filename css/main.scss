@@ -130,13 +130,42 @@ a:hover {
   }
 }
 
-.home-book {
-  .blockquote {
-    font-family: $font-title;
-    text-align: justify;
+@include media-breakpoint-down(sm) {
+  .home-book {
+    background: white;
   }
-  .btn-primary {
-    margin-top: -50px;
+}
+
+.home-book-sm-cover {
+  background: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50%,white 100%);
+  .card-img-sm {
+    max-height: 150px;
+    width: auto;
+  }
+}
+
+.home-book {
+  .card-body-quotes {
+    @extend .pb-0;
+
+    .carousel-item {
+      min-height: 120px;
+      
+      .blockquote {
+        font-family: $font-title;
+        text-align: justify;
+        @include media-breakpoint-down(md) {
+          font-size: 0.95rem;
+        }
+        @include media-breakpoint-down(sm) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  .card-body-action {
+    @extend .pt-0, .text-center;
   }
 }
 
@@ -168,34 +197,57 @@ a:hover {
 }
 
 .home-banner {
-  background-color: white;
   margin-top: -55px;
 
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+
+  @include media-breakpoint-down(xl) {
+    height: 400px;
+    background-image: url('/images/commons/home-banner.jpg'), linear-gradient(to right,  #9F92C7 0%,#9F92C7 50%,#634E91 50%,#634E91 100%);
+  }
+
+  @include media-breakpoint-down(lg) {
+    height: 400px;
+    background-image: url('/images/commons/home-banner.jpg'), linear-gradient(to right,  #9F92C7 0%,#9F92C7 50%,#634E91 50%,#634E91 100%);
+  }
+
+  @include media-breakpoint-down(md) {
+    //background-image: url('/images/commons/home-banner-small.jpg');
+    background-image: url('/images/commons/home-banner-small.jpg'), linear-gradient(to right,  #9F92C7 0%,#9F92C7 50%,#634E91 50%,#634E91 100%);
+    height: 300px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    //background-image: url('/images/commons/home-banner-small.jpg');
+    background-image: url('/images/commons/home-banner-small.jpg'), linear-gradient(to right,  #9F92C7 0%,#9F92C7 50%,#634E91 50%,#634E91 100%);
+    height: 250px;
+  }
+
   .card-img-overlay-text {
-    width: 400px;
     padding: 10px;
-    background-color: $navbar-backgound;
+    background-color: rgba(10,10,10, 0.2);
     color: white;
     float: right;
-  }
-}
 
-@media (min-width: 1200px) {
-  .home-banner .card-img-overlay-text {
-    margin-top: 75px;
-  }
-}
+    @include media-breakpoint-down(xl) {
+      margin-top: 75px;
+      width: 400px;
+    }
 
-@media only screen and (max-width: 1199px) and (min-width: 992px) {
-  .home-banner .card-img-overlay-text {
-    margin-top: 55px;
-  }
-}
+    @include media-breakpoint-down(lg) {
+      margin-top: 55px;
+      width: 400px;
+    }
 
-@media only screen and (max-width: 991px) and (min-width: 768px) {
-  .home-banner .card-img-overlay-text {
-    margin-top: 35px;
-  } 
+    @include media-breakpoint-down(md) {
+      margin-top: 35px;
+      width: 300px;
+      font-size: 0.8rem;
+    }
+
+  }
 }
 
 .row-footer {
@@ -208,13 +260,39 @@ a:hover {
 /* Content */
 /***********/
 
+
+.main-navbar {
+  color: $navbar-font;
+  .nav-item.nav-link, .nav-item.active.nav-link {
+    color: $navbar-font;
+  }
+  .navbar-brand {
+    color: $navbar-font;
+  }
+  .nav-link:hover, .navbar-brand:hover {
+    color: $link-hover;
+  }
+}
+
+
 .navbar-home {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: none;
+  .btn-book {
+    img {
+      display: none;
+    }
+
+  }
 }
 
 .navbar-home.scrolled {
   box-shadow: $navbar-shadow;
   background-color: $navbar-backgound;
+  .btn-book {
+    img {
+      display: block;
+    }
+  }
 }
 
 .navbar-page {
@@ -249,19 +327,6 @@ a:hover {
   transition: box-shadow .25s linear, background-color .25s linear;
 }
 
-.main-navbar {
-  color: $navbar-font;
-  .nav-item.nav-link, .nav-item.active.nav-link {
-    color: $navbar-font;
-  }
-  .navbar-brand {
-    color: $navbar-font;
-  }
-  .nav-link:hover, .navbar-brand:hover {
-    color: $link-hover;
-  }
-
-}
 
 // Only used by expanded code blocks so far
 .close-to-main-navbar {

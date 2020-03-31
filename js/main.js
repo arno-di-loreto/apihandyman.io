@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 $(window).scroll(function(){
   // Home page nav
-  $('.navbar-home').toggleClass('scrolled', $(this).scrollTop() > $('.banner').height()-55)
+  $('.navbar-home').toggleClass('scrolled', $(this).scrollTop() > $('.home-banner').height()-55)
   // Post nav
   //console.log('scrollTop', $(this).scrollTop())
   const titleBottom = offset($('.card-page-title .card-title')[0]).top /*+ $('.card-page-title .card-title').height()*/ - 55

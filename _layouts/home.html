@@ -5,12 +5,12 @@ layout: default
 <div class="row home-banner">
   <div class="container-fluid">
     <div class="col-12">
-      <div class="container p-0">
+      <div class="container p-0 banner">
         <div class="col-12 p-0">
           <div class="card rounded-0 border-0 p-0 m-0 text-right">
-            <img src="/images/commons/top.jpg" class="banner card-img-top rounded-0" alt="...">
+            <div class="card-img-top"></div>
             <div class="card-img-overlay">
-              <div class="card-img-overlay-text">
+              <div class="card-img-overlay-text d-none d-md-block">
               <p class="card-text text-justify">Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</p>
               <a href="/about" class="btn btn-primary btn-sm">How can I help you?</a>
             </div>
@@ -21,19 +21,21 @@ layout: default
     </div>
   </div>
 </div>
+<div class="row home-book-sm-cover d-md-none justify-content-center">
+        <img src="{{ "/images/commons/book/book-home-sm.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img card-img-sm rounded-0 d-block d-md-none d-lg-none" alt="The Design of Web APIs book cover">
+</div>
 <div class="row home-book">
   <div class="container p-0">
     <div class="col-12 p-0">
       <div class="card m-0 p-0 border-0 rounded-0">
         <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="{{ "/images/commons/book/book-home-banner-380-300.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-xl-block" alt="The Design of Web APIs book cover">
-            <img src="{{ "/images/commons/book/book-home-banner-320-260.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-lg-block d-xl-none" alt="The Design of Web APIs book cover">
-            <img src="{{ "/images/commons/book/book-home-banner-240-310.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-md-block d-lg-none" alt="The Design of Web APIs book cover">
-            <img src="{{ "/images/commons/book/book-home-banner-1080-560.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-block d-md-none d-lg-none" alt="The Design of Web APIs book cover">
+          <div class="col-md-4 d-none d-md-block">
+            <img src="{{ "/images/commons/book/book-home-xl.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-xl-block" alt="The Design of Web APIs book cover">
+            <img src="{{ "/images/commons/book/book-home-lg.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-lg-block d-xl-none" alt="The Design of Web APIs book cover">
+            <img src="{{ "/images/commons/book/book-home-md.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-md-block d-lg-none" alt="The Design of Web APIs book cover">
           </div>
           <div class="col-md-8 d-flex flex-column">
-            <div class="card-body pb-0 flex-grow-1 h-100 h-lg-75 pt-lg-5">
+            <div class="card-body card-body-quotes">
               <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -50,9 +52,9 @@ layout: default
                   </div>
                 </div>
               </div> 
-            </div>
-            <div class="card-body text-center">
-              <a href="#" class="btn btn-primary stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >Get 37% off my book! (or any other Manning product!)</a>
+            </div> 
+            <div class="card-body card-body-action">
+              <a href="#" class="btn btn-primary stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >Get 37% off my book!<span class="d-none d-md-block"> (or any other Manning product!)</span></a>
             </div>
           </div>
         </div>
