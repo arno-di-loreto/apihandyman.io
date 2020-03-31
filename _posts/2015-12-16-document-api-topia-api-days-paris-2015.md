@@ -33,5 +33,5 @@ If you want to know more about what happened at this awesome conference, you can
 
 Here are my talk's video (unofficial one, thanks to [Guillaume Laforge](https://twitter.com/glaforge), stay tuned for the official one) and slidedeck:
 
-{% youtube embed/pS1aOFAU0-s %}
+{% youtube pS1aOFAU0-s %}
 {% speakerdeck b91f0b85c3434eea983040960354282c %}
