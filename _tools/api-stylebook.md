@@ -6,6 +6,7 @@ permalink: /toolbox/apistylebook/
 tool_url: http://apistylebook.com
 tool_author: Arnaud Lauret
 tool_author_twitter: apihandyman
+tool_top_2: 1
 ---
 
 I started this project with a simple API Design Guidelines list in mind and ended with a fully analyzed collection of API design guidelines. I created it for others but I use it myself too. When I wonder how to handle some API design matters, I select the related topic and read how others handle it. To be honest, it needs some refresh, it is a real pain to update and maintain and could be more user friendly; that's on my todo list. 

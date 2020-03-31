@@ -13,7 +13,6 @@ $white-snow: #F7F5F7;
 $ghost-white: #F9F8F9;
 
 $background: $ghost-white;
-$background: pink;
 $link-hover: $book-orange;
 $link: $book-blue;
 $link-reverse: $link-hover;
@@ -145,6 +144,7 @@ a:hover {
 }
 
 .home-book {
+  box-shadow: $small-shadow;
   .card-body-quotes {
     @extend .pb-0;
 
@@ -251,7 +251,9 @@ a:hover {
 }
 
 .row-footer {
-    background-color: white;
+    background-color: $navbar-backgound;
+    color: $navbar-font;
+    box-shadow: $small-shadow;
     min-height: 100px;
     margin-top: 30px;
 }
