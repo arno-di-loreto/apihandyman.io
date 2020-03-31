@@ -11,7 +11,7 @@ javascript: javascript-paginated.html
     <div class="row row-cols-1 row-cols-lg-2">
       {% for post in site.posts %}
           <div class="col mb-4">
-          {% include post-summary.html %}
+          {% include post-summary.html date=true %}
           </div>
         {% endfor %}
     </div>

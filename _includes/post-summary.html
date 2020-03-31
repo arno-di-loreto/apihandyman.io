@@ -23,7 +23,12 @@
 {% else %}
   {% assign surtitle="" %}
 {% endif %}
-{% assign subtitle = post.author | prepend: 'By '%}
+{% if include.date %}
+  {% assign post_date = post.date | date: ", %B %-d, %Y" %}
+{% else %}
+{% assign post_date = "" %}
+{% endif %}
+{% assign subtitle = post.author | prepend: 'By ' | append: post_date %}
 {% if post.full %}
   {% assign content = post.content %}
 {% else %}
