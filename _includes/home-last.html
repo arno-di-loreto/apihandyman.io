@@ -3,47 +3,8 @@
   <div class="container">
     <div class="row row-cols-1 row-cols-md-2">
           {% for post in posts %}
-            {% if post.thumbnail %}
-              {% assign image = post.thumbnail %}
-            {% else %}
-              {% assign image = site.default_thumbnail %}
-              {% assign page_image = '/images' | append: post.permalink | append: 'thumbnail.png' %}
-              {% for static_file in site.static_files %}
-                {% if static_file.path == page_image %}
-                    {% assign image = page_image %}
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-
-            {% if post.series %}
-              {% assign title = post.series_title%}
-            {% else %}
-              {% assign title = post.title %}
-            {% endif %}
-            <div class="col mb-4">
-              {% if post.series %}
-                {% capture surtitle %}
-                {{post.series}} Series - Part {{post.series_number}}
-                {% endcapture %}
-              {% else %}
-                {% assign surtitle="" %}
-              {% endif %}
-              {% assign subtitle = post.author | prepend: 'By '%}
-              {% if post.full %}
-                {% assign content = post.content %}
-              {% else %}
-                {% assign content = post.short_summary %}
-              {% endif %}
-              {% include card.html
-                  class="card-home" 
-                  image=image
-                  image_alt="Post's banner"
-                  surtitle=surtitle
-                  title=title
-                  subtitle=subtitle
-                  content=content
-                  url=post.url
-              %}
+          <div class="col mb-4">  
+            {% include post-summary.html %}
             </div>
           {% endfor %}
     </div>

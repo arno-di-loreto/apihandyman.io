@@ -6,9 +6,9 @@ layout: default
   {% assign paginator = page.paginator %}
 {% endif %}
 
-<div class="row below-main-navbar">
+<div class="row below-main-navbar posts">
   <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
+    <div class="row row-cols-1 row-cols-lg-2">
         {% for post in paginator.posts %}
           <div class="col mb-4">
           {% include post-summary.html %}

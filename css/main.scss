@@ -335,6 +335,12 @@ a:hover {
   top: 55px;
 }
 
+.posts {
+  .card {
+    box-shadow: $small-shadow;
+  }
+}
+
 .page-image {
   margin-bottom: 35px
 }

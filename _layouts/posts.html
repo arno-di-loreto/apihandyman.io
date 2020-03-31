@@ -6,16 +6,14 @@ javascript: javascript-paginated.html
   {% assign paginator = page.paginator %}
 {% endif %}
 
-<div class="row below-main-navbar">
+<div class="row below-main-navbar posts">
   <div class="container">
-    <div class="row">
-      <div class="col-12"> 
-        {% for post in site.posts %}
-        <div class="row mb-3 posts">
+    <div class="row row-cols-1 row-cols-lg-2">
+      {% for post in site.posts %}
+          <div class="col mb-4">
           {% include post-summary.html %}
-        </div>
+          </div>
         {% endfor %}
-      </div>
     </div>
   </div>
 </div>

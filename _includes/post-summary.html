@@ -1,47 +1,41 @@
 {% if post.thumbnail %}
-  {% assign thumbnail = post.thumbnail %}
+{% assign image = post.thumbnail %}
 {% else %}
-  {% assign thumbnail = site.default_thumbnail %}
-  {% assign page_thumbnail = '/images' | append: post.permalink | append: 'thumbnail.png' %}
-  {% for static_file in site.static_files %}
-    {% if static_file.path == page_thumbnail %}
-        {% assign thumbnail = page_thumbnail %}
-    {% endif %}
-  {% endfor %}
+{% assign image = site.default_thumbnail %}
+{% assign page_image = '/images' | append: post.permalink | append: 'thumbnail.png' %}
+{% for static_file in site.static_files %}
+  {% if static_file.path == page_image %}
+      {% assign image = page_image %}
+  {% endif %}
+{% endfor %}
 {% endif %}
 
 {% if post.series %}
-  {% assign title = post.series_title%}
+{% assign title = post.series_title%}
 {% else %}
-  {% assign title = post.title %}
+{% assign title = post.title %}
 {% endif %}
 
-
-    <div class="card card-post-summary border-0 rounded-0">
-      <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top rounded-0" alt="post thumbnail">
-      <div class="card-body">
-        <div class="over-card-image">
-        {% if post.series %}
-        <h5 class="card-post-summary-series-title font-weight-lighter">{{post.series}} Series - Part  {{ post.series_number }}</h5>
-        {% endif %}
-        <h4 class="card-title">{{title}}</h4>
-        <p class="card-text text-muted">
-          {% if post.author %}
-            By {{ post.author }}
-          {% endif %}
-          {% if post.date %}
-            , {{ post.date | date: "%b. %-d, %Y" }}
-          {% endif %}
-        </p>
-        {% if post.full %}
-          <p class="card-text ">{{ post.content }}</p>
-            {% if post.target_link %}
-              <a href="{{ post.target_link }}" class="btn btn-primary">{{post.target_label}}</a>
-            {% endif %}
-        {% else %}
-            <p class="card-text">{{ post.excerpt }}</p>
-            <a href="{{ post.url | prepend: site.baseurl | prepend: site.github.url }}" class="btn btn-primary">Read more on apihandyman.io</a>
-        {% endif %}
-      </div>
-      </div>
-    </div>
+{% if post.series %}
+  {% capture surtitle %}
+  {{post.series}} Series - Part {{post.series_number}}
+  {% endcapture %}
+{% else %}
+  {% assign surtitle="" %}
+{% endif %}
+{% assign subtitle = post.author | prepend: 'By '%}
+{% if post.full %}
+  {% assign content = post.content %}
+{% else %}
+  {% assign content = post.excerpt %}
+{% endif %}
+{% include card.html
+    class="card-home" 
+    image=image
+    image_alt="Post's banner"
+    surtitle=surtitle
+    title=title
+    subtitle=subtitle
+    content=content
+    url=post.url
+%}
