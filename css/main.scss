@@ -251,11 +251,63 @@ a:hover {
 }
 
 .row-footer {
+    @extend .pb-3, .pb-3, .mt-5;
     background-color: $navbar-backgound;
     color: $navbar-font;
     box-shadow: $small-shadow;
-    min-height: 100px;
-    margin-top: 30px;
+
+    .footer-content {
+      @extend .pt-3;
+    }
+
+    .row-links {
+      @extend  .pl-lg-5, .pr-lg-5;
+    }
+
+    a {
+      color: white;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: $book-orange;
+      svg {
+        fill: $book-orange;
+      }
+  
+    }
+
+
+    .icons {
+      @extend .d-flex;
+    }
+    .icon {
+      margin-right: 1rem;
+      svg {
+        width: 32px;
+        height: 32px;
+        fill: #fff;
+      }
+    }
+    .icon:last-of-type {
+      margin-right: 0;
+    }
+
+    .row-links {
+      @extend .align-items-center;
+    }
+
+    .left {
+      @extend .d-flex, .justify-content-center, .justify-content-lg-start, .pb-3, .pb-lg-0;
+    }
+
+    .middle {
+      @extend .text-center, .pb-3, .pb-lg-0;
+    }
+
+    .right {
+      @extend .text-center, .text-lg-right;
+    }
 }
 
 /***********/

@@ -21,4 +21,5 @@ group :jekyll_plugins do
    gem "jekyll-twitter-plugin"
    gem "jekyll-paginate"
    gem 'jekyll-paginate-category'
+   gem 'jekyll-sitemap'
 end

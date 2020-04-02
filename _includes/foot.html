@@ -1,7 +1,22 @@
 <div class="row row-footer">
   <div class="container-fluid">
-    <div class="cols-12 text-center">
-      default footer
+    <div class="cols-12">
+      <div class="container footer-content">
+        <div class="row row-links row-cols-1 row-cols-lg-3">
+          <div class="col left">
+          <div class="icon"><a href="{{site.data.links.me.twitter}}" target="_blank">{% include svg/twitter.svg %}</a></div>
+          <div class="icon"><a href="{{site.data.links.me.linkedin}}" target="_blank">{% include svg/linkedin.svg %}</a></div>
+          <div class="icon"><a href="{{site.data.links.me.github}}" target="_blank">{% include svg/github.svg %}</a></div>
+          <div class="icon"><a href="{{site.data.links.me.rss}}" target="_blank">{% include svg/rss.svg %}</a></div>
+        </div>
+        <div class="col middle">
+          &copy; 2015-{{ 'now' | date: "%Y" }} Arnaud Lauret
+        </div>
+        <div class="col right">
+          <a href="/privacy">Privacy Policy</a>
+        </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

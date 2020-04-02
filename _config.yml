@@ -79,6 +79,7 @@ plugins:
   - jekyll-twitter-plugin
   - jekyll-paginate
   - jekyll-paginate-category
+  - jekyll-sitemap
 
 exclude:
   - Gemfile
