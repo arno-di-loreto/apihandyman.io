@@ -29,7 +29,13 @@
 {% assign post_date = "" %}
 {% endif %}
 {% assign subtitle = post.author | prepend: 'By ' | append: post_date %}
-{% if post.full %}
+{% if include.short %}
+  {% if post.short_summary %}
+    {% assign content = post.short_summary %}
+  {% else %}
+    {% assign content = post.excerpt %}
+  {% endif %}
+{% elsif post.full %}
   {% assign content = post.content %}
 {% else %}
   {% assign content = post.excerpt %}
