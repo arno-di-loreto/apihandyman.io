@@ -4,7 +4,7 @@ title: About
 alternate_title: About the API Handyman
 date: 2015-02-07T15:07:32+00:00
 author: Arnaud Lauret
-layout: page
+layout: default
 guid: http://apihandyman.io/?page_id=194
 permalink: /about/
 menu: true

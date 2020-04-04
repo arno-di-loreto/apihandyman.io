@@ -6,7 +6,9 @@ function offset(el) {
 }
 
 $(window).scroll(function(){
-  $('.navbar-home').toggleClass('scrolled', $(this).scrollTop() > $('.home-banner').height()-55)
+  if($('.home-banner').length > 0) {
+    $('.main-navbar').toggleClass('scrolled', $(this).scrollTop() > $('.home-banner').height()-55)
+  }
 });
 
 function showPrivacyMessage() {

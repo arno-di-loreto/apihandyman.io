@@ -320,6 +320,9 @@ a:hover {
 
 
 .main-navbar {
+  a:focus, button:focus {
+    outline: none;
+  }
   color: $navbar-font;
   .nav-item.nav-link, .nav-item.active.nav-link {
     color: $navbar-font;
@@ -330,25 +333,54 @@ a:hover {
   .nav-link:hover, .navbar-brand:hover {
     color: $link-hover;
   }
-}
 
+  .nav-link-sub {
+    @extend .ml-3;
+    font-size: 0.9rem;
+  }
 
-.navbar-home {
-  background-color: none;
+  .dropdown-blog {
+    a, .dropdown-item {
+      color: white;
+    }
+  }
+
+  .dropdown-blog.show {
+    background-color: rgba(10,10,10,0.2);
+    .dropdown-menu {
+      @extend .rounded-0, .border-0;
+      background-color: rgba(10,10,10,0.2);
+      margin-top: 0;
+    }
+
+    .dropdown-item:hover {
+      background: transparent;
+      color: $book-orange;
+    }
+  }
+
   .btn-book {
     img {
       display: none;
     }
-
   }
 }
 
-.navbar-home.scrolled {
+.main-navbar.scrolled {
   box-shadow: $navbar-shadow;
   background-color: $navbar-backgound;
   .btn-book {
     img {
       display: block;
+    }
+  }
+
+  .dropdown-blog.show {
+    background-color: $navbar-backgound;
+    .dropdown-menu {
+      background-color: $navbar-backgound;
+      box-shadow: $navbar-shadow;
+      margin-top: 8px;
     }
   }
 }
