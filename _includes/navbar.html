@@ -7,6 +7,13 @@
   <div class="container-lg">
     <nav class="navbar navbar-expand-lg">
       <a class="navbar-brand" href="/">API Handyman</a>
+      {% if jekyll.environment != 'production' and site.debug %}
+      <span class="d-xs-only">XS</span>
+      <span class="d-sm-only">SM</span>
+      <span class="d-md-only">MD</span>
+      <span class="d-lg-only">LG</span>
+      <span class="d-xl-only">XL</span>
+      {% endif %}
       <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         {% include icon.html name="menu" %}
