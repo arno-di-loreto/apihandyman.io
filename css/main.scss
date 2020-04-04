@@ -76,6 +76,10 @@ body {
   box-shadow: $button-focus-shadow;
 }
 
+.btn-primary:focus {
+  background-color: $book-orange;
+}
+
 table {
   @extend .table, .table-sm, .table-striped, .table-bordered, .text-left;
   thead {
