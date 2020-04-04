@@ -1,18 +1,27 @@
       <!-- Modal -->
       <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">The Design of Web APIs</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Use code {{site.mybook_discount_code}} to get {{site.mybook_discount_rate}} my book The Design of Web APIs (works also on any other Manning product!).
-            </div>
-            <div class="modal-footer">
-              <a href="{{site.mybook}}" target="_blank" class="btn btn-primary">Buy on manning.com</a>
+        <div class="modal-dialog modal-lg modal-dialog-book" role="document">
+          <div class="modal-content border-0">
+            <div class="modal-body p-0">
+              <div class="container-fluid p-0">
+                <button type="button" class="close pr-2 pt-1" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row home-book-sm-cover no-gutters d-lg-none justify-content-center">
+                  <img src="/images/commons/book/book-home-sm.png" class="card-img card-img-sm rounded-0 d-block d-lg-none" alt="The Design of Web APIs book cover">
+                </div>
+                <div class="row mb-3 mb-lg-0 ml-0 mr-0 pt-3 pt-md-0">
+                  <div class="col col-lg-4 d-none d-md-block p-0">
+                    <img class="img-fluid" src="/images/commons/book/book-modal.png"/>
+                  </div>
+                  <div class="col col-12 col-lg-8 pt-2 pt-lg-4 text-justify">
+                    <p>Want to learn how to design simple, user friendly, secure and implementable APIs that do everything they should?</p>
+                    <p>Use code <code class="book-discount-code text-copy" aria-label="copy discount code" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to copy">{{site.mybook_discount_code}}</code> to get {{site.mybook_discount_rate}} my book The Design of Web APIs (works also on any other Manning product!).</p>
+                    <p class="text-center"><a href="{{site.mybook}}" target="_blank" class="btn btn-primary">Buy on manning.com</a></p>
+                    <p class="text-muted pt-3 mb-0">Disclosure: the link above is an affiliated link, meaning, at no additional cost to you, I will earn a commission if you click through and make a purchase.</p>
+                  </div> 
+                </div>
+              </div>
             </div>
           </div>
         </div>

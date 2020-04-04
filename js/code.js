@@ -37,24 +37,26 @@ function expandCollapseCode(button) {
   }
 }
 
-const clipboard = new ClipboardJS('.code-copy-btn', {
-  target: function(trigger) {
-    const target = getCodeBlockCopy(trigger)
-    return target
-  }
-})
+$( document ).ready(function() {
+  const clipboard = new ClipboardJS('.code-copy-btn', {
+    target: function(trigger) {
+      const target = getCodeBlockCopy(trigger)
+      return target
+    }
+  })
 
-clipboard.on('success', function(e) {
-  e.clearSelection()
-  $(e.trigger).html('<img class="btn-icon" src="/images/commons/icons/copy-check.svg">')
-  window.setTimeout(function() {
-      $(e.trigger).html('<img class="btn-icon" src="/images/commons/icons/copy.svg">')
-      $(e.trigger).blur()
-  }, 1000)
-});
+  clipboard.on('success', function(e) {
+    e.clearSelection()
+    $(e.trigger).html('<img class="btn-icon" src="/images/commons/icons/copy-check.svg">')
+    window.setTimeout(function() {
+        $(e.trigger).html('<img class="btn-icon" src="/images/commons/icons/copy.svg">')
+        $(e.trigger).blur()
+    }, 1000)
+  })
 
-clipboard.on('error', function(e) {
-  console.error('🙇🏻‍♂️ something unexpectedly went wrong while copying with ClipboardJS 🙇🏻‍♂️')
-  console.error('Action:', e.action)
-  console.error('Trigger:', e.trigger)
+  clipboard.on('error', function(e) {
+    console.error('🙇🏻‍♂️ something unexpectedly went wrong while copying with ClipboardJS 🙇🏻‍♂️')
+    console.error('Action:', e.action)
+    console.error('Trigger:', e.trigger)
+  })
 })

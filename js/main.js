@@ -5,27 +5,11 @@ function offset(el) {
   return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
 }
 
-/*
-$(document).ready(function(){
-  $('<div class="page-content-text-separator"></div>').insertBefore('.page-content-text h1')
-})
-*/
-
 $(window).scroll(function(){
-  // Home page nav
   $('.navbar-home').toggleClass('scrolled', $(this).scrollTop() > $('.home-banner').height()-55)
-  // Post nav
-  //console.log('scrollTop', $(this).scrollTop())
-  const titleBottom = offset($('.card-page-title .card-title')[0]).top /*+ $('.card-page-title .card-title').height()*/ - 55
-  //console.log('titleBottom', titleBottom)
+  const titleBottom = offset($('.card-page-title .card-title')[0]).top - 55
   $('.navbar-page-title').toggleClass('navbar-page-title-visible', $(this).scrollTop() > titleBottom);
-  //$('.navbar-page').toggleClass('scrolled', $(this).scrollTop() > 35);
 });
-
-// Privacy message
-$(document).ready(function(){
-  showPrivacyMessage()
-})
 
 function showPrivacyMessage() {
   if(!localStorage.getItem('privacyPolicyAccepted')) {
@@ -46,4 +30,25 @@ $(function () {
   $("[data-toggle='tooltip']").click(function(){
     $("[data-toggle='tooltip']").tooltip('hide');
   });
+})
+
+$( document ).ready(function() {
+
+  showPrivacyMessage()
+
+  const clipboardTextCopy = new ClipboardJS('.text-copy', {
+    target: function(trigger) {
+      return trigger
+    }
+  })
+
+  clipboardTextCopy.on('success', function(e) {
+    console.log('copied from ', e)
+  });
+
+  clipboardTextCopy.on('error', function(e) {
+    console.error('🙇🏻‍♂️ something unexpectedly went wrong while copying with ClipboardJS 🙇🏻‍♂️')
+    console.error('Action:', e.action)
+    console.error('Trigger:', e.trigger)
+  })
 })

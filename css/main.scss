@@ -754,6 +754,22 @@ a:hover {
   }
 }
 
+/*********************/
+/* Book Modal Dialog */
+/*********************/
+
+.modal-dialog-book {
+  @extend .modal-dialog-centered;
+  .modal-content {
+    @extend .rounded-0;
+  }
+  .book-discount-code:hover {
+    cursor: pointer;
+    background-color: $book-orange;
+    color: white;
+  }
+}
+
 /*****************/
 /* Display utils */
 /*****************/
