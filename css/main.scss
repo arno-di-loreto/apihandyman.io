@@ -407,8 +407,22 @@ a:hover {
   
 }
 
+@include media-breakpoint-up(xs) {
+  .main-content {
+    top: -70px;
+  }
+}
+
+
+@include media-breakpoint-up(sm) {
+  .main-content {
+    top: -90px;
+  }
+}
+
 @include media-breakpoint-up(md) {
   .main-content {
+    top: -100px;
     padding-left: 20px;
     padding-right: 20px;
 
@@ -430,6 +444,7 @@ a:hover {
 
 @include media-breakpoint-up(lg) {
   .main-content {
+    top: -140px;
     padding-left: 0px;
     padding-right: 30px;
 
@@ -451,7 +466,6 @@ a:hover {
 }
 
 .main-content {
-  top: -140px;
 
   .page-section-not-title, .series-header {
     // Avoid having headers hidden by navbar when using inner links (with toc for example)
