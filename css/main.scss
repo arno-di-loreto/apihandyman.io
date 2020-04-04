@@ -758,11 +758,13 @@ a:hover {
 .series-header {
   .list-group {
     color: $book-grey;
+    .list-group-item {
+      @extend .border-0;
+    }
     .a {
       color: $book-grey;
     } 
     .active {
-      border-color: $list-group-border-color;
       background-color: $list-group-bg;
       color: black;
     }
