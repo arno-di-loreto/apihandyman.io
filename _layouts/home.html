@@ -1,26 +1,13 @@
 ---
 layout: default
+with_banner: true
 ---
 
-<div class="row home-banner">
-  <div class="container-fluid">
-    <div class="col-12">
-      <div class="container p-0 banner">
-        <div class="col-12 p-0">
-          <div class="card rounded-0 border-0 p-0 m-0 text-right">
-            <div class="card-img-top"></div>
-            <div class="card-img-overlay">
-              <div class="card-img-overlay-text d-none d-md-block">
-              <p class="card-text text-justify">Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</p>
-              <a href="/about" class="btn btn-primary btn-sm">How can I help you?</a>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{% capture overlay %}
+<p class="card-text text-justify">Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</p>
+<a href="/about" class="btn btn-primary btn-sm">How can I help you?</a>
+{% endcapture %}
+{%include full-width-banner.html overlay=overlay css="default" %}
 <div class="row home-book-sm-cover d-md-none justify-content-center">
         <img src="{{ "/images/commons/book/book-home-sm.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img card-img-sm rounded-0 d-block d-md-none d-lg-none" alt="The Design of Web APIs book cover">
 </div>

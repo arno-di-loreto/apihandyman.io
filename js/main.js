@@ -6,8 +6,8 @@ function offset(el) {
 }
 
 $(window).scroll(function(){
-  if($('.home-banner').length > 0) {
-    $('.main-navbar').toggleClass('scrolled', $(this).scrollTop() > $('.home-banner').height()-55)
+  if($('.row-banner').length > 0) {
+    $('.main-navbar').toggleClass('scrolled', $(this).scrollTop() > $('.row-banner').height()-55)
   }
 });
 

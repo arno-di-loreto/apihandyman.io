@@ -1,4 +1,6 @@
-{% if page.layout == "home" %}
+{% if layout.with_banner %}
+{% assign navbarstyle="" %}
+{% elsif page.with_banner %}
 {% assign navbarstyle="" %}
 {% else %}
 {% assign navbarstyle=" scrolled" %}
