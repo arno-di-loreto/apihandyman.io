@@ -3,7 +3,9 @@
 {% else %}
 {%assign wrap_class = "" %}
 {%endif %}
-<div class="dropdown-menu dropdown-menu-series dropdown-menu-lg-right rounded-0" aria-labelledby="navbarSerieDropdown">
+<div class="dropdown-menu dropdown-menu-series rounded-0" aria-labelledby="navbarSerieDropdown">
+  <div class="dropdown-header">{{page.series}}</div>
+  <div class="dropdown-divider"></div>
   {% assign series_sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
   {% for series_page in series_sorted %}
     {% if series_page.series_title == page.series_title %}

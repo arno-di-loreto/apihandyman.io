@@ -364,19 +364,6 @@ a:hover {
   }
 }
 
-.navbar-page-title {
-  @extend .text-uppercase;
-  color: $navbar-backgound;
-  transition: color .50s linear;
-  //font-family: $font-title;
-  //font-size: 1rem;
-}
-
-.navbar-page-title-visible {
-  color: $navbar-font;
-  transition: color .50s linear;
-}
-
 * > .scrolled, .scrolled > * {
   transition: box-shadow .25s linear, background-color .25s linear;
 }
@@ -495,24 +482,34 @@ a:hover {
 // <= md
 @include media-breakpoint-down(md) {
   .dropdown-menu-series {
-    top: -1px;
-    left: -6px;
     width: min(400px, 90vw, 90vh);
-
   }
 }
 
 // >= lg
 @include media-breakpoint-up(lg) {
   .dropdown-menu-series {
-    margin-top: 7px;
+    width: max-content;
   }
+}
+
+.dropdown-menu-series.show {
+  margin-left: -2px;
 }
 
 .dropdown-menu-series {
   background-color: $sidebar-background;
   color: $sidebar-font;
   box-shadow: $floating-shadow;
+
+  .dropdown-divider {
+    border-color: $book-orange;
+  }
+  .dropdown-header {
+    @extend .pt-0, .pb-0, .text-wrap;
+    color: white;
+    font-size: 1rem;
+  }
 
   .active.disabled {
     color: $book-orange;
@@ -541,6 +538,7 @@ a:hover {
 .card-book-left:hover {
   cursor: pointer;
 }
+
 
 .card-book-left {
   @extend .rounded-0, .border-0;
@@ -629,6 +627,11 @@ a:hover {
 
 .left-column {
 
+  .btn-book-small {
+    background: white;
+    box-shadow: inset 5em 0em $book-blue;
+  }
+  
   //TOC
   #scrollable-toc {
     margin-top: 1em;
@@ -657,14 +660,14 @@ a:hover {
     }
 
     .nav-divider {
+      //@extend .ml-3, .mr-3 , .mb-0, .mt-0;
+      @extend .mb-0, .mt-0;
       height: 0.1rem;
       border-top-style: solid;
       border-top-width: 1px;
       border-top-color: $book-orange;
-      margin-right: 15px;
-      margin-left: 15px;
-      margin-top: 0;
-      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
     }
 
     .nav-link {
@@ -678,7 +681,7 @@ a:hover {
       color: $menu-hover-color
     }
     
-    .navbar-page-title {
+    .series-title {
       background-color: $sidebar-background;
       //color: $book-orange;
       padding-left: 1rem;

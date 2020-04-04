@@ -27,16 +27,7 @@
           <a class="btn btn-book btn-book-small pl-0 border-0 rounded-0 text-left left-column-hider d-block d-sm-block d-md-block d-lg-none" data-toggle="modal" data-target="#bookModal" role="button" ><img data-toggle="collapse" data-target="#navbarNav" src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
         </div>
       </div>
-      {% if page.layout == 'post' %}
-        {% if page.series %}
-        <div class="nav-item dropdown d-desktop-only">
-          <a class="nav-link dropdown-toggle navbar-page-title navbar-page-title-invisible text-right text-truncate d-desktop-only" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{page.series | append: ' Series'}} - Part {{page.series_number}}
-          </a>
-          {% include series-menu.html %}
-        </div>
-        {% endif %}
-      {% elsif page.layout == 'home' %}
+      {% if page.layout == 'home' %}
         <a class="btn btn-book btn-book-small p-0 border-0 rounded-0 text-left left-column-hider d-desktop-only" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
       {% endif %}
     </nav> <!-- class="navbar navbar-expand-md" -->

@@ -61,16 +61,17 @@ libs:
           <span class="card-book-left">Special offer on my book</span>
           <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
         </a>
-        {% if page.series %}
-        <div class="nav-item dropdown d-mobile-only">
-          <a class="nav-link dropdown-toggle navbar-page-title d-mobile-only text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{page.series | append: ' Series'}} - Part {{page.series_number}}
-          </a>
-          {% include series-menu.html wrap=true %}
-        </div>
-        {% endif %}
         {% if show_toc %}
-          <hr class="nav-divider d-mobile-only"/>
+          {% if page.series %}
+          <hr class="nav-divider"/>
+          <div class="nav-item dropdown dropright">
+            <a class="nav-link dropdown-toggle series-title text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Series
+            </a>
+            {% include series-menu.html wrap=true %}
+          </div>
+          {% endif %}
+          <hr class="nav-divider"/>
           <div class="flex-grow-1 overflow-auto m-0 left-column-toggler" id="scrollable-toc">
             {% include toc.html html=content h_min=1 h_max=2 %}
           </div>

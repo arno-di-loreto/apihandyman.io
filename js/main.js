@@ -7,8 +7,6 @@ function offset(el) {
 
 $(window).scroll(function(){
   $('.navbar-home').toggleClass('scrolled', $(this).scrollTop() > $('.home-banner').height()-55)
-  const titleBottom = offset($('.card-page-title .card-title')[0]).top - 55
-  $('.navbar-page-title').toggleClass('navbar-page-title-visible', $(this).scrollTop() > titleBottom);
 });
 
 function showPrivacyMessage() {
