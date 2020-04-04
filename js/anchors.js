@@ -3,4 +3,4 @@ anchors.options = {
   visible: 'always',
   icon: '#'
 };
-anchors.add('.anchors h1, .anchors h2, .anchors h3');
+anchors.add('.anchors .page-section-not-title h1, .anchors .page-section-not-title h2, .anchors .page-section-not-title h3');
