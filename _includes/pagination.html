@@ -1,0 +1,36 @@
+{% if paginator %}
+  {% assign prepend_pagination_url = prepend: site.baseurl | prepend: site.github.url %}
+
+  <nav class="nav-pagination nav-fixed-bottom fixed-bottom" aria-label="Pagination navigation">
+    <ul class="pagination">
+      {% if paginator.previous_page %}
+        {% assign css = "" %}
+        {% assign href = paginator.previous_page_path | prepend: prepend_pagination_url | replace: "index.html", "" | append: "#list" %}
+      {% else %}
+        {% assign css = " disabled" %}
+        {% assign href = "" %}
+      {% endif %}
+      <li class="page-item{{css}}"><a class="page-link page-link-icon" aria-label="Go to previous page" href="{{href}}">{% include svg/previous.svg %}</a></li>
+
+      {% for trail in paginator.page_trail %}
+        {% if page.url == trail.path %}
+          {% assign css = " disabled" %}
+          {% assign aria_current = "aria-current=true" %}
+        {% else %}
+          {%assign css = "" %}
+        {% endif %}
+        {% assign href = trail.path | prepend: prepend_pagination_url | replace: "index.html", "" | append: "#list"%}
+        <li class="page-item{{css}}"><a class="page-link page-link-text" {{aria_current}} aria-label="Go to page {{ trail.num }}" href="{{href}}">{{ trail.num }}</a></li>
+      {% endfor %}
+      
+      {% if paginator.next_page %}
+        {% assign css = "" %}
+        {% assign href = paginator.next_page_path | prepend: prepend_pagination_url | replace: "index.html", "" | append: "#list" %}
+      {% else %}
+        {% assign css = " disabled" %}
+        {% assign href = "" %}
+      {% endif %}
+      <li class="page-item{{css}}"><a class="page-link page-link-icon" aria-label="Go to next page" href="{{href}}">{% include svg/next.svg %}</a></li>
+    </ul>
+  </nav>
+{% endif %}

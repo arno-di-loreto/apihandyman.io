@@ -1,9 +1,9 @@
 {% if layout.with_banner %}
-{% assign navbarstyle="" %}
+  {% assign navbarstyle="" %}
 {% elsif page.with_banner %}
-{% assign navbarstyle="" %}
+  {% assign navbarstyle="" %}
 {% else %}
-{% assign navbarstyle=" scrolled" %}
+  {% assign navbarstyle=" scrolled" %}
 {% endif %}
 <div class="main-navbar fixed-top {{navbarstyle}}">
   <div class="container-lg">

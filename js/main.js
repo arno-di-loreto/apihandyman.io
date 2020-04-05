@@ -9,6 +9,14 @@ $(window).scroll(function(){
   if($('.row-banner').length > 0) {
     $('.main-navbar').toggleClass('scrolled', $(this).scrollTop() > $('.row-banner').height()-55)
   }
+  console.log('nav fixed bottom', $('.nav-fixed-bottom'))
+  const navTop = offset($('.nav-fixed-bottom')[0]).top
+  const contentBottom = $('.main-content').height() + offset($('.main-content')[0]).top
+  console.log('main content bottom', contentBottom)
+  console.log('nav top', navTop)
+  console.log('nav below content', navTop > contentBottom)
+  
+  //$('.nav-fixed-bottom').toggleClass('fixed-bottom', navTop > contentBottom) 
 });
 
 function showPrivacyMessage() {

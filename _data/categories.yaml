@@ -1,12 +1,16 @@
+blog:
+  name: Blog
+  permalink: /blog
+  description: You'll find here all my posts, talks and podcasts. 
 posts:
   name: Posts
   permalink: /posts
-  subtitle: The API Handyman writes as time permits
+  description: You'll find here all my posts.
 talks:
   name: Talks & Podcasts
   permalink: /talks
-  subtitle: The API Handyman talks as time permits
+  description: You'll find here all my talks and podcasts.
 toolbox:
   name: Toolbox
   permalink: /toolbox
-  subtitle: The API Handyman's toobox
+  description: You'll find here all the tools I use.

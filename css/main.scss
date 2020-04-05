@@ -925,6 +925,52 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   }
 }
 
+/**************/
+/* Pagination */
+/**************/
+.nav-pagination {
+  //@extend .fixed-bottom;
+  width: fit-content;
+  margin: 0 auto;
+  .pagination {
+    @extend .rounded-0;
+    background-color: $book-orange;
+    color: white;
+    box-shadow: $navbar-shadow;
+    .page-link {
+      @extend .border-0, .rounded-0;
+      background: none;
+      color: white;
+    }
+
+    .page-link-text {
+      top: 1px;
+    }
+
+    .page-link-icon {
+      svg {
+        height: 1rem;
+        width: auto;
+        path {
+          fill: white;
+        }
+      }
+    }
+
+    .page-item.disabled {
+      background-color: white;
+      .page-link {
+        color: $book-orange;
+      }
+      svg {
+        path {
+          fill: $book-orange;
+        }
+      }
+    }
+  }
+}
+
 /*****************/
 /* Display utils */
 /*****************/
