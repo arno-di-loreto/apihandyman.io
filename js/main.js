@@ -24,6 +24,29 @@ function acceptPrivacyPolicy() {
   $('.privacy-message').toggleClass('d-none')
 }
 
+function goToPage(input) {
+  const targetPage = input.value
+  const maxPage = input.dataset.last
+  const currentPage = input.dataset.current
+  if( targetPage && 
+      targetPage > 0 &&
+      targetPage <= maxPage &&
+      targetPage != currentPage )
+    {
+        let targetUrl
+        if(targetPage != 1) {
+          targetUrl = input.dataset.url.replace('NUMBER', targetPage)
+        }
+        else {
+          targetUrl = input.dataset.firsturl
+        }
+        window.location = targetUrl
+    }
+    else {
+      input.value = ""
+    }
+}
+
 //Enabling tooltip everywhere
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
@@ -51,4 +74,19 @@ $( document ).ready(function() {
     console.error('Action:', e.action)
     console.error('Trigger:', e.trigger)
   })
+
+  // Execute a function when the user releases a key on the keyboard
+  const navPageInput = document.getElementById("nav-page-input");
+  if(navPageInput){
+    navPageInput.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault()
+        goToPage(event.srcElement)
+      }
+    });
+    navPageInput.addEventListener("focusout", function(event){
+      goToPage(event.srcElement)
+    });
+  }
+  
 })

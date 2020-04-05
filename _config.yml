@@ -44,8 +44,8 @@ pagination:
   debug: false
   per_page: 10
   trail: 
-    before: 2 # The number of links before the current page
-    after: 2  # The number of links after the current page
+    before: 1 # The number of links before the current page
+    after: 1  # The number of links after the current page
 
 # Third party parameters
 google_analytics: UA-58046291-1

@@ -929,14 +929,22 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
     }
 
     .page-item.disabled {
-      background-color: white;
       .page-link {
-        color: $book-orange;
+        color: $book-grey;
       }
       svg {
-        fill: $book-orange;
+        fill: $book-grey;
       }
     }
+
+    .nav-page-input {
+      @extend .form-control, .p-0, .text-center;
+      width: 2rem;
+      border-style: solid;
+      border-color: $book-orange;
+      border-width: 4px;
+    }
+  
   }
 }
 
