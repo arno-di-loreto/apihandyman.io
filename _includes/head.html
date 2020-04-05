@@ -1,7 +1,7 @@
 {% if site.data.categories[page.title] %}
-  {% assign title = page.title | capitalize | append:' | ' | append:site.title %}
+  {% assign title = site.title | append:' | ' | append:site.data.categories[page.title].name %}
 {% elsif page.title %}
-  {% assign title = page.title | append:' | ' | append:site.title %}
+  {% assign title = site.title | append:' | ' | append:page.title %}
 {% else %}
   {% assign title = site.title %}
 {% endif %}
