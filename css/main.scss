@@ -928,6 +928,10 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
 /**************/
 /* Pagination */
 /**************/
+.nav-fixed-bottom {
+  @extend .sticky-top;
+  bottom: 20px;
+}
 .nav-pagination {
   //@extend .fixed-bottom;
   width: fit-content;

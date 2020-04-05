@@ -1,7 +1,7 @@
 {% if paginator %}
   {% assign prepend_pagination_url = prepend: site.baseurl | prepend: site.github.url %}
 
-  <nav class="nav-pagination nav-fixed-bottom fixed-bottom" aria-label="Pagination navigation">
+  <nav class="nav-pagination nav-fixed-bottom" aria-label="Pagination navigation">
     <ul class="pagination">
       {% if paginator.previous_page %}
         {% assign css = "" %}
