@@ -206,6 +206,8 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
                                               $row-banner-default-left-color 0%, $row-banner-default-left-color 50%, $row-banner-default-right-color 50%, $row-banner-default-right-color 100%); 
 
 .row-banner-default {
+  box-shadow: $small-shadow;
+
   @include media-breakpoint-down(xl) {
     height: 400px;
     background-image: url('/images/commons/home-banner.jpg'), $row-banner-default-linear-gradient;
@@ -234,6 +236,8 @@ $row-banner-talks-linear-gradient: linear-gradient(to right,
                                               $row-banner-talks-left-color 0%, $row-banner-talks-left-color 50%, $row-banner-talks-right-color 50%, $row-banner-talks-right-color 100%); 
 
 .row-banner-talks {
+  box-shadow: $small-shadow;
+
   @include media-breakpoint-down(xl) {
     height: 400px;
     background-image: url('/images/commons/home-banner.jpg'), $row-banner-talks-linear-gradient;
@@ -262,6 +266,8 @@ $row-banner-posts-linear-gradient: linear-gradient(to right,
                                               $row-banner-posts-left-color 0%, $row-banner-posts-left-color 50%, $row-banner-posts-right-color 50%, $row-banner-posts-right-color 100%); 
 
 .row-banner-posts {
+  box-shadow: $small-shadow;
+
   @include media-breakpoint-down(xl) {
     height: 400px;
     background-image: url('/images/commons/home-banner.jpg'), $row-banner-posts-linear-gradient;
@@ -290,6 +296,8 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
                                               $row-banner-blog-left-color 0%, $row-banner-blog-left-color 50%, $row-banner-blog-right-color 50%, $row-banner-blog-right-color 100%); 
 
 .row-banner-blog {
+  box-shadow: $small-shadow;
+  
   @include media-breakpoint-down(xl) {
     height: 400px;
     background-image: url('/images/commons/home-banner.jpg'), $row-banner-blog-linear-gradient;
@@ -319,8 +327,6 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center;
-
-  
 
   .card-img-overlay-text {
     padding: 10px;
