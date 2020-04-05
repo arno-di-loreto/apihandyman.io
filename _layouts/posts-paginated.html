@@ -3,7 +3,7 @@ layout: default
 with_banner: true
 ---
 {% capture overlay %}
-<p class="card-text text-justify">Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. You'll find here all my {{site.data.categories[category].name | downcase}}.</p>
+<p class="card-text text-justify">Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. {{site.data.categories[page.category].description}}.</p>
 <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#bookModal" role="button" >You can also read my book</a>
 {% endcapture %}
 {%include full-width-banner.html overlay=overlay css=page.category %}
