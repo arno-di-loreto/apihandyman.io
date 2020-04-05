@@ -122,13 +122,14 @@ libs:
             {% endif %}
           {% endfor %}
         </div><!-- class="row row-cols-1"-->
-      </div><!--class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10"-->  
+      </div><!--class="main-content col-sm-12 col-md-9 col-lg-10 col-xl-10"-->
+      <nav class="nav-page nav-fixed-bottom" aria-label="Page navigation">
+        <a class="nav-page-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top">{% include svg/top.svg %}</a>
+        {% if show_toc %}
+        <a class="nav-page-btn left-column-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content">{% include svg/list.svg %}</a>
+        {% endif %}
+      </nav>
     </div><!--class="row page-content"-->
-    <div class="navbar-bottom" role="group" aria-label="secondary navbar">
-      <button type="button" class="navbar-bottom-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top">{% include icon.html name="top"%}</button>
-      {% if show_toc %}
-        <button type="button" class="navbar-bottom-btn left-column-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content">{% include icon.html name="list" %}</button>
-      {% endif %}
-    </div>
+
   </div>
 </div>

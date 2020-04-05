@@ -76,7 +76,7 @@ body {
   box-shadow: $button-focus-shadow;
 }
 
-.btn-primary:focus {
+.btn-primary, .btn-primary:focus {
   background-color: $book-orange;
 }
 
@@ -871,43 +871,6 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   }
 }
 
-/*****************/
-/* Bottom navbar */
-/*****************/
-
-.navbar-bottom {
-  position: fixed;
-  @extend .btn-group-vertical, .rounded-0;
-  .navbar-bottom-btn {
-    @extend .btn, .btn-primary, .rounded-0, .mb-2;
-    box-shadow: $floating-shadow;
-  }
-  .navbar-bottom-btn:focus {
-    box-shadow: $floating-shadow;
-    background-color: $book-orange;
-  }
-  z-index: 1030;
-  bottom: 20px;
-}
-
-@include media-breakpoint-down(md) {
-  .navbar-bottom {
-    right: 30px;
-  } 
-}
-
-// >= lg
-@include media-breakpoint-up(lg) {
-  .navbar-bottom {
-    right: calc(50vw - 475px);
-  }
-}
-
-@include media-breakpoint-up(xl) {
-  .navbar-bottom {
-    right: calc(50vw - 565px);
-  }
-}
 
 /*********************/
 /* Book Modal Dialog */
@@ -925,13 +888,19 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   }
 }
 
-/**************/
-/* Pagination */
-/**************/
+
+/****************************/
+/* Sticky bottom navigation */
+/****************************/
 .nav-fixed-bottom {
   @extend .sticky-top;
   bottom: 20px;
 }
+
+/*****************************************/
+/* Sticky bottom navigation - Pagination */
+/*****************************************/
+
 .nav-pagination {
   //@extend .fixed-bottom;
   width: fit-content;
@@ -955,9 +924,7 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
       svg {
         height: 1rem;
         width: auto;
-        path {
-          fill: white;
-        }
+        fill: white;
       }
     }
 
@@ -967,13 +934,44 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
         color: $book-orange;
       }
       svg {
-        path {
-          fill: $book-orange;
-        }
+        fill: $book-orange;
       }
     }
   }
 }
+
+/******************************************/
+/* Sticky bottom navigation - Page navbar */
+/******************************************/
+
+.nav-page {
+  @extend .btn-group-vertical, .rounded-0;
+
+  // =< md
+  @include media-breakpoint-down(md) {
+    margin-left: calc(100% - 70px);
+  }
+  
+  // >= lg
+  @include media-breakpoint-up(lg) {
+    margin-left: calc(100% - 50px);
+  }
+
+  .nav-page-btn {
+    @extend .btn, .btn-primary, .border-0, .rounded-0, .mb-2;
+    box-shadow: $floating-shadow;
+    svg {
+      height: 1rem;
+      width: auto;
+      fill: white;
+    }
+  }
+  .nav-page-btn:focus {
+    box-shadow: $floating-shadow;
+    //background-color: $book-orange;
+  }
+}
+
 
 /*****************/
 /* Display utils */

@@ -4,7 +4,7 @@ function toggleToc() {
 
 function toggleBackToTop() {
   const titleBottom = offset($('.card-page-title .card-title')[0]).top
-  $('.navbar-bottom .back-to-top').toggleClass('d-none', $(this).scrollTop() < titleBottom)
+  $('.back-to-top').toggleClass('d-none', $(this).scrollTop() < titleBottom)
 }
 
 function isVisible(scrollableParent, element) {
