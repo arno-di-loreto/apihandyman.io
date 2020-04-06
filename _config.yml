@@ -75,7 +75,6 @@ collections:
 
 plugins:
   - jekyll-feed
-  - jekyll-twitter-plugin
   - jekyll-sitemap
   - jekyll-paginate-v2 # https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md
 

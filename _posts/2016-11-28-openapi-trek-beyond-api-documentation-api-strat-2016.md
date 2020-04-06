@@ -31,7 +31,7 @@ This series is composed of three talks:
 - [OpenAPI Trek Into Fastness at Nordic APIs Stockholm Summit 2016](/openapi-trek-into-fastness-nordic-apis-summit-2016/)
 - OpenAPI Trek Beyond API Documentation at APIStrat Boston 2016
 
-{% twitter https://twitter.com/ameliamango/status/795749942144876547 align=center %}
+{% include twitter.html url="https://twitter.com/ameliamango/status/795749942144876547" %}
 
 This last talk is the (not so uncommon) story of how I came to use Swagger/OpenAPI for API documentation and how it changed many things beyond API documentation. Here are the video (very special thanks to [Matthew Reinbold](https://twitter.com/libel_vox) for recording this talk with my crappy phone) and slides:
   

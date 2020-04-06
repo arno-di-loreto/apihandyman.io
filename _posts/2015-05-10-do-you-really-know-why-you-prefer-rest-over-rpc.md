@@ -17,7 +17,7 @@ tags:
 ---
 A few weeks ago I've seen an interesting flock of tweets initiated by this question:
 
-{% twitter https://twitter.com/skamille/status/588713316358475776 align=center %}
+{% include twitter.html url="https://twitter.com/skamille/status/588713316358475776" %}
 
 This question and the tweets that followed put my brain on quite an animated discussion...<!--more-->
 

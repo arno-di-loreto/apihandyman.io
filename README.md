@@ -78,7 +78,7 @@ You can add a label to image:
 Grab the tweet URL and you're done:
 
 ```
-{% twitter https://twitter.com/apihandyman/status/794546772219691008 align=center %}
+{% include twitter.html url=https://twitter.com/apihandyman/status/794546772219691008 %}
 ```
 
 ## Code blocks
