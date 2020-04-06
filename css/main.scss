@@ -53,6 +53,8 @@ $tooltip-bg:$book-orange;
 
 
 @import "bootstrap/scss/bootstrap";
+@import "fonts/font-roboto";
+@import "fonts/font-spartan";
 
 
 body {
@@ -61,6 +63,7 @@ body {
   font-family: $font-regular;
   h1, h2, h3, h4, h5, h6 {
     font-family: $font-title;
+    font-weight: 300;
   }
 }
 
@@ -850,7 +853,6 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
     .nav-link {
       color: $sidebar-font;
       background-color: $sidebar-background;
-      font-weight: 100;
     }
 
     .nav-link:hover, .nav-link.active:hover {
