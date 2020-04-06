@@ -1,4 +1,4 @@
-<table>
+<table class="table-documentation-links">
   {% if include.title %}
   <thead>
     <tr>
@@ -13,7 +13,7 @@
     <tr>
       <td><code>{{item.examples | join:"</code><br><code>" }}</code></td>
       <td>{{item.description | capitalize}}</td>
-      <td><a class="btn rounded-0 border-0" href="{{item.url}}" target="{{include.target}}"><i class="fas fa-external-link-alt"></i></a></td>
+      <td><a class="btn-documentation" href="{{item.url}}" target="{{include.target}}" aria-label="open documentation in new windows" data-toggle="tooltip" data-placement="right" title="Go to filter's documentation">{% include svg/documentation.svg %}</a></td>
     </tr>
 {% endfor %}
   </tbody>

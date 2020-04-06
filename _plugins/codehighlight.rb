@@ -68,10 +68,6 @@ module Jekyll
       end
 
       codeblocksize = lookup(context, 'site.codeblocksize')
-      # <i class="fas fa-compress"></i>
-      # <i class="fas fa-expand"></i>
-      # <i class="fas fa-expand-alt"></i>
-      # <i class="fas fa-compress-alt"></i>
       if code.lines.count > codeblocksize 
         collapsed_style = " code-collapsed"
         collapsed_button = "<a role=\"button\" class=\"btn btn-secondary border-0 rounded-0 code-expandcollapse-btn\"  aria-label=\"expand or shrink\" onclick=\"expandCollapseCode(this)\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Expand/Shrink\"><img class=\"btn-icon\" src=\"/images/commons/icons/maximize.svg\"></a>"

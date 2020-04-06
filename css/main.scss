@@ -72,6 +72,16 @@ body {
   //fill: white;
 }
 
+.icon-text {
+  position: relative;
+  bottom: 2px;
+  svg {
+    height: 1rem;
+    width: auto;
+    fill: $text;
+  }
+}
+
 .btn:focus {
   box-shadow: $button-focus-shadow;
 }
@@ -85,6 +95,23 @@ table {
   thead {
     background: $content-titlebar-background;
     color: $content-titlebar-color;
+  }
+}
+
+.table-documentation-links {
+  .btn-documentation {
+    @extend .btn, .rounded-0, .border-0;
+    svg {
+      height: 1rem;
+      width: auto;
+      fill: $text
+    }
+  }
+
+  .btn-documentation:hover {
+    svg {
+      fill: $book-orange;
+    }
   }
 }
 

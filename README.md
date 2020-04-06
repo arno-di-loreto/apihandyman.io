@@ -428,7 +428,6 @@ Here's the list of tools used:
 - [Bootstrap](https://getbootstrap.com/) to build easily a responsive website
 - [Bootstrap TOC](https://afeld.github.io/bootstrap-toc/) for dynamic TOC sidebar on posts
 - [Anchor JS](http://bryanbraun.github.io/anchorjs/) to add links on H1, H2, H3 sections titles on posts
-- [Font Awesome](http://fontawesome.io/) for social links in footer
 - [Jekyll](https://jekyllrb.com/) to build the static website
 - [Jekyll Paginate Category Plugin](https://github.com/midnightSuyama/jekyll-paginate-category) for pagination on categories pages
 - [Jekyll Twitter Plugin](https://github.com/rob-murray/jekyll-twitter-plugin) to embed tweets easily
