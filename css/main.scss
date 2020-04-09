@@ -434,7 +434,26 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
 }
 
 .row-banner-small {
-  margin-bottom: -100px;
+  @include media-breakpoint-down(xl) {
+    margin-bottom: -100px;
+  }
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: -90px;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: -60px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    margin-bottom: -50px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    margin-bottom: -40px;
+  }
+  
   .banner-small-container {
     @extend .container-fluid, .container-lg, .p-0;
     .banner-small-column-main {
@@ -466,6 +485,16 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
     @include media-breakpoint-down(md) {
         padding-left: 20px;
         padding-right: 20px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      padding-left: 5px;
+      padding-right: 5px;
     }
 
   }
