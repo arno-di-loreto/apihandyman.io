@@ -1,64 +1,43 @@
 ---
-title: About Arnaud Lauret
+title: About Arnaud Lauret, the API Handyman
 layout: page
 permalink: /about/
 ---
-> In API we trust.  
-> (Kin Lane, [API Evangelist](http://apievangelist.com/))
+Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.
 
-In API I trust, I’m an API believer.
+# Me
 
-# About me
+## Arnaud Lauret
 
-My name is Arnaud Lauret, currently IT architect in Paris, France.
-  
-I have been working in IT banking on back and front office for almost 13 years as programmer, project manager, application and team manager and then IT architect.
+My name is Arnaud Lauret, I'm an Senior API Architect in Paris, France. I have been working in the financial industry for 18 years and my job was always around connecting pieces of software together, hence creating and using web services or APIs.
 
-> You're under no obligation to be the same person you were five minutes ago.  
-> (unknown) 
+My current daily job is helping people, from executive to developers and everything in between, to understand what are APIs, why they matters and how to do them. I also help dozens of different teams to design their APIs by reviewing and challenging their designs, training them to design API and also building API design guidelines.
 
-Being IT architect after being manager may seem odd (especially in France): one day I realized that I had moved myself away (personally and professionally) to far from what I really like: getting my hands dirty with technology (it’s started with an Apple II in the 80's).
-  
-I was not completely out of technology things but not near enough and I had to do many other things that were really not my cup of tea.
-  
-Luckily when I mentioned my necessity of change, my manager and my company understand this. My company was seeking an IT architect and due to my experience on the company’s information system I have been proposed this job which I accepted gladly.
-  
-It was time to roll up my sleeves and get my hands dirty.
+## API Handyman
 
-# About API Handyman blog
-
-> Are you telling me that you built a time machine... out of APIs?!  
-> (Marty McApy) 
-
-Born on the seventh of February 2015, the API Handyman blog is about sharing my views and experiences on the API field from both provider and consumer points of view with (I hope) a pragmatic and unvarnished approach.
-
-My API awareness grown up working on my company's information system:
-
-  * Evolving from client/server to SOA (Service Oriented Architecture) and then to API.
-  * Consuming services in our web sites and mobile applications.
-  * Designing and providing services for us and partners.
-  * Integrating and consuming partner’s services.
-  * Working with internal and external developers.
-
-This blog is born from the combination of my desire to share what I learn, learn from others experiences and my child mind. I want to play with APIs (and all that resolves around this) as I used to play with Lego when I was a kid and create cool things. Cool things like a time machine.
-
-# But why API Handyman?
-
-I wanted a _secret_ identity with a _mind-blowing_ name to be this blog's personification.
-  
-But cool names like evangelist, barbarian, sorcerer, wizard, magician were already used … There should be an API to help finding cool names.
-  
-After some _really intense_ brainstorming I found _handyman_.
+I choose the API Handyman name because the handyman definition really describes that how I feel regarding software in general and APIs in particular: I love working on all aspects of API/software.
 
 > The term handyman or handyperson increasingly describes a paid worker, but it also includes non-paid homeowners or do-it-yourselfers. Tasks range from minor to major, from unskilled to highly skilled, and include painting, drywall repair, remodeling, minor plumbing work, minor electrical work, household carpentry, sheetrock, crown moulding, and furniture assembly.  
 > (source [wikipedia](http://en.wikipedia.org/wiki/Handyman))
 
-This is what I am at home or with technology, this blog is about API so the API Handyman is born.
-  
-Pretty clever isn’t it?
+# How can I help you?
 
-# Read, feedback and comment
+I really like to share what I learn and make others grow, hoping that one day they'll do the same for others.
 
-I hope you'll enjoy reading my posts and I'm looking forward to your feedback and comments, as I have said before, I want to share with you and learn from you.
-  
-You can follow and contact me and the API Handyman via social networks on page's bottom.
+## API Handyman blog
+
+Born on the 7th of February 2015, the API Handyman blog is about sharing my views and experiences on the API field from both provider and consumer points of view with I hope a pragmatic and unvarnished approach. I mostly write about API design and API design related tools. I do not write as much as I would like but at least you'll always find from-the-real-world-topics-covered-in-depth class post here.
+
+## My book The Design of Web APIs
+
+In 2018, I started to write a book on API design with Manning.
+If you're interested in API design, you should read my book <a href="#" data-toggle="modal" data-target="#bookModal" role="button" >The Design of Web API</a>, it's for both beginners and seasoned API designers. Every aspects of API design are covered: requirements gathering, usability, security, evolution, documentation and even architecture and network concerns. 
+
+## Consultancy
+
+If you need more than my blog and my book, I'm also open to consultancy request:
+
+- I can help you on API design related tasks like give you a hand to design APIs, review you designs, train your API designers or help you build your API design guidelines.
+- I can also do API evangelism and explain to CEOs, executives, business people, product owners or developers what are APIs, why they matter and how do them.
+
+Do not hesitate to contact me on [LinkedIn]({{site.data.links.me.linkedin}}) or [Twitter]({{site.data.links.me.twitter}}).
