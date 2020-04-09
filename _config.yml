@@ -30,7 +30,7 @@ github_username:  arno-di-loreto
 linkedin_username: arnaudlauret
 
 # Page default thumbnail/banner
-default_thumbnail: /images/commons/thumbnail.png
+default_thumbnail: /images/commons/default.png
 
 # What's before this will be shown in post summary'
 excerpt_separator: <!--more-->

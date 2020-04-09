@@ -1,14 +1,7 @@
 ---
-id: 194
-title: About
-alternate_title: About the API Handyman
-date: 2015-02-07T15:07:32+00:00
-author: Arnaud Lauret
-layout: default
-guid: http://apihandyman.io/?page_id=194
+title: About Arnaud Lauret
+layout: page
 permalink: /about/
-menu: true
-sort: 4
 ---
 > In API we trust.  
 > (Kin Lane, [API Evangelist](http://apievangelist.com/))

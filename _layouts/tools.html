@@ -8,14 +8,22 @@ with_banner: true
 {% endcapture %}
 {%include full-width-banner.html overlay=overlay css=page.category %}
 <div class="row row-list">
-  <div id="list" class="container">
-    <div class="row row-cols-1 row-cols-lg-2">
-        {% for post in paginator.posts %}
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2">
+        {% for tool in site.tools %}
           <div class="col mb-4">
-          {% include post-summary.html  date=true %}
+          {% assign surtitle = tool.tool_author | append: "'s" %}
+            {% include card.html
+                class="card-home" 
+                image=tool.thumbnail
+                image_alt="Project's screenshot"
+                title=tool.title
+                surtitle=surtitle
+                content=tool.excerpt
+                url=tool.tool_url
+            %}
           </div>
         {% endfor %}
     </div>
   </div>
 </div>
-{% include pagination.html %}

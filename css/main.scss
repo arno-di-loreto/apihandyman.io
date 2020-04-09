@@ -397,6 +397,9 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   }
 }
 
+.row-banner-toolbox {
+  @extend .row-banner-default
+}
 
 .row-banner {
   margin-top: -55px;
@@ -517,6 +520,18 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
     @extend .mb-0;
   }
 
+}
+
+.row-list .container::before {
+  content: '';
+  display: block;
+  height:      110px;
+  margin-top: -45px;
+  visibility: hidden;
+}
+
+.row-list {
+  //@extend .mt-5;
 }
 
 .row-footer {
