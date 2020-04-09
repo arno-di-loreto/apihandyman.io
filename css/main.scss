@@ -7,72 +7,111 @@
 $book-blue: #014E68;
 $book-grey: #bcbdc0;
 $book-orange: #e66c2a;
-$glitter: #E8EFF6;
-$alice-blue: #EFF7FF;
-$white-snow: #F7F5F7;
 $ghost-white: #F9F8F9;
 
-$background: $ghost-white;
-$link-hover: $book-orange;
-$link: $book-blue;
-$link-reverse: $link-hover;
-$link-reverse-hover: white; 
-$text: black;
-$text-backgound: white;
-$text-reverse: white;
-$menu-hover-background: $book-orange;
-$menu-hover-color: white;
-$button-focus-shadow: 0 0 0 0.2rem rgba(230,108,42,0.25);
-
-$navbar-backgound: $book-blue;
-$navbar-font: white;
-$navbar-border: $book-orange;
-$sidebar-background: $navbar-backgound;
-$sidebar-font: white;
-$sidebar-background-active: $background;
-$sidebar-font-active: $book-orange;
-$sidebar-border-active: $book-orange;
-
-$content-background: $text-backgound;
-$content-font: $text;
-$content-titlebar-background: $text;
-$content-titlebar-color: $text-backgound;
+// Commons
 
 $font-title: 'Spartan', sans-serif;
+$font-title-weight: 300;
 $font-regular: 'Roboto', sans-serif;
+$active-color: $book-orange;
 
-$navbar-shadow: 0px 2px 2px 1px rgba(0, 0, 0, .4);
-$bottom-navbar-shadow: 2px 0px 2px 1px rgba(0, 0, 0, .4);
-$floating-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .4);
-$small-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .1);
+$overlay-transparent-background: rgba(10,10,10,0.2);
 
+$strong-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .4);
+$light-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .1);
 
-// Tooltips
-$tooltip-arrow-color:$book-orange;
-$tooltip-bg:$book-orange;
+$border-radius: 0.4rem;
 
+// Main content
+
+$body-background-color: $ghost-white;
+
+$content-background-color: white;
+$content-font-color: black;
+$content-font: $font-regular;
+$content-disabled-font-color: $book-grey;
+
+$banner-shadow: $light-shadow;
+$content-section-shadow: $light-shadow;
+
+$table-header-background-color: black;
+$table-header-font-color: white;
+
+$link-font-color: $book-blue;
+$link-hover-font-color: $book-orange;
+
+// Menus
+
+$menu-hover-background: $book-orange;
+$menu-hover-color: white;
+
+$button-focus-shadow: 0 0 0 0.2rem rgba(230,108,42,0.25);
+
+$primary-button-background-color: $book-orange;
+$primary-button-font-color: white;
+
+$navbar-backgound-color: $book-blue;
+$navbar-item-font-color: white;
+$navbar-active-item-background-color: $navbar-backgound-color;
+$navbar-active-item-font-color: $book-orange;
+$navbar-hover-item-background-color: none;
+$navbar-hover-item-font-color: $book-orange;
+$navbar-shadow: $strong-shadow;
+$navbar-menu-transparent-background-color: $overlay-transparent-background;
+$navbar-menu-transparent-item-font-color: $navbar-item-font-color;
+$navbar-menu-transparent-item-background-color: transparent;
+$navbar-menu-transparent-active-item-font-color: $navbar-active-item-font-color;
+$navbar-menu-transparent-active-item-background-color: transparent;
+
+$left-navbar-background-color: $navbar-backgound-color;
+$left-navbar-item-font-color: $navbar-item-font-color;
+$left-navbar-active-item-background-color: $navbar-active-item-background-color;
+$left-navbar-active-item-font-color: $navbar-active-item-font-color;
+$left-navbar-hover-item-background-color: $book-orange;
+$left-navbar-hover-item-font-color: white;
+$left-navbar-shadow: $navbar-shadow;
+$left-navbar-divider-color: $book-orange;
+$left-navbar-divider-width: 1px;
+$left-navbar-divider-style: solid;
+
+$bottom-navbar-background-color: $primary-button-background-color;
+$bottom-navbar-font-color: $primary-button-font-color;
+$bottom-navbar-shadow: $navbar-shadow;
+$bottom-navbar-disabled-item-font-color: $book-grey;
+
+$footer-background-color: $navbar-backgound-color;
+$footer-item-font-color: $navbar-item-font-color;
+$footer-active-item-background-color: $navbar-active-item-background-color; 
+$footer-active-item-font-color: $navbar-active-item-font-color;
+$footer-shadow: $light-shadow;
+
+$tooltip-font-color: $primary-button-font-color;
+$tooltip-background-color: $primary-button-background-color;
+
+// Overriding bootstrap tooltip colors
+$tooltip-color: $tooltip-font-color;
+$tooltip-bg: $tooltip-background-color;
+$tooltip-arrow-color: $tooltip-background-color;
 
 @import "bootstrap/scss/bootstrap";
 @import "fonts/font-roboto";
 @import "fonts/font-spartan";
 
-
 body {
   padding-top: 55px;
-  background-color: $background;
+  background-color: $body-background-color;
+  color: $content-font-color;
   font-family: $font-regular;
   h1, h2, h3, h4, h5, h6 {
     font-family: $font-title;
-    font-weight: 300;
+    font-weight: $font-title-weight;
   }
 }
 
 .btn-icon {
   height: 1rem;
   filter: invert(1);
-  //height: 1rem;
-  //filter: invert(1);
-  //fill: white;
 }
 
 .icon-text {
@@ -81,7 +120,7 @@ body {
   svg {
     height: 1rem;
     width: auto;
-    fill: $text;
+    fill: $content-font-color;
   }
 }
 
@@ -90,14 +129,15 @@ body {
 }
 
 .btn-primary, .btn-primary:focus {
-  background-color: $book-orange;
+  background-color: $primary-button-background-color;
+  color: $primary-button-font-color;
 }
 
 table {
   @extend .table, .table-sm, .table-striped, .table-bordered, .text-left;
   thead {
-    background: $content-titlebar-background;
-    color: $content-titlebar-color;
+    background: $table-header-background-color;
+    color: $table-header-font-color;
   }
 }
 
@@ -107,7 +147,7 @@ table {
     svg {
       height: 1rem;
       width: auto;
-      fill: $text
+      fill: $content-font-color;
     }
   }
 
@@ -136,17 +176,17 @@ table {
 /* Common */
 /**********/
 a {
-  color: $book-blue;
+  color: $link-font-color;
 }
 
 a:hover {
-  color: $book-orange;
+  color: $link-hover-font-color;
 }
 
 .btn-primary {
-  background-color: $book-orange;
+  background-color: $primary-button-background-color;
   border: none;
-  color: white;
+  color: $primary-button-font-color;
   border-radius: 0em;
 }
 
@@ -163,10 +203,10 @@ a:hover {
 }
 
 // Home
-
+$book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50%,white 100%);
 @include media-breakpoint-up(md) { 
   .home-book {
-    background: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50%,white 100%);
+    background: $book-gradient;
   }
 }
 
@@ -177,7 +217,7 @@ a:hover {
 }
 
 .home-book-sm-cover {
-  background: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50%,white 100%);
+  background: $book-gradient;
   .card-img-sm {
     max-height: 150px;
     width: auto;
@@ -185,7 +225,7 @@ a:hover {
 }
 
 .home-book {
-  box-shadow: $small-shadow;
+  box-shadow: $banner-shadow;
   .card-body-quotes {
     @extend .pb-0;
 
@@ -211,7 +251,7 @@ a:hover {
 }
 
 .card-home {
-  box-shadow: $small-shadow;
+  box-shadow: $content-section-shadow;
   a {
     text-decoration: none;
     color: inherit;
@@ -243,7 +283,7 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
                                               $row-banner-default-left-color 0%, $row-banner-default-left-color 50%, $row-banner-default-right-color 50%, $row-banner-default-right-color 100%); 
 
 .row-banner-default {
-  box-shadow: $small-shadow;
+  box-shadow: $banner-shadow;
 
   @include media-breakpoint-down(xl) {
     height: 400px;
@@ -273,7 +313,7 @@ $row-banner-talks-linear-gradient: linear-gradient(to right,
                                               $row-banner-talks-left-color 0%, $row-banner-talks-left-color 50%, $row-banner-talks-right-color 50%, $row-banner-talks-right-color 100%); 
 
 .row-banner-talks {
-  box-shadow: $small-shadow;
+  box-shadow: $banner-shadow;
 
   @include media-breakpoint-down(xl) {
     height: 400px;
@@ -303,7 +343,7 @@ $row-banner-posts-linear-gradient: linear-gradient(to right,
                                               $row-banner-posts-left-color 0%, $row-banner-posts-left-color 50%, $row-banner-posts-right-color 50%, $row-banner-posts-right-color 100%); 
 
 .row-banner-posts {
-  box-shadow: $small-shadow;
+  box-shadow: $banner-shadow;
 
   @include media-breakpoint-down(xl) {
     height: 400px;
@@ -333,7 +373,7 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
                                               $row-banner-blog-left-color 0%, $row-banner-blog-left-color 50%, $row-banner-blog-right-color 50%, $row-banner-blog-right-color 100%); 
 
 .row-banner-blog {
-  box-shadow: $small-shadow;
+  box-shadow: $banner-shadow;
   
   @include media-breakpoint-down(xl) {
     height: 400px;
@@ -390,11 +430,100 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   }
 }
 
+.row-banner-small {
+  margin-bottom: -100px;
+  .banner-small-container {
+    @extend .container-fluid, .container-lg, .p-0;
+    .banner-small-column-main {
+      @extend  .col-12, .p-0;
+    }
+  }
+}
+
+.page-column-main {
+  @extend .col-12;
+}
+
+.page-column-main-with-left {
+  @extend .col-lg-10, .pl-lg-0;
+  @include media-breakpoint-up(lg) {
+    padding-right: 30px;
+  }
+  @include media-breakpoint-down(md) {
+    padding-right: 15px;
+  }
+
+  .card-page-section {
+ 
+    @include media-breakpoint-up(lg) {
+      padding-left: 35px;
+      padding-right: 35px;
+    }
+
+    @include media-breakpoint-down(md) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+  }
+}
+
+.page-content-text {
+  @extend .row, .row-cols-1, .p-0, .m-0, .text-justify; 
+
+  .card-page-section {
+    @extend .card, .border-0, .rounded-0, .mb-3, .mb-md-4, .mb-lg-5, .mb-xl-5;
+    box-shadow: $content-section-shadow;
+    
+    h1, h2, h3, h4, h5, h6 {
+      @extend .text-left;
+    }
+
+    h1[id]::before, h2[id]::before, h3[id]::before, h4[id]::before, h5[id]::before, h6[id]::before {
+      content: '';
+      display: block;
+      height:      80px;
+      margin-top: -65px;
+      visibility: hidden;
+    }
+
+    .body {
+      @extend .card-body;
+    }
+
+    .surtitle {
+      @extend .font-weight-lighter;
+    }
+
+    .title {
+      @extend .card-title;
+    }
+
+    .subtitle {
+      @extend .card-subtitle, .text-muted;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+  }
+
+  .card-page-section:first-child {
+    @extend .mt-3, .mt-md-4, .mt-lg-5, .mt-xl-5;
+  }
+
+  .card-page-section:last-child {
+    @extend .mb-0;
+  }
+
+}
+
 .row-footer {
-    @extend .pb-3, .pb-3, .mt-5;
-    background-color: $navbar-backgound;
-    color: $navbar-font;
-    box-shadow: $small-shadow;
+    @extend .pb-3, .mt-5;
+    background-color: $footer-background-color;
+    color: $footer-item-font-color;
+    box-shadow: $footer-shadow;
 
     .footer-content {
       @extend .pt-3;
@@ -405,18 +534,18 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
     }
 
     a {
-      color: white;
+      color: $footer-item-font-color;
     }
 
     a:hover {
       text-decoration: none;
-      color: $book-orange;
+      color: $footer-active-item-font-color;
+      background-color: $footer-active-item-background-color;
       svg {
-        fill: $book-orange;
+        fill: $footer-active-item-font-color;
       }
   
     }
-
 
     .icons {
       @extend .d-flex;
@@ -426,7 +555,7 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
       svg {
         width: 32px;
         height: 32px;
-        fill: #fff;
+        fill: $footer-item-font-color;
       }
     }
     .icon:last-of-type {
@@ -450,24 +579,24 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
     }
 }
 
-/***********/
-/* Content */
-/***********/
-
+/**********/
+/* Navbar */
+/**********/
 
 .main-navbar {
   a:focus, button:focus {
     outline: none;
   }
-  color: $navbar-font;
+  color: $navbar-item-font-color;
   .nav-item.nav-link, .nav-item.active.nav-link {
-    color: $navbar-font;
+    color: $navbar-item-font-color;
   }
   .navbar-brand {
-    color: $navbar-font;
+    color: $navbar-item-font-color;
   }
   .nav-link:hover, .navbar-brand:hover {
-    color: $link-hover;
+    color: $navbar-hover-item-font-color;
+    background-color: $navbar-hover-item-background-color;
   }
 
   .nav-link-sub {
@@ -477,21 +606,21 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
 
   .dropdown-blog {
     a, .dropdown-item {
-      color: white;
+      color: $navbar-item-font-color;
     }
   }
 
   .dropdown-blog.show {
-    background-color: rgba(10,10,10,0.2);
+    background-color: $navbar-menu-transparent-background-color;
     .dropdown-menu {
       @extend .rounded-0, .border-0;
-      background-color: rgba(10,10,10,0.2);
+      background-color: $navbar-menu-transparent-background-color;
       margin-top: 0;
     }
 
     .dropdown-item:hover {
-      background: transparent;
-      color: $book-orange;
+      background: $navbar-menu-transparent-active-item-background-color;
+      color: $navbar-menu-transparent-active-item-font-color;
     }
   }
 
@@ -504,7 +633,7 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
 
 .main-navbar.scrolled {
   box-shadow: $navbar-shadow;
-  background-color: $navbar-backgound;
+  background-color: $navbar-backgound-color;
   .btn-book {
     img {
       display: block;
@@ -512,27 +641,12 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   }
 
   .dropdown-blog.show {
-    background-color: $navbar-backgound;
+    background-color: $navbar-backgound-color;
     .dropdown-menu {
-      background-color: $navbar-backgound;
+      background-color: $navbar-backgound-color;
       box-shadow: $navbar-shadow;
       margin-top: 8px;
     }
-  }
-}
-
-.navbar-page {
-  background-color: $navbar-backgound;
-  box-shadow: $navbar-shadow;
-}
-
-.navbar-page.scrolled {
-  box-shadow: $navbar-shadow;
-}
-
-.navbar-toggler {
-  i {
-    color: $book-orange;
   }
 }
 
@@ -544,17 +658,6 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
 // Only used by expanded code blocks so far
 .close-to-main-navbar {
   top: 55px;
-}
-
-.posts {
-  @extend .pt-5;
-  .card {
-    box-shadow: $small-shadow;
-  }
-}
-
-.page-image {
-  margin-bottom: 35px
 }
 
 .main-content {
@@ -651,9 +754,9 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
     h1,h2,h3,h4,h5,h6 {
       text-align: left;
     }
-    background-color: $content-background;
+    background-color: $content-background-color;
     padding-bottom: 30px;
-    box-shadow: $small-shadow;
+    box-shadow: $content-section-shadow;
   }
 
   .table-wrapper {
@@ -685,30 +788,31 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
 }
 
 .dropdown-menu-series {
-  background-color: $sidebar-background;
-  color: $sidebar-font;
-  box-shadow: $floating-shadow;
+  background-color: $left-navbar-background-color;
+  color: $left-navbar-item-font-color;
+  box-shadow: $left-navbar-shadow;
 
   .dropdown-divider {
-    border-color: $book-orange;
+    border-color: $left-navbar-divider-color;
   }
+
   .dropdown-header {
     @extend .pt-0, .pb-0, .text-wrap;
-    color: white;
+    color: $left-navbar-item-font-color;
     font-size: 1rem;
   }
 
   .active.disabled {
-    color: $book-orange;
+    color: $left-navbar-active-item-font-color;
   }
 
   .selectable {
-    color: white;
+    color: $left-navbar-item-font-color;
   }
 
   .selectable:hover {
-    background: $menu-hover-background;
-    color: $menu-hover-color
+    background: $left-navbar-hover-item-background-color;
+    color: $left-navbar-hover-item-font-color;
   }
 }
 
@@ -722,15 +826,41 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   background: rgba(12,12,12,0.5);
 }
 
-.card-book-left:hover {
+.left-menu-modal.show {
+  display: block;
+  z-index: 1020
+}
+
+a.left-book-ad-small, a.left-book-ad-small:hover {
+  @extend .pl-3, .pt-3, .pb-2, .text-left;
+  color: $book-orange;
+  cursor: pointer;
+  border-bottom-width: $left-navbar-divider-width;
+  border-bottom-color: $left-navbar-divider-color;
+  border-bottom-style: $left-navbar-divider-style;
+}
+
+.left-book-ad:hover {
   cursor: pointer;
 }
 
+.left-book-ad-border {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-width: $left-navbar-divider-width;
+  border-bottom-color: $left-navbar-divider-color;
+  border-bottom-style: $left-navbar-divider-style;
+}
 
-.card-book-left {
-  @extend .rounded-0, .border-0;
+.left-book-ad-no-border {
+  @extend .border-0;
+}
+
+.left-book-ad {
+  @extend .card, .rounded-0;
   color: $book-orange;
-  img {
+   img {
     @extend .rounded-0;
   }
   .message-cropped {
@@ -760,51 +890,76 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   }
 }
 
-.left-menu-modal.show {
-  display: block;
-  z-index: 1020
-}
+.page-column-left {
+  //@extend .d-none, .d-lg-block, .col-lg-2, .p-0;
+  @extend .col-lg-2, .p-0;
 
-// <= md
-@include media-breakpoint-down(md) {
-  .left-column {
-    position: fixed;
-    top: 53px;
-    left: 0px;
-    bottom: 0px;
-    //height: calc(100vh - 55px);
-    width: calc(min(300px, 70vh, 70vw));
-    //z-index: -100;
-    visibility: hidden;
-    transition: visibility linear 0.35s;
+  .page-column-left-container {
+    @extend .container, .d-flex, .flex-column, .p-0, .sticky-top;
+    background: $left-navbar-background-color;
+    box-shadow: $left-navbar-shadow;
 
-    .d-flex {
-      height: 100%;
-      position: relative;
-      left: -100%;
-      transition: left linear 0.35s; 
+    .series-title {
+      border-bottom-width: $left-navbar-divider-width;
+      border-bottom-color: $left-navbar-divider-color;
+      border-bottom-style: $left-navbar-divider-style;
+    }
+
+    .nav-link {
+      color: $left-navbar-item-font-color;
+    }
+
+    .nav-link:hover, .nav-link.active:hover {
+      color: $left-navbar-hover-item-font-color;
+      background-color: $left-navbar-hover-item-background-color;
+    }
+
+    .nav-link.active {
+      color: $left-navbar-active-item-font-color;
+      background-color: $left-navbar-active-item-background-color;
+    }
+
+    .toc-level-1 {
+      border-top-width: $left-navbar-divider-width;
+      border-top-color: $left-navbar-divider-color;
+      border-top-style: $left-navbar-divider-style;
+      font-size: 1rem;
+    }
+
+    .toc-level-1:first-of-type {
+      @extend .border-top-0;
+    }
+  
+    .toc-level-2 {
+      font-size: 0.8rem;
+      padding-left: 26px;
     }
   }
-
-  .left-column-shown {
-    //z-index: 1020;
-    //width: 100%;
-    visibility: initial;
-    .d-flex {
+  
+  @include media-breakpoint-down(md) {
+      position: fixed;
+      z-index: 1021;
+      top: 53px;
       left: 0px;
-    }
+      bottom: 0px;
+      width: calc(min(300px, 70vh, 70vw));
+      visibility: hidden;
+      transition: visibility linear 0.35s;
+  
+      .page-column-left-container {
+        height: 100%;
+        position: relative;
+        left: -100%;
+        transition: left linear 0.35s; 
+      }   
   }
   
-}
-
-// >= lg
-@include media-breakpoint-up(lg) {
-  .left-column {
-    top: 95px;
-    height: calc(100vh - 135px);
-  
-    .d-flex {
-      max-height: 100%;
+  @include media-breakpoint-up(lg) {
+    margin-top: 140px;
+    .page-column-left-container {
+      top: 95px;
+      height: fit-content;
+      max-height: calc(100vh - 135px);
       margin-right: -12%;
       margin-left: -12%;
       width: 124%;
@@ -812,97 +967,28 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   }
 }
 
-.left-column {
-
-  .btn-book-small {
-    background: white;
-    box-shadow: inset 5em 0em $book-blue;
-  }
-  
-  //TOC
-  #scrollable-toc {
-    margin-top: 1em;
-    flex-grow : 1;
-    background-color: $sidebar-background;
-  }
-
-  .toc-filler {
-    padding: 4px;
-    background-color: $sidebar-background;
-  }
-
-  .d-flex {
-    box-shadow: $floating-shadow;
-    background-color: $sidebar-background;
-
-    #toc {
-      padding-left: 0px;
-      padding-right: 0px;
-      padding-top: 0px;
-      padding-bottom: 0px; 
-    }
-
-    .nav {
-      background-color: $sidebar-background;
-    }
-
-    .nav-divider {
-      //@extend .ml-3, .mr-3 , .mb-0, .mt-0;
-      @extend .mb-0, .mt-0;
-      height: 0.1rem;
-      border-top-style: solid;
-      border-top-width: 1px;
-      border-top-color: $book-orange;
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    .nav-link {
-      color: $sidebar-font;
-      background-color: $sidebar-background;
-    }
-
-    .nav-link:hover, .nav-link.active:hover {
-      background: $menu-hover-background;
-      color: $menu-hover-color
-    }
-    
-    .series-title {
-      background-color: $sidebar-background;
-      //color: $book-orange;
-      padding-left: 1rem;
-    }
-
-
-    .toc-level-1 {
-      font-size: 1rem;
-    }
-  
-    .toc-level-2 {
-      font-size: 0.8rem;
-      padding-left: 26px;
-    }
-  
-    .nav-link.active {
-      color: $sidebar-font-active;
-      //box-shadow: inset 5px 0px $book-orange;
-      //transition: box-shadow 0.3s ease-in-out;
+@include media-breakpoint-down(md) {
+  .left-menu-shown {
+    visibility: initial;
+    .page-column-left-container {
+      left: 0px;
     }
   }
 }
 
-.series-header {
+
+// TODO fix series toc css 
+.series-toc {
   .list-group {
-    color: $book-grey;
     .list-group-item {
       @extend .border-0;
     }
-    .a {
-      color: $book-grey;
-    } 
+    .disabled {
+      color: $content-disabled-font-color;
+    }
     .active {
-      background-color: $list-group-bg;
-      color: black;
+      background-color: $content-background-color;
+      color: $content-font-color;
     }
   }
 }
@@ -911,7 +997,7 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
 /*********************/
 /* Book Modal Dialog */
 /*********************/
-
+// TODO fix book modal css
 .modal-dialog-book {
   @extend .modal-dialog-centered;
   .modal-content {
@@ -925,17 +1011,17 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
 }
 
 
-/****************************/
-/* Sticky bottom navigation */
-/****************************/
+/**************************************/
+/* Sticky bottom navigation - Commons */
+/**************************************/
 .nav-fixed-bottom {
   @extend .sticky-top;
   bottom: 20px;
 }
 
-/*****************************************/
-/* Sticky bottom navigation - Pagination */
-/*****************************************/
+/**********************************************/
+/* Sticky bottom navigation - List pagination */
+/**********************************************/
 
 .nav-pagination {
   //@extend .fixed-bottom;
@@ -943,13 +1029,13 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   margin: 0 auto;
   .pagination {
     @extend .rounded-0;
-    background-color: $book-orange;
-    color: white;
-    box-shadow: $navbar-shadow;
+    background-color: $bottom-navbar-background-color;
+    color: $bottom-navbar-font-color;
+    box-shadow: $bottom-navbar-shadow;
     .page-link {
       @extend .border-0, .rounded-0;
       background: none;
-      color: white;
+      color: $bottom-navbar-font-color;
     }
 
     .page-link-text {
@@ -960,16 +1046,16 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
       svg {
         height: 1rem;
         width: auto;
-        fill: white;
+        fill: $bottom-navbar-font-color;
       }
     }
 
     .page-item.disabled {
       .page-link {
-        color: $book-grey;
+        color: $bottom-navbar-disabled-item-font-color;
       }
       svg {
-        fill: $book-grey;
+        fill: $bottom-navbar-disabled-item-font-color;
       }
     }
 
@@ -977,42 +1063,44 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
       @extend .form-control, .p-0, .text-center;
       width: 2rem;
       border-style: solid;
-      border-color: $book-orange;
+      border-color: $bottom-navbar-background-color;
       border-width: 4px;
     }
   
   }
 }
 
-/******************************************/
-/* Sticky bottom navigation - Page navbar */
-/******************************************/
+/************************************************************/
+/* Sticky bottom navigation - Page navbar: back to top, toc */
+/************************************************************/
 
 .nav-page {
   @extend .btn-group-vertical, .rounded-0;
+  margin-top: -100px;
 
   // =< md
   @include media-breakpoint-down(md) {
-    margin-left: calc(100% - 70px);
+    margin-left: calc(100% - 40px);
   }
   
   // >= lg
   @include media-breakpoint-up(lg) {
-    margin-left: calc(100% - 50px);
+    margin-left: calc(100% - 20px);
   }
 
   .nav-page-btn {
     @extend .btn, .btn-primary, .border-0, .rounded-0, .mb-2;
-    box-shadow: $floating-shadow;
+    background-color: $bottom-navbar-background-color;
+    color: $bottom-navbar-font-color;
+    box-shadow: $bottom-navbar-shadow;
     svg {
       height: 1rem;
       width: auto;
-      fill: white;
+      fill: $bottom-navbar-font-color;
     }
   }
   .nav-page-btn:focus {
-    box-shadow: $floating-shadow;
-    //background-color: $book-orange;
+    box-shadow: $bottom-navbar-shadow;
   }
 }
 

@@ -23,8 +23,6 @@ Adapted from https://github.com/allejo/jekyll-toc
     {% assign headerId = headerId[0] %}
     {% if firstHeader %}
       {% assign firstHeader = false %}
-    {% elsif headerLevel == 1 %}
-      <hr class="nav-divider"/>
     {% endif %}
     {% if headerLevel > previousHeader %}
       <nav class="nav flex-column rounded-0">

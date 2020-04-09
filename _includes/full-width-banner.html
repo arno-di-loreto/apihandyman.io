@@ -5,10 +5,12 @@
         <div class="col-12 p-0">
           <div class="card rounded-0 border-0 p-0 m-0 text-right">
             <div class="card-img-top"></div>
+            {% if include.overlay %}
             <div class="card-img-overlay">
               <div class="card-img-overlay-text d-none d-md-block">
               {{include.overlay}}
             </div>
+            {% endif %}
             </div>
           </div>
         </div>

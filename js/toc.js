@@ -1,9 +1,9 @@
 function toggleToc() {
-  $('.left-column').toggleClass('left-column-shown')
+  $('.left-menu').toggleClass('left-menu-shown')
 }
 
 function toggleBackToTop() {
-  const titleBottom = offset($('.card-page-title .card-title')[0]).top
+  const titleBottom = offset($('.card-page-section-title .title')[0]).top
   $('.back-to-top').toggleClass('d-none', $(this).scrollTop() < titleBottom)
 }
 
@@ -26,7 +26,7 @@ $(document).ready(function(){
     const scrollableParentHeight = tocScrollableParent.offsetHeight
     const activeLevel1 = $("#toc .toc-level-1.active")
     if(activeLevel1.length > 0) {
-      const level1Top = activeLevel1[0].offsetTop - tocScrollableParent.offsetTop// - 8;//To show separator
+      const level1Top = activeLevel1[0].offsetTop - tocScrollableParent.offsetTop + 1;//To hide separator
       const level1Height = activeLevel1[0].offsetHeight
       const activeLevel2 = $("#toc .toc-level-2.active")
       if(activeLevel2.length > 0) {
@@ -74,13 +74,13 @@ $(document).ready(function(){
     }
   })
 
-  $('.left-column-toggler').on('click', function(){
-    $('.left-column').toggleClass('left-column-shown')
+  $('.left-menu-toggler').on('click', function(){
+    $('.left-menu').toggleClass('left-menu-shown')
     $('.left-menu-modal').toggleClass('show')
   })
 
-  $('.left-column-hider').on('click', function(){
-    $('.left-column').removeClass('left-column-shown')
+  $('.left-menu-hider').on('click', function(){
+    $('.left-menu').removeClass('left-menu-shown')
     $('.left-menu-modal').removeClass('show')
   })
 
