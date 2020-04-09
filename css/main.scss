@@ -490,6 +490,20 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
       visibility: hidden;
     }
 
+    blockquote {
+      //@extend .blockquote;
+      font-family: $font-title;
+      background-image: url('/images/commons/icons/quote_right.svg'), url('/images/commons/icons/quote_left.svg');
+      background-position: right bottom, left top;
+      background-repeat: no-repeat, no-repeat;
+      background-size: 30px auto, 30px auto;
+      //min-height: 100px;
+      width: fit-content;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+    
+
     .body {
       @extend .card-body;
     }
