@@ -8,49 +8,48 @@ content_css: default
 date: 2020-04-07
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat purus id urna pellentesque sagittis. Praesent aliquam iaculis sollicitudin. Ut et tempus elit. In quis ultrices justo. Integer aliquet porttitor arcu eu venenatis. Pellentesque imperdiet in nunc eget eleifend. Suspendisse pulvinar orci id dui molestie maximus.
+This Privacy Policy is meant to help you understand what information this website collect and why it collect it.
+TL;DR; This website do not collect any personal data and do not use any commercial tracking cookie.
+
+# Cookies
+
+According to [Wikipedia](https://en.wikipedia.org/wiki/HTTP_cookie), an HTTP cookie (also called web cookie, Internet cookie, browser cookie, or simply cookie) is a small piece of data sent from a website and stored on the user's computer by the user's web browser while the user is browsing. 
+
+This website uses a single cookie named `_cfduid` which cannot identify nor track users.
+
+## Cloudflare _cfduid cookie
+
+This website is served through Cloudflare CDN infrastructure and therefore requires the use of `_cfduid` cookie.According to [Cloudflare documentation](https://support.cloudflare.com/hc/en-us/articles/200170156-Understanding-the-Cloudflare-Cookies#12345682.):
 
 
-# Privacy policy consent
+The `_cfduid` cookie helps Cloudflare detect malicious visitors to our Customers’ websites and minimizes blocking legitimate users. It may be placed on the devices of our customers' End Users to identify individual clients behind a shared IP address and apply security settings on a per-client basis. It is necessary for supporting Cloudflare's security features.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat purus id urna pellentesque sagittis. Praesent aliquam iaculis sollicitudin. Ut et tempus elit. In quis ultrices justo. Integer aliquet porttitor arcu eu venenatis. Pellentesque imperdiet in nunc eget eleifend. Suspendisse pulvinar orci id dui molestie maximus.
+The `_cfduid` cookie collects and anonymizes End User IP addresses using a one-way hash of certain values so they cannot be personally identified. The cookie is a session cookie that expires after 30 days.
 
-Nunc quis gravida quam, vitae dignissim ex. Quisque sed dui vitae turpis egestas elementum. Nulla augue magna, vestibulum a bibendum vel, volutpat non purus. Cras varius venenatis sem vel lobortis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ac pulvinar felis, a efficitur erat. Donec vitae justo tincidunt, dignissim massa in, varius tortor. Morbi elementum rutrum lectus sed gravida. Sed semper velit elementum risus elementum, a feugiat tortor aliquam. Praesent luctus velit at sem aliquet dapibus.
+The `_cfduid` cookie does not:
 
-## Ut feugiat
+- allow for cross-site tracking,
+- follow users from site to site by merging various `_cfduid` identifiers into a profile, or
+- correspond to any user ID in a Customer’s web application.
 
-Ut feugiat erat tortor, ut condimentum lacus tincidunt quis. Ut vel libero est. Etiam vel velit quis turpis vehicula sagittis ac nec elit. Aliquam et elementum libero, sed sodales nisi. In hac habitasse platea dictumst. Cras ornare libero massa, ut convallis diam vestibulum a. Aenean blandit, purus nec placerat tristique, ex enim commodo ipsum, non interdum lacus magna id purus. Aenean nisl ex, egestas et posuere quis, gravida sit amet turpis. Donec at interdum est, quis pellentesque lorem. Nunc eu aliquam mauris, at auctor purus. Sed sed mauris sit amet mi convallis ultricies. Donec nibh ante, eleifend in turpis at, dignissim porttitor eros. Aenean fringilla diam a lorem ornare sodales. Sed tempus facilisis risus, eu sodales magna. Donec posuere ultrices mollis. Vestibulum sagittis lacus turpis.
+Read more on [Cloudflare website](https://support.cloudflare.com/hc/en-us/articles/200170156-Understanding-the-Cloudflare-Cookies#12345682.)
 
-## Donec imperdiet
+# Analytics
 
-Donec imperdiet dolor ac risus mattis, in ultrices libero euismod. Phasellus aliquet dolor at vulputate posuere. Curabitur nec dolor vulputate, placerat tellus ut, feugiat neque. Phasellus elementum sapien ac luctus interdum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum nunc neque, ultricies quis est eu, euismod commodo risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Nunc blandit elit a tellus lobortis eleifend. Pellentesque tristique in risus vitae accumsan. Sed et pulvinar eros. Duis sit amet odio imperdiet, suscipit ipsum quis, scelerisque lacus. Vivamus dignissim lacus nec efficitur hendrerit. Integer scelerisque ut eros fringilla tincidunt. Mauris id massa vestibulum, sollicitudin dolor eget, finibus nulla.
+In order to be able to do browsing statistics such as how many pages have been seen the last 30 days, which pages are the most read or from which countries users come, this website collects anonymized analytics data using Google Analytics.
 
-Nunc finibus ipsum dui, ut facilisis ipsum suscipit in. Sed tempor magna et laoreet malesuada. Nullam lobortis, ex at cursus tempus, erat lacus luctus eros, in sagittis urna odio in dolor. Aliquam quis erat aliquet, dapibus sem vel, viverra eros. Suspendisse accumsan mauris ut justo malesuada euismod. Suspendisse ullamcorper augue eu tempus volutpat. Vivamus a elit gravida, semper tortor eget, congue arcu. Cras lacinia, mauris in eleifend mattis, libero ex pretium neque, vitae vulputate diam leo ut sapien.
+## Anonymized Google Analytics
 
-# Cloud flare cookie
+This website relies an Google Analytics to gather analytics data, it has been configured to avoid collecting personal data by disabling cookies, not storing end user id and anonymizing IP addresses.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat purus id urna pellentesque sagittis. Praesent aliquam iaculis sollicitudin. Ut et tempus elit. In quis ultrices justo. Integer aliquet porttitor arcu eu venenatis. Pellentesque imperdiet in nunc eget eleifend. Suspendisse pulvinar orci id dui molestie maximus.
+Following Google Analytics documentation about [their use of cookies and how to identify users](https://developers.google.com/analytics/devguides/collection/analyticsjs/cookies-user-id#disabling_cookies), all of their cookies have been disabled and no end user identifier (named `clientId`) is sent to Google nor stored anywhere.
 
-## Nunc quis gravida
+Also, following Google Analytics documentation, IP addresses are [anonymized](https://support.google.com/analytics/answer/2763052?hl=en) when collecting analytics data.
 
-Nunc quis gravida quam, vitae dignissim ex. Quisque sed dui vitae turpis egestas elementum. Nulla augue magna, vestibulum a bibendum vel, volutpat non purus. Cras varius venenatis sem vel lobortis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ac pulvinar felis, a efficitur erat. Donec vitae justo tincidunt, dignissim massa in, varius tortor. Morbi elementum rutrum lectus sed gravida. Sed semper velit elementum risus elementum, a feugiat tortor aliquam. Praesent luctus velit at sem aliquet dapibus.
+# Other
 
-Ut feugiat erat tortor, ut condimentum lacus tincidunt quis. Ut vel libero est. Etiam vel velit quis turpis vehicula sagittis ac nec elit. Aliquam et elementum libero, sed sodales nisi. In hac habitasse platea dictumst. Cras ornare libero massa, ut convallis diam vestibulum a. Aenean blandit, purus nec placerat tristique, ex enim commodo ipsum, non interdum lacus magna id purus. Aenean nisl ex, egestas et posuere quis, gravida sit amet turpis. Donec at interdum est, quis pellentesque lorem. Nunc eu aliquam mauris, at auctor purus. Sed sed mauris sit amet mi convallis ultricies. Donec nibh ante, eleifend in turpis at, dignissim porttitor eros. Aenean fringilla diam a lorem ornare sodales. Sed tempus facilisis risus, eu sodales magna. Donec posuere ultrices mollis. Vestibulum sagittis lacus turpis.
+This website makes use of browser local storage to store privacy policy consent which contains no personal data and cannot be used for tracking.
 
-## Donec imperdiet 
+## Privacy policy consent
 
-Donec imperdiet dolor ac risus mattis, in ultrices libero euismod. Phasellus aliquet dolor at vulputate posuere. Curabitur nec dolor vulputate, placerat tellus ut, feugiat neque. Phasellus elementum sapien ac luctus interdum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum nunc neque, ultricies quis est eu, euismod commodo risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Nunc blandit elit a tellus lobortis eleifend. Pellentesque tristique in risus vitae accumsan. Sed et pulvinar eros. Duis sit amet odio imperdiet, suscipit ipsum quis, scelerisque lacus. Vivamus dignissim lacus nec efficitur hendrerit. Integer scelerisque ut eros fringilla tincidunt. Mauris id massa vestibulum, sollicitudin dolor eget, finibus nulla.
-
-Nunc finibus ipsum dui, ut facilisis ipsum suscipit in. Sed tempor magna et laoreet malesuada. Nullam lobortis, ex at cursus tempus, erat lacus luctus eros, in sagittis urna odio in dolor. Aliquam quis erat aliquet, dapibus sem vel, viverra eros. Suspendisse accumsan mauris ut justo malesuada euismod. Suspendisse ullamcorper augue eu tempus volutpat. Vivamus a elit gravida, semper tortor eget, congue arcu. Cras lacinia, mauris in eleifend mattis, libero ex pretium neque, vitae vulputate diam leo ut sapien.
-
-# Google Analytics
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat purus id urna pellentesque sagittis. Praesent aliquam iaculis sollicitudin. Ut et tempus elit. In quis ultrices justo. Integer aliquet porttitor arcu eu venenatis. Pellentesque imperdiet in nunc eget eleifend. Suspendisse pulvinar orci id dui molestie maximus.
-
-Nunc quis gravida quam, vitae dignissim ex. Quisque sed dui vitae turpis egestas elementum. Nulla augue magna, vestibulum a bibendum vel, volutpat non purus. Cras varius venenatis sem vel lobortis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ac pulvinar felis, a efficitur erat. Donec vitae justo tincidunt, dignissim massa in, varius tortor. Morbi elementum rutrum lectus sed gravida. Sed semper velit elementum risus elementum, a feugiat tortor aliquam. Praesent luctus velit at sem aliquet dapibus.
-
-Ut feugiat erat tortor, ut condimentum lacus tincidunt quis. Ut vel libero est. Etiam vel velit quis turpis vehicula sagittis ac nec elit. Aliquam et elementum libero, sed sodales nisi. In hac habitasse platea dictumst. Cras ornare libero massa, ut convallis diam vestibulum a. Aenean blandit, purus nec placerat tristique, ex enim commodo ipsum, non interdum lacus magna id purus. Aenean nisl ex, egestas et posuere quis, gravida sit amet turpis. Donec at interdum est, quis pellentesque lorem. Nunc eu aliquam mauris, at auctor purus. Sed sed mauris sit amet mi convallis ultricies. Donec nibh ante, eleifend in turpis at, dignissim porttitor eros. Aenean fringilla diam a lorem ornare sodales. Sed tempus facilisis risus, eu sodales magna. Donec posuere ultrices mollis. Vestibulum sagittis lacus turpis.
-
-Donec imperdiet dolor ac risus mattis, in ultrices libero euismod. Phasellus aliquet dolor at vulputate posuere. Curabitur nec dolor vulputate, placerat tellus ut, feugiat neque. Phasellus elementum sapien ac luctus interdum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum nunc neque, ultricies quis est eu, euismod commodo risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Nunc blandit elit a tellus lobortis eleifend. Pellentesque tristique in risus vitae accumsan. Sed et pulvinar eros. Duis sit amet odio imperdiet, suscipit ipsum quis, scelerisque lacus. Vivamus dignissim lacus nec efficitur hendrerit. Integer scelerisque ut eros fringilla tincidunt. Mauris id massa vestibulum, sollicitudin dolor eget, finibus nulla.
-
-Nunc finibus ipsum dui, ut facilisis ipsum suscipit in. Sed tempor magna et laoreet malesuada. Nullam lobortis, ex at cursus tempus, erat lacus luctus eros, in sagittis urna odio in dolor. Aliquam quis erat aliquet, dapibus sem vel, viverra eros. Suspendisse accumsan mauris ut justo malesuada euismod. Suspendisse ullamcorper augue eu tempus volutpat. Vivamus a elit gravida, semper tortor eget, congue arcu. Cras lacinia, mauris in eleifend mattis, libero ex pretium neque, vitae vulputate diam leo ut sapien.
+In order to avoid showing the privacy message on each visit, this website store the shown privacy policy's effective date in a `privacyPolicyAccepted` value when privacy message is dismissed.

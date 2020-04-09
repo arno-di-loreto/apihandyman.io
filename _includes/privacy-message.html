@@ -1,19 +1,34 @@
+{% for page in site.pages %}
+  {% if page.title == 'Privacy Policy' %}
+    {% assign privacy_date = page.date | date: ", %B %-d, %Y"%}
+  {% endif %}
+{% endfor %}
+
 <div class="privacy-message d-none fixed-bottom container-fluid bg-dark text-white p-3">
   <div class="container">
+    <div class="row text-center pt-2 pb-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        {% include icon-inline.html name='cookie' class='privacy-message-icon' %}
+      </div>
+    </div>
     <div class="row">
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+        {% include icon-inline.html name='cookie' class='privacy-message-icon' %}
+      </div>
       <div class="col text-justify">
-        By continuing to use this web site you agree that API Handyman website stores a Cloud Flare _cfuuid anonymous cookie on your browser, saves anonymous analytics data with Google Analytics and store your consent in your browser's local storage.
+        Cookie monster is sad because this website uses a single cookie but also happy because it is not a commercial tracking one and also because it does not collect any personal data.<br>
+        By continuing to use this web site you agree with the API Handyman website privacy policy (effective date {{privacy_date}}).
       </div>
       <div class="col-auto align-self-center d-none d-sm-none d-md-block">
-          <a class="btn btn-primary" href="/privacy">Read more</a>
-          <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Dismiss</a>
+          <a class="btn btn-primary" href="/privacy">Read privacy policy</a>
+          <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
       </div>
     </div>
-    <div class="row text-center pt-2 d-block d-sm-block d-md-none">
+    <div class="row text-center pt-3 d-block d-sm-block d-md-none">
       <div class="col">
-        <a class="btn btn-primary" href="/privacy">Read more</a>
-        <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Dismiss</a>
-    </div>
+        <a class="btn btn-primary" href="/privacy">Read privacy policy</a>
+        <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
     </div>
   </div>
 </div>

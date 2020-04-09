@@ -2,13 +2,10 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-new Fingerprint2().get(function(clientId) {
-  ga('create', '{{ site.google_analytics }}', {
-    'storage': 'none',
-    'clientId':clientId,
-    'storeGac': false
-  });
-  ga('set', 'anonymizeIp', true);
-  ga('send', 'pageview');
+  
+ga('create', '{{ site.google_analytics }}', {
+  'storage': 'none',
+  'storeGac': false
 });
+ga('set', 'anonymizeIp', true);
+ga('send', 'pageview');

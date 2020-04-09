@@ -1,3 +1,5 @@
+---
+---
 function offset(el) {
   var rect = el.getBoundingClientRect(),
   scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
@@ -11,16 +13,23 @@ $(window).scroll(function(){
   }
 });
 
+{% for page in site.pages %}
+  {% if page.title == 'Privacy Policy' %}
+    {% assign privacy_date = page.date %}
+  {% endif %}
+{% endfor %}
+
 function showPrivacyMessage() {
-  if(!localStorage.getItem('privacyPolicyAccepted')) {
+  console.log('privacy policy date', '{{privacy_date}}')
+  console.log('stored date', localStorage.getItem('privacyPolicyAccepted'))
+  console.log('shoing privacy?', '{{privacy_date}}'.localeCompare(localStorage.getItem('privacyPolicyAccepted'))!= 0)
+  if('{{privacy_date}}'.localeCompare(localStorage.getItem('privacyPolicyAccepted')) != 0) {
     $('.privacy-message').toggleClass('d-none')
   }
 }
 
 function acceptPrivacyPolicy() {
-  if(!localStorage.getItem('privacyPolicyAccepted')) {
-    localStorage.setItem('privacyPolicyAccepted', true)
-  }
+  localStorage.setItem('privacyPolicyAccepted', '{{privacy_date}}')
   $('.privacy-message').toggleClass('d-none')
 }
 

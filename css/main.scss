@@ -1119,6 +1119,17 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
   }
 }
 
+/******************/
+/* Privacy banner */
+/******************/
+
+.privacy-message-icon {
+  svg {
+    height: 60px;
+    width: auto;
+    fill: white;
+  }
+}
 
 /*****************/
 /* Display utils */
