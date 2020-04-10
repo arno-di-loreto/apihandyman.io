@@ -16,20 +16,21 @@ $(window).scroll(function(){
 {% for page in site.pages %}
   {% if page.title == 'Privacy Policy' %}
     {% assign privacy_date = page.date %}
+    {% assign privacy_local_storage = page.privacy_local_storage %}
   {% endif %}
 {% endfor %}
 
+const privacyPolicyLocalStorage = '{{privacy_local_storage}}'
+const privacyPolicyEffectiveDate = '{{privacy_date}}'
+
 function showPrivacyMessage() {
-  console.log('privacy policy date', '{{privacy_date}}')
-  console.log('stored date', localStorage.getItem('privacyPolicyAccepted'))
-  console.log('shoing privacy?', '{{privacy_date}}'.localeCompare(localStorage.getItem('privacyPolicyAccepted'))!= 0)
-  if('{{privacy_date}}'.localeCompare(localStorage.getItem('privacyPolicyAccepted')) != 0) {
+  if(privacyPolicyEffectiveDate.localeCompare(localStorage.getItem(privacyPolicyLocalStorage)) != 0) {
     $('.privacy-message').toggleClass('d-none')
   }
 }
 
 function acceptPrivacyPolicy() {
-  localStorage.setItem('privacyPolicyAccepted', '{{privacy_date}}')
+  localStorage.setItem(privacyPolicyLocalStorage, privacyPolicyEffectiveDate)
   $('.privacy-message').toggleClass('d-none')
 }
 

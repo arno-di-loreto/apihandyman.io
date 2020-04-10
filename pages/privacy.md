@@ -6,6 +6,7 @@ banner: small
 banner_css: default
 content_css: default
 date: 2020-04-07
+privacy_local_storage: privacyPolicyHidden
 ---
 
 This Privacy Policy is meant to help you understand what information this website collect and why it collect it.
@@ -50,6 +51,6 @@ Also, following Google Analytics documentation, IP addresses are [anonymized](ht
 
 This website makes use of browser local storage to store privacy policy consent which contains no personal data and cannot be used for tracking.
 
-## Privacy policy consent
+## Privacy policy toggler
 
-In order to avoid showing the privacy message on each visit, this website store the shown privacy policy's effective date in a `privacyPolicyAccepted` value when privacy message is dismissed.
+In order to avoid showing the privacy message on each visit, this website stores the privacy policy's effective date in a `{{page.privacy_local_storage}}` value when privacy message is dismissed.
