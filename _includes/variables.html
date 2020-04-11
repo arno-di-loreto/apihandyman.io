@@ -20,7 +20,7 @@
 {% endif %}
 
 {% if item.series %}
-  {% assign item_series_title = item.series | append:' Series - Part ' | item.series_number %}
+  {% assign item_series_title = item.series | append:' Series - Part ' | append: item.series_number %}
 {% else %}
   {% assign item_series_title = nil %}
 {% endif %}
