@@ -10,7 +10,7 @@ dsq_thread_id:
   - 4866765277
 dsq_needs_sync:
   - 1
-category: posts
+category: post
 tags:
   - OpenAPI
   - Swagger

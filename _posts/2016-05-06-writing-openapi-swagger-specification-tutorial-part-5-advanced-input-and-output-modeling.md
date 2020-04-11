@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1025
 permalink: /writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/
 dsq_thread_id:
   - 4866765287
-category: posts
+category: post
 tags:
   - OpenAPI
   - Swagger

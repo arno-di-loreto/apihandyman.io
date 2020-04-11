@@ -6,7 +6,7 @@ date: 2017-01-22
 author: Arnaud Lauret
 layout: post
 permalink: /and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/
-category: posts
+category: post
 full: false
 comments: true
 ---

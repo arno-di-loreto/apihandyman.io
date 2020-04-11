@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=279
 permalink: /hypermedia-api-maturity-model-part-i-hypermedia-ness/
 dsq_thread_id:
   - 4866765231
-category: posts
+category: post
 tags:
   - Design
   - Hypermedia

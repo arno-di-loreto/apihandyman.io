@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=412
 permalink: /the-ways-of-the-api-smartness/
 dsq_thread_id:
   - 4867152374
-category: posts
+category: post
 tags:
   - Design
   - Implementation

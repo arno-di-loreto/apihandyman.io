@@ -3,10 +3,10 @@ title: API Toolbox - JQ and OpenAPI - Part 3 - Modifying OpenAPI files with JQ
 date: 2020-01-10
 author: Arnaud Lauret
 layout: post
-category: posts
+category: post
 permalink: /api-toolbox-jq-and-openapi-part-2-searching-into-openapi-files/
 codefiles: api-tools-jq
-category: posts
+category: post
 series: API Toolbox - JQ and OpenAPI
 series_title: Part 3 - Modifying OpenAPI files with JQ
 published: false

@@ -2,7 +2,7 @@
 title: API Toolbox - JQ and OpenAPI - Part 1 - Using JQ to extract data from OpenAPI files
 date: 2020-01-15
 author: Arnaud Lauret
-category: posts
+category: post
 layout: post
 permalink: /api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/
 codefiles: api-toolbox-jq-and-openapi/part-1

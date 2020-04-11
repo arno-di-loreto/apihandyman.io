@@ -4,7 +4,7 @@ date: 2017-09-29
 author: Arnaud Lauret
 layout: post
 permalink: /graphql-for-all-talk-video-on-infoq/
-category: talks
+category: talk
 tags:
   - Design
 full: true

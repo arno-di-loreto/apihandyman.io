@@ -4,7 +4,7 @@ date: 2017-02-19
 author: Arnaud Lauret
 layout: post
 permalink: /writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/
-category: posts
+category: post
 tags:
   - OpenAPI
   - Swagger

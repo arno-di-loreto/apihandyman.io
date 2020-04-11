@@ -4,7 +4,7 @@ date: 2017-11-12
 author: Arnaud Lauret
 layout: post
 permalink: /api-styleguide-the-lord-of-api-designs/
-category: talks
+category: talk
 tags:
   - API Strat
   - API Days

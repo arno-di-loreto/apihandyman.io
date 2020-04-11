@@ -4,7 +4,7 @@ date: 2016-12-23
 author: Arnaud Lauret
 layout: post
 permalink: /dr-jekyll-and-mr-api-handyman/
-category: posts
+category: post
 type: link
 full: true
 comments: false

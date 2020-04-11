@@ -4,7 +4,7 @@ date: 2019-11-02
 author: Arnaud Lauret
 layout: post
 permalink: /few-things-i-learned-writing-the-design-of-web-apis/
-category: posts
+category: post
 ---
 
 At last, my book The Design of Web APIs is finished and printed! I gradually got back to a "normal" life since the end of summer as the book entered in its production phase, but it was only when I received the printed copies two weeks ago that I had the feeling that this adventure was really over. And then holding the book in my hands, I wondered if it was worth having spent two years of my life on it, what did I learn spending almost all my free time working on this book? That sounded like a good topic to revive the API Handyman blog.

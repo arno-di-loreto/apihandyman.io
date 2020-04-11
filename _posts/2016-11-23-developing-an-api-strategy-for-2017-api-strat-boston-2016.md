@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1296
 permalink: /developing-an-api-strategy-for-2017-api-strat-boston-2016/
 dsq_thread_id:
   - 5327198098
-category: talks
+category: talk
 tags:
   - API Strat
   - API Strat Boston

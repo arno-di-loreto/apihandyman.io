@@ -4,7 +4,7 @@ date: 2017-04-22
 author: Arnaud Lauret
 layout: post
 permalink: /api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/
-category: posts
+category: post
 tags:
   - API Design Tips And Tricks
 ---

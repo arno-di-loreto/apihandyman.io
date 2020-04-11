@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=471
 permalink: /the-api-crash-test-project/
 dsq_thread_id:
   - 4866870392
-category: posts
+category: post
 ---
 As I was writing my HAMM and ways of API smartness posts, I wanted more.
 As I was discussing with smart people about APIs, I wanted ever more.

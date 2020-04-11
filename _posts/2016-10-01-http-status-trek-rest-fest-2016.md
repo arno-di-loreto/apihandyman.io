@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1247
 permalink: /http-status-trek-rest-fest-2016/
 dsq_thread_id:
   - 5188639088
-category: talks
+category: talk
 tags:
   - Conference
   - REST Fest

@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=516
 permalink: /do-you-really-know-why-you-prefer-rest-over-rpc/
 dsq_thread_id:
   - 4866783411
-category: posts
+category: post
 tags:
   - Design
   - API Style

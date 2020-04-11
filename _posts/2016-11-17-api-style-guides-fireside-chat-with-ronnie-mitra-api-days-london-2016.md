@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1264
 permalink: /api-style-guides-fireside-chat-with-ronnie-mitra-api-days-london-2016/
 dsq_thread_id:
   - 5312172448
-category: talks
+category: talk
 tags:
   - API Days
   - API Days London

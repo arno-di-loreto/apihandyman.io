@@ -4,7 +4,7 @@ date: 2017-03-05
 author: Arnaud Lauret
 layout: post
 permalink: /google-api-design-guide-added-to-the-api-stylebook/
-category: posts
+category: post
 type: link
 tags:
   - Design

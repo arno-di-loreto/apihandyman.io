@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=681
 permalink: /read-the-utopia-of-api-documentation-on-smartbear-blog/
 dsq_thread_id:
   - 4867378458
-category: posts
+category: post
 type: links
 tags:
   - Documentation

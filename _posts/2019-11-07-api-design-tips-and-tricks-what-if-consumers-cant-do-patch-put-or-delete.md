@@ -4,7 +4,7 @@ date: 2019-11-07
 author: Arnaud Lauret
 layout: post
 permalink: /api-design-tips-and-tricks-what-if-consumers-cant-do-patch-put-or-delete/
-category: posts
+category: post
 tags:
   - API Design Tips And Tricks
 ---

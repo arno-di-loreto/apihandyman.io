@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=663
 permalink: /document-api-topia-api-days-paris-2015/
 dsq_thread_id:
   - 4867370925
-category: talks
+category: talk
 tags:
   - Documentation
   - Video

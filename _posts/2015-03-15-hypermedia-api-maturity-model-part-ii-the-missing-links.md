@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=353
 permalink: /hypermedia-api-maturity-model-part-ii-the-missing-links/
 dsq_thread_id:
   - 4866765237
-category: posts
+category: post
 tags:
   - Design
   - Hypermedia

@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1269
 permalink: /people-first-a-not-so-gonzo-api-strat-boston-2016-coverage/
 dsq_thread_id:
   - 5316685819
-category: posts
+category: post
 tags:
   - API Strat
   - API Strat Boston
