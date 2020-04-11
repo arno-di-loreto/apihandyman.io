@@ -6,6 +6,7 @@ libs:
   bash: true
   toc: true
 ---
+{% include page_variables.html %}
 
 {% if page.series %}
   {% assign title = page.series_title%}
@@ -31,14 +32,17 @@ libs:
   {% assign subtitle = page.date | date: "%B %-d, %Y" | prepend: subtitle %}
 {% endif %}
 
-{%assign left_column=true %}
-
+{% if page.left_column != nil %}
+  {% assign left_column = page.left_column %}
+{% else %}
+  {% assign left_column = true %}
+{% endif %}
 {% include banner.html overlay=overlay css=page.banner_css %}
 <div class="row row-page-content row-page-content-{{page.content_css}}">
   <div class="container-fluid container-lg">
     <div class="fade modal left-menu-hider left-menu-modal d-mobile-only"></div>
-    {% if left_column %}
     <div class="row">
+      {% if left_column %}
       <div class="page-column-left left-menu left-menu-hider">
         <div class="page-column-left-container">
           {% include navbar-left.html %}

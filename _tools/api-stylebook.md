@@ -1,7 +1,7 @@
 ---
 title: API Stylebook
 layout: tool
-thumbnail: /images/projects/apistylebook-1280-400.png
+banner: /images/projects/apistylebook-1280-400.png
 permalink: /toolbox/apistylebook/
 tool_url: http://apistylebook.com
 tool_author: Arnaud Lauret

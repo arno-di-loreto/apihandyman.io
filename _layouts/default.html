@@ -7,17 +7,18 @@ libs:
   clipboard: true
 ---
 <!DOCTYPE html>
+{% include page_variables.html %}
 {% assign included_libs="" %}
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
   {% include head.html included_libs=included_libs %}
   <body  data-spy="scroll" data-target="#toc">
     {% include navbar.html %}
-    <div class="container-fluid">
-    {{ content }}
-    {% include foot.html %}
-    {% include book-modal.html %}
-    {% include privacy-message.html %}
-  </div>
-  {% include libs.html type="js" %}
+    <div class="page-content-container">
+      {{ content }}
+      {% include foot.html %}
+      {% include book-modal.html %}
+      {% include privacy-message.html %}
+    </div>
+    {% include libs.html type="js" %}
   </body>
 </html>

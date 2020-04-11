@@ -14,7 +14,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: API Handyman
-description: '{"input" : "learn", "output" : "share"}'
+author: Arnaud Lauret
+description: "Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space."
 url: "https://apihandyman.io" # the base hostname & protocol for your site
 baseurl: ""
 
@@ -29,8 +30,8 @@ twitter_username: apihandyman
 github_username:  arno-di-loreto
 linkedin_username: arnaudlauret
 
-# Page default thumbnail/banner
-default_thumbnail: /images/commons/default.png
+# Page default page banner
+default_banner: /images/commons/default.png
 
 # What's before this will be shown in post summary'
 excerpt_separator: <!--more-->

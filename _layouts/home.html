@@ -71,7 +71,7 @@ with_banner: true
             {% assign surtitle = item.tool_author | append: "'s" %}
             {% include card.html
                 class="card-home" 
-                image=item.thumbnail
+                image=item.banner
                 image_alt="Project's screenshot"
                 title=item.title
                 surtitle=surtitle
@@ -88,7 +88,7 @@ with_banner: true
           {% assign surtitle = item.tool_author | append: "'s" %}
           {% include card.html
               class="card-home" 
-              image=item.thumbnail
+              image=item.banner
               image_alt="Project's screenshot"
               title=item.title
               surtitle=surtitle

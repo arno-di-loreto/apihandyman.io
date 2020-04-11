@@ -202,6 +202,15 @@ a:hover {
   top: 55px;
 }
 
+// Fill screen to keep footer on bottom when content < screen height
+.page-content-container {
+  @extend .container-fluid, .d-flex, .flex-column;
+  min-height: calc(100vh - 55px) ;
+  .row-page-content {
+    @extend .flex-fill;
+  }
+}
+
 // Home
 $book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50%,white 100%);
 @include media-breakpoint-up(md) { 

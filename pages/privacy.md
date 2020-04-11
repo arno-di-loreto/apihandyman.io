@@ -2,7 +2,7 @@
 title: Privacy Policy
 layout: page
 permalink: /privacy/
-banner: small
+banner_type: small
 banner_css: default
 content_css: default
 date: 2020-04-07

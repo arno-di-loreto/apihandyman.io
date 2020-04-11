@@ -1,0 +1,7 @@
+{% if include.type == 'image_title' %}
+<a class="left-column-hider" data-toggle="modal" data-target="#bookModal" role="button" href="#"><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
+{% elsif include.type == 'image_cover' %}
+<p class="text-center"><a class="left-column-hider" data-toggle="modal" data-target="#bookModal" role="button" href="#"><img src="/images/commons/book/book-modal.png" class="img-fluid" alt="The Design of Web APIs book"></a></p>
+{% else %}
+<a class="left-column-hider" data-toggle="modal" data-target="#bookModal" role="button" href="#">The Design of Web APIs</a>
+{% endif %}

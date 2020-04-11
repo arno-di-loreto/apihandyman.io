@@ -1,4 +1,4 @@
-{% if layout.with_banner or  page.with_banner or page.banner=="full" or layout.banner =="full" %}
+{% if layout.with_banner or  page.with_banner or page.banner_type=="full_width" or layout.banner_type =="full_width" %}
   {% assign navbarstyle="" %}
 {% else %}
   {% assign navbarstyle=" scrolled" %}

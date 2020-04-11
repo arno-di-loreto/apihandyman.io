@@ -1,23 +1,7 @@
-{% if site.data.categories[page.title] %}
-  {% assign title = site.title | append:' | ' | append:site.data.categories[page.title].name %}
-{% elsif page.title %}
-  {% assign title = site.title | append:' | ' | append:page.title %}
-{% else %}
-  {% assign title = site.title %}
-{% endif %}
-
 <head>
-  <title>{{ title | escape }}</title>
-  <!-- META -->
+  <title>{{ page_title_browser }}</title>
+  {% include meta.html %}
   {% include libs.html type="meta" %}
-    <!-- META TWITTER -->
-    <meta name="twitter:dnt" content="on">
-    <!-- META FACEBOOK -->
-    <!-- META LINDEDIN? -->
-    <!-- STANDARD META -->
-  <!-- CSS -->
   {% include libs.html type="css" %}
-  <!-- HEAD JS -->
-  <!-- RSS -->
-  <!-- ANALYTICS -->
+  {% include rss.html %}
 </head>

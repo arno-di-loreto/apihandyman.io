@@ -1,52 +1,23 @@
-{% if post.thumbnail %}
-{% assign image = post.thumbnail %}
-{% else %}
-{% assign image = site.default_thumbnail %}
-{% assign page_image = '/images' | append: post.permalink | append: 'thumbnail.png' %}
-{% for static_file in site.static_files %}
-  {% if static_file.path == page_image %}
-      {% assign image = page_image %}
-  {% endif %}
-{% endfor %}
-{% endif %}
 
-{% if post.series %}
-{% assign title = post.series_title%}
-{% else %}
-{% assign title = post.title %}
-{% endif %}
+{% include variables.html item=post %}
 
-{% if post.series %}
-  {% capture surtitle %}
-  {{post.series}} Series - Part {{post.series_number}}
-  {% endcapture %}
-{% else %}
-  {% assign surtitle="" %}
-{% endif %}
-{% if include.date %}
-  {% assign post_date = post.date | date: ", %B %-d, %Y" %}
-{% else %}
-{% assign post_date = "" %}
-{% endif %}
-{% assign subtitle = post.author | prepend: 'By ' | append: post_date %}
+{% assign subtitle = item_formated_author_date %}
 {% if include.short %}
-  {% if post.short_summary %}
-    {% assign content = post.short_summary %}
-  {% else %}
-    {% assign content = post.excerpt %}
-  {% endif %}
+  {% assign content = item_catchphrase %}
+  {% assign subtitle = item_formated_author %}
 {% elsif post.full %}
   {% assign content = post.content %}
 {% else %}
-  {% assign content = post.excerpt %}
+  {% assign content = item_description %}
 {% endif %}
+
 {% include card.html
     class="card-home" 
-    image=image
+    image=item_banner
     image_alt="Post's banner"
-    surtitle=surtitle
-    title=title
+    surtitle=item_series_title
+    title=item_title
     subtitle=subtitle
     content=content
-    url=post.url
+    url=item_url
 %}

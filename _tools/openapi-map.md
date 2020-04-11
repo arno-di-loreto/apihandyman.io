@@ -1,7 +1,7 @@
 ---
 title: OpenAPI Map
 layout: tool
-thumbnail: /images/projects/openapimap-1280-400.png
+banner: /images/projects/openapimap-1280-400.png
 permalink: /toolbox/openapi-map/
 tool_url: https://openapi-map.apihandyman.io
 tool_author: Arnaud Lauret

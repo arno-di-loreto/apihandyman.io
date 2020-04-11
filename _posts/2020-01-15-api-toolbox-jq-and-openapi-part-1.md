@@ -11,7 +11,7 @@ series_title: Using JQ to extract data from OpenAPI files
 series_number: 1
 tags:
   - API Toolbox
-short_summary: Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you're looking for.
+catchphrase: Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you're looking for.
 ---
 Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you're looking for. In this 4 parts post series, you'll discover why and how I use JQ with OpenAPI Specification files. But more important, you'll get some basic and more advanced example of how to use JQ on any JSON document to get and modify JSON data as you want. In this first part we'll focus on what is JQ, why I use it with OpenAPI files and we'll learn how to invoke JQ and discover some of the many JQ filters that can be used to extract data from JSON.<!--more-->
 

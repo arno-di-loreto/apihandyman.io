@@ -1,6 +1,6 @@
 
-{% if page.thumbnail %}
-  {% assign thumbnail = page.thumbnail %}
+{% if page.banner %}
+  {% assign thumbnail = page.banner %}
 {% else %}
   {% assign thumbnail = site.default_thumbnail %}
   {% assign page_thumbnail = '/images' | append: page.permalink | append: 'thumbnail.png' %}

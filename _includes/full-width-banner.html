@@ -1,4 +1,9 @@
-<div class="row row-banner row-banner-{{include.css}}">
+{% if include.css %}
+  {% assign row_banner_css = include.css %}
+{% else %}
+  {% assign row_banner_css = 'default' %}
+{% endif %}
+<div class="row row-banner row-banner-{{row_banner_css}}">
   <div class="container-fluid">
     <div class="col-12">
       <div class="container p-0 banner">
@@ -9,9 +14,9 @@
             <div class="card-img-overlay">
               <div class="card-img-overlay-text d-none d-md-block">
               {{include.overlay}}
+              </div>
             </div>
             {% endif %}
-            </div>
           </div>
         </div>
       </div>

@@ -1,21 +1,10 @@
-{% if banner == "full_width" %}
+{% if page.banner_type == "full_width" %}
   {% include full-width-banner.html overlay=include.overlay css=include.css %}
 {% else %}
-  {% if page.thumbnail %}
-    {% assign thumbnail = page.thumbnail %}
-  {% else %}
-    {% assign thumbnail = site.default_thumbnail %}
-    {% assign page_thumbnail = '/images' | append: page.permalink | append: 'thumbnail.png' %}
-    {% for static_file in site.static_files %}
-      {% if static_file.path == page_thumbnail %}
-          {% assign thumbnail = page_thumbnail %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
   <div class="row row-banner-small row-banner-small-{{include.css}}">
     <div class="banner-small-container">
       <div class="banner-small-column-main">
-        <img src="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
+        <img src="{{ page_banner | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
       </div>
     </div>
   </div>
