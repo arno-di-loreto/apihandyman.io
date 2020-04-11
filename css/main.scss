@@ -632,18 +632,72 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   //@extend .mt-5;
 }
 
+.row-footer-second {
+  @extend .pb-3, .pt-3, .text-center;
+  background-color: $footer-background-color;
+  color: $footer-item-font-color;
+
+  .icon {
+    margin-right: 1rem;
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: $footer-item-font-color;
+      margin-bottom: 2px;
+    }
+  }
+
+  a {
+    color: $footer-item-font-color;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: $footer-active-item-font-color;
+    background-color: $footer-active-item-background-color;
+    svg {
+      fill: $footer-active-item-font-color;
+    }
+
+  }
+
+  .privacy-link-text {
+    @extend .ml-2;
+  }
+
+}
+
+.row-footer-margin {
+  @extend .mt-5;
+  box-shadow: $light-shadow;
+  z-index: 101;
+}
+
 .row-footer {
-    @extend .pb-3, .mt-5;
     background-color: $footer-background-color;
     color: $footer-item-font-color;
-    box-shadow: $footer-shadow;
+    @include media-breakpoint-up(md) {
+      box-shadow: $strong-shadow, inset 0em 100px white;
+    }
+
+    @include media-breakpoint-down(sm) {
+      box-shadow: $strong-shadow, inset 0em 150px white;
+    }
+    
+    
+    z-index: 100;
+
+  .img-footer-book {
+    height: 200px;
+    width: auto;
+  }
 
     .footer-content {
       @extend .pt-3;
     }
 
     .row-links {
-      @extend  .pl-lg-5, .pr-lg-5;
+      //@extend  .pl-lg-5, .pr-lg-5;
     }
 
     a {
@@ -653,9 +707,14 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
     a:hover {
       text-decoration: none;
       color: $footer-active-item-font-color;
-      background-color: $footer-active-item-background-color;
       svg {
-        fill: $footer-active-item-font-color;
+        @include media-breakpoint-up(md) {
+          fill: $footer-active-item-font-color;
+        }
+
+        @include media-breakpoint-down(sm) {
+          fill: $footer-background-color;
+        }
       }
   
     }
@@ -668,28 +727,20 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
       svg {
         width: 32px;
         height: 32px;
-        fill: $footer-item-font-color;
+        @include media-breakpoint-up(md) {
+          fill: $footer-item-font-color;
+        }
+
+        @include media-breakpoint-down(sm) {
+          fill: $footer-active-item-font-color;
+        }
+
       }
     }
     .icon:last-of-type {
       margin-right: 0;
     }
 
-    .row-links {
-      @extend .align-items-center;
-    }
-
-    .left {
-      @extend .d-flex, .justify-content-center, .justify-content-lg-start, .pb-3, .pb-lg-0;
-    }
-
-    .middle {
-      @extend .text-center, .pb-3, .pb-lg-0;
-    }
-
-    .right {
-      @extend .text-center, .text-lg-right;
-    }
 }
 
 /**********/
