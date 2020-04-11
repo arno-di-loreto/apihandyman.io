@@ -68,16 +68,7 @@ with_banner: true
           {% assign items = site.tools | where_exp:"item", "item.tool_top_2>0" %}
           {% for item in items %}
             <div class="col mb-4">
-            {% assign surtitle = item.tool_author | append: "'s" %}
-            {% include card.html
-                class="card-home" 
-                image=item.banner
-                image_alt="Project's screenshot"
-                title=item.title
-                surtitle=surtitle
-                content=item.excerpt
-                url=item.tool_url
-            %}
+              {% include tool-summary.html tool=item %}
             </div>
           {% endfor %}
     </div>
@@ -85,16 +76,7 @@ with_banner: true
       {% assign items = site.tools | where_exp:"item", "item.tool_top_3>0" %}
       {% for item in items %}
         <div class="col mb-4 d-none d-lg-block">
-          {% assign surtitle = item.tool_author | append: "'s" %}
-          {% include card.html
-              class="card-home" 
-              image=item.banner
-              image_alt="Project's screenshot"
-              title=item.title
-              surtitle=surtitle
-              content=item.excerpt
-              url=item.tool_url
-          %}
+          {% include tool-summary.html tool=item hide_banner=false %}
         </div>
       {% endfor %}
     </div>

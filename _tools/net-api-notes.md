@@ -1,7 +1,7 @@
 ---
 title: Net API Notes Newsletter
 layout: tool
-permalink: /toolbox/webconcepts/
+permalink: /toolbox/net-api-notes-newsletter/
 tool_url: https://tinyletter.com/NetAPINotes
 tool_author: Matthew Reinbold
 tool_author_twitter: libel_vox
