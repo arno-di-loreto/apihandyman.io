@@ -207,7 +207,7 @@ a:hover {
   @extend .container-fluid, .d-flex, .flex-column;
   min-height: calc(100vh - 55px) ;
   .row-page-content {
-    @extend .flex-fill;
+    @extend .flex-fill, .mb-5;
   }
 }
 
@@ -1144,6 +1144,7 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
 .nav-page {
   @extend .btn-group-vertical, .rounded-0;
   margin-top: -100px;
+  width: fit-content;
 
   // =< md
   @include media-breakpoint-down(md) {
@@ -1152,7 +1153,7 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
   
   // >= lg
   @include media-breakpoint-up(lg) {
-    margin-left: calc(100% - 20px);
+    margin-left: calc(100% - 35px);
   }
 
   .nav-page-btn {
