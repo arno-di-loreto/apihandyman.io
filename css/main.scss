@@ -225,11 +225,57 @@ $book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50
   }
 }
 
-.home-book-sm-cover {
-  background: $book-gradient;
-  .card-img-sm {
-    max-height: 150px;
-    width: auto;
+.modal-book-cover-left {
+  //no-gutters d-lg-none justify-content-center
+}
+
+.home-book-cover-left {
+  @extend .d-none, .d-md-block;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: left;
+
+  @include media-breakpoint-down(xl) {
+    background-image: url('/images/commons/book/book-home-xl.png'), $book-gradient;
+    height: 300px;
+  }
+
+  @include media-breakpoint-down(lg) {
+    background-image: url('/images/commons/book/book-home-lg.png'), $book-gradient;
+    height: 260px;
+  }
+
+  @include media-breakpoint-down(md) {
+    background-image: url('/images/commons/book/book-home-md.png'), $book-gradient;
+    height: 310px;
+  }
+}
+
+.home-book-cover-center {
+  @extend .d-md-none;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+
+  @include media-breakpoint-down(sm) {
+    background-image: url('/images/commons/book/book-home-sm.png'), $book-gradient;
+    height: 200px;
+  }
+  @include media-breakpoint-down(xs) {
+    background-image: url('/images/commons/book/book-home-xs.png'), $book-gradient;
+    height: 150px;
+  }
+}
+
+.modal-book-cover-center {
+  @extend .m-0;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+
+  @include media-breakpoint-down(md) {
+    background-image: url('/images/commons/book/book-home-xs.png'), $book-gradient;
+    height: 150px;
   }
 }
 
@@ -671,6 +717,25 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
     font-size: 0.9rem;
   }
 
+  .nav-item-book {
+    @extend .btn, .p-0, .border-0, .rounded-0, .text-left; 
+    .img {
+      display: none;
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-position: center;
+      background-image: url('/images/commons/book/title_white.png');
+      height: 25px;
+      width: 226px;  
+    }
+  }
+
+  .nav-item-book:hover {
+    .img {
+      background-image: url('/images/commons/book/title_orange.png');
+    }
+  }
+
   .dropdown-blog {
     a, .dropdown-item {
       color: $navbar-item-font-color;
@@ -690,19 +755,20 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
       color: $navbar-menu-transparent-active-item-font-color;
     }
   }
-
+/*
   .btn-book {
     img {
       display: none;
     }
   }
+  */
 }
 
 .main-navbar.scrolled {
   box-shadow: $navbar-shadow;
   background-color: $navbar-backgound-color;
-  .btn-book {
-    img {
+  .nav-item-book {
+    .img{
       display: block;
     }
   }

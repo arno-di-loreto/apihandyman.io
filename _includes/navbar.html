@@ -36,11 +36,11 @@
           <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/talks">Talks & Podcasts</a>
           <a class="nav-item nav-link" href="/toolbox">Toolbox</a>
           <a class="nav-item nav-link" href="/about">About</a>
-          <a class="btn btn-book btn-book-small pl-0 border-0 rounded-0 text-left left-column-hider d-block d-sm-block d-md-block d-lg-none" data-toggle="modal" data-target="#bookModal" role="button" ><img data-toggle="collapse" data-target="#navbarNav" src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
+          <a class="nav-item-book left-column-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
         </div>
       </div>
-      {% if page.layout == 'home' %}
-        <a class="btn btn-book btn-book-small p-0 border-0 rounded-0 text-left left-column-hider d-desktop-only" data-toggle="modal" data-target="#bookModal" role="button" ><img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book"></a>
+      {% if layout.book_in_nav or page.book_in_nav%}
+        <a class="nav-item-book left-column-hider d-desktop-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
       {% endif %}
     </nav> <!-- class="navbar navbar-expand-md" -->
   </div> <!--  class="container" -->

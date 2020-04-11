@@ -1,6 +1,7 @@
 ---
 layout: default
 with_banner: true
+book_in_nav: true
 ---
 
 {% capture overlay %}
@@ -8,19 +9,13 @@ with_banner: true
 <a href="/about" class="btn btn-primary btn-sm">How can I help you?</a>
 {% endcapture %}
 {%include full-width-banner.html overlay=overlay css="default" %}
-<div class="row home-book-sm-cover d-md-none justify-content-center">
-        <img src="{{ "/images/commons/book/book-home-sm.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img card-img-sm rounded-0 d-block d-md-none d-lg-none" alt="The Design of Web APIs book cover">
-</div>
+<div class="row home-book-cover-center"></div>
 <div class="row home-book">
   <div class="container p-0">
     <div class="col-12 p-0">
       <div class="card m-0 p-0 border-0 rounded-0">
         <div class="row no-gutters">
-          <div class="col-md-4 d-none d-md-block">
-            <img src="{{ "/images/commons/book/book-home-xl.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-xl-block" alt="The Design of Web APIs book cover">
-            <img src="{{ "/images/commons/book/book-home-lg.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-lg-block d-xl-none" alt="The Design of Web APIs book cover">
-            <img src="{{ "/images/commons/book/book-home-md.png" | prepend: site.baseurl | prepend: site.github.url}}" class="card-img rounded-0 d-none d-md-block d-lg-none" alt="The Design of Web APIs book cover">
-          </div>
+          <div class="col-md-4 home-book-cover-left"></div>
           <div class="col-md-8 d-flex flex-column">
             <div class="card-body card-body-quotes">
               <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">

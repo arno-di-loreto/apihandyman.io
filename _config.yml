@@ -90,4 +90,4 @@ exclude:
   # See https://github.com/jekyll/jekyll/issues/5267  
   - vendor
 
-debug: false
+debug: true
