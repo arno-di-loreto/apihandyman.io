@@ -13,7 +13,7 @@ book_in_nav: true
     <div class="row row-cols-1 row-cols-md-2">
         {% for tool in site.tools %}
           <div class="col mb-4">
-            {% include tool-summary.html tool=tool %}
+            {% include tool-summary.html tool=tool show_related_links=true %}
           </div>
         {% endfor %}
     </div>

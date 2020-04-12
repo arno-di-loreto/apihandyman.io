@@ -1,5 +1,5 @@
 {% assign header_count = content | split: '<h' | size %}
-{% if header_count == 1 or page.hide_toc %}
+{% if header_count == 1 or page.hide_toc or layout.hide_toc%}
   {% assign show_toc = false %}
 {% else %}
   {% assign show_toc = true %}

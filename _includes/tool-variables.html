@@ -1,3 +1,9 @@
 {% include variables.html item=include.item %}
 
-{% assign item_formated_author = include.item.tool_author | append:"'s" %}
+{% for link in include.item.links %}
+  {% if link.type == 'main' %}
+    {% assign item_external_url = link.url %}
+  {% endif %}
+{% endfor %}
+
+{% assign item_formated_author = include.item.author | append:"'s" %}

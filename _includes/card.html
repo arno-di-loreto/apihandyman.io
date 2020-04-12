@@ -1,3 +1,8 @@
+{% if include.stretched_url == true or include.stretched_url == nil %}
+  {% assign stretched_class = 'class="stretched-link"' %}  
+{% else %}
+  {% assign stretched_class = '' %}
+{% endif %}
 <div class="card {{include.class}} rounded-0 border-0 h-100">
   {% if include.image %}
   <img src="{{ include.image | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top rounded-0" alt="include.image_alt">
@@ -11,10 +16,13 @@
     {% else %}
       {% assign url = include.url | prepend: site.baseurl | prepend: site.github.url %}
     {% endif %}
-    <a href="{{url}}" class="stretched-link"><h4 class="card-title">{{include.title}}</h4></a>
+    <a href="{{url}}" {{stretched_class}}><h4 class="card-title">{{include.title}}</h4></a>
     {% if include.subtitle %}
     <h6 class="card-subtitle mb-2 text-muted">{{include.subtitle}}</h6>
     {% endif %}
     <div class="card-text card-content text-justify">{{ include.content }}</div>
   </div>
+  {% if include.bottom_html %}
+    {{include.bottom_html}}
+  {% endif %}
 </div>

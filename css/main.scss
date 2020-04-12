@@ -1301,6 +1301,42 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
   }
 }
 
+/**************/
+/* Tool  page */
+/**************/
+
+.page-content-text-tool {
+  .tool-link:first-of-type {
+    @extend .mt-3;
+  }
+    .icon-inline {
+      @extend .mr-2;
+      svg {
+        height: 24px;
+        width: auto;
+        fill: $link-font-color;
+        margin-top: -5px;
+      }
+    }
+  
+    .icon-inline:hover {
+      svg {
+        fill: $link-hover-font-color;
+      }
+    }
+
+  .tool-related-links {
+    .tool-link-summary {
+      @extend .mb-4;
+      .card-body{
+        @extend .pl-0, .pr-0;
+      }
+    }
+  }
+  
+
+}
+
 /*****************/
 /* Display utils */
 /*****************/

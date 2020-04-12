@@ -1,6 +1,12 @@
 
 {% include variables.html item=post %}
 
+{% if include.css  %}
+  {% assign css = include.css %}
+{% else %}
+  {% assign css = "card-home" %}
+{% endif %}
+
 {% assign subtitle = item_formated_author_date %}
 {% if include.short %}
   {% assign content = item_catchphrase %}
@@ -12,7 +18,7 @@
 {% endif %}
 
 {% include card.html
-    class="card-home" 
+    class=css 
     image=item_banner
     image_alt="Post's banner"
     surtitle=item_series_title

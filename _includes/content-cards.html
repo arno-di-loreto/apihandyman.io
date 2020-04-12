@@ -1,9 +1,9 @@
 {% if include.css %}
- {%assign css= " row-page-content-" | append: include.css %}
+ {%assign css= " page-content-text-" | append: include.css %}
 {% else %}
   {%assign css = "" %}
 {% endif %}
-<div class="page-content-text anchors">
+<div class="page-content-text anchors{{css}}">
   {% assign wrapped_tables_content = content | replace: '<table', '<div class="table-wrapper"><table' %}
   {% assign wrapped_tables_content = wrapped_tables_content | replace: 'table>', 'table></div>' %}
   {% assign nodes = wrapped_tables_content| split: '<h1 id=' %}
@@ -27,6 +27,7 @@
         <hr/>
         {% endif %}
         {{node}}
+        {{ include.title_section_bottom }}
       </div>
     </div><!-- First card with page title END -->
       {% assign first = 0 %}
@@ -40,4 +41,5 @@
     </div><!-- Next cards END -->
     {% endif %}
   {% endfor %}
+  {{ include.cards }}
 </div><!-- class="page-content-text"-->

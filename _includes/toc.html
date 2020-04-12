@@ -21,20 +21,22 @@ Adapted from https://github.com/allejo/jekyll-toc
     {% assign headerName = headerId[1] | split: '</h' %}
     {% assign headerName = headerName[0] %}
     {% assign headerId = headerId[0] %}
-    {% if firstHeader %}
-      {% assign firstHeader = false %}
-    {% endif %}
-    {% if headerLevel > previousHeader %}
-      <nav class="nav flex-column rounded-0">
-        <a class="nav-link toc-level-{{headerLevel}}" href="#{{headerId}}">{{headerName}}</a>
-    {% else %}
-      {% if headerLevel < previousHeader %}
-      </nav>
-        <a class="nav-link toc-level-{{headerLevel}}" href="#{{headerId}}">{{headerName}}</a>
+    {% if headerId %}
+      {% if firstHeader %}
+        {% assign firstHeader = false %}
+      {% endif %}
+      {% if headerLevel > previousHeader %}
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-{{headerLevel}}" href="#{{headerId}}">{{headerName}}</a>
       {% else %}
-        <a class="nav-link toc-level-{{headerLevel}}" href="#{{headerId}}">{{headerName}}</a>
-        {% endif %}
+        {% if headerLevel < previousHeader %}
+        </nav>
+          <a class="nav-link toc-level-{{headerLevel}}" href="#{{headerId}}">{{headerName}}</a>
+        {% else %}
+          <a class="nav-link toc-level-{{headerLevel}}" href="#{{headerId}}">{{headerName}}</a>
+          {% endif %}
+      {% endif %}
+      {% assign previousHeader = headerLevel %}
     {% endif %}
-    {% assign previousHeader = headerLevel %}
   {% endfor %}
   </nav>

@@ -2,10 +2,18 @@
 title: API Evangelist
 layout: tool
 permalink: /toolbox/apievangelist/
-tool_url: http://apievangelist.com
-tool_author: Kin Lane
-tool_author_twitter: kinlane
-tool_twitter: apievangelist
+author: Kin Lane
+links:
+  - type: main
+    url: http://apievangelist.com
+    subtype: blog
+  - type: twitter
+    subtype: tool
+    url: apievangelist
+  - type: twitter
+    subtype: author
+    url: kinlane
+
 ---
 
 API Handyman wouldn't exist without the API Evangelist. It's always a pleasure to read Kin Lane's views on the API space. This site is a hyper-mega-huge source of information about ALL aspects of APIs from API definitions to monetization and governance and dozens of other topics.

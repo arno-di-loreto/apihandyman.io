@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: default-banner-left-column
 libs:
   anchor: true
   code: true
@@ -9,53 +9,27 @@ libs:
 {% include page_variables.html %}
 
 {% if page.series %}
-  {% assign title = page.series_title%}
+{% assign title = page.series_title%}
 {% else %}
-  {% assign title = page.title %}
+{% assign title = page.title %}
 {% endif %}
 
 {% if page.series %}
-  {% capture surtitle %}
-  {{page.series}} Series - Part {{page.series_number}}
-  {% endcapture %}
+{% capture surtitle %}
+{{page.series}} Series - Part {{page.series_number}}
+{% endcapture %}
 {% else %}
-  {% assign surtitle="" %}
+{% assign surtitle="" %}
 {% endif %}
 
 {% if page.author %}
-  {% assign subtitle = page.author | prepend: 'By '%}
+{% assign subtitle = page.author | prepend: 'By '%}
 {% endif %}
 {% if page.date %}
-  {% if page.author %}
-    {% assign subtitle = subtitle | append: ", " %}
-  {% endif %}
-  {% assign subtitle = page.date | date: "%B %-d, %Y" | prepend: subtitle %}
+{% if page.author %}
+  {% assign subtitle = subtitle | append: ", " %}
+{% endif %}
+{% assign subtitle = page.date | date: "%B %-d, %Y" | prepend: subtitle %}
 {% endif %}
 
-{% if page.left_column != nil %}
-  {% assign left_column = page.left_column %}
-{% else %}
-  {% assign left_column = true %}
-{% endif %}
-{% include banner.html overlay=overlay css=page.banner_css %}
-<div class="row row-page-content row-page-content-{{page.content_css}}">
-  <div class="container-fluid container-lg">
-    <div class="fade modal left-menu-hider left-menu-modal d-mobile-only"></div>
-    <div class="row">
-      {% if left_column %}
-      <div class="page-column-left left-menu left-menu-hider">
-        <div class="page-column-left-container">
-          {% include navbar-left.html %}
-        </div>
-      </div>
-        {% assign class_main_with_left = " page-column-main-with-left" %}
-      {% else %}
-        {%assign class_main_with_left = " page-column-main-without-left" %}
-      {% endif %}
-      <div class="page-column-main{{class_main_with_left}}">  
-        {% include content-cards.html surtitle=surtitle title=title subtitle=subtitle css=page.content_css %}
-      </div>
-    </div>
-  </div>
-</div>
-{% include navbar-bottom.html %}
+{% include content-cards.html surtitle=surtitle title=title subtitle=subtitle css=page.content_css %}
