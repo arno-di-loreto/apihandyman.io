@@ -14,7 +14,7 @@
     {% endif %}
     {% if first == 1 %}
     <!-- First card with page title -->
-    <div class="card-page-section card-page-section-title">
+    <div class="card-page-section page-section-title">
       <div class="body">
         {% if include.surtitle %}
         <h5 class="surtitle">{{include.surtitle}}</h5>
@@ -33,7 +33,7 @@
       {% assign first = 0 %}
     {% else %}
     <!-- Next cards -->
-    <div class="card-page-section card-page-section-not-title">
+    <div class="card-page-section page-section-not-title">
       <div class="card-body">
       {%assign h1="<h1 id="%}
         {{h1}}{{ node}}
