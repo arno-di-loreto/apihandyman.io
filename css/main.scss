@@ -542,7 +542,7 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
   }
 
   .card-page-section:first-child {
-    @extend .mt-3, .mt-md-4, .mt-lg-5, .mt-xl-5;
+    @extend .mt-3, .mt-md-4, .mt-lg-5, .mt-xl-5, .pt-3, .pt-md-4;
   }
 
   .card-page-section:last-child {
