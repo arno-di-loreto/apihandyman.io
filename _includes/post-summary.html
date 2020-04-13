@@ -1,6 +1,14 @@
 
 {% include variables.html item=post %}
 
+{% if include.no_banner %}
+  {% assign banner = nil %}
+  {% assign banner_alt = nil %}
+{% else %}
+  {% assign banner = item_banner %}
+  {% assign banner_alt = "Post's banner" %}
+{% endif %}
+
 {% if include.css  %}
   {% assign css = include.css %}
 {% else %}
@@ -19,8 +27,8 @@
 
 {% include card.html
     class=css 
-    image=item_banner
-    image_alt="Post's banner"
+    image=banner
+    image_alt=banner_alt
     surtitle=item_series_title
     title=item_title
     subtitle=subtitle

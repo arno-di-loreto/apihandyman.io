@@ -207,7 +207,7 @@ a:hover {
   @extend .container-fluid, .d-flex, .flex-column;
   min-height: calc(100vh - 55px) ;
   .row-page-content {
-    @extend .flex-fill, .mb-5;
+    @extend .flex-fill;
   }
 }
 
