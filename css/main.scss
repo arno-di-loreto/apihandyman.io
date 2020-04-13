@@ -1157,18 +1157,27 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
 /* Series Table of content */
 /***************************/
 
-// TODO fix series toc css 
 .series-toc {
-  .list-group {
-    .list-group-item {
-      @extend .border-0;
-    }
-    .disabled {
-      color: $content-disabled-font-color;
-    }
-    .active {
-      background-color: $content-background-color;
-      color: $content-font-color;
+  @extend  .rounded-0, .mb-3;
+  .series-toc-title {
+    @extend .pb-0, .pt-0, .rounded-0;
+  }
+  .series-toc_content {
+    @extend  .no-gutters;
+    .series-toc-list {
+      @extend  .text-left;
+      .list-group {
+        .list-group-item {
+          @extend .border-0;
+        }
+        .disabled {
+          color: $content-disabled-font-color;
+        }
+        .active {
+          background-color: $content-background-color;
+          color: $content-font-color;
+        }
+      }
     }
   }
 }
