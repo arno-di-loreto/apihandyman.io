@@ -1,5 +1,5 @@
 {% if include.stretched_url == true or include.stretched_url == nil %}
-  {% assign stretched_class = 'class="stretched-link"' %}  
+  {% assign stretched_class = ' class="stretched-link"' %}  
 {% else %}
   {% assign stretched_class = '' %}
 {% endif %}
@@ -16,7 +16,12 @@
     {% else %}
       {% assign url = include.url | prepend: site.baseurl | prepend: site.github.url %}
     {% endif %}
-    <a href="{{url}}" {{stretched_class}}><h4 class="card-title">{{include.title}}</h4></a>
+    {% if include.target %}
+      {% assign target = ' target="' | append:include.target | append:'"'%}
+    {% else %}
+      {% assign target = "" %}
+    {% endif %}
+    <a href="{{url}}"{{stretched_class}}{{target}}><h4 class="card-title">{{include.title}}</h4></a>
     {% if include.subtitle %}
     <h6 class="card-subtitle mb-2 text-muted">{{include.subtitle}}</h6>
     {% endif %}

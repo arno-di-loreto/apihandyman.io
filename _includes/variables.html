@@ -54,14 +54,21 @@
   {% endfor %}
 {% endif %}
 
-{% if item.excerpt %}
-  {%assign item_description = item.excerpt | default: site.description | strip_html | normalize_whitespace | escape %}
-{% else %}
-  {% assign item_description = site.description | escape %}
-{% endif %}
 
 {% if item.catchphrase %}
   {% assign item_catchphrase = item.catchphrase %}
 {% else %}
   {% assign item_catchphrase = item.excerpt %}
+{% endif %}
+
+{% if item.catchphrase_as_excerpt %}
+  {% assign item_excerpt = item_catchphrase %}
+{% else %}
+  {% assign item_excerpt = item.excerpt %}
+{% endif %}
+
+{% if item_excerpt %}
+  {%assign item_description = item_excerpt | default: site.description | strip_html | normalize_whitespace | escape %}
+{% else %}
+  {% assign item_description = site.description | escape %}
 {% endif %}

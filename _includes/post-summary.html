@@ -22,7 +22,15 @@
 {% elsif post.full %}
   {% assign content = post.content %}
 {% else %}
-  {% assign content = item_description %}
+  {% assign content = item_excerpt %}
+{% endif %}
+
+{% if post.external_url %}
+  {% assign url = post.external_url %}
+  {% assign target = "_blank" %}
+{% else %}
+  {% assign url = item_url %}
+  {% assign target = nil %}
 {% endif %}
 
 {% include card.html
@@ -33,5 +41,6 @@
     title=item_title
     subtitle=subtitle
     content=content
-    url=item_url
+    url=url
+    target=target
 %}

@@ -1,13 +1,10 @@
 ---
 id: 1306
 title: OpenAPI Trek Beyond API Documentation (API Strat 2016)
-date: 2016-11-28T18:54:40+00:00
+date: 2016-11-28
 author: Arnaud Lauret
 layout: post
-guid: http://apihandyman.io/?p=1306
 permalink: /openapi-trek-beyond-api-documentation-api-strat-2016/
-dsq_thread_id:
-  - 5316385881
 category: talk
 tags:
   - Documentation
@@ -22,21 +19,23 @@ tags:
 series: OpenAPI Trek
 series_title: OpenAPI Trek Beyond API Documentation
 series_number: 3
+catchphrase: OpenAPI offers many possibilities that span the full API lifecycle, yet it is seen purely as a solution for generating API documentation. This session will tell the story of AXA Banque's evolution from .doc and .pdf API documentation to the extensive use of OpenAPI Specification (formerly Swagger). Throughout the journey, we will identify the many advantages of API definition languages beyond simply generating API documentation, including design, testing, documentation continuous delivery, code generation, mocking, and prototyping new ideas.
+catchphrase_as_excerpt: true
 ---
-After API Days London, and Nordic APIs Summit in Stockholm, Scottie beamed me to API Strat Boston 2016 for the final part of my OpenAPI specification (fka. Swagger specification) talk series: *OpenAPI Trek Beyond API Documentation*.<!--more-->
+After API Days London, and Nordic APIs Summit in Stockholm, Scottie beamed me to API Strat Boston 2016 for the final part of my OpenAPI specification (fka. Swagger specification) talk series: *OpenAPI Trek Beyond API Documentation*. This last talk is the (not so uncommon) story of how I came to use Swagger/OpenAPI for API documentation and how it changed many things beyond API documentation.
 
-This series is composed of three talks:
+You'll find here the abstract, slides and the video (very special thanks to [Matthew Reinbold](https://twitter.com/libel_vox) for recording this talk with my crappy phone).
 
-- [OpenAPI Trek at API Days London 2016](/openapi-trek-api-days-london-2016/)
-- [OpenAPI Trek Into Fastness at Nordic APIs Stockholm Summit 2016](/openapi-trek-into-fastness-nordic-apis-summit-2016/)
-- OpenAPI Trek Beyond API Documentation at APIStrat Boston 2016
+{% include _postincludes/openapi-trek.md %}
 
-{% include twitter.html url="https://twitter.com/ameliamango/status/795749942144876547" %}
+# Abstract
 
-This last talk is the (not so uncommon) story of how I came to use Swagger/OpenAPI for API documentation and how it changed many things beyond API documentation. Here are the video (very special thanks to [Matthew Reinbold](https://twitter.com/libel_vox) for recording this talk with my crappy phone) and slides:
-  
-{% youtube EtQbaZwCv5o %}
-  
+OpenAPI offers many possibilities that span the full API lifecycle, yet it is seen purely as a solution for generating API documentation. This session will tell the story of AXA Banque's evolution from .doc and .pdf API documentation to the extensive use of OpenAPI Specification (formerly Swagger). Throughout the journey, we will identify the many advantages of API definition languages beyond simply generating API documentation, including design, testing, documentation continuous delivery, code generation, mocking, and prototyping new ideas.
+
+# Slides
+
 {% speakerdeck db304a20b4204425a43b9843ccb5d504 %}
-  
-*Boston Library Photography by [Cinzia Dosa Lauret](http://www.misterlapin.com)*
+
+# Video
+
+{% youtube EtQbaZwCv5o %}

@@ -1,13 +1,10 @@
 ---
 id: 1254
 title: OpenAPI Trek (API Days London 2016)
-date: 2016-11-10T23:08:51+00:00
+date: 2016-11-10
 author: Arnaud Lauret
 layout: post
-guid: http://apihandyman.io/?p=1254
 permalink: /openapi-trek-api-days-london-2016/
-dsq_thread_id:
-  - 5294727726
 category: talk
 tags:
   - API Days
@@ -22,16 +19,21 @@ tags:
 series: OpenAPI Trek
 series_title: OpenAPI Trek
 series_number: 1
+catchphrase: For many still known as Swagger, the OpenAPI specification is often reduce to auto-generated API documentation. But the OpenAPI specification universe is boundless. Design, mock, development, test, documentation continuous delivery, governance, deployment... there are countless possibilities that span the full API lifecycle. Let's board the starship OpenAPI to explore unexpected use cases, to seek out new usage and new ideas, to boldly go where almost no one has gone before.
+catchphrase_as_excerpt: true
 ---
-I was thrilled to start my OpenAPI specification (fka. Swagger specification) talk series at API Days London with this first part simply titled OpenAPI Trek.<!--more-->
+I was thrilled to start my OpenAPI specification (fka. Swagger specification) talk series at API Days London with this first part simply titled OpenAPI Trek. This first talk, *OpenAPI Trek*, aims to explain what is the OpenAPI specification and how it can be extensively used throughout the API lifecycle.<!--more-->
 
-This series is composed of three talks:
+{% include _postincludes/openapi-trek.md %}
 
-- OpenAPI Trek at API Days London 2016
-- [OpenAPI Trek Into Fastness at Nordic APIs Stockholm Summit 2016](http://apihandyman.io/openapi-trek-into-fastness-nordic-apis-summit-2016/)
-- OpenAPI Trek Beyond API Documentation at APIStrat Boston 2016 (post coming soon)
+# Abstract
 
-This first talk, *OpenAPI Trek*, aims to explain what is the OpenAPI specification and how it can be extensively used throughout the API lifecycle. Here are the video and slides:
+For many still known as Swagger, the OpenAPI specification is often reduce to auto-generated API documentation. But the OpenAPI specification universe is boundless. Design, mock, development, test, documentation continuous delivery, governance, deployment... there are countless possibilities that span the full API lifecycle. Let's board the starship OpenAPI to explore unexpected use cases, to seek out new usage and new ideas, to boldly go where almost no one has gone before.
+
+# Slides
+
+{% speakerdeck d615d76ab430473180b3b42aaa35b6af %}
+
+# Video
 
 {% youtube rUPwwAQyF_I %}
-{% speakerdeck d615d76ab430473180b3b42aaa35b6af %}
