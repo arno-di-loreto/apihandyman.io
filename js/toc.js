@@ -3,7 +3,7 @@ function toggleToc() {
 }
 
 function toggleBackToTop() {
-  const titleBottom = offset($('.card-page-section-title .title')[0]).top
+  const titleBottom = offset($('.page-section-title .title')[0]).top
   $('.back-to-top').toggleClass('d-none', $(this).scrollTop() < titleBottom)
 }
 

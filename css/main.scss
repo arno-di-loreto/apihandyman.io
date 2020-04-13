@@ -198,10 +198,6 @@ a:hover {
   background-color: $book-orange;
 }
 
-.not-behind-nav {
-  top: 55px;
-}
-
 // Fill screen to keep footer on bottom when content < screen height
 .page-content-container {
   @extend .container-fluid, .d-flex, .flex-column;
@@ -211,23 +207,11 @@ a:hover {
   }
 }
 
-// Home
+/********/
+/* Home */
+/********/
+
 $book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50%,white 100%);
-@include media-breakpoint-up(md) { 
-  .home-book {
-    background: $book-gradient;
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .home-book {
-    background: white;
-  }
-}
-
-.modal-book-cover-left {
-  //no-gutters d-lg-none justify-content-center
-}
 
 .home-book-cover-left {
   @extend .d-none, .d-md-block;
@@ -281,6 +265,14 @@ $book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50
 
 .home-book {
   box-shadow: $banner-shadow;
+  @include media-breakpoint-up(md) { 
+      background: $book-gradient;
+  }
+  
+  @include media-breakpoint-down(sm) {
+      background: white;
+  }
+  
   .card-body-quotes {
     @extend .pb-0;
 
@@ -332,129 +324,10 @@ $book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50
   }
 }
 
-$row-banner-default-left-color: #9F92C7;
-$row-banner-default-right-color: #634E91;
-$row-banner-default-linear-gradient: linear-gradient(to right, 
-                                              $row-banner-default-left-color 0%, $row-banner-default-left-color 50%, $row-banner-default-right-color 50%, $row-banner-default-right-color 100%); 
 
-.row-banner-default {
-  box-shadow: $banner-shadow;
-
-  @include media-breakpoint-down(xl) {
-    height: 400px;
-    background-image: url('/images/commons/home-banner.jpg'), $row-banner-default-linear-gradient;
-  }
-
-  @include media-breakpoint-down(lg) {
-    height: 400px;
-    background-image: url('/images/commons/home-banner.jpg'), $row-banner-default-linear-gradient;
-  }
-
-  @include media-breakpoint-down(md) {
-    height: 300px;
-    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-default-linear-gradient;
-    
-  }
-
-  @include media-breakpoint-down(sm) {
-    height: 250px;
-    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-default-linear-gradient;
-  }
-}
-
-$row-banner-talks-left-color: #9F92C7;
-$row-banner-talks-right-color: #634E91;
-$row-banner-talks-linear-gradient: linear-gradient(to right, 
-                                              $row-banner-talks-left-color 0%, $row-banner-talks-left-color 50%, $row-banner-talks-right-color 50%, $row-banner-talks-right-color 100%); 
-
-.row-banner-talks {
-  box-shadow: $banner-shadow;
-
-  @include media-breakpoint-down(xl) {
-    height: 400px;
-    background-image: url('/images/commons/home-banner.jpg'), $row-banner-talks-linear-gradient;
-  }
-
-  @include media-breakpoint-down(lg) {
-    height: 400px;
-    background-image: url('/images/commons/home-banner.jpg'), $row-banner-talks-linear-gradient;
-  }
-
-  @include media-breakpoint-down(md) {
-    height: 300px;
-    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-talks-linear-gradient;
-    
-  }
-
-  @include media-breakpoint-down(sm) {
-    height: 250px;
-    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-talks-linear-gradient;
-  }
-}
-
-$row-banner-posts-left-color: #9F92C7;
-$row-banner-posts-right-color: #634E91;
-$row-banner-posts-linear-gradient: linear-gradient(to right, 
-                                              $row-banner-posts-left-color 0%, $row-banner-posts-left-color 50%, $row-banner-posts-right-color 50%, $row-banner-posts-right-color 100%); 
-
-.row-banner-posts {
-  box-shadow: $banner-shadow;
-
-  @include media-breakpoint-down(xl) {
-    height: 400px;
-    background-image: url('/images/commons/home-banner.jpg'), $row-banner-posts-linear-gradient;
-  }
-
-  @include media-breakpoint-down(lg) {
-    height: 400px;
-    background-image: url('/images/commons/home-banner.jpg'), $row-banner-posts-linear-gradient;
-  }
-
-  @include media-breakpoint-down(md) {
-    height: 300px;
-    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-posts-linear-gradient;
-    
-  }
-
-  @include media-breakpoint-down(sm) {
-    height: 250px;
-    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-posts-linear-gradient;
-  }
-}
-
-$row-banner-blog-left-color: #9F92C7;
-$row-banner-blog-right-color: #634E91;
-$row-banner-blog-linear-gradient: linear-gradient(to right, 
-                                              $row-banner-blog-left-color 0%, $row-banner-blog-left-color 50%, $row-banner-blog-right-color 50%, $row-banner-blog-right-color 100%); 
-
-.row-banner-blog {
-  box-shadow: $banner-shadow;
-  
-  @include media-breakpoint-down(xl) {
-    height: 400px;
-    background-image: url('/images/commons/home-banner.jpg'), $row-banner-blog-linear-gradient;
-  }
-
-  @include media-breakpoint-down(lg) {
-    height: 400px;
-    background-image: url('/images/commons/home-banner.jpg'), $row-banner-blog-linear-gradient;
-  }
-
-  @include media-breakpoint-down(md) {
-    height: 300px;
-    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-blog-linear-gradient;
-    
-  }
-
-  @include media-breakpoint-down(sm) {
-    height: 250px;
-    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-blog-linear-gradient;
-  }
-}
-
-.row-banner-toolbox {
-  @extend .row-banner-default
-}
+/*******************/
+/* Banner - Common */
+/*******************/
 
 .row-banner {
   margin-top: -55px;
@@ -488,6 +361,60 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   }
 }
 
+/***********************/
+/* Banner - Full width */
+/***********************/
+
+$row-banner-default-left-color: #9F92C7;
+$row-banner-default-right-color: #634E91;
+$row-banner-default-linear-gradient: linear-gradient(to right, 
+                                              $row-banner-default-left-color 0%, $row-banner-default-left-color 50%, $row-banner-default-right-color 50%, $row-banner-default-right-color 100%); 
+
+.row-banner-default {
+  box-shadow: $banner-shadow;
+
+  @include media-breakpoint-down(xl) {
+    height: 400px;
+    background-image: url('/images/commons/home-banner.jpg'), $row-banner-default-linear-gradient;
+  }
+
+  @include media-breakpoint-down(lg) {
+    height: 400px;
+    background-image: url('/images/commons/home-banner.jpg'), $row-banner-default-linear-gradient;
+  }
+
+  @include media-breakpoint-down(md) {
+    height: 300px;
+    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-default-linear-gradient;
+    
+  }
+
+  @include media-breakpoint-down(sm) {
+    height: 250px;
+    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-default-linear-gradient;
+  }
+}
+
+.row-banner-talks {
+  @extend .row-banner-default;
+}
+
+.row-banner-posts {
+  @extend .row-banner-default;
+}
+
+.row-banner-blog {
+  @extend .row-banner-default;
+}
+
+.row-banner-toolbox {
+  @extend .row-banner-default;
+}
+
+/******************/
+/* Banner - Small */
+/******************/
+
 .row-banner-small {
   @include media-breakpoint-down(xl) {
     margin-bottom: -100px;
@@ -516,6 +443,10 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
     }
   }
 }
+
+/****************/
+/* Page content */
+/****************/
 
 .page-column-main {
   @extend .col-12;
@@ -620,6 +551,10 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
 
 }
 
+/********/
+/* List */
+/********/
+
 .row-list .container::before {
   content: '';
   display: block;
@@ -628,50 +563,19 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   visibility: hidden;
 }
 
-.row-list {
-  //@extend .mt-5;
-}
-
-.row-footer-second {
-  @extend .pb-3, .pt-3, .text-center;
-  background-color: $footer-background-color;
-  color: $footer-item-font-color;
-
-  .icon {
-    margin-right: 1rem;
-    svg {
-      width: 18px;
-      height: 18px;
-      fill: $footer-item-font-color;
-      margin-bottom: 2px;
-    }
-  }
-
-  a {
-    color: $footer-item-font-color;
-  }
-
-  a:hover {
-    text-decoration: none;
-    color: $footer-active-item-font-color;
-    background-color: $footer-active-item-background-color;
-    svg {
-      fill: $footer-active-item-font-color;
-    }
-
-  }
-
-  .privacy-link-text {
-    @extend .ml-2;
-  }
-
-}
+/********************************/
+/* Footer  - Margin with shadow */
+/********************************/
 
 .row-footer-margin {
   @extend .mt-5;
   box-shadow: $light-shadow;
   z-index: 101;
 }
+
+/***********************************/
+/* Footer  - Social and book links */
+/***********************************/
 
 .row-footer {
     background-color: $footer-background-color;
@@ -743,6 +647,46 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
 
 }
 
+/***********************************/
+/* Footer  - Copyright and privacy */
+/***********************************/
+
+.row-footer-second {
+  @extend .pb-3, .pt-3, .text-center;
+  background-color: $footer-background-color;
+  color: $footer-item-font-color;
+
+  .icon {
+    margin-right: 1rem;
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: $footer-item-font-color;
+      margin-bottom: 2px;
+    }
+  }
+
+  a {
+    color: $footer-item-font-color;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: $footer-active-item-font-color;
+    background-color: $footer-active-item-background-color;
+    svg {
+      fill: $footer-active-item-font-color;
+    }
+
+  }
+
+  .privacy-link-text {
+    @extend .ml-2;
+  }
+
+}
+
+
 /**********/
 /* Navbar */
 /**********/
@@ -806,13 +750,6 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
       color: $navbar-menu-transparent-active-item-font-color;
     }
   }
-/*
-  .btn-book {
-    img {
-      display: none;
-    }
-  }
-  */
 }
 
 .main-navbar.scrolled {
@@ -844,23 +781,9 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   top: 55px;
 }
 
-/***************/
-/* Series menu */
-/***************/
-
-// <= md
-@include media-breakpoint-down(md) {
-  .dropdown-menu-series {
-    width: min(400px, 90vw, 90vh);
-  }
-}
-
-// >= lg
-@include media-breakpoint-up(lg) {
-  .dropdown-menu-series {
-    width: max-content;
-  }
-}
+/*******************************/
+/* Left menu - Series dropdown */
+/*******************************/
 
 .dropdown-menu-series.show {
   margin-left: -2px;
@@ -870,6 +793,16 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   background-color: $left-navbar-background-color;
   color: $left-navbar-item-font-color;
   box-shadow: $left-navbar-shadow;
+
+  // <= md
+  @include media-breakpoint-down(md) {
+    width: min(400px, 90vw, 90vh);
+  }
+
+  // >= lg
+  @include media-breakpoint-up(lg) {
+    width: max-content;
+  }
 
   .dropdown-divider {
     border-color: $left-navbar-divider-color;
@@ -895,79 +828,9 @@ $row-banner-blog-linear-gradient: linear-gradient(to right,
   }
 }
 
-
-/***************/
-/* Left column */
-/***************/
-
-.left-menu-modal {
-  z-index: -1;
-  background: rgba(12,12,12,0.5);
-}
-
-.left-menu-modal.show {
-  display: block;
-  z-index: 1020
-}
-
-a.left-book-ad-small, a.left-book-ad-small:hover {
-  @extend .pl-3, .pt-3, .pb-2, .text-left;
-  color: $book-orange;
-  cursor: pointer;
-  border-bottom-width: $left-navbar-divider-width;
-  border-bottom-color: $left-navbar-divider-color;
-  border-bottom-style: $left-navbar-divider-style;
-}
-
-.left-book-ad:hover {
-  cursor: pointer;
-}
-
-.left-book-ad-border {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom-width: $left-navbar-divider-width;
-  border-bottom-color: $left-navbar-divider-color;
-  border-bottom-style: $left-navbar-divider-style;
-}
-
-.left-book-ad-no-border {
-  @extend .border-0;
-}
-
-.left-book-ad {
-  @extend .card, .rounded-0;
-  color: $book-orange;
-   img {
-    @extend .rounded-0;
-  }
-  .message-cropped {
-    padding-right: 80px;
-    line-height: 1rem;
-    @include media-breakpoint-down(xl) {
-      padding-top: 10px;
-      padding-left: 24px;
-    }
-    @include media-breakpoint-down(lg) {
-      padding-top: 5px;
-      padding-left: 20px;
-    }
-  }
-
-  .message-full {
-    padding-right: 80px;
-    line-height: 1rem;
-    @include media-breakpoint-down(xl) {
-      padding-top: 25px;
-      padding-left: 24px;
-    }
-    @include media-breakpoint-down(lg) {
-      padding-top: 20px;
-      padding-left: 20px;
-    }
-  }
-}
+/**************/
+/* Left menu  */
+/**************/
 
 .page-column-left {
   //@extend .d-none, .d-lg-block, .col-lg-2, .p-0;
@@ -1055,21 +918,81 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
   }
 }
 
+/***********************/
+/* Left menu - Book ad */
+/***********************/
 
-// TODO fix series toc css 
-.series-toc {
-  .list-group {
-    .list-group-item {
-      @extend .border-0;
+a.left-book-ad-small, a.left-book-ad-small:hover {
+  @extend .pl-3, .pt-3, .pb-2, .text-left;
+  color: $book-orange;
+  cursor: pointer;
+  border-bottom-width: $left-navbar-divider-width;
+  border-bottom-color: $left-navbar-divider-color;
+  border-bottom-style: $left-navbar-divider-style;
+}
+
+.left-book-ad:hover {
+  cursor: pointer;
+}
+
+.left-book-ad-border {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-width: $left-navbar-divider-width;
+  border-bottom-color: $left-navbar-divider-color;
+  border-bottom-style: $left-navbar-divider-style;
+}
+
+.left-book-ad-no-border {
+  @extend .border-0;
+}
+
+.left-book-ad {
+  @extend .card, .rounded-0;
+  color: $book-orange;
+   img {
+    @extend .rounded-0;
+  }
+  .message-cropped {
+    padding-right: 80px;
+    line-height: 1rem;
+    @include media-breakpoint-down(xl) {
+      padding-top: 10px;
+      padding-left: 24px;
     }
-    .disabled {
-      color: $content-disabled-font-color;
-    }
-    .active {
-      background-color: $content-background-color;
-      color: $content-font-color;
+    @include media-breakpoint-down(lg) {
+      padding-top: 5px;
+      padding-left: 20px;
     }
   }
+
+  .message-full {
+    padding-right: 80px;
+    line-height: 1rem;
+    @include media-breakpoint-down(xl) {
+      padding-top: 25px;
+      padding-left: 24px;
+    }
+    @include media-breakpoint-down(lg) {
+      padding-top: 20px;
+      padding-left: 20px;
+    }
+  }
+}
+
+/**************************************/
+/* Left menu - Modal background <= md */
+/**************************************/
+
+.left-menu-modal {
+  z-index: -1;
+  background: rgba(12,12,12,0.5);
+}
+
+.left-menu-modal.show {
+  display: block;
+  z-index: 1020
 }
 
 
@@ -1088,7 +1011,6 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
     color: white;
   }
 }
-
 
 /**************************************/
 /* Sticky bottom navigation - Commons */
@@ -1196,9 +1118,9 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
   }
 }
 
-/**************/
-/* Tool  page */
-/**************/
+/*************/
+/* Tool page */
+/*************/
 
 .page-content-text-tool {
   .tool-link:first-of-type {
@@ -1228,9 +1150,29 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
       }
     }
   }
-  
-
 }
+
+
+/***************************/
+/* Series Table of content */
+/***************************/
+
+// TODO fix series toc css 
+.series-toc {
+  .list-group {
+    .list-group-item {
+      @extend .border-0;
+    }
+    .disabled {
+      color: $content-disabled-font-color;
+    }
+    .active {
+      background-color: $content-background-color;
+      color: $content-font-color;
+    }
+  }
+}
+
 
 /*****************/
 /* Display utils */
