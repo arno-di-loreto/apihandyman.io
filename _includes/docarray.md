@@ -13,7 +13,7 @@
     <tr>
       <td><code>{{item.examples | join:"</code><br><code>" }}</code></td>
       <td>{{item.description | capitalize}}</td>
-      <td><a class="btn-documentation" href="{{item.url}}" target="{{include.target}}" aria-label="open documentation in new windows" data-toggle="tooltip" data-placement="right" title="Go to filter's documentation">{% include svg/documentation.svg %}</a></td>
+      <td><a class="btn-documentation" href="{{item.url}}" target="{{include.target}}" aria-label="open documentation in a new tab" data-toggle="tooltip" data-placement="right" title="Open documentation in a new tab">{% include svg/documentation.svg %}</a></td>
     </tr>
 {% endfor %}
   </tbody>

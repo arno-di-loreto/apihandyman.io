@@ -15,6 +15,14 @@
   {% endif %}
 {% endfor %}
 {% for coming_soon in site.data.series[page.series] %}
+{% assign coming_soon_not_found = true %}
+{% for my_page in series_sorted %}
+  {% if my_page.series_number == coming_soon.series_number %}
+    {% assign coming_soon_not_found = false %}
+  {% endif %}
+{% endfor %}
+{% if coming_soon_not_found %}
   <a class="dropdown-item disabled{{wrap_class}}">{{ coming_soon.series_number }} - {{ coming_soon.series_title }} (coming soon)</a>
+{% endif %}
 {% endfor %}
 </div>
