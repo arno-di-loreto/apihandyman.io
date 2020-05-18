@@ -6,6 +6,7 @@ hide_toc: true
 
 {% assign title = item_title%}
 {% assign surtitle = item_formated_author %}
+{% assign tool_content = content %}
 
 {% capture links %}
 {% if page.links %}
@@ -69,5 +70,7 @@ hide_toc: true
   {% endif %}
 
 {% endcapture %}
+
+{% assign content = tool_content %}
 
 {% include content-cards.html surtitle=surtitle title=title css='tool' cards=related_links title_section_bottom=links%}
