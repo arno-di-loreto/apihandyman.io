@@ -15,7 +15,7 @@ tags:
   - API Toolbox
 ---
 
-Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. Thanks to the two previous parts of this JQ and OpenAPI Series, we learned how to extract data from JSON (OpenAPI) files by discovering many filters, creating modules and using command line arguments. Now we will discover how to modify them; how to replace, add or remove elements in processed documents. <!--more-->
+Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. Thanks to the two previous parts of this JQ and OpenAPI Series, we learned how to extract data from JSON (OpenAPI) files by discovering many filters, creating modules and using command line arguments. Now we will discover how to modify them; how to replace, add or delete elements in processed documents. <!--more-->
 
 {% include _postincludes/api-toolbox-jq-openapi.md %}
 
@@ -29,7 +29,12 @@ We will go on using the `demo-api-openapi.json` OpenAPI file in this post:
 
 It's fairly common to tweak OpenAPI files, especially before putting them in an API portal. You may have to replace some server URLs, update version number and replace some descriptions. That can be easily done with JQ. To learn how to replace values, we'll work on the info section of `demo-api-openapi.json` with `=` and `|=` operators . And we will also see how to save the modified file because it wouldn't make any sense to not be able to save our modifications.
 
-{% include docarray.md title="JQ Operators" target=site.data.jq.link_target links=site.data.jq.operators names="assignment_plain,assignment_update" %}
+{% include docarray.md title="JQ Operators" target=site.data.jq.link_target links=site.data.jq.filters names="assignment_plain,assignment_update" %}
+
+This section's content is also available as an asciinema bash session:
+
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-3/replace.cast" title="Replacing elements" poster="npt:1:20" %}
+
 
 ## Replacing a value with =
 
@@ -113,7 +118,7 @@ jq '.info.description' demo-api-openapi-mod.json
 
 ## Using filters when replacing a value
 
-When I said that anything can be put on the right side, it's virtually anything; including complex filters chains like the one we have learned to create previously in part 1 and 2. Let's see that with a very simple example. The following listing shows how to remove the "-snapshot" suffix from the `.info.version` property using the `sub` filter (which replaces a string by another one inside a string) on the `.info.version` property.
+When I said that anything can be put on the right side, it's virtually anything; including complex filters chains like the one we have learned to create previously in part 1 and 2. Let's see that with a very simple example. The following listing shows how to delete the "-snapshot" suffix from the `.info.version` property using the `sub` filter (which replaces a string by another one inside a string) on the `.info.version` property.
 
 {% code title:"Using filters" language:jq %}
 [apihandyman.io]$ jq '.info.version' demo-api-openapi.json
@@ -163,7 +168,7 @@ jq '.info.description = (.info.version | sub("-snapshot";""))' demo-api-openapi.
 
 ## Replacing a value with |=
 
-Removing "-snapshot" from the version number can be done in a more elegant way using the `|=` operator, as shown in the following listing. Thanks to this operator, when using `.` on the right side, you only get what was passed on the left side and so you may not need to use `|` (reminder `. | some_filter` is equivalent to `some_filter`).
+deleting "-snapshot" from the version number can be done in a more elegant way using the `|=` operator, as shown in the following listing. Thanks to this operator, when using `.` on the right side, you only get what was passed on the left side and so you may not need to use `|` (reminder `. | some_filter` is equivalent to `some_filter`).
 
 {% code title:"Using |= instead of =" language:jq %}
 [apihandyman.io]$ jq '.info.version' demo-api-openapi.json
@@ -200,14 +205,14 @@ That works with objects, let's invert email and url values in the contact object
 {{site.codeblock_hidden_copy_separator}}
 
 jq '.info.contact' demo-api-openapi.json 
-jq '.info.version |= sub("-snapshot";"")' demo-api-openapi.json
-jq '.info.version |= sub("-snapshot";"")' demo-api-openapi.json | jq '.info.version' 
+jq '.info.contact |= { name, url: .email, email: .url }' demo-api-openapi.json
+jq '.info.contact |= { name, url: .email, email: .url }' demo-api-openapi.json | jq '.info.contact'
 
 {% endcode %}
 
 ## Chaining modifications
 
-Obviously, jq allows to do more than one modification at a time. You probably already guessed how to do so, you just need to pipe all modifications one after another as shown below on line 12 and 16. Here, we replace `.info.description` value by "New description." using `=` and then `|` the result to another modification consisting in removing "-snapshot" from `.info.version` using `|=` and `sub`. The final result shows both modifications.
+Obviously, jq allows to do more than one modification at a time. You probably already guessed how to do so, you just need to pipe all modifications one after another as shown below on line 12 and 16. Here, we replace `.info.description` value by "New description." using `=` and then `|` the result to another modification consisting in deleting "-snapshot" from `.info.version` using `|=` and `sub`. The final result shows both modifications.
 
 {% code language:jq %}
 [apihandyman.io]$ jq '.info' demo-api-openapi.json
@@ -253,9 +258,13 @@ Here's a JQ module demonstrating the various use of `=` and `|=` we have seen (u
 
 # Adding elements
 
-JQ does not only allow to replace existing values, it allows also to add elements thanks to the `+=` operator which can be used on many kind of value.
+JQ does not only allow to replace existing values, it allows also to add elements thanks to the `+=` operator which can be used on many kind of value and `|=` which can be used on objects.
 
-{% include docarray.md title="JQ Operators" target=site.data.jq.link_target links=site.data.jq.operators names="assignment_arithmetic_update" %}
+{% include docarray.md title="JQ Operators" target=site.data.jq.link_target links=site.data.jq.filters names="assignment_arithmetic_update, assignment_update" %}
+
+This section's content is also available as an asciinema bash session:
+
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-3/add.cast" title="Adding elements" poster="npt:1:20" %}
 
 ## Appending to a string with +=
 
@@ -536,56 +545,181 @@ jq --arg coderegex 40. --arg schema ConsumerError -f add-missing-response-conten
 
 Note that the selection of elements to modify with `$coderegex` could be fully made on right side (you could try to modify the module to do so).
 
-# Removing elements
+# Deleting elements
 
-## Removing "dumbly"
+Last but not least, deleting elements. We'll learn to use the following jq operators and function:
 
-.info.contact |= { name, url}
+{% include docarray.md title="JQ Operators and Functions" target=site.data.jq.link_target links=site.data.jq.filters names="assignment_plain,assignment_update,del,walk,delpaths" %}
 
-## Removing elements efficiently
+This section's content is also available as an asciinema bash session:
 
-## Removing deprecated elements
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-3/delete.cast" title="Deleting elements" poster="npt:0:28" %}
 
-{% code language:bash %}
-[apihandyman.io]$ cat demo-api-openapi.json | \
-jq -r --arg deprecated true -f search-operations-deprecated.jq
-delete  /beneficiaries/{id}     Delete a beneficiary (deprecated)
-patch   /beneficiaries/{id}     Updates a beneficiary (deprecated)
+## Dumbly deleting contact with = or |=
 
-[apihandyman.io]$ cat demo-api-openapi.json | \
-jq -r --arg deprecated true -f search-operations-deprecated.jq | wc -l
-       2
+If we want to get rid of the contact property in info, we can do a replacement using `=` or a more clever `|=` as we have seen before. The idea is to keep all other properties (`title`, `version`, and `description`). Note how the `|=` syntax is simpler.
 
-[apihandyman.io]$ cat demo-api-openapi.json | \
-jq -f modify-remove-deprecated.jq | \
-jq -r -f --arg deprecated true  search-operations-deprecated.jq | wc -l
-       0
+{% code title:"Keeping title, version and description to delete contact" language:bash %}
+[apihandyman.io]$ jq '.info' demo-api-openapi.json
+{
+  "title": "Banking API",
+  "version": "1.0.0-snapshot",
+  "description": "The Banking API provides access ...",
+  "contact": {
+    "name": "The Banking API team",
+    "email": "api@bankingcompany.com",
+    "url": "developer.bankingcompany.com"
+  }
+}
+[apihandyman.io]$ jq '.info = { info: .info.title, version: .info.version, description: .info.description }' demo-api-openapi.json | jq '.info'
+{
+  "info": "Banking API",
+  "version": "1.0.0-snapshot",
+  "description": "The Banking API provides access ..."
+}
+[apihandyman.io]$ jq '.info |= { title, version, description }' demo-api-openapi.json | jq '.info'
+{
+  "info": "Banking API",
+  "version": "1.0.0-snapshot",
+  "description": "The Banking API provides access ..."
+}
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq '.info' demo-api-openapi.json
+jq '.info = { info: .info.title, version: .info.version, description: .info.description }' demo-api-openapi.json | jq '.info'
+jq '.info |= { title, version, description }' demo-api-openapi.json | jq '.info'
+
 {% endcode %}
 
-{% codefile title:"$filename" file:modify-remove-deprecated.jq %}
+## Efficiently deleting contact with del
 
-## Removing x-tensions
+That works because there's not too many properties to keep inside info. But if you work on a more complex object this could become quite boring to delete an element. Hopefully, there is a `del` function that can be used to actually delete an element. It can be used with `|=` but also alone. The `del` function takes a path expressions so it can be directly used on `.info.contact` to delete this property.
 
-{% code language:bash %}
-[apihandyman.io]$ cat demo-api-openapi.json | jq -r -f list-xtensions.jq 
-x-implementation
-x-tension-example
+{% code title:"Actually deleting contact" language:bash %}
+[apihandyman.io]$ jq '.info |= del(.contact)' demo-api-openapi.json | jq '.info'
+{
+  "title": "Banking API",
+  "version": "1.0.0-snapshot",
+  "description": "The Banking API provides access ..."
+}
+[apihandyman.io]$ jq 'del(.info.contact)' demo-api-openapi.json | jq '.info'
+{
+  "title": "Banking API",
+  "version": "1.0.0-snapshot",
+  "description": "The Banking API provides access ..."
+}
 
-[apihandyman.io]$ cat demo-api-openapi.json | \
-jq -r -f list-xtensions.jq | wc -l
-       2
+{{site.codeblock_hidden_copy_separator}}
 
-[apihandyman.io]$ cat demo-api-openapi.json | \
-jq -f modify-remove-xtensions.jq | jq -r -f list-xtensions.jq | wc -l
-       0
+jq '.info |= del(.contact)' demo-api-openapi.json | jq '.info'
+jq 'del(.info.contact)' demo-api-openapi.json | jq '.info'
+
 {% endcode %}
 
-{% codefile title:"$filename" file:modify-remove-xtensions.jq %}
+## deleting deprecated operations or properties with walk and del
+
+The OpenAPI 3 specification allows to tell that some operations ans even properties are deprecated by adding a `deprecated: true`. It can be useful to be able to delete all those deprecated elements.
+That can be done quite easily with `walk` and `del` functions.
+
+{% include docarray.md title="JQ Functions" target=site.data.jq.link_target links=site.data.jq.filters names="del,walk" %}
+
+The `walk` function is very useful, it will basically walk through all nodes inside the provided document and apply the filters provided as parameter. The following jq module is split in 3 steps and uses `walk` on each of them:
+
+- First we delete all object values having a deprecated property set to true
+- Then we delete the keys having a null value created by first step
+- And eventually, we delete all keys whose value became an empty object because of second step
+
+{% codefile title:"$filename" file:delete-deprecated.jq %}
+
+Here's the module in action (note for this demonstration we focus only on deprecated operations and reuse the  search operations module from part 2):
+
+{% code title:"Deleting deprecated elements" language:bash %}
+[apihandyman.io]$ jq -r --arg deprecated true -f search-operations.jq demo-api-openapi.json
+[demo-api-openapi.jso]  delete  /beneficiaries/{id}     Delete a beneficiary (deprecated)
+[demo-api-openapi.jso]  patch   /beneficiaries/{id}     Updates a beneficiary (deprecated)
+
+[apihandyman.io]$ jq -f delete-deprecated.jq demo-api-openapi.json | jq -r -f search-operations.jq --arg deprecated true
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r --arg deprecated true -f search-operations.jq demo-api-openapi.json
+jq -f delete-deprecated.jq demo-api-openapi.json | jq -r -f search-operations.jq --arg deprecated true
+
+{% endcode %}
+
+## Deleting x-tensions with paths and delpaths
+
+Another simple way of deleting elements is to use `paths` and `delpaths`, we can use them to remove all x-tensions (custom properties starting whose names start with `x-`) from an OpenAPI file.
+
+{% include docarray.md title="JQ Functions" target=site.data.jq.link_target links=site.data.jq.filters names="paths,delpaths" %}
+
+First we list all paths to those x-tensions. The `paths` function returns an array of all paths to all elements inside a document. Each path is an array, for example the path to contact is `["info","contact"]` (hence `paths` returns an array of array). As we only want x-tensions, we filter this lists of paths to keep only the ones having their leafs prefixed by `x-`. Once we have this array of paths, we can use it as a parameter for delpaths and we're done!
+
+{% codefile title:"$filename" file:delete-xtensions.jq %}
+
+{% code title:"Deleting x-tensions" language:bash %}
+[apihandyman.io]$ jq -r -f list-xtension-paths.jq demo-api-openapi.json 
+[
+  [
+    "paths",
+    "/accounts/{id}",
+    "get",
+    "x-implementation"
+  ],
+  ...
+]
+
+[apihandyman.io]$ jq -f delete-xtensions.jq demo-api-openapi.json | jq -r -f list-xtension-paths.jq 
+[]
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r -f list-xtension-paths.jq demo-api-openapi.json
+jq -f delete-xtensions.jq demo-api-openapi.json | jq -r -f list-xtension-paths.jq
+
+{% endcode %}
+
+## Deleting unsused schemas with delpaths
+
+We're under no obligation to use `paths` when using `delpaths`, we can build the paths ourselves.
+
+{% include docarray.md title="JQ Filters and Functions" target=site.data.jq.link_target links=site.data.jq.filters names="recursive_descent,delpaths" %}
+
+The following module removes unused schemas from an OpenAPI file. Unused schemas are defined in `components.schemas` but never referenced in a `$ref` property. 
+
+To build the paths list, we first create a list of all possible $ref values using the keys of components.schemas. Then we substract all actually used $ref. Note the use of `..`to get all document's nodes and `unique` to keep only one occurrence of each used $ref. Once we have a list of `#/components/schemas/name` strings, we transform them in paths by splitting on `/` and removing `#`. And eventually we use delpaths on the resulting array of paths. Note that delpaths accept a parameter which is not strictly an array of array, indeed the unsused schema paths list is only a succession of individual arrays not enclosed inside an array.
+
+{% codefile title:"$filename" file:delete-unused-schemas.jq %}
+
+{% code title:"Deleting unused schemas" language:bash %}
+[apihandyman.io]$ jq -r -f list-unused-schemas.jq demo-api-openapi.json 
+[
+  "components",
+  "schemas",
+  "ProviderError"
+]
+[
+  "components",
+  "schemas",
+  "UselessSchema"
+]
+
+[apihandyman.io]$ jq -f delete-unused-schemas.jq demo-api-openapi.json | jq -r -f list-unused-schemas.jq
+
+{{site.codeblock_hidden_copy_separator}}
+
+jq -r -f list-unused-schemas.jq demo-api-openapi.json
+jq -f delete-unused-schemas.jq demo-api-openapi.json | jq -r -f list-unused-schemas.jq
+
+{% endcode %}
 
 # Summary
 
-## Operators
+And we're done with part 3, you should now be able to modify any OpenAPI or any JSON file as you like using the following operators and functions:
 
-## Functions
+{% include docarray.md title="JQ Filters, Operators and Functions" target=site.data.jq.link_target links=site.data.jq.filters names="assignment_plain,assignment_update,assignment_arithmetic_update,del,walk,paths,recursive_descent,delpaths" %}
 
 # What's next
+
+With what you have learned in the first 3 parts, you should be able to achieve anything you want with jq. And known that we only scratched the surface, check jq's documentation to discover all of its features. The next and final part is a little bonus in which you'll learn to colorize jq terminal output just for fun.
