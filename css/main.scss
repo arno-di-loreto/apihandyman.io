@@ -3,6 +3,14 @@
 ---
 @charset "utf-8";
 
+// TODO: fix that later to remove this trick
+// Override Sass min()
+// Error cause by width: min(300px, 70vh, 70vw);
+// https://stackoverflow.com/questions/47195391/sass-compare-vh-and-px-with-min-function
+@function min($numbers...) {
+  @return m#{i}n(#{$numbers});
+}
+
 // book
 $book-blue: #014E68;
 $book-grey: #bcbdc0;
@@ -884,7 +892,7 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
       top: 53px;
       left: 0px;
       bottom: 0px;
-      width: calc(min(300px, 70vh, 70vw));
+      width: min(300px, 70vh, 70vw);
       visibility: hidden;
       transition: visibility linear 0.35s;
   
