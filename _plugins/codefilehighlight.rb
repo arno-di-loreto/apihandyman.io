@@ -40,6 +40,12 @@ class CodeFile < Liquid::Tag
       @linerange = @attributes['lines']
     end
 
+    if @attributes['nodownload'] == "true"
+      @nodownload = true
+    else
+      @nodownload = false
+    end
+
   end
 
   def lookup(context, name)
@@ -128,6 +134,12 @@ class CodeFile < Liquid::Tag
       code_title = code_title.gsub("\$filename",@filename)
     end
 
+    if @nodownload
+      download_button = ""
+    else
+      download_button = "<a role=\"button\" class=\"btn btn-secondary border-0 rounded-0\" aria-label=\"download file\" target=\"_blank\" href=\"#{url}\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Download\"><img class=\"btn-icon\" src=\"/images/commons/icons/download.svg\"></a>"
+    end
+
     <<-HTML
 
 <div class="card card-code text-white bg-dark border-dark">
@@ -138,7 +150,7 @@ class CodeFile < Liquid::Tag
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="#{url}" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg"></a>
+          #{download_button}
           <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg"></a>
           #{collapsed_button}
         </div>

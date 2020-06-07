@@ -11,12 +11,12 @@
                   }
 ) |
 # |= can also be used to only work on what is provided on left side
-(.info.version |= sub("-no-snapshot";""))) |
+(.info.version |= sub("-no-snapshot";"")) |
 # It works on objects too
 (
   .info.contact |= { 
                     name, # unmodified 
-                    url: .email # path of value inside .info.contact
+                    url: .email, # path of value inside .info.contact
                     email: "api@bankingcompany.com"
                   }
 )
