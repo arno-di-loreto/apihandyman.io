@@ -32,10 +32,10 @@ You'll find here the abstract, slides and the video (very special thanks to [Mat
 
 OpenAPI offers many possibilities that span the full API lifecycle, yet it is seen purely as a solution for generating API documentation. This session will tell the story of AXA Banque's evolution from .doc and .pdf API documentation to the extensive use of OpenAPI Specification (formerly Swagger). Throughout the journey, we will identify the many advantages of API definition languages beyond simply generating API documentation, including design, testing, documentation continuous delivery, code generation, mocking, and prototyping new ideas.
 
-# Slides
-
-{% speakerdeck db304a20b4204425a43b9843ccb5d504 %}
-
 # Video
 
 {% youtube EtQbaZwCv5o %}
+
+# Slides
+
+{% include slidedeck.html title="openapi-trek-beyond-api-documentation" %}
