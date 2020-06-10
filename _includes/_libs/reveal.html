@@ -1,0 +1,15 @@
+{% capture lib_css %}
+{% include stylesheet.html src="reveal-reset.css" %}
+{% include stylesheet.html src="reveal.css" %}
+{% include stylesheet.html src="reveal-embedded.css" %}
+{% endcapture %}
+
+{% capture lib_js %}
+{% include script.html src="reveal.js" %}
+<script>
+Reveal.initialize({
+    disableLayout: true,
+    autoPlayMedia: true
+});
+</script>
+{% endcapture %}

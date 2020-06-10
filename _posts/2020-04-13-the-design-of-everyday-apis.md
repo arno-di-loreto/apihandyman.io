@@ -20,13 +20,12 @@ You can also read a write up on the Nordic API blog: [The Three Principles of Ex
 
 Well-designed APIs are a joy to use; poorly-designed APIs are cumbersome, confusing and frustrating, just like everyday things. During this session, I make a parallel between everyday things design and API design to expose simple but fundamentals design principles.
 
-Is using knobs is better than using buttons? API design is more than REST vs GraphQL vs gRPC vs whatever existing or yet to come API style. Great design can be achieved using any type of API. Would you buy a Kitchen Radar 3000? Are you able to use any washing machine instantly without reading user manual? Why QWERTY layout was invented? Like everyday things, APIs must have a clear purpose, must be used easily by anyone and are constrained by their environment.
-
-# Slides
-
-{% speakerdeck 2653498f1765496589a6cbe3b647edc6 %}
+Is using knobs better than using buttons? API design is more than REST vs GraphQL vs gRPC vs whatever existing or yet to come API style. Great design can be achieved using any type of API. Would you buy a Kitchen Radar 3000? Are you able to use any washing machine instantly without reading user manual? Why QWERTY layout was invented? Like everyday things, APIs must have a clear purpose, must be used easily by anyone and are constrained by their environment.
 
 # Video
 
 {% youtube RT_3BSaHce8 %}
 
+# Slides
+
+{% include slidedeck.html title="the-design-of-everyday-apis" %}

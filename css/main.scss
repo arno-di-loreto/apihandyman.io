@@ -1222,3 +1222,16 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
 .d-desktop-only {
   @extend .d-none, .d-lg-block;
 }
+
+/*********************/
+/* Responsive iframe */
+/*********************/
+
+.iframe-container {
+  @extend .embed-responsive, .embed-responsive-16by9;
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.iframe-responsive {
+  @extend .embed-responsive-item;
+}
