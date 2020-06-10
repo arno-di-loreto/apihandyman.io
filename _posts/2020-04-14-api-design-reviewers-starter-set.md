@@ -26,12 +26,10 @@ Explore subterranean needs! Plunder hoards of inconsistency! Battle legendary de
 
 The API Design Reviewer’s Starter Set is your gateway to exhaustive and constructive API design reviews. This session contains the essential rules of design reviews plus a few tips and trick that will be of great help on your perilous adventures in the API world.
 
-Here are its slides and the video which was recorded at API Days London 2019.
-
-# Slides
-
-{% speakerdeck 3d08495b22954fc59afa83879cbb8384 %}
-
 # Video
 
 {% youtube pOmmkbCJCu0 %}
+
+# Slides
+
+{% include slidedeck.html title="api-design-reviewers-starter-set" %}
