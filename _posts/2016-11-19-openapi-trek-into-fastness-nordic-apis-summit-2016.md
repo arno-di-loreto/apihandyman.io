@@ -30,10 +30,10 @@ After API Days London, I've been to the Nordic APIs Summit in Stockholm for the 
 
 Often reduced to Swagger UI and seen purely as a solution for generating API documentation, the OpenAPI (fka. Swagger) Specification format offers many possibilities that span the full API lifecycle. In this session we will identify some of the many advantages of this API definition from design to production, including topics such as design, mock, development, test, documentation continuous delivery, securely evolve an existing API. All this contributing in accelerating and securing API's lifecycle.
 
-# Slides
-
-{% speakerdeck e6ec07b2713942fab1effc17a6ad5b41 %}
-
 # Video
 
 {% youtube 8Q0Yu81rRmU %}
+
+# Slides
+
+{% include slidedeck.html title="openapi-trek-into-fastness" %}
