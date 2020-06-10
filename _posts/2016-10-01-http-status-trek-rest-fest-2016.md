@@ -18,6 +18,11 @@ tags:
 ---
 I had the luck to go back to [REST Fest](http://www.restfest.org/), this second time was as awesome as last one. Here's the video and slides of my 5 in 5 about HTTP Status Codes.
 <!--more-->
-  
+
+# Video
+
 {% vimeo 183658014 %}
-{% speakerdeck d43efe60d17e42479a9afb454a3bcbe0 %}
+
+# Slides
+
+{% include slidedeck.html title="http-status-trek" %}
