@@ -25,11 +25,10 @@ Every company’s API surface grows irremediably. More and more APIs means more 
 
 In this session, based on my own experience defining and sharing API design common practices in my company and based on the API styles guides that I have collected on the [API Stylebook](http://www.apistylebook.com), we will discover why we desperately need API style guides, what we can put in them, how to build them and how they can or cannot help us and our fellow API designers to create together a flawless consistent API surface for our company. We will also see how API style guides could be used in the API ecosystem with tools such as the OpenAPI specification and API design tools to ensure that their rules are followed retrospectively and preemptively.
 
-# Slides
-
-{% speakerdeck e820736b440a47119e8f3ccb090a9e7e %}
-
 # Video
 
 {% youtube ZUI5gHdhfwk %}
 
+# Slides
+
+{% include slidedeck.html title="the-lord-of-api-designs" %}
