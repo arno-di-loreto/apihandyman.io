@@ -19,5 +19,10 @@ tags:
 ---
 I had the pleasure to participate to [REST Fest 2015](http://www.restfest.org/), here are my 5 in 5 video and slide deck about hypermedia controls. If you can attend only one API conference, this is the one.<!--more-->
 
+# Video
+
 {% vimeo 143614365 %}
-{% speakerdeck a5b1c56ca9e5461c9d9731ac745a4f92 %}
+
+# Slides
+
+{% include slidedeck.html title="hypermedia-controls" %}
