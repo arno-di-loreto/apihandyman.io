@@ -102,14 +102,6 @@ Grab Youtube video id (https://youtu.be/8Q0Yu81rRmU) or Vimeo video id (https://
 {% vimeo 237468064 %}
 ```
 
-## Speakerdeck Slidedecks
-
-Grab slide deck ID from speakerdeck (`data-id` in the embed code you get on speakerdeck.com when clicking on the `embed` link):
-
-```
-{% speakerdeck e6ec07b2713942fab1effc17a6ad5b41 %}
-```
-
 ### Inline code
 
 Highlight code between `code` and `endcode`.
