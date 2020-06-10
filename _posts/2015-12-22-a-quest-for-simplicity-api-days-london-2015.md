@@ -26,8 +26,15 @@ Join me in a *quest for simplicity* from an imaginary bank's IS depth to its API
 
 Here are this keynote's video and slidedeck.
 
+# Video
+
 {% youtube ten2-fjeXTM %}
-{% speakerdeck 921e2d9bdd514bb78f8931252a34f07d %}
 
 Here's API Days London 2015 teaser ... watch well there may be some API Handyman subliminal images...
+
 {% youtube j0FsZuFumSk %}
+
+# Slides
+
+{% include slidedeck.html title="a-quest-for-simplicity" %}
+
