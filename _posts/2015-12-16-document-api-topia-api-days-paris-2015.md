@@ -29,7 +29,12 @@ I talked about an ideal world where API (and software) and documentation live in
 
 If you want to know more about what happened at this awesome conference, you can read my [API Days Paris 2015 recap with a light saber](http://apihandyman.io/api-days-paris-2015-with-a-lightsaber/).
 
-Here are my talk's video (unofficial one, thanks to [Guillaume Laforge](https://twitter.com/glaforge), stay tuned for the official one) and slidedeck:
+Here are my talk's video (thanks to [Guillaume Laforge](https://twitter.com/glaforge)) and slidedeck.
+
+# Video
 
 {% youtube pS1aOFAU0-s %}
-{% speakerdeck b91f0b85c3434eea983040960354282c %}
+
+# Slides
+
+{% include slidedeck.html title="document-api-topia" %}
