@@ -21,10 +21,10 @@ GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it 
 
 During this session, while discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it. From design and implementation to pricing model and analytics down to developers experience and implementations, choosing an API design style will have impact on the whole API lifecycle. Therefore, this choice must be an enligthned one and not based on simple beliefs.
 
-# Slides
-
-{% speakerdeck 4c95354202f4456fa889c36ada33c6ba %}
-
 # Video
 
 Available on [InfoQ](https://www.infoq.com/presentations/api-rest-graphql).
+
+# Slides
+
+{% include slidedeck.html title="and-graphql-for-all" %}
