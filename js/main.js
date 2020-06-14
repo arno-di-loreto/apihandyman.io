@@ -13,15 +13,19 @@ $(window).scroll(function(){
   }
 });
 
+/***********/
+/* Privacy */
+/***********/
+
 {% for page in site.pages %}
   {% if page.title == 'Privacy Policy' %}
     {% assign privacy_date = page.date %}
-    {% assign privacy_local_storage = page.privacy_local_storage %}
   {% endif %}
 {% endfor %}
 
-const privacyPolicyLocalStorage = '{{privacy_local_storage}}'
+const privacyPolicyLocalStorage = 'acceptedPrivacyPolicyDate'
 const privacyPolicyEffectiveDate = '{{privacy_date}}'
+const showThirdPartyLocalStorage = 'showThirdParty'
 
 function showPrivacyMessage() {
   if(privacyPolicyEffectiveDate.localeCompare(localStorage.getItem(privacyPolicyLocalStorage)) != 0) {
@@ -33,6 +37,58 @@ function acceptPrivacyPolicy() {
   localStorage.setItem(privacyPolicyLocalStorage, privacyPolicyEffectiveDate)
   $('.privacy-message').toggleClass('d-none')
 }
+
+function thirdPartyConsent(id, source) {
+  const parent = $('#'+id)
+  const remember =$(parent).find('.third-party-content-remember').is(':checked')
+  if(remember) {
+    storeThirdPartyConsent(source, true)
+    showAcceptedThirdParty()
+  }
+  else {
+    showThirdParty(parent)
+  }
+}
+
+function storeThirdPartyConsent(source, consent) {
+  const key = showThirdPartyLocalStorage + '.' + source
+  if(consent) {
+    localStorage.setItem(key, true)
+  }
+  else {
+    localStorage.removeItem(key)
+  }
+}
+
+function showThirdParty(element) {
+  if($(element).find('.third-party-content-iframe-disabled')) {
+    const warning = $(element).find('.third-party-content-warning')
+    const iframeContainter = $(element).find('.third-party-content-iframe')
+    const iframe = iframeContainter.find('iframe')
+    $(iframe).attr('src', $(iframe).attr('data-src'))
+    $(iframeContainter).removeClass('third-party-content-iframe-disabled')
+    $(warning).addClass('third-party-content-warning-disabled')
+  }
+}
+
+function showAcceptedThirdParty() {
+  keys = Object.keys(localStorage)
+  for( const keyIndex in keys) {
+    const key = keys[keyIndex]
+    const showTirdPartyRegex = new RegExp("^"+showThirdPartyLocalStorage);
+    if ( showTirdPartyRegex.test(key) && localStorage.getItem(key) === "true") {
+      const thirdParty = key.replace('showThirdParty.', '')
+      const thirdPartyElements = $('.third-party-content-'+thirdParty)
+      for(let i=0;i< thirdPartyElements.length;i++) {
+        showThirdParty(thirdPartyElements[i])
+      }
+    }
+  }
+}
+
+/**************/
+/* Pagination */
+/**************/
 
 function goToPage(input) {
   const targetPage = input.value
@@ -57,6 +113,10 @@ function goToPage(input) {
     }
 }
 
+/************/
+/* Tooltips */
+/************/
+
 //Enabling tooltip everywhere
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
@@ -65,9 +125,14 @@ $(function () {
   });
 })
 
+/***********************/
+/* Page initialization */
+/***********************/
+
 $( document ).ready(function() {
 
   showPrivacyMessage()
+  showAcceptedThirdParty()
 
   const clipboardTextCopy = new ClipboardJS('.text-copy', {
     target: function(trigger) {

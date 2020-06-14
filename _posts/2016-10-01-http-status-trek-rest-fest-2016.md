@@ -21,7 +21,7 @@ I had the luck to go back to [REST Fest](http://www.restfest.org/), this second 
 
 # Video
 
-{% vimeo 183658014 %}
+{% include video.html title="http-status-trek-restfest" %}
 
 # Slides
 

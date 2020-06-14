@@ -1235,3 +1235,22 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
 .iframe-responsive {
   @extend .embed-responsive-item;
 }
+
+/* Third party content*/
+
+.third-party-content-warning {
+  @extend .text-white, .rounded-0;
+  .card-img-overlay {
+    background: rgba(12,12,12,0.8);
+    a.privacy-policy {
+      color: $book-orange;
+      text-decoration: underline;
+    }
+  }
+  
+}
+
+.third-party-content-iframe-disabled, .third-party-content-warning-disabled {
+  visibility: hidden;
+  height: 0;
+}

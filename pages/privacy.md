@@ -4,7 +4,6 @@ layout: page
 permalink: /privacy/
 banner_type: small
 date: 2020-04-07
-privacy_local_storage: privacyPolicyHidden
 ---
 
 This Privacy Policy is meant to help you understand what information this website collect and why it collect it.
