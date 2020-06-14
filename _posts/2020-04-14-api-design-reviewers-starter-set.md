@@ -28,7 +28,7 @@ The API Design Reviewer’s Starter Set is your gateway to exhaustive and constr
 
 # Video
 
-{% youtube pOmmkbCJCu0 %}
+{% include video.html title="api-design-reviewers-starter-set-apidays-london" %}
 
 # Slides
 
