@@ -21,7 +21,7 @@ I had the pleasure to participate to [REST Fest 2015](http://www.restfest.org/),
 
 # Video
 
-{% vimeo 143614365 %}
+{% include video.html title="hypermedia-controls-restfest" %}
 
 # Slides
 
