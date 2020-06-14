@@ -12,8 +12,9 @@
                 "panel": "new"
             },
             "runOptions": {
-              "runOn": "folderOpen"   
-            }
+                "runOn": "folderOpen"
+            },
+            "problemMatcher": []
         }
     ]
 }
