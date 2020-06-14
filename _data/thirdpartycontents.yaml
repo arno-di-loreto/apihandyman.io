@@ -1,3 +1,7 @@
+hypermedia-controls-restfest:
+  source: vimeo
+  id: 143614365
+  preview: /images/thirdpartycontents/hypermedia-controls-restfest.jpg 
 quest-for-simplicity-apidays:
   source: youtube
   id: ten2-fjeXTM
@@ -6,10 +10,6 @@ quest-for-simplicity-apidays:
   source: youtube
   id: j0FsZuFumSk
   preview: /images/thirdpartycontents/2015-trailer-apidays-london.jpg
-hypermedia-controls-restfest:
-  source: vimeo
-  id: 143614365
-  preview: /images/thirdpartycontents/hypermedia-controls-restfest.jpg 
 document-api-topia-apidays:
   source: youtube
   id: pS1aOFAU0-s
@@ -18,3 +18,7 @@ http-status-trek-restfest:
   source: vimeo
   id: 183658014
   preview: /images/thirdpartycontents/http-status-trek-restfest.jpg
+openapitrek-apidays-london:
+  source: youtube
+  id: rUPwwAQyF_I
+  preview: /images/thirdpartycontents/openapitrek-apidays-london.jpg

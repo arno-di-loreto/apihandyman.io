@@ -32,7 +32,7 @@ For many still known as Swagger, the OpenAPI specification is often reduce to au
 
 # Video
 
-{% youtube rUPwwAQyF_I %}
+{% include video.html title="openapitrek-apidays-london" %}
 
 # Slides
 
