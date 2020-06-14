@@ -34,7 +34,7 @@ OpenAPI offers many possibilities that span the full API lifecycle, yet it is se
 
 # Video
 
-{% youtube EtQbaZwCv5o %}
+{% include video.html title="openapi-trek-beyond-apistrat" %}
 
 # Slides
 
