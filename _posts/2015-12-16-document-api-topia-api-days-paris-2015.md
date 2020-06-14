@@ -33,7 +33,7 @@ Here are my talk's video (thanks to [Guillaume Laforge](https://twitter.com/glaf
 
 # Video
 
-{% youtube pS1aOFAU0-s %}
+{% include video.html title="document-api-topia-apidays" %}
 
 # Slides
 
