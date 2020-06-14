@@ -27,7 +27,7 @@ In this session, based on my own experience defining and sharing API design comm
 
 # Video
 
-{% youtube ZUI5gHdhfwk %}
+{% include video.html title="the-lord-of-api-designs-apidays-berlin" %}
 
 # Slides
 
