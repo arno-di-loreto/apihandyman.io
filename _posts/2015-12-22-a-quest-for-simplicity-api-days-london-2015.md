@@ -28,11 +28,11 @@ Here are this keynote's video and slidedeck.
 
 # Video
 
-{% youtube ten2-fjeXTM %}
+{% include video.html title="quest-for-simplicity-apidays" %}
 
 Here's API Days London 2015 teaser ... watch well there may be some API Handyman subliminal images...
 
-{% youtube j0FsZuFumSk %}
+{% include video.html title="2015-trailer-apidays-london" %}
 
 # Slides
 
