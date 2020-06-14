@@ -32,7 +32,7 @@ Often reduced to Swagger UI and seen purely as a solution for generating API doc
 
 # Video
 
-{% youtube 8Q0Yu81rRmU %}
+{% include video.html title="openapi-trek-into-fastness-nordicapis" %}
 
 # Slides
 

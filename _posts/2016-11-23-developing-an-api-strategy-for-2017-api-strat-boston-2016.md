@@ -25,4 +25,9 @@ Smartbear blog posts:
 
 Here's the panel video:
 
-{% youtube xdJPJ3E-nC8 %}
+{% include video.html title="developing-an-api-strategy" %}
+
+And a 2 minutes summary:
+
+{% include video.html title="developing-an-api-strategy-hightlights" %}
+
