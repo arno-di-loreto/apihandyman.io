@@ -24,7 +24,7 @@ Is using knobs better than using buttons? API design is more than REST vs GraphQ
 
 # Video
 
-{% youtube RT_3BSaHce8 %}
+{% include video.html title="the-design-of-everyday-apis-nordicapis" %}
 
 # Slides
 
