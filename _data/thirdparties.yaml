@@ -1,14 +1,18 @@
 youtube:
   name: YouTube (Google)
   host: youtube.com
+  usage: Embedded video
   privacyPolicyName: privacy policy
   privacyPolicy: https://policies.google.com/privacy
   embeddedUrl: https://www.youtube-nocookie.com/embed/CONTENT_ID?color=white&theme=light
   directUrl: https://www.youtube.com/watch?v=CONTENT_ID
+  setting: Cookie and local storage YouTube (third party)
 vimeo:
   name: Vimeo
   host: vimeo.com
+  usage: Embedded video
   privacyPolicyName: cookie policy
   privacyPolicy: https://vimeo.com/cookie_policy
   embeddedUrl: https://player.vimeo.com/video/CONTENT_ID
   directUrl: https://vimeo.com/CONTENT_ID
+  setting: Cookie and local storage Vimeo (third party)

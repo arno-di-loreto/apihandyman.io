@@ -20,10 +20,11 @@ $(window).scroll(function(){
 {% for page in site.pages %}
   {% if page.title == 'Privacy Policy' %}
     {% assign privacy_date = page.date %}
+    {% assign privacy_local_storage = page.privacy_local_storage %}
   {% endif %}
 {% endfor %}
 
-const privacyPolicyLocalStorage = 'acceptedPrivacyPolicyDate'
+const privacyPolicyLocalStorage = '{{privacy_local_storage}}'
 const privacyPolicyEffectiveDate = '{{privacy_date}}'
 const showThirdPartyLocalStorage = 'showThirdParty'
 
@@ -36,6 +37,7 @@ function showPrivacyMessage() {
 function acceptPrivacyPolicy() {
   localStorage.setItem(privacyPolicyLocalStorage, privacyPolicyEffectiveDate)
   $('.privacy-message').toggleClass('d-none')
+  loadPrivacySettings()
 }
 
 function thirdPartyConsent(id, source) {
@@ -86,6 +88,46 @@ function showAcceptedThirdParty() {
   }
 }
 
+function loadPrivacySettings() {
+  const privacySettings = $('#privacy-settings-configuration')
+  if(privacySettings.length > 0) {
+    $(privacySettings.find('.privacy-setting')).each(function (index) {
+      const checkbox = this
+      const id = $(checkbox).attr('id')
+      const value = localStorage.getItem(id)
+      if(value && value !== "false") {
+        $(checkbox).prop("checked", true)
+      } else {
+        $(checkbox).prop("checked", false)
+      }
+    })
+  }
+}
+
+function onReadyPrivacy() {
+  showPrivacyMessage()
+  showAcceptedThirdParty()
+  loadPrivacySettings()
+
+  $('.privacy-setting').click(function(){
+    const id = $(this).attr('id')
+    if ($(this).is(':checked')){
+      if(id.localeCompare(privacyPolicyLocalStorage) === 0) {
+        acceptPrivacyPolicy()
+      }
+      else {
+        localStorage.setItem(id, true)
+      }
+    } 
+    else {
+      localStorage.removeItem(id)
+      if(id.localeCompare(privacyPolicyLocalStorage) === 0) {
+        showPrivacyMessage()
+      }
+    }
+  })
+}
+
 /**************/
 /* Pagination */
 /**************/
@@ -131,8 +173,7 @@ $(function () {
 
 $( document ).ready(function() {
 
-  showPrivacyMessage()
-  showAcceptedThirdParty()
+  onReadyPrivacy()
 
   const clipboardTextCopy = new ClipboardJS('.text-copy', {
     target: function(trigger) {
@@ -141,7 +182,7 @@ $( document ).ready(function() {
   })
 
   clipboardTextCopy.on('success', function(e) {
-    console.log('copied from ', e)
+    //console.log('copied from ', e)
   });
 
   clipboardTextCopy.on('error', function(e) {
