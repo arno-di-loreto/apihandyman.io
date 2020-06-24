@@ -17,12 +17,21 @@ $book-grey: #bcbdc0;
 $book-orange: #e66c2a;
 $ghost-white: #F9F8F9;
 
+// Banner color palette
+$green: #2498AF;
+$orange: #DF5737;
+
+$navigation-primary-background-color: $green;
+$navigation-primary-active-color: $green;
+$navigation-secondary-background-color: $orange;
+
 // Commons
 
 $font-title: 'Spartan', sans-serif;
 $font-title-weight: 300;
 $font-regular: 'Roboto', sans-serif;
-$active-color: $book-orange;
+$active-color: $orange;
+$invert-text-color: white;
 
 $overlay-transparent-background: rgba(10,10,10,0.2);
 
@@ -44,27 +53,27 @@ $banner-shadow: $light-shadow;
 $content-section-shadow: $light-shadow;
 
 $table-header-background-color: black;
-$table-header-font-color: white;
+$table-header-font-color: $invert-text-color;
 
-$link-font-color: $book-blue;
-$link-hover-font-color: $book-orange;
+$link-font-color: $navigation-primary-background-color;
+$link-hover-font-color: $active-color;
 
 // Menus
 
-$menu-hover-background: $book-orange;
-$menu-hover-color: white;
+$menu-hover-background: $active-color;
+$menu-hover-color: $invert-text-color;
 
 $button-focus-shadow: 0 0 0 0.2rem rgba(230,108,42,0.25);
 
-$primary-button-background-color: $book-orange;
-$primary-button-font-color: white;
+$primary-button-background-color: $navigation-secondary-background-color;
+$primary-button-font-color: $invert-text-color;
 
-$navbar-backgound-color: $book-blue;
-$navbar-item-font-color: white;
+$navbar-backgound-color: $navigation-primary-background-color;
+$navbar-item-font-color: $invert-text-color;
 $navbar-active-item-background-color: $navbar-backgound-color;
-$navbar-active-item-font-color: $book-orange;
+$navbar-active-item-font-color: $active-color;
 $navbar-hover-item-background-color: none;
-$navbar-hover-item-font-color: $book-orange;
+$navbar-hover-item-font-color: $active-color;
 $navbar-shadow: $strong-shadow;
 $navbar-menu-transparent-background-color: $overlay-transparent-background;
 $navbar-menu-transparent-item-font-color: $navbar-item-font-color;
@@ -76,10 +85,10 @@ $left-navbar-background-color: $navbar-backgound-color;
 $left-navbar-item-font-color: $navbar-item-font-color;
 $left-navbar-active-item-background-color: $navbar-active-item-background-color;
 $left-navbar-active-item-font-color: $navbar-active-item-font-color;
-$left-navbar-hover-item-background-color: $book-orange;
+$left-navbar-hover-item-background-color: $navigation-secondary-background-color;
 $left-navbar-hover-item-font-color: white;
 $left-navbar-shadow: $navbar-shadow;
-$left-navbar-divider-color: $book-orange;
+$left-navbar-divider-color: $navigation-secondary-background-color;
 $left-navbar-divider-width: 1px;
 $left-navbar-divider-style: solid;
 
@@ -161,7 +170,7 @@ table {
 
   .btn-documentation:hover {
     svg {
-      fill: $book-orange;
+      fill: $active-color;
     }
   }
 }
@@ -199,11 +208,11 @@ a:hover {
 }
 
 .btn-primary:hover {
-  background-color: $book-orange;
+  background-color: $active-color;
 }
 
 .btn-primary:active {
-  background-color: $book-orange;
+  background-color: $active-color;
 }
 
 // Fill screen to keep footer on bottom when content < screen height
@@ -351,13 +360,17 @@ $book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50
     float: right;
 
     @include media-breakpoint-down(xl) {
-      margin-top: 75px;
-      width: 400px;
+      margin-top: 135px;
+      margin-right: 90px;
+      padding-left: 20px;
+      padding-right: 20px;
+      width: 300px;
     }
 
     @include media-breakpoint-down(lg) {
-      margin-top: 55px;
-      width: 400px;
+      margin-top: 130px;
+      margin-right: -5px;
+      width: 300px;
     }
 
     @include media-breakpoint-down(md) {
@@ -373,8 +386,8 @@ $book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50
 /* Banner - Full width */
 /***********************/
 
-$row-banner-default-left-color: #9F92C7;
-$row-banner-default-right-color: #634E91;
+$row-banner-default-left-color: $navigation-primary-background-color;
+$row-banner-default-right-color: $navigation-primary-background-color;
 $row-banner-default-linear-gradient: linear-gradient(to right, 
                                               $row-banner-default-left-color 0%, $row-banner-default-left-color 50%, $row-banner-default-right-color 50%, $row-banner-default-right-color 100%); 
 
@@ -932,7 +945,7 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
 
 a.left-book-ad-small, a.left-book-ad-small:hover {
   @extend .pl-3, .pt-3, .pb-2, .text-left;
-  color: $book-orange;
+  color: $active-color;
   cursor: pointer;
   border-bottom-width: $left-navbar-divider-width;
   border-bottom-color: $left-navbar-divider-color;
@@ -958,7 +971,7 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
 
 .left-book-ad {
   @extend .card, .rounded-0;
-  color: $book-orange;
+  color: $active-color;
    img {
     @extend .rounded-0;
   }
@@ -1015,7 +1028,7 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
   }
   .book-discount-code:hover {
     cursor: pointer;
-    background-color: $book-orange;
+    background-color: $navigation-secondary-background-color;
     color: white;
   }
 }
@@ -1243,7 +1256,7 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
   .card-img-overlay {
     background: rgba(12,12,12,0.8);
     a.privacy-policy {
-      color: $book-orange;
+      color: $active-color;
       text-decoration: underline;
     }
   }
