@@ -280,16 +280,13 @@ $book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50
   }
 }
 
-.home-book {
-  box-shadow: $banner-shadow;
-  @include media-breakpoint-up(md) { 
-      background: $book-gradient;
+.card-book-horizontal-banner {
+  @extend .rounded-0, .border-0;
+  box-shadow: $content-section-shadow;
+  .row {
+    margin-left: 0;
+    margin-right: 0;
   }
-  
-  @include media-breakpoint-down(sm) {
-      background: white;
-  }
-  
   .card-body-quotes {
     @extend .pb-0;
 
