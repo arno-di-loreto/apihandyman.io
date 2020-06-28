@@ -217,7 +217,7 @@ a:hover {
 
 // Fill screen to keep footer on bottom when content < screen height
 .page-content-container {
-  @extend .container-fluid, .d-flex, .flex-column;
+  @extend .container-fluid, .d-flex, .flex-column, .p-0;
   min-height: calc(100vh - 55px) ;
   .row-page-content {
     @extend .flex-fill;
@@ -365,14 +365,9 @@ $book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50
     }
 
     @include media-breakpoint-down(lg) {
-      margin-top: 130px;
-      margin-right: -5px;
-      width: 300px;
-    }
-
-    @include media-breakpoint-down(md) {
-      margin-top: 35px;
-      width: 300px;
+      margin-top: 110px;
+      margin-right: 60px;
+      width: 270px;
       font-size: 0.8rem;
     }
 
@@ -389,27 +384,68 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
                                               $row-banner-default-left-color 0%, $row-banner-default-left-color 50%, $row-banner-default-right-color 50%, $row-banner-default-right-color 100%); 
 
 .row-banner-default {
-  box-shadow: $banner-shadow;
+
+  padding-left: 0;
+  padding-right: 0;
 
   @include media-breakpoint-down(xl) {
     height: 400px;
-    background-image: url('/images/commons/home-banner.jpg'), $row-banner-default-linear-gradient;
+    //background-image: url('/images/commons/home-banner.jpg'), $row-banner-default-linear-gradient;
+    .banner {
+      flex: 0 0 1140px;
+      background-image: url('/images/commons/home-banner.jpg');
+      background-repeat: no-repeat;
+      background-position: top;
+      background-size: 1140px;
+    }
+    .banner-left {
+      background-image: url('/images/commons/home-banner-left.jpg');
+      background-repeat: repeat-x; 
+      background-position: top right;
+    }
+    .banner-right {
+      background-image: url('/images/commons/home-banner-right.jpg');
+      background-repeat: repeat-x;
+      background-position: top left;
+    }
   }
 
   @include media-breakpoint-down(lg) {
-    height: 400px;
-    background-image: url('/images/commons/home-banner.jpg'), $row-banner-default-linear-gradient;
+    .banner {
+      flex: 0 0 960px;
+      background-size: 960px;
+    }
+    height: 337px;
+    .banner-left, .banner-right {
+      background-size: auto 337px;
+    }
   }
 
   @include media-breakpoint-down(md) {
-    height: 300px;
-    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-default-linear-gradient;
+    .banner {
+      flex: 0 0 720px;
+      background-size: 720px;
+    }
+    height: 253px;
+    .banner-left, .banner-right {
+      background-size: auto 253px;
+    }
+    //height: 300px;
+    //background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-default-linear-gradient;
     
   }
 
   @include media-breakpoint-down(sm) {
-    height: 250px;
-    background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-default-linear-gradient;
+    .banner {
+      flex: 0 0 540px;
+      background-size: 540px;
+    }
+    height: 189px;
+    .banner-left, .banner-right {
+      background-size: auto 189px;
+    }
+    //height: 250px;
+    //background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-default-linear-gradient;
   }
 }
 
@@ -895,7 +931,11 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
       padding-left: 26px;
     }
   }
-  
+
+  #scrollable-toc::-webkit-scrollbar {
+      width: 0px;
+  }
+
   @include media-breakpoint-down(md) {
       position: fixed;
       z-index: 1021;
