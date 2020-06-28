@@ -905,12 +905,12 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
       color: $left-navbar-item-font-color;
     }
 
-    .nav-link:hover, .nav-link.active:hover {
+    .nav-link.active {
       color: $left-navbar-hover-item-font-color;
       background-color: $left-navbar-hover-item-background-color;
     }
 
-    .nav-link.active {
+    .nav-link:hover, .nav-link.active:hover {
       color: $left-navbar-active-item-font-color;
       background-color: $left-navbar-active-item-background-color;
     }
