@@ -124,6 +124,7 @@ body {
     font-family: $font-title;
     font-weight: $font-title-weight;
   }
+  overflow-x: hidden; // last minute fix for a f.... horizontal scrollbar coming from ?
 }
 
 .btn-icon {
@@ -219,6 +220,8 @@ a:hover {
 .page-content-container {
   @extend .container-fluid, .d-flex, .flex-column, .p-0;
   min-height: calc(100vh - 55px) ;
+  margin-left: 15;
+  margin-right: 15;
   .row-page-content {
     @extend .flex-fill;
   }
