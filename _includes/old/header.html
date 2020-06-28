@@ -1,0 +1,42 @@
+
+{% if page.banner %}
+  {% assign thumbnail = page.banner %}
+{% else %}
+  {% assign thumbnail = site.default_thumbnail %}
+  {% assign page_thumbnail = '/images' | append: page.permalink | append: 'thumbnail.png' %}
+  {% for static_file in site.static_files %}
+    {% if static_file.path == page_thumbnail %}
+        {% assign thumbnail = page_thumbnail %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign subtitle = page.subtitle %}
+{% if page.series %}
+  {% assign title = page.series_title %}
+  {% assign subtitle = page.series %}
+{% elsif page.alternate_title %}
+  {% assign title = page.alternate_title %}
+{% elsif page.title %}
+  {% assign title = page.title %}
+  {% if site.data.categories[page.title].subtitle %}
+    {% assign title = title | capitalize %}
+    {% assign subtitle = site.data.categories[page.title].subtitle %}
+  {% endif %}
+{% else %}
+  {% assign title = site.title %}
+  {% assign subtitle = site.description %}
+{% endif %}
+
+<header>
+  <!--<div class="container main-container full-jumbotron">-->
+      <div class="jumbotron" style="background-image: url('{{ thumbnail | prepend: site.baseurl | prepend: site.github.url}}')">
+        <div class="header-caption text-center">
+          <h1 class="post-title" itemprop="name headline">{{ title | escape }}</h1>
+          {% if subtitle %}
+            <h2 class="post-subtitle">{{ subtitle | escape }}</h2>
+          {% endif %}
+        </div>
+      </div>
+  <!--</div>-->
+</header>

@@ -1,75 +1,49 @@
-{% if page.paginator %}
-  {% assign paginator = page.paginator %}
-{% endif %}
+{% if paginator %}
+  {% assign prepend_pagination_url = prepend: site.baseurl | prepend: site.github.url %}
 
-{% if page.paginate_style %}
-  {% assign paginate_style = page.paginate_style %}
-{% elsif site.paginate_style %}
-  {% assign paginate_style = site.paginate_style %}
-{% else %}
-  {% assign paginate_style = "infinite" %}
-{% endif %}
-
-{% assign prepend_pagination_url = site.baseurl | prepend: site.github.url %}
-{% if page.title %}
-  {% assign prepend_pagination_url = page.title | prepend:'/categories/' | prepend:prepend_pagination_url %}
-{% endif %}
-
-{% if paginate_style == "numbers" %}
-  <nav  id="pagination" aria-label="Page navigation">
+  <nav class="nav-pagination nav-fixed-bottom" aria-label="Pagination navigation">
     <ul class="pagination">
+      
       {% if paginator.previous_page %}
-      <li>
-        <a href="{{ paginator.previous_page_path | prepend: prepend_pagination_url }}/" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
+        {% assign css = "" %}
+        {% assign href = paginator.previous_page_path | prepend: prepend_pagination_url | replace: "index.html", "" | append: "#list" %}
       {% else %}
-      <li class="disabled">
-        <a href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
+        {% assign css = " disabled" %}
+        {% assign href = "" %}
       {% endif %}
-      {% for index in (1..paginator.total_pages) %}
-        {% if index == paginator.page %}
-          {% if index == 1 %}
-            <li class="active"><a href="{{ site.baseurl | prepend: site.github.url }}/">{{ index }}</a></li>
-          {% else %}
-            <li class="active"><a href="{{ index | prepend: '/page' | prepend: prepend_pagination_url }}/">{{ index }}</a></li>
-          {% endif %}
-        {% else %}
-          {% if index == 1 %}
-            <li><a href="{{ site.baseurl | prepend: site.github.url }}/">{{ index }}</a></li>
-          {% else %}
-            <li><a href="{{ index | prepend: '/page' | prepend: prepend_pagination_url }}/">{{ index }}</a></li>
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-      {% if paginator.next_page %}
-      <li>
-        <a href="{{ paginator.next_page_path | prepend: prepend_pagination_url }}/" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
+      <li class="page-item{{css}}"><a class="page-link page-link-icon" aria-label="Go to previous page" href="{{href}}" data-toggle="tooltip" data-placement="top" title="Go to previous page">{% include svg/previous.svg %}</a></li>
+
+      {% if paginator.page != paginator.first_page %}
+        {% assign css = "" %}
+        {% assign href = paginator.first_page_path | prepend: prepend_pagination_url | replace: "index.html", "" | append: "#list" %}
       {% else %}
-      <li class="disabled">
-        <a href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
+        {% assign css = " disabled" %}
+        {% assign href = "" %}
       {% endif %}
-    </ul>
-  </nav>
-{% else %}
-  <nav id="pagination" aria-label="Page navigation">
-    <ul class="pager">
-      {% if paginator.previous_page %}
-      <li class="previous"><a href="{{ paginator.previous_page_path | prepend: prepend_pagination_url }}/"><span aria-hidden="true">&larr;</span> Newer</a></li>
+      <li class="page-item{{css}}"><a class="page-link page-link-text" aria-label="Go to first page" href="{{href}}" data-toggle="tooltip" data-placement="top" title="Go to first page">{{paginator.first_page}}</a></li>
+
+      {% assign first_page_url = paginator.first_page_path | prepend: prepend_pagination_url | replace: "index.html", "" | append: "#list" %}
+      {% assign page_url = paginator.last_page_path | prepend: prepend_pagination_url | replace: "index.html", "" | append: "#list" | replace: paginator.last_page, "NUMBER" %}
+      <input type="text" id="nav-page-input" class="nav-page-input" placeholder="{{paginator.page}}" aria-label="Page number" data-toggle="tooltip" data-placement="top" title="Go to page" data-current="{{paginator.page}}" data-last="{{paginator.last_page}}" data-firsturl="{{first_page_url}}" data-url="{{page_url}}">
+
+      {% if paginator.page != paginator.last_page %}
+        {% assign css = "" %}
+        {% assign href = paginator.last_page_path | prepend: prepend_pagination_url | replace: "index.html", "" | append: "#list" %}
+      {% else %}
+        {% assign css = " disabled" %}
+        {% assign href = "" %}
       {% endif %}
+      <li class="page-item{{css}}"><a class="page-link page-link-text" aria-label="Go to last page (page {{paginator.last_page}})" href="{{href}}" data-toggle="tooltip" data-placement="top" title="Go to last page">{{paginator.last_page}}</a></li>
+
       {% if paginator.next_page %}
-      <li id="next" class="next"><a href="{{ paginator.next_page_path | prepend: prepend_pagination_url }}/">Older <span aria-hidden="true">&rarr;</span></a></li>
+        {% assign css = "" %}
+        {% assign href = paginator.next_page_path | prepend: prepend_pagination_url | replace: "index.html", "" | append: "#list" %}
+      {% else %}
+        {% assign css = " disabled" %}
+        {% assign href = "" %}
       {% endif %}
+      <li class="page-item{{css}}"><a class="page-link page-link-icon" aria-label="Go to next page" href="{{href}}" data-toggle="tooltip" data-placement="top" title="Go to next page">{% include svg/next.svg %}</a></li>
+
     </ul>
   </nav>
 {% endif %}

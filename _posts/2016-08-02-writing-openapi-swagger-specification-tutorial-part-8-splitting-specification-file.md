@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1172
 permalink: /writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/
 dsq_thread_id:
   - 5034655247
-category: posts
+category: post
 tags:
   - OpenAPI
   - Swagger
@@ -16,7 +16,8 @@ tags:
   - Documentation
   - API First
 series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Part 8 - Splitting specification file
+series_title: Splitting specification file
+series_number: 8
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 With [previous posts]((http://apihandyman.io/category/openapi-swagger-specification/)) we have learned to produce an [OpenAPI specification](https://openapis.org/) containing all OpenAPI specification subtleties. Some specification files may become quite large or may contain elements which could be reused in other APIs. Splitting a specification file will help to keep it maintainable by creating smaller files and also help to ensure consistency throughout APIs by sharing common elements.<!--more--> 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            {% include nav.html %}
+          </div>
+        </div>
+      </div>
+      {% include header.html %}
+      <div class="container main-container">
+        <div class = "row">
+          <main>
+          {{ content }}
+          </main>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            {% include footer.html %}
+          </div>
+        </div>
+      </div>
+      {% include javascript.html %}
+  </body>
+
+</html>

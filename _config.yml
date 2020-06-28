@@ -14,35 +14,42 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: API Handyman
-description: '{"input" : "learn", "output" : "share"}'
+author: Arnaud Lauret
+description: "Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space."
 url: "https://apihandyman.io" # the base hostname & protocol for your site
 baseurl: ""
+
+sass:
+  style: compressed # possible values: nested expanded compact compressed
+  load_paths:
+      - css
+      - _sass
 
 # Social links
 twitter_username: apihandyman
 github_username:  arno-di-loreto
 linkedin_username: arnaudlauret
 
-# Page default thumbnail/banner
-default_thumbnail: /images/commons/thumbnail.png
+# Page default page banner
+default_banner: /images/commons/default.png
 
 # What's before this will be shown in post summary'
 excerpt_separator: <!--more-->
 
 # Pagination parameters
-## jekyll-paginate parameters
-paginate: 5
-paginate_path: "page:num"
-## jekyll-paginate-category parameters
-category_dir: "categories"
-category_layout: "_layouts/category.html"
-## pagination control style (numbers, text or infinite)
-paginate_style: infinite
+# jekyll-paginate-v2 
+# https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md
+pagination:
+  enabled: true
+  sort_reverse: true
+  debug: false
+  per_page: 10
+  trail: 
+    before: 1 # The number of links before the current page
+    after: 1  # The number of links after the current page
 
 # Third party parameters
 google_analytics: UA-58046291-1
-disqus:
-  shortname: apihandyman
 
 # Build settings
 markdown: kramdown
@@ -60,12 +67,18 @@ codeblock_hidden_copy_separator: ---COPY_CONTENT_SEPARATOR---
 
 # Links
 mybook: http://bit.ly/designwebapis
+mybook_discount_code: fcclauret
+mybook_discount_rate: 37% off
+
+collections:
+  tools:
+    output: true
+    sort_by: title
 
 plugins:
   - jekyll-feed
-  - jekyll-twitter-plugin
-  - jekyll-paginate
-  - jekyll-paginate-category
+  - jekyll-sitemap
+  - jekyll-paginate-v2 # https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md
 
 exclude:
   - Gemfile
@@ -77,3 +90,5 @@ exclude:
   # to avoid Invalid date '<%= Time.now.strftime('%Y-%m-%d %H:%M:%S %z') %>': Document 'vendor/cache/gems/jekyll-3.2.1/lib/site_template/_posts/0000-00-00-welcome-to-jekyll.markdown.erb' does not have a valid date in the YAML front matter.
   # See https://github.com/jekyll/jekyll/issues/5267  
   - vendor
+
+debug: false

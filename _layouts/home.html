@@ -1,0 +1,54 @@
+---
+layout: default
+with_banner: true
+book_in_nav: true
+---
+
+{% capture overlay %}
+<p class="card-text text-justify">Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</p>
+<a href="/about" class="btn btn-primary btn-sm">How can I help you?</a>
+{% endcapture %}
+{%include full-width-banner.html overlay=overlay css="default" %}
+<div class="row home-section pt-5">
+  <div class="container">
+    <div class="row row-cols-1">
+      <div class="col">
+        {% include _book/book-banner-horizontal.html %}
+      </div>
+    </div>
+  </div>
+</div>
+{% include home-section-title.html category="posts" %}
+{% include home-last.html 
+  category='post'
+  more_link='/blog'
+  more_button='More posts'
+  %}
+  {% include home-section-title.html category="talks" %}
+{% include home-last.html 
+  category='talk'
+  more_link='/talks'
+  more_button='More talks and podcasts'
+  %}
+{% include home-section-title.html category="toolbox" %}
+<div class="row home-section">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2">
+          {% assign items = site.tools | where_exp:"item", "item.tool_top_2>0" %}
+          {% for item in items %}
+            <div class="col mb-4">
+              {% include tool-summary.html tool=item %}
+            </div>
+          {% endfor %}
+    </div>
+    <div class="row row-cols-1 row-cols-md-3">
+      {% assign items = site.tools | where_exp:"item", "item.tool_top_3>0" %}
+      {% for item in items %}
+        <div class="col mb-4 d-none d-lg-block">
+          {% include tool-summary.html tool=item hide_banner=false %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% include home-more-button.html more_link="/toolbox" more_button="More tools" %}

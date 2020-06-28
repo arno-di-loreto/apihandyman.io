@@ -1,0 +1,29 @@
+{% if page.thumbnail %}
+  {% assign thumbnail = page.thumbnail %}
+{% else %}
+  {% assign thumbnail = site.default_thumbnail %}
+  {% assign page_thumbnail = '/images' | append: page.permalink | append: 'thumbnail.png' %}
+  {% for static_file in site.static_files %}
+    {% if static_file.path == page_thumbnail %}
+        {% assign thumbnail = page_thumbnail %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@{{site.twitter_username}}">
+<meta name="twitter:creator" content="@{{site.twitter_username}}" />
+{% if page.title %}
+  <meta name="twitter:title" content="{{ page.title }}">
+{% else %}
+  <meta name="twitter:title" content="{{ site.title }}">
+{% endif %}
+{% if page.url %}
+  <meta name="twitter:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.github.url | prepend: site.url }}">
+{% endif %}
+{% if page.excerpt %}
+  <meta name="twitter:description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | escape }}">
+{% else %}
+  <meta name="twitter:description" content="{{ site.description | escape }}">
+{% endif %}
+  <meta name="twitter:image:src" content="{{ thumbnail | prepend: site.baseurl | prepend: site.github.url | prepend: site.url }}">

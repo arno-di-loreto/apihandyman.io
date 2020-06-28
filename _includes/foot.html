@@ -1,0 +1,38 @@
+<div class="row row-footer-margin">
+
+</div>
+<div class="row row-footer">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container footer-content">
+        <div class="row align-items-end row-cols-1 row-cols-md-2">
+          <div class="col d-flex justify-content-center mb-1 mb-md-4">
+            <div class="icon"><a href="{{site.data.links.me.twitter}}" target="_blank">{% include svg/twitter.svg %}</a></div>
+            <div class="icon"><a href="{{site.data.links.me.linkedin}}" target="_blank">{% include svg/linkedin.svg %}</a></div>
+            <div class="icon"><a href="{{site.data.links.me.github}}" target="_blank">{% include svg/github.svg %}</a></div>
+            <div class="icon"><a href="{{site.data.links.me.rss}}" target="_blank">{% include svg/rss.svg %}</a></div>
+          </div>
+          <div class="col text-center">
+            <a class="btn border-0 rounded-0 p-0" data-toggle="modal" data-target="#bookModal" role="button" ><img class="img-footer-book" src="/images/commons/book/book-footer.png"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-footer-second">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col col-footer-privacy mb-3 mb-md-0">
+            <div class="icon privacy-link"><a href="/privacy">{% include svg/cookie.svg %}<span class="privacy-link-text">Privacy Policy & Settings<span></span></a></div>
+          </div>
+          <div class="col col-footer-copyright">
+            &copy; 2015-{{ 'now' | date: "%Y" }} Arnaud Lauret
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

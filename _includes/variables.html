@@ -1,0 +1,74 @@
+{% if include.item %}
+  {% assign item = include.item %}
+{% else %}
+  {% assign item = page %}
+{% endif %}
+
+
+{% if site.data.categories[item.title] %}
+  {% assign item_title = site.data.categories[item.title].name %}
+  {% assign item_title_browser = site.title | append:' | ' | append:item_title %}
+{% elsif item.series %}
+  {% assign item_title = item.series_title %}
+  {% assign item_title_browser = site.title | append:' | ' | append:page_title %}
+{% elsif item.title %}
+  {% assign item_title = item.title %}
+  {% assign item_title_browser = site.title | append:' | ' | append:item_title %}
+{% else %}
+  {% assign item_title = site.title %}
+  {% assign item_title_browser = item_title %}
+{% endif %}
+
+{% if item.series %}
+  {% assign item_series_title = item.series | append:' Series - Part ' | append: item.series_number %}
+{% else %}
+  {% assign item_series_title = nil %}
+{% endif %}
+
+{% assign item_formated_author = item.author | prepend: 'By ' %}
+{% if item.date %}
+  {% assign item_formated_date = item.date | date: "%B %-d, %Y" %}
+  {% assign item_formated_author_date = item.author | prepend: 'By ' | append:', ' |append: item_formated_date %}
+{% else %}
+  {% assign item_formated_date = nil %}
+  {% assign item_formated_author_date = nil %}
+{% endif %}
+
+{% if item.layout == 'home' %}
+  {% assign item_type = 'website' %}
+{% else %}
+  {% assign item_type = 'article' %}
+{% endif %}
+
+{% assign item_url = item.url | replace:'index.html','' %}
+
+{% if item.banner %}
+  {% assign item_banner = item.banner %}
+{% else %}
+  {% assign item_banner = site.default_banner %}
+  {% assign item_banner_default = '/images' | append: item.permalink | append: 'banner.png' %}
+  {% for static_file in site.static_files %}
+    {% if static_file.path == item_banner_default %}
+        {% assign item_banner = item_banner_default %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+
+{% if item.catchphrase %}
+  {% assign item_catchphrase = item.catchphrase %}
+{% else %}
+  {% assign item_catchphrase = item.excerpt %}
+{% endif %}
+
+{% if item.catchphrase_as_excerpt %}
+  {% assign item_excerpt = item_catchphrase %}
+{% else %}
+  {% assign item_excerpt = item.excerpt %}
+{% endif %}
+
+{% if item_excerpt %}
+  {%assign item_description = item_excerpt | default: site.description | strip_html | normalize_whitespace | escape %}
+{% else %}
+  {% assign item_description = site.description | escape %}
+{% endif %}

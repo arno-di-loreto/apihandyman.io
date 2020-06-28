@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1079
 permalink: /writing-openapi-swagger-specification-tutorial-part-6-defining-security/
 dsq_thread_id:
   - 4866893028
-category: posts
+category: post
 tags:
   - OpenAPI
   - Swagger
@@ -16,7 +16,8 @@ tags:
   - Documentation
   - API First
 series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Part 6 - Defining Security
+series_title: Defining Security
+series_number: 6
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After mastering [input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/) like a Jedi, let's see how we can describe API's security with the [OpenAPI specification's](https://openapis.org/).<!--more-->
@@ -62,7 +63,7 @@ In this example, we have defined three security definitions of `apiKey` type:
 ### Flow and URLs
 When defining an `oauth2` security definition, we can define the Oauth2 `flow` used and corresponding `authorizationUrl` and/or `tokenUrl` depending on the chosen flow:
 
-{: .table .table-bordered}
+
 Flow        | Required URLs
 ------------|------------------------------
 implicit    | authorizationUrl

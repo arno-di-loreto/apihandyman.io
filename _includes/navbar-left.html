@@ -1,0 +1,41 @@
+{% assign header_count = content | split: '<h' | size %}
+{% if header_count == 1 or page.hide_toc or layout.hide_toc%}
+  {% assign show_toc = false %}
+{% else %}
+  {% assign show_toc = true %}
+{% endif %}
+
+{% if show_toc %}
+  {% assign book_image = "/images/commons/book/book-left-menu-cropped.png" %}
+  {% assign book_text_class = "message-cropped" %}
+  {% assign border_class = "left-book-ad-border" %}
+{% else %}
+  {% assign book_image = "/images/commons/book/book-left-menu-full.png" %}
+  {% assign book_text_class = "message-full" %}
+  {% assign border_class = "left-book-ad-no-border" %}
+{% endif %}
+<div class="left-book-ad {{border_class}} d-desktop-only">
+  <img src="{{book_image}}" class="card-img" alt="The Design of Web APIs book cover">
+  <div class="card-img-overlay {{book_text_class}}">
+    <a class="stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >
+      <p class="card-text">Special offer on my book</p>
+    </a>
+  </div>
+</div>
+<a class="left-book-ad-small left-menu-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button">
+  Special offer on my book
+  <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
+</a>
+{% if show_toc %}
+  {% if page.series %}
+  <div class="nav-item dropdown dropright">
+    <a class="nav-link dropdown-toggle series-title text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Series
+    </a>
+    {% include series-menu.html wrap=true %}
+  </div>
+  {% endif %}
+  <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
+    {% include toc.html html=content h_min=1 h_max=2 %}
+  </div>
+{% endif %}

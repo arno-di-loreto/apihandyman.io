@@ -4,12 +4,15 @@ date: 2017-03-05
 author: Arnaud Lauret
 layout: post
 permalink: /google-api-design-guide-added-to-the-api-stylebook/
-category: elsewhere
+category: post
+type: link
 tags:
   - Design
   - API Stylebook
 full: true
 comments: false
+target_link: http://apistylebook.com/blog/google-api-design-guide-added-on-the-api-stylebook
+target_label: Read more on apistylebook.com
 ---
 I've just added the Google API Design Guide to the [API Stylebook](http://apistylebook.com/blog/google-api-design-guide-added-on-the-api-stylebook). 
 

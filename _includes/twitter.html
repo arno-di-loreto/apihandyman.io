@@ -1,0 +1,6 @@
+{% assign tweet_url_split = include.url | split: "/status/" %}
+{% assign tweet_file_name = "tweet-" | append:tweet_url_split[1] | append: ".png" %}
+{% assign tweet_file_url = "/images" | append: page.permalink | append:tweet_file_name %}
+<p class="tweet"><a class="tweet-link" href="{{include.url}}" target="twitter">
+  <img class="tweet-img" src="{{tweet_file_url}}"/>
+</a></p>

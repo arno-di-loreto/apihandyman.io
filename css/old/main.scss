@@ -1,0 +1,346 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* For nav bar */
+  padding-top: 50px;
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+
+// Top navbar
+.navbar {
+
+  background-color:#0C2428;
+
+  a {
+    color: white;
+  }
+
+  a.page-link:hover, a.page-link:focus {
+    color: #19B798;
+    background-color: #0C2428;
+  }
+
+  .dropdown-menu {
+    li.disabled {
+      background-color: white;
+      a, a:hover, a:focus {
+        color: #0C2428;
+        background-color: white;
+      }
+    }
+    li {
+      a {
+        color: white;
+      }
+    }
+    background-color:#0C2428;
+  }
+
+  .navbar-toggle {
+    color: white;
+  }
+
+  button {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+// Footer navbar
+footer {
+  .navbar {
+    min-height: 28px;
+    text-align: center;
+  }
+  ul {
+    margin-bottom: 0px;
+  }
+}
+
+
+.main-container {
+  h1, h2, h3 {
+    color: #16a085;
+  }
+  a, .pagination>li>a, .pagination>li>span {
+    color: #16a085;
+  }
+  a:hover, a:focus, .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+    color: #19B798;
+    text-decoration: none;
+    outline: 0;
+  }
+  .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #16a085;
+    color: white;
+  }
+
+  line-height: 1.5;
+  font-size: medium; 
+  img {
+    max-width: 100%;
+    display:block;
+    margin:auto;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .img-label {
+    @extend .center;
+    font-style: italic;
+  }
+
+  blockquote {
+    border-left-color: #16a085;
+    color: #767676;
+  }
+
+}
+
+.post-summary-thumbnail {
+  padding-bottom: 10px;
+}
+
+.post-meta {
+  color: #767676;
+}
+
+header {
+  width: 100%;
+  color: white;
+  text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  .jumbotron {
+    min-height: 200px;
+    position: relative;
+    background: #000 url("jumbotron-bg.png") center center;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;    
+  }
+}
+
+@media (min-width: 768px) {
+  header {
+    .jumbotron {
+      min-height: 400px;
+    }
+  }
+}
+
+.embedpad {
+  padding-top: 10px;
+}
+
+code {
+  padding: 0px 0px 0px 0px;
+}
+
+.code-collapsed {
+  max-height: {{ site.codeblocksize }}em;
+}
+
+.code-toolbar {
+  position: relative;
+  padding: 0px;
+  width: 100%;
+  .btn-group {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    right: 0;
+    .btn:focus,.btn:active {
+      outline: none !important;
+    }
+    .btn {
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    a {
+      color: black;
+    }
+  }
+}
+
+.code-toolbar-for-title {
+  position: relative;
+  padding: 0px;
+  //width: 100%;
+  .btn-group {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    right: 0;
+    .btn:focus,.btn:active {
+      outline: none !important;
+    }
+    .btn {
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      position: relative;
+      top: -24px;
+    }
+    a {
+      color: black;
+    }
+  }
+}
+
+.code-title {
+  padding: 0px;
+  width: 100%;
+
+  .btn:focus,.btn:active {
+    outline: none !important;
+  }
+  .btn {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+    top: +10px;
+    z-index: 10;
+  }
+}
+
+.copy-hidden {
+  position:absolute;
+  left: -100000px; // ClipboardJS does not work with hidden elements
+  width: 0px;
+  height: 0px;
+}
+
+.code-bottom-toolbar {
+  padding: 0px;
+  width: 100%;
+  .btn:focus,.btn:active {
+    outline: none !important;
+  }
+  .btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    position: relative;
+    top: -10px;
+  }
+}
+
+/* TOC */
+nav[data-toggle='toc'] {
+  margin-top: 5px;
+}
+
+#toc {
+  li.active > a {
+    color:#16a085;
+    border-left-color: #16a085;
+  }
+  li > a:hover {
+    color:#16a085;
+    border-left-color: #19B798;
+    border-left-width: 2px;
+  }
+}
+
+.affix {
+  top:50px;
+  position:fixed;
+}
+
+/* Left Banner */
+
+.book-banner-big {
+  color: #EA6A38;
+  text-align: center; 
+  font-size: 0.7em;
+}
+
+.book-banner-vertical {
+  padding: 0px;
+  background-color: #004F66;
+  color: #EA6A38;
+  text-align: center; 
+  font-size: 0.7em;
+  a, a:hover, a:active {
+    color: #EA6A38;
+  }
+  .book-banner-vertical-top {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0px;
+  }
+  .book-banner-vertical-bottom {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0px;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.book-banner-horizontal {
+  background-color: #004F66;
+  text-align: center;
+  padding: 0px;
+  a, a:hover, a:active {
+    color: #EA6A38;
+    font-size: 0.7em;
+  }
+  img {
+    padding: 0px;
+  }
+  p {
+    margin: 0px;
+  }
+}
+
+// xs - Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// sm - Small devices (landscape phones, 576px and up)
+ @media (min-width: 576px) {
+  #left-banner {
+    max-width: 100px;
+  }
+ }
+
+// md -  Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+  #left-banner {
+    max-width: 130px;
+  }
+}
+
+// ld - Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  #left-banner {
+    max-width: 130px;
+  }
+}
+
+// xl - Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  #left-banner {
+    max-width: 165px;
+  }
+}
+
+.row-vertical-align {
+  display: flex;
+  align-items: center;
+}

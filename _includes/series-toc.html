@@ -1,0 +1,36 @@
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">{{page.series}} Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">{{include.content}}</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
+      <ul class="list-group list-group-flush">
+        {% for my_page in sorted %}
+          {% if my_page.series_title == page.series_title %}
+          <li class="list-group-item active">{{ my_page.series_number }} - {{ my_page.series_title }}</li>
+          {% else %}
+          <li class="list-group-item"><a href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_number }} - {{ my_page.series_title }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% for coming_soon in site.data.series[page.series] %}
+          {% assign coming_soon_not_found = true %}
+          {% for my_page in sorted %}
+            {% if my_page.series_number == coming_soon.series_number %}
+              {% assign coming_soon_not_found = false %}
+            {% endif %}
+          {% endfor %}
+          {% if coming_soon_not_found %}
+          <li class="list-group-item disabled">{{ coming_soon.series_number }} - {{ coming_soon.series_title }} (coming soon)</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

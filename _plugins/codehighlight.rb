@@ -52,49 +52,54 @@ module Jekyll
       code = code.gsub("<","&#60;")
       code = code.gsub(">","&#62;")
       if split_code.length() > 1
-        code_copy = split_code[1].lstrip #lstrip necessary to avoid new lines at beginnin
+        hidden_code_copy = split_code[1].lstrip #lstrip necessary to avoid new lines at beginnin
                                          # {% code %}  <- new line here
                                          # some code
-                                         # Also useful to keep ending new line fo bash 
+                                         # Also useful to keep ending new line fo bash
+        hidden_code_copy =   "<pre class=\"copy-hidden code-copy\">"+hidden_code_copy+"</pre>" 
       else
-        code_copy = code.lstrip
+        visible_code_copy_class = " code-copy"
       end
       code = code.strip
 
       if @title=="debug"
         print "\ncode:\n#{code}\n"
-        print "\ncode_copy:#{code_copy}\n"
+        print "\nhidden_code_copy:#{hidden_code_copy}\n"
       end
 
       codeblocksize = lookup(context, 'site.codeblocksize')
       if code.lines.count > codeblocksize 
-        collapsed = " code-collapsed"
-        collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
-        collapsedbottombutton = "<div class=\"code-bottom-toolbar\"><button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[0].children[0].children[0], true)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button></div>"
+        collapsed_style = " code-collapsed"
+        collapsed_button = "<a role=\"button\" class=\"btn btn-secondary border-0 rounded-0 code-expandcollapse-btn\"  aria-label=\"expand or shrink\" onclick=\"expandCollapseCode(this)\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Expand/Shrink\"><img class=\"btn-icon\" src=\"/images/commons/icons/maximize.svg\"></a>"
+
       end
       
       if @title
-        toolbarcss = "code-toolbar-for-title"
-        codetitle = "<div class=\"code-title\"><button type=\"button\" class=\"btn btn-default btn-block\">"+@title+"</button></div>"
-      else
-        toolbarcss = "code-toolbar"
+        code_title = @title
       end
 
       # Reminder: ClipboardJS does not work with hidden elements. Just put them out of sight.
       # https://github.com/zenorocha/clipboard.js/issues/353
 
       <<-HTML
-<div>
-  <pre class="copy-hidden">#{code_copy}</pre>
-  #{codetitle}
-  <div class="#{toolbarcss}">
-    <div class="btn-group" role="group" aria-label="...">
-      #{collabpedbutton}
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  #{hidden_code_copy}
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">#{code_title}</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy"  data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg"></a>
+          #{collapsed_button}
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-#{@language}#{@linenumbers}#{collapsed}"#{@highlight}><code>#{code}</code></pre>
-  #{collapsedbottombutton}
+  <div class="card-body">
+    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style}#{visible_code_copy_class}"#{@highlight}><code class="code-block">#{code}</code></pre>
+  </div>
 </div>
       HTML
     end

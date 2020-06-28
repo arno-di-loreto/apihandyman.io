@@ -1,0 +1,11 @@
+{% if page.banner_type == "full_width" %}
+  {% include full-width-banner.html overlay=include.overlay css=include.css %}
+{% else %}
+  <div class="row row-banner-small row-banner-small-{{include.css}}">
+    <div class="banner-small-container">
+      <div class="banner-small-column-main">
+        <img src="{{ page_banner | prepend: site.baseurl | prepend: site.github.url}}" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+{% endif %}

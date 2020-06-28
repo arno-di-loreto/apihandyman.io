@@ -78,7 +78,7 @@ You can add a label to image:
 Grab the tweet URL and you're done:
 
 ```
-{% twitter https://twitter.com/apihandyman/status/794546772219691008 align=center %}
+{% include twitter.html url=https://twitter.com/apihandyman/status/794546772219691008 %}
 ```
 
 ## Code blocks
@@ -100,14 +100,6 @@ Grab Youtube video id (https://youtu.be/8Q0Yu81rRmU) or Vimeo video id (https://
 ```
 {% youtube 8Q0Yu81rRmU %}
 {% vimeo 237468064 %}
-```
-
-## Speakerdeck Slidedecks
-
-Grab slide deck ID from speakerdeck (`data-id` in the embed code you get on speakerdeck.com when clicking on the `embed` link):
-
-```
-{% speakerdeck e6ec07b2713942fab1effc17a6ad5b41 %}
 ```
 
 ### Inline code
@@ -428,7 +420,6 @@ Here's the list of tools used:
 - [Bootstrap](https://getbootstrap.com/) to build easily a responsive website
 - [Bootstrap TOC](https://afeld.github.io/bootstrap-toc/) for dynamic TOC sidebar on posts
 - [Anchor JS](http://bryanbraun.github.io/anchorjs/) to add links on H1, H2, H3 sections titles on posts
-- [Font Awesome](http://fontawesome.io/) for social links in footer
 - [Jekyll](https://jekyllrb.com/) to build the static website
 - [Jekyll Paginate Category Plugin](https://github.com/midnightSuyama/jekyll-paginate-category) for pagination on categories pages
 - [Jekyll Twitter Plugin](https://github.com/rob-murray/jekyll-twitter-plugin) to embed tweets easily

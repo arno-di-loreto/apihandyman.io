@@ -4,7 +4,7 @@ date: 2019-11-22
 author: Arnaud Lauret
 layout: post
 permalink: /lessons-learned-while-demoing-api-to-non-developers/
-category: posts
+category: post
 tags:
   - Avocado
 ---

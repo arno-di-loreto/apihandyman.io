@@ -1,0 +1,13 @@
+{% assign posts = site.categories[include.category] | slice:0, 2 %}
+<div class="row home-section">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2">
+          {% for post in posts %}
+          <div class="col mb-4">  
+            {% include post-summary.html short=true %}
+            </div>
+          {% endfor %}
+    </div>
+  </div>
+</div>
+{% include home-more-button.html more_link=include.more_link more_button=include.more_button %}

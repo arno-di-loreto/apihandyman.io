@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=655
 permalink: /a-quest-for-simplicity-api-days-london-2015/
 dsq_thread_id:
   - 4866765276
-category: talks
+category: talk
 tags:
   - API Days
   - API Days London
@@ -26,8 +26,15 @@ Join me in a *quest for simplicity* from an imaginary bank's IS depth to its API
 
 Here are this keynote's video and slidedeck.
 
-{% youtube ten2-fjeXTM %}
-{% speakerdeck 921e2d9bdd514bb78f8931252a34f07d %}
+# Video
+
+{% include video.html title="quest-for-simplicity-apidays" %}
 
 Here's API Days London 2015 teaser ... watch well there may be some API Handyman subliminal images...
-{% youtube j0FsZuFumSk %}
+
+{% include video.html title="2015-trailer-apidays-london" %}
+
+# Slides
+
+{% include slidedeck.html title="a-quest-for-simplicity" %}
+

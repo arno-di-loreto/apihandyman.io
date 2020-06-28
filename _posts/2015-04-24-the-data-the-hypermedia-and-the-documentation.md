@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=501
 permalink: /the-data-the-hypermedia-and-the-documentation/
 dsq_thread_id:
   - 4866765240
-category: posts
+category: post
 tags:
   - Design
   - Hypermedia
@@ -69,7 +69,7 @@ By the way, actually many people (like myself some time ago) think that *Swagger
 
 You may also have heard about another thing called ALPS.
 
-{% twitter https://twitter.com/apihandyman/status/589521751694008321 align=center %}
+{% include twitter.html url="https://twitter.com/apihandyman/status/589521751694008321" %}
 
 Not Alps, [the european mountain range](http://en.wikipedia.org/wiki/Alps), but [ALPS](http://alps.io/), the *Application-Level Profile Semantics* created by Mike Amundsen, Leonard Richardson and Mark Foster.
 

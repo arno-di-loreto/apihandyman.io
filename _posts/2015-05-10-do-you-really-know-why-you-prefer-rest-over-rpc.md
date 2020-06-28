@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=516
 permalink: /do-you-really-know-why-you-prefer-rest-over-rpc/
 dsq_thread_id:
   - 4866783411
-category: posts
+category: post
 tags:
   - Design
   - API Style
@@ -17,7 +17,7 @@ tags:
 ---
 A few weeks ago I've seen an interesting flock of tweets initiated by this question:
 
-{% twitter https://twitter.com/skamille/status/588713316358475776 align=center %}
+{% include twitter.html url="https://twitter.com/skamille/status/588713316358475776" %}
 
 This question and the tweets that followed put my brain on quite an animated discussion...<!--more-->
 
@@ -43,7 +43,7 @@ Each HTTP verb:
 - Is safe or not: *Request methods are considered "safe" if their defined semantics are essentially read-only* (see [RFC7231: Safe methods](http://tools.ietf.org/html/rfc7231#section-4.2.1)).
 - Is cacheable or not
 
-{: .table .table-bordered}
+
 Verb      | Meaning                                                 | &nbsp;Idempotent&nbsp;| &nbsp;Safe&nbsp; | &nbsp;Cacheable&nbsp;
 ---       | ---                                                     | ---        | ---  | ---
 GET       | Reads a resource                                        | Yes        | Yes  | Yes
@@ -105,7 +105,7 @@ PUT /someresources/anId
 ## Examples
 Here are some of my [CarBoN API](/the-api-crash-test-project/) requests presented in RPC and REST ways:
 
-{: .table .table-bordered}
+
 Operation                      | RPC (operation)                           | REST (resource)
 ---                            | ---                                       | ---
 Signup                         | POST /signup                              | POST /persons
@@ -131,7 +131,7 @@ I've selected some items to compare RPC's and REST's requests styles:
 
 Even if this item is irrelevant, as beauty is in the eye of the beholder, both styles can produce beautiful API as they can produce ugly ones.
 
-{: .table .table-bordered}
+
 Operation                      | RPC                           | REST
 ---                            | ---                           | ---
 Read a person *pretty version* | GET /readPerson?personid=1234 | GET /persons/1234
@@ -212,7 +212,7 @@ No difference on the documentation (machine of human readable) level too.
 
 ## Totalling points
 
-{: .table .table-bordered}
+
 Item                        | Who wins?
 ---                         | ---
 Beauty                      | Draw

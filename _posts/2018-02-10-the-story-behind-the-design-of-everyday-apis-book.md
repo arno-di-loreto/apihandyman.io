@@ -4,7 +4,7 @@ date: 2018-02-10
 author: Arnaud Lauret
 layout: post
 permalink: /the-story-behind-the-design-of-everyday-apis-book/
-category: posts
+category: post
 ---
 
 I'm thrilled to announce that I'm writing a book about API design: _The Design of Everyday APIs_ (edit: the book has been renamed _The Design of Web APIs_ since this post has been written). This book is published by _Manning Publications_ and the first two chapters are now available on the Manning Early Access Program or {% include _book/meap-link.md %}. This book is for everyone who wants to learn API design.

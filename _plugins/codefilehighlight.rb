@@ -40,6 +40,12 @@ class CodeFile < Liquid::Tag
       @linerange = @attributes['lines']
     end
 
+    if @attributes['nodownload'] == "true"
+      @nodownload = true
+    else
+      @nodownload = false
+    end
+
   end
 
   def lookup(context, name)
@@ -119,33 +125,41 @@ class CodeFile < Liquid::Tag
 
     codeblocksize = lookup(context, 'site.codeblocksize')
     if code.lines.count > codeblocksize 
-      collapsed = " code-collapsed"
-      collabpedbutton = "<button type=\"button\" class=\"btn btn-default\" onclick=\"toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button>"
-      collapsedbottombutton = "<div class=\"code-bottom-toolbar\"><button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)\"><i class=\"fa fa-expand\" aria-hidden=\"true\"></i></button></div>"
+      collapsed_style = " code-collapsed"
+      collapsed_button = "<a role=\"button\" class=\"btn btn-secondary border-0 rounded-0 code-expandcollapse-btn\" aria-label=\"expand or shrink\" onclick=\"expandCollapseCode(this)\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Expand/Shrink\"><img class=\"btn-icon\" src=\"/images/commons/icons/maximize.svg\"></a>"
     end
 
     if @title
-      toolbarcss = "code-toolbar-for-title"
-      title = @title
-      title = title.gsub("\$filename",@filename)
-      codetitle = "<div class=\"code-title\"><button type=\"button\" class=\"btn btn-default btn-block\">"+title+"</button></div>"
+      code_title = @title
+      code_title = code_title.gsub("\$filename",@filename)
+    end
+
+    if @nodownload
+      download_button = ""
     else
-      toolbarcss = "code-toolbar"
+      download_button = "<a role=\"button\" class=\"btn btn-secondary border-0 rounded-0\" aria-label=\"download file\" target=\"_blank\" href=\"#{url}\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Download\"><img class=\"btn-icon\" src=\"/images/commons/icons/download.svg\"></a>"
     end
 
     <<-HTML
-<div>
-  <!-- codeblocksize: #{codeblocksize} -->
-  #{codetitle}
-  <div class="#{toolbarcss}">
-    <div class="btn-group" role="group" aria-label="...">
-        #{collabpedbutton}
-        <button type="button" class="btn btn-default"><a target="_blank" href="#{url}"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">#{code_title}</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          #{download_button}
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg"></a>
+          #{collapsed_button}
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-#{@language}#{@linenumbers}#{collapsed}"#{highlighttag}#{datastart}><code>#{code}</code></pre>
-  #{collapsedbottombutton}
+  <div class="card-body">
+    <pre class="language-#{@language}#{@linenumbers}#{collapsed_style} code-copy"#{highlighttag}#{datastart}><code class="code-block">#{code}</code></pre>
+  </div>
 </div>
       HTML
   end

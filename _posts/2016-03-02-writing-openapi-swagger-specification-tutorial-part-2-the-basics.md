@@ -10,7 +10,7 @@ dsq_thread_id:
   - 4866765277
 dsq_needs_sync:
   - 1
-category: posts
+category: post
 tags:
   - OpenAPI
   - Swagger
@@ -18,7 +18,8 @@ tags:
   - Documentation
   - API First
 series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Part 2 - The basics
+series_title: The basics
+series_number: 2
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After [discovering](/writing-openapi-swagger-specification-tutorial-part-1-introduction/) what is the OpenAPI Specification format, it's now time to write a first simple OpenAPI Specification file to learn the basics.<!--more--> 

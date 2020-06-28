@@ -200,3 +200,43 @@ filters:
     description: returns the command line named argument (--arg name value)
     examples:
       - $ARGS.named
+  assignment_plain:
+    url: https://stedolan.github.io/jq/manual/v1.6/#Plainassignment:=
+    description: replaces a value, the input to the right-hand-side (RHS) is the same as the input to the left-hand-side (LHS) rather than the value at the LHS path
+    examples:
+      - .info.description = "New description."
+      - .info.description = .info.contact.name
+  assignment_update:
+    url: https://stedolan.github.io/jq/manual/v1.6/#Update-assignment:|=
+    description: replaces a value, it takes a filter on the right-hand side and works out the new value for the property of `.` being assigned to by running the old value through this expression
+    examples:
+      - .info.contact |= .name
+      - .info.version |= sub("-snapshot";"")
+  assignment_arithmetic_update:
+    url: https://stedolan.github.io/jq/manual/v1.6/#Arithmeticupdate-assignment:+=,-=,*=,/=,%=,//=
+    description: increments a number value, concatenates string or add properties to object
+    examples:
+      - .info.description += "More description"
+      - .info.description += .info.contact.name
+  del:
+    url: https://stedolan.github.io/jq/manual/v1.6/#del(path_expression)
+    description: removes a key and its corresponding value from an object
+    examples:
+      - .info.contact |= del(.contact)
+      - del(.info.contact)
+  walk:
+    url: https://stedolan.github.io/jq/manual/v1.6/#walk(f)
+    description: applies a filter recursively to every component of the input entity
+    examples:
+      - walk(f)
+  delpaths: 
+    url: https://stedolan.github.io/jq/manual/v1.6/#delpaths(PATHS)
+    description: deletes an array of paths. Each path is an array of string and numbers.
+    examples:
+      - delpaths(PATHS)
+  recursive_descent:
+    url: https://stedolan.github.io/jq/manual/v1.6/#RecursiveDescent:..
+    description: returns every value recursively
+    examples:
+      - ..
+

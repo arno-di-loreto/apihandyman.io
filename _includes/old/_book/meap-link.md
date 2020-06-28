@@ -1,0 +1,1 @@
+[MEAP]({% include _book/meap-url.md %}) (affiliate link, {% include _book/discount.md %})

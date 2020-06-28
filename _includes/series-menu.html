@@ -1,0 +1,28 @@
+{% if include.wrap %}
+{%assign wrap_class = " text-wrap" %}
+{% else %}
+{%assign wrap_class = "" %}
+{%endif %}
+<div class="dropdown-menu dropdown-menu-series rounded-0" aria-labelledby="navbarSerieDropdown">
+  <div class="dropdown-header">{{page.series}}</div>
+  <div class="dropdown-divider"></div>
+  {% assign series_sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
+  {% for series_page in series_sorted %}
+    {% if series_page.series_title == page.series_title %}
+    <a class="dropdown-item active disabled{{wrap_class}}">{{ series_page.series_number }} - {{ series_page.series_title }}</a>
+  {% else %}
+   <a class="dropdown-item selectable{{wrap_class}}" href="{{ series_page.url | prepend: site.baseurl }}">{{ series_page.series_number }} - {{ series_page.series_title }}</a>
+  {% endif %}
+{% endfor %}
+{% for coming_soon in site.data.series[page.series] %}
+{% assign coming_soon_not_found = true %}
+{% for my_page in series_sorted %}
+  {% if my_page.series_number == coming_soon.series_number %}
+    {% assign coming_soon_not_found = false %}
+  {% endif %}
+{% endfor %}
+{% if coming_soon_not_found %}
+  <a class="dropdown-item disabled{{wrap_class}}">{{ coming_soon.series_number }} - {{ coming_soon.series_title }} (coming soon)</a>
+{% endif %}
+{% endfor %}
+</div>

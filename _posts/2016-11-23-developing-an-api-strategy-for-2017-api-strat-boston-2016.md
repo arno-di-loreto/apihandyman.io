@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=1296
 permalink: /developing-an-api-strategy-for-2017-api-strat-boston-2016/
 dsq_thread_id:
   - 5327198098
-category: talks
+category: talk
 tags:
   - API Strat
   - API Strat Boston
@@ -25,4 +25,9 @@ Smartbear blog posts:
 
 Here's the panel video:
 
-{% youtube xdJPJ3E-nC8 %}
+{% include video.html title="developing-an-api-strategy" %}
+
+And a 2 minutes summary:
+
+{% include video.html title="developing-an-api-strategy-hightlights" %}
+

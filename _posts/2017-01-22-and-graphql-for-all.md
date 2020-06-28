@@ -6,7 +6,7 @@ date: 2017-01-22
 author: Arnaud Lauret
 layout: post
 permalink: /and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/
-category: posts
+category: post
 full: false
 comments: true
 ---
@@ -508,4 +508,4 @@ Now I hope you will be able to the answer this really important question:
 
 You're supposed to yell *it depends!*
 
-*This post is a writeup of my [API Days Paris 2017 talk](https://speakerdeck.com/arnaudlauret/dot-dot-dot-and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql).*
+*This post is a writeup of my [API Days Paris 2017 talk](/graphql-for-all-talk-video-on-infoq/).*

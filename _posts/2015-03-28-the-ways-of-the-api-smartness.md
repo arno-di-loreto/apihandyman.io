@@ -8,7 +8,7 @@ guid: http://apihandyman.io/?p=412
 permalink: /the-ways-of-the-api-smartness/
 dsq_thread_id:
   - 4867152374
-category: posts
+category: post
 tags:
   - Design
   - Implementation
@@ -84,7 +84,7 @@ API documentation must be exhaustive and consumer friendly:
 # The hypster way: Hypermedia
 This way is a subpath of the (other) API way.
 
-{% twitter https://twitter.com/darrel_miller/status/575494956472631296 align=center %}
+{% include twitter.html url="https://twitter.com/darrel_miller/status/575494956472631296" %}
 
 {: .center}  
 *The best definition of hypermedia* 

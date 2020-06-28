@@ -8,7 +8,8 @@ guid: http://apihandyman.io/?p=542
 permalink: /interview-with-an-api-handyman/
 dsq_thread_id:
   - 4867286381
-category: elsewhere
+category: post
+type: link
 tags:
   - Interview
 full: true

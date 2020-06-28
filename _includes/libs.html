@@ -1,0 +1,8 @@
+{% for lib in site.data.libs %}
+  {% if layout.libs[lib] %}
+    {% assign lib_name=lib | append: "_" | append: include.type %}
+    {% unless included_libs contains lib_name %}
+      {% include lib.html lib=lib type=include.type %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}

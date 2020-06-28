@@ -8,7 +8,8 @@ guid: http://apihandyman.io/?p=538
 permalink: /read-how-to-provide-apis-with-an-existing-information-system-on-nordic-apis-blog/
 dsq_thread_id:
   - 4867280061
-category: elsewhere
+category: post
+type: link
 tags:
   - Governance
   - Strategy

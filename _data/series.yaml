@@ -1,0 +1,5 @@
+JQ and OpenAPI:
+  - series_number: 3
+    series_title: Modifying OpenAPI files with JQ
+  - series_number: 4
+    series_title: "Bonus: coloring JQ's raw output"

@@ -4,7 +4,7 @@ date: 2018-02-26
 author: Arnaud Lauret
 layout: post
 permalink: /how-public-web-apis-raise-software-bar/
-category: posts
+category: post
 ---
 
 While answering some question on my [Design of Web APIs]({% include _book/meap-url.md %}) book's [forum](https://forums.manning.com/posts/list/42828.page), I wrote:

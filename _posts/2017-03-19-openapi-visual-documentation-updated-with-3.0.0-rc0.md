@@ -4,7 +4,8 @@ date: 2017-03-19
 author: Arnaud Lauret
 layout: post
 permalink: /openapi-visual-documentation-updated-with-3.0.0-rc0/
-category: elsewhere
+category: post
+type: link
 tags:
   - OpenAPI
 ---

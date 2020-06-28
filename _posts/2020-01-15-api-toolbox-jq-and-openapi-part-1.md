@@ -2,14 +2,16 @@
 title: API Toolbox - JQ and OpenAPI - Part 1 - Using JQ to extract data from OpenAPI files
 date: 2020-01-15
 author: Arnaud Lauret
+category: post
 layout: post
 permalink: /api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/
 codefiles: api-toolbox-jq-and-openapi/part-1
-category: posts
-series: API Toolbox - JQ and OpenAPI
-series_title: Part 1 - Using JQ to extract data from OpenAPI files
+series: JQ and OpenAPI
+series_title: Using JQ to extract data from OpenAPI files
+series_number: 1
 tags:
   - API Toolbox
+catchphrase: Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you're looking for.
 ---
 Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you're looking for. In this 4 parts post series, you'll discover why and how I use JQ with OpenAPI Specification files. But more important, you'll get some basic and more advanced example of how to use JQ on any JSON document to get and modify JSON data as you want. In this first part we'll focus on what is JQ, why I use it with OpenAPI files and we'll learn how to invoke JQ and discover some of the many JQ filters that can be used to extract data from JSON.<!--more-->
 
@@ -46,7 +48,7 @@ Once installed, open a terminal and run `jq --help` to check if everything is OK
 
 ## Get post's content
 
-All examples shown in this post are based on JQ 1.6 and OpenAPI 3. All examples can be copied using the <i class="fas fa-paste"></i> button and downloaded using the <i class="fas fa-file-code"></i> one on code snippets. All source code can be retrieved from the {% include link.md link=site.data.jq.links.jq_and_openapi_git target=site.data.jq.link_target %}.
+All examples shown in this post are based on JQ 1.6 and OpenAPI 3. All examples can be copied using the {% include icon-inline.html name="copy" class="icon-text" %} button and downloaded using the {% include icon-inline.html name="download" class="icon-text" %} one on code snippets. All source code can be retrieved from the {% include link.md link=site.data.jq.links.jq_and_openapi_git target=site.data.jq.link_target %}.
 
 {% include git.md link=site.data.jq.links.jq_and_openapi_git branch="part-1" %}
 
@@ -60,7 +62,7 @@ There are also two other almost empty examples used when working on multiple fil
 
 In this first section, we'll learn how to invoke JQ and its basic principles. The whole content of this section has been recorded with Asciinema (but is available as regular text right after the player).
 
-<asciinema-player poster="npt:1:20" title="Invoke JQ" author="Arnaud Lauret"  rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-1/invoke-jq.cast"></asciinema-player>
+{% include asciinema.html sections="Beautify and color JSON,11;Extract data with JQ filters,66;Generate JSON,90;Generate text,108;Pipe filters,156;Use JQ files,227" src="/code/api-toolbox-jq-and-openapi/part-1/invoke-jq.cast" title="Invoking JQ" poster="npt:1:20" %}
 
 ## Beautify and color JSON
 
@@ -251,7 +253,7 @@ In this section, we'll learn to use some of the many JQ filters by extracting da
 
 Let's start by extracting the API's paths:
 
-<asciinema-player poster="npt:26" title="List API's paths" author="Arnaud Lauret" rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-1/list-paths.cast"></asciinema-player>
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-1/list-paths.cast" title="List API's paths" poster="npt:26" %}
 
 {% code title:"List API's paths" language:bash %}
 [apihandyman.io]$ jq -r -f list-paths.jq demo-api-openapi.json 
@@ -287,8 +289,7 @@ To extract the paths, we only need to use the `keys` filter on the paths object 
 
 Let's go a level deeper to list all HTTP methods used in an API:  
 
-<asciinema-player poster="npt:31" title="List HTTP methods" author="Arnaud Lauret"  rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-1/list-http-methods.cast"></asciinema-player>
-
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-1/list-http-methods.cast" title="List HTTP methods" poster="npt:31" %}
 
 {% code title: "List used HTTP methods" language:bash %}
 [apihandyman.io]$ jq -r -f list-http-methods.jq demo-api-openapi.json
@@ -327,7 +328,7 @@ The JQ file that follows can be roughly split in 4 steps:
 
 Now we take another step deeper into the OpenAPI file by listing all HTTP status codes and sorting them by how many times they are used.
 
-<asciinema-player poster="npt:26" title="Count HTTP status codes usage" author="Arnaud Lauret" rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-1/list-http-status-codes.cast"></asciinema-player>
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-1/list-http-status-codes.cast" title="Count HTTP status codes usage" poster="npt:26" %}
 
 {% code title:"Count how many times HTTP status codes are used" language:bash %}
 [apihandyman.io]$ jq -r -f list-http-status-codes.jq demo-api-openapi.json
@@ -370,7 +371,7 @@ The JQ file that follows is split in 5 steps:
 
 Now, let's try something more interesting: extracting the API's operation list. 
 
-<asciinema-player poster="npt:26" title="List operations" author="Arnaud Lauret" rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-1/list-operations.cast"></asciinema-player>
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-1/list-operations.cast" title="List operations" poster="npt:26" %}
 
 As the following listing shows, we will extract for each operation, its HTTP method, path, summary and indicate if the operation is deprecated.
 
@@ -419,7 +420,7 @@ The following JQ script is split in 3 steps:
 
 It can be of interest to know which extensions are used in an OpenAPI document, where they are located and what are their values.
 
-<asciinema-player poster="npt:26" title="List API's paths" author="Arnaud Lauret" rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-1/list-xtensions.cast"></asciinema-player>
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-1/list-xtensions.cast" title="List x-tensions" poster="npt:26" %}
 
 {% code title:"Listing extensions, their locations and values" language:bash %}
 [apihandyman.io]$ jq -r -f list-xtensions.jq demo-api-openapi.json
@@ -531,7 +532,7 @@ So, we have learned to use JQ filters on a single OpenAPI file, but what if we n
 
 JQ's filename parameter can contain wildcards, allowing to work on multiple files at once. 
 
-<asciinema-player poster="npt:1:20" title="Invoke JQ on multiple files"  rows="24" cols="80" author="Arnaud Lauret" src="/code/api-toolbox-jq-and-openapi/part-1/invoke-jq-multiple-files.cast"></asciinema-player>
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-1/invoke-jq-multiple-files.cast" title="Invoke JQ on multiple files" poster="npt:1:20" %}
 
 We can, for example, extract the API name of each OpenAPI file using the following command as shown in the following listing (the github repository contains two OpenAPI demo files, both having the `.json` extension). 
 
@@ -611,7 +612,7 @@ find . -type f -name "*.json" | xargs jq -r '.info.title'
 
 For this last (but not least) example, we'll gather basic information from different OpenAPI files.
 
-<asciinema-player poster="npt:1:20" title="Invoke JQ on multiple files"  rows="24" cols="80" author="Arnaud Lauret" src="/code/api-toolbox-jq-and-openapi/part-1/list-apis.cast"></asciinema-player>
+{% include asciinema.html src="/code/api-toolbox-jq-and-openapi/part-1/list-apis.cast" title="List APIs" poster="npt:1:20" %}
 
 We'll build an array of objects containing for each file:
 
