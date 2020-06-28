@@ -1,6 +1,6 @@
 ---
 title: "API Toolbox - JQ and OpenAPI - Part 4 - Bonus: Coloring JQ's raw output"
-date: 2020-04-12
+date: 2020-07-06
 author: Arnaud Lauret
 layout: post
 category: post

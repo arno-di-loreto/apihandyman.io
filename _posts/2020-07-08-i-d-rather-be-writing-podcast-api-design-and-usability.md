@@ -1,6 +1,6 @@
 ---
 title: I'd Rather Be Writing Podcast - API Design and Usability 
-date: 2020-04-13
+date: 2020-07-08
 author: Tom Johnson & Arnaud Lauret
 category: talk
 layout: post

@@ -3,7 +3,7 @@ title: Privacy Policy
 layout: page
 permalink: /privacy/
 banner_type: small
-date: 2020-04-07
+date: 2020-06-28
 privacy_local_storage: acceptedPrivacyPolicyDate
 ---
 
