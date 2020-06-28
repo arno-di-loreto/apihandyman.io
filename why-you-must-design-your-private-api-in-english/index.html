@@ -1,172 +1,1435 @@
 <!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <html lang="en">
+  <head>
+  <title>API Handyman | Why you must design your private API in english</title>
+  <meta name="description" content="Why you must design your private API in english. Pourquoi vous devez concevoir votre API privée en anglais. Perché è necessario progettare la vostra API privata in inglese. Por qué debe diseñar su API privada en Inglés. Deshalb müssen Sie Ihre private API in Englisch entwerfen. なぜあなたは英語であなたのプライベートAPIを設計する必要があります. As you might have guess, this post targets people designing APIs in non english speaking countries. When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it. Choosing a language for your API is one of them.">
+<meta name="keywords" content="API,Web API,Web Service">
+<meta name="author" content="Arnaud Lauret">
+<meta name="description" content="Why you must design your private API in english. Pourquoi vous devez concevoir votre API privée en anglais. Perché è necessario progettare la vostra API privata in inglese. Por qué debe diseñar su API privada en Inglés. Deshalb müssen Sie Ihre private API in Englisch entwerfen. なぜあなたは英語であなたのプライベートAPIを設計する必要があります. As you might have guess, this post targets people designing APIs in non english speaking countries. When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it. Choosing a language for your API is one of them.">
+
+<!-- Facebook & LinkedIn -->
+<meta property="og:title"         content="Why you must design your private API in english"/>
+<meta property="og:type"          content="article"/>
+<meta property="og:description"   content="Why you must design your private API in english. Pourquoi vous devez concevoir votre API privée en anglais. Perché è necessario progettare la vostra API privata in inglese. Por qué debe diseñar su API privada en Inglés. Deshalb müssen Sie Ihre private API in Englisch entwerfen. なぜあなたは英語であなたのプライベートAPIを設計する必要があります. As you might have guess, this post targets people designing APIs in non english speaking countries. When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it. Choosing a language for your API is one of them."/>
+<meta property="og:url"           content="/why-you-must-design-your-private-api-in-english/"/>
+<meta property="og:image"         content="/images/why-you-must-design-your-private-api-in-english/banner.png"/>
+
+<!-- Twitter -->
+<meta name="twitter:card"         content="summary">
+<meta name="twitter:site"         content="@apihandyman">
+<meta name="twitter:creator"      content="@apihandyman" />
+<meta name="twitter:title"        content="Why you must design your private API in english">
+<meta name="twitter:url"          content="/why-you-must-design-your-private-api-in-english/">
+<meta name="twitter:description"  content="Why you must design your private API in english. Pourquoi vous devez concevoir votre API privée en anglais. Perché è necessario progettare la vostra API privata in inglese. Por qué debe diseñar su API privada en Inglés. Deshalb müssen Sie Ihre private API in Englisch entwerfen. なぜあなたは英語であなたのプライベートAPIを設計する必要があります. As you might have guess, this post targets people designing APIs in non english speaking countries. When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it. Choosing a language for your API is one of them.">
+<meta name="twitter:image:src"    content="/images/why-you-must-design-your-private-api-in-english/banner.png">
 
   
-
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
-  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
-
-  <title>Why you must design your private API in english | API Handyman</title>
-  <meta name="description" content="Why you must design your private API in english. Pourquoi vous devez concevoir votre API privée en anglais. Perché è necessario progettare la vostra API priv...">
-  
-
-<meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@apihandyman">
-
-  <meta name="twitter:title" content="Why you must design your private API in english">
-
-
-  <meta name="twitter:url" content="https://apihandyman.io/why-you-must-design-your-private-api-in-english/">
-
-
-  <meta name="twitter:description" content="Why you must design your private API in english. Pourquoi vous devez concevoir votre API privée en anglais. Perché è necessario progettare la vostra API privata in inglese. Por qué debe diseñar su API privada en Inglés. Deshalb müssen Sie Ihre private API in Englisch entwerfen. なぜあなたは英語であなたのプライベートAPIを設計する必要があります. As you might have guess, this post targets people designing APIs in non english speaking countries. When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it. Choosing a language for your API is one of them.">
-
-  <meta name="twitter:image:src" content="https://apihandyman.io/images/why-you-must-design-your-private-api-in-english/thumbnail.png">
-
-  
-
-
-
-  <meta name="og:description" content="Why you must design your private API in english. Pourquoi vous devez concevoir votre API privée en anglais. Perché è necessario progettare la vostra API privata in inglese. Por qué debe diseñar su API privada en Inglés. Deshalb müssen Sie Ihre private API in Englisch entwerfen. なぜあなたは英語であなたのプライベートAPIを設計する必要があります. As you might have guess, this post targets people designing APIs in non english speaking countries. When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it. Choosing a language for your API is one of them.">
-
-<meta name="og:image" content="https://apihandyman.io/images/why-you-must-design-your-private-api-in-english/thumbnail.png">
-
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/prism.css">
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
-  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/why-you-must-design-your-private-api-in-english/">
-  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
-  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
-  
-  <script type="text/javascript" src="/js/fingerprint2.min.js" ></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  new Fingerprint2().get(function(clientId) {
-    ga('create', 'UA-58046291-1', {
-      'storage': 'none',
-      'clientId':clientId,
-      'storeGac': false
-    });
-    ga('set', 'anonymizeIp', true);
-    ga('send', 'pageview');
-  });
-
-</script>
-  
-
-  
-</head>
-
-  <body>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-md-12">
-            <!--<header>-->
-  <!-- Static navbar -->
-  <nav class="navbar navbar-fixed-top full">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-        </button>
-        <a class="navbar-brand" href="/">API Handyman</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          
-          <li class="nav-item nav-dea"><a class="page-link" href="http://bit.ly/designwebapis">My Book: The Design Of Web APIs</a></li>
-          <li class="nav-item nav-asb"><a class="page-link" href="http://apistylebook.com/">API Stylebook</a></li>
-          <li class="dropdown">
-              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OpenAPI<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li class="nav-item nav-oas"><a class="page-link" href="/openapi/">What is the OpenAPI Specification</a></li>
-              <li class="nav-item nav-oas"><a class="page-link" href="/explore-the-openapi-specification-3.0-with-the-openapi-map/">OpenAPI Map</a></li>
-              <li class="nav-item nav-oas"><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">OpenAPI 2.0 Tutorial</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              
-              <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
-              
-              <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
-              
-              <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
-              
-            </ul>
-          </li>
-          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
-  </nav>
-<!--</header>-->
-          </div>
-        </div>
-      </div>
+    
+    
       
 
 
 
 
 
-<header>
-  <!--<div class="container main-container full-jumbotron">-->
-      <div class="jumbotron" style="background-image: url('/images/why-you-must-design-your-private-api-in-english/thumbnail.png')">
-        <div class="header-caption text-center">
-          <h1 class="post-title" itemprop="name headline">Why you must design your private API in english</h1>
-          
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/anchors.css">
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/prism.css">
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/asciinema-player.css">
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/code.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bash.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+</head>
+  <body  data-spy="scroll" data-target="#toc">
+    
+<div class="main-navbar fixed-top  scrolled">
+  <div class="container-lg">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">API Handyman</a>
+      
+      <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="btn-icon" src="/images/commons/icons/menu.svg" >
+      </button>
+      <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
+        <div class="navbar-nav">
+          <li class="nav-item dropdown dropdown-blog d-desktop-only">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Blog
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="/blog">All content</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/posts">Posts</a>
+              <a class="dropdown-item" href="/talks">Talks & Podcasts</a>
+            </div>
+          </li>
+          <a class="nav-item nav-link d-mobile-only" href="/Blog">Blog</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/posts">Posts</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/talks">Talks & Podcasts</a>
+          <a class="nav-item nav-link" href="/toolbox">Toolbox</a>
+          <a class="nav-item nav-link" href="/about">About</a>
+          <a class="nav-item-book left-column-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
         </div>
       </div>
-  <!--</div>-->
-</header>
-      <div class="container main-container">
-        <div class = "row">
-          <main>
-          <div class="hidden-xs hidden-sm col-md-2" role="complementary">
-  <nav id="left-banner" data-spy="affix" data-offset-top="400">   
-    <div class="book-banner-vertical">
-    <p class="book-banner-vertical-top"><a href="http://bit.ly/designwebapis">Read my book</a></p>
-    <a href="http://bit.ly/designwebapis"><img class="img-responsive center-block " src="/images/commons/book/book-vertical.png"></a>
-    <p class="book-banner-vertical-bottom">(affiliate link, use fcclauret discount code to get 37% off)</p>
-</div>
-  </nav>
-</div>
-<div class="col-xs-12 col-sm-9 col-md-8" role="main">
-  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      
+    </nav> <!-- class="navbar navbar-expand-md" -->
+  </div> <!--  class="container" -->
+</div> <!-- class="main-navbar fixed-top  scrolled" -->
+    <div class="page-content-container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="row row-banner-small row-banner-small-">
+    <div class="banner-small-container">
+      <div class="banner-small-column-main">
+        <img src="/images/why-you-must-design-your-private-api-in-english/banner.png" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+
+<div class="row row-page-content">
+  <div class="container-fluid container-lg">
+    <div class="fade modal left-menu-hider left-menu-modal d-mobile-only"></div>
     <div class="row">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-      <div class="post-summary book-banner-horizontal">
-    <p><a class="post-link" href="http://bit.ly/designwebapis">Read my book (affiliate link, use fcclauret discount code to get 37% off)</a></p>
-    <a class="post-link" href="http://bit.ly/designwebapis">
-      <img class="img-responsive center-block post-summary-thumbnail" src="/images/commons/book/book-horizontal.png"></a>
-  </div>
+      
+      <div class="page-column-left left-menu left-menu-hider">
+        <div class="page-column-left-container">
+          
+
+
+
+<div class="left-book-ad left-book-ad-border d-desktop-only">
+  <img src="/images/commons/book/book-left-menu-cropped.png" class="card-img" alt="The Design of Web APIs book cover">
+  <div class="card-img-overlay message-cropped">
+    <a class="stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >
+      <p class="card-text">Special offer on my book</p>
+    </a>
   </div>
 </div>
-    <div id="post" class="blog-container" itemprop="articleBody">
-      <p class="post-meta">
+<a class="left-book-ad-small left-menu-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button">
+  Special offer on my book
+  <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
+</a>
+
+  
+  <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
+    
+
+
+
+
+
+  <nav class="nav flex-column" id="toc">
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
         
-          By
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>
+          <a class="nav-link toc-level-1" href="#the-enut-project">The eNut project</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#choosing-a-language-to-design-an-api">Choosing a language to design an API?</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#follow-the-standards">Follow the standards</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#assume-that-your-api-will-not-be-private-forever">Assume that your API will not be private forever</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#api-designs-commandment">API design’s commandment</a>
+          
+      
+      
+    
+  
+  </nav>
+  </div>
+
+        </div>
+      </div>
+        
+      
+      <div class="page-column-main page-column-main-with-left">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="page-content-text anchors">
+  
+  
+  
+  
+  
+    
+    
+    <!-- First card with page title -->
+    <div class="card-page-section page-section-title">
+      <div class="body">
+        
+        <h5 class="surtitle"></h5>
         
         
-        &nbsp;&nbsp;|&nbsp;<time datetime="2015-02-07T20:21:47+00:00" itemprop="datePublished">Feb. 7, 2015</time><span>&nbsp;|&nbsp;Posts</span>
-      </p>
-      <blockquote>
+        <h1 class="title">Why you must design your private API in english</h1>
+        
+        
+        <h6 class="subtitle">By Arnaud Lauret, February 7, 2015</h6>
+        <hr/>
+        
+        <blockquote>
   <p>Why you must design your private API in english.<br />
 Pourquoi vous devez concevoir votre API privée en anglais.<br />
 Perché è necessario progettare la vostra API privata in inglese.<br />
@@ -179,13 +1442,37 @@ Deshalb müssen Sie Ihre private API in Englisch entwerfen.<br />
 When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it.
 <em>Choosing</em> a language for your API is one of them.<!--more--></p>
 
-<h1 id="the-enut-project">The eNut project</h1>
+
+        
+      </div>
+    </div><!-- First card with page title END -->
+      
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="the-enut-project">The eNut project</h1>
 <p>You work for <em>Complètement Noix Cie</em> (<em>Totally Nut Co</em>) a small family nutgrowing company in France.
 This company launches the project <em>eNoix</em> (<em>eNut</em>) based on patent <a href="http://www.google.com/patents/US2427486">US 2427486 A</a> which will cut nuts collection costs by 300%.
 You have to design a private API to control and monitor this totally awesome device. You’ll have to deal with nuts, squirrels and …. Wait! Stop!
 Before designing anything you have to choose a language for your API.</p>
 
-<h1 id="choosing-a-language-to-design-an-api">Choosing a language to design an API?</h1>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="choosing-a-language-to-design-an-api">Choosing a language to design an API?</h1>
 <p>I’m not talking about internationalization or choosing a programming language …
 I’m talking about choosing a human language for the interface: english, french, italian, spanish, german, japanese…</p>
 
@@ -211,7 +1498,18 @@ The only possible response should be english.</p>
 
 <p>There are two reasons rhyming with “<em>ization</em>”: standardization and externalization.</p>
 
-<h1 id="follow-the-standards">Follow the standards</h1>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="follow-the-standards">Follow the standards</h1>
 <blockquote>
   <p>Stop building super custom APIs.<br />
 <em>(<a href="http://www.steveklabnik.com/">Steve Klabnick</a>, API Days Paris 2014)</em></p>
@@ -233,7 +1531,18 @@ You could for example want to:</p>
 <p>Using a language other than english for your API might complicate its design and evolution when you want to integrate existing things and lead to a <em>too-much-custom-two-languages</em> API.
 Too much custom APIs are hard to understand and use so imagine one with two languages.</p>
 
-<h1 id="assume-that-your-api-will-not-be-private-forever">Assume that your API will not be private forever</h1>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="assume-that-your-api-will-not-be-private-forever">Assume that your API will not be private forever</h1>
 <blockquote>
   <p>Anyone who doesn’t do this will be fired.<br />
 <em>(Jeff Bezos, <a href="http://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/">about service interface externalization and other things</a>)</em></p>
@@ -255,7 +1564,18 @@ Too much custom APIs are hard to understand and use so imagine one with two lang
 
 <p>The success of this externalization may be tempered by your <em>non-english</em> API.</p>
 
-<h1 id="api-designs-commandment">API design’s commandment</h1>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="api-designs-commandment">API design’s commandment</h1>
 <blockquote>
   <p>English shalt be the language thou use to design an API, and the language of the API designing shalt be english.<br />
 <em>(Book of <del>Armaments</del> API Design)</em></p>
@@ -269,137 +1589,679 @@ Too much custom APIs are hard to understand and use so imagine one with two lang
 
 <p><em>Image credit: <a href="http://en.wikipedia.org/wiki/The_Tower_of_Babel_%28Bruegel%29">The tower of Babel, Peter Bruegel</a>.</em></p>
 
-      
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_config = function () {
-      this.page.url = 'https://apihandyman.io/why-you-must-design-your-private-api-in-english/';
-      this.page.identifier = 'https://apihandyman.io/why-you-must-design-your-private-api-in-english/';
-    };
-
-    (function() {
-      var d = document, s = d.createElement('script');
-
-      s.src = 'https://apihandyman.disqus.com/embed.js';
-
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
-
-    </div>
-  </article>
-</div>
-<div class="hidden-xs col-sm-2 col-md-2" role="complementary">
-  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
-</div>
-          </main>
-        </div>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-md-12">
-            <footer>
-  <nav class="navbar navbar-fixed-bottom">
-    <ul class="list-inline">
-     <li>
-       <a href="/feed.xml"><i class="fa fa-rss-square fa-2x" aria-hidden="true"></i></a>
-     </li>
-     <li>
-      <a href="https://twitter.com/apihandyman"><i class="fab fa-twitter-square fa-2x"></i></a>   
-     </li>
-     <li>
-      <a href="https://github.com/arno-di-loreto"><i class="fab fa-github-square fa-2x"></i></a>   
-     </li>
-     <li>
-      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fab fa-linkedin fa-2x"></i></a>   
-     </li>
-    </ul>
-  </nav>
-</footer>
+    </div><!-- Next cards END -->
+    
+  
+  
+</div><!-- class="page-content-text"-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-page-bottom-nav nav-fixed-bottom">
+  <div class="container-fluid container-lg">
+    <nav class="nav-page " aria-label="Page navigation">
+      <a class="nav-page-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top"><svg height='100px' width='100px' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><polygon points="4.1,10 5.5,11.4 9,7.8 9,20 11,20 11,7.8 14.5,11.4 16,10 10,4  "></polygon><rect x="0" width="20" height="2"></rect></g></svg></a>
+      
+      <a class="nav-page-btn left-menu-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><rect x="0" y="2" width="4" height="4"></rect><rect x="0" y="8" width="4" height="4"></rect><rect x="0" y="14" width="4" height="4"></rect><rect x="6" y="3" width="14" height="2"></rect><rect x="6" y="9" width="14" height="2"></rect><rect x="6" y="15" width="14" height="2"></rect></g></svg></a>
+      
+    </nav>
+  </div>
+</div>
+
+
+      <div class="row row-footer-margin">
+
+</div>
+<div class="row row-footer">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container footer-content">
+        <div class="row align-items-end row-cols-1 row-cols-md-2">
+          <div class="col d-flex justify-content-center mb-1 mb-md-4">
+            <div class="icon"><a href="https://twitter.com/apihandyman" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a></div>
+            <div class="icon"><a href="https://www.linkedin.com/in/arnaudlauret" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></div>
+            <div class="icon"><a href="https://github.com/arno-di-loreto" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a></div>
+            <div class="icon"><a href="/feed.xml" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg></a></div>
+          </div>
+          <div class="col text-center">
+            <a class="btn border-0 rounded-0 p-0" data-toggle="modal" data-target="#bookModal" role="button" ><img class="img-footer-book" src="/images/commons/book/book-footer.png"></a>
           </div>
         </div>
       </div>
-        <script type="text/javascript" src="/js/jquery.min.js" ></script>
-  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
-  <script type="text/javascript" src="/js/asciinema-player.js"></script>
+    </div>
+  </div>
+</div>
+<div class="row row-footer-second">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col col-footer-privacy mb-3 mb-md-0">
+            <div class="icon privacy-link"><a href="/privacy"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg><span class="privacy-link-text">Privacy Policy & Settings<span></span></a></div>
+          </div>
+          <div class="col col-footer-copyright">
+            &copy; 2015-2020 Arnaud Lauret
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            <!-- Modal -->
+      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-book" role="document">
+          <div class="modal-content border-0">
+            <div class="modal-body p-0">
+              <div class="container-fluid p-0">
+                <button type="button" class="close pr-2 pt-1" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row modal-book-cover-center"></div>
+                <div class="row mb-3 mb-lg-0 ml-0 mr-0 pt-3 pt-md-0">
+                  <div class="col col-lg-4 d-none d-md-block p-0">
+                    <img class="img-fluid" src="/images/commons/book/book-modal.png"/>
+                  </div>
+                  <div class="col col-12 col-lg-8 pt-2 pt-lg-4 text-justify">
+                    <p>Want to learn how to design simple, user friendly, secure and implementable APIs that do everything they should?</p>
+                    <p>Use code <code class="book-discount-code text-copy" aria-label="copy discount code" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to copy">fcclauret</code> to get 37% off my book The Design of Web APIs (works also on any other Manning product!).</p>
+                    <p class="text-center"><a href="http://bit.ly/designwebapis" target="_blank" class="btn btn-primary">Buy on manning.com</a></p>
+                    <p class="text-muted pt-3 mb-0">Disclosure: the link above is an affiliated link, meaning, at no additional cost to you, I will earn a commission if you click through and make a purchase.</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+<div class="privacy-message d-none fixed-bottom container-fluid bg-dark text-white p-3">
+  <div class="container">
+    <div class="row text-center pt-2 pb-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+      <div class="col text-justify">
+        By continuing to use this web site you agree with the API Handyman website privacy policy (effective date , June 28, 2020).
+      </div>
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+          <a class="btn btn-primary" href="/privacy">Read privacy policy</a>
+          <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+    <div class="row text-center pt-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <a class="btn btn-primary" href="/privacy">Read privacy policy</a>
+        <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    
   
-    <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
-<script language="javascript">
-  $(function() {
-    var $myNav = $('#toc');
-    var $myScope = $('#post');
-    Toc.init({
-      $nav: $myNav,
-      $scope: $myScope
-    });
-    $('body').scrollspy({
-      target: '#toc'
-    });
-  });
-</script>
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/jquery-3.4.1.slim.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/popper.min.js" ></script>
+<script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
 <script type="text/javascript" src="/js/anchor.min.js" ></script>
-<script language="JavaScript">
-  $(function() {
-    anchors.options = {
-      placement: 'left'
-    };
-    anchors.add('.blog-container h1');
-    anchors.add('.blog-container h2');
-    anchors.add('.blog-container h3');
-  });
-</script>
-<script type="text/javascript" src="/js/prism.js" ></script>
-<script type="text/javascript" src="/js/clipboard.min.js" ></script>
-<script language="JavaScript">
+<script type="text/javascript" src="/js/anchors.js" ></script>
 
-  var clipboard = new ClipboardJS('.copy-btn', {
-      target: function(trigger) {
-        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
-        return trigger.parentElement.parentElement.parentElement.children[0];
-      }
-  });
 
-  clipboard.on('success', function(e) {
-    e.clearSelection();
-    $(e.trigger).html('<i class="fa fa-check"></i>');
-    window.setTimeout(function() {
-        $(e.trigger).html('<i class="fas fa-paste"></i>');
-        $(e.trigger).blur();
-    }, 1000);
-  });
 
-  clipboard.on('error', function(e) {
-    console.error('Action:', e.action);
-    console.error('Trigger:', e.trigger);
-  });
-</script>
-<script language="JavaScript">
-  function toggle(button, code, secondarybutton, scroll) {
-    var beforecodeheight = $(code).height(); 
-    if($(code).hasClass('code-collapsed')) {
-      $(code).removeClass('code-collapsed');
-      $(button).html('<i class="fa fa-compress"></i>');
-      $(secondarybutton).html('<i class="fa fa-compress"></i>');
-      $(button).blur();
-    }
-    else {
-      $(code).addClass('code-collapsed');
-      $(button).html('<i class="fa fa-expand"></i>');
-      $(secondarybutton).html('<i class="fa fa-expand"></i>');
-      $(button).blur();
-      if(scroll) {
-        var aftercodeheight = $(code).height();
-        var afterscroll = $('body').scrollTop();
-        var delta = beforecodeheight - aftercodeheight;
-        $('body').scrollTop(afterscroll - delta);
-      }
-    }
-  }
-</script>
+    
   
-  </body>
 
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/main.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/prism.js" ></script>
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/asciinema-player.js" ></script>
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/code.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<div id="device-size-detector">
+  <div id="xs" class="d-xs-only"></div>
+  <div id="sm" class="d-sm-only"></div>
+  <div id="md" class="d-md-only"></div>
+  <div id="lg" class="d-lg-only"></div>
+  <div id="xl" class="d-xl-only"></div>
+</div>
+<script type="text/javascript" src="/js/size.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/bash.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/toc.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/fingerprint2.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/google-analytics.js" ></script>
+
+
+
+    
+  
+
+  
+
+
+  </body>
 </html>

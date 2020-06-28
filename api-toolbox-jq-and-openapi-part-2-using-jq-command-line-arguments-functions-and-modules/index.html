@@ -1,246 +1,1809 @@
 <!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <html lang="en">
+  <head>
+  <title>API Handyman | </title>
+  <meta name="description" content="Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.">
+<meta name="keywords" content="API,Web API,Web Service">
+<meta name="author" content="Arnaud Lauret">
+<meta name="description" content="Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.">
+
+<!-- Facebook & LinkedIn -->
+<meta property="og:title"         content="Using JQ command line arguments, functions and modules"/>
+<meta property="og:type"          content="article"/>
+<meta property="og:description"   content="Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments."/>
+<meta property="og:url"           content="/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/"/>
+<meta property="og:image"         content="/images/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/banner.png"/>
+
+<!-- Twitter -->
+<meta name="twitter:card"         content="summary">
+<meta name="twitter:site"         content="@apihandyman">
+<meta name="twitter:creator"      content="@apihandyman" />
+<meta name="twitter:title"        content="Using JQ command line arguments, functions and modules">
+<meta name="twitter:url"          content="/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/">
+<meta name="twitter:description"  content="Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.">
+<meta name="twitter:image:src"    content="/images/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/banner.png">
 
   
-
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <link rel="apple-touch-icon" href="/images/favicons/favicon.png">
-  <link rel="shortcut icon" href="/images/favicons/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" href="/images/favicons/favicon.png">
-
-  <title>API Toolbox - JQ and OpenAPI - Part 2 - Using JQ command line arguments, functions and modules | API Handyman</title>
-  <meta name="description" content="Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous p...">
-  
-
-<meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@apihandyman">
-
-  <meta name="twitter:title" content="API Toolbox - JQ and OpenAPI - Part 2 - Using JQ command line arguments, functions and modules">
-
-
-  <meta name="twitter:url" content="https://apihandyman.io/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/">
-
-
-  <meta name="twitter:description" content="Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.">
-
-  <meta name="twitter:image:src" content="https://apihandyman.io/images/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/thumbnail.png">
-
-  
-
-
-
-  <meta name="og:description" content="Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.">
-
-<meta name="og:image" content="https://apihandyman.io/images/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/thumbnail.png">
-
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/prism.css">
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
-  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>  <link rel="canonical" href="/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/">
-  <link rel="stylesheet" href="/css/bootstrap-toc.min.css">
-  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
-  
-  <script type="text/javascript" src="/js/fingerprint2.min.js" ></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  new Fingerprint2().get(function(clientId) {
-    ga('create', 'UA-58046291-1', {
-      'storage': 'none',
-      'clientId':clientId,
-      'storeGac': false
-    });
-    ga('set', 'anonymizeIp', true);
-    ga('send', 'pageview');
-  });
-
-</script>
-  
-
-  
-</head>
-
-  <body>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-md-12">
-            <!--<header>-->
-  <!-- Static navbar -->
-  <nav class="navbar navbar-fixed-top full">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-        </button>
-        <a class="navbar-brand" href="/">API Handyman</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          
-          
-            <li class="dropdown">
-              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Series: API Toolbox - JQ and OpenAPI<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                
-                    <li ><a class="page-link" href="/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">Part 1 - Using JQ to extract data from OpenAPI files</a></li>
-                
-                    <li  class="disabled" ><a class="page-link" href="/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/">Part 2 - Using JQ command line arguments, functions and modules</a></li>
-                
-              </ul>
-            </li>
-          
-          <li class="nav-item nav-dea"><a class="page-link" href="http://bit.ly/designwebapis">My Book: The Design Of Web APIs</a></li>
-          <li class="nav-item nav-asb"><a class="page-link" href="http://apistylebook.com/">API Stylebook</a></li>
-          <li class="dropdown">
-              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OpenAPI<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li class="nav-item nav-oas"><a class="page-link" href="/openapi/">What is the OpenAPI Specification</a></li>
-              <li class="nav-item nav-oas"><a class="page-link" href="/explore-the-openapi-specification-3.0-with-the-openapi-map/">OpenAPI Map</a></li>
-              <li class="nav-item nav-oas"><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">OpenAPI 2.0 Tutorial</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-              <a href="#" class="page-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              
-              <li class="nav-item"><a class="page-link" href="/categories/posts">Posts</a></li>
-              
-              <li class="nav-item"><a class="page-link" href="/categories/talks">Talks</a></li>
-              
-              <li class="nav-item"><a class="page-link" href="/categories/elsewhere">Elsewhere</a></li>
-              
-            </ul>
-          </li>
-          <li class="nav-item"><a class="page-link" href="/about/">About</a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
-  </nav>
-<!--</header>-->
-          </div>
-        </div>
-      </div>
+    
+    
       
 
 
 
 
 
-<header>
-  <!--<div class="container main-container full-jumbotron">-->
-      <div class="jumbotron" style="background-image: url('/images/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/thumbnail.png')">
-        <div class="header-caption text-center">
-          <h1 class="post-title" itemprop="name headline">Part 2 - Using JQ command line arguments, functions and modules</h1>
-          
-            <h2 class="post-subtitle">API Toolbox - JQ and OpenAPI</h2>
-          
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/anchors.css">
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/prism.css">
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/asciinema-player.css">
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/code.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bash.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+</head>
+  <body  data-spy="scroll" data-target="#toc">
+    
+<div class="main-navbar fixed-top  scrolled">
+  <div class="container-lg">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">API Handyman</a>
+      
+      <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="btn-icon" src="/images/commons/icons/menu.svg" >
+      </button>
+      <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
+        <div class="navbar-nav">
+          <li class="nav-item dropdown dropdown-blog d-desktop-only">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Blog
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="/blog">All content</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/posts">Posts</a>
+              <a class="dropdown-item" href="/talks">Talks & Podcasts</a>
+            </div>
+          </li>
+          <a class="nav-item nav-link d-mobile-only" href="/Blog">Blog</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/posts">Posts</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/talks">Talks & Podcasts</a>
+          <a class="nav-item nav-link" href="/toolbox">Toolbox</a>
+          <a class="nav-item nav-link" href="/about">About</a>
+          <a class="nav-item-book left-column-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
         </div>
       </div>
-  <!--</div>-->
-</header>
-      <div class="container main-container">
-        <div class = "row">
-          <main>
-          <div class="hidden-xs hidden-sm col-md-2" role="complementary">
-  <nav id="left-banner" data-spy="affix" data-offset-top="400">   
-    <div class="book-banner-vertical">
-    <p class="book-banner-vertical-top"><a href="http://bit.ly/designwebapis">Read my book</a></p>
-    <a href="http://bit.ly/designwebapis"><img class="img-responsive center-block " src="/images/commons/book/book-vertical.png"></a>
-    <p class="book-banner-vertical-bottom">(affiliate link, use fcclauret discount code to get 37% off)</p>
-</div>
-  </nav>
-</div>
-<div class="col-xs-12 col-sm-9 col-md-8" role="main">
-  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      
+    </nav> <!-- class="navbar navbar-expand-md" -->
+  </div> <!--  class="container" -->
+</div> <!-- class="main-navbar fixed-top  scrolled" -->
+    <div class="page-content-container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="row row-banner-small row-banner-small-">
+    <div class="banner-small-container">
+      <div class="banner-small-column-main">
+        <img src="/images/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/banner.png" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+
+<div class="row row-page-content">
+  <div class="container-fluid container-lg">
+    <div class="fade modal left-menu-hider left-menu-modal d-mobile-only"></div>
     <div class="row">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-      <div class="post-summary book-banner-horizontal">
-    <p><a class="post-link" href="http://bit.ly/designwebapis">Read my book (affiliate link, use fcclauret discount code to get 37% off)</a></p>
-    <a class="post-link" href="http://bit.ly/designwebapis">
-      <img class="img-responsive center-block post-summary-thumbnail" src="/images/commons/book/book-horizontal.png"></a>
-  </div>
+      
+      <div class="page-column-left left-menu left-menu-hider">
+        <div class="page-column-left-container">
+          
+
+
+
+<div class="left-book-ad left-book-ad-border d-desktop-only">
+  <img src="/images/commons/book/book-left-menu-cropped.png" class="card-img" alt="The Design of Web APIs book cover">
+  <div class="card-img-overlay message-cropped">
+    <a class="stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >
+      <p class="card-text">Special offer on my book</p>
+    </a>
   </div>
 </div>
-    <div id="post" class="blog-container" itemprop="articleBody">
-      <p class="post-meta">
-        
-          By
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Arnaud Lauret</span></span>
-        
-        
-        &nbsp;&nbsp;|&nbsp;<time datetime="2020-02-03T00:00:00+00:00" itemprop="datePublished">Feb. 3, 2020</time><span>&nbsp;|&nbsp;Posts</span>
-      </p>
-      <p>Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.<!--more--> We will continue working on OpenAPI files, at the end of this second part, we’ll have built a multi-criteria OpenAPI search and some reusable filters, especially one that you’ll be able to reuse anytime you’ll have to deal with JQ command line parameters.</p>
+<a class="left-book-ad-small left-menu-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button">
+  Special offer on my book
+  <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
+</a>
 
-<h1 id="jq-and-openapi-post-series">JQ and OpenAPI post series</h1>
-
-<p><a href="https://stedolan.github.io/jq/manual/v1.6/" target="jq">JQ’s documentation</a> is quite complete and there are many tutorials and Stackoverflow answers, so why bother writing this series? First reason, I regularly meet people working with APIs and/or JSON files who actually don’t know JQ exists and how it could save their life (or at least their time). Second reason, I often use it with OpenAPI specification files and I found that showing how JQ can be used on such a widely adopted and familiar JSON based format could help to learn how to use it (and also writing this post actually helped me to improve my JQ skills!).</p>
-
-<p>This JQ and OpenAPI series is composed of the following posts:</p>
-
-<ul>
+  
+  <div class="nav-item dropdown dropright">
+    <a class="nav-link dropdown-toggle series-title text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Series
+    </a>
+    
+<div class="dropdown-menu dropdown-menu-series rounded-0" aria-labelledby="navbarSerieDropdown">
+  <div class="dropdown-header">JQ and OpenAPI</div>
+  <div class="dropdown-divider"></div>
+  
   
     
-    <li><a class="page-link" href="/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">Part 1 - Using JQ to extract data from OpenAPI files</a></li>
+   <a class="dropdown-item selectable text-wrap" href="/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">1 - Using JQ to extract data from OpenAPI files</a>
+  
+
+    
+    <a class="dropdown-item active disabled text-wrap">2 - Using JQ command line arguments, functions and modules</a>
+  
+
+    
+   <a class="dropdown-item selectable text-wrap" href="/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/">3 - Modifying OpenAPI files with JQ</a>
+  
+
+
+
+
+
+
+
+
+
+  <a class="dropdown-item disabled text-wrap">4 - Bonus: coloring JQ's raw output (coming soon)</a>
+
+
+</div>
+  </div>
+  
+  <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
+    
+
+
+
+
+
+  <nav class="nav flex-column" id="toc">
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
   
     
-    <li><strong>Part 2 - Using JQ command line arguments, functions and modules</strong></li>
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#get-posts-content">Get post’s content</a>
+          
+      
+      
     
   
-  <li>Part 3 - Modifying OpenAPI files with JQ (coming soon)</li>
-  <li>Part 4 - Bonus: coloring JQ's raw output (coming soon)</li>
-</ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#listing-operations-using-functions-and-modules">Listing operations using functions and modules</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#creating-functions">Creating functions</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#creating-a-module-with-reusable-functions">Creating a module with reusable functions</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#managing-modules-locations">Managing modules locations</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#searching-operations-using-command-line-arguments">Searching operations using command line arguments</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#passing-an-argument-to-jq-filters">Passing an argument to JQ filters</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#searching-operations-accessible-for-a-scope">Searching operations accessible for a scope</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#solving-the-command-line-argument-problem">Solving the command line argument “problem”</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#searching-operations-on-multiple-criteria-and-multiple-files">Searching operations on multiple criteria and multiple files</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#summary">Summary</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#functions-and-modules">Functions and modules</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#command-line-arguments">Command line arguments</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#the-null-argument">The null argument</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#new-filters">New filters</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#whats-next">What’s next</a>
+        
+      
+      
+    
+  
+  </nav>
+  </div>
 
-<h1 id="get-posts-content">Get post’s content</h1>
+        </div>
+      </div>
+        
+      
+      <div class="page-column-main page-column-main-with-left">
+        
 
-<p>All examples shown in this post are based on JQ 1.6 and OpenAPI 3. All examples can be copied using the <i class="fas fa-paste"></i> button and downloaded using the <i class="fas fa-file-code"></i> one on code snippets. All source code can be retrieved from the <a href="https://github.com/arno-di-loreto/jq-and-openapi/" target="jq">JQ and OpenAPI post series’ github repository</a>.</p>
 
-<div>
-  <pre class="copy-hidden">git clone https://github.com/arno-di-loreto/jq-and-openapi/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="page-content-text anchors">
+  
+  
+  
+  
+  
+    
+    
+    <!-- First card with page title -->
+    <div class="card-page-section page-section-title">
+      <div class="body">
+        
+        <h5 class="surtitle">
+JQ and OpenAPI Series - Part 2
+</h5>
+        
+        
+        <h1 class="title">Using JQ command line arguments, functions and modules</h1>
+        
+        
+        <h6 class="subtitle">By Arnaud Lauret, February 3, 2020</h6>
+        <hr/>
+        
+        <p>Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In the previous part of this JQ and OpenAPI Series, we learned to invoke JQ and how to extract data from JSON documents using some of its many filters. Now we will discover how to build flexible and easily reusable JQ filters by creating functions and modules and also using command line arguments.<!--more--> We will continue working on OpenAPI files, at the end of this second part, we’ll have built a multi-criteria OpenAPI search and some reusable filters, especially one that you’ll be able to reuse anytime you’ll have to deal with JQ command line parameters.</p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">JQ and OpenAPI Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+JQ's <a href="https://stedolan.github.io/jq/manual/v1.6/" target="jq">documentation</a> is quite complete and there are many tutorials and Stackoverflow answers, so why bother writing this series? First reason, I regularly meet people working with APIs and/or JSON files who actually don't know JQ exists and how it could save their life (or at least their time). Second reason, I often use it with OpenAPI specification files and I found that showing how JQ can be used on such a widely adopted and familiar JSON based format could help to learn how to use it (and also writing this post actually helped me to improve my JQ skills!).
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item"><a href="/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">1 - Using JQ to extract data from OpenAPI files</a></li>
+          
+        
+          
+          <li class="list-group-item active">2 - Using JQ command line arguments, functions and modules</li>
+          
+        
+          
+          <li class="list-group-item"><a href="/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/">3 - Modifying OpenAPI files with JQ</a></li>
+          
+        
+        
+          
+          
+          
+        
+          
+          
+          
+          <li class="list-group-item disabled">4 - Bonus: coloring JQ's raw output (coming soon)</li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+        
+      </div>
+    </div><!-- First card with page title END -->
+      
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="get-posts-content">Get post’s content</h1>
+
+<p>All examples shown in this post are based on JQ 1.6 and OpenAPI 3. All examples can be copied using the <span class="icon-inline icon-text" aria-label="copy button icon"><svg height="100px" width="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path d="M14,2V0H6v2H2v18h16V2H14z M12,2v2H8V2H12z M16,18H4V4h2v2h8V4h2V18z"></path></svg></span> button and downloaded using the <span class="icon-inline icon-text" aria-label="download button icon"><svg height="100px" width="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><polygon points="15,11 13.6,9.6 11,12.2 11,0 9,0 9,12.2 6.4,9.6 5,11 10,16  "></polygon><polygon points="18,12 18,18 2,18 2,12 0,12 0,20 20,20 20,12  "></polygon></g></svg></span> one on code snippets. All source code can be retrieved from the <a href="https://github.com/arno-di-loreto/jq-and-openapi/" target="jq">JQ and OpenAPI post series’ github repository</a>.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">git clone https://github.com/arno-di-loreto/jq-and-openapi/
 cd jq-and-openapi
 git checkout part-2
 
 </pre>
-  
-  <div class="code-toolbar">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ git clone https://github.com/arno-di-loreto/jq-and-openapi/
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ git clone https://github.com/arno-di-loreto/jq-and-openapi/
 [apihandyman.io]$ cd jq-and-openapi
 [apihandyman.io]$ git checkout part-2</code></pre>
-  
+  </div>
 </div>
 
-<h1 id="listing-operations-using-functions-and-modules">Listing operations using functions and modules</h1>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="listing-operations-using-functions-and-modules">Listing operations using functions and modules</h1>
 
 <p>In previous post, we built a filter that lists the operations available in an OpenAPI file. In this first section, we will just refactor the JQ code to make it more readable and reusable using functions and modules. The following listing shows what happens when using the new version of list-operations.jq on the demo OpenAPI file.</p>
 
-<div>
-  <pre class="copy-hidden">jq -r -f list-operations.jq demo-api-openapi.json
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">jq -r -f list-operations.jq demo-api-openapi.json
 
 </pre>
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Same result as in part 1 but list-operations.jq has changed under the hood</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Same result as in part 1 but list-operations.jq has changed under the hood</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ jq -r -f list-operations.jq demo-api-openapi.json
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -r -f list-operations.jq demo-api-openapi.json
 get     /accounts       List accounts
 get     /accounts/{id}  Get an account
 post    /beneficiaries  Register a beneficiary
@@ -255,26 +1818,32 @@ get     /transfers      List money transfers
 get     /transfers/{id} Get a money transfer
 patch   /transfers/{id}
 delete  /transfers/{id} Cancel a money transfer</code></pre>
-  
+  </div>
 </div>
 
 <p>It seems nothing has changed, it still outputs operations HTTP methods, paths and summaries, but under the hood, the JQ file used has changed as shown in the following listing.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">list-operations.jq</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">list-operations.jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers"><code>include "module-openapi"; # Imports module-openapi.jq file
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy"><code class="code-block">include "module-openapi"; # Imports module-openapi.jq file
 
 oas_operations | # Function coming from module-openapi.jq file
 oas_operations_to_text  # Function coming from module-openapi.jq file</code></pre>
-  
+  </div>
 </div>
 
 <p>Let’s see how it was created, we’ll discover functions and then modules.</p>
@@ -283,17 +1852,23 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
 
 <p>As a reminder, here’ the previous version of the <code>list-operations.jq</code> file we created in previous part. It is composed of three steps. Steps 1 and 2 build an array of operation object containing a (HTTP) method, path, summary and deprecated indicator. Step 3 aims to print this array as tab separated text.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">list-operations-original.jq</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-original.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">list-operations-original.jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-original.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers code-collapsed"><code># 1 - Selects paths objects
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-collapsed code-copy"><code class="code-block"># 1 - Selects paths objects
 #--------------------------
 # returns [{key: path, value: path value}]
 .paths # Selects the paths property content
@@ -343,22 +1918,28 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
   (if .deprecated then " (deprecated)" else "" end)
 )
 [] # Flattens array for raw output</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  </div>
 </div>
 
 <p>Let’s focus on step 3, which is shown below, and build a function that does the same job.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">We will create a function for step 3</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-original.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">We will create a function for step 3</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-original.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers" data-start="42"><code># 3 - Outputs tab separated raw text
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy" data-start="42"><code class="code-block"># 3 - Outputs tab separated raw text
 #-----------------------------------
 | map( # Applies a transformation to each element
   .method + "\t" + 
@@ -367,22 +1948,28 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
   (if .deprecated then " (deprecated)" else "" end)
 )
 [] # Flattens array for raw output</code></pre>
-  
+  </div>
 </div>
 
 <p>Defining a function in JQ is quite simple: at the beginning of the file, add a <code>def function_name:</code> put some filters and end by <code>;</code> and you’re done. The <code>oas_operation_to_text</code> which basically contains step 3’s filters is shown below.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Defining the oas_operation_to_text function</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Defining the oas_operation_to_text function</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers"><code>def oas_operations_to_text: # Defining a function that
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy"><code class="code-block">def oas_operations_to_text: # Defining a function that
                             # Prints operations as raw text
   map( # Applies a transformation to each element
     .method + "\t" + 
@@ -393,40 +1980,52 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
   [] # Flattens array for raw output
 ; # oas_operations_to_text function's end
 </code></pre>
-  
+  </div>
 </div>
 
 <p>If defining a function in JQ is quite simple, using it is even more simple. Just call it like any regular JQ filter. The following listing shows how step 3’s code has been replaced by the new <code>oas_operation_to_text</code> custom filter which is on top of the file.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Using the oas_operation_to_text function</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Using the oas_operation_to_text function</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers" data-start="53"><code># 3 - Outputs tab separated raw text
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy" data-start="53"><code class="code-block"># 3 - Outputs tab separated raw text
 #-----------------------------------
 | oas_operations_to_text</code></pre>
-  
+  </div>
 </div>
 
 <p>Here’s the full modified list-operations.jq file including the <code>oas_operation_to_text</code> definition at the beginning and its calling on the last line.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">list-operations-with-to-text-function.jq</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">list-operations-with-to-text-function.jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers code-collapsed" data-line="1-10,55"><code>def oas_operations_to_text: # Defining a function that
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-collapsed code-copy" data-line="1-10,55"><code class="code-block">def oas_operations_to_text: # Defining a function that
                             # Prints operations as raw text
   map( # Applies a transformation to each element
     .method + "\t" + 
@@ -481,7 +2080,7 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
 # 3 - Outputs tab separated raw text
 #-----------------------------------
 | oas_operations_to_text</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  </div>
 </div>
 
 <p>That’s great, using functions big JQ filters are far more readable. But what about being able to reuse these functions?</p>
@@ -490,17 +2089,23 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
 
 <p>Creating JQ <em>modules</em> that define reusable functions is, again, quite simple. Just put some functions in a JQ file and you’re done. The following listing shows a <code>module-openapi.jq</code> module file defining two functions. There’s the <code>oas_operation_to_text</code> we have just created and also an <code>oas_operations</code> which do the same as steps 1 and 2 of the <code>list-operations.jq</code> file (returning an array of operations). Note that there’s a light modification (line 43/44), this function returns also the <code>input_filename</code> and the original value of each operations (for a later use) besides its HTTP method, path, summary and deprecated flag.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">module-openapi.jq</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">module-openapi.jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers code-collapsed"><code># This is a reusable JQ module defining useful
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-collapsed code-copy"><code class="code-block"># This is a reusable JQ module defining useful
 # OpenAPI specification (OAS) processing functions
 
 def oas_operations: # Defining a listoperations function
@@ -560,31 +2165,53 @@ def oas_operations_to_text: # Defining a function that
   )
   [] # Flattens array for raw output
 ; # oas_operations_to_text function's end</code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  </div>
 </div>
 
 <p>Let’s get back to the new version of <code>list-operations.jq</code> (shown below) to see how this module is actually used. The module is include with the <code>include &lt;module name without extension&gt;;</code> line. Then any functions defined in it can be used like any other regular JQ filter as shown on line 3 and 4 where <code>oas_operations</code> and <code>oas_operations_to_text</code> are used.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">list-operations.jq</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">list-operations.jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers"><code>include "module-openapi"; # Imports module-openapi.jq file
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy"><code class="code-block">include "module-openapi"; # Imports module-openapi.jq file
 
 oas_operations | # Function coming from module-openapi.jq file
 oas_operations_to_text  # Function coming from module-openapi.jq file</code></pre>
-  
+  </div>
 </div>
 
 <h2 id="managing-modules-locations">Managing modules locations</h2>
 
-<asciinema-player poster="npt:1:20" title="Managing JQ modules location" author="Arnaud Lauret" rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-2/module-location.cast"></asciinema-player>
+<div class="card card-code card-bash text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Managing JQ modules location</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="bash session player controls">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body bash-player">
+    <asciinema-player id="player" title="Managing JQ modules location" author="Arnaud Lauret" rows="24" cols="125" src="/code/api-toolbox-jq-and-openapi/part-2/module-location.cast"></asciinema-player>
+  </div>
+</div>
 
 <p>The following listings shows different ways of managing reusable modules location with JQ (see <a href="https://stedolan.github.io/jq/manual/#Modules">modules</a> in the JQ’s documentation for a complete description of what can be done).
 It starts by a a first command done inside the <code>jq-and-openapi</code> folder.
@@ -593,21 +2220,28 @@ As you can see, there’s no need to create a JQ file to use a module, just use 
 Then we go a level up, and obviously redoing the same exact command does not work anymore: the <code>module-openapi.jq</code> cannot be found in the current folder as it is in the <code>jq-and-openapi</code> one.
 Hopefully, you can use the <code>-L &lt;path list&gt;</code> argument to tell JQ where to look for modules.</p>
 
-<div>
-  <pre class="copy-hidden">jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; demo-api-openapi.json
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; demo-api-openapi.json
 cd ..
 jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
 jq -r -L jq-and-openapi &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
 
 </pre>
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Indicating where to find modules with -L argument</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Indicating where to find modules with -L argument</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; demo-api-openapi.json
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; demo-api-openapi.json
 List accounts
 [apihandyman.io]$ cd ..
 [apihandyman.io]$ jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
@@ -616,54 +2250,79 @@ jq: error: module not found: module-openapi
 jq: 1 compile error
 [apihandyman.io]$ jq -r -L jq-and-openapi &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
 List accounts</code></pre>
-  
+  </div>
 </div>
 
 <p>If there are modules that you use extensively, it would be interesting to put them in a <code>~/.jq</code> folder. Therefore, no longer need for the <code>-L</code> argument as shown below. JQ looks for the modules mentioned in <code>include</code> directives in this folder automatically.</p>
 
-<div>
-  <pre class="copy-hidden">mkdir ~/.jq
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">mkdir ~/.jq
 cp jq-and-openapi/module-openapi.jq ~/.jq
 jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
 
 </pre>
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Using ~/.jq default folder to store modules</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Using ~/.jq default folder to store modules</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ mkdir ~/.jq
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ mkdir ~/.jq
 [apihandyman.io]$ cp jq-and-openapi/module-openapi.jq ~/.jq
 [apihandyman.io]$ jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
 List accounts</code></pre>
-  
+  </div>
 </div>
 
 <p>Note that <code>~/.jq</code> can also be a file. In that case, you don’t even need to <code>include</code> anything, as shown below. Any function defined in this file is usable inside any of your filters. I personally do not recommend to do this because that makes your filters dependencies invisible (and can also result in a quite huge unmaintainable <code>.jq</code> file).</p>
 
-<div>
-  <pre class="copy-hidden">rm -rf ~/.jq
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">rm -rf ~/.jq
 cp jq-and-openapi/module-openapi.jq ~/.jq
 jq -r &#39;oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
 
 </pre>
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Using ~/.jq default file to store functions</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Using ~/.jq default file to store functions</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ rm -rf ~/.jq
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ rm -rf ~/.jq
 [apihandyman.io]$ cp jq-and-openapi/module-openapi.jq ~/.jq
 [apihandyman.io]$ jq -r &#39;oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
 List accounts</code></pre>
-  
+  </div>
 </div>
 
-<h1 id="searching-operations-using-command-line-arguments">Searching operations using command line arguments</h1>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="searching-operations-using-command-line-arguments">Searching operations using command line arguments</h1>
 
 <p>Now that we have a reusable module that provides functions to list operations of an OpenAPI specification file and print them as tab separated text, let’s work on a multiple-criteria and multiple-file search.</p>
 
@@ -671,53 +2330,71 @@ List accounts</code></pre>
 
 <p>In order to make this search flexible, we’ll need to be able to accept search arguments coming from outside our filter in order to avoid having to modify it on each different search. Passing arguments to JQ is done with <code>--arg &lt;name&gt; &lt;value&gt;</code> as shown below. Inside the filter, you can access a <code>--arg</code> with <code>$&lt;name&gt;</code>. In this case <code>$foo</code> returns <code>bar</code>. Note also in this example the <code>-n</code> flag which is used to tell JQ to not expect any JSON input. That’s pretty useful to make demos of some JQ’s features but also to generate JSON from scratched based on some arguments values.</p>
 
-<div>
-  <pre class="copy-hidden">jq -n --arg foo bar &#39;{foo: $foo}&#39;
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">jq -n --arg foo bar &#39;{foo: $foo}&#39;
 
 </pre>
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Passing an argument with --arg (and discovering -n flag)</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Passing an argument with --arg (and discovering -n flag)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ jq -n --arg foo bar &#39;{foo: $foo}&#39;
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -n --arg foo bar &#39;{foo: $foo}&#39;
 {
   &quot;foo&quot;: &quot;bar&quot;
 }</code></pre>
-  
+  </div>
 </div>
 
 <h2 id="searching-operations-accessible-for-a-scope">Searching operations accessible for a scope</h2>
 
 <p>The following listing shows which operations are accessible to a consumer when it is given the <code>transfer:admin</code> security scope. The scope value is provided to the filter using <code>--arg &lt;name&gt; &lt;value&gt;</code>.</p>
 
-<div>
-  <pre class="copy-hidden">jq -r --arg scope transfer:admin -f search-operations-using-scope.jq demo-api-openapi.json 
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">jq -r --arg scope transfer:admin -f search-operations-using-scope.jq demo-api-openapi.json 
 
 </pre>
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Searching operations using a given scope</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Searching operations using a given scope</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ jq -r --arg scope transfer:admin -f search-operations-using-scope.jq demo-api-openapi.json 
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -r --arg scope transfer:admin -f search-operations-using-scope.jq demo-api-openapi.json 
 post    /transfers      Transfer money
 get     /transfers      List money transfers
 get     /transfers/{id} Get a money transfer
 delete  /transfers/{id} Cancel a money transfer</code></pre>
-  
+  </div>
 </div>
 
 <p>In an OpenAPI file, you’ll find the scopes that will grant access to an operation in its security property under a <code>{name}</code>.
 According the OpenAPI Specification, <em>each name MUST correspond to a security scheme which is declared in the Security Schemes under the Components Object. If the security scheme is of type “oauth2” or “openIdConnect”, then the value is a list of scope names required for the execution. For other security scheme types, the array MUST be empty</em>.</p>
 
-<div>
-      <img src="/images/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/jq-openapi-scopes.png" />
-      
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/jq-openapi-scopes.png" class="figure-img img-fluid" />
+        
+        
+      </figure>
     </div>
 
 <p>For our use case, we just need to list all values (scopes) under all <code>security.{name}</code> of each operation and keep the operations for which the provided scope is found in this list. The following listing shows how this is achieved in the <code>search-operations-using-scope.jq</code>.</p>
@@ -734,17 +2411,23 @@ According the OpenAPI Specification, <em>each name MUST correspond to a security
   <li>And finally (line 19), it prints the remaining operations as tab separated values using the <code>oas_operations_to_text</code> function (coming from <code>module-openapi</code> included on line 1)</li>
 </ul>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">search-operations-using-scope.jq</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/search-operations-using-scope.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">search-operations-using-scope.jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/search-operations-using-scope.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers"><code>include "module-openapi"; # Looks for a module-openapi.jq file
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy"><code class="code-block">include "module-openapi"; # Looks for a module-openapi.jq file
 
 # Expects a --arg scope value parameter
 oas_operations # Comes from module-operations.jq
@@ -763,51 +2446,81 @@ oas_operations # Comes from module-operations.jq
     end
   ))
 | oas_operations_to_text  # Comes from module-operations.jq</code></pre>
-  
+  </div>
 </div>
 
 <p>That’s cool, but there’s a little problem. When using the <code>search-operations-using-scope.jq</code> without providing the scope value, it does not work: JQ complains that <code>$scope</code> is not defined, as shown below.</p>
 
-<div>
-  <pre class="copy-hidden">jq -r -f search-operations-using-scope.jq demo-api-openapi.json
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">jq -r -f search-operations-using-scope.jq demo-api-openapi.json
 
 </pre>
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">What happens when scope is not provided</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">What happens when scope is not provided</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ jq -r -f search-operations-using-scope.jq demo-api-openapi.json
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -r -f search-operations-using-scope.jq demo-api-openapi.json
 jq: error: $scope is not defined at &lt;top-level&gt;, line 12:
         $scope # $scope value is provided on the command line        
 jq: 1 compile error</code></pre>
-  
+  </div>
 </div>
 
 <p>Does that mean we can’t do a multi-criteria search because it requires to be able to provide multiple <em>optional</em> parameters? Of course not, that problem can be solved.</p>
 
 <h2 id="solving-the-command-line-argument-problem">Solving the command line argument “problem”</h2>
 
-<asciinema-player poster="npt:1:20" title="Solving the command line argument problem" author="Arnaud Lauret" rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-2/solving-argument-problem.cast"></asciinema-player>
+<div class="card card-code card-bash text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Solving the command line argument problem</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="bash session player controls">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body bash-player">
+    <asciinema-player id="player" title="Solving the command line argument problem" author="Arnaud Lauret" rows="24" cols="125" src="/code/api-toolbox-jq-and-openapi/part-2/solving-argument-problem.cast"></asciinema-player>
+  </div>
+</div>
 
 <p>The following listing shows how to safely access a command line named argument using the <code>$ARGS.named</code> filter. If <code>$name</code> causes an error if no <code>--arg name value</code> is provided on the command line, <code>$ARGS.named['name']</code> will return <code>null</code> without causing any.</p>
 
-<div>
-  <pre class="copy-hidden">jq -n --arg foo hello --arg bar world &#39;{foo: $foo, bar: $bar}&#39;
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">jq -n --arg foo hello --arg bar world &#39;{foo: $foo, bar: $bar}&#39;
 jq -n --arg foo hello &#39;{foo: $foo, bar: $bar}&#39;
 jq -n --arg foo hello &#39;{foo: $ARGS.named[&quot;foo&quot;], bar: $ARGS.named[&quot;bar&quot;]}&#39;
 
 </pre>
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Using $ARGS.named</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Using $ARGS.named</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ jq -n --arg foo hello --arg bar world &#39;{foo: $foo, bar: $bar}&#39;
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -n --arg foo hello --arg bar world &#39;{foo: $foo, bar: $bar}&#39;
 {
   &quot;foo&quot;: &quot;hello&quot;,
   &quot;bar&quot;: &quot;world&quot;
@@ -821,22 +2534,28 @@ jq: 1 compile error
   &quot;foo&quot;: &quot;hello&quot;,
   &quot;bar&quot;: null
 }</code></pre>
-  
+  </div>
 </div>
 
 <p>That’s very handy, but what if I want to set an argument to a default value if it is not provided? I just need to use the following <code>module-args</code> module. It defines a <code>init_parameter(default_values)</code> function returning an object containing parameters set to the value coming from <code>--arg &lt;name&gt;</code> or a default value it is not provided. To do so, for each entry (key/value) of a <code>default_values</code> object parameter, it checks if the named arguments (<code>$ARGS.named</code>) contains the key and if so, sets the output value to the one provided on the command line. If not, it keeps the default one. By the way, that means that JQ functions can also use parameters besides their regular input. But note that you don’t need to prefix their name by <code>$</code> to access them.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">module-args.jq</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-args.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">module-args.jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-args.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers"><code># Initializes parameters based on provided named arguments (--arg).
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy"><code class="code-block"># Initializes parameters based on provided named arguments (--arg).
 # If an argument is not provided, its default value is used.
 # default_values example:
 # {
@@ -855,67 +2574,103 @@ def init_parameters(default_values):
     end
   )
 ;</code></pre>
-  
+  </div>
 </div>
 
 <p>The following listing shows how this function can be used. Just call the <code>init_parameter</code> function with an object containing the default values and put its result in a variable (here <code>$parameter</code>) for later use (<code>$parameter.foo</code> for example). Here the default value of <code>foo</code> is <code>default foo</code> and <code>bar</code>’s is <code>null</code>. Only <code>bar</code> is provided, so the output contains <code>foo</code>’s default value and <code>bar</code> command-line-provided value.</p>
 
-<div>
-  <pre class="copy-hidden">jq -n --arg bar &quot;bar from command line&quot; &#39;include &quot;module-args&quot;; init_parameters({foo: &quot;default foo&quot;, bar: null}) as $parameters| {foo: $parameters.foo, bar: $parameters.bar}&#39;
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">jq -n --arg bar &quot;bar from command line&quot; &#39;include &quot;module-args&quot;; init_parameters({foo: &quot;default foo&quot;, bar: null}) as $parameters| {foo: $parameters.foo, bar: $parameters.bar}&#39;
 
 </pre>
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Optional parameters with default values</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Optional parameters with default values</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ jq -n --arg bar &quot;bar from command line&quot; &#39;include &quot;module-args&quot;; init_parameters({foo: &quot;default foo&quot;, bar: null}) as $parameters| {foo: $parameters.foo, bar: $parameters.bar}&#39;
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -n --arg bar &quot;bar from command line&quot; &#39;include &quot;module-args&quot;; init_parameters({foo: &quot;default foo&quot;, bar: null}) as $parameters| {foo: $parameters.foo, bar: $parameters.bar}&#39;
 {
   &quot;foo&quot;: &quot;default foo&quot;,
   &quot;bar&quot;: &quot;bar from command line&quot;
 }</code></pre>
-  
+  </div>
 </div>
 
 <h2 id="searching-operations-on-multiple-criteria-and-multiple-files">Searching operations on multiple criteria and multiple files</h2>
 
-<asciinema-player poster="npt:1:20" title="Searching operations demo" author="Arnaud Lauret" rows="24" cols="80" src="/code/api-toolbox-jq-and-openapi/part-2/search-demo.cast"></asciinema-player>
+<div class="card card-code card-bash text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Searching operations demo</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="bash session player controls">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body bash-player">
+    <asciinema-player id="player" title="Searching operations demo" author="Arnaud Lauret" rows="24" cols="125" src="/code/api-toolbox-jq-and-openapi/part-2/search-demo.cast"></asciinema-player>
+  </div>
+</div>
 
 <p>Now that we know how to provide multiple optional parameters, let’s do a multi-criteria search. The following listing shows the <code>get</code> operations on paths containing <code>sources</code> across all available <code>*.json</code> files. The first value on each line is the filename (limited to 20 characters).</p>
 
-<div>
-  <pre class="copy-hidden">jq --arg path_contains sources --arg method get -r -f search-operations.jq *.json
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">jq --arg path_contains sources --arg method get -r -f search-operations.jq *.json
 
 </pre>
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Operations on path containing source with method get</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-      
-      <button type="button" class="btn btn-default copy-btn"><i class="fas fa-paste"></i></button>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Operations on path containing source with method get</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-bash line-numbers"><code>[apihandyman.io]$ jq --arg path_contains sources --arg method get -r -f search-operations.jq *.json
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq --arg path_contains sources --arg method get -r -f search-operations.jq *.json
 [demo-another-api-swa]  get     /resources
 [demo-api-openapi.jso]  get     /sources        List transfer sources
 [demo-api-openapi.jso]  get     /sources/{id}/destinations      List transfer source&#39;s destinations</code></pre>
-  
+  </div>
 </div>
 
 <p>Here’s the <code>search-operations.jq</code> file who does that. It reuses functions we have seen before, <code>oas_operations</code> from the <code>module_openapi.jq</code> file and <code>init_parameters</code> from the <code>module-args.jq</code> file. It also uses new functions <code>filter_operations</code>, <code>default_filters</code>, <code>print_oas_operations</code> and <code>default_print_parameters</code> from <code>module-openapi-search.jq</code>. There are 3 steps: getting operations data, filtering them and finally printing them. There’s nothing new on the first step, we already have used this function. Let’s see what is happening on the second and after that the third step.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">search-operations.jq</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/search-operations.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">search-operations.jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/search-operations.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers"><code>include "module-openapi";
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy"><code class="code-block">include "module-openapi";
 include "module-args";
 include "module-openapi-search";
 
@@ -925,22 +2680,28 @@ oas_operations
 | filter_oas_operations(init_parameters(default_filters))
 # Prints operations
 | print_oas_operations(init_parameters(default_print_parameters).format)</code></pre>
-  
+  </div>
 </div>
 
 <p>The following listing shows the new functions used to filter operations. The <code>default_filters</code> only returns the search filters default value to be used in conjunction with <code>init_parameters</code> and so get cleans values from optional command line arguments. The <code>filter_oas_operation</code> expects a <code>filter</code> object whose structure is the same as the one returned by default filters. This operations runs a <code>map(select())</code> on the operations list. Each filter is triggered if <code>filters.&lt;name&gt;</code> is not null. There’s nothing really new regarding JQ’s filters besides line 41. The filtering on paths is done using the <code>contains</code> filter which we hadn’t seen before.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Filtering operations (module-openapi-search.jq)</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Filtering operations (module-openapi-search.jq)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers code-collapsed" data-start="3"><code># Available filters and their default values
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-collapsed code-copy" data-start="3"><code class="code-block"># Available filters and their default values
 # To be used with init_parameters
 def default_filters:
 {
@@ -983,22 +2744,28 @@ def filter_oas_operations(filters):
   )
 );
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  </div>
 </div>
 
 <p>The following listing shows the new functions used to print the operations. It uses the same mechanism as the filter functions regarding the command line arguments.</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Printing operations (module-openapi-search.jq)</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Printing operations (module-openapi-search.jq)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers code-collapsed" data-start="46"><code># Same as oas_operations_to_text but with source
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-collapsed code-copy" data-start="46"><code class="code-block"># Same as oas_operations_to_text but with source
 def oas_operations_to_text_with_source: 
   map( # Applies a transformation to each element
     "[" + .source[0:20] + "]\t" +
@@ -1031,22 +2798,28 @@ def print_oas_operations(format):
   end
 ;
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  </div>
 </div>
 
 <p>Here’s the full file:</p>
 
-<div>
-  <!-- codeblocksize: 20 -->
-  <div class="code-title"><button type="button" class="btn btn-default btn-block">Filtering operations (module-openapi-search.jq)</button></div>
-  <div class="code-toolbar-for-title">
-    <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-default" onclick="toggle(this, this.parentElement.parentElement.parentElement.children[2], this.parentElement.parentElement.parentElement.children[3].children[0])"><i class="fa fa-expand" aria-hidden="true"></i></button>
-        <button type="button" class="btn btn-default"><a target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq"><i class="fas fa-file-code"></i></a></button>
-        <button type="button" class="btn btn-default btn-copy"><i class="fas fa-paste"></i></button>
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Filtering operations (module-openapi-search.jq)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
     </div>
   </div>
-  <pre class="language-jq line-numbers code-collapsed"><code>include "module-openapi";
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-collapsed code-copy"><code class="code-block">include "module-openapi";
 
 # Available filters and their default values
 # To be used with init_parameters
@@ -1125,10 +2898,21 @@ def print_oas_operations(format):
 ;
 
 </code></pre>
-  <div class="code-bottom-toolbar"><button type="button" class="btn btn-default btn-block" onclick="toggle(this, this.parentElement.parentElement.children[2], this.parentElement.parentElement.children[1].children[0].children[0], true)"><i class="fa fa-expand" aria-hidden="true"></i></button></div>
+  </div>
 </div>
 
-<h1 id="summary">Summary</h1>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="summary">Summary</h1>
 
 <p>That concludes this second path of the JQ and OpenAPI series. Here’s the summary of what we have seen in this post:</p>
 
@@ -1163,12 +2947,14 @@ def print_oas_operations(format):
 
 <h2 id="new-filters">New filters</h2>
 
-<table class="table table-sm">
+<div class="table-wrapper"><table class="table-documentation-links">
+  
   <thead>
     <tr>
-      <th span="3">JQ Filters</th>
+      <th colspan="3" scope="col">JQ Filters</th>
     </tr>
   </thead>
+  
   <tbody>
 
 
@@ -1176,7 +2962,7 @@ def print_oas_operations(format):
     <tr>
       <td><code>index(element)</code></td>
       <td>Returns the index of an element inside an array (-1 if not found)</td>
-      <td><a href="https://stedolan.github.io/jq/manual/v1.6/#index(s),rindex(s)" target="jq"><i class="fas fa-external-link-alt"></i></a></td>
+      <td><a class="btn-documentation" href="https://stedolan.github.io/jq/manual/v1.6/#index(s),rindex(s)" target="jq" aria-label="open documentation in a new tab" data-toggle="tooltip" data-placement="right" title="Open documentation in a new tab"><svg height="100px" width="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path d="M19.5,2.4c-2.8-1.8-6.6-1.9-9.5-0.3C7.1,0.5,3.3,0.6,0.5,2.4L0,2.7V19l1.5-1c2.4-1.5,5.6-1.5,7.9,0l0.5,0.3  l0.5-0.3c2.4-1.5,5.6-1.5,7.9,0l1.5,1V2.7L19.5,2.4z M2,15.5V3.9c2.2-1.2,4.8-1.1,7,0v11.7c-1.1-0.4-2.3-0.7-3.5-0.7  C4.3,14.9,3.1,15.1,2,15.5z M18,15.5c-2.2-0.9-4.8-0.9-7,0V3.9c2.2-1.2,4.9-1.2,7,0V15.5z"></path></svg></a></td>
     </tr>
 
 
@@ -1184,154 +2970,707 @@ def print_oas_operations(format):
       <td><code>contains(element)</code><br /><code>"resources" | contains("source")
 </code></td>
       <td>Returns true the element is in input</td>
-      <td><a href="https://stedolan.github.io/jq/manual/v1.6/#contains(element)" target="jq"><i class="fas fa-external-link-alt"></i></a></td>
+      <td><a class="btn-documentation" href="https://stedolan.github.io/jq/manual/v1.6/#contains(element)" target="jq" aria-label="open documentation in a new tab" data-toggle="tooltip" data-placement="right" title="Open documentation in a new tab"><svg height="100px" width="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path d="M19.5,2.4c-2.8-1.8-6.6-1.9-9.5-0.3C7.1,0.5,3.3,0.6,0.5,2.4L0,2.7V19l1.5-1c2.4-1.5,5.6-1.5,7.9,0l0.5,0.3  l0.5-0.3c2.4-1.5,5.6-1.5,7.9,0l1.5,1V2.7L19.5,2.4z M2,15.5V3.9c2.2-1.2,4.8-1.1,7,0v11.7c-1.1-0.4-2.3-0.7-3.5-0.7  C4.3,14.9,3.1,15.1,2,15.5z M18,15.5c-2.2-0.9-4.8-0.9-7,0V3.9c2.2-1.2,4.9-1.2,7,0V15.5z"></path></svg></a></td>
     </tr>
 
 
     <tr>
       <td><code>$ARGS.named</code></td>
       <td>Returns the command line named argument (--arg name value)</td>
-      <td><a href="https://stedolan.github.io/jq/manual/v1.6/#Invokingjq" target="jq"><i class="fas fa-external-link-alt"></i></a></td>
+      <td><a class="btn-documentation" href="https://stedolan.github.io/jq/manual/v1.6/#Invokingjq" target="jq" aria-label="open documentation in a new tab" data-toggle="tooltip" data-placement="right" title="Open documentation in a new tab"><svg height="100px" width="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path d="M19.5,2.4c-2.8-1.8-6.6-1.9-9.5-0.3C7.1,0.5,3.3,0.6,0.5,2.4L0,2.7V19l1.5-1c2.4-1.5,5.6-1.5,7.9,0l0.5,0.3  l0.5-0.3c2.4-1.5,5.6-1.5,7.9,0l1.5,1V2.7L19.5,2.4z M2,15.5V3.9c2.2-1.2,4.8-1.1,7,0v11.7c-1.1-0.4-2.3-0.7-3.5-0.7  C4.3,14.9,3.1,15.1,2,15.5z M18,15.5c-2.2-0.9-4.8-0.9-7,0V3.9c2.2-1.2,4.9-1.2,7,0V15.5z"></path></svg></a></td>
     </tr>
 
   </tbody>
-</table>
+</table></div>
 
-<h1 id="whats-next">What’s next</h1>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="whats-next">What’s next</h1>
 
 <p>In next post, we’ll learn to modify OpenAPI files with JQ.</p>
 
-      
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_config = function () {
-      this.page.url = 'https://apihandyman.io/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/';
-      this.page.identifier = 'https://apihandyman.io/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/';
-    };
-
-    (function() {
-      var d = document, s = d.createElement('script');
-
-      s.src = 'https://apihandyman.disqus.com/embed.js';
-
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
-
-    </div>
-  </article>
-</div>
-<div class="hidden-xs col-sm-2 col-md-2" role="complementary">
-  <nav id="toc" data-spy="affix" data-offset-top="400"></nav>
-</div>
-          </main>
-        </div>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-md-12">
-            <footer>
-  <nav class="navbar navbar-fixed-bottom">
-    <ul class="list-inline">
-     <li>
-       <a href="/feed.xml"><i class="fa fa-rss-square fa-2x" aria-hidden="true"></i></a>
-     </li>
-     <li>
-      <a href="https://twitter.com/apihandyman"><i class="fab fa-twitter-square fa-2x"></i></a>   
-     </li>
-     <li>
-      <a href="https://github.com/arno-di-loreto"><i class="fab fa-github-square fa-2x"></i></a>   
-     </li>
-     <li>
-      <a href="https://www.linkedin.com/in/arnaudlauret"><i class="fab fa-linkedin fa-2x"></i></a>   
-     </li>
-    </ul>
-  </nav>
-</footer>
+    </div><!-- Next cards END -->
+    
+  
+  
+</div><!-- class="page-content-text"-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-page-bottom-nav nav-fixed-bottom">
+  <div class="container-fluid container-lg">
+    <nav class="nav-page " aria-label="Page navigation">
+      <a class="nav-page-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top"><svg height='100px' width='100px' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><polygon points="4.1,10 5.5,11.4 9,7.8 9,20 11,20 11,7.8 14.5,11.4 16,10 10,4  "></polygon><rect x="0" width="20" height="2"></rect></g></svg></a>
+      
+      <a class="nav-page-btn left-menu-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><rect x="0" y="2" width="4" height="4"></rect><rect x="0" y="8" width="4" height="4"></rect><rect x="0" y="14" width="4" height="4"></rect><rect x="6" y="3" width="14" height="2"></rect><rect x="6" y="9" width="14" height="2"></rect><rect x="6" y="15" width="14" height="2"></rect></g></svg></a>
+      
+    </nav>
+  </div>
+</div>
+
+
+      <div class="row row-footer-margin">
+
+</div>
+<div class="row row-footer">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container footer-content">
+        <div class="row align-items-end row-cols-1 row-cols-md-2">
+          <div class="col d-flex justify-content-center mb-1 mb-md-4">
+            <div class="icon"><a href="https://twitter.com/apihandyman" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a></div>
+            <div class="icon"><a href="https://www.linkedin.com/in/arnaudlauret" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></div>
+            <div class="icon"><a href="https://github.com/arno-di-loreto" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a></div>
+            <div class="icon"><a href="/feed.xml" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg></a></div>
+          </div>
+          <div class="col text-center">
+            <a class="btn border-0 rounded-0 p-0" data-toggle="modal" data-target="#bookModal" role="button" ><img class="img-footer-book" src="/images/commons/book/book-footer.png"></a>
           </div>
         </div>
       </div>
-        <script type="text/javascript" src="/js/jquery.min.js" ></script>
-  <script type="text/javascript" src="/js/bootstrap.min.js" ></script>
-  <script type="text/javascript" src="/js/asciinema-player.js"></script>
+    </div>
+  </div>
+</div>
+<div class="row row-footer-second">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col col-footer-privacy mb-3 mb-md-0">
+            <div class="icon privacy-link"><a href="/privacy"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg><span class="privacy-link-text">Privacy Policy & Settings<span></span></a></div>
+          </div>
+          <div class="col col-footer-copyright">
+            &copy; 2015-2020 Arnaud Lauret
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            <!-- Modal -->
+      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-book" role="document">
+          <div class="modal-content border-0">
+            <div class="modal-body p-0">
+              <div class="container-fluid p-0">
+                <button type="button" class="close pr-2 pt-1" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row modal-book-cover-center"></div>
+                <div class="row mb-3 mb-lg-0 ml-0 mr-0 pt-3 pt-md-0">
+                  <div class="col col-lg-4 d-none d-md-block p-0">
+                    <img class="img-fluid" src="/images/commons/book/book-modal.png"/>
+                  </div>
+                  <div class="col col-12 col-lg-8 pt-2 pt-lg-4 text-justify">
+                    <p>Want to learn how to design simple, user friendly, secure and implementable APIs that do everything they should?</p>
+                    <p>Use code <code class="book-discount-code text-copy" aria-label="copy discount code" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to copy">fcclauret</code> to get 37% off my book The Design of Web APIs (works also on any other Manning product!).</p>
+                    <p class="text-center"><a href="http://bit.ly/designwebapis" target="_blank" class="btn btn-primary">Buy on manning.com</a></p>
+                    <p class="text-muted pt-3 mb-0">Disclosure: the link above is an affiliated link, meaning, at no additional cost to you, I will earn a commission if you click through and make a purchase.</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+<div class="privacy-message d-none fixed-bottom container-fluid bg-dark text-white p-3">
+  <div class="container">
+    <div class="row text-center pt-2 pb-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+      <div class="col text-justify">
+        By continuing to use this web site you agree with the API Handyman website privacy policy (effective date , June 28, 2020).
+      </div>
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+          <a class="btn btn-primary" href="/privacy">Read privacy policy</a>
+          <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+    <div class="row text-center pt-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <a class="btn btn-primary" href="/privacy">Read privacy policy</a>
+        <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    
   
-    <script type="text/javascript" src="/js/bootstrap-toc.min.js" ></script>
-<script language="javascript">
-  $(function() {
-    var $myNav = $('#toc');
-    var $myScope = $('#post');
-    Toc.init({
-      $nav: $myNav,
-      $scope: $myScope
-    });
-    $('body').scrollspy({
-      target: '#toc'
-    });
-  });
-</script>
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/jquery-3.4.1.slim.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/popper.min.js" ></script>
+<script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
 <script type="text/javascript" src="/js/anchor.min.js" ></script>
-<script language="JavaScript">
-  $(function() {
-    anchors.options = {
-      placement: 'left'
-    };
-    anchors.add('.blog-container h1');
-    anchors.add('.blog-container h2');
-    anchors.add('.blog-container h3');
-  });
-</script>
-<script type="text/javascript" src="/js/prism.js" ></script>
-<script type="text/javascript" src="/js/clipboard.min.js" ></script>
-<script language="JavaScript">
+<script type="text/javascript" src="/js/anchors.js" ></script>
 
-  var clipboard = new ClipboardJS('.copy-btn', {
-      target: function(trigger) {
-        console.log(trigger.parentElement.parentElement.parentElement.children[0]);
-        return trigger.parentElement.parentElement.parentElement.children[0];
-      }
-  });
 
-  clipboard.on('success', function(e) {
-    e.clearSelection();
-    $(e.trigger).html('<i class="fa fa-check"></i>');
-    window.setTimeout(function() {
-        $(e.trigger).html('<i class="fas fa-paste"></i>');
-        $(e.trigger).blur();
-    }, 1000);
-  });
 
-  clipboard.on('error', function(e) {
-    console.error('Action:', e.action);
-    console.error('Trigger:', e.trigger);
-  });
-</script>
-<script language="JavaScript">
-  function toggle(button, code, secondarybutton, scroll) {
-    var beforecodeheight = $(code).height(); 
-    if($(code).hasClass('code-collapsed')) {
-      $(code).removeClass('code-collapsed');
-      $(button).html('<i class="fa fa-compress"></i>');
-      $(secondarybutton).html('<i class="fa fa-compress"></i>');
-      $(button).blur();
-    }
-    else {
-      $(code).addClass('code-collapsed');
-      $(button).html('<i class="fa fa-expand"></i>');
-      $(secondarybutton).html('<i class="fa fa-expand"></i>');
-      $(button).blur();
-      if(scroll) {
-        var aftercodeheight = $(code).height();
-        var afterscroll = $('body').scrollTop();
-        var delta = beforecodeheight - aftercodeheight;
-        $('body').scrollTop(afterscroll - delta);
-      }
-    }
-  }
-</script>
+    
   
-  </body>
 
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/main.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/prism.js" ></script>
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/asciinema-player.js" ></script>
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/code.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<div id="device-size-detector">
+  <div id="xs" class="d-xs-only"></div>
+  <div id="sm" class="d-sm-only"></div>
+  <div id="md" class="d-md-only"></div>
+  <div id="lg" class="d-lg-only"></div>
+  <div id="xl" class="d-xl-only"></div>
+</div>
+<script type="text/javascript" src="/js/size.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/bash.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/toc.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/fingerprint2.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/google-analytics.js" ></script>
+
+
+
+    
+  
+
+  
+
+
+  </body>
 </html>
