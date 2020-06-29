@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2020-06-28T20:04:44+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">API Toolbox - JQ and OpenAPI - Part 3 - Modifying OpenAPI files with JQ</title><link href="https://apihandyman.io/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/" rel="alternate" type="text/html" title="API Toolbox - JQ and OpenAPI - Part 3 - Modifying OpenAPI files with JQ" /><published>2020-06-28T00:00:00+00:00</published><updated>2020-06-28T00:00:00+00:00</updated><id>https://apihandyman.io/api-toolbox-jq-and-openapi-part-3</id><content type="html" xml:base="https://apihandyman.io/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/">&lt;p&gt;Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. Thanks to the two previous parts of this JQ and OpenAPI Series, we learned how to extract data from JSON (OpenAPI) files by discovering many filters, creating modules and using command line arguments. Now we will discover how to modify them; how to replace, add or delete elements in processed documents. &lt;!--more--&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2020-06-29T01:42:19+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">API Design Reviewer’s Starter Set</title><link href="https://apihandyman.io/api-design-reviewers-starter-set/" rel="alternate" type="text/html" title="API Design Reviewer’s Starter Set" /><published>2020-06-29T00:00:00+00:00</published><updated>2020-06-29T00:00:00+00:00</updated><id>https://apihandyman.io/api-design-reviewers-starter-set</id><content type="html" xml:base="https://apihandyman.io/api-design-reviewers-starter-set/">&lt;p&gt;My 2019 talk, The API Design Reviewer’s Starter Set, is about API design reviews and Dungeons and Dragons.
+You’ll find here its abstract, slides and video recorded at API Days London 2019.&lt;/p&gt;
+
+&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+
+&lt;p&gt;What could go possibly wrong when designing APIs? Everything.
+Among many other things, API Design may be inconsistent with pre-existing elements, may be bugged, may not fulfill needs, may be hard to understand or use, may be too specific and impossible to reuse, …&lt;/p&gt;
+
+&lt;p&gt;Whatever the organization’s size, the type of APIs and the designers skills and experience, something will go wrong. That is why, any API design must be reviewed.&lt;/p&gt;
+
+&lt;p&gt;During this session, I uncover everything you need to start reviewing the designs of your organization’s APIs.&lt;/p&gt;
+
+&lt;p&gt;Explore subterranean needs! Plunder hoards of inconsistency! Battle legendary design flaws!&lt;/p&gt;
+
+&lt;p&gt;The API Design Reviewer’s Starter Set is your gateway to exhaustive and constructive API design reviews. This session contains the essential rules of design reviews plus a few tips and trick that will be of great help on your perilous adventures in the API world.&lt;/p&gt;
+
+&lt;h1 id=&quot;video&quot;&gt;Video&lt;/h1&gt;
+
+&lt;div id=&quot;pOmmkbCJCu0&quot; class=&quot;third-party-content third-party-content-youtube&quot;&gt;
+    &lt;div class=&quot;card third-party-content-warning&quot;&gt;
+        &lt;img class=&quot;card-img&quot; src=&quot;/images/thirdpartycontents/api-design-reviewers-starter-set-apidays-london.jpg&quot; alt=&quot;Card image&quot; /&gt;
+        &lt;div class=&quot;card-img-overlay d-flex&quot;&gt;
+            &lt;div class=&quot;my-auto mx-auto text-center&quot;&gt;
+                &lt;p&gt;This content is hosted on youtube.com.&lt;/p&gt;
+                &lt;p&gt;By showing this third party content you accept YouTube (Google)'s 
+                    &lt;a class=&quot;privacy-policy&quot; href=&quot;https://policies.google.com/privacy&quot; target=&quot;_blank&quot;&gt;privacy policy&lt;/a&gt;.
+                &lt;/p&gt;
+                &lt;form&gt;
+                    &lt;a href=&quot;javascript:thirdPartyConsent('pOmmkbCJCu0', 'youtube')&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Show third party content&lt;/a&gt;
+                    &lt;div class=&quot;form-check&quot;&gt;
+                        &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input third-party-content-remember&quot; /&gt;
+                        &lt;label class=&quot;form-check-label&quot; for=&quot;exampleCheck1&quot;&gt;Remember my choice&lt;/label&gt;
+                        &lt;p&gt;(can be changed in &lt;a class=&quot;privacy-policy&quot; href=&quot;/privacy&quot;&gt;privacy settings&lt;/a&gt;)&lt;/p&gt;
+                      &lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;iframe-container third-party-content-iframe third-party-content-iframe-disabled&quot;&gt;
+        &lt;iframe class=&quot;iframe-responsive&quot; data-src=&quot;https://www.youtube-nocookie.com/embed/pOmmkbCJCu0?color=white&amp;amp;theme=light&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
+        &lt;/iframe&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;slides&quot;&gt;Slides&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;/slidedecks/api-design-reviewers-starter-set/api-design-reviewers-starter-set.pdf&quot; download=&quot;api-design-reviewers-starter-set.pdf&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Download PDF&lt;/a&gt;
+&lt;a href=&quot;/slidedecks/api-design-reviewers-starter-set/api-design-reviewers-starter-set.pdf&quot; target=&quot;_blank&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Open PDF&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;iframe-container&quot;&gt;
+    &lt;iframe class=&quot;iframe-responsive&quot; src=&quot;/slidedecks/api-design-reviewers-starter-set&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talk" /><summary type="html">My 2019 talk, The API Design Reviewer’s Starter Set, is about API design reviews and Dungeons and Dragons. You’ll find here its abstract, slides and video recorded at API Days London 2019. Abstract What could go possibly wrong when designing APIs? Everything. Among many other things, API Design may be inconsistent with pre-existing elements, may be bugged, may not fulfill needs, may be hard to understand or use, may be too specific and impossible to reuse, … Whatever the organization’s size, the type of APIs and the designers skills and experience, something will go wrong. That is why, any API design must be reviewed. During this session, I uncover everything you need to start reviewing the designs of your organization’s APIs. Explore subterranean needs! Plunder hoards of inconsistency! Battle legendary design flaws! The API Design Reviewer’s Starter Set is your gateway to exhaustive and constructive API design reviews. This session contains the essential rules of design reviews plus a few tips and trick that will be of great help on your perilous adventures in the API world. Video This content is hosted on youtube.com. By showing this third party content you accept YouTube (Google)'s privacy policy. Show third party content Remember my choice (can be changed in privacy settings) Slides Download PDF Open PDF</summary></entry><entry><title type="html">API Toolbox - JQ and OpenAPI - Part 3 - Modifying OpenAPI files with JQ</title><link href="https://apihandyman.io/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/" rel="alternate" type="text/html" title="API Toolbox - JQ and OpenAPI - Part 3 - Modifying OpenAPI files with JQ" /><published>2020-06-28T00:00:00+00:00</published><updated>2020-06-28T00:00:00+00:00</updated><id>https://apihandyman.io/api-toolbox-jq-and-openapi-part-3</id><content type="html" xml:base="https://apihandyman.io/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/">&lt;p&gt;Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. Thanks to the two previous parts of this JQ and OpenAPI Series, we learned how to extract data from JSON (OpenAPI) files by discovering many filters, creating modules and using command line arguments. Now we will discover how to modify them; how to replace, add or delete elements in processed documents. &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;div class=&quot;card series-toc&quot;&gt;
   &lt;div class=&quot;card-header series-toc-title&quot;&gt;
@@ -5433,47 +5483,4 @@ But we do not live in an ideal and simple world. If such solutions to your need 
 Would you willingly buy a vegetable peeler that comes with a 200 pages user manual, needs 2 months for installation and is a total pain in the ass to use?
 Definitely no.
 Then why have we considered such experience totally normal with software for decades?
-So, yes public web APIs raise the software bar, but only to the level it should have been since the beginning of time.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">While answering some question on my Design of Web APIs book’s forum, I wrote: Now that I have seen brilliant Web APIs that can be used so easily because of their design but also the overall experience some can provide (the famous “DX”) I have become far more demanding and challenging with software in general Yes. Public web APIs definitely raise software bar. The whole software industry should take example on them …</summary></entry><entry><title type="html">The story behind The Design of Web APIs book</title><link href="https://apihandyman.io/the-story-behind-the-design-of-everyday-apis-book/" rel="alternate" type="text/html" title="The story behind The Design of Web APIs book" /><published>2018-02-10T00:00:00+00:00</published><updated>2018-02-10T00:00:00+00:00</updated><id>https://apihandyman.io/the-story-behind-the-design-of-everyday-apis-book</id><content type="html" xml:base="https://apihandyman.io/the-story-behind-the-design-of-everyday-apis-book/">&lt;p&gt;I’m thrilled to announce that I’m writing a book about API design: &lt;em&gt;The Design of Everyday APIs&lt;/em&gt; (edit: the book has been renamed &lt;em&gt;The Design of Web APIs&lt;/em&gt; since this post has been written). This book is published by &lt;em&gt;Manning Publications&lt;/em&gt; and the first two chapters are now available on the Manning Early Access Program or &lt;a href=&quot;http://bit.ly/designwebapis&quot;&gt;MEAP&lt;/a&gt; (affiliate link, use fcclauret discount code to get 37% off). This book is for everyone who wants to learn API design.
-But, what’s the story behind this book about API design? To answer this question, let’s talk about my other passion: guitar. &lt;!--more--&gt;&lt;/p&gt;
-
-&lt;div class=&quot;text-center&quot;&gt;
-      &lt;figure class=&quot;figure&quot;&gt;
-        
-        &lt;img src=&quot;/images/the-story-behind-the-design-of-everyday-apis-book/guitar-tabs.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption text-left&quot;&gt;Guitar tabs&lt;/figcaption&gt;
-      &lt;/figure&gt;
-    &lt;/div&gt;
-
-&lt;p&gt;I have been playing the guitar for quite a long time. I’m definitely not an outstanding guitar player, I do that just for fun. Even if I have basic knowledge of solfeggio, I mostly use tablatures (or tabs) to learn to play songs. The guitar strings are represented by lines. And numbers on the lines indicate where to put fingers on the fret board. Pretty simple. I can play any song. Well, as long as my fingers dexterity allows it. So, I can play almost any song without even kwnowing which musical note I’m doing. But it can take me a long time to master songs, because I mostly do not get immediately how it works. I cannot play a song without a tablature by just listening to it. I’m also unable to compose music, I’m unable to improvise. And if I want to play another musical instrument like the piano, I would have to relearn everything. All this because I simply (but with dexterity!) move my fingers on a guitar fretboard without really understanding what I’m doing and why. When you really know music, it’s quite different. A friend of mine is a music teacher. He knows everything about solfeggio and music theory. He can improvise and compose. He can play any musical instrument as long as he understand how doing notes.&lt;/p&gt;
-
-&lt;p&gt;But what has this to do with API design?&lt;/p&gt;
-
-&lt;div class=&quot;book-banner-big&quot;&gt;
-  &lt;a href=&quot;http://bit.ly/designwebapis&quot;&gt;&lt;img src=&quot;/images/commons/book/book-vertical.png&quot; /&gt;&lt;/a&gt;
-  &lt;p class=&quot;book-banner-vertical-bottom&quot;&gt;use fcclauret discount code to get 37% off (affiliate link)&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I’ve been doing distributed software and working with web services and web APIs for a long time now, designing, building, using and providing them. Like many others, I’ve learned many things from the trenches about API design by practicing … and doing many mistakes. Mistakes, that I could have probably easily avoided if I had been warned. I have discovered the not so obvious scope of the API designer’s job and you know what? Choosing HTTP methods and designing URLs is only a part of it. I have also learned how to design APIs that do exactly what they have been created for. And I have also learned how to shape APIs in order to make them easy-to-understand and easy-to-use.&lt;/p&gt;
-
-&lt;p&gt;But I have also learned something beyond these technical tips and tricks. I have learned what really is an API and what it means to design it.&lt;/p&gt;
-
-&lt;p&gt;Knowing that &lt;code&gt;/library/books/the-design-of-everyday-apis/chapters&lt;/code&gt; is a good a way of designing some REST resource’s URL is important. Knowing that simply returning a &lt;code&gt;400 Bad Request&lt;/code&gt; HTTP status code is not enough is important. Knowing that content negociation is a solution to some use case is important. But knowing and understanding the true reasons &lt;em&gt;why&lt;/em&gt; we should or shouldn’t design API like this or that is far more important. This is guitar tablature vs solfeggio and music theory. Would you be able to improvise when facing a new use case? What would you do when designing a SOAP web services (yes, some people still have to do that), a gRPC API or whatever will come in the future?
-I could have been a better API designer faster if I had understood earlier the true essence of API design. There are reasons why designing APIs in certain ways gives outstanding results. Understanding the reasons behind techniques and tips that make APIs great is far more important than just knowing them, because it can help to face any situation and design any type of API. Just like being able to play any musical instrument, improvise and compose.&lt;/p&gt;
-
-&lt;div class=&quot;text-center&quot;&gt;
-      &lt;figure class=&quot;figure&quot;&gt;
-        
-        &lt;img src=&quot;/images/the-story-behind-the-design-of-everyday-apis-book/cryptic-interface.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption text-left&quot;&gt;A quite cryptic interface&lt;/figcaption&gt;
-      &lt;/figure&gt;
-    &lt;/div&gt;
-
-&lt;p&gt;But is it hard to master the &lt;em&gt;API design solfeggio&lt;/em&gt;? Hopefully not at all! The &lt;em&gt;API design solfeggio&lt;/em&gt; is quite simple to grasp as long as you understand what really is an API and how you can find inspiration from everyday objects.
-OK, an API is an &lt;em&gt;Application Programming Interface&lt;/em&gt;, but it’s first and foremost an &lt;em&gt;interface&lt;/em&gt; that &lt;em&gt;people&lt;/em&gt; will use in their software to interact with your software.
-APIs are interfaces like any others. Look at this &lt;em&gt;UDRC 1138&lt;/em&gt; control panel, its &lt;em&gt;interface&lt;/em&gt;. What could be this device’s purpose? How use it? hard to guess thanks to its poorly designed interface. Think about the many times you have been puzzled or you have grumbled when using a everyday object like a door, a microwave oven, a remote control, a toy, a web site, a mobile application because its design was flawed. Think about the many times you did not complain and were even quite happy using something. 
-What seems ridiculous for everyday objects interfaces is as ridiculous for application programming interface. And the opposite is quite true, what works for everyday objects interfaces works for APIs.&lt;/p&gt;
-
-&lt;p&gt;So, while &lt;em&gt;The Design of Everyday APIs&lt;/em&gt; (edit: the book has been renamed &lt;em&gt;The Design of Web APIs&lt;/em&gt; since this post has been written) book is a practical one showing every aspects of API design and many techniques, tips and tricks to design great APIs. It will also explain &lt;em&gt;why&lt;/em&gt; you should design APIs that way and therefore, I hope, give you the eye of the API designer.
-I hope you’ll enjoy this book and find it useful to design your everyday APIs and build an API designer mindset. As you can read it on &lt;a href=&quot;http://bit.ly/designwebapis&quot;&gt;MEAP&lt;/a&gt; (affiliate link, use fcclauret discount code to get 37% off) while it is written, I look forward to your feedbacks on MEAP forum.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I’m thrilled to announce that I’m writing a book about API design: The Design of Everyday APIs (edit: the book has been renamed The Design of Web APIs since this post has been written). This book is published by Manning Publications and the first two chapters are now available on the Manning Early Access Program or MEAP (affiliate link, use fcclauret discount code to get 37% off). This book is for everyone who wants to learn API design. But, what’s the story behind this book about API design? To answer this question, let’s talk about my other passion: guitar.</summary></entry></feed>
+So, yes public web APIs raise the software bar, but only to the level it should have been since the beginning of time.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">While answering some question on my Design of Web APIs book’s forum, I wrote: Now that I have seen brilliant Web APIs that can be used so easily because of their design but also the overall experience some can provide (the famous “DX”) I have become far more demanding and challenging with software in general Yes. Public web APIs definitely raise software bar. The whole software industry should take example on them …</summary></entry></feed>
