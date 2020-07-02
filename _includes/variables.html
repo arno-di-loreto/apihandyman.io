@@ -40,7 +40,7 @@
   {% assign item_type = 'article' %}
 {% endif %}
 
-{% assign item_url = item.url | replace:'index.html','' %}
+{% assign item_url = item.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.github.url | prepend: site.url %}
 
 {% if item.banner %}
   {% assign item_banner = item.banner %}
@@ -53,6 +53,7 @@
     {% endif %}
   {% endfor %}
 {% endif %}
+{% assign item_banner = item_banner | prepend: site.baseurl | prepend: site.github.url | prepend: site.url %}
 
 
 {% if item.catchphrase %}

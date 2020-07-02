@@ -31,7 +31,7 @@ github_username:  arno-di-loreto
 linkedin_username: arnaudlauret
 
 # Page default page banner
-default_banner: /images/commons/default.png
+default_banner: /images/commons/home-banner.jpg
 
 # What's before this will be shown in post summary'
 excerpt_separator: <!--more-->
