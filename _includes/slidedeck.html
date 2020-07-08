@@ -2,5 +2,5 @@
 <a href="/slidedecks/{{include.title}}/{{include.title}}.pdf" download="{{include.title}}.pdf" class="btn btn-primary" role="button" >Download PDF</a>
 <a href="/slidedecks/{{include.title}}/{{include.title}}.pdf" target="_blank" class="btn btn-primary" role="button" >Open PDF</a>
 <div class="iframe-container">
-    <iframe class="iframe-responsive" src="/slidedecks/{{include.title}}"></iframe>
+    <iframe class="iframe-responsive" src="{{'/slidedecks/' | append: include.title | prepend: site.baseurl | prepend: site.github.url | prepend: site.url }}"></iframe>
 </div>
