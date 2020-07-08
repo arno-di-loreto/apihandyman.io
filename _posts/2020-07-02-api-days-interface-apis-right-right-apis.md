@@ -7,6 +7,7 @@ layout: post
 category: post
 permalink: /apidays-interface-doing-apis-right-and-doing-right-apis/
 category: post
+published: false
 ---
 
 I've attended and spoke at API Days Interface online conference last week. Being online made the experience a bit different but after almost 3 days, I felt almost as usual; exhausted and my brain boiling with all what I've heard and seen. This time I "came back" with a few thoughts on online conferences and various topics such as API design, governance and organization and also architecture, microservices and service mesh.

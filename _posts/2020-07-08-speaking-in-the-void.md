@@ -1,6 +1,6 @@
 ---
 title: Speaking into the void
-date: 2020-07-07
+date: 2020-07-08
 author: Arnaud Lauret
 layout: post
 category: post
