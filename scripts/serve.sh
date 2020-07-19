@@ -10,6 +10,9 @@ JEKYLL_DOCKER_IMAGE_NAME=apihandyman/jekyll
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 JEKYLL_DOCKER_IMAGE=$JEKYLL_DOCKER_IMAGE_NAME:$JEKYLL_VERSION
 
+# Waiting for docker VM (take a few seconds to start after Macbook reboot)
+$SCRIPT_DIR/wait-docker-vm.sh
+
 # Creating custom docker image if necessary
 
 if [[ `docker image ls $JEKYLL_DOCKER_IMAGE | wc -l` -eq 1 ]]
