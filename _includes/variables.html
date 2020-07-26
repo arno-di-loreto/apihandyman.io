@@ -10,7 +10,7 @@
   {% assign item_title_browser = site.title | append:' | ' | append:item_title %}
 {% elsif item.series %}
   {% assign item_title = item.series_title %}
-  {% assign item_title_browser = site.title | append:' | ' | append:page_title %}
+  {% assign item_title_browser = site.title | append:' | ' | append:item_title %}
 {% elsif item.title %}
   {% assign item_title = item.title %}
   {% assign item_title_browser = site.title | append:' | ' | append:item_title %}
