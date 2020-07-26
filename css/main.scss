@@ -183,6 +183,13 @@ table {
   }
 }
 
+.image {
+  @extend .text-center;
+  .figure-caption {
+    @extend .text-left;
+  }
+}
+
 // To fix strange behavior when modal open: top/bottom borders on toc navbar
 // Class modal-open is added to body and cause this mess, following trick solves the problem
 // https://stackoverflow.com/questions/25274244/twitter-bootstrap-modal-opening-closing-causes-fixed-header-to-jump
@@ -393,21 +400,20 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
 
   @include media-breakpoint-down(xl) {
     height: 400px;
-    //background-image: url('/images/commons/home-banner.jpg'), $row-banner-default-linear-gradient;
     .banner {
       flex: 0 0 1140px;
-      background-image: url('/images/commons/home-banner.jpg');
+      background-image: url('/images/commons/{{site.banner_prefix}}home-banner.jpg');
       background-repeat: no-repeat;
       background-position: top;
       background-size: 1140px;
     }
     .banner-left {
-      background-image: url('/images/commons/home-banner-left.jpg');
+      background-image: url('/images/commons/{{site.banner_prefix}}home-banner-left.jpg');
       background-repeat: repeat-x; 
       background-position: top right;
     }
     .banner-right {
-      background-image: url('/images/commons/home-banner-right.jpg');
+      background-image: url('/images/commons/{{site.banner_prefix}}home-banner-right.jpg');
       background-repeat: repeat-x;
       background-position: top left;
     }
@@ -432,10 +438,7 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
     height: 253px;
     .banner-left, .banner-right {
       background-size: auto 253px;
-    }
-    //height: 300px;
-    //background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-default-linear-gradient;
-    
+    }    
   }
 
   @include media-breakpoint-down(sm) {
@@ -447,8 +450,6 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
     .banner-left, .banner-right {
       background-size: auto 189px;
     }
-    //height: 250px;
-    //background-image: url('/images/commons/home-banner-small.jpg'), $row-banner-default-linear-gradient;
   }
 }
 
