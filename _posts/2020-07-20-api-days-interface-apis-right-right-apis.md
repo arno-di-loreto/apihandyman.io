@@ -11,40 +11,52 @@ series_title: Doing APIs right and doing right APIs
 series_number: 2
 ---
 
-I've attended and spoke at API Days Interface online conference on June 20, July 1 & 2, 2020. Being online made the experience a bit different but after almost 3 days, I felt almost as usual; exhausted and my brain boiling with all what I've heard and seen. In my previous post, I shared my feelings about my first online conference. Now let's talk about the content, I "came back" with a few thoughts on design, governance and architecture and also with a new buzzword ("indieservice") and a new buzzquote ("doing APIs right and doing right APIs"). <!--more-->
+API Days Interface being online made the experience a bit different but after 3 days, I felt almost as usual; exhausted and my brain boiling. In previous post, I shared my feelings about my first online conference. Now let's talk about the content; Sam Newman doing a facepalm, API design, architecture, governance and my new favorite quote "Doing APIs right, doing right APIs".
+ <!--more-->
+
 
 {% include _postincludes/api-days-interface-2020.md %}
 
 # Design
 
-## Envisioning API design
+As usual, API design is a center piece of any API conference. Again we had brilliant demonstration of why the API design first approach prevail and I was pleased to see some long awaited features added to the OpenAPI Specification.
 
-- [Mike Amundsen, Author of "Designing and Building Web APIs" and "Restful API Design", Building great web APIs](https://interface.virtualconference.com/#/conference/5f087fcd4b0835001b00cc52)
-- [Alianna Inzana, Senior Director, Product Management @SmartBear, /Contract/{Collaboration}/DrivenDevelopment](https://interface.virtualconference.com/#/conference/5f0bde6f86dfb0001b75dfb9)
+[Mike Amundsen]:https://interface.virtualconference.com/#/conference/5f087fcd4b0835001b00cc52 "Building great web APIs"
+[Alianna Inzana]:https://interface.virtualconference.com/#/conference/5f0bde6f86dfb0001b75dfb9 "/Contract/{Collaboration}/DrivenDevelopment"
+[Darrell Miller]:https://interface.virtualconference.com/#/conference/5f0c0b5e86dfb0001b75dfe9 "The State of Open API Specification"
 
-## OpenAPI Specification 3.1
+| Speaker | Session |
+|---------|---------|
+|Mike Amundsen, Author of "Designing and Building Web APIs" and "Restful API Design"| [Building great web APIs][Mike Amundsen]
+|Alianna Inzana, Senior Director, Product Management @SmartBear| [/Contract/{Collaboration}/DrivenDevelopment][Alianna Inzana]
+|Darrell Miller, Board Member of Open API Initiative| [The State of Open API Specification][Darrell Miller]
 
-[Darrell Miller, Board Member of Open API Initiative, The State of Open API Specification](https://interface.virtualconference.com/#/conference/5f0c0b5e86dfb0001b75dfe9)
+## Design first
 
-# Governance
+Both [Alianna Inzana][] and [Mike Amundsen][] did a wonderful job describing the API design and build lifecycle and both especially said that design forst approach is key.
 
-- [Alan Glickenhouse, API Strategist @IBM, Recommendations for API Governance and an API Economy Center of Excellence](https://interface.virtualconference.com/#/conference/5f09bc4b8c46ce001bff21a6)
-- [Phil Sturgeon, Architect @Stoplight, Automating style guides for REST, gRPC, or GraphQL](https://interface.virtualconference.com/#/conference/5f0c32ba86dfb0001b75e013)
-- [Matthew Reinbold, Director, Platform Services Center of Excellence @Capital One, APIs are Arrangements of Power. Now what?](https://interface.virtualconference.com/#/conference/5f096a054b0835001b00cd16)
-- [Erik Wilde, Co-Author of "Continuous API Management", How to Guide your API Program and Platform](https://interface.virtualconference.com/#/conference/5f0972664b0835001b00cd1c)
-- [John Phenix, Chief API Architect @HSBC, Automating API Governance](https://interface.virtualconference.com/#/conference/5f09b44c8c46ce001bff21a0)
-- [Arnaud Lauret, Author of "The Design of Web APIs", The Augmented API Design Reviewer](https://interface.virtualconference.com/#/conference/5f091a6c4b0835001b00cca7)
+An API must be created to solve business problems for people. In order to be sure that you build the right API and so identified the real needs, you must use a design first approach and request feedback early. Using a standardized API description like the OpenAPI specification and creating mocks will make it easier to check if you're doing the right API. By working on a design and not an implementation, you can do modification easily and quickly.
 
-## Review automation
+## OpenAPI Specification improvements
 
-## People
+At a more ground level regarding API design, [Darrell Miller][] made my day by announcing two major improvements coming with version 3.1 of the Open Specification (among other modifications):
+
+OpenAPI 3.1 supports original and standard JSON Schema in its latest version, no more fancy OpenAPI/Swagger variation
+
+And at last we'll be able to have a description (and all other possible properties) along with a $ref. Any property set beside the $ref will override what comes from the $ref. 
+
+{% include image.html source="darrel-miller-overrive-ref.jpg" caption="Copyright Darrel Miller" %}
 
 # Architecture
+
+APIs and their implementation are nothing without good architecture reliying on clearly identified and understood principles. And they are nothing without organization around them. This conference proposed some sessions that were really good at talking about this.
 
 [Mary Poppendieck]:https://interface.virtualconference.com/#/conference/5f07f7db516de3001b3b6462 "Where do great architecture come from"
 [Sam Newman]:https://interface.virtualconference.com/#/conference/5f0bb86686dfb0001b75df89 "Microservices, APIs, and the Cost Of Change"
 [Mark Cheshire]:https://interface.virtualconference.com/#/conference/5f0c005886dfb0001b75dfdd "When to manage Microservices as a Mesh or as APIs?"
 [Ronnie Mitra]:https://interface.virtualconference.com/#/conference/5f0bef8086dfb0001b75dfc5 "The Next API Strategy: Going Borderless"
+[Matthew Reinbold]:https://interface.virtualconference.com/#/conference/5f096a054b0835001b00cd16 "APIs are Arrangements of Power. Now what?"
+
 
 | Speaker | Session |
 |---------|---------|
@@ -52,8 +64,27 @@ I've attended and spoke at API Days Interface online conference on June 20, July
 |Sam Newman, _Author of "Building Microservices and Monolith to Microservices"_|[Microservices, APIs, and the Cost Of Change][Sam Newman]
 |Mark Cheshire, _Director Product Management for API Management @Red Hat_|[When to manage Microservices as a Mesh or as APIs?][Mark Cheshire]
 |Ronnie Mitra, _Author of "Microservice Architecture"_|[The Next API Strategy: Going Borderless][Ronnie Mitra]
+|Matthew Reinbold, Director, Platform Services Center of Excellence @Capital One|[APIs are Arrangements of Power. Now what?][Matthew Reinbold]
 
-## History
+## Principles and responsability
+
+Mary Poppendieck gave an amazing talk about evolution of architectures from the 60s to our time with her [Where do great architecture come from][Mary Poppendieck] session. It's a pity she didn't have more time, hopefully she may come back at another API Days with a longer slot. I will not retrace here in details all what she said (if you watch only one video of this conference, this is the one).
+
+In order to build better systems we can rely on principles discovered throughout the years thanks to past failures:
+
+- Redundancy: instead or running one instance, run many
+- Fault isolation: when a component fails, others can still run
+- Local contral: gives each component the capability of running on its own even when it relies on others (caching results for example)
+
+And we are still discovering new principles even when relying on old ones. For example in 2000, Google solved a major crisis (indexing software stopped working due to faulty hardware). By combining redundancy and fault isolation principles, they build an architecture composed of cheap machines that tolerates such failure. In 2010 Amazon make a ground breaking evolution by getting rid of the sacrosanct central database and building a distributing database.
+
+Another interesting aspects is that some architecture principles are not only related to software or hardware. They can be related to organization and people too. And actually, with systems being more and more complex, archicture decisions are mostly people related.
+
+In 2000, Jeff Bezos, Amazon's CEO, believed that his company (and the underlying system) couldn't become huge without encouraing team autonomy, hence the famous memo.
+
+Teams must be autonomous but do be efficient they need to understand that they are part of a bigger system. Their mission is part of an overall mission.
+
+{% include image.html source="mary-poppendieck-responsibility.jpg" caption="Copyright Mary Poppendieck" %}
 
 ## Microservice vs API
 
@@ -174,22 +205,77 @@ So many APIs and so many components lead to a system that is difficult to unders
 
 By building all these layers, creating new boundaries, you can create a system so simple that it looks totally borderless.
 
-# Sessions attended
+## Organization
 
-- [Mary Poppendieck, Author of "Lean Software Development: An Agile Toolkit" Where do great architecture come from](https://interface.virtualconference.com/#/conference/5f07f7db516de3001b3b6462)
-- [Sam Newman, Author of "Building Microservices and Monolith to Microservices", Microservices, APIs, and the Cost Of Change](https://interface.virtualconference.com/#/conference/5f0bb86686dfb0001b75df89)
-- [Mark Cheshire, Director Product Management for API Management @Red Hat, When to manage Microservices as a Mesh or as APIs?](https://interface.virtualconference.com/#/conference/5f0c005886dfb0001b75dfdd)
-- [Ronnie Mitra, Author of "Microservice Architecture", The Next API Strategy: Going Borderless](https://interface.virtualconference.com/#/conference/5f0bef8086dfb0001b75dfc5)
-- [Alan Glickenhouse, API Strategist @IBM, Recommendations for API Governance and an API Economy Center of Excellence](https://interface.virtualconference.com/#/conference/5f09bc4b8c46ce001bff21a6)
-- [Phil Sturgeon, Architect @Stoplight, Automating style guides for REST, gRPC, or GraphQL](https://interface.virtualconference.com/#/conference/5f0c32ba86dfb0001b75e013)
-- [Matthew Reinbold, Director, Platform Services Center of Excellence @Capital One, APIs are Arrangements of Power. Now what?](https://interface.virtualconference.com/#/conference/5f096a054b0835001b00cd16)
-- [Erik Wilde, Co-Author of "Continuous API Management", How to Guide your API Program and Platform](https://interface.virtualconference.com/#/conference/5f0972664b0835001b00cd1c)
-- [John Phenix, Chief API Architect @HSBC, Automating API Governance](https://interface.virtualconference.com/#/conference/5f09b44c8c46ce001bff21a0)
-- [Arnaud Lauret, Author of "The Design of Web APIs", The Augmented API Design Reviewer](https://interface.virtualconference.com/#/conference/5f091a6c4b0835001b00cca7)
-- [Mike Amundsen, Author of "Designing and Building Web APIs" and "Restful API Design", Building great web APIs](https://interface.virtualconference.com/#/conference/5f087fcd4b0835001b00cc52)
-- [Alianna Inzana, Senior Director, Product Management @SmartBear, /Contract/{Collaboration}/DrivenDevelopment](https://interface.virtualconference.com/#/conference/5f0bde6f86dfb0001b75dfb9)
-[Darrell Miller, Board Member of Open API Initiative, The State of Open API Specification](https://interface.virtualconference.com/#/conference/5f0c0b5e86dfb0001b75dfe9)
+As you may have noticed, architecture is more about principles and choosing the right organization than technology. Actually technology questions are not the main ones. In his session ["APIs are Arrangements of Power. Now what?"][Matthew Reinbold], Matthew Reinbold gave really good insights about how organization matters for architecture and strategy.
 
+The most important one is that you can take advantage of architecture to change your organization. This strategy is called the inverse Conway maneuver in reference to Conway's law that tells "Organizations design systems that mirrors their own communication structure".
+
+Why doing that? Because in order to succeed, an organization must realigned itself around capabilities and the architecture must be aligned on this too. Changing organization is always hard and sometimes it may be easier to start with architecture, so the inverse Conway maneuver makes sense. And if you don't think this works, just take a look at what Amazon became after the Jeff Bezos mandates.
+
+# Governance
+
+You may want to skip that section because you think governance sucks, but please read it. Indeed, for many people, governance is a dirty word, synonym of pointless, useless and terrible processes and constraints dictated by some crazy people from the top of their ivory towers. And they are right because unfortunately such totally wrong governance exists. Hopefully it's not always the case, there are some people and company who do governance in a totally different way.
+
+Without _proper_ governance at _every level_ from design to API strategy, your company's employees will be very sad and your company may even fail. Most sessions were tied in a way or another to governance (even the one I talked about in previous section about architecture). The following ones were explicitely talking about this topic and may give you some ideas to create or improve your existing governance. 
+
+[Alan Glickenhouse]:https://interface.virtualconference.com/#/conference/5f09bc4b8c46ce001bff21a6 "Recommendations for API Governance and an API Economy Center of Excellence"
+[Phil Sturgeon]:https://interface.virtualconference.com/#/conference/5f0c32ba86dfb0001b75e013 "Automating style guides for REST, gRPC, or GraphQL"
+[Erik Wilde]:https://interface.virtualconference.com/#/conference/5f0972664b0835001b00cd1c "How to Guide your API Program and Platform"
+[John Phenix]:https://interface.virtualconference.com/#/conference/5f09b44c8c46ce001bff21a0 "Automating API Governance"
+[Arnaud Lauret]:https://interface.virtualconference.com/#/conference/5f091a6c4b0835001b00cca7 "The Augmented API Design Reviewer"
+
+| Speaker | Session |
+|---------|---------|
+|Alan Glickenhouse, API Strategist @IBM| [Recommendations for API Governance and an API Economy Center of Excellence][Alan Glickenhouse]
+|Phil Sturgeon, Architect @Stoplight| [Automating style guides for REST, gRPC, or GraphQL][Phil Sturgeon]
+|Erik Wilde, Co-Author of "Continuous API Management"|[How to Guide your API Program and Platform][Erik Wilde]
+|John Phenix, Chief API Architect @HSBC|[Automating API Governance][John Phenix]
+|Arnaud Lauret, Author of "The Design of Web APIs"|[The Augmented API Design Reviewer][Arnaud Lauret]
+
+What follows is a summary of all ideas coming from all sessions around governance.
+
+## The right level of governance
+
+Governance is not doing the police. Governance is doing all that can be done to make people do the right thing the right way easily. Whatever this thing is, creating an API product, design an API, securing an API, ... A very good governance is the one you don't actually see.
+
+You don't need to govern everything just because you need it, governance must have a reason, an objective. You must govern as little as possible, you must govern the minimum need to deliver value and manage risk (the consequences of not doing right).
+
+## Guidelines
+
+You cannot govern based of personal preferences that will change from one day to another, from one person to another. You need clearly written rules, you need guidelines. Often reduced to API Design Guidelines, you can (even must) create guidelines for every level: API Strategy, API Program, API Platform, API Product, API Design, architecture, domain definition, ...
+
+The first step will be to make people share their practices, then you'll be able to create your guidelines based on those practices.
+
+Guidelines describe ([Erik Wilde][]):
+
+- Why they exist, which issue they are solving
+- What can be done to address this issue
+- How to implement the solution
+
+One of the major benefits of having guidelines is ensuring a certain level of consistency. Consistency matters because inconcistency wastes times, especially inconsistent API design which means that ALL consumers will have a lot of work to do ([Phil Sturgeon][]).
+
+## Automating API Design Reviews
+
+API Design Guidelines are important, but let's be honest: most APIs developers will not read the organization's API manifesto. If they do they won't remember it. If they do they won't reread it looking for changes ([Phil Sturgeon][]). So you must automate guidelines controls as much as possible to make their (and reviewer's) life easier.
+
+[Phil Sturgeon][], [John Phenix][] and [myself][Arnaud Lauret] talked about API Design review automation using [Spectral](https://github.com/stoplightio/spectral).
+
+We all agreed on the fact that API design review cannot be completely replace by automation. An API linter will not tell you if the design is actually accurate, if this resource's name is the good one or if the API is actually the one that is needed. But it simplifies the process massively, removing 80% or rejections before reviewers even look.
+
+## Scaling and Shifting API Design Governance
+
+The mosy visible aspect of governance is API design governance. Without it, your API landscape will be a totally inconsistent nightmare that will make loose time to all of your consumers. Therefore you must ensure that API are design properly with API design reviews.
+
+Depending on your context (locations, size, number of APIs), you may use different organization model to do so ([John Phenix][]):
+
+- Centralized: A core expert team do all reviews. This is a consistent but not scalable approach
+-  Federated: API champions enforce standard locally. This is a scalable but not consistent approach.
+- Automated: Designs are automatically reviewed by some magic programs. This is scalable and consistent but is far from comprehensive. Indedd, such program will not tell you if the API is the right one.
+- Hybrid: Focus human-power on what cannot be checked automatically.
+
+Whatever approach you have, you'll notice that in the long run the discussions will shift from "Are we doing APIs right" (meaning conforming to our design guidelines) to "Are we doing the right APIs" (API product vision).
 
 # Doing APIs right and doing right APIs
 
+It's time to conclude. What do I retain in the end? Well, besides Sam Newman doing a facepalm, I will remember that "it's the people that matter, the people that last, not machines, not technology. Change is not Kubernetes or Service Mesh, change is people" ([Matthew Reinbold][]). And also a clever way to say that they are two sides of doing APIs:  "Doing APIs right and doing right APIs" ([Alianna Inzana][] and [John Phenix][]). Based on my experience, I can tell you that helping people doing the APIs right with appropriate governance will help them making right APIs by themselves in the long run.
