@@ -1,9 +1,429 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2020-07-26T01:54:26+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">APIs You Won’t Hate Podcast - The API Handyman Cometh</title><link href="https://apihandyman.io/apis-you-wont-hate-podcast-the-api-handyman-cometh/" rel="alternate" type="text/html" title="APIs You Won’t Hate Podcast - The API Handyman Cometh" /><published>2020-07-09T00:00:00+00:00</published><updated>2020-07-09T00:00:00+00:00</updated><id>https://apihandyman.io/apis-you-wont-hate-podcast-the-api-handyman-cometh</id><content type="html" xml:base="https://apihandyman.io/apis-you-wont-hate-podcast-the-api-handyman-cometh/">&lt;p&gt;It was great to chat with Phil Sturgeon and Matt Trask on the APIs You Won’t Hate Podcast. We talked about API Design and Reviews, and we also talk about life in quarantine, as France completely shut down and how Phil made it back in time to England before the lock downs took place.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2020-07-26T15:45:58+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Doing APIs right and doing right APIs</title><link href="https://apihandyman.io/apidays-interface-doing-apis-right-and-doing-right-apis/" rel="alternate" type="text/html" title="Doing APIs right and doing right APIs" /><published>2020-07-26T00:00:00+00:00</published><updated>2020-07-26T00:00:00+00:00</updated><id>https://apihandyman.io/api-days-interface-apis-right-right-apis</id><content type="html" xml:base="https://apihandyman.io/apidays-interface-doing-apis-right-and-doing-right-apis/">&lt;p&gt;API Days Interface being online made the experience a bit different but after 3 days, I felt almost as usual; exhausted and my brain boiling. In previous post, I shared my feelings about my first online conference. Now let’s talk about the content; Sam Newman doing a facepalm, API design, architecture, governance and my new favorite quote “Doing APIs right, doing right APIs”.
+ &lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div class=&quot;card series-toc&quot;&gt;
+  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
+    &lt;h5 id=&quot;series&quot;&gt;API Days Interface 2020 Series&lt;/h5&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;row series-toc_content&quot;&gt;
+    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;
+        &lt;p class=&quot;card-text&quot;&gt;
+INTERFACE, by API Days gathered best past 7 years speakers, entire global community, and the API landscape leaders around our most popular topics. In this 2 part series, I share my feeling attending an online conference and what I learned.
+&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
+      
+      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/apidays-interface-speaking-into-the-void/&quot;&gt;1 - Speaking into the void&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item active&quot;&gt;2 - Doing APIs right and doing right APIs&lt;/li&gt;
+          
+        
+        
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;design&quot;&gt;Design&lt;/h1&gt;
+
+&lt;p&gt;As usual, API design is a center piece of any API conference. Again we had brilliant demonstration of why the API design first approach prevail and I was pleased to see some long awaited features added to the OpenAPI Specification.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Speaker&lt;/th&gt;
+      &lt;th&gt;Session&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mike Amundsen, Author of “Designing and Building Web APIs” and “Restful API Design”&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f087fcd4b0835001b00cc52&quot; title=&quot;Building great web APIs&quot;&gt;Building great web APIs&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Alianna Inzana, Senior Director, Product Management @SmartBear&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0bde6f86dfb0001b75dfb9&quot; title=&quot;/Contract/{Collaboration}/DrivenDevelopment&quot;&gt;/Contract/{Collaboration}/DrivenDevelopment&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Darrell Miller, Board Member of Open API Initiative&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0c0b5e86dfb0001b75dfe9&quot; title=&quot;The State of Open API Specification&quot;&gt;The State of Open API Specification&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;design-first&quot;&gt;Design first&lt;/h2&gt;
+
+&lt;p&gt;Both &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0bde6f86dfb0001b75dfb9&quot; title=&quot;/Contract/{Collaboration}/DrivenDevelopment&quot;&gt;Alianna Inzana&lt;/a&gt; and &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f087fcd4b0835001b00cc52&quot; title=&quot;Building great web APIs&quot;&gt;Mike Amundsen&lt;/a&gt; did a wonderful job describing the API design and build lifecycle and both especially said that design forst approach is key.&lt;/p&gt;
+
+&lt;p&gt;An API must be created to solve business problems for people. In order to be sure that you build the right API and so identified the real needs, you must use a design first approach and request feedback early. Using a standardized API description like the OpenAPI specification and creating mocks will make it easier to check if you’re doing the right API. By working on a design and not an implementation, you can do modification easily and quickly.&lt;/p&gt;
+
+&lt;h2 id=&quot;openapi-specification-improvements&quot;&gt;OpenAPI Specification improvements&lt;/h2&gt;
+
+&lt;p&gt;At a more ground level regarding API design, &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0c0b5e86dfb0001b75dfe9&quot; title=&quot;The State of Open API Specification&quot;&gt;Darrell Miller&lt;/a&gt; made my day by announcing two major improvements coming with version 3.1 of the Open Specification (among other modifications):&lt;/p&gt;
+
+&lt;p&gt;OpenAPI 3.1 supports original and standard JSON Schema in its latest version, no more fancy OpenAPI/Swagger variation&lt;/p&gt;
+
+&lt;p&gt;And at last we’ll be able to have a description (and all other possible properties) along with a $ref. Any property set beside the $ref will override what comes from the $ref.&lt;/p&gt;
+
+&lt;div class=&quot;image&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/darrel-miller-overrive-ref.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
+        
+        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Darrel Miller&lt;/figcaption&gt;
+        
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;architecture&quot;&gt;Architecture&lt;/h1&gt;
+
+&lt;p&gt;APIs and their implementation are nothing without good architecture reliying on clearly identified and understood principles. And they are nothing without organization around them. This conference proposed some sessions that were really good at talking about this.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Speaker&lt;/th&gt;
+      &lt;th&gt;Session&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mary Poppendieck, &lt;em&gt;Author of “Lean Software Development: An Agile Toolkit&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f07f7db516de3001b3b6462&quot; title=&quot;Where do great architecture come from&quot;&gt;Where do great architecture come from&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Sam Newman, &lt;em&gt;Author of “Building Microservices and Monolith to Microservices”&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0bb86686dfb0001b75df89&quot; title=&quot;Microservices, APIs, and the Cost Of Change&quot;&gt;Microservices, APIs, and the Cost Of Change&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mark Cheshire, &lt;em&gt;Director Product Management for API Management @Red Hat&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0c005886dfb0001b75dfdd&quot; title=&quot;When to manage Microservices as a Mesh or as APIs?&quot;&gt;When to manage Microservices as a Mesh or as APIs?&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Ronnie Mitra, &lt;em&gt;Author of “Microservice Architecture”&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0bef8086dfb0001b75dfc5&quot; title=&quot;The Next API Strategy: Going Borderless&quot;&gt;The Next API Strategy: Going Borderless&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Matthew Reinbold, Director, Platform Services Center of Excellence @Capital One&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f096a054b0835001b00cd16&quot; title=&quot;APIs are Arrangements of Power. Now what?&quot;&gt;APIs are Arrangements of Power. Now what?&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;principles-and-responsability&quot;&gt;Principles and responsability&lt;/h2&gt;
+
+&lt;p&gt;Mary Poppendieck gave an amazing talk about evolution of architectures from the 60s to our time with her &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f07f7db516de3001b3b6462&quot; title=&quot;Where do great architecture come from&quot;&gt;Where do great architecture come from&lt;/a&gt; session. It’s a pity she didn’t have more time, hopefully she may come back at another API Days with a longer slot. I will not retrace here in details all what she said (if you watch only one video of this conference, this is the one).&lt;/p&gt;
+
+&lt;p&gt;In order to build better systems we can rely on principles discovered throughout the years thanks to past failures:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Redundancy: instead or running one instance, run many&lt;/li&gt;
+  &lt;li&gt;Fault isolation: when a component fails, others can still run&lt;/li&gt;
+  &lt;li&gt;Local contral: gives each component the capability of running on its own even when it relies on others (caching results for example)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And we are still discovering new principles even when relying on old ones. For example in 2000, Google solved a major crisis (indexing software stopped working due to faulty hardware). By combining redundancy and fault isolation principles, they build an architecture composed of cheap machines that tolerates such failure. In 2010 Amazon make a ground breaking evolution by getting rid of the sacrosanct central database and building a distributing database.&lt;/p&gt;
+
+&lt;p&gt;Another interesting aspects is that some architecture principles are not only related to software or hardware. They can be related to organization and people too. And actually, with systems being more and more complex, archicture decisions are mostly people related.&lt;/p&gt;
+
+&lt;p&gt;In 2000, Jeff Bezos, Amazon’s CEO, believed that his company (and the underlying system) couldn’t become huge without encouraing team autonomy, hence the famous memo.&lt;/p&gt;
+
+&lt;p&gt;Teams must be autonomous but do be efficient they need to understand that they are part of a bigger system. Their mission is part of an overall mission.&lt;/p&gt;
+
+&lt;div class=&quot;image&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/mary-poppendieck-responsibility.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
+        
+        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Mary Poppendieck&lt;/figcaption&gt;
+        
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;microservice-vs-api&quot;&gt;Microservice vs API&lt;/h2&gt;
+
+&lt;p&gt;Sam Newman gave a definition of a microservice and how it relates to API; this is important to remind because the “microservice” name tend to be used for things that are actually not “microservices” and also because APIs and microservices are too often confused:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A microservice is independently deployable&lt;/li&gt;
+  &lt;li&gt;A microservice runs as a separate process&lt;/li&gt;
+  &lt;li&gt;A microservice’s data are hidden inside its boudaries&lt;/li&gt;
+  &lt;li&gt;A microservice can be called via some form of network call: for example via an API which becomes a mean to hide internal implementation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So the microservice is not an API and reverse. The API is only an interface to a microservice.
+Also, if your “microservices” share a database with others or are wars or ears running inside a Jboss server for example, those are not microservices.&lt;/p&gt;
+
+&lt;h2 id=&quot;versioning-handling-changes&quot;&gt;&lt;del&gt;Versioning&lt;/del&gt; Handling changes&lt;/h2&gt;
+
+&lt;p&gt;Sam Newman gave a deep dive into versioning during his &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0bb86686dfb0001b75df89&quot; title=&quot;Microservices, APIs, and the Cost Of Change&quot;&gt;session&lt;/a&gt;. He especially explained that versioning is not the real problem. It’s not about version 1 and version 2. The real problem is how to handle change, how to handle backward compatibility and incompatibility. And this is even more true when doing microservices which are supposed to be independently deployable: maintaining backward compabitibility is key.&lt;/p&gt;
+
+&lt;p&gt;He gave 4 concrete tips to do so.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I have to admit that I was quite proud of myself because I realized that I always say what he told us during my API Design reviews!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;tip-1-hiding-information-is-key&quot;&gt;Tip #1: Hiding information is key.&lt;/h3&gt;
+
+&lt;p&gt;If an upstream consumer can reach into your internal implementation then you can’t change the implementation without breaking the consumer. Consumer and provided are tightly coupled, making any change risky and even impossible.&lt;/p&gt;
+
+&lt;div class=&quot;image&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-01-coupling-to-internal-implementation.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
+        
+        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;
+        
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Modularization is not a new concept that appeared with APIs and microservices. In 1971, D.L. Parnas published &lt;em&gt;&lt;a href=&quot;https://kilthub.cmu.edu/articles/journal_contribution/On_the_criteria_to_be_used_in_decomposing_systems_into_modules/6607958&quot;&gt;On the criteria to be used tin decomposing systems into modules&lt;/a&gt;&lt;/em&gt;. He looked at how best to define module boundaries and found that “information hiding” worked best.&lt;/p&gt;
+
+&lt;p&gt;Your interface (API) shows what is shared, the rest data and implementation details is your own business. That’s why it is really important do have separate models for data, objects and exposed interfaces (as also always say Mike Admundsen).&lt;/p&gt;
+
+&lt;div class=&quot;image&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-02-information-hiding.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
+        
+        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;
+        
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If the whole becomes to big, you can split your internal implementation in various sub modules, while keeping the shared interface unique and unmodified. But be warned that only works if the whole set of microservices/modules is handled by the same team.&lt;/p&gt;
+
+&lt;div class=&quot;image&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-03-multiple-microservices.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
+        
+        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;
+        
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;tip-2-cost-of-change-varies&quot;&gt;Tip #2: Cost of change varies&lt;/h3&gt;
+
+&lt;p&gt;Not all changes have the same cost. Some changes have critical consequences and some others have very limited impacts.&lt;/p&gt;
+
+&lt;p&gt;A modification inside a team, on the set of microservices of the Accounts domain above for example has a very low cost because it only has internal impacts. If the change, like a modification of the shared interface, impacts an other team inside the company the cost is higher. If this shared interface is used by multiple teams inside the company, the cost increases again. And lastly, if this change impacts people outside the company, the cost is even more high.&lt;/p&gt;
+
+&lt;p&gt;That means the cost of change increases with the “distance” between the provided and consumer (inside the team, inside the company, outside the company) and the number of consumers.&lt;/p&gt;
+
+&lt;div class=&quot;image&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-04-cost-of-change.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
+        
+        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;
+        
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The cost of change leads to different ways of taking the decision to actually do this change or not. According to Jeff Bezos, Amazon’s CEO, there are 2 types of decisions. Type 1 are irreversible decisions, it’s impossible to go back, you have to think carefully before taking them. On the opposite type 2 ones are reversible, they don’t cost 0 but you can change your mind very easily and you take no risk doing them.&lt;/p&gt;
+
+&lt;p&gt;If the change has impacts only inside a team, that’s a reversible decision make can be taken locally inside the team. On the opposite, a decision impacting a public facing API provided to people outside the company is an irreversible decision which requires more discussion and a formal approval.Getting the balance right regarding those decisions is key to having an organization that thrives from team autonomy.&lt;/p&gt;
+
+&lt;h3 id=&quot;tip-3-catch-accidental-breakages&quot;&gt;Tip #3: Catch accidental breakages&lt;/h3&gt;
+
+&lt;p&gt;Even when having found the right balance for decision making, people can still do mistakes like replacing a property by another in an API response (that’s actually removing the original property). Such modification breaks the consumers.&lt;/p&gt;
+
+&lt;p&gt;That’s why it is important to have separate models (as already said in tip #1). Doing such modification requires more work and requires explicit changes that requires you to think about it and so you’ll notice it.&lt;/p&gt;
+
+&lt;p&gt;But you can’t rely only on people actually noticing that, you need testing. And to do tests, you need schema (JSON schema, Protobuf, OpenAPI, …) to actually check the difference between old and new version (that’s also why design first is important).&lt;/p&gt;
+
+&lt;h3 id=&quot;tip-4-expose-multiple-endpoints&quot;&gt;Tip #4: Expose multiple endpoints&lt;/h3&gt;
+
+&lt;p&gt;Once you know you are doing a change impacting others, avoid lock step release. Requireing coordination between consumer and provider is the enemy, the anti-thesis of independen deployability. That means, you must give to to consumer to upgrade/&lt;/p&gt;
+
+&lt;p&gt;To do so you can expose multiple separates ervice versions. But there are a few challenges doing so:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Service discovery&lt;/li&gt;
+  &lt;li&gt;Doubling infrastructure costs money&lt;/li&gt;
+  &lt;li&gt;Keeping data consistency between the 2 versions can be hard&lt;/li&gt;
+  &lt;li&gt;And also bug fixing can be bothering&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To solve that you can expose 2 endpoints, one for each version inside the same component. That way, you shift from complex infrastructure issue to a more simpler design/implementation issue.&lt;/p&gt;
+
+&lt;p&gt;Switching from one version to another can be as simple as using path, the accept header or a domain.&lt;/p&gt;
+
+&lt;h2 id=&quot;microservices-indieservices&quot;&gt;&lt;del&gt;Microservices&lt;/del&gt; Indieservices&lt;/h2&gt;
+
+&lt;p&gt;During Q&amp;amp;A, Mehdi Medjaoui asked Newman how he felt about miniservices, macroservices, nanoservices and other {whatever size}services. His reaction made me burst out laughing (&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0bb86686dfb0001b75df89&quot; title=&quot;Microservices, APIs, and the Cost Of Change&quot;&gt;jump at 31:45&lt;/a&gt; to see it), he looked totally desperate and did a long facepalm.&lt;/p&gt;
+
+&lt;div class=&quot;image&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/facepalm.gif&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Jean Luc Picard doing a facepalm&quot; /&gt;
+        
+        &lt;figcaption class=&quot;figure-caption&quot;&gt;Sam Newman's reaction (reenactment by Jean-Luc Picard)&lt;/figcaption&gt;
+        
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;More seriously, he stated that the name microservice which imply “size” is actually a problem. He want to go back in time and choose another name focusing on the real important aspect: independent deployability.&lt;/p&gt;
+
+&lt;p&gt;Medjaoui proposed indieservices and after 2 second Newman said that would be probably better than microservices.&lt;/p&gt;
+
+&lt;h2 id=&quot;boundaries&quot;&gt;Boundaries&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0bef8086dfb0001b75dfc5&quot; title=&quot;The Next API Strategy: Going Borderless&quot;&gt;The Next API Strategy: Going Borderless&lt;/a&gt; by Ronnie Mitra and &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0c005886dfb0001b75dfdd&quot; title=&quot;When to manage Microservices as a Mesh or as APIs?&quot;&gt;Choosing between API gateway and service mesh&lt;/a&gt; by Mark Cheshire sessions gave really good insights about how to define and manage the internal and external boundaries or your system and they resonate with what Sam Newman said about microservices.&lt;/p&gt;
+
+&lt;h3 id=&quot;boundaries-as-a-provider&quot;&gt;Boundaries as a provider&lt;/h3&gt;
+
+&lt;p&gt;Mark Cheshire said that at first making the decision between API Management and Service Mesh looks quite simple.&lt;/p&gt;
+
+&lt;p&gt;API Management is used for North-South traffic. North being outside the organization and south being inside. With API Management, there’s an API Gateway (a proxy) that sits between the provider and its consumers. Consumers can access to APIs exposed on that gateway by registering to a developer portal. Those APIs are considered as products.&lt;/p&gt;
+
+&lt;p&gt;Service Mesh is used for East-West traffic, both sides being inside the organization. Service mesh comes as a side car proxy on microservices which handles the communication with other microservices (dealing with discovery, logs/observability, retry, …).&lt;/p&gt;
+
+&lt;p&gt;So it looks like the decision should be made on does the communication take place inside or outide my company. But that’s not the case. A company/organization can be split in various domains (however you call them). And these domain boundaries must be treated the same way as enterprise boundary (API Management). Inside the domains you may use service meshes.&lt;/p&gt;
+
+&lt;div class=&quot;image&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/mark-cheshire-03-domain-boundaries.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
+        
+        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Mark Cheshire/Redhat&lt;/figcaption&gt;
+        
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;What distingues inter and intra-domain traficc is the relation between provider and consumers. Are they in the same team? How many consumers? Explicit contract needed?&lt;/p&gt;
+
+&lt;div class=&quot;image&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/mark-cheshire-04-inter-vs-intra-domain-traffic.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
+        
+        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Mark Cheshire/Redhat&lt;/figcaption&gt;
+        
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;boundaries-as-a-consumer&quot;&gt;Boundaries as a consumer&lt;/h3&gt;
+
+&lt;p&gt;Ronnie Mitra explained that a system is usually complex and difficult to understand and use. Hiding complexity of microservices, APIs, data and third party providers will ease the use of this complex system.&lt;/p&gt;
+
+&lt;p&gt;You can’t change someone else’s API (&lt;em&gt;I add: you can’t change someone else’s API even if they are in the same company as yours, but that’s another story I’ll tell another day&lt;/em&gt;). In order to avoid building a brittle and tightly couple relation with API providers, you must proxy others APIs with a sub-domain having its own (anti-corruption) model. Reminder: That’s basically what you would do for your own API, separating data/object/API model as sais Sam Newman and Mike Amundsen.&lt;/p&gt;
+
+&lt;p&gt;Capabilities don’t interoperate. You may need to build an layer of orchestration to weave microservices capabilities together. There’s a big centralization/decentralization trade-off decision to do here.&lt;/p&gt;
+
+&lt;p&gt;Data is all over the place (&lt;em&gt;especially when splitted across dozens if not hundreds of microservices&lt;/em&gt;). Data need to be collected and catalgues to be useful.&lt;/p&gt;
+
+&lt;p&gt;So many APIs and so many components lead to a system that is difficult to understand and manage. You need to build access and management components that represent this system as a monolith.&lt;/p&gt;
+
+&lt;div class=&quot;image&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/ronnie-mitra-05-borderless.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
+        
+        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Ronnie Mitra&lt;/figcaption&gt;
+        
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;By building all these layers, creating new boundaries, you can create a system so simple that it looks totally borderless.&lt;/p&gt;
+
+&lt;h2 id=&quot;organization&quot;&gt;Organization&lt;/h2&gt;
+
+&lt;p&gt;As you may have noticed, architecture is more about principles and choosing the right organization than technology. Actually technology questions are not the main ones. In his session &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f096a054b0835001b00cd16&quot; title=&quot;APIs are Arrangements of Power. Now what?&quot;&gt;“APIs are Arrangements of Power. Now what?”&lt;/a&gt;, Matthew Reinbold gave really good insights about how organization matters for architecture and strategy.&lt;/p&gt;
+
+&lt;p&gt;The most important one is that you can take advantage of architecture to change your organization. This strategy is called the inverse Conway maneuver in reference to Conway’s law that tells “Organizations design systems that mirrors their own communication structure”.&lt;/p&gt;
+
+&lt;p&gt;Why doing that? Because in order to succeed, an organization must realigned itself around capabilities and the architecture must be aligned on this too. Changing organization is always hard and sometimes it may be easier to start with architecture, so the inverse Conway maneuver makes sense. And if you don’t think this works, just take a look at what Amazon became after the Jeff Bezos mandates.&lt;/p&gt;
+
+&lt;h1 id=&quot;governance&quot;&gt;Governance&lt;/h1&gt;
+
+&lt;p&gt;You may want to skip that section because you think governance sucks, but please read it. Indeed, for many people, governance is a dirty word, synonym of pointless, useless and terrible processes and constraints dictated by some crazy people from the top of their ivory towers. And they are right because unfortunately such totally wrong governance exists. Hopefully it’s not always the case, there are some people and company who do governance in a totally different way.&lt;/p&gt;
+
+&lt;p&gt;Without &lt;em&gt;proper&lt;/em&gt; governance at &lt;em&gt;every level&lt;/em&gt; from design to API strategy, your company’s employees will be very sad and your company may even fail. Most sessions were tied in a way or another to governance (even the one I talked about in previous section about architecture). The following ones were explicitely talking about this topic and may give you some ideas to create or improve your existing governance.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Speaker&lt;/th&gt;
+      &lt;th&gt;Session&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Alan Glickenhouse, API Strategist @IBM&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f09bc4b8c46ce001bff21a6&quot; title=&quot;Recommendations for API Governance and an API Economy Center of Excellence&quot;&gt;Recommendations for API Governance and an API Economy Center of Excellence&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Phil Sturgeon, Architect @Stoplight&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0c32ba86dfb0001b75e013&quot; title=&quot;Automating style guides for REST, gRPC, or GraphQL&quot;&gt;Automating style guides for REST, gRPC, or GraphQL&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Erik Wilde, Co-Author of “Continuous API Management”&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0972664b0835001b00cd1c&quot; title=&quot;How to Guide your API Program and Platform&quot;&gt;How to Guide your API Program and Platform&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;John Phenix, Chief API Architect @HSBC&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f09b44c8c46ce001bff21a0&quot; title=&quot;Automating API Governance&quot;&gt;Automating API Governance&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Arnaud Lauret, Author of “The Design of Web APIs”&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f091a6c4b0835001b00cca7&quot; title=&quot;The Augmented API Design Reviewer&quot;&gt;The Augmented API Design Reviewer&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;What follows is a summary of all ideas coming from all sessions around governance.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-right-level-of-governance&quot;&gt;The right level of governance&lt;/h2&gt;
+
+&lt;p&gt;Governance is not doing the police. Governance is doing all that can be done to make people do the right thing the right way easily. Whatever this thing is, creating an API product, design an API, securing an API, … A very good governance is the one you don’t actually see.&lt;/p&gt;
+
+&lt;p&gt;You don’t need to govern everything just because you need it, governance must have a reason, an objective. You must govern as little as possible, you must govern the minimum need to deliver value and manage risk (the consequences of not doing right).&lt;/p&gt;
+
+&lt;h2 id=&quot;guidelines&quot;&gt;Guidelines&lt;/h2&gt;
+
+&lt;p&gt;You cannot govern based of personal preferences that will change from one day to another, from one person to another. You need clearly written rules, you need guidelines. Often reduced to API Design Guidelines, you can (even must) create guidelines for every level: API Strategy, API Program, API Platform, API Product, API Design, architecture, domain definition, …&lt;/p&gt;
+
+&lt;p&gt;The first step will be to make people share their practices, then you’ll be able to create your guidelines based on those practices.&lt;/p&gt;
+
+&lt;p&gt;Guidelines describe (&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0972664b0835001b00cd1c&quot; title=&quot;How to Guide your API Program and Platform&quot;&gt;Erik Wilde&lt;/a&gt;):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Why they exist, which issue they are solving&lt;/li&gt;
+  &lt;li&gt;What can be done to address this issue&lt;/li&gt;
+  &lt;li&gt;How to implement the solution&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One of the major benefits of having guidelines is ensuring a certain level of consistency. Consistency matters because inconcistency wastes times, especially inconsistent API design which means that ALL consumers will have a lot of work to do (&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0c32ba86dfb0001b75e013&quot; title=&quot;Automating style guides for REST, gRPC, or GraphQL&quot;&gt;Phil Sturgeon&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h2 id=&quot;automating-api-design-reviews&quot;&gt;Automating API Design Reviews&lt;/h2&gt;
+
+&lt;p&gt;API Design Guidelines are important, but let’s be honest: most APIs developers will not read the organization’s API manifesto. If they do they won’t remember it. If they do they won’t reread it looking for changes (&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0c32ba86dfb0001b75e013&quot; title=&quot;Automating style guides for REST, gRPC, or GraphQL&quot;&gt;Phil Sturgeon&lt;/a&gt;). So you must automate guidelines controls as much as possible to make their (and reviewer’s) life easier.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0c32ba86dfb0001b75e013&quot; title=&quot;Automating style guides for REST, gRPC, or GraphQL&quot;&gt;Phil Sturgeon&lt;/a&gt;, &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f09b44c8c46ce001bff21a0&quot; title=&quot;Automating API Governance&quot;&gt;John Phenix&lt;/a&gt; and &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f091a6c4b0835001b00cca7&quot; title=&quot;The Augmented API Design Reviewer&quot;&gt;myself&lt;/a&gt; talked about API Design review automation using &lt;a href=&quot;https://github.com/stoplightio/spectral&quot;&gt;Spectral&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We all agreed on the fact that API design review cannot be completely replace by automation. An API linter will not tell you if the design is actually accurate, if this resource’s name is the good one or if the API is actually the one that is needed. But it simplifies the process massively, removing 80% or rejections before reviewers even look.&lt;/p&gt;
+
+&lt;h2 id=&quot;scaling-and-shifting-api-design-governance&quot;&gt;Scaling and Shifting API Design Governance&lt;/h2&gt;
+
+&lt;p&gt;The mosy visible aspect of governance is API design governance. Without it, your API landscape will be a totally inconsistent nightmare that will make loose time to all of your consumers. Therefore you must ensure that API are design properly with API design reviews.&lt;/p&gt;
+
+&lt;p&gt;Depending on your context (locations, size, number of APIs), you may use different organization model to do so (&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f09b44c8c46ce001bff21a0&quot; title=&quot;Automating API Governance&quot;&gt;John Phenix&lt;/a&gt;):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Centralized: A core expert team do all reviews. This is a consistent but not scalable approach&lt;/li&gt;
+  &lt;li&gt;Federated: API champions enforce standard locally. This is a scalable but not consistent approach.&lt;/li&gt;
+  &lt;li&gt;Automated: Designs are automatically reviewed by some magic programs. This is scalable and consistent but is far from comprehensive. Indedd, such program will not tell you if the API is the right one.&lt;/li&gt;
+  &lt;li&gt;Hybrid: Focus human-power on what cannot be checked automatically.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Whatever approach you have, you’ll notice that in the long run the discussions will shift from “Are we doing APIs right” (meaning conforming to our design guidelines) to “Are we doing the right APIs” (API product vision).&lt;/p&gt;
+
+&lt;h1 id=&quot;doing-apis-right-and-doing-right-apis&quot;&gt;Doing APIs right and doing right APIs&lt;/h1&gt;
+
+&lt;p&gt;It’s time to conclude. What do I retain in the end? Well, besides Sam Newman doing a facepalm, I will remember that “it’s the people that matter, the people that last, not machines, not technology. Change is not Kubernetes or Service Mesh, change is people” (&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f096a054b0835001b00cd16&quot; title=&quot;APIs are Arrangements of Power. Now what?&quot;&gt;Matthew Reinbold&lt;/a&gt;). And also a clever way to say that they are two sides of doing APIs:  “Doing APIs right and doing right APIs” (&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0bde6f86dfb0001b75dfb9&quot; title=&quot;/Contract/{Collaboration}/DrivenDevelopment&quot;&gt;Alianna Inzana&lt;/a&gt; and &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f09b44c8c46ce001bff21a0&quot; title=&quot;Automating API Governance&quot;&gt;John Phenix&lt;/a&gt;). Based on my experience, I can tell you that helping people doing the APIs right with appropriate governance will help them making right APIs by themselves in the long run.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">API Days Interface being online made the experience a bit different but after 3 days, I felt almost as usual; exhausted and my brain boiling. In previous post, I shared my feelings about my first online conference. Now let’s talk about the content; Sam Newman doing a facepalm, API design, architecture, governance and my new favorite quote “Doing APIs right, doing right APIs”.</summary></entry><entry><title type="html">APIs You Won’t Hate Podcast - The API Handyman Cometh</title><link href="https://apihandyman.io/apis-you-wont-hate-podcast-the-api-handyman-cometh/" rel="alternate" type="text/html" title="APIs You Won’t Hate Podcast - The API Handyman Cometh" /><published>2020-07-09T00:00:00+00:00</published><updated>2020-07-09T00:00:00+00:00</updated><id>https://apihandyman.io/apis-you-wont-hate-podcast-the-api-handyman-cometh</id><content type="html" xml:base="https://apihandyman.io/apis-you-wont-hate-podcast-the-api-handyman-cometh/">&lt;p&gt;It was great to chat with Phil Sturgeon and Matt Trask on the APIs You Won’t Hate Podcast. We talked about API Design and Reviews, and we also talk about life in quarantine, as France completely shut down and how Phil made it back in time to England before the lock downs took place.
 &lt;!--more--&gt;
 Listen on &lt;a href=&quot;https://dev.to/apisyouwonthatepodcast/episode-6-the-api-handyman-cometh&quot;&gt;APIs You Won’t Hate&lt;/a&gt;&lt;/p&gt;</content><author><name>Phil Sturgeon, Matt Trask &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">It was great to chat with Phil Sturgeon and Matt Trask on the APIs You Won’t Hate Podcast. We talked about API Design and Reviews, and we also talk about life in quarantine, as France completely shut down and how Phil made it back in time to England before the lock downs took place.</summary></entry><entry><title type="html">I’d Rather Be Writing Podcast - API Design and Usability</title><link href="https://apihandyman.io/i-d-rather-be-writing-podcast-api-design-and-usability/" rel="alternate" type="text/html" title="I’d Rather Be Writing Podcast - API Design and Usability" /><published>2020-07-08T00:00:00+00:00</published><updated>2020-07-08T00:00:00+00:00</updated><id>https://apihandyman.io/i-d-rather-be-writing-podcast-api-design-and-usability</id><content type="html" xml:base="https://apihandyman.io/i-d-rather-be-writing-podcast-api-design-and-usability/">&lt;p&gt;I had the pleasure to chat with Tom Johnson for his I’d Rather Be Writing Podcast. We talked about my book, The Design of Web APIs, and specifically best practices for designing web APIs and focus on the roles technical writers can play.
 &lt;!--more--&gt;&lt;/p&gt;
 
-&lt;p&gt;Listen on &lt;a href=&quot;https://idratherbewriting.com/blog/api-design-usability-arnaud-lauret-podcast/&quot;&gt;idratherbewriting.com&lt;/a&gt;&lt;/p&gt;</content><author><name>Tom Johnson &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">I had the pleasure to chat with Tom Johnson for his I’d Rather Be Writing Podcast. We talked about my book, The Design of Web APIs, and specifically best practices for designing web APIs and focus on the roles technical writers can play.</summary></entry><entry><title type="html">Speaking into the void</title><link href="https://apihandyman.io/apidays-interface-speaking-into-the-void/" rel="alternate" type="text/html" title="Speaking into the void" /><published>2020-07-08T00:00:00+00:00</published><updated>2020-07-08T00:00:00+00:00</updated><id>https://apihandyman.io/speaking-in-the-void</id><content type="html" xml:base="https://apihandyman.io/apidays-interface-speaking-into-the-void/">&lt;p&gt;I’ve attended and spoke at API Days Interface online conference last week. Being online made the experience a bit different but after almost 3 days, I felt almost as usual; exhausted and my brain boiling with all what I’ve heard and seen. In this first post I share my feelings about attending and speaking at an online conference.
+&lt;p&gt;Listen on &lt;a href=&quot;https://idratherbewriting.com/blog/api-design-usability-arnaud-lauret-podcast/&quot;&gt;idratherbewriting.com&lt;/a&gt;&lt;/p&gt;</content><author><name>Tom Johnson &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">I had the pleasure to chat with Tom Johnson for his I’d Rather Be Writing Podcast. We talked about my book, The Design of Web APIs, and specifically best practices for designing web APIs and focus on the roles technical writers can play.</summary></entry><entry><title type="html">Speaking into the void</title><link href="https://apihandyman.io/apidays-interface-speaking-into-the-void/" rel="alternate" type="text/html" title="Speaking into the void" /><published>2020-07-08T00:00:00+00:00</published><updated>2020-07-08T00:00:00+00:00</updated><id>https://apihandyman.io/speaking-in-the-void</id><content type="html" xml:base="https://apihandyman.io/apidays-interface-speaking-into-the-void/">&lt;p&gt;I’ve attended and spoke at API Days Interface online conference on June 20, July 1 &amp;amp; 2, 2020. Being online made the experience a bit different but after almost 3 days, I felt almost as usual; exhausted and my brain boiling with all what I’ve heard and seen. In this first post I share my feelings about attending and speaking at an online conference.
 &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;api-days-interface-online-conference&quot;&gt;API Days Interface Online conference&lt;/h1&gt;
@@ -59,7 +479,7 @@ Sharing your screen is the online version of connecting to the projector (cable 
 
 &lt;p&gt;Regarding the content, it was, as always, great (I’ll talk more about it in my next post). The overall experience offered by the platform when attending sessions was good. But, I clearly had far less interactions than during a live conference where attendees can come to me right after the talk or later and where I can talk to people during breaks. The platform offers features allowing to do so though, I think it’s just a matter of time and changing my habits.&lt;/p&gt;
 
-&lt;p&gt;So, am I 100% convinced by online conference? No. Because I will never have as much fun as I have when hanging out with my friends and attendees in the alleys and in the city where the conference takes place. But in these times, online conferences are far better than no conference at all. Thanks to them, we can still share our experiences and learn from others, even if we have less or different interactions with people.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I’ve attended and spoke at API Days Interface online conference last week. Being online made the experience a bit different but after almost 3 days, I felt almost as usual; exhausted and my brain boiling with all what I’ve heard and seen. In this first post I share my feelings about attending and speaking at an online conference.</summary></entry><entry><title type="html">API Toolbox - JQ and OpenAPI - Part 4 - Bonus: Coloring JQ’s raw output</title><link href="https://apihandyman.io/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/" rel="alternate" type="text/html" title="API Toolbox - JQ and OpenAPI - Part 4 - Bonus: Coloring JQ’s raw output" /><published>2020-07-06T00:00:00+00:00</published><updated>2020-07-06T00:00:00+00:00</updated><id>https://apihandyman.io/api-toolbox-jq-and-openapi-part-4</id><content type="html" xml:base="https://apihandyman.io/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/">&lt;p&gt;Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. The three previous parts of this JQ and OpenAPI Series, taught us to extract data from JSON (OpenAPI) files and modify them using many filters, creating modules and using command line arguments. To finish this series, we’ll learn to color JQ’s raw terminal output and do a colored version of part 2’s search operations. &lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;So, am I 100% convinced by online conference? No. Because I will never have as much fun as I have when hanging out with my friends and attendees in the alleys and in the city where the conference takes place. But in these times, online conferences are far better than no conference at all. Thanks to them, we can still share our experiences and learn from others, even if we have less or different interactions with people.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I’ve attended and spoke at API Days Interface online conference on June 20, July 1 &amp;amp; 2, 2020. Being online made the experience a bit different but after almost 3 days, I felt almost as usual; exhausted and my brain boiling with all what I’ve heard and seen. In this first post I share my feelings about attending and speaking at an online conference.</summary></entry><entry><title type="html">API Toolbox - JQ and OpenAPI - Part 4 - Bonus: Coloring JQ’s raw output</title><link href="https://apihandyman.io/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/" rel="alternate" type="text/html" title="API Toolbox - JQ and OpenAPI - Part 4 - Bonus: Coloring JQ’s raw output" /><published>2020-07-06T00:00:00+00:00</published><updated>2020-07-06T00:00:00+00:00</updated><id>https://apihandyman.io/api-toolbox-jq-and-openapi-part-4</id><content type="html" xml:base="https://apihandyman.io/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/">&lt;p&gt;Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. The three previous parts of this JQ and OpenAPI Series, taught us to extract data from JSON (OpenAPI) files and modify them using many filters, creating modules and using command line arguments. To finish this series, we’ll learn to color JQ’s raw terminal output and do a colored version of part 2’s search operations. &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;The screen capture below shows what we already have seen in part 1, JQ “colors its output” by default, but what it actually does is JSON syntax highlighting. What we want to do now is coloring raw terminal output, the one you get when using the &lt;code&gt;-r&lt;/code&gt; flag and outputing text instead of JSON. After reading this post, you’ll be able to create JQ module doing output such as the colored version of search operations you see below.&lt;/p&gt;
 
@@ -5822,75 +6242,4 @@ Another API
 
 &lt;h1 id=&quot;whats-next&quot;&gt;What’s next&lt;/h1&gt;
 
-&lt;p&gt;In next post, we’ll learn to search into OpenAPI files and simplify JQ code by using command line arguments, functions and modules.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="API Toolbox" /><summary type="html">Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In this 4 parts post series, you’ll discover why and how I use JQ with OpenAPI Specification files. But more important, you’ll get some basic and more advanced example of how to use JQ on any JSON document to get and modify JSON data as you want. In this first part we’ll focus on what is JQ, why I use it with OpenAPI files and we’ll learn how to invoke JQ and discover some of the many JQ filters that can be used to extract data from JSON.</summary></entry><entry><title type="html">Lessons learned while demoing API to non-developers</title><link href="https://apihandyman.io/lessons-learned-while-demoing-api-to-non-developers/" rel="alternate" type="text/html" title="Lessons learned while demoing API to non-developers" /><published>2019-11-22T00:00:00+00:00</published><updated>2019-11-22T00:00:00+00:00</updated><id>https://apihandyman.io/lessons-learned-while-demoing-api-to-non-developers</id><content type="html" xml:base="https://apihandyman.io/lessons-learned-while-demoing-api-to-non-developers/">&lt;p&gt;What would you do if you had to demo API to non-developers in a highly-constrained context? How would you do without curl, Postman or any other API tool usually used? How would you do without your usual fun API examples? I had to do that a few weeks ago and was quite happy by the questions that arose and the solutions found. The whole story definitely deserves a post in order to share what I’ve learned!&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;the-request&quot;&gt;The request&lt;/h1&gt;
-
-&lt;p&gt;A part of my job is explaining to developers and non-developers what are APIs and what can be done with them from both technical and business perspectives. I regularly do some presentations or training to do so, especially a very first API 101 session simply consisting in some slides without any hands-on. A few weeks ago, I received a request that seemed quite simple at first: “we want to organize the usual API 101 for non developers … but this time, it would be great to let them make &lt;em&gt;code&lt;/em&gt; some API stuff. And you have less than 45 minutes, probably half an hour”. The objective was to make these people grasp a little bit more than usual what APIs are and let them understand their simplicity during this first session.&lt;/p&gt;
-
-&lt;p&gt;At first, I was like: “oh no problem, we’ll use curl and Postman to make calls to the SWAPI API (an API providing information about the Star Wars movies) or the PokeAPI (providing information Pokemons), it shouldn’t take more than 10 minutes during the presentation, so even with half an hour that should be OK. Unfortunately that was not that simple.&lt;/p&gt;
-
-&lt;h1 id=&quot;beware-the-context-when-choosing-hands-on-tools&quot;&gt;Beware the context when choosing hands-on tools&lt;/h1&gt;
-
-&lt;p&gt;Problems started with the tooling. Indeed, the people attending this session have standard-for-non-developer laptops. These laptops do not come with Postman or curl, and even if the attendees were admins (highly improbable) on these laptops, installing tools would be far too complicated and would take a too long time in such a short session (and it would probably ruin the “APIs are simple” message).&lt;/p&gt;
-
-&lt;p&gt;OK, no problems, only solutions. These machines come with Windows 10 and PowerShell, I’m not familiar with it but I thought “Well, a PowerShell-curl probably exists”. Yes it does, there are &lt;code&gt;Invoke-RestMethod&lt;/code&gt;and &lt;code&gt;Invoke-WebRequest&lt;/code&gt; that seem to do the job. Unfortunately, I did not succeed to make them work with our f****** corporate proxy. As far as I’ve seen, it would have required to make too much complicated stuff and would have taken too much time (I may have missed something).&lt;/p&gt;
-
-&lt;p&gt;And there was also this “code some API stuff” idea. One of my colleagues suggested to use &lt;a href=&quot;https://jsfiddle.net/&quot;&gt;JSFiddle&lt;/a&gt;. Brilliant! It’s a browser based tool and therefore it requires absolutely no installation. It allows to tinker with HTML, JS and CSS. I first checked that it was not blocked by our corporate proxy … and yes! It worked. I discovered that JSFiddle (and other similar tools) comes with some useful features (if you pay of course) for training sessions, especially private fiddles. That could be interesting to manage calls to API needing authentication (to safely store credentials). I keep that in a corner of my mind for another time as I didn’t want to use secured APIs during this session. I developed a simple example with basic HTML and JavaScript doing an API call.&lt;/p&gt;
-
-&lt;div class=&quot;text-center&quot;&gt;
-      &lt;figure class=&quot;figure&quot;&gt;
-        
-        &lt;img src=&quot;/images/lessons-learned-while-demoing-api-to-non-developers/jsfiddle.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption text-left&quot;&gt;Using JSFiddle and HTML/JS code is maybe too complex for non-developers&lt;/figcaption&gt;
-      &lt;/figure&gt;
-    &lt;/div&gt;
-
-&lt;p&gt;I thought I could let attendees modify it to make some API calls themselves. From the very beginning I was not comfortable with that. Hopefully, I could test the idea with the persons (non-developers) who made the request and specifically asked for the “code some API stuff”. It didn’t take us long to realize that was a terrible idea. JSFiddle would look terribly complex and having to modify some JS code would be a nightmare for people who never have done that before.&lt;/p&gt;
-
-&lt;p&gt;OK, if attendees could not actually write code in that context, they could at least use their browser to call an API, that’s web APIs we had to talk about after all. All that is needed is typing something in the browser’s address bar. And people could “code” some API stuff by tweaking the URLs and parameters. We, all agreed that was the best option in our context and it fulfilled the requirements.&lt;/p&gt;
-
-&lt;p&gt;But which API to use?&lt;/p&gt;
-
-&lt;h1 id=&quot;take-care-of-finding-api-examples-adapted-to-the-audience&quot;&gt;Take care of finding API examples adapted to the audience&lt;/h1&gt;
-
-&lt;p&gt;I’m used to use &lt;a href=&quot;https://swapi.co/&quot;&gt;SWAPI&lt;/a&gt; (Star War API) when demoing APIs in such 101 sessions. It’s simple, fun and requires no authentication. But, in that context, I realized that using SWAPI would lead to two problems.&lt;/p&gt;
-
-&lt;p&gt;The first problem was simply technical. In such demo I usually use curl to call SWAPI. But in that context I had to use a browser and unfortunately SWAPI is too smart, it handles content negotiation very well. Indeed, when you call SWAPI from a browser, you don’t get raw JSON data but an HTML page. But, I wanted to show some ugly raw JSON data and not HTML! So, I found another funny API, the &lt;a href=&quot;http://www.dnd5eapi.co&quot;&gt;D&amp;amp;D&lt;/a&gt; API. Typing the &lt;a href=&quot;http://www.dnd5eapi.co/api/classes&quot;&gt;http://www.dnd5eapi.co/api/classes&lt;/a&gt; URL in the browser’s address bar shows some beautifully-ugly JSON raw data listing available characters class in the fifth edition of Dungeons &amp;amp; Dragons rule books. I thought it was perfect … but not at all: that’s the seconde problem.&lt;/p&gt;
-
-&lt;p&gt;Indeed, the second problem with such fun API is functional. SWAPI or D&amp;amp;D are totally fun from my perspective, but their fields were thousands light-years away of what matters for the attendees. For this demo we needed an API that would resonate with them. I needed an example that makes sense for people in the financial industry. Hopefully, I found a more suitable API: the &lt;a href=&quot;https://exchangeratesapi.io/&quot;&gt;Foreign Exchange Rate API&lt;/a&gt;. This API provides current and historical foreign exchange rates published by the European Central Bank. Basically, if you want to know how much Japan Yen you can get for a Euro, this API is for you. OK, forex is not a field as fun as Star Wars and D&amp;amp;D but this API provides data the attendees are familiar with (especially the ISO 4217 currency codes), it’s dead simple and provides enough functions and parameters to let total API beginners have fun with it.&lt;/p&gt;
-
-&lt;p&gt;Once the API chosen, I listed the API calls the attendees would have to do and the questions I would ask them during the “API call exercises” part of the session. I was almost done but I wanted to show how this Foreign Exchange Rate API could be used in a simple application along with another API (to show how by combining easily simple API you can do interesting stuff).&lt;/p&gt;
-
-&lt;h1 id=&quot;build-an-all-in-one-demo-application&quot;&gt;Build an all-in-one demo application&lt;/h1&gt;
-
-&lt;p&gt;So, I wrote a simple &lt;a href=&quot;https://arno-di-loreto.github.io/simple-api-demo/&quot;&gt;webapp&lt;/a&gt; (using &lt;a href=&quot;https://jsfiddle.net/arnaudlauret/8catx91d&quot;&gt;JS Fiddle&lt;/a&gt; and &lt;a href=&quot;https://github.com/arno-di-loreto/simple-api-demo&quot;&gt;Github pages&lt;/a&gt; by the way) combining the Foreign Exchange Rate API and the &lt;a href=&quot;https://restcountries.eu/&quot;&gt;REST Countries&lt;/a&gt; API which provide information about countries such as languages, borders, flags, … It consists in a simple form that let users convert an amount in a source currency to a target currency. It also shows trivia about the selected currencies such as the countries which use them and their flags. The available currencies and exchange rate come from the exchange rate API and the country/currency relationship and country flag come from REST country API.&lt;/p&gt;
-
-&lt;p&gt;And then I thought it would be interesting to show the actual API calls that were triggered when using the web application. I first though to use the browser’s developer tools. Indeed, using the network panel and filtering to XHR request, you can see the API calls made by the JavaScript code. But again, that would have been too complex just like showing them JSFiddle (IMHO).&lt;/p&gt;
-
-&lt;div class=&quot;text-center&quot;&gt;
-      &lt;figure class=&quot;figure&quot;&gt;
-        
-        &lt;img src=&quot;/images/lessons-learned-while-demoing-api-to-non-developers/browser-dev-tools.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption text-left&quot;&gt;Filtering XHR request in browser dev tools? Too scary!&lt;/figcaption&gt;
-      &lt;/figure&gt;
-    &lt;/div&gt;
-
-&lt;p&gt;So I came to the idea of adding an API call log directly within the web application. This log shows which called are done and why. API calls are log during the webpage initial loading but also when users interact with it. On each new action, the new call are added to the top of the list and the previous calls are shown in light grey.&lt;/p&gt;
-
-&lt;div class=&quot;text-center&quot;&gt;
-      &lt;figure class=&quot;figure&quot;&gt;
-        
-        &lt;img src=&quot;/images/lessons-learned-while-demoing-api-to-non-developers/demo-app.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption text-left&quot;&gt;Demo application including detailed API call log? Far more non-developers friendly!&lt;/figcaption&gt;
-      &lt;/figure&gt;
-    &lt;/div&gt;
-
-&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;So I was totally ready for this special 101 session with a bonus hands-on. And hopefully everything went very well, but even if that presentation was very important (because of the very important people in the audience), I will remember more its preparation as it helped me (re)discover very interesting things. Preparing this unusual session reminded me that whatever you do: beware the context before making any choice. I’m also quite happy to have find this idea of building an all-in-one demo application which explain what happens behind the hood and will reuse and expand this concept in the future.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;PS: Oh, and I almost forgot … it also reminded me how so many tools are unable to deal with corporate proxies easily. I may write something about that one day.&lt;/em&gt;&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="Avocado" /><summary type="html">What would you do if you had to demo API to non-developers in a highly-constrained context? How would you do without curl, Postman or any other API tool usually used? How would you do without your usual fun API examples? I had to do that a few weeks ago and was quite happy by the questions that arose and the solutions found. The whole story definitely deserves a post in order to share what I’ve learned!</summary></entry></feed>
+&lt;p&gt;In next post, we’ll learn to search into OpenAPI files and simplify JQ code by using command line arguments, functions and modules.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="API Toolbox" /><summary type="html">Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. In this 4 parts post series, you’ll discover why and how I use JQ with OpenAPI Specification files. But more important, you’ll get some basic and more advanced example of how to use JQ on any JSON document to get and modify JSON data as you want. In this first part we’ll focus on what is JQ, why I use it with OpenAPI files and we’ll learn how to invoke JQ and discover some of the many JQ filters that can be used to extract data from JSON.</summary></entry></feed>
