@@ -1,6 +1,6 @@
 ---
 title: Doing APIs right and doing right APIs
-date: 2020-07-20
+date: 2020-07-26
 author: Arnaud Lauret
 layout: post
 category: post
