@@ -84,9 +84,9 @@ So how to be sure that an "organization" actually is the true owner of an API?
 It must:
 
 - Be the actual owner of data, services, domain, components
-- Represent a meaningfull business domain leading to meaningful and self sufficient API(s)
+- Represent a meaningful business domain leading to meaningful and self sufficient API(s)
 - Know domain from business perspective
-- Kown domain from technical perspective
+- Know domain from technical perspective
 - Be able to design (maybe with some help but without over delegating)
 - Be able to make decisions
 - Be able to actually implement
