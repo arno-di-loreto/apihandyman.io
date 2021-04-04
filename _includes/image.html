@@ -1,23 +1,24 @@
-
-
-{% assign startsWith = '/images/' %}
-{% assign checkArray = include.source | split:startsWith %}
-
-{% if checkArray[0] == blank %}
-  {% assign source = include.source %}
-{% else %}
-  {% assign source = page.permalink | append:include.source | prepend:'/images' %}
-{% endif %}
-
+{%- assign startsWith = '/images/' -%}
+{%- assign checkArray = include.source | split:startsWith -%}
+{%- if checkArray[0] == blank -%}
+  {%- assign source = include.source -%}
+{%- else -%}
+  {%- assign source = page.permalink | append:include.source | prepend:'/images' -%}
+{%- endif -%}
+{%- if include.alt -%}
+  {%- assign alt= include.alt | prepend:' alt ="' | append:'"' -%}
+{%- else -%}
+  {%- assign alt='' -%}
+{%- endif -%}
+{%- if include.inline -%}
+<img src="{{source}}" class="image-inline"{{alt}}>
+{%- else -%}
 <div class="image">
     <figure class="figure">
-        <img src="{{source}}" class="figure-img img-fluid"
-        {% if include.alt %}
-            alt="{{include.alt}}"
-        {% endif %}
-        >
-        {% if include.caption %}
+        <img src="{{source}}" class="figure-img img-fluid"{{alt}}>
+        {%- if include.caption -%}
         <figcaption class="figure-caption">{{include.caption}}</figcaption>
-        {% endif %}
+        {%- endif -%}
     </figure>
 </div>
+{%- endif -%}
