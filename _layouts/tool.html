@@ -58,9 +58,9 @@ hide_toc: true
           {% if link.url == nil %}
             {% for post in site.posts reversed %}
               {% if link.type == "series" and post.series == link.name %}
-                {% include post-summary.html css="tool-link-summary" no_banner=true %}
+                {% include post-summary.html css="tool-link-summary" no_banner=true disableSameHeight=true %}
               {% elsif link.type == "post" and post.title == link.name %}
-                {% include post-summary.html css="tool-link-summary" no_banner=true %}
+                {% include post-summary.html css="tool-link-summary" no_banner=true disableSameHeight=true %}
               {% endif %}
             {% endfor %}
           {% endif %}
