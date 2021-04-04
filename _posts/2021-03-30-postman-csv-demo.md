@@ -36,51 +36,146 @@ Our first Github API call will retrieve current user information.
 
 ## Trying to make a first API call
 
-Let's create a workspace, a collection and then a request:
+Launch Postman, we'll create a "Postman CSV Demo" workspace, a "Github" collection, a "List current user" request calling `GET https://api.github.com/user` and make our first call:
 
-- Launch Postman
-- Click on "Workspaces"
-- Click on "+ New Workspace"
-- Set workspace name to "Postman CSV Demo"
-- Change visibility to "Personal"
-- Click on "Create Workspace"
-- Click on New button  {% include image.html inline=true source="postman-new.png" alt="New" %}
-- Click on Collection
-- Change "New Collection" name to to "Github"
-- Right click on the collection and select add request
-- Change "New Request" name to "Read current user"
-- Set request URL to `https://api.github.com/user`
-- Click on "Save" (*You'll have to learn to click on the save button in order to not lose your mind when using Postman*)
-- And finally, hit the Send button and ... get a 401 Unauthorized error telling that authentication is required
+<table>
+<tr>
+    <td>Click on {% include image.html type="inline" source="postman-workspaces-menu.png" alt="Workspaces" %} menu in top bar</td>
+    <td>{% include image.html type="simple" source="postman-top-menubar.png" alt="Workspaces" %}</td>
+</tr>
+<tr>
+    <td>Click on {% include image.html type="inline" source="postman-plus-workspace-button.png" alt="+ New Workspace" %} button</td>
+    <td>{% include image.html type="simple" source="postman-workspaces-menu-top.png" alt="+ New Workspace" %}</td>
+</tr>
+<tr>
+    <td>Set workspace name to "Postman CSV Demo"</td>
+    <td >{% include image.html type="simple" source="postman-create-workspace-name.png" alt="Create workspace window name field" %}</td>
+</tr>
+<tr>
+    <td>Change visibility to "Personal"</td>
+    <td >{% include image.html type="simple" source="postman-create-workspace-visibility.png" alt="Create workspace window visibility drop list" %}</td>
+</tr>
+<tr>
+    <td>Click on "Create Workspace" button</td>
+    <td >{% include image.html type="simple" source="postman-create-workspace-buttons.png" alt="Create workspace window buttons" %}</td>
+</tr>
+<tr>
+    <td>Click on {% include image.html type="inline" source="postman-new-button.png" alt="New" %} button next to "Postman CSV Demo" workspace name</td>
+    <td>{% include image.html type="simple" source="postman-workspace-created.png" alt="Workspace created" %}</td>
+</tr>
+<tr>
+    <td>Click on "Collection" item in the "Create New" window</td>
+    <td>{% include image.html type="simple" source="postman-create-collection-button.png" alt="Create collection button" %}</td>
+</tr>
+<tr>
+    <td>Change "New Collection" name to "Github"</td>
+    <td>{% include image.html type="simple" source="postman-collection-created.png" alt="Collection created" %}</td>
+</tr>
+<tr>
+    <td>Right click on the "Github" collection in the left panel and select "Add request"</td>
+    <td>{% include image.html type="simple" source="postman-collection-right-click-add-request.png" alt="Collection contextual menu" %}</td>
+</tr>
+<tr>
+    <td>Change "New Request" name to "Read current user"</td>
+    <td>{% include image.html type="simple" source="postman-request-created-read-current-user.png" alt="Request created" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Set request URL to `https://api.github.com/user`, click on {% include image.html type="inline" source="postman-save-button.png" alt="Save button" %} and hit the {% include image.html type="inline" source="postman-send-button.png" alt="Send button" %} button ...</td>
+    <td>{% include image.html type="simple" source="postman-request-url-set.png" alt="URL set" %}</td>
+</tr>
+<tr>
+    <td>... to get a 401 Unauthorized error telling that authentication is required</td>
+    <td>{% include image.html type="simple" source="postman-request-failed-authorization.png" alt="Response telling authorization is required" %}</td>
+</tr>
+</table>
 
 ## Getting a Github personal access token
 
-The easiest way to get access to the Github API, if you have two factor authentication activated (and you MUST have it activated), is to generate a personal access token:
+The easiest way to get access to the Github API, if you have two factor authentication activated (and you MUST have it activated), is to generate a personal access token.
+For our demonstration we will generate one granting access to public repositories:
 
-- Go to your [Github account settings](https://github.com/settings/profile)
-- Click on [Developer setting](https://github.com/settings/apps)
-- Click on [Personal access tokens](https://github.com/settings/tokens)
-- Click on [Generate new token](https://github.com/settings/tokens/new) (you may have to provide your password)
-- In the note field, type "postman-csv-demo"
-- Check the `public_repo` scope under repo. Note that this scopes obviously gives access to public repositories only, if you want to access private ones, you'll have to check the `repo` scope (which is less obvious).
-- Click on the Generate Token button
-- Copy the generated token (use with caution, never, ever, commit this value in any public source code repository!)
+<table>
+<tr>
+    <td markdown="span">Go to your [Github account settings](https://github.com/settings/profile) by clicking on your profile icon and clicking on "Settings" (at the bottom)</td>
+    <td markdown="span">{% include image.html type="simple" source="github-profile-menu.png" alt="Github profile menu" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Scroll down and click on [Developer setting](https://github.com/settings/apps) in the left menu</td>
+    <td markdown="span">{% include image.html type="simple" source="github-settings-menu.png" alt="Github settings menu" %}</td>
+</tr>
+<tr>
+    <td markdown="span">In developer setting page, click on [Personal access tokens](https://github.com/settings/tokens)</td>
+    <td markdown="span">{% include image.html type="simple" source="github-developer-settings.png" alt="Github settings menu" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Click on [Generate new token](https://github.com/settings/tokens/new) (you may have to provide your password)</td>
+    <td markdown="span">{% include image.html type="simple" source="github-personal-access-tokens.png" alt="Github personal access tokens" %}</td>
+</tr>
+<tr>
+    <td markdown="span">In the "Note" field, type "postman-csv-demo"</td>
+    <td markdown="span">{% include image.html type="simple" source="github-token-description.png" alt="Github token description" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Check the `public_repo` scope under repo. Note that this scopes obviously gives access to public repositories only, if you want to access private ones, you'll have to check the `repo` scope (which is less obvious).</td>
+    <td markdown="span">{% include image.html type="simple" source="github-scopes-public.png" alt="Public repo scope checked" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Click on {% include image.html type="inline" source="github-token-generate-button.png" alt="Generate token button" %} at the bottom of the page</td>
+    <td markdown="span">{% include image.html type="simple" source="github-token-validate.png" alt="Github token generate button" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Copy the generated token by clicking on {% include image.html type="inline" source="github-token-copy-button.png" alt="Copy button" %} (use this token with caution, never, ever, commit this value in any public source code repository!)</td>
+    <td markdown="span">{% include image.html type="simple" source="github-token-generated.png" alt="Github token generated" %}</td>
+</tr>
+</table>
 
 ## Configuring Authorization in Postman and make a successful first API call
 
 Having an access token, we'll configure our collection in order to make all requests that it will contain use it.
 But we will do that in a secure way using an environment variable, it's a best practice that allows to share collections without the risk of sharing sensitive data:
 
-- Click on the New button and create a new "Github" environment
-- Add a `github_token` variable
-- Paste the Github token in its initial value and click outside the field (*That should populate also the current value*)
-- In the upper left corner, click on "No Environment" and select the newly created "Github" environment in order to make its variables accessible
-- Click on the "Github" collection's name
-- Go to "Authorization" tab
-- Change Type from "No Auth" to "Bearer Token"
-- Set token value to `{% raw %}{{github_token}}{% endraw %}` (*The value will be set with the variable's one only if you have selected the "Github" environment*)
-- Click on "Save" (*if you don't you'll get a 401*)
-- Go to the "Read current user" request and hit send again ... now it works! You should get a 200 OK response along with your user's data.
+<table>
+<tr>
+    <td>Click on {% include image.html type="inline" source="postman-new-button.png" alt="New" %} button next to "Postman CSV Demo" workspace name</td>
+    <td>{% include image.html type="simple" source="postman-workspace-created.png" alt="Workspace created" %}</td>
+</tr>
+<tr>
+    <td>Click on "Environment" item in the "Create New" window</td>
+    <td>{% include image.html type="simple" source="postman-create-environment-button.png" alt="Create environment button" %}</td>
+</tr>
+<tr>
+    <td>Change "New Environment" name to "Github"</td>
+    <td>{% include image.html type="simple" source="postman-environment-created.png" alt="Environment created" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Add a `github_token` variable and paste the Github token in its initial value and click outside the field (*That should populate also the current value*)</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-environment-github-token.png" alt="Github token variable" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Click on {% include image.html type="inline" source="postman-save-button.png" alt="Save button" %} to save the "Github" environment and its `github_token` variable</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-environment-github-to-save.png" alt="Github token variable to save" %}</td>
+</tr>
+<tr>
+    <td markdown="span">In the upper left corner, click on "No Environment" and select the newly created "Github" environment in order to make its variables accessible</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-environment-select-github.png" alt="Activate Github environment" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Click on the "Github" collection's name, in the Authorization tab, change Type from "No Auth" to "Bearer Token"</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-collection-auth-type.png" alt="Collection authorization type" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Set token value to `{% raw %}{{github_token}}{% endraw %}` (*If the value is red instead of orange, it means the variable is not found. It's probably because you didn't select the "Github" environment*)</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-collection-auth-token.png" alt="Collection authorization type" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Click on {% include image.html type="inline" source="postman-save-button.png" alt="Save button" %} (*if you don't you'll get a 401*)</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-collection-to-save.png" alt="Collection to save" %}</td>
+</tr>
+<tr>
+    <td markdown="span">Go to the "Read current user" request and hit {% include image.html type="inline" source="postman-send-button.png" alt="Send button" %} again ... now it works! You should get a 200 OK response along with your user's data.</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-request-success.png" alt="200 OK response" %}</td>
+</tr>
+</table>
 
 # Creating one to many issues with Github REST API
 

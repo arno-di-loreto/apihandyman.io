@@ -10,8 +10,10 @@
 {%- else -%}
   {%- assign alt='' -%}
 {%- endif -%}
-{%- if include.inline -%}
+{%- if include.type == "inline" -%}
 <img src="{{source}}" class="image-inline"{{alt}}>
+{%- elsif include.type == "simple" -%}
+<img src="{{source}}" class="image-simple"{{alt}}>
 {%- else -%}
 <div class="image">
     <figure class="figure">
