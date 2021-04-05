@@ -449,18 +449,23 @@ Now, we're all set to run the "Github Batch Issues Create" collection on the com
 
 - Open a terminal
 - Go to the folder containing the csv, collection and environment files
-- Run `newman run collection_filename> -e environment_filename -d csv_filename`
+- Run `newman run collection_filename -e environment_filename -d csv_filename` (with your actual collection, environment and csv filenames!)
 
-And tada, one issue for each line in the CSV file has been created!
+And tada, one "Create Issue" request has been done for each line in the CSV file (again)!
+
+{% include image.html source="newman-result.png" alt="Newman execution result" %}
+
 You can optionally check the newly created issued in Postman with the List issues request or go on Github.
+Note that as we didn't modify the CSV file between the Postman and Newman run, the 6 new issues are the same as the 6 previous ones.
 
 # Cleaning the mess with Github GraphQL API
 
-As an exercise you can try to delete the issues that has been created.
+As an exercise you can try to delete the issues that has been created using Postman (or Newman), a collection and a CSV file containing ids of issues to delete.
+Do not overlook this exercise that looks quite simple but is actually not, there is a trap and a interesting Postman feature to discover.
 
 **Spoiler**
 
-This sections shows how to do so (do not overlook this exercise that looks quite simple but is actually not, there is a trap and a interesting Postman feature to discover).
+The rest of this section shows how to do so (with less screenshots as by now you should know how to find your way in Postman UI).
 
 ## Trying to delete an issue
 
@@ -487,6 +492,7 @@ To find the actual URL, let's use the "List issues" request again, it returns so
 
 A github issue seems to have 3 "ids": `id`, `node_id` and `number`, which one to choose?
 No need to actually think about it because the ready to use `url` is actually provided!
+That's pretty handy.
 And by the way it tells us that the id to use is `number` (with user and repo name).
 
 Let's try to delete the first issue in the list:
@@ -523,7 +529,7 @@ Let's try to use this `deleteIssue` mutation:
 - Set its method to "POST"
 - Set its URL to `https://api.github.com/graphql`
 - Go to the "Body" tab
-- Select "GraphQL"
+- Select "GraphQL" radio button
 - Paste the following GraphQL body
 
 {% code language:graphql title:"Delete issue GraphQl request body" %}
@@ -547,7 +553,7 @@ As the request does not provide the repository name, that excludes the `number` 
 The `id` and `node_id` could be that unique.
 
 Try to set `issueId` with one of the `id` of your issues and hit the send button.
-You'll get this 200 OK response (sigh... HTTP is only used for transport):
+You'll get this 200 OK response (sigh... HTTP is only used for transport with GraphQL APIs):
 
 {% code language:graphql title:"Error" %}
 {
@@ -580,7 +586,7 @@ Try again, and now you'll get another 200 OK signifying that the issue has been 
     "data": {
         "deleteIssue": {
             "repository": {
-                "name": "postman-csv-demo"
+                "name": "dummy-repository"
             }
         }
     }
@@ -602,7 +608,7 @@ To do so, we'll use the [Visualize](https://learning.postman.com/docs/sending-re
 By adding some Javascript code in the Tests tab of a request you can setup a visualizer for the returned data.
 That can be used to create awesome charts or more simple tables, this is what we'll do here.
 
-Go the the Tests tab of the "List repository's issue" request and copy past the following Javascript code:
+Go the the Tests tab of the "List issues" request in "Github" collection and copy/paste the following Javascript code:
 
 {% code language:js title:"Setup visualizer in Tests tab" %}
 {% raw %}
@@ -629,10 +635,14 @@ pm.visualizer.set(templateIdsOnly, {
 {% endraw %}
 {% endcode %}
 
-This Javascript code creates a `templateIdsOnly` [Handlebar](https://handlebarsjs.com/) template which a one column table holding the `node_id` values under the `issueId` title.
+This Javascript code creates a `templateIdsOnly` [Handlebar](https://handlebarsjs.com/) template.
+This template is pretty basic, it builds a HTML table with a single column title `issueId`.
+This table will contain a line line holding the `node_id` value of each item returned by the API call. 
 After that it configures the Postman visualizer (`pm.visualizer`) to use the template on the API cal response data (`pm.response.json()`).
 
 Once this is done, hit the Send button and click on Visualize in the response and tada, you get a one column table with its node_id title and all node_id values:
+
+{% include image.html source="postman-visualize-ids.png" alt="Visualize result in Postman" %}
 
 Just select all text and copy/paste it in a file that you'll use as input to delete all issues.
 
