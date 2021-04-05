@@ -12,11 +12,15 @@ tags:
 Do you need to make a repetitive task that could be done through an API instead of a UI?
 Do you need to make many API call the quick and dirty way?
 This post is made for you: you'll learn to use Postman and CSV files to batch API calls.
-You may also learn a thing or two about API design, Github APIs (yes, plural) and other Postman features (command line, visualizer, ...) in the making.
+You may also learn a thing or two about API design, Github APIs (yes, plural) and other Postman features (variables, security, command line, visualizer, ...) in the making.
 If you never have used Postman or Github APIs, no problem, everything will be explained.
 <!--more-->
 
-# The problem to solve
+# About the problem and solution
+
+While the problem and solution are quite simple, it's a great occasion to learn many things.
+
+## The problem to solve
 
 I think it's Garfield, a famous philosopher, who once said _Laziness is the mother of invention_.
 Every time I have a repetitive task to do, I always try to find a way to let machine do it for me.
@@ -25,6 +29,31 @@ Recently, I had to create many issues in some _random issue tracker_ based on so
 Hopefully, that issue tracker comes with an API and I could easily get the input data in a structure way by a simple copy/paste from my email client.
 So instead of having to laboriously fill N times a form, I had to make N API calls with structured data as input, and Postman can help to do that.
 In order to keep this demonstration easy to redo by anyone, we'll use the github API to create issues on a dummy public repository.
+
+## What you'll learn while solving it
+
+In this post, you'll learn to use Postman (UI) and Newman (command line):
+- Create Postman workspace, collections and requests
+- Make REST GET and POST (with body) API calls
+- Define and use variables
+- Configure a collection to make secured API call
+- Run all requests of a collection with data coming from a CSV file with Postman
+- Export collections and environments
+- Run all requests of a collection with data coming from a CSV file in a terminal with Newman 
+- Make GraphQL API calls
+- Setup a visualizer to render API call results
+
+You'll also learn use Github REST and GraphQL APIs:
+- Get a personal access token to call Github APIs (REST)
+- Get current user data (REST)
+- List a repository's issues (REST)
+- Add an issue to a repository (REST)
+- Delete an issue (GraphQL)
+
+And we will talk about some principles of API design:
+- Predictable design
+- Error design
+- Be careful when copying others (especially famous companies)
 
 # Setting up Postman for a first Github API call
 
