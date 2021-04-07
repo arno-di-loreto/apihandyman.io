@@ -67,54 +67,54 @@ Our first Github API call will retrieve current user information.
 
 Launch Postman, we'll create a "Postman CSV Demo" workspace, a "Github" collection, a "List current user" request calling `GET https://api.github.com/user` (see [Github REST API documentation](https://docs.github.com/en/rest/reference/users#get-the-authenticated-user)) and make our first call:
 
-<table>
+<table class="tutorial-steps">
 <tr>
-    <td>{% include image.html type="simple" source="postman-top-menubar.png" alt="Workspaces" %}</td>
-    <td>In top menu bar, click on {% include image.html type="inline" source="postman-workspaces-menu.png" alt="Workspaces" %}</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-top-menubar.png" alt="Workspaces" %}</td>
+    <td markdown="span">In top *menu bar*, click on {% include image.html type="inline" source="postman-workspaces-menu.png" alt="Workspaces" %}</td>
 </tr>
 <tr>
-    <td>{% include image.html type="simple" source="postman-workspaces-menu-top.png" alt="+ New Workspace" %}</td>
-    <td>Click on {% include image.html type="inline" source="postman-plus-workspace-button.png" alt="+ New Workspace" %} button</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-workspaces-menu-top.png" alt="+ New Workspace" %}</td>
+    <td markdown="span">Click on {% include image.html type="inline" source="postman-plus-workspace-button.png" alt="+ New Workspace" %} button</td>
 </tr>
 <tr>
-    <td >{% include image.html type="simple" source="postman-create-workspace-name.png" alt="Create workspace window name field" %}</td>
-    <td>Set workspace name to "Postman CSV Demo"</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-create-workspace-name.png" alt="Create workspace window name field" %}</td>
+    <td markdown="span">Set workspace name to "Postman CSV Demo"</td>
 </tr>
 <tr>
-    <td >{% include image.html type="simple" source="postman-create-workspace-visibility.png" alt="Create workspace window visibility drop list" %}</td>
-    <td>Change visibility to "Personal"</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-create-workspace-visibility.png" alt="Create workspace window visibility drop list" %}</td>
+    <td markdown="span">Change visibility to "Personal"</td>
 </tr>
 <tr>
-    <td >{% include image.html type="simple" source="postman-create-workspace-buttons.png" alt="Create workspace window buttons" %}</td>
-    <td>Click on "Create Workspace" button</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-create-workspace-buttons.png" alt="Create workspace window buttons" %}</td>
+    <td markdown="span">Click on "Create Workspace" button</td>
 </tr>
 <tr>
-    <td>{% include image.html type="simple" source="postman-workspace-created.png" alt="Workspace created" %}</td>
-    <td>Click on {% include image.html type="inline" source="postman-new-button.png" alt="New" %} button next to "Postman CSV Demo" workspace name</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-workspace-created.png" alt="Workspace created" %}</td>
+    <td markdown="span">Click on {% include image.html type="inline" source="postman-new-button.png" alt="New" %} button next to "Postman CSV Demo" workspace name</td>
 </tr>
 <tr>
-    <td>{% include image.html type="simple" source="postman-create-collection-button.png" alt="Create collection button" %}</td>
-    <td>Click on "Collection" item in the "Create New" window</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-create-collection-button.png" alt="Create collection button" %}</td>
+    <td markdown="span">Click on "Collection" item in the "Create New" window</td>
 </tr>
 <tr>
-    <td>{% include image.html type="simple" source="postman-collection-created.png" alt="Collection created" %}</td>
-    <td>Change "New Collection" name to "Github"</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-collection-created.png" alt="Collection created" %}</td>
+    <td markdown="span">Change "New Collection" name to "Github"</td>
 </tr>
 <tr>
-    <td>{% include image.html type="simple" source="postman-collection-right-click-add-request.png" alt="Collection contextual menu" %}</td>
-    <td>Right click on the "Github" collection in the left panel and select "Add request"</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-collection-right-click-add-request.png" alt="Collection contextual menu" %}</td>
+    <td markdown="span">Right click on the "Github" collection in the left panel and select "Add request"</td>
 </tr>
 <tr>
-    <td>{% include image.html type="simple" source="postman-request-created-read-current-user.png" alt="Request created" %}</td>
-    <td>Change "New Request" name to "Read current user"</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-request-created-read-current-user.png" alt="Request created" %}</td>
+    <td markdown="span">Change "New Request" name to "Read current user"</td>
 </tr>
 <tr>
-    <td>{% include image.html type="simple" source="postman-request-url-set.png" alt="URL set" %}</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-request-url-set.png" alt="URL set" %}</td>
     <td markdown="span">Set request URL to `https://api.github.com/user`, click on {% include image.html type="inline" source="postman-save-button.png" alt="Save button" %} and hit the {% include image.html type="inline" source="postman-send-button.png" alt="Send button" %} button ...</td>
 </tr>
 <tr>
-    <td>{% include image.html type="simple" source="postman-request-failed-authorization.png" alt="Response telling authorization is required" %}</td>
-    <td>... to get a 401 Unauthorized error telling that authentication is required</td>
+    <td markdown="span">{% include image.html type="simple" source="postman-request-failed-authorization.png" alt="Response telling authorization is required" %}</td>
+    <td markdown="span">... to get a 401 Unauthorized error telling that authentication is required</td>
 </tr>
 </table>
 
@@ -123,7 +123,7 @@ Launch Postman, we'll create a "Postman CSV Demo" workspace, a "Github" collecti
 The easiest way to get access to the Github API, if you have two factor authentication activated (and you MUST have it activated), is to generate a personal access token.
 For our demonstration we will generate one granting access to public repositories:
 
-<table>
+<table class="tutorial-steps">
 <tr>
     <td markdown="span">{% include image.html type="simple" source="github-profile-menu.png" alt="Github profile menu" %}</td>
     <td markdown="span">Go to your [Github account settings](https://github.com/settings/profile) by clicking on your profile icon and clicking on "Settings" (at the bottom)</td>
@@ -163,7 +163,7 @@ For our demonstration we will generate one granting access to public repositorie
 Having an access token, we'll configure our collection in order to make all requests that it will contain use it.
 But we will do that in a secure way using an environment variable, it's a best practice that allows to share collections without the risk of sharing sensitive data:
 
-<table>
+<table class="tutorial-steps">
 <tr>
     <td>{% include image.html type="simple" source="postman-workspace-created.png" alt="Workspace created" %}</td>
     <td>Click on {% include image.html type="inline" source="postman-new-button.png" alt="New" %} button next to "Postman CSV Demo" workspace name</td>
@@ -217,7 +217,7 @@ Using GET on a collection resource to list things and POST on the same resource 
 
 Let's first create our dummy repository with UI and list issues with API:
 
-<table>
+<table class="tutorial-steps">
 <tr>
     <td markdown="span">{% include image.html type="simple" source="github-repository-issues.png" alt="Github repo issues" %}</td>
     <td markdown="span">Go to your [Github account](https://github.com) and [create](https://github.com/new) a new public repository, then go to the issues tab and copy the `/user/repo/issues` part of the newly created repository's URL</td>
@@ -238,7 +238,7 @@ But note that it is not always a good idea to mimic your UI in your API as it ca
 
 We could stop here and hit the send button to list issues, but in order to keep our request and project maintainable and reusable, we'll replace user and repo by variables:
 
-<table>
+<table class="tutorial-steps">
 <tr>
     <td markdown="span">{% include image.html type="simple" source="postman-set-variable-pop.png" alt="Select text in URL to get set variable menu" %}</td>
     <td markdown="span">In the URL, select your `user` (mine is `arno-di-loreto`), a "Set as variable" menu appears, click on it</td>
@@ -274,7 +274,7 @@ We could stop here and hit the send button to list issues, but in order to keep 
 Let's fill that empty issues list by creating an issue.
 As the Github REST API follows common practices, we are supposed to do a POST request on the same URL as the one used to list issues:
 
-<table>
+<table class="tutorial-steps">
 <tr>
     <td markdown="span">{% include image.html type="simple" source="postman-create-issue-duplicate.png" alt="Request duplicate menu" %}</td>
     <td markdown="span">Right click on the "List issues" request and select "Duplicate"</td>
@@ -307,7 +307,7 @@ But at least, there's a [link](https://docs.github.com/rest/reference/issues#cre
 
 Let's try set this request a body but just with the `body` property:
 
-<table>
+<table class="tutorial-steps">
 <tr>
     <td markdown="span">{% include image.html type="simple" source="postman-create-issue-body-tab.png" alt="Request body tab" %}</td>
     <td>Go to the "Body" tab</td>
@@ -361,7 +361,7 @@ Obviously, if you also go the dummy repository on Github, you'll find that issue
 If you need to create many issues, you could just modify the "Create issue" request's body and hit {% include image.html type="inline" source="postman-send-button.png" alt="Send button" %} as many times as needed.
 But that would be quite cumbersome right? What about trying the lazy way?
 
-<table>
+<table class="tutorial-steps">
 <tr>
     <td markdown="span">{% include image.html type="simple" source="postman-create-issue-save.png" alt="Unsaved create issue request" %}</td>
     <td markdown="span">Just in case, ensure you actually saved the "Create Issue"</td>
@@ -408,7 +408,7 @@ Six,It really doesn't work
 
 Now, we will trigger one API call per CSV file line (excluding the first one which holds the variable names):
 
-<table>
+<table class="tutorial-steps">
 <tr>
     <td markdown="span">{% include image.html type="simple" source="postman-github-batch-run.png" alt="Collection run button" %}</td>
     <td markdown="span">Select the "Github Batch Issues Create" collection and click on the "Run" button</td>

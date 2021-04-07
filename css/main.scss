@@ -1248,6 +1248,34 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
   }
 }
 
+/************/
+/* Tutorial */
+/************/
+.tutorial-steps {
+  @extend .border-0;
+  background-color: $content-background-color;
+  tr:nth-child(odd) {
+    background-color: $content-background-color;
+  }
+  td {
+    background-color: $content-background-color;
+    padding-bottom: 20px;
+    @extend .border-0;
+  }
+  td:first-child {
+    text-align: right;
+    padding-left: 0;
+  }
+  td:nth-child(2) {
+    display:list-item;
+    list-style:disc inside;
+    margin:0;
+    background-color: $content-background-color;
+  }
+  .image-simple {
+    @extend .border;
+  }
+}
 
 /*****************/
 /* Display utils */
