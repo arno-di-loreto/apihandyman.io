@@ -10,7 +10,7 @@ tags:
 ---
 
 Do you need to make a repetitive task that could be done through an API instead of a UI?
-Do you need to make many API call the quick and dirty way?
+Do you need to make many API calls but don't want to code?
 This post is made for you: you'll learn to use Postman and CSV files to batch API calls.
 You may also learn a thing or two about API design, Github APIs (yes, plural) and other Postman features (variables, security, command line, visualizer, ...) in the making.
 If you never have used Postman or Github APIs, no problem, everything will be explained.
