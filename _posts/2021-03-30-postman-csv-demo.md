@@ -28,9 +28,10 @@ As I'm the API Handyman, it often ends by taking advantage of an API.
 Recently, I had to create many issues in some _random issue tracker_ based on some data in my emails.
 Hopefully, that issue tracker comes with an API and I could easily get the input data in a structure way by a simple copy/paste from my email client.
 So instead of having to laboriously fill N times a form, I had to make N API calls with structured data as input, and Postman can help to do that.
-In order to keep this demonstration easy to redo by anyone, we'll use the github API to create issues on a dummy public repository.
 
 ## What you'll learn while solving it
+
+In order to keep this demonstration easy to redo by anyone, we'll use the github API to create issues on a dummy public repository with data coming from a CSV file.
 
 In this post, you'll learn to use Postman (UI) and Newman (command line):
 - Create Postman workspace, collections and requests
@@ -44,7 +45,7 @@ In this post, you'll learn to use Postman (UI) and Newman (command line):
 - Setup a visualizer to render API call results
 
 You'll also learn use Github REST and GraphQL APIs:
-- Get a personal access token to call Github APIs (REST)
+- Get a personal access token to call Github APIs (REST or GraphQL)
 - Get current user data (REST)
 - List a repository's issues (REST)
 - Add an issue to a repository (REST)
@@ -352,7 +353,7 @@ OK, end of API design digression, let's provide a valid request body with a `tit
 }
 {% endcode %}
 
-Click on % include image.html type="inline" source="postman-save-button.png" alt="Save button" %} and hit {% include image.html type="inline" source="postman-send-button.png" alt="Send button" %} one more time, you'll get a `201 Created` response containing all data of the created issue.
+Click on {% include image.html type="inline" source="postman-save-button.png" alt="Save button" %} and hit {% include image.html type="inline" source="postman-send-button.png" alt="Send button" %} one more time, you'll get a `201 Created` response containing all data of the created issue.
 If you go back to the "List issues" request to send it again, you should get an non empty list containing the created issue.
 Obviously, if you also go the dummy repository on Github, you'll find that issue in the issues tab (I have to admit that I find quite satisfying to see the result of API calls appearing in UI).
 
