@@ -3,7 +3,12 @@
 {% else %}
   {% assign stretched_class = '' %}
 {% endif %}
-<div class="card {{include.class}} rounded-0 border-0 h-100">
+{% if include.disableSameHeight == true %}
+  {% assign sameHeight = '' %}
+{% else %}
+  {% assign sameHeight = 'h-100' %}
+{% endif %}
+<div class="card {{include.class}} rounded-0 border-0 {{sameHeight}}">
   {% if include.image %}
   <img src="{{ include.image | prepend: site.baseurl | prepend: site.github.url}}" class="card-img-top rounded-0" alt="include.image_alt">
   {% endif %}
