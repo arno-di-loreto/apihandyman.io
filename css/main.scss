@@ -1272,9 +1272,10 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
     margin:0;
     background-color: $content-background-color;
   }
-  .image-simple {
-    @extend .border;
-  }
+}
+
+.image-simple {
+  @extend .border;
 }
 
 /*****************/

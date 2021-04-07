@@ -434,12 +434,12 @@ Now, we will trigger one API call per CSV file line (excluding the first one whi
 Postman will do all the work and create all the issues provided in the CSV file.
 It simply makes and API call for each line, replacing the `{% raw %}{{title}}{% endraw %}` and `{% raw %}{{body}}{% endraw %}` variables by the value provided the CSV file's line.
 
-{% include image.html source="postman-github-batch-result.png" alt="Run result" %}
+{% include image.html class="border" source="postman-github-batch-result.png" alt="Run result" %}
 
 You can list issues with an API call of check Github web site to see all the created issues.
 Note that there are 7 issues, that's the one created to check our Create Issue API call was actually working plus the six other ones created with the CSV file.
 
-{% include image.html source="postman-github-batch-result-github.png" alt="Issues list on github website" %}
+{% include image.html class="border" source="postman-github-batch-result-github.png" alt="Issues list on github website" %}
 
 # It works also on the command line
 
@@ -455,22 +455,26 @@ Check Newman [documentation](https://learning.postman.com/docs/running-collectio
 
 ## Export collection and environment file
 
-To run the "Github Batch Issues Create" collection, we obviously need the collection itself but also the "Github" environment variables.
+To run the "Github Batch Issues Create" collection, we obviously need the collection itself but also the "Github" environment variables, let's export them both:
 
-Let's export the collection first:
-
-- Click on ... near the "Github Batch Issues Create" collection name
-- Select "Export"
-- Click the "Export" button
-- Save the collection file in the same folder as the CSV file created earlier
-
-And now, we'll export the Github environment:
-
-- Go to the "Environment" tab (in Postman's window left panel)
-- Select the Github environment by clicking on it
-- Click on ... near the Share button (upper right corner)
-- Select "Export"
-- Save the environment file in the same folder as the CSV file
+<table class="tutorial-steps">
+<tr>
+    <td markdown="span">{% include image.html type="simple" source="postman-export-collection-menu.png" alt="Collection menu" %}</td>
+    <td markdown="span">Click on ... near the "Github Batch Issues Create" collection name and select "Export"</td>
+</tr>
+<tr>
+    <td markdown="span">{% include image.html type="simple" source="postman-export-collection-dialog.png" alt="Export collection dialog" %}</td>
+    <td markdown="span">Keep default export format, click the "Export" button and save the collection file in the same folder as the CSV file created earlier</td>
+</tr>
+<tr>
+    <td markdown="span">{% include image.html type="simple" source="postman-environments.png" alt="Environment tab" %}</td>
+    <td markdown="span">Go to the "Environment" tab (in Postman's window left panel) and select the Github environment by clicking on it</td>
+</tr>
+<tr>
+    <td markdown="span">{% include image.html type="simple" source="postman-environment-menu.png" alt="Environment menu" %}</td>
+    <td markdown="span">Click on ... near the Share button (upper right corner), select "Export" and save the environment file in the same folder as the CSV file</td>
+</tr>
+</table>
 
 ## Creating many github issues on command line with Newman
 
@@ -671,7 +675,7 @@ After that it configures the Postman visualizer (`pm.visualizer`) to use the tem
 
 Once this is done, hit the Send button and click on Visualize in the response and tada, you get a one column table with its node_id title and all node_id values:
 
-{% include image.html source="postman-visualize-ids.png" alt="Visualize result in Postman" %}
+{% include image.html class="border" source="postman-visualize-ids.png" alt="Visualize result in Postman" %}
 
 Just select all text and copy/paste it in a file that you'll use as input to delete all issues.
 
