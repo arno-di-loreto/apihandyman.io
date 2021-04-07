@@ -1,0 +1,3436 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <title>API Handyman | Batch (Github) API calls with CSV and Postman runner and visualizer</title>
+  <meta name="description" content="Do you need to make a repetitive task that could be done through an API instead of a UI? Do you need to make many API calls but don’t want to code? This post is made for you: you’ll learn to use Postman and CSV files to batch API calls. You may also learn a thing or two about API design, Github APIs (yes, plural) and other Postman features (variables, security, command line, visualizer, …) in the making. If you never have used Postman or Github APIs, no problem, everything will be explained.">
+<meta name="keywords" content="API,Web API,Web Service">
+<meta name="author" content="Arnaud Lauret">
+<meta name="description" content="Do you need to make a repetitive task that could be done through an API instead of a UI? Do you need to make many API calls but don’t want to code? This post is made for you: you’ll learn to use Postman and CSV files to batch API calls. You may also learn a thing or two about API design, Github APIs (yes, plural) and other Postman features (variables, security, command line, visualizer, …) in the making. If you never have used Postman or Github APIs, no problem, everything will be explained.">
+
+<!-- Facebook & LinkedIn -->
+<meta property="og:title"         content="Batch (Github) API calls with CSV and Postman runner and visualizer"/>
+<meta property="og:type"          content="article"/>
+<meta property="og:description"   content="Do you need to make a repetitive task that could be done through an API instead of a UI? Do you need to make many API calls but don’t want to code? This post is made for you: you’ll learn to use Postman and CSV files to batch API calls. You may also learn a thing or two about API design, Github APIs (yes, plural) and other Postman features (variables, security, command line, visualizer, …) in the making. If you never have used Postman or Github APIs, no problem, everything will be explained."/>
+<meta property="og:url"           content="https://apihandyman.io/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/"/>
+<meta property="og:image"         content="https://apihandyman.io/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/banner.png"/>
+
+<!-- Twitter -->
+<meta name="twitter:card"         content="summary">
+<meta name="twitter:site"         content="@apihandyman">
+<meta name="twitter:creator"      content="@apihandyman" />
+<meta name="twitter:title"        content="Batch (Github) API calls with CSV and Postman runner and visualizer">
+<meta name="twitter:url"          content="https://apihandyman.io/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/">
+<meta name="twitter:description"  content="Do you need to make a repetitive task that could be done through an API instead of a UI? Do you need to make many API calls but don’t want to code? This post is made for you: you’ll learn to use Postman and CSV files to batch API calls. You may also learn a thing or two about API design, Github APIs (yes, plural) and other Postman features (variables, security, command line, visualizer, …) in the making. If you never have used Postman or Github APIs, no problem, everything will be explained.">
+<meta name="twitter:image:src"    content="https://apihandyman.io/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/banner.png">
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/anchors.css">
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/prism.css">
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/asciinema-player.css">
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/code.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bash.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+</head>
+  <body  data-spy="scroll" data-target="#toc">
+    
+<div class="main-navbar fixed-top  scrolled">
+  <div class="container-lg">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">API Handyman</a>
+      
+      <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="btn-icon" src="/images/commons/icons/menu.svg" >
+      </button>
+      <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
+        <div class="navbar-nav">
+          <li class="nav-item dropdown dropdown-blog d-desktop-only">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Blog
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="/blog">All content</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/posts">Posts</a>
+              <a class="dropdown-item" href="/talks">Talks & Podcasts</a>
+            </div>
+          </li>
+          <a class="nav-item nav-link d-mobile-only" href="/Blog">Blog</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/posts">Posts</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/talks">Talks & Podcasts</a>
+          <a class="nav-item nav-link" href="/toolbox">Toolbox</a>
+          <a class="nav-item nav-link" href="/about">About</a>
+          <a class="nav-item-book left-column-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
+        </div>
+      </div>
+      
+    </nav> <!-- class="navbar navbar-expand-md" -->
+  </div> <!--  class="container" -->
+</div> <!-- class="main-navbar fixed-top  scrolled" -->
+    <div class="page-content-container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="row row-banner-small row-banner-small-">
+    <div class="banner-small-container">
+      <div class="banner-small-column-main">
+        <img src="https://apihandyman.io/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/banner.png" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+
+<div class="row row-page-content">
+  <div class="container-fluid container-lg">
+    <div class="fade modal left-menu-hider left-menu-modal d-mobile-only"></div>
+    <div class="row">
+      
+      <div class="page-column-left left-menu left-menu-hider">
+        <div class="page-column-left-container">
+          
+
+
+
+<div class="left-book-ad left-book-ad-border d-desktop-only">
+  <img src="/images/commons/book/book-left-menu-cropped.png" class="card-img" alt="The Design of Web APIs book cover">
+  <div class="card-img-overlay message-cropped">
+    <a class="stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >
+      <p class="card-text">Special offer on my book</p>
+    </a>
+  </div>
+</div>
+<a class="left-book-ad-small left-menu-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button">
+  Special offer on my book
+  <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
+</a>
+
+  
+  <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
+    
+
+
+
+
+
+  <nav class="nav flex-column" id="toc">
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#about-the-problem-and-solution">About the problem and solution</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#the-problem-to-solve">The problem to solve</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#what-youll-learn-while-solving-it">What you’ll learn while solving it</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#setting-up-postman-for-a-first-github-api-call">Setting up Postman for a first Github API call</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#trying-to-make-a-first-api-call">Trying to make a first API call</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#getting-a-github-personal-access-token">Getting a Github personal access token</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#configuring-authorization-in-postman-and-make-a-successful-first-api-call">Configuring Authorization in Postman and make a successful first API call</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#creating-one-to-many-issues-with-github-rest-api">Creating one to many issues with Github REST API</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#listing-issues">Listing issues</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#create-an-issue">Create an issue</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#creating-many-github-issues-with-postman-runner-and-csv">Creating many github issues with Postman Runner and CSV</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#it-works-also-on-the-command-line">It works also on the command line</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#install-newman">Install Newman</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#export-collection-and-environment-file">Export collection and environment file</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#creating-many-github-issues-on-command-line-with-newman">Creating many github issues on command line with Newman</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#cleaning-the-mess-with-github-graphql-api">Cleaning the mess with Github GraphQL API</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#trying-to-delete-an-issue">Trying to delete an issue</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#actually-deleting-an-issue">Actually deleting an issue</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#one-last-tip-generating-csv-file-with-ids-in-postman">One last tip: “Generating” CSV file with Ids in Postman</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#delete-access-token">Delete access token</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#lessons-learned">Lessons learned</a>
+          
+      
+      
+    
+  
+  </nav>
+  </div>
+
+        </div>
+      </div>
+        
+      
+      <div class="page-column-main page-column-main-with-left">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="page-content-text anchors">
+  
+  
+  
+  
+  
+    
+    
+    <!-- First card with page title -->
+    <div class="card-page-section page-section-title">
+      <div class="body">
+        
+        <h5 class="surtitle"></h5>
+        
+        
+        <h1 class="title">Batch (Github) API calls with CSV and Postman runner and visualizer</h1>
+        
+        
+        <h6 class="subtitle">By Arnaud Lauret, April 7, 2021</h6>
+        <hr/>
+        
+        <p>Do you need to make a repetitive task that could be done through an API instead of a UI?
+Do you need to make many API calls but don’t want to code?
+This post is made for you: you’ll learn to use Postman and CSV files to batch API calls.
+You may also learn a thing or two about API design, Github APIs (yes, plural) and other Postman features (variables, security, command line, visualizer, …) in the making.
+If you never have used Postman or Github APIs, no problem, everything will be explained.
+<!--more--></p>
+
+
+        
+      </div>
+    </div><!-- First card with page title END -->
+      
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="about-the-problem-and-solution">About the problem and solution</h1>
+
+<p>While the problem and solution are quite simple, it’s a great occasion to learn many things.</p>
+
+<h2 id="the-problem-to-solve">The problem to solve</h2>
+
+<p>I think it’s Garfield, a famous philosopher, who once said <em>Laziness is the mother of invention</em>.
+Every time I have a repetitive task to do, I always try to find a way to let machine do it for me.
+As I’m the API Handyman, it often ends by taking advantage of an API.
+Recently, I had to create many issues in some <em>random issue tracker</em> based on some data in my emails.
+Hopefully, that issue tracker comes with an API and I could easily get the input data in a structure way by a simple copy/paste from my email client.
+So instead of having to laboriously fill N times a form, I had to make N API calls with structured data as input, and Postman can help to do that.</p>
+
+<h2 id="what-youll-learn-while-solving-it">What you’ll learn while solving it</h2>
+
+<p>In order to keep this demonstration easy to redo by anyone, we’ll use the github API to create issues on a dummy public repository with data coming from a CSV file.</p>
+
+<p>In this post, you’ll learn to use Postman (UI) and Newman (command line):</p>
+<ul>
+  <li>Create Postman workspace, collections and requests</li>
+  <li>Make REST GET and POST (with body) API calls</li>
+  <li>Define and use variables</li>
+  <li>Configure a collection to make secured API call</li>
+  <li>Run all requests of a collection with data coming from a CSV file with Postman</li>
+  <li>Export collections and environments</li>
+  <li>Run all requests of a collection with data coming from a CSV file in a terminal with Newman</li>
+  <li>Make GraphQL API calls</li>
+  <li>Setup a visualizer to render API call results</li>
+</ul>
+
+<p>You’ll also learn use Github REST and GraphQL APIs:</p>
+<ul>
+  <li>Get a personal access token to call Github APIs (REST or GraphQL)</li>
+  <li>Get current user data (REST)</li>
+  <li>List a repository’s issues (REST)</li>
+  <li>Add an issue to a repository (REST)</li>
+  <li>Delete an issue (GraphQL)</li>
+</ul>
+
+<p>And we will talk about some principles of API design:</p>
+<ul>
+  <li>Predictable design</li>
+  <li>Error design</li>
+  <li>Be careful when copying others (especially famous companies)</li>
+</ul>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="setting-up-postman-for-a-first-github-api-call">Setting up Postman for a first Github API call</h1>
+
+<p>Postman is a wonderful tool that I have been using for many years to make API calls.
+It has constantly evolved over the years and now supports many cool features; it is now advertized as “The Collaboration Platform for API Development (note: this post is not sponsored by Postman).
+Go to <a href="https://www.postman.com/downloads/">https://www.postman.com/downloads/</a> to download and install Postman, if you don’t already have it.
+You can also use the browser version (but you’ll have to create an account).
+Our first Github API call will retrieve current user information.</p>
+
+<h2 id="trying-to-make-a-first-api-call">Trying to make a first API call</h2>
+
+<p>Launch Postman, we’ll create a “Postman CSV Demo” workspace, a “Github” collection, a “List current user” request calling <code>GET https://api.github.com/user</code> (see <a href="https://docs.github.com/en/rest/reference/users#get-the-authenticated-user">Github REST API documentation</a>) and make our first call:</p>
+
+<div class="table-wrapper"><table class="tutorial-steps">
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-top-menubar.png" class="image-simple" alt="Workspaces" /></td>
+    <td>In top <em>menu bar</em>, click on <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-workspaces-menu.png" class="image-inline" alt="Workspaces" /></td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-workspaces-menu-top.png" class="image-simple" alt="+ New Workspace" /></td>
+    <td>Click on <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-plus-workspace-button.png" class="image-inline" alt="+ New Workspace" /> button</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-workspace-name.png" class="image-simple" alt="Create workspace window name field" /></td>
+    <td>Set workspace name to “Postman CSV Demo”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-workspace-visibility.png" class="image-simple" alt="Create workspace window visibility drop list" /></td>
+    <td>Change visibility to “Personal”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-workspace-buttons.png" class="image-simple" alt="Create workspace window buttons" /></td>
+    <td>Click on “Create Workspace” button</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-workspace-created.png" class="image-simple" alt="Workspace created" /></td>
+    <td>Click on <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-new-button.png" class="image-inline" alt="New" /> button next to “Postman CSV Demo” workspace name</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-collection-button.png" class="image-simple" alt="Create collection button" /></td>
+    <td>Click on “Collection” item in the “Create New” window</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-created.png" class="image-simple" alt="Collection created" /></td>
+    <td>Change “New Collection” name to “Github”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-right-click-add-request.png" class="image-simple" alt="Collection contextual menu" /></td>
+    <td>Right click on the “Github” collection in the left panel and select “Add request”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-request-created-read-current-user.png" class="image-simple" alt="Request created" /></td>
+    <td>Change “New Request” name to “Read current user”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-request-url-set.png" class="image-simple" alt="URL set" /></td>
+    <td>Set request URL to <code>https://api.github.com/user</code>, click on <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-save-button.png" class="image-inline" alt="Save button" /> and hit the <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png" class="image-inline" alt="Send button" /> button …</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-request-failed-authorization.png" class="image-simple" alt="Response telling authorization is required" /></td>
+    <td>… to get a 401 Unauthorized error telling that authentication is required</td>
+</tr>
+</table></div>
+
+<h2 id="getting-a-github-personal-access-token">Getting a Github personal access token</h2>
+
+<p>The easiest way to get access to the Github API, if you have two factor authentication activated (and you MUST have it activated), is to generate a personal access token.
+For our demonstration we will generate one granting access to public repositories:</p>
+
+<div class="table-wrapper"><table class="tutorial-steps">
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-profile-menu.png" class="image-simple" alt="Github profile menu" /></td>
+    <td>Go to your <a href="https://github.com/settings/profile">Github account settings</a> by clicking on your profile icon and clicking on “Settings” (at the bottom)</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-settings-menu.png" class="image-simple" alt="Github settings menu" /></td>
+    <td>Scroll down and click on <a href="https://github.com/settings/apps">Developer setting</a> in the left menu</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-developer-settings.png" class="image-simple" alt="Github settings menu" /></td>
+    <td>In developer setting page, click on <a href="https://github.com/settings/tokens">Personal access tokens</a></td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-personal-access-tokens.png" class="image-simple" alt="Github personal access tokens" /></td>
+    <td>Click on <a href="https://github.com/settings/tokens/new">Generate new token</a> (you may have to provide your password)</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-token-description.png" class="image-simple" alt="Github token description" /></td>
+    <td>In the “Note” field, type “postman-csv-demo”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-scopes-public.png" class="image-simple" alt="Public repo scope checked" /></td>
+    <td>Check the <code>public_repo</code> scope under repo. Note that this scopes obviously gives access to public repositories only, if you want to access private ones, you’ll have to check the <code>repo</code> scope (which is less obvious).</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-token-validate.png" class="image-simple" alt="Github token generate button" /></td>
+    <td>Click on <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-token-generate-button.png" class="image-inline" alt="Generate token button" /> at the bottom of the page</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-token-generated.png" class="image-simple" alt="Github token generated" /></td>
+    <td>Copy the generated token by clicking on <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-token-copy-button.png" class="image-inline" alt="Copy button" /> (use this token with caution, never, ever, commit this value in any public source code repository!)</td>
+</tr>
+</table></div>
+
+<h2 id="configuring-authorization-in-postman-and-make-a-successful-first-api-call">Configuring Authorization in Postman and make a successful first API call</h2>
+
+<p>Having an access token, we’ll configure our collection in order to make all requests that it will contain use it.
+But we will do that in a secure way using an environment variable, it’s a best practice that allows to share collections without the risk of sharing sensitive data:</p>
+
+<div class="table-wrapper"><table class="tutorial-steps">
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-workspace-created.png" class="image-simple" alt="Workspace created" /></td>
+    <td>Click on <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-new-button.png" class="image-inline" alt="New" /> button next to "Postman CSV Demo" workspace name</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-environment-button.png" class="image-simple" alt="Create environment button" /></td>
+    <td>Click on "Environment" item in the "Create New" window</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environment-created.png" class="image-simple" alt="Environment created" /></td>
+    <td>Change "New Environment" name to "Github"</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environment-github-token.png" class="image-simple" alt="Github token variable" /></td>
+    <td>Add a <code>github_token</code> variable and paste the Github token in its initial value and click outside the field (<em>That should populate also the current value</em>)</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environment-github-to-save.png" class="image-simple" alt="Github token variable to save" /></td>
+    <td>Click on <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-save-button.png" class="image-inline" alt="Save button" /> to save the “Github” environment and its <code>github_token</code> variable</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environment-select-github.png" class="image-simple" alt="Activate Github environment" /></td>
+    <td>In the upper left corner, click on “No Environment” and select the newly created “Github” environment in order to make its variables accessible</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-auth-type.png" class="image-simple" alt="Collection authorization type" /></td>
+    <td>Click on the “Github” collection’s name, in the Authorization tab, change Type from “No Auth” to “Bearer Token”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-auth-token.png" class="image-simple" alt="Collection authorization type" /></td>
+    <td>Set token value to <code>{{github_token}}</code> (<em>If the value is red instead of orange, it means the variable is not found. It’s probably because you didn’t select the “Github” environment</em>)</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-to-save.png" class="image-simple" alt="Collection to save" /></td>
+    <td>Click on <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-save-button.png" class="image-inline" alt="Save button" /> (<em>if you don’t you’ll get a 401</em>)</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-request-success.png" class="image-simple" alt="200 OK response" /></td>
+    <td>Go to the “Read current user” request and hit <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png" class="image-inline" alt="Send button" /> again … now it works! You should get a 200 OK response along with your user’s data.</td>
+</tr>
+</table></div>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="creating-one-to-many-issues-with-github-rest-api">Creating one to many issues with Github REST API</h1>
+
+<p>Now that everything has been set up, let’s list issues and create one to many.
+We will work with a dummy repository, its URL on Github website will be something like <em>https://github.com</em><strong>/user/repo</strong>.
+To list issues, we’ll send a GET <em>https://api.github.com/repos</em><strong>/user/repo</strong><em>/issues</em> request and to create an issue we’ll to send a POST request on the same URL.
+Using GET on a collection resource to list things and POST on the same resource to create a thing that totally makes sense, we’ll discover that unfortunately Github API does not always make sense.</p>
+
+<h2 id="listing-issues">Listing issues</h2>
+
+<p>Let’s first create our dummy repository with UI and list issues with API:</p>
+
+<div class="table-wrapper"><table class="tutorial-steps">
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-repository-issues.png" class="image-simple" alt="Github repo issues" /></td>
+    <td>Go to your <a href="https://github.com">Github account</a> and <a href="https://github.com/new">create</a> a new public repository, then go to the issues tab and copy the <code>/user/repo/issues</code> part of the newly created repository’s URL</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-dots-menu.png" class="image-simple" alt="Postman collection menu" /></td>
+    <td>In Postman, click on the <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-dots-button.png" class="image-inline" alt="... button" /> button on “Github” collection and select “Add request”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-request-new-list-issues-url.png" class="image-simple" alt="Postman new request list issues URL" /></td>
+    <td>Set request’s name to “List issues”, in the URL type <code>https://api.github.com/repos</code> and paste the <code>/user/repo/issues</code> part of the newly created repository’s URL</td>
+</tr>
+</table></div>
+
+<p><em>API design digression</em>
+You obviously noticed that the UI URLs are similar to the API ones, in the case of Github that’s a really good idea because both UI and API give access to the exact same product and that helps developers to learn how works the API.
+But note that it is not always a good idea to mimic your UI in your API as it can make it less reusable in other use cases.</p>
+
+<p>We could stop here and hit the send button to list issues, but in order to keep our request and project maintainable and reusable, we’ll replace user and repo by variables:</p>
+
+<div class="table-wrapper"><table class="tutorial-steps">
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-set-variable-pop.png" class="image-simple" alt="Select text in URL to get set variable menu" /></td>
+    <td>In the URL, select your <code>user</code> (mine is <code>arno-di-loreto</code>), a “Set as variable” menu appears, click on it</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-set-variable-menu.png" class="image-simple" alt="Set text as variable menu" /></td>
+    <td>Click on “+ Set as new variable”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-list-issues-github-user-variable-configuration.png" class="image-simple" alt="Github user variable configuration" /></td>
+    <td>Set name to <code>github_user</code>, select “Environment: Github” scope and click on “Set Variable”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-list-issues-github-user-variable-url.png" class="image-simple" alt="Github user variable in URL" /></td>
+    <td>User has been replaced by the variable <code>/repos/{{github_user}}/repo/issues</code>)</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-list-issues-github-repo-variable-url.png" class="image-simple" alt="User and repo replaced by variables in URL" /></td>
+    <td>Repeat with your <code>dummy repo name</code> to create a <code>github_repo</code> variable in Github environment</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-list-issues-to-save.png" class="image-simple" alt="List issues request to save" /></td>
+    <td>Don’t forget to <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-save-button.png" class="image-inline" alt="Save button" /></td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-list-issues-empty.png" class="image-simple" alt="Empty issues list" /></td>
+    <td>Now you can hit <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png" class="image-inline" alt="Send button" /> and get an empty list as response because there are no issues in the newly created repository.</td>
+</tr>
+</table></div>
+
+<h2 id="create-an-issue">Create an issue</h2>
+
+<p>Let’s fill that empty issues list by creating an issue.
+As the Github REST API follows common practices, we are supposed to do a POST request on the same URL as the one used to list issues:</p>
+
+<div class="table-wrapper"><table class="tutorial-steps">
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-duplicate.png" class="image-simple" alt="Request duplicate menu" /></td>
+    <td>Right click on the “List issues” request and select “Duplicate”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-rename.png" class="image-simple" alt="Rename request with pen" /></td>
+    <td>Select the newly created “List issues in repository Copy” request and change its name to “Create issue” by clicking on the pen that appear next to the request name when hovering over it</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-change-method.png" class="image-simple" alt="Method menu" /></td>
+    <td>Click on “GET” to change method to “POST” and then hit the <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png" class="image-inline" alt="Send button" /> button…</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-error.png" class="image-simple" alt="Method menu" /></td>
+    <td> … Oops, there’s a 422 error!</td>
+</tr>
+</table></div>
+
+<p>We actually forgot to provide some data in the body, but the error <code>message</code> is totally unclear about that.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">An error response that don't help as much as it could</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    &quot;message&quot;: &quot;Invalid request.\n\nFor &#39;links/0/schema&#39;, nil is not an object.&quot;,
+    &quot;documentation_url&quot;: &quot;https://docs.github.com/rest/reference/issues#create-an-issue&quot;
+}</code></pre>
+  </div>
+</div>
+
+<p>Such cryptic response is really an example to NOT follow, an error message must clear and help to solve the problem.
+But at least, there’s a <a href="https://docs.github.com/rest/reference/issues#create-an-issue">link</a> to the documentation (<code>documentation_url</code>) (which is a very good idea!), if you follow it you’ll see that we need to supply at least a <code>title</code> and there are other data such as the <code>body</code>.</p>
+
+<p>Let’s try set this request a body but just with the <code>body</code> property:</p>
+
+<div class="table-wrapper"><table class="tutorial-steps">
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-body-tab.png" class="image-simple" alt="Request body tab" /></td>
+    <td>Go to the "Body" tab</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-raw-selected.png" class="image-simple" alt="Request body raw button radio" /></td>
+    <td>Click on "raw" button radio</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-json-selected.png" class="image-simple" alt="Request body raw button radio" /></td>
+    <td>Click on the "Text" menu to select "JSON"</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-body-json.png" class="image-simple" alt="Request body raw button radio" /></td>
+    <td>Add a JSON object with a “body” property set to some random string (you can copy the following sample)</td>
+</tr>
+</table></div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Create issue (incomplete) body</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    &quot;body&quot;: &quot;Body of issue created by Postman&quot;
+}</code></pre>
+  </div>
+</div>
+
+<p>Now, if you hit <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png" class="image-inline" alt="Send button" /> , it fails again with the following response:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">An error response that actually helps</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    &quot;message&quot;: &quot;Invalid request.\n\n\&quot;title\&quot; wasn&#39;t supplied.&quot;,
+    &quot;documentation_url&quot;: &quot;https://docs.github.com/rest/reference/issues#create-an-issue&quot;
+}</code></pre>
+  </div>
+</div>
+
+<p>But the error is clearer this time, we know exactly how to fix the problem: add missing <code>title</code> property.
+Think about that the next time you design and then code an API.
+OK, end of API design digression, let’s provide a valid request body with a <code>title</code> and a <code>body</code>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Create issue (complete) body</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    &quot;title&quot;: &quot;Issue created by Postman&quot;,
+    &quot;body&quot;: &quot;Body of issue created by Postman&quot;
+}</code></pre>
+  </div>
+</div>
+
+<p>Click on <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-save-button.png" class="image-inline" alt="Save button" /> and hit <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png" class="image-inline" alt="Send button" /> one more time, you’ll get a <code>201 Created</code> response containing all data of the created issue.
+If you go back to the “List issues” request to send it again, you should get an non empty list containing the created issue.
+Obviously, if you also go the dummy repository on Github, you’ll find that issue in the issues tab (I have to admit that I find quite satisfying to see the result of API calls appearing in UI).</p>
+
+<h2 id="creating-many-github-issues-with-postman-runner-and-csv">Creating many github issues with Postman Runner and CSV</h2>
+
+<p>If you need to create many issues, you could just modify the “Create issue” request’s body and hit <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png" class="image-inline" alt="Send button" /> as many times as needed.
+But that would be quite cumbersome right? What about trying the lazy way?</p>
+
+<div class="table-wrapper"><table class="tutorial-steps">
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-save.png" class="image-simple" alt="Unsaved create issue request" /></td>
+    <td>Just in case, ensure you actually saved the “Create Issue”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-collection-duplicate.png" class="image-simple" alt="Github collection duplicate menu" /></td>
+    <td>Right click on the “Github” collection and select “Duplicate”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-collection-copy-rename-duplicate.png" class="image-simple" alt="Github collection rename menu" /></td>
+    <td>Right click on the “Github Copy” collection and select “Rename” to rename it “Github Batch Issues Create”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-create-collection-clean.png" class="image-simple" alt="Request delete menu" /></td>
+    <td>Delete all requests EXCEPT the “Create Issue” one by right clicking on their name and selecting Delete</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-create-issue-body.png" class="image-simple" alt="Request body with variables" /></td>
+    <td>Select the “Create Issue” request, select the body tab and replace <code>title</code> and <code>body</code> values by <code>{{title}}</code> and <code>{{body}}</code> variables as follow</td>
+</tr>
+</table></div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Create issue request's body with variables</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    &quot;title&quot;: &quot;{{title}}&quot;,
+    &quot;body&quot;: &quot;{{body}}&quot;
+}</code></pre>
+  </div>
+</div>
+
+<p>But from where will come those variables?
+From a CSV (Comma Separated Values) file!
+Open your favorite text editor, and put some issues titles and bodies as follow and save the file somewhere.
+The first line contains the names of the variables (<code>title</code> and <code>body</code>), the other lines contain actual titles and bodies.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Issues data in CSV format</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-csv line-numbers code-copy"><code class="code-block">title,body
+A first issue, First issue&#39;s body
+Another issue, Second issue&#39;s body
+Third issue,Yet another issue&#39;s body
+Fourth issue,Too many issues
+Five,It doesn&#39;t work
+Six,It really doesn&#39;t work</code></pre>
+  </div>
+</div>
+
+<p>Now, we will trigger one API call per CSV file line (excluding the first one which holds the variable names):</p>
+
+<div class="table-wrapper"><table class="tutorial-steps">
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-run.png" class="image-simple" alt="Collection run button" /></td>
+    <td>Select the “Github Batch Issues Create” collection and click on the “Run” button</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-open-csv.png" class="image-simple" alt="Select CSV file" /></td>
+    <td>Click on “Select File” and open the previously created CSV file</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-preview-open.png" class="image-simple" alt="CSV data preview" /></td>
+    <td>Note that the number of iterations matches the number of line (minus title one) in the CSV file. Click on the “Preview” button</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-preview.png" class="image-simple" alt="CSV data preview" /></td>
+    <td>Check that the file is correctly interpreted, then close the preview</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-run-launch.png" class="image-simple" alt="Launch run button" /></td>
+    <td>And finally, hit “Run Github Batch Issues Create” button</td>
+</tr>
+</table></div>
+
+<p>Postman will do all the work and create all the issues provided in the CSV file.
+It simply makes and API call for each line, replacing the <code>{{title}}</code> and <code>{{body}}</code> variables by the value provided the CSV file’s line.</p>
+
+<div class="image border">
+    <figure class="figure">
+        <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-result.png" class="figure-img img-fluid" alt="Run result" /></figure>
+</div>
+
+<p>You can list issues with an API call of check Github web site to see all the created issues.
+Note that there are 7 issues, that’s the one created to check our Create Issue API call was actually working plus the six other ones created with the CSV file.</p>
+
+<div class="image border">
+    <figure class="figure">
+        <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-result-github.png" class="figure-img img-fluid" alt="Issues list on github website" /></figure>
+</div>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="it-works-also-on-the-command-line">It works also on the command line</h1>
+
+<p>If you need to industrialize doing batch API calls this way, having to use UI is not really convenient.
+Hopefully, you can run collection on the command line using Postman’s Newman.
+So, let’s see how to create many Github issues using our “Github Batch Issues Create” collection and Newman.</p>
+
+<h2 id="install-newman">Install Newman</h2>
+
+<p>You’ll need <a href="https://nodejs.org/en/download/current/">Node.js</a> to install and run Newman.
+Installing Newman is quite simple, just open a terminal and run a good old <code>npm install -g newman</code> and you’re done.
+Check Newman <a href="https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/">documentation</a> for more information.</p>
+
+<h2 id="export-collection-and-environment-file">Export collection and environment file</h2>
+
+<p>To run the “Github Batch Issues Create” collection, we obviously need the collection itself but also the “Github” environment variables, let’s export them both:</p>
+
+<div class="table-wrapper"><table class="tutorial-steps">
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-export-collection-menu.png" class="image-simple" alt="Collection menu" /></td>
+    <td>Click on … near the “Github Batch Issues Create” collection name and select “Export”</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-export-collection-dialog.png" class="image-simple" alt="Export collection dialog" /></td>
+    <td>Keep default export format, click the “Export” button and save the collection file in the same folder as the CSV file created earlier</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environments.png" class="image-simple" alt="Environment tab" /></td>
+    <td>Go to the “Environment” tab (in Postman’s window left panel) and select the Github environment by clicking on it</td>
+</tr>
+<tr>
+    <td><img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environment-menu.png" class="image-simple" alt="Environment menu" /></td>
+    <td>Click on … near the Share button (upper right corner), select “Export” and save the environment file in the same folder as the CSV file</td>
+</tr>
+</table></div>
+
+<h2 id="creating-many-github-issues-on-command-line-with-newman">Creating many github issues on command line with Newman</h2>
+
+<p>Now, we’re all set to run the “Github Batch Issues Create” collection on the command line:</p>
+
+<ul>
+  <li>Open a terminal</li>
+  <li>Go to the folder containing the csv, collection and environment files</li>
+  <li>Run <code>newman run collection_filename -e environment_filename -d csv_filename</code> (with your actual collection, environment and csv filenames!)</li>
+</ul>
+
+<p>And tada, one “Create Issue” request has been done for each line in the CSV file (again)!</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/newman-result.png" class="figure-img img-fluid" alt="Newman execution result" /></figure>
+</div>
+
+<p>You can optionally check the newly created issued in Postman with the List issues request or go on Github.
+Note that as we didn’t modify the CSV file between the Postman and Newman run, the 6 new issues are the same as the 6 previous ones.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="cleaning-the-mess-with-github-graphql-api">Cleaning the mess with Github GraphQL API</h1>
+
+<p>As an exercise you can try to delete the issues that has been created using Postman (or Newman), a collection and a CSV file containing ids of issues to delete.
+Do not overlook this exercise that looks quite simple but is actually not, there is a trap and a interesting Postman feature to discover.</p>
+
+<p><strong>Spoiler</strong></p>
+
+<p>The rest of this section shows how to do so (with less screenshots as by now you should know how to find your way in Postman UI).</p>
+
+<h2 id="trying-to-delete-an-issue">Trying to delete an issue</h2>
+
+<p>As the Github API is a REST API, I assume that deleting an issue simply means sending a <code>DELETE /issues-resource-path/{issueId}</code> request.
+To find the actual URL, let’s use the “List issues” request again, it returns something like that:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">[
+    {
+        &quot;url&quot;: &quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo/issues/13&quot;,
+        &quot;repository_url&quot;: &quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo&quot;,
+        &quot;labels_url&quot;: &quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo/issues/13/labels{/name}&quot;,
+        &quot;comments_url&quot;: &quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo/issues/13/comments&quot;,
+        &quot;events_url&quot;: &quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo/issues/13/events&quot;,
+        &quot;html_url&quot;: &quot;https://github.com/arno-di-loreto/postman-csv-demo/issues/13&quot;,
+        &quot;id&quot;: 848749267,
+        &quot;node_id&quot;: &quot;MDU6SXNzdWU4NDg3NDkyNjc=&quot;,
+        &quot;number&quot;: 13,
+        ...
+    },
+    ...
+]</code></pre>
+  </div>
+</div>
+
+<p>A github issue seems to have 3 “ids”: <code>id</code>, <code>node_id</code> and <code>number</code>, which one to choose?
+No need to actually think about it because the ready to use <code>url</code> is actually provided!
+That’s pretty handy.
+And by the way it tells us that the id to use is <code>number</code> (with user and repo name).</p>
+
+<p>Let’s try to delete the first issue in the list:</p>
+
+<ul>
+  <li>Click on the url property’s value</li>
+  <li>That opens a new request tab</li>
+  <li>Hit the Send button to check what happens when doing a GET on that URL</li>
+  <li>You actually get the issue</li>
+  <li>Now change method to DELETE and hit send again …</li>
+</ul>
+
+<p>That returns a <code>404 Not Found</code>, does that mean this issue doesn’t exist?!
+Obviously not, because a GET on it actually returned something.
+Let’s check what the <a href="https://docs.github.com/rest">documentation</a> says (link provided in <code>documentation_url</code>), look for <a href="https://docs.github.com/en/rest/reference/issues">Issues</a> in the left navigation bar.</p>
+
+<p>Actually, you can’t delete an issue with Github REST API!</p>
+
+<p>Seriously, don’t do that at home, use HTTP protocol correctly, never, ever return a 404 Not Found when a method is not available, return a 405 Method Not Allowed instead.</p>
+
+<h2 id="actually-deleting-an-issue">Actually deleting an issue</h2>
+
+<p>Hopefully there are 2 Github APIs: the REST one and the GraphQL one.
+And you can delete issues with Github GraphQL API using the <code>deleteIssue</code> mutation.
+And even more hopefully, you can use the same token to access both APIs.</p>
+
+<p>I will not go into details about GraphQL.
+For what we need to do today, you only need to know that to send requests to a GraphQL API you always use a POST request and tell what you want to do in the body using GraphQL query language.
+In GraphQL, a request can contains many queries (to read data) and mutations (to modify data), actually mutations can be seen as functions.
+You can read my <a href="/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/">And GraphQL for all</a> post to learn more about GraphQL.</p>
+
+<p>Let’s try to use this <code>deleteIssue</code> mutation:</p>
+
+<ul>
+  <li>Select the “Github” collection</li>
+  <li>Create a new “Delete issue (GraphQL)” request</li>
+  <li>Set its method to “POST”</li>
+  <li>Set its URL to <code>https://api.github.com/graphql</code></li>
+  <li>Go to the “Body” tab</li>
+  <li>Select “GraphQL” radio button</li>
+  <li>Paste the following GraphQL body</li>
+</ul>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Delete issue GraphQl request body</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-graphql line-numbers code-copy"><code class="code-block">mutation {
+    deleteIssue(input: { issueId: &quot;but which id put here?&quot; }) { 
+        repository { 
+            name
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+<p>The question is, which id should we provide in the <code>issueId</code> property?
+We have seen in the REST API that an issue has 3 different ids, for example:</p>
+
+<ul>
+  <li><code>id</code>: <code>848749267</code></li>
+  <li><code>node_id</code>: <code>MDU6SXNzdWU4NDg3NDkyNjc=</code></li>
+  <li><code>number</code>: <code>13</code></li>
+</ul>
+
+<p>As the request does not provide the repository name, that excludes the <code>number</code> as its value is probably not universally unique across all repositories of all users.
+The <code>id</code> and <code>node_id</code> could be that unique.</p>
+
+<p>Try to set <code>issueId</code> with one of the <code>id</code> of your issues and hit the send button.
+You’ll get this 200 OK response (sigh… HTTP is only used for transport with GraphQL APIs):</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Error</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    &quot;data&quot;: {
+        &quot;deleteIssue&quot;: null
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;type&quot;: &quot;NOT_FOUND&quot;,
+            &quot;path&quot;: [
+                &quot;deleteIssue&quot;
+            ],
+            &quot;locations&quot;: [
+                {
+                    &quot;line&quot;: 2,
+                    &quot;column&quot;: 5
+                }
+            ],
+            &quot;message&quot;: &quot;Could not resolve to a node with the global id of &#39;848749267&#39;&quot;
+        }
+    ]
+}</code></pre>
+  </div>
+</div>
+
+<p>As <code>node_id</code> is the only one left and as the error message talks about “node”, it seems to be the expected value.
+Try again, and now you’ll get another 200 OK signifying that the issue has been deleted.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Issue deleted!</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    &quot;data&quot;: {
+        &quot;deleteIssue&quot;: {
+            &quot;repository&quot;: {
+                &quot;name&quot;: &quot;dummy-repository&quot;
+            }
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+<p>Note that this response contains the name of the repo that was holding the deleted issue.
+Now that you know how to delete an issue, it’s quite easy to delete all the issue you have created.
+I will just give you one last tip.</p>
+
+<h2 id="one-last-tip-generating-csv-file-with-ids-in-postman">One last tip: “Generating” CSV file with Ids in Postman</h2>
+
+<p>To delete multiple issues using the method we have been using to create them, you need a CSV file containing the ids of the issues you want to delete.
+You could list issues using Postman and copy/paste them one by one in that file.
+You could also use the powerful JSON command line processor <code>jq</code> (see my <a href="/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">post series</a> about it)
+But what about “generating” that CSV in Postman?</p>
+
+<p>To do so, we’ll use the <a href="https://learning.postman.com/docs/sending-requests/visualizer/">Visualize</a> feature of Postman.
+By adding some Javascript code in the Tests tab of a request you can setup a visualizer for the returned data.
+That can be used to create awesome charts or more simple tables, this is what we’ll do here.</p>
+
+<p>Go the the Tests tab of the “List issues” request in “Github” collection and copy/paste the following Javascript code:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Setup visualizer in Tests tab</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-js line-numbers code-copy"><code class="code-block">// Handlebar template
+var templateIdsOnly = `
+    &lt;table bgcolor=&quot;#FFFFFF&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;issueId&lt;/th&gt;
+        &lt;/tr&gt;
+
+        {{#each response}}
+            &lt;tr&gt;
+                &lt;td&gt;{{node_id}}&lt;/td&gt;
+            &lt;/tr&gt;
+        {{/each}}
+    &lt;/table&gt;
+`;
+
+// Set visualizer
+pm.visualizer.set(templateIdsOnly, {
+    // Pass the response body parsed as JSON as `data`
+    response: pm.response.json()
+});</code></pre>
+  </div>
+</div>
+
+<p>This Javascript code creates a <code>templateIdsOnly</code> <a href="https://handlebarsjs.com/">Handlebar</a> template.
+This template is pretty basic, it builds a HTML table with a single column title <code>issueId</code>.
+This table will contain a line line holding the <code>node_id</code> value of each item returned by the API call. 
+After that it configures the Postman visualizer (<code>pm.visualizer</code>) to use the template on the API cal response data (<code>pm.response.json()</code>).</p>
+
+<p>Once this is done, hit the Send button and click on Visualize in the response and tada, you get a one column table with its node_id title and all node_id values:</p>
+
+<div class="image border">
+    <figure class="figure">
+        <img src="/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-visualize-ids.png" class="figure-img img-fluid" alt="Visualize result in Postman" /></figure>
+</div>
+
+<p>Just select all text and copy/paste it in a file that you’ll use as input to delete all issues.</p>
+
+<p>Obviously, in our case as we need a single value for each request, that is not really a CSV file that has been “generated”.
+If you need to get multiple value, just add a comma and the new value in the template (don’t forget title) as follow</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Actually generating CSV data</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-js line-numbers code-copy"><code class="code-block">// Handlebar template
+var templateCsv = `
+    &lt;table bgcolor=&quot;#FFFFFF&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;issueId,body&lt;/th&gt;
+        &lt;/tr&gt;
+
+        {{#each response}}
+            &lt;tr&gt;
+                &lt;td&gt;{{node_id}},{{body}}&lt;/td&gt;
+            &lt;/tr&gt;
+        {{/each}}
+    &lt;/table&gt;
+`;
+
+// Set visualizer
+pm.visualizer.set(templateCsv, {
+    // Pass the response body parsed as JSON as `data`
+    response: pm.response.json()
+});</code></pre>
+  </div>
+</div>
+
+<p>From now on, you have all you need to delete multiple issues with the runner in Postman or with Newman.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="delete-access-token">Delete access token</h1>
+
+<p>Once you’re done, beware to not commit the environnement file with active access token.
+I recommend deleting your Github access token if you don’t use it anymore.
+Go to your <a href="https://github.com/settings/tokens">Personal Access Token list</a> on Github and click on the “delete” button for the “postman-csv-demo” token.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="lessons-learned">Lessons learned</h1>
+
+<p>I hope that the next time you’ll need to batch API calls, you’ll remember what you’ve seen in this post.
+Doing CSV data based API batch calls is pretty simple once you know that feature exists in Postman (and in its command line counter part Newman).
+The visualize feature can be really useful too in that case but it can be used to do far more advanced data rendering.
+And don’t forget to use environment variables to store sensitive data in Postman.</p>
+
+<p>I hope that you’ll also remember the few design principles and errors that we have seen:</p>
+
+<ul>
+  <li>Being consistent with common practices (and HTTP/REST principles), ease learning to use an API (people can guess how to use APIs)</li>
+  <li>Including link to documentation is quite useful</li>
+  <li>Never return unclear error that does not help to solve the problem</li>
+  <li>Never return 404 Not Found status code when an HTTP method is not available on an actually existing resource, use 405 Method Not Allowed instead</li>
+  <li>Having consistent URL between UI and API can be a good idea but not always (it may make API less reusable)</li>
+</ul>
+
+<p>And last but not least, we’ve seen that even famous companies such as Github can make mistakes with their APIs.
+That means that you must be careful when taking inspiration from existing APIs.
+Hopefully, in the case of Github, the problems don’t have much consequences, the API is overall of good quality and usable (and the documentation is quite good), but be careful not to ruin developer experience with more terrible mistakes.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+  
+</div><!-- class="page-content-text"-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-page-bottom-nav nav-fixed-bottom">
+  <div class="container-fluid container-lg">
+    <nav class="nav-page " aria-label="Page navigation">
+      <a class="nav-page-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top"><svg height='100px' width='100px' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><polygon points="4.1,10 5.5,11.4 9,7.8 9,20 11,20 11,7.8 14.5,11.4 16,10 10,4  "></polygon><rect x="0" width="20" height="2"></rect></g></svg></a>
+      
+      <a class="nav-page-btn left-menu-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><rect x="0" y="2" width="4" height="4"></rect><rect x="0" y="8" width="4" height="4"></rect><rect x="0" y="14" width="4" height="4"></rect><rect x="6" y="3" width="14" height="2"></rect><rect x="6" y="9" width="14" height="2"></rect><rect x="6" y="15" width="14" height="2"></rect></g></svg></a>
+      
+    </nav>
+  </div>
+</div>
+
+
+      <div class="row row-footer-margin">
+
+</div>
+<div class="row row-footer">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container footer-content">
+        <div class="row align-items-end row-cols-1 row-cols-md-2">
+          <div class="col d-flex justify-content-center mb-1 mb-md-4">
+            <div class="icon"><a href="https://twitter.com/apihandyman" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a></div>
+            <div class="icon"><a href="https://www.linkedin.com/in/arnaudlauret" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></div>
+            <div class="icon"><a href="https://github.com/arno-di-loreto" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a></div>
+            <div class="icon"><a href="/feed.xml" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg></a></div>
+          </div>
+          <div class="col text-center">
+            <a class="btn border-0 rounded-0 p-0" data-toggle="modal" data-target="#bookModal" role="button" ><img class="img-footer-book" src="/images/commons/book/book-footer.png"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-footer-second">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col col-footer-privacy mb-3 mb-md-0">
+            <div class="icon privacy-link"><a href="/privacy"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg><span class="privacy-link-text">Privacy Policy & Settings<span></span></a></div>
+          </div>
+          <div class="col col-footer-copyright">
+            &copy; 2015-2021 Arnaud Lauret
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            <!-- Modal -->
+      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-book" role="document">
+          <div class="modal-content border-0">
+            <div class="modal-body p-0">
+              <div class="container-fluid p-0">
+                <button type="button" class="close pr-2 pt-1" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row modal-book-cover-center"></div>
+                <div class="row mb-3 mb-lg-0 ml-0 mr-0 pt-3 pt-md-0">
+                  <div class="col col-lg-4 d-none d-md-block p-0">
+                    <img class="img-fluid" src="/images/commons/book/book-modal.png"/>
+                  </div>
+                  <div class="col col-12 col-lg-8 pt-2 pt-lg-4 text-justify">
+                    <p>Want to learn how to design simple, user friendly, secure and implementable APIs that do everything they should?</p>
+                    <p>Use code <code class="book-discount-code text-copy" aria-label="copy discount code" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to copy">fcclauret</code> to get 37% off my book The Design of Web APIs (works also on any other Manning product!).</p>
+                    <p class="text-center"><a href="http://bit.ly/designwebapis" target="_blank" class="btn btn-primary">Buy on manning.com</a></p>
+                    <p class="text-muted pt-3 mb-0">Disclosure: the link above is an affiliated link, meaning, at no additional cost to you, I will earn a commission if you click through and make a purchase.</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+<div class="privacy-message d-none fixed-bottom container-fluid bg-dark text-white p-3">
+  <div class="container">
+    <div class="row text-center pt-2 pb-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+      <div class="col text-justify">
+        By continuing to use this web site you agree with the API Handyman website privacy policy (effective date , June 28, 2020).
+      </div>
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+          <a class="btn btn-primary" href="/privacy">Read privacy policy</a>
+          <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+    <div class="row text-center pt-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <a class="btn btn-primary" href="/privacy">Read privacy policy</a>
+        <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/jquery-3.4.1.slim.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/popper.min.js" ></script>
+<script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script type="text/javascript" src="/js/anchors.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/main.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/prism.js" ></script>
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/asciinema-player.js" ></script>
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/code.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<div id="device-size-detector">
+  <div id="xs" class="d-xs-only"></div>
+  <div id="sm" class="d-sm-only"></div>
+  <div id="md" class="d-md-only"></div>
+  <div id="lg" class="d-lg-only"></div>
+  <div id="xl" class="d-xl-only"></div>
+</div>
+<script type="text/javascript" src="/js/size.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/bash.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/toc.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/fingerprint2.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/google-analytics.js" ></script>
+
+
+
+    
+  
+
+  
+
+
+  </body>
+</html>

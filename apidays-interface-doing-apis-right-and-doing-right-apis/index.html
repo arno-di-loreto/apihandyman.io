@@ -1787,13 +1787,9 @@ INTERFACE, by API Days gathered best past 7 years speakers, entire global commun
 
 <p>And at last we’ll be able to have a description (and all other possible properties) along with a $ref. Any property set beside the $ref will override what comes from the $ref.</p>
 
-<div class="image">
+<div class="image ">
     <figure class="figure">
-        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/darrel-miller-overrive-ref.jpg" class="figure-img img-fluid" />
-        
-        <figcaption class="figure-caption">Copyright Darrel Miller</figcaption>
-        
-    </figure>
+        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/darrel-miller-overrive-ref.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Copyright Darrel Miller</figcaption></figure>
 </div>
 
 
@@ -1862,13 +1858,9 @@ INTERFACE, by API Days gathered best past 7 years speakers, entire global commun
 
 <p>Teams must be autonomous but do be efficient they need to understand that they are part of a bigger system. Their mission is part of an overall mission.</p>
 
-<div class="image">
+<div class="image ">
     <figure class="figure">
-        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/mary-poppendieck-responsibility.jpg" class="figure-img img-fluid" />
-        
-        <figcaption class="figure-caption">Copyright Mary Poppendieck</figcaption>
-        
-    </figure>
+        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/mary-poppendieck-responsibility.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Copyright Mary Poppendieck</figcaption></figure>
 </div>
 
 <h2 id="microservice-vs-api">Microservice vs API</h2>
@@ -1897,37 +1889,25 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 <p>If an upstream consumer can reach into your internal implementation then you can’t change the implementation without breaking the consumer. Consumer and provided are tightly coupled, making any change risky and even impossible.</p>
 
-<div class="image">
+<div class="image ">
     <figure class="figure">
-        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-01-coupling-to-internal-implementation.jpg" class="figure-img img-fluid" />
-        
-        <figcaption class="figure-caption">Copyright Sam Newman</figcaption>
-        
-    </figure>
+        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-01-coupling-to-internal-implementation.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Copyright Sam Newman</figcaption></figure>
 </div>
 
 <p>Modularization is not a new concept that appeared with APIs and microservices. In 1971, D.L. Parnas published <em><a href="https://kilthub.cmu.edu/articles/journal_contribution/On_the_criteria_to_be_used_in_decomposing_systems_into_modules/6607958">On the criteria to be used tin decomposing systems into modules</a></em>. He looked at how best to define module boundaries and found that “information hiding” worked best.</p>
 
 <p>Your interface (API) shows what is shared, the rest data and implementation details is your own business. That’s why it is really important do have separate models for data, objects and exposed interfaces (as also always say Mike Admundsen).</p>
 
-<div class="image">
+<div class="image ">
     <figure class="figure">
-        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-02-information-hiding.jpg" class="figure-img img-fluid" />
-        
-        <figcaption class="figure-caption">Copyright Sam Newman</figcaption>
-        
-    </figure>
+        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-02-information-hiding.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Copyright Sam Newman</figcaption></figure>
 </div>
 
 <p>If the whole becomes to big, you can split your internal implementation in various sub modules, while keeping the shared interface unique and unmodified. But be warned that only works if the whole set of microservices/modules is handled by the same team.</p>
 
-<div class="image">
+<div class="image ">
     <figure class="figure">
-        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-03-multiple-microservices.jpg" class="figure-img img-fluid" />
-        
-        <figcaption class="figure-caption">Copyright Sam Newman</figcaption>
-        
-    </figure>
+        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-03-multiple-microservices.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Copyright Sam Newman</figcaption></figure>
 </div>
 
 <h3 id="tip-2-cost-of-change-varies">Tip #2: Cost of change varies</h3>
@@ -1938,13 +1918,9 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 <p>That means the cost of change increases with the “distance” between the provided and consumer (inside the team, inside the company, outside the company) and the number of consumers.</p>
 
-<div class="image">
+<div class="image ">
     <figure class="figure">
-        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-04-cost-of-change.jpg" class="figure-img img-fluid" />
-        
-        <figcaption class="figure-caption">Copyright Sam Newman</figcaption>
-        
-    </figure>
+        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-04-cost-of-change.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Copyright Sam Newman</figcaption></figure>
 </div>
 
 <p>The cost of change leads to different ways of taking the decision to actually do this change or not. According to Jeff Bezos, Amazon’s CEO, there are 2 types of decisions. Type 1 are irreversible decisions, it’s impossible to go back, you have to think carefully before taking them. On the opposite type 2 ones are reversible, they don’t cost 0 but you can change your mind very easily and you take no risk doing them.</p>
@@ -1980,13 +1956,9 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 <p>During Q&amp;A, Mehdi Medjaoui asked Newman how he felt about miniservices, macroservices, nanoservices and other {whatever size}services. His reaction made me burst out laughing (<a href="https://interface.virtualconference.com/#/conference/5f0bb86686dfb0001b75df89" title="Microservices, APIs, and the Cost Of Change">jump at 31:45</a> to see it), he looked totally desperate and did a long facepalm.</p>
 
-<div class="image">
+<div class="image ">
     <figure class="figure">
-        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/facepalm.gif" class="figure-img img-fluid" alt="Jean Luc Picard doing a facepalm" />
-        
-        <figcaption class="figure-caption">Sam Newman's reaction (reenactment by Jean-Luc Picard)</figcaption>
-        
-    </figure>
+        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/facepalm.gif" class="figure-img img-fluid" alt="Jean Luc Picard doing a facepalm" /><figcaption class="figure-caption">Sam Newman's reaction (reenactment by Jean-Luc Picard)</figcaption></figure>
 </div>
 
 <p>More seriously, he stated that the name microservice which imply “size” is actually a problem. He want to go back in time and choose another name focusing on the real important aspect: independent deployability.</p>
@@ -2007,24 +1979,16 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 <p>So it looks like the decision should be made on does the communication take place inside or outide my company. But that’s not the case. A company/organization can be split in various domains (however you call them). And these domain boundaries must be treated the same way as enterprise boundary (API Management). Inside the domains you may use service meshes.</p>
 
-<div class="image">
+<div class="image ">
     <figure class="figure">
-        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/mark-cheshire-03-domain-boundaries.jpg" class="figure-img img-fluid" />
-        
-        <figcaption class="figure-caption">Copyright Mark Cheshire/Redhat</figcaption>
-        
-    </figure>
+        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/mark-cheshire-03-domain-boundaries.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Copyright Mark Cheshire/Redhat</figcaption></figure>
 </div>
 
 <p>What distingues inter and intra-domain traficc is the relation between provider and consumers. Are they in the same team? How many consumers? Explicit contract needed?</p>
 
-<div class="image">
+<div class="image ">
     <figure class="figure">
-        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/mark-cheshire-04-inter-vs-intra-domain-traffic.jpg" class="figure-img img-fluid" />
-        
-        <figcaption class="figure-caption">Copyright Mark Cheshire/Redhat</figcaption>
-        
-    </figure>
+        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/mark-cheshire-04-inter-vs-intra-domain-traffic.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Copyright Mark Cheshire/Redhat</figcaption></figure>
 </div>
 
 <h3 id="boundaries-as-a-consumer">Boundaries as a consumer</h3>
@@ -2039,13 +2003,9 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 <p>So many APIs and so many components lead to a system that is difficult to understand and manage. You need to build access and management components that represent this system as a monolith.</p>
 
-<div class="image">
+<div class="image ">
     <figure class="figure">
-        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/ronnie-mitra-05-borderless.jpg" class="figure-img img-fluid" />
-        
-        <figcaption class="figure-caption">Copyright Ronnie Mitra</figcaption>
-        
-    </figure>
+        <img src="/images/apidays-interface-doing-apis-right-and-doing-right-apis/ronnie-mitra-05-borderless.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Copyright Ronnie Mitra</figcaption></figure>
 </div>
 
 <p>By building all these layers, creating new boundaries, you can create a system so simple that it looks totally borderless.</p>

@@ -1,4 +1,944 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-04-07T04:08:12+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">7 ways leading to wrong ownership and killing APIs</title><link href="https://apihandyman.io/7-ways-leading-to-wrong-ownership-and-killing-apis/" rel="alternate" type="text/html" title="7 ways leading to wrong ownership and killing APIs" /><published>2021-03-28T00:00:00+00:00</published><updated>2021-03-28T00:00:00+00:00</updated><id>https://apihandyman.io/ownership</id><content type="html" xml:base="https://apihandyman.io/7-ways-leading-to-wrong-ownership-and-killing-apis/">&lt;p&gt;After hundreds of API design reviews, I can tell that the most neglected aspect of API governance is ownership.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-04-07T17:46:10+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Batch (Github) API calls with CSV and Postman runner and visualizer</title><link href="https://apihandyman.io/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/" rel="alternate" type="text/html" title="Batch (Github) API calls with CSV and Postman runner and visualizer" /><published>2021-04-07T00:00:00+00:00</published><updated>2021-04-07T00:00:00+00:00</updated><id>https://apihandyman.io/postman-csv-demo</id><content type="html" xml:base="https://apihandyman.io/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/">&lt;p&gt;Do you need to make a repetitive task that could be done through an API instead of a UI?
+Do you need to make many API calls but don’t want to code?
+This post is made for you: you’ll learn to use Postman and CSV files to batch API calls.
+You may also learn a thing or two about API design, Github APIs (yes, plural) and other Postman features (variables, security, command line, visualizer, …) in the making.
+If you never have used Postman or Github APIs, no problem, everything will be explained.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;about-the-problem-and-solution&quot;&gt;About the problem and solution&lt;/h1&gt;
+
+&lt;p&gt;While the problem and solution are quite simple, it’s a great occasion to learn many things.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problem-to-solve&quot;&gt;The problem to solve&lt;/h2&gt;
+
+&lt;p&gt;I think it’s Garfield, a famous philosopher, who once said &lt;em&gt;Laziness is the mother of invention&lt;/em&gt;.
+Every time I have a repetitive task to do, I always try to find a way to let machine do it for me.
+As I’m the API Handyman, it often ends by taking advantage of an API.
+Recently, I had to create many issues in some &lt;em&gt;random issue tracker&lt;/em&gt; based on some data in my emails.
+Hopefully, that issue tracker comes with an API and I could easily get the input data in a structure way by a simple copy/paste from my email client.
+So instead of having to laboriously fill N times a form, I had to make N API calls with structured data as input, and Postman can help to do that.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-youll-learn-while-solving-it&quot;&gt;What you’ll learn while solving it&lt;/h2&gt;
+
+&lt;p&gt;In order to keep this demonstration easy to redo by anyone, we’ll use the github API to create issues on a dummy public repository with data coming from a CSV file.&lt;/p&gt;
+
+&lt;p&gt;In this post, you’ll learn to use Postman (UI) and Newman (command line):&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Create Postman workspace, collections and requests&lt;/li&gt;
+  &lt;li&gt;Make REST GET and POST (with body) API calls&lt;/li&gt;
+  &lt;li&gt;Define and use variables&lt;/li&gt;
+  &lt;li&gt;Configure a collection to make secured API call&lt;/li&gt;
+  &lt;li&gt;Run all requests of a collection with data coming from a CSV file with Postman&lt;/li&gt;
+  &lt;li&gt;Export collections and environments&lt;/li&gt;
+  &lt;li&gt;Run all requests of a collection with data coming from a CSV file in a terminal with Newman&lt;/li&gt;
+  &lt;li&gt;Make GraphQL API calls&lt;/li&gt;
+  &lt;li&gt;Setup a visualizer to render API call results&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You’ll also learn use Github REST and GraphQL APIs:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Get a personal access token to call Github APIs (REST or GraphQL)&lt;/li&gt;
+  &lt;li&gt;Get current user data (REST)&lt;/li&gt;
+  &lt;li&gt;List a repository’s issues (REST)&lt;/li&gt;
+  &lt;li&gt;Add an issue to a repository (REST)&lt;/li&gt;
+  &lt;li&gt;Delete an issue (GraphQL)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And we will talk about some principles of API design:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Predictable design&lt;/li&gt;
+  &lt;li&gt;Error design&lt;/li&gt;
+  &lt;li&gt;Be careful when copying others (especially famous companies)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;setting-up-postman-for-a-first-github-api-call&quot;&gt;Setting up Postman for a first Github API call&lt;/h1&gt;
+
+&lt;p&gt;Postman is a wonderful tool that I have been using for many years to make API calls.
+It has constantly evolved over the years and now supports many cool features; it is now advertized as “The Collaboration Platform for API Development (note: this post is not sponsored by Postman).
+Go to &lt;a href=&quot;https://www.postman.com/downloads/&quot;&gt;https://www.postman.com/downloads/&lt;/a&gt; to download and install Postman, if you don’t already have it.
+You can also use the browser version (but you’ll have to create an account).
+Our first Github API call will retrieve current user information.&lt;/p&gt;
+
+&lt;h2 id=&quot;trying-to-make-a-first-api-call&quot;&gt;Trying to make a first API call&lt;/h2&gt;
+
+&lt;p&gt;Launch Postman, we’ll create a “Postman CSV Demo” workspace, a “Github” collection, a “List current user” request calling &lt;code&gt;GET https://api.github.com/user&lt;/code&gt; (see &lt;a href=&quot;https://docs.github.com/en/rest/reference/users#get-the-authenticated-user&quot;&gt;Github REST API documentation&lt;/a&gt;) and make our first call:&lt;/p&gt;
+
+&lt;table class=&quot;tutorial-steps&quot;&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-top-menubar.png&quot; class=&quot;image-simple&quot; alt=&quot;Workspaces&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;In top &lt;em&gt;menu bar&lt;/em&gt;, click on &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-workspaces-menu.png&quot; class=&quot;image-inline&quot; alt=&quot;Workspaces&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-workspaces-menu-top.png&quot; class=&quot;image-simple&quot; alt=&quot;+ New Workspace&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-plus-workspace-button.png&quot; class=&quot;image-inline&quot; alt=&quot;+ New Workspace&quot; /&gt; button&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-workspace-name.png&quot; class=&quot;image-simple&quot; alt=&quot;Create workspace window name field&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Set workspace name to “Postman CSV Demo”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-workspace-visibility.png&quot; class=&quot;image-simple&quot; alt=&quot;Create workspace window visibility drop list&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Change visibility to “Personal”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-workspace-buttons.png&quot; class=&quot;image-simple&quot; alt=&quot;Create workspace window buttons&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on “Create Workspace” button&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-workspace-created.png&quot; class=&quot;image-simple&quot; alt=&quot;Workspace created&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-new-button.png&quot; class=&quot;image-inline&quot; alt=&quot;New&quot; /&gt; button next to “Postman CSV Demo” workspace name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-collection-button.png&quot; class=&quot;image-simple&quot; alt=&quot;Create collection button&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on “Collection” item in the “Create New” window&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-created.png&quot; class=&quot;image-simple&quot; alt=&quot;Collection created&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Change “New Collection” name to “Github”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-right-click-add-request.png&quot; class=&quot;image-simple&quot; alt=&quot;Collection contextual menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Right click on the “Github” collection in the left panel and select “Add request”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-request-created-read-current-user.png&quot; class=&quot;image-simple&quot; alt=&quot;Request created&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Change “New Request” name to “Read current user”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-request-url-set.png&quot; class=&quot;image-simple&quot; alt=&quot;URL set&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Set request URL to &lt;code&gt;https://api.github.com/user&lt;/code&gt;, click on &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-save-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Save button&quot; /&gt; and hit the &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Send button&quot; /&gt; button …&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-request-failed-authorization.png&quot; class=&quot;image-simple&quot; alt=&quot;Response telling authorization is required&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;… to get a 401 Unauthorized error telling that authentication is required&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;getting-a-github-personal-access-token&quot;&gt;Getting a Github personal access token&lt;/h2&gt;
+
+&lt;p&gt;The easiest way to get access to the Github API, if you have two factor authentication activated (and you MUST have it activated), is to generate a personal access token.
+For our demonstration we will generate one granting access to public repositories:&lt;/p&gt;
+
+&lt;table class=&quot;tutorial-steps&quot;&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-profile-menu.png&quot; class=&quot;image-simple&quot; alt=&quot;Github profile menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Go to your &lt;a href=&quot;https://github.com/settings/profile&quot;&gt;Github account settings&lt;/a&gt; by clicking on your profile icon and clicking on “Settings” (at the bottom)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-settings-menu.png&quot; class=&quot;image-simple&quot; alt=&quot;Github settings menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Scroll down and click on &lt;a href=&quot;https://github.com/settings/apps&quot;&gt;Developer setting&lt;/a&gt; in the left menu&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-developer-settings.png&quot; class=&quot;image-simple&quot; alt=&quot;Github settings menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;In developer setting page, click on &lt;a href=&quot;https://github.com/settings/tokens&quot;&gt;Personal access tokens&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-personal-access-tokens.png&quot; class=&quot;image-simple&quot; alt=&quot;Github personal access tokens&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on &lt;a href=&quot;https://github.com/settings/tokens/new&quot;&gt;Generate new token&lt;/a&gt; (you may have to provide your password)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-token-description.png&quot; class=&quot;image-simple&quot; alt=&quot;Github token description&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;In the “Note” field, type “postman-csv-demo”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-scopes-public.png&quot; class=&quot;image-simple&quot; alt=&quot;Public repo scope checked&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Check the &lt;code&gt;public_repo&lt;/code&gt; scope under repo. Note that this scopes obviously gives access to public repositories only, if you want to access private ones, you’ll have to check the &lt;code&gt;repo&lt;/code&gt; scope (which is less obvious).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-token-validate.png&quot; class=&quot;image-simple&quot; alt=&quot;Github token generate button&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-token-generate-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Generate token button&quot; /&gt; at the bottom of the page&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-token-generated.png&quot; class=&quot;image-simple&quot; alt=&quot;Github token generated&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Copy the generated token by clicking on &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-token-copy-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Copy button&quot; /&gt; (use this token with caution, never, ever, commit this value in any public source code repository!)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;configuring-authorization-in-postman-and-make-a-successful-first-api-call&quot;&gt;Configuring Authorization in Postman and make a successful first API call&lt;/h2&gt;
+
+&lt;p&gt;Having an access token, we’ll configure our collection in order to make all requests that it will contain use it.
+But we will do that in a secure way using an environment variable, it’s a best practice that allows to share collections without the risk of sharing sensitive data:&lt;/p&gt;
+
+&lt;table class=&quot;tutorial-steps&quot;&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-workspace-created.png&quot; class=&quot;image-simple&quot; alt=&quot;Workspace created&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-new-button.png&quot; class=&quot;image-inline&quot; alt=&quot;New&quot; /&gt; button next to &quot;Postman CSV Demo&quot; workspace name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-environment-button.png&quot; class=&quot;image-simple&quot; alt=&quot;Create environment button&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on &quot;Environment&quot; item in the &quot;Create New&quot; window&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environment-created.png&quot; class=&quot;image-simple&quot; alt=&quot;Environment created&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Change &quot;New Environment&quot; name to &quot;Github&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environment-github-token.png&quot; class=&quot;image-simple&quot; alt=&quot;Github token variable&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Add a &lt;code&gt;github_token&lt;/code&gt; variable and paste the Github token in its initial value and click outside the field (&lt;em&gt;That should populate also the current value&lt;/em&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environment-github-to-save.png&quot; class=&quot;image-simple&quot; alt=&quot;Github token variable to save&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-save-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Save button&quot; /&gt; to save the “Github” environment and its &lt;code&gt;github_token&lt;/code&gt; variable&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environment-select-github.png&quot; class=&quot;image-simple&quot; alt=&quot;Activate Github environment&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;In the upper left corner, click on “No Environment” and select the newly created “Github” environment in order to make its variables accessible&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-auth-type.png&quot; class=&quot;image-simple&quot; alt=&quot;Collection authorization type&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on the “Github” collection’s name, in the Authorization tab, change Type from “No Auth” to “Bearer Token”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-auth-token.png&quot; class=&quot;image-simple&quot; alt=&quot;Collection authorization type&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Set token value to &lt;code&gt;{{github_token}}&lt;/code&gt; (&lt;em&gt;If the value is red instead of orange, it means the variable is not found. It’s probably because you didn’t select the “Github” environment&lt;/em&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-to-save.png&quot; class=&quot;image-simple&quot; alt=&quot;Collection to save&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-save-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Save button&quot; /&gt; (&lt;em&gt;if you don’t you’ll get a 401&lt;/em&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-request-success.png&quot; class=&quot;image-simple&quot; alt=&quot;200 OK response&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Go to the “Read current user” request and hit &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Send button&quot; /&gt; again … now it works! You should get a 200 OK response along with your user’s data.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;creating-one-to-many-issues-with-github-rest-api&quot;&gt;Creating one to many issues with Github REST API&lt;/h1&gt;
+
+&lt;p&gt;Now that everything has been set up, let’s list issues and create one to many.
+We will work with a dummy repository, its URL on Github website will be something like &lt;em&gt;https://github.com&lt;/em&gt;&lt;strong&gt;/user/repo&lt;/strong&gt;.
+To list issues, we’ll send a GET &lt;em&gt;https://api.github.com/repos&lt;/em&gt;&lt;strong&gt;/user/repo&lt;/strong&gt;&lt;em&gt;/issues&lt;/em&gt; request and to create an issue we’ll to send a POST request on the same URL.
+Using GET on a collection resource to list things and POST on the same resource to create a thing that totally makes sense, we’ll discover that unfortunately Github API does not always make sense.&lt;/p&gt;
+
+&lt;h2 id=&quot;listing-issues&quot;&gt;Listing issues&lt;/h2&gt;
+
+&lt;p&gt;Let’s first create our dummy repository with UI and list issues with API:&lt;/p&gt;
+
+&lt;table class=&quot;tutorial-steps&quot;&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/github-repository-issues.png&quot; class=&quot;image-simple&quot; alt=&quot;Github repo issues&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Go to your &lt;a href=&quot;https://github.com&quot;&gt;Github account&lt;/a&gt; and &lt;a href=&quot;https://github.com/new&quot;&gt;create&lt;/a&gt; a new public repository, then go to the issues tab and copy the &lt;code&gt;/user/repo/issues&lt;/code&gt; part of the newly created repository’s URL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-collection-dots-menu.png&quot; class=&quot;image-simple&quot; alt=&quot;Postman collection menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;In Postman, click on the &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-dots-button.png&quot; class=&quot;image-inline&quot; alt=&quot;... button&quot; /&gt; button on “Github” collection and select “Add request”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-request-new-list-issues-url.png&quot; class=&quot;image-simple&quot; alt=&quot;Postman new request list issues URL&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Set request’s name to “List issues”, in the URL type &lt;code&gt;https://api.github.com/repos&lt;/code&gt; and paste the &lt;code&gt;/user/repo/issues&lt;/code&gt; part of the newly created repository’s URL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;em&gt;API design digression&lt;/em&gt;
+You obviously noticed that the UI URLs are similar to the API ones, in the case of Github that’s a really good idea because both UI and API give access to the exact same product and that helps developers to learn how works the API.
+But note that it is not always a good idea to mimic your UI in your API as it can make it less reusable in other use cases.&lt;/p&gt;
+
+&lt;p&gt;We could stop here and hit the send button to list issues, but in order to keep our request and project maintainable and reusable, we’ll replace user and repo by variables:&lt;/p&gt;
+
+&lt;table class=&quot;tutorial-steps&quot;&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-set-variable-pop.png&quot; class=&quot;image-simple&quot; alt=&quot;Select text in URL to get set variable menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;In the URL, select your &lt;code&gt;user&lt;/code&gt; (mine is &lt;code&gt;arno-di-loreto&lt;/code&gt;), a “Set as variable” menu appears, click on it&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-set-variable-menu.png&quot; class=&quot;image-simple&quot; alt=&quot;Set text as variable menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on “+ Set as new variable”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-list-issues-github-user-variable-configuration.png&quot; class=&quot;image-simple&quot; alt=&quot;Github user variable configuration&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Set name to &lt;code&gt;github_user&lt;/code&gt;, select “Environment: Github” scope and click on “Set Variable”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-list-issues-github-user-variable-url.png&quot; class=&quot;image-simple&quot; alt=&quot;Github user variable in URL&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;User has been replaced by the variable &lt;code&gt;/repos/{{github_user}}/repo/issues&lt;/code&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-list-issues-github-repo-variable-url.png&quot; class=&quot;image-simple&quot; alt=&quot;User and repo replaced by variables in URL&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Repeat with your &lt;code&gt;dummy repo name&lt;/code&gt; to create a &lt;code&gt;github_repo&lt;/code&gt; variable in Github environment&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-list-issues-to-save.png&quot; class=&quot;image-simple&quot; alt=&quot;List issues request to save&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Don’t forget to &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-save-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Save button&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-list-issues-empty.png&quot; class=&quot;image-simple&quot; alt=&quot;Empty issues list&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Now you can hit &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Send button&quot; /&gt; and get an empty list as response because there are no issues in the newly created repository.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;create-an-issue&quot;&gt;Create an issue&lt;/h2&gt;
+
+&lt;p&gt;Let’s fill that empty issues list by creating an issue.
+As the Github REST API follows common practices, we are supposed to do a POST request on the same URL as the one used to list issues:&lt;/p&gt;
+
+&lt;table class=&quot;tutorial-steps&quot;&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-duplicate.png&quot; class=&quot;image-simple&quot; alt=&quot;Request duplicate menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Right click on the “List issues” request and select “Duplicate”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-rename.png&quot; class=&quot;image-simple&quot; alt=&quot;Rename request with pen&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Select the newly created “List issues in repository Copy” request and change its name to “Create issue” by clicking on the pen that appear next to the request name when hovering over it&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-change-method.png&quot; class=&quot;image-simple&quot; alt=&quot;Method menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on “GET” to change method to “POST” and then hit the &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Send button&quot; /&gt; button…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-error.png&quot; class=&quot;image-simple&quot; alt=&quot;Method menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt; … Oops, there’s a 422 error!&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;We actually forgot to provide some data in the body, but the error &lt;code&gt;message&lt;/code&gt; is totally unclear about that.&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;An error response that don't help as much as it could&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-json line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;Invalid request.\n\nFor &amp;#39;links/0/schema&amp;#39;, nil is not an object.&amp;quot;,
+    &amp;quot;documentation_url&amp;quot;: &amp;quot;https://docs.github.com/rest/reference/issues#create-an-issue&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Such cryptic response is really an example to NOT follow, an error message must clear and help to solve the problem.
+But at least, there’s a &lt;a href=&quot;https://docs.github.com/rest/reference/issues#create-an-issue&quot;&gt;link&lt;/a&gt; to the documentation (&lt;code&gt;documentation_url&lt;/code&gt;) (which is a very good idea!), if you follow it you’ll see that we need to supply at least a &lt;code&gt;title&lt;/code&gt; and there are other data such as the &lt;code&gt;body&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s try set this request a body but just with the &lt;code&gt;body&lt;/code&gt; property:&lt;/p&gt;
+
+&lt;table class=&quot;tutorial-steps&quot;&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-body-tab.png&quot; class=&quot;image-simple&quot; alt=&quot;Request body tab&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Go to the &quot;Body&quot; tab&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-raw-selected.png&quot; class=&quot;image-simple&quot; alt=&quot;Request body raw button radio&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on &quot;raw&quot; button radio&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-json-selected.png&quot; class=&quot;image-simple&quot; alt=&quot;Request body raw button radio&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on the &quot;Text&quot; menu to select &quot;JSON&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-body-json.png&quot; class=&quot;image-simple&quot; alt=&quot;Request body raw button radio&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Add a JSON object with a “body” property set to some random string (you can copy the following sample)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Create issue (incomplete) body&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-json line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;{
+    &amp;quot;body&amp;quot;: &amp;quot;Body of issue created by Postman&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now, if you hit &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Send button&quot; /&gt; , it fails again with the following response:&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;An error response that actually helps&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-json line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;{
+    &amp;quot;message&amp;quot;: &amp;quot;Invalid request.\n\n\&amp;quot;title\&amp;quot; wasn&amp;#39;t supplied.&amp;quot;,
+    &amp;quot;documentation_url&amp;quot;: &amp;quot;https://docs.github.com/rest/reference/issues#create-an-issue&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But the error is clearer this time, we know exactly how to fix the problem: add missing &lt;code&gt;title&lt;/code&gt; property.
+Think about that the next time you design and then code an API.
+OK, end of API design digression, let’s provide a valid request body with a &lt;code&gt;title&lt;/code&gt; and a &lt;code&gt;body&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Create issue (complete) body&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-json line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;{
+    &amp;quot;title&amp;quot;: &amp;quot;Issue created by Postman&amp;quot;,
+    &amp;quot;body&amp;quot;: &amp;quot;Body of issue created by Postman&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Click on &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-save-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Save button&quot; /&gt; and hit &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Send button&quot; /&gt; one more time, you’ll get a &lt;code&gt;201 Created&lt;/code&gt; response containing all data of the created issue.
+If you go back to the “List issues” request to send it again, you should get an non empty list containing the created issue.
+Obviously, if you also go the dummy repository on Github, you’ll find that issue in the issues tab (I have to admit that I find quite satisfying to see the result of API calls appearing in UI).&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-many-github-issues-with-postman-runner-and-csv&quot;&gt;Creating many github issues with Postman Runner and CSV&lt;/h2&gt;
+
+&lt;p&gt;If you need to create many issues, you could just modify the “Create issue” request’s body and hit &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-send-button.png&quot; class=&quot;image-inline&quot; alt=&quot;Send button&quot; /&gt; as many times as needed.
+But that would be quite cumbersome right? What about trying the lazy way?&lt;/p&gt;
+
+&lt;table class=&quot;tutorial-steps&quot;&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-create-issue-save.png&quot; class=&quot;image-simple&quot; alt=&quot;Unsaved create issue request&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Just in case, ensure you actually saved the “Create Issue”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-collection-duplicate.png&quot; class=&quot;image-simple&quot; alt=&quot;Github collection duplicate menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Right click on the “Github” collection and select “Duplicate”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-collection-copy-rename-duplicate.png&quot; class=&quot;image-simple&quot; alt=&quot;Github collection rename menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Right click on the “Github Copy” collection and select “Rename” to rename it “Github Batch Issues Create”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-create-collection-clean.png&quot; class=&quot;image-simple&quot; alt=&quot;Request delete menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Delete all requests EXCEPT the “Create Issue” one by right clicking on their name and selecting Delete&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-create-issue-body.png&quot; class=&quot;image-simple&quot; alt=&quot;Request body with variables&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Select the “Create Issue” request, select the body tab and replace &lt;code&gt;title&lt;/code&gt; and &lt;code&gt;body&lt;/code&gt; values by &lt;code&gt;{{title}}&lt;/code&gt; and &lt;code&gt;{{body}}&lt;/code&gt; variables as follow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Create issue request's body with variables&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-json line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;{
+    &amp;quot;title&amp;quot;: &amp;quot;{{title}}&amp;quot;,
+    &amp;quot;body&amp;quot;: &amp;quot;{{body}}&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But from where will come those variables?
+From a CSV (Comma Separated Values) file!
+Open your favorite text editor, and put some issues titles and bodies as follow and save the file somewhere.
+The first line contains the names of the variables (&lt;code&gt;title&lt;/code&gt; and &lt;code&gt;body&lt;/code&gt;), the other lines contain actual titles and bodies.&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Issues data in CSV format&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-csv line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;title,body
+A first issue, First issue&amp;#39;s body
+Another issue, Second issue&amp;#39;s body
+Third issue,Yet another issue&amp;#39;s body
+Fourth issue,Too many issues
+Five,It doesn&amp;#39;t work
+Six,It really doesn&amp;#39;t work&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now, we will trigger one API call per CSV file line (excluding the first one which holds the variable names):&lt;/p&gt;
+
+&lt;table class=&quot;tutorial-steps&quot;&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-run.png&quot; class=&quot;image-simple&quot; alt=&quot;Collection run button&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Select the “Github Batch Issues Create” collection and click on the “Run” button&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-open-csv.png&quot; class=&quot;image-simple&quot; alt=&quot;Select CSV file&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on “Select File” and open the previously created CSV file&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-preview-open.png&quot; class=&quot;image-simple&quot; alt=&quot;CSV data preview&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Note that the number of iterations matches the number of line (minus title one) in the CSV file. Click on the “Preview” button&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-preview.png&quot; class=&quot;image-simple&quot; alt=&quot;CSV data preview&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Check that the file is correctly interpreted, then close the preview&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-run-launch.png&quot; class=&quot;image-simple&quot; alt=&quot;Launch run button&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;And finally, hit “Run Github Batch Issues Create” button&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Postman will do all the work and create all the issues provided in the CSV file.
+It simply makes and API call for each line, replacing the &lt;code&gt;{{title}}&lt;/code&gt; and &lt;code&gt;{{body}}&lt;/code&gt; variables by the value provided the CSV file’s line.&lt;/p&gt;
+
+&lt;div class=&quot;image border&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-result.png&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Run result&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can list issues with an API call of check Github web site to see all the created issues.
+Note that there are 7 issues, that’s the one created to check our Create Issue API call was actually working plus the six other ones created with the CSV file.&lt;/p&gt;
+
+&lt;div class=&quot;image border&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-github-batch-result-github.png&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Issues list on github website&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;it-works-also-on-the-command-line&quot;&gt;It works also on the command line&lt;/h1&gt;
+
+&lt;p&gt;If you need to industrialize doing batch API calls this way, having to use UI is not really convenient.
+Hopefully, you can run collection on the command line using Postman’s Newman.
+So, let’s see how to create many Github issues using our “Github Batch Issues Create” collection and Newman.&lt;/p&gt;
+
+&lt;h2 id=&quot;install-newman&quot;&gt;Install Newman&lt;/h2&gt;
+
+&lt;p&gt;You’ll need &lt;a href=&quot;https://nodejs.org/en/download/current/&quot;&gt;Node.js&lt;/a&gt; to install and run Newman.
+Installing Newman is quite simple, just open a terminal and run a good old &lt;code&gt;npm install -g newman&lt;/code&gt; and you’re done.
+Check Newman &lt;a href=&quot;https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/&quot;&gt;documentation&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;h2 id=&quot;export-collection-and-environment-file&quot;&gt;Export collection and environment file&lt;/h2&gt;
+
+&lt;p&gt;To run the “Github Batch Issues Create” collection, we obviously need the collection itself but also the “Github” environment variables, let’s export them both:&lt;/p&gt;
+
+&lt;table class=&quot;tutorial-steps&quot;&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-export-collection-menu.png&quot; class=&quot;image-simple&quot; alt=&quot;Collection menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on … near the “Github Batch Issues Create” collection name and select “Export”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-export-collection-dialog.png&quot; class=&quot;image-simple&quot; alt=&quot;Export collection dialog&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Keep default export format, click the “Export” button and save the collection file in the same folder as the CSV file created earlier&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environments.png&quot; class=&quot;image-simple&quot; alt=&quot;Environment tab&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Go to the “Environment” tab (in Postman’s window left panel) and select the Github environment by clicking on it&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-environment-menu.png&quot; class=&quot;image-simple&quot; alt=&quot;Environment menu&quot; /&gt;&lt;/td&gt;
+    &lt;td&gt;Click on … near the Share button (upper right corner), select “Export” and save the environment file in the same folder as the CSV file&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;creating-many-github-issues-on-command-line-with-newman&quot;&gt;Creating many github issues on command line with Newman&lt;/h2&gt;
+
+&lt;p&gt;Now, we’re all set to run the “Github Batch Issues Create” collection on the command line:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Open a terminal&lt;/li&gt;
+  &lt;li&gt;Go to the folder containing the csv, collection and environment files&lt;/li&gt;
+  &lt;li&gt;Run &lt;code&gt;newman run collection_filename -e environment_filename -d csv_filename&lt;/code&gt; (with your actual collection, environment and csv filenames!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And tada, one “Create Issue” request has been done for each line in the CSV file (again)!&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/newman-result.png&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Newman execution result&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can optionally check the newly created issued in Postman with the List issues request or go on Github.
+Note that as we didn’t modify the CSV file between the Postman and Newman run, the 6 new issues are the same as the 6 previous ones.&lt;/p&gt;
+
+&lt;h1 id=&quot;cleaning-the-mess-with-github-graphql-api&quot;&gt;Cleaning the mess with Github GraphQL API&lt;/h1&gt;
+
+&lt;p&gt;As an exercise you can try to delete the issues that has been created using Postman (or Newman), a collection and a CSV file containing ids of issues to delete.
+Do not overlook this exercise that looks quite simple but is actually not, there is a trap and a interesting Postman feature to discover.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Spoiler&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The rest of this section shows how to do so (with less screenshots as by now you should know how to find your way in Postman UI).&lt;/p&gt;
+
+&lt;h2 id=&quot;trying-to-delete-an-issue&quot;&gt;Trying to delete an issue&lt;/h2&gt;
+
+&lt;p&gt;As the Github API is a REST API, I assume that deleting an issue simply means sending a &lt;code&gt;DELETE /issues-resource-path/{issueId}&lt;/code&gt; request.
+To find the actual URL, let’s use the “List issues” request again, it returns something like that:&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-json line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;[
+    {
+        &amp;quot;url&amp;quot;: &amp;quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo/issues/13&amp;quot;,
+        &amp;quot;repository_url&amp;quot;: &amp;quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo&amp;quot;,
+        &amp;quot;labels_url&amp;quot;: &amp;quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo/issues/13/labels{/name}&amp;quot;,
+        &amp;quot;comments_url&amp;quot;: &amp;quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo/issues/13/comments&amp;quot;,
+        &amp;quot;events_url&amp;quot;: &amp;quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo/issues/13/events&amp;quot;,
+        &amp;quot;html_url&amp;quot;: &amp;quot;https://github.com/arno-di-loreto/postman-csv-demo/issues/13&amp;quot;,
+        &amp;quot;id&amp;quot;: 848749267,
+        &amp;quot;node_id&amp;quot;: &amp;quot;MDU6SXNzdWU4NDg3NDkyNjc=&amp;quot;,
+        &amp;quot;number&amp;quot;: 13,
+        ...
+    },
+    ...
+]&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A github issue seems to have 3 “ids”: &lt;code&gt;id&lt;/code&gt;, &lt;code&gt;node_id&lt;/code&gt; and &lt;code&gt;number&lt;/code&gt;, which one to choose?
+No need to actually think about it because the ready to use &lt;code&gt;url&lt;/code&gt; is actually provided!
+That’s pretty handy.
+And by the way it tells us that the id to use is &lt;code&gt;number&lt;/code&gt; (with user and repo name).&lt;/p&gt;
+
+&lt;p&gt;Let’s try to delete the first issue in the list:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Click on the url property’s value&lt;/li&gt;
+  &lt;li&gt;That opens a new request tab&lt;/li&gt;
+  &lt;li&gt;Hit the Send button to check what happens when doing a GET on that URL&lt;/li&gt;
+  &lt;li&gt;You actually get the issue&lt;/li&gt;
+  &lt;li&gt;Now change method to DELETE and hit send again …&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That returns a &lt;code&gt;404 Not Found&lt;/code&gt;, does that mean this issue doesn’t exist?!
+Obviously not, because a GET on it actually returned something.
+Let’s check what the &lt;a href=&quot;https://docs.github.com/rest&quot;&gt;documentation&lt;/a&gt; says (link provided in &lt;code&gt;documentation_url&lt;/code&gt;), look for &lt;a href=&quot;https://docs.github.com/en/rest/reference/issues&quot;&gt;Issues&lt;/a&gt; in the left navigation bar.&lt;/p&gt;
+
+&lt;p&gt;Actually, you can’t delete an issue with Github REST API!&lt;/p&gt;
+
+&lt;p&gt;Seriously, don’t do that at home, use HTTP protocol correctly, never, ever return a 404 Not Found when a method is not available, return a 405 Method Not Allowed instead.&lt;/p&gt;
+
+&lt;h2 id=&quot;actually-deleting-an-issue&quot;&gt;Actually deleting an issue&lt;/h2&gt;
+
+&lt;p&gt;Hopefully there are 2 Github APIs: the REST one and the GraphQL one.
+And you can delete issues with Github GraphQL API using the &lt;code&gt;deleteIssue&lt;/code&gt; mutation.
+And even more hopefully, you can use the same token to access both APIs.&lt;/p&gt;
+
+&lt;p&gt;I will not go into details about GraphQL.
+For what we need to do today, you only need to know that to send requests to a GraphQL API you always use a POST request and tell what you want to do in the body using GraphQL query language.
+In GraphQL, a request can contains many queries (to read data) and mutations (to modify data), actually mutations can be seen as functions.
+You can read my &lt;a href=&quot;/and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/&quot;&gt;And GraphQL for all&lt;/a&gt; post to learn more about GraphQL.&lt;/p&gt;
+
+&lt;p&gt;Let’s try to use this &lt;code&gt;deleteIssue&lt;/code&gt; mutation:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Select the “Github” collection&lt;/li&gt;
+  &lt;li&gt;Create a new “Delete issue (GraphQL)” request&lt;/li&gt;
+  &lt;li&gt;Set its method to “POST”&lt;/li&gt;
+  &lt;li&gt;Set its URL to &lt;code&gt;https://api.github.com/graphql&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Go to the “Body” tab&lt;/li&gt;
+  &lt;li&gt;Select “GraphQL” radio button&lt;/li&gt;
+  &lt;li&gt;Paste the following GraphQL body&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Delete issue GraphQl request body&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-graphql line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;mutation {
+    deleteIssue(input: { issueId: &amp;quot;but which id put here?&amp;quot; }) { 
+        repository { 
+            name
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The question is, which id should we provide in the &lt;code&gt;issueId&lt;/code&gt; property?
+We have seen in the REST API that an issue has 3 different ids, for example:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;id&lt;/code&gt;: &lt;code&gt;848749267&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;node_id&lt;/code&gt;: &lt;code&gt;MDU6SXNzdWU4NDg3NDkyNjc=&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;number&lt;/code&gt;: &lt;code&gt;13&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As the request does not provide the repository name, that excludes the &lt;code&gt;number&lt;/code&gt; as its value is probably not universally unique across all repositories of all users.
+The &lt;code&gt;id&lt;/code&gt; and &lt;code&gt;node_id&lt;/code&gt; could be that unique.&lt;/p&gt;
+
+&lt;p&gt;Try to set &lt;code&gt;issueId&lt;/code&gt; with one of the &lt;code&gt;id&lt;/code&gt; of your issues and hit the send button.
+You’ll get this 200 OK response (sigh… HTTP is only used for transport with GraphQL APIs):&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Error&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-graphql line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;{
+    &amp;quot;data&amp;quot;: {
+        &amp;quot;deleteIssue&amp;quot;: null
+    },
+    &amp;quot;errors&amp;quot;: [
+        {
+            &amp;quot;type&amp;quot;: &amp;quot;NOT_FOUND&amp;quot;,
+            &amp;quot;path&amp;quot;: [
+                &amp;quot;deleteIssue&amp;quot;
+            ],
+            &amp;quot;locations&amp;quot;: [
+                {
+                    &amp;quot;line&amp;quot;: 2,
+                    &amp;quot;column&amp;quot;: 5
+                }
+            ],
+            &amp;quot;message&amp;quot;: &amp;quot;Could not resolve to a node with the global id of &amp;#39;848749267&amp;#39;&amp;quot;
+        }
+    ]
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As &lt;code&gt;node_id&lt;/code&gt; is the only one left and as the error message talks about “node”, it seems to be the expected value.
+Try again, and now you’ll get another 200 OK signifying that the issue has been deleted.&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Issue deleted!&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-graphql line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;{
+    &amp;quot;data&amp;quot;: {
+        &amp;quot;deleteIssue&amp;quot;: {
+            &amp;quot;repository&amp;quot;: {
+                &amp;quot;name&amp;quot;: &amp;quot;dummy-repository&amp;quot;
+            }
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note that this response contains the name of the repo that was holding the deleted issue.
+Now that you know how to delete an issue, it’s quite easy to delete all the issue you have created.
+I will just give you one last tip.&lt;/p&gt;
+
+&lt;h2 id=&quot;one-last-tip-generating-csv-file-with-ids-in-postman&quot;&gt;One last tip: “Generating” CSV file with Ids in Postman&lt;/h2&gt;
+
+&lt;p&gt;To delete multiple issues using the method we have been using to create them, you need a CSV file containing the ids of the issues you want to delete.
+You could list issues using Postman and copy/paste them one by one in that file.
+You could also use the powerful JSON command line processor &lt;code&gt;jq&lt;/code&gt; (see my &lt;a href=&quot;/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/&quot;&gt;post series&lt;/a&gt; about it)
+But what about “generating” that CSV in Postman?&lt;/p&gt;
+
+&lt;p&gt;To do so, we’ll use the &lt;a href=&quot;https://learning.postman.com/docs/sending-requests/visualizer/&quot;&gt;Visualize&lt;/a&gt; feature of Postman.
+By adding some Javascript code in the Tests tab of a request you can setup a visualizer for the returned data.
+That can be used to create awesome charts or more simple tables, this is what we’ll do here.&lt;/p&gt;
+
+&lt;p&gt;Go the the Tests tab of the “List issues” request in “Github” collection and copy/paste the following Javascript code:&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Setup visualizer in Tests tab&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-js line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;// Handlebar template
+var templateIdsOnly = `
+    &amp;lt;table bgcolor=&amp;quot;#FFFFFF&amp;quot;&amp;gt;
+        &amp;lt;tr&amp;gt;
+            &amp;lt;th&amp;gt;issueId&amp;lt;/th&amp;gt;
+        &amp;lt;/tr&amp;gt;
+
+        {{#each response}}
+            &amp;lt;tr&amp;gt;
+                &amp;lt;td&amp;gt;{{node_id}}&amp;lt;/td&amp;gt;
+            &amp;lt;/tr&amp;gt;
+        {{/each}}
+    &amp;lt;/table&amp;gt;
+`;
+
+// Set visualizer
+pm.visualizer.set(templateIdsOnly, {
+    // Pass the response body parsed as JSON as `data`
+    response: pm.response.json()
+});&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This Javascript code creates a &lt;code&gt;templateIdsOnly&lt;/code&gt; &lt;a href=&quot;https://handlebarsjs.com/&quot;&gt;Handlebar&lt;/a&gt; template.
+This template is pretty basic, it builds a HTML table with a single column title &lt;code&gt;issueId&lt;/code&gt;.
+This table will contain a line line holding the &lt;code&gt;node_id&lt;/code&gt; value of each item returned by the API call. 
+After that it configures the Postman visualizer (&lt;code&gt;pm.visualizer&lt;/code&gt;) to use the template on the API cal response data (&lt;code&gt;pm.response.json()&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Once this is done, hit the Send button and click on Visualize in the response and tada, you get a one column table with its node_id title and all node_id values:&lt;/p&gt;
+
+&lt;div class=&quot;image border&quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/postman-visualize-ids.png&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Visualize result in Postman&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Just select all text and copy/paste it in a file that you’ll use as input to delete all issues.&lt;/p&gt;
+
+&lt;p&gt;Obviously, in our case as we need a single value for each request, that is not really a CSV file that has been “generated”.
+If you need to get multiple value, just add a comma and the new value in the template (don’t forget title) as follow&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Actually generating CSV data&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-js line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;// Handlebar template
+var templateCsv = `
+    &amp;lt;table bgcolor=&amp;quot;#FFFFFF&amp;quot;&amp;gt;
+        &amp;lt;tr&amp;gt;
+            &amp;lt;th&amp;gt;issueId,body&amp;lt;/th&amp;gt;
+        &amp;lt;/tr&amp;gt;
+
+        {{#each response}}
+            &amp;lt;tr&amp;gt;
+                &amp;lt;td&amp;gt;{{node_id}},{{body}}&amp;lt;/td&amp;gt;
+            &amp;lt;/tr&amp;gt;
+        {{/each}}
+    &amp;lt;/table&amp;gt;
+`;
+
+// Set visualizer
+pm.visualizer.set(templateCsv, {
+    // Pass the response body parsed as JSON as `data`
+    response: pm.response.json()
+});&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;From now on, you have all you need to delete multiple issues with the runner in Postman or with Newman.&lt;/p&gt;
+
+&lt;h1 id=&quot;delete-access-token&quot;&gt;Delete access token&lt;/h1&gt;
+
+&lt;p&gt;Once you’re done, beware to not commit the environnement file with active access token.
+I recommend deleting your Github access token if you don’t use it anymore.
+Go to your &lt;a href=&quot;https://github.com/settings/tokens&quot;&gt;Personal Access Token list&lt;/a&gt; on Github and click on the “delete” button for the “postman-csv-demo” token.&lt;/p&gt;
+
+&lt;h1 id=&quot;lessons-learned&quot;&gt;Lessons learned&lt;/h1&gt;
+
+&lt;p&gt;I hope that the next time you’ll need to batch API calls, you’ll remember what you’ve seen in this post.
+Doing CSV data based API batch calls is pretty simple once you know that feature exists in Postman (and in its command line counter part Newman).
+The visualize feature can be really useful too in that case but it can be used to do far more advanced data rendering.
+And don’t forget to use environment variables to store sensitive data in Postman.&lt;/p&gt;
+
+&lt;p&gt;I hope that you’ll also remember the few design principles and errors that we have seen:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Being consistent with common practices (and HTTP/REST principles), ease learning to use an API (people can guess how to use APIs)&lt;/li&gt;
+  &lt;li&gt;Including link to documentation is quite useful&lt;/li&gt;
+  &lt;li&gt;Never return unclear error that does not help to solve the problem&lt;/li&gt;
+  &lt;li&gt;Never return 404 Not Found status code when an HTTP method is not available on an actually existing resource, use 405 Method Not Allowed instead&lt;/li&gt;
+  &lt;li&gt;Having consistent URL between UI and API can be a good idea but not always (it may make API less reusable)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And last but not least, we’ve seen that even famous companies such as Github can make mistakes with their APIs.
+That means that you must be careful when taking inspiration from existing APIs.
+Hopefully, in the case of Github, the problems don’t have much consequences, the API is overall of good quality and usable (and the documentation is quite good), but be careful not to ruin developer experience with more terrible mistakes.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="API Toolbox" /><summary type="html">Do you need to make a repetitive task that could be done through an API instead of a UI? Do you need to make many API calls but don’t want to code? This post is made for you: you’ll learn to use Postman and CSV files to batch API calls. You may also learn a thing or two about API design, Github APIs (yes, plural) and other Postman features (variables, security, command line, visualizer, …) in the making. If you never have used Postman or Github APIs, no problem, everything will be explained.</summary></entry><entry><title type="html">7 ways leading to wrong ownership and killing APIs</title><link href="https://apihandyman.io/7-ways-leading-to-wrong-ownership-and-killing-apis/" rel="alternate" type="text/html" title="7 ways leading to wrong ownership and killing APIs" /><published>2021-03-28T00:00:00+00:00</published><updated>2021-03-28T00:00:00+00:00</updated><id>https://apihandyman.io/ownership</id><content type="html" xml:base="https://apihandyman.io/7-ways-leading-to-wrong-ownership-and-killing-apis/">&lt;p&gt;After hundreds of API design reviews, I can tell that the most neglected aspect of API governance is ownership.
 Unfortunately, that’s probably the most important one.
 Without true ownership, your APIs will probably be totally wrong.
 Without true ownership, your employees will be terribly sad or leave.
@@ -198,13 +1138,9 @@ INTERFACE, by API Days gathered best past 7 years speakers, entire global commun
 
 &lt;p&gt;And at last we’ll be able to have a description (and all other possible properties) along with a $ref. Any property set beside the $ref will override what comes from the $ref.&lt;/p&gt;
 
-&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;image &quot;&gt;
     &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/darrel-miller-overrive-ref.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Darrel Miller&lt;/figcaption&gt;
-        
-    &lt;/figure&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/darrel-miller-overrive-ref.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Darrel Miller&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
 &lt;h1 id=&quot;architecture&quot;&gt;Architecture&lt;/h1&gt;
@@ -262,13 +1198,9 @@ INTERFACE, by API Days gathered best past 7 years speakers, entire global commun
 
 &lt;p&gt;Teams must be autonomous but do be efficient they need to understand that they are part of a bigger system. Their mission is part of an overall mission.&lt;/p&gt;
 
-&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;image &quot;&gt;
     &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/mary-poppendieck-responsibility.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Mary Poppendieck&lt;/figcaption&gt;
-        
-    &lt;/figure&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/mary-poppendieck-responsibility.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Mary Poppendieck&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;microservice-vs-api&quot;&gt;Microservice vs API&lt;/h2&gt;
@@ -297,37 +1229,25 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 &lt;p&gt;If an upstream consumer can reach into your internal implementation then you can’t change the implementation without breaking the consumer. Consumer and provided are tightly coupled, making any change risky and even impossible.&lt;/p&gt;
 
-&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;image &quot;&gt;
     &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-01-coupling-to-internal-implementation.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;
-        
-    &lt;/figure&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-01-coupling-to-internal-implementation.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Modularization is not a new concept that appeared with APIs and microservices. In 1971, D.L. Parnas published &lt;em&gt;&lt;a href=&quot;https://kilthub.cmu.edu/articles/journal_contribution/On_the_criteria_to_be_used_in_decomposing_systems_into_modules/6607958&quot;&gt;On the criteria to be used tin decomposing systems into modules&lt;/a&gt;&lt;/em&gt;. He looked at how best to define module boundaries and found that “information hiding” worked best.&lt;/p&gt;
 
 &lt;p&gt;Your interface (API) shows what is shared, the rest data and implementation details is your own business. That’s why it is really important do have separate models for data, objects and exposed interfaces (as also always say Mike Admundsen).&lt;/p&gt;
 
-&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;image &quot;&gt;
     &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-02-information-hiding.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;
-        
-    &lt;/figure&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-02-information-hiding.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
 &lt;p&gt;If the whole becomes to big, you can split your internal implementation in various sub modules, while keeping the shared interface unique and unmodified. But be warned that only works if the whole set of microservices/modules is handled by the same team.&lt;/p&gt;
 
-&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;image &quot;&gt;
     &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-03-multiple-microservices.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;
-        
-    &lt;/figure&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-03-multiple-microservices.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
 &lt;h3 id=&quot;tip-2-cost-of-change-varies&quot;&gt;Tip #2: Cost of change varies&lt;/h3&gt;
@@ -338,13 +1258,9 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 &lt;p&gt;That means the cost of change increases with the “distance” between the provided and consumer (inside the team, inside the company, outside the company) and the number of consumers.&lt;/p&gt;
 
-&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;image &quot;&gt;
     &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-04-cost-of-change.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;
-        
-    &lt;/figure&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/sam-newman-04-cost-of-change.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Sam Newman&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The cost of change leads to different ways of taking the decision to actually do this change or not. According to Jeff Bezos, Amazon’s CEO, there are 2 types of decisions. Type 1 are irreversible decisions, it’s impossible to go back, you have to think carefully before taking them. On the opposite type 2 ones are reversible, they don’t cost 0 but you can change your mind very easily and you take no risk doing them.&lt;/p&gt;
@@ -380,13 +1296,9 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 &lt;p&gt;During Q&amp;amp;A, Mehdi Medjaoui asked Newman how he felt about miniservices, macroservices, nanoservices and other {whatever size}services. His reaction made me burst out laughing (&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0bb86686dfb0001b75df89&quot; title=&quot;Microservices, APIs, and the Cost Of Change&quot;&gt;jump at 31:45&lt;/a&gt; to see it), he looked totally desperate and did a long facepalm.&lt;/p&gt;
 
-&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;image &quot;&gt;
     &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/facepalm.gif&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Jean Luc Picard doing a facepalm&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption&quot;&gt;Sam Newman's reaction (reenactment by Jean-Luc Picard)&lt;/figcaption&gt;
-        
-    &lt;/figure&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/facepalm.gif&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Jean Luc Picard doing a facepalm&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Sam Newman's reaction (reenactment by Jean-Luc Picard)&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
 &lt;p&gt;More seriously, he stated that the name microservice which imply “size” is actually a problem. He want to go back in time and choose another name focusing on the real important aspect: independent deployability.&lt;/p&gt;
@@ -407,24 +1319,16 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 &lt;p&gt;So it looks like the decision should be made on does the communication take place inside or outide my company. But that’s not the case. A company/organization can be split in various domains (however you call them). And these domain boundaries must be treated the same way as enterprise boundary (API Management). Inside the domains you may use service meshes.&lt;/p&gt;
 
-&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;image &quot;&gt;
     &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/mark-cheshire-03-domain-boundaries.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Mark Cheshire/Redhat&lt;/figcaption&gt;
-        
-    &lt;/figure&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/mark-cheshire-03-domain-boundaries.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Mark Cheshire/Redhat&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
 &lt;p&gt;What distingues inter and intra-domain traficc is the relation between provider and consumers. Are they in the same team? How many consumers? Explicit contract needed?&lt;/p&gt;
 
-&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;image &quot;&gt;
     &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/mark-cheshire-04-inter-vs-intra-domain-traffic.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Mark Cheshire/Redhat&lt;/figcaption&gt;
-        
-    &lt;/figure&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/mark-cheshire-04-inter-vs-intra-domain-traffic.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Mark Cheshire/Redhat&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
 &lt;h3 id=&quot;boundaries-as-a-consumer&quot;&gt;Boundaries as a consumer&lt;/h3&gt;
@@ -439,13 +1343,9 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 &lt;p&gt;So many APIs and so many components lead to a system that is difficult to understand and manage. You need to build access and management components that represent this system as a monolith.&lt;/p&gt;
 
-&lt;div class=&quot;image&quot;&gt;
+&lt;div class=&quot;image &quot;&gt;
     &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/ronnie-mitra-05-borderless.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        &lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Ronnie Mitra&lt;/figcaption&gt;
-        
-    &lt;/figure&gt;
+        &lt;img src=&quot;/images/apidays-interface-doing-apis-right-and-doing-right-apis/ronnie-mitra-05-borderless.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Copyright Ronnie Mitra&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
 &lt;p&gt;By building all these layers, creating new boundaries, you can create a system so simple that it looks totally borderless.&lt;/p&gt;
@@ -3001,52 +3901,4 @@ jq -f delete-unused-schemas.jq demo-api-openapi.json | jq -r -f list-unused-sche
 
 &lt;h1 id=&quot;whats-next&quot;&gt;What’s next&lt;/h1&gt;
 
-&lt;p&gt;With what you have learned in the first 3 parts, you should be able to achieve anything you want with jq. And known that we only scratched the surface, check jq’s documentation to discover all of its features. The next and final part is a little bonus in which you’ll learn to colorize jq terminal output just for fun.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="API Toolbox" /><summary type="html">Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. Thanks to the two previous parts of this JQ and OpenAPI Series, we learned how to extract data from JSON (OpenAPI) files by discovering many filters, creating modules and using command line arguments. Now we will discover how to modify them; how to replace, add or delete elements in processed documents.</summary></entry><entry><title type="html">The Design of Everyday APIs</title><link href="https://apihandyman.io/the-design-of-everyday-apis/" rel="alternate" type="text/html" title="The Design of Everyday APIs" /><published>2020-06-28T00:00:00+00:00</published><updated>2020-06-28T00:00:00+00:00</updated><id>https://apihandyman.io/the-design-of-everyday-apis</id><content type="html" xml:base="https://apihandyman.io/the-design-of-everyday-apis/">&lt;p&gt;I totally forgot to put my 2018 talk on the blog. It’s called The Design of Everyday APIs which was the working title of my book before it was renamed The Design of Web APIs. It’s about fundamental design principles and use famous swedish furniture instruction manual theme. The principles discussed in this session are deeply covered (with more others) in my book 
-&lt;a class=&quot;left-column-hider&quot; data-toggle=&quot;modal&quot; data-target=&quot;#bookModal&quot; role=&quot;button&quot; href=&quot;#&quot;&gt;The Design of Web APIs&lt;/a&gt;
-.&lt;/p&gt;
-
-&lt;p&gt;You’ll find here the talk’s abstract, slides and video which was recorded at Nordic API Platform Summit 2018.&lt;/p&gt;
-
-&lt;p&gt;You can also read a write up on the Nordic API blog: &lt;a href=&quot;https://nordicapis.com/the-three-principles-of-excellent-api-design/&quot;&gt;The Three Principles of Excellent API Design&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
-
-&lt;p&gt;Well-designed APIs are a joy to use; poorly-designed APIs are cumbersome, confusing and frustrating, just like everyday things. During this session, I make a parallel between everyday things design and API design to expose simple but fundamentals design principles.&lt;/p&gt;
-
-&lt;p&gt;Is using knobs better than using buttons? API design is more than REST vs GraphQL vs gRPC vs whatever existing or yet to come API style. Great design can be achieved using any type of API. Would you buy a Kitchen Radar 3000? Are you able to use any washing machine instantly without reading user manual? Why QWERTY layout was invented? Like everyday things, APIs must have a clear purpose, must be used easily by anyone and are constrained by their environment.&lt;/p&gt;
-
-&lt;h1 id=&quot;video&quot;&gt;Video&lt;/h1&gt;
-
-&lt;div id=&quot;RT_3BSaHce8&quot; class=&quot;third-party-content third-party-content-youtube&quot;&gt;
-    &lt;div class=&quot;card third-party-content-warning&quot;&gt;
-        &lt;img class=&quot;card-img&quot; src=&quot;/images/thirdpartycontents/the-design-of-everyday-apis-nordicapis.jpg&quot; alt=&quot;Card image&quot; /&gt;
-        &lt;div class=&quot;card-img-overlay d-flex&quot;&gt;
-            &lt;div class=&quot;my-auto mx-auto text-center&quot;&gt;
-                &lt;p&gt;This content is hosted on youtube.com.&lt;/p&gt;
-                &lt;p&gt;By showing this third party content you accept YouTube (Google)'s 
-                    &lt;a class=&quot;privacy-policy&quot; href=&quot;https://policies.google.com/privacy&quot; target=&quot;_blank&quot;&gt;privacy policy&lt;/a&gt;.
-                &lt;/p&gt;
-                &lt;form&gt;
-                    &lt;a href=&quot;javascript:thirdPartyConsent('RT_3BSaHce8', 'youtube')&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Show third party content&lt;/a&gt;
-                    &lt;div class=&quot;form-check&quot;&gt;
-                        &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input third-party-content-remember&quot; /&gt;
-                        &lt;label class=&quot;form-check-label&quot; for=&quot;exampleCheck1&quot;&gt;Remember my choice&lt;/label&gt;
-                        &lt;p&gt;(can be changed in &lt;a class=&quot;privacy-policy&quot; href=&quot;/privacy&quot;&gt;privacy settings&lt;/a&gt;)&lt;/p&gt;
-                      &lt;/div&gt;
-                &lt;/form&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;iframe-container third-party-content-iframe third-party-content-iframe-disabled&quot;&gt;
-        &lt;iframe class=&quot;iframe-responsive&quot; data-src=&quot;https://www.youtube-nocookie.com/embed/RT_3BSaHce8?color=white&amp;amp;theme=light&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
-        &lt;/iframe&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;slides&quot;&gt;Slides&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;/slidedecks/the-design-of-everyday-apis/the-design-of-everyday-apis.pdf&quot; download=&quot;the-design-of-everyday-apis.pdf&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Download PDF&lt;/a&gt;
-&lt;a href=&quot;/slidedecks/the-design-of-everyday-apis/the-design-of-everyday-apis.pdf&quot; target=&quot;_blank&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Open PDF&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&quot;iframe-container&quot;&gt;
-    &lt;iframe class=&quot;iframe-responsive&quot; src=&quot;/slidedecks/the-design-of-everyday-apis/index.html&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talk" /><summary type="html">I totally forgot to put my 2018 talk on the blog. It’s called The Design of Everyday APIs which was the working title of my book before it was renamed The Design of Web APIs. It’s about fundamental design principles and use famous swedish furniture instruction manual theme. The principles discussed in this session are deeply covered (with more others) in my book The Design of Web APIs . You’ll find here the talk’s abstract, slides and video which was recorded at Nordic API Platform Summit 2018. You can also read a write up on the Nordic API blog: The Three Principles of Excellent API Design. Abstract Well-designed APIs are a joy to use; poorly-designed APIs are cumbersome, confusing and frustrating, just like everyday things. During this session, I make a parallel between everyday things design and API design to expose simple but fundamentals design principles. Is using knobs better than using buttons? API design is more than REST vs GraphQL vs gRPC vs whatever existing or yet to come API style. Great design can be achieved using any type of API. Would you buy a Kitchen Radar 3000? Are you able to use any washing machine instantly without reading user manual? Why QWERTY layout was invented? Like everyday things, APIs must have a clear purpose, must be used easily by anyone and are constrained by their environment. Video This content is hosted on youtube.com. By showing this third party content you accept YouTube (Google)'s privacy policy. Show third party content Remember my choice (can be changed in privacy settings) Slides Download PDF Open PDF</summary></entry></feed>
+&lt;p&gt;With what you have learned in the first 3 parts, you should be able to achieve anything you want with jq. And known that we only scratched the surface, check jq’s documentation to discover all of its features. The next and final part is a little bonus in which you’ll learn to colorize jq terminal output just for fun.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="API Toolbox" /><summary type="html">Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. Thanks to the two previous parts of this JQ and OpenAPI Series, we learned how to extract data from JSON (OpenAPI) files by discovering many filters, creating modules and using command line arguments. Now we will discover how to modify them; how to replace, add or delete elements in processed documents.</summary></entry></feed>
