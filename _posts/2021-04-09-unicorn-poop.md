@@ -38,7 +38,7 @@ How many promising APIs have been totally crippled by terrible registration proc
 How you find APIs, how simple is their registration process, how clear is the documentation, how standard is their security, how short is the "time to first call", all those aspects are what will make a terrible or wonderful developer experience.
 
 Hit by the "API unicorn poop", you'll think about the people who will come after you to work on what you build, you'll think about the people who may have to run and monitor what you build (not everyone as turn to "full develops, you build it, you run it", and even so, you'll think about your team).
-You'll start to work on documentation, automation, ...; you'll do whatever is possible to ensure that anyone can start to work in a matter of minute if not seconds.
+You'll start to work on documentation, automation, ... you'll do whatever is possible to ensure that anyone can start to work in a matter of minute if not seconds.
 Writing documentation, you'll work harder on its content, its design in order to ensure it is actually user-friendly and people find what they need instantly.
 You may even start to wonder if it's reasonable to use 123 different technologies in your picoservices architecture, that could be a real HR nightmare to find people actually mastering that obscure framework or language you choose to use just because.
 Basically, you'll start to think about user experience of everyone who will have to work one way or another with what you build.
