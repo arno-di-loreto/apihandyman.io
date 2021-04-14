@@ -14,6 +14,8 @@ Why?
 Because modern web APIs raises the bar of software design and developer experience and so raises awareness and expectations regarding these topics for software in general.
 <!--more-->
 
+_Very special thanks to [@mrlapindesign](https://twitter.com/mrlapindesign) for the unicorn poop hits the fan post's banner._
+
 # From API design to software design and architecture
 
 I help people to design their web APIs in order to help them achieve the creation of APIs that fulfill actual needs and will be easy to understand, easy to use, reusable and evolvable.
