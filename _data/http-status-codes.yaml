@@ -1,0 +1,24 @@
+- code: 404
+  source:
+    type: RFC
+    id: 7231
+    location: section 6.5.4
+    url: http://tools.ietf.org/html/rfc7231#section-6.5.4
+  reason: Not Found
+  description: The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
+- code: 405
+  source:
+    type: RFC
+    id: 7231
+    location: section 6.5.5
+    url: http://tools.ietf.org/html/rfc7231#section-6.5.5
+  reason: Method Not Allowed
+  description: The 405 (Method Not Allowed) status code indicates that the method received in the request-line is known by the origin server but not supported by the target resource.
+- code: 501
+  source:
+    type: RFC
+    id: 7231
+    location: Section 6.6.2
+    url: http://tools.ietf.org/html/rfc7231#section-6.6.2
+  reason: Not Implemented
+  description: The 501 (Not Implemented) status code indicates that the server does not support the functionality required to fulfill the request. This is the appropriate response when the server does not recognize the request method and is not capable of supporting it for any resource.

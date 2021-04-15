@@ -1,0 +1,9 @@
+{%- assign code = site.data.http-status-codes | find: "code", include.code -%}
+{%- if include.style == "with reason" -%}
+`{{code.code | append: " " | append: code.reason}}`
+{%- elsif include.style == "rfc" -%}
+{{code.source.type | append: " " | append: code.source.id}}
+{%- elsif include.style == "quote" -%}
+{%- assign source = code.source.type | append: " " | append: code.source.id | append:", " | append: code.source.location -%}
+{%- include quote.html source=source url=code.source.url text=code.description %}
+{%- endif -%}
