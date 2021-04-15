@@ -1,5 +1,6 @@
 ---
 title: Batch (Github) API calls with CSV and Postman runner and visualizer
+alias: postman-csv-demo
 date: 2021-04-07
 author: Arnaud Lauret
 layout: post
