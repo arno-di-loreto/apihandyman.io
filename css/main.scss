@@ -843,6 +843,23 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
   top: 55px;
 }
 
+/**********/
+/* Search */
+/**********/
+
+.form-search {
+  @extend .form-inline;
+  .input-search {
+    @extend .form-control;    
+  }
+  .input-search-failed {
+    background-color: red;
+  }
+  .btn-search {
+    @extend .btn, .btn-outline-success, .my-2, .my-sm-0; 
+  }
+}
+
 /*******************************/
 /* Left menu - Series dropdown */
 /*******************************/

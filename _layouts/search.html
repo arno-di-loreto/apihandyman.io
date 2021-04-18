@@ -1,0 +1,22 @@
+---
+layout: default
+with_banner: true
+book_in_nav: true
+libs:
+  search: true
+---
+{% capture overlay %}
+<p class="card-text text-justify">Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs.</p>
+<a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#bookModal" role="button" >You can also read my book</a>
+{% endcapture %}
+{%include full-width-banner.html overlay=overlay css=page.category %}
+
+<div class="row row-list">
+    <div class="container">
+      <div id="searchResultsPlaceHolder" class="row row-cols-1">
+        <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+</div>

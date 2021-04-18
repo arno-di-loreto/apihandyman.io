@@ -1,0 +1,15 @@
+{%- include variables.html item=post -%}
+{%- if include.type=="full" -%}
+    {%- assign index_content = item_content -%}
+{%- else -%}
+    {%- assign index_content = item_description -%}
+{%- endif -%}
+{%- assign clean_content = item_content | split: '<div class="page-content-text anchors">' | last | split: '<!-- class="page-content-text"-->' | first | strip_html | strip_newlines | jsonify -%}
+{
+    "id":"{{ counter }}",
+    "title":"{{ item_title }}",
+    "url": "{{ item_url }}",
+    "banner":"{{item_banner}}",
+    "description":"{{item_description}}",
+    "body": {{ clean_content }}
+}
