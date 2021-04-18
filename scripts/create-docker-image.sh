@@ -10,5 +10,7 @@ docker run \
   --volume="$PWD:/srv/jekyll:delegated" \
   -it jekyll/jekyll:$JEKYLL_DOCKER_VERSION \
   bundle install
+echo "Commit image $IMAGE_NAME"
 docker commit $CONTAINER_NAME $IMAGE_NAME 
+echo "Cleaning $CONTAINER_NAME"
 docker rm $CONTAINER_NAME
