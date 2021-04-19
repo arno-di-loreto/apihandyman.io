@@ -106,6 +106,8 @@ $footer-shadow: $light-shadow;
 $tooltip-font-color: $primary-button-font-color;
 $tooltip-background-color: $primary-button-background-color;
 
+$input-error: $orange;
+
 // Overriding bootstrap tooltip colors
 $tooltip-color: $tooltip-font-color;
 $tooltip-bg: $tooltip-background-color;
@@ -841,6 +843,72 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
 // Only used by expanded code blocks so far
 .close-to-main-navbar {
   top: 55px;
+}
+
+/**********/
+/* Search */
+/**********/
+
+.input-error {
+  position: relative;
+  animation: shake .1s linear;
+  animation-iteration-count: 3;
+}
+
+@keyframes shake {
+  0% { left: -5px; }
+  100% { right: -5px; }
+}
+
+.form-search {
+  @extend .form-inline ;
+  
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .input-search::placeholder {
+    color: $navbar-backgound-color;
+  }
+  .input-search {
+    @extend .form-control, .border-0;
+    width: 176px;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+  .input-search-failed {
+    background-color: red;
+  }
+  .btn-search:focus {
+    box-shadow: none;
+  }
+  .btn-search {
+    @extend .btn, .my-2, .my-sm-0, .border-0;
+    background-color: white;
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    svg {
+      fill: $navbar-backgound-color; 
+    }
+  }
+  .btn-search:hover {
+    background-color: white;
+    svg {
+      fill: $navbar-active-item-font-color; 
+    }
+  }
+}
+
+#searchResultsPlaceHolder {
+  .spinner-grow {
+    width: 2rem;
+    width: 2rem;
+  }
 }
 
 /*******************************/

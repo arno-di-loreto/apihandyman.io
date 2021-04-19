@@ -15,6 +15,19 @@
                 "runOn": "folderOpen"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Jekyll Update Docker Image",
+            "type": "shell",
+            "command": "scripts/create-docker-image.sh apihandyman/jekyll 4.1.0",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
+            "problemMatcher": []
         }
     ]
 }
