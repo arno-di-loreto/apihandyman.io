@@ -848,15 +848,50 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
 /**********/
 
 .form-search {
-  @extend .form-inline;
+  @extend .form-inline ;
+  
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  
+  @include media-breakpoint-down(md) {
+    padding-left: 0;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .input-search::placeholder {
+    color: $navbar-backgound-color;
+  }
   .input-search {
-    @extend .form-control;    
+    @extend .form-control, .border-0;
+    width: 176px;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
   }
   .input-search-failed {
     background-color: red;
   }
   .btn-search {
-    @extend .btn, .btn-outline-success, .my-2, .my-sm-0; 
+    @extend .btn, .btn-outline-success, .my-2, .my-sm-0, .border-0;
+    background-color: white;
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    svg {
+      fill: $navbar-backgound-color; 
+    }
+  }
+  .btn-search:hover {
+    background-color: white;
+    svg {
+      fill: $navbar-active-item-font-color; 
+    }
+  }
+}
+
+#searchResultsPlaceHolder {
+  .spinner-grow {
+    width: 2rem;
+    width: 2rem;
   }
 }
 

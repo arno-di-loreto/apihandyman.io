@@ -7,7 +7,7 @@ let index
 
 function loadDocuments(callback) {
     const xhr = new XMLHttpRequest()
-    xhr.open('GET', '/js/lunr-index.json', true)
+    xhr.open('GET', '/js/lunr-documents.json', true)
     xhr.responseType = 'json'
     
     xhr.onload = function() {
