@@ -101,9 +101,10 @@ function searchIndex() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const text = urlParams.get('q')
-    if(text) {
+    let results
+    if(text && text.length > 0) {
         console.log("Searching for: " + text)
-        let results = index.search(text);
+        results = index.search(text);
         if(results.length>0){
             console.log("Search results for:" + text)
             for (var i = 0; i < results.length; i++) {
@@ -114,32 +115,42 @@ function searchIndex() {
                 var body = documents[ref]['body'].substring(0,160)+'...'
                 console.log(title)
             }
-            showSearchResults(text, results)
         } else {
             console.log("Nothing found for: " + text)
         }
     }
     else {
+        results = []
         console.log('no q parameter')
     }
+    showSearchResults(text, results)
 }
 
 function showSearchResults(text,results) {
     const placeHolder = document.querySelector("#searchResultsPlaceHolder");
     html = '<div class="card-page-section page-section-not-title tool-related-links">'
-    html += '<div class="card-body">'
-    html += '<h1> Post matching "' + text + '" search</h1>'
-    html += '<ul id="searchResults"></ul>'
-    html += '</div>'
-    placeHolder.innerHTML = html
-    const list = placeHolder.querySelector("#searchResults");
-    results.forEach(function(item) {
-        const ref = item.ref
-        const doc = documents[ref]
-        const li = document.createElement('li')
-        li.innerHTML = '<a href="'+doc.url+'">'+doc.title+'</a>'
-        list.appendChild(li)
-    })
+    if(results.length > 0) {
+        html += '<div class="card-body">'
+        html += '<h1> Posts matching "' + text + '" search</h1>'
+        html += '<ul id="searchResults"></ul>'
+        html += '</div>'
+        placeHolder.innerHTML = html
+        const list = placeHolder.querySelector("#searchResults");
+        results.forEach(function(item) {
+            const ref = item.ref
+            const doc = documents[ref]
+            const li = document.createElement('li')
+            li.innerHTML = '<a href="'+doc.url+'">'+doc.title+'</a>'
+            list.appendChild(li)
+        })
+    }
+    else {
+        html += '<div class="card-body">'
+        html += '<h1> No post matching "' + text + '"</h1>'
+        html += '</div>'
+        placeHolder.innerHTML = html
+    }
+
 
 }
 
