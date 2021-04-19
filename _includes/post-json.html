@@ -4,12 +4,22 @@
 {%- else -%}
     {%- assign index_content = item_description -%}
 {%- endif -%}
+{%- if include.type == "tool" -%}
+    {%- assign full_title = item_title | prepend: "Toolbox - " -%}
+{%- else -%}
+    {%- if item_series_title -%}
+        {%- assign full_title = item_title | prepend: " - " | prepend: item_series_title -%}
+    {%- else -%}
+        {%- assign full_title = item_title -%}
+    {%- endif -%}
+{%- endif -%}    
 {%- assign clean_content = item_content | split: '<div class="page-content-text anchors">' | last | split: '<!-- class="page-content-text"-->' | first | strip_html | strip_newlines | jsonify -%}
 {
-    "id":"{{ counter }}",
-    "title":"{{ item_title }}",
+    "id": "{{ counter }}",
+    "type": "{{ include.type }}",
+    "title": "{{ full_title }}",
     "url": "{{ item_url }}",
-    "banner":"{{item_banner}}",
-    "description":"{{item_description}}",
+    "banner": "{{item_banner}}",
+    "description": "{{item_description}}",
     "body": {{ clean_content }}
 }

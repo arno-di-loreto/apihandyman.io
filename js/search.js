@@ -128,12 +128,9 @@ function searchIndex() {
 
 function showSearchResults(text,results) {
     const placeHolder = document.querySelector("#searchResultsPlaceHolder");
-    html = '<div class="card-page-section page-section-not-title tool-related-links">'
     if(results.length > 0) {
-        html += '<div class="card-body">'
-        html += '<h1> Posts matching "' + text + '" search</h1>'
+        let html = '<h1> Content matching "' + text + '" search</h1>'
         html += '<ul id="searchResults"></ul>'
-        html += '</div>'
         placeHolder.innerHTML = html
         const list = placeHolder.querySelector("#searchResults");
         results.forEach(function(item) {
@@ -145,9 +142,7 @@ function showSearchResults(text,results) {
         })
     }
     else {
-        html += '<div class="card-body">'
-        html += '<h1> No post matching "' + text + '"</h1>'
-        html += '</div>'
+        const html = '<h1> No content matching "' + text + '" found</h1>'
         placeHolder.innerHTML = html
     }
 

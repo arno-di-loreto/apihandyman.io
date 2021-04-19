@@ -1,4 +1,4 @@
-{% if page.banner_type == "full_width" %}
+{% if page.banner_type == "full_width" or layout.banner_type == "full_width" %}
   {% include full-width-banner.html overlay=include.overlay css=include.css %}
 {% else %}
   <div class="row row-banner-small row-banner-small-{{include.css}}">
