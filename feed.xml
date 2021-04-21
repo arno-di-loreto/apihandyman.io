@@ -1,4 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-04-20T04:13:47+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">When unicorn poop hits the fan (or how APIs can improve how we build software)</title><link href="https://apihandyman.io/when-unicorn-poop-hits-the-fan-or-how-apis-can-improve-how-we-build-software/" rel="alternate" type="text/html" title="When unicorn poop hits the fan (or how APIs can improve how we build software)" /><published>2021-04-14T00:00:00+00:00</published><updated>2021-04-14T00:00:00+00:00</updated><id>https://apihandyman.io/unicorn-poop</id><content type="html" xml:base="https://apihandyman.io/when-unicorn-poop-hits-the-fan-or-how-apis-can-improve-how-we-build-software/">&lt;p&gt;Do you know what happens when you throw unicorn poop into a fan?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-04-21T04:14:40+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">404 Vs 405 Vs 501</title><link href="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/" rel="alternate" type="text/html" title="404 Vs 405 Vs 501" /><published>2021-04-21T00:00:00+00:00</published><updated>2021-04-21T00:00:00+00:00</updated><id>https://apihandyman.io/404-vs-405-vs-501</id><content type="html" xml:base="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
+This first post answers the following question: given that a &lt;code&gt;GET /resources/123&lt;/code&gt; request returns a &lt;code&gt;200 OK&lt;/code&gt;, what should be the response to &lt;code&gt;DELETE /resources/123&lt;/code&gt; if &lt;code&gt;DELETE&lt;/code&gt; method is not implemented? &lt;code&gt;404 Not Found&lt;/code&gt;, &lt;code&gt;405 Method Not Allowed&lt;/code&gt; or &lt;code&gt;501 Not Implemented&lt;/code&gt;?
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div class=&quot;alert alert-info&quot; role=&quot;alert&quot;&gt;
+I never remember in which RFCs HTTP status codes are defined.
+To get a quick access to their documentation, I use &lt;a href=&quot;https://webconcepts.info/concepts/http-status-code/&quot; class=&quot;alert-link&quot;&gt;Erik Wilde's Web Concepts&lt;/a&gt;.
+&lt;/div&gt;
+
+&lt;h1 id=&quot;the-context&quot;&gt;The context&lt;/h1&gt;
+
+&lt;p&gt;In my &lt;a class=&quot;post-link&quot; href=&quot;/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/&quot;&gt;Batch (Github) API calls with CSV and Postman runner and visualizer&lt;/a&gt; post, I used the Github REST API and discovered it was impossible to delete an issue on a repository with a &lt;code&gt;DELETE /{user}/{repository}/issues/{issueId}&lt;/code&gt; request simply because it was not implemented.
+Unfortunately, the Github API warned me with a quite awkward &lt;code&gt;404 Not Found&lt;/code&gt; though a &lt;code&gt;GET&lt;/code&gt; on the very same issue returned a &lt;code&gt;200 OK&lt;/code&gt; that tells “this issue exists”.
+That’s quite a contradiction.&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/twitter-poll.png&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Twitter poll results&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;According to a Twitter poll I made, a few voters (10%) agreed with Github REST API’s &lt;code&gt;404 Not Found&lt;/code&gt; response, most people (56%) would use a &lt;code&gt;405 Method Not Allowed&lt;/code&gt;, but a significant amount (34%) would use &lt;code&gt;501 Not Implemented&lt;/code&gt;.
+Let’s see which HTTP status code(s) can be used when a resource actually exists but the method provided in the request is not available.&lt;/p&gt;
+
+&lt;h1 id=&quot;use-405-method-not-allowed-when-method-isnt-defined-in-contract&quot;&gt;Use 405 Method Not Allowed when method isn’t defined in contract&lt;/h1&gt;
+
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 405 (Method Not Allowed) status code indicates that the method received in the request-line is known by the origin server but not supported by the target resource.&lt;/p&gt;
+    &lt;footer class=&quot;blockquote-footer&quot;&gt;&lt;cite title=&quot;Source Title&quot;&gt;
+            &lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.5.5&quot;&gt;RFC 7231, section 6.5.5&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A &lt;code&gt;405&lt;/code&gt; is a &lt;code&gt;4xx&lt;/code&gt; class status code, which means it’s client’s fault.
+Receiving such a response means the client sent to the origin server a request with a method that is not allowed/supported by the target resource.
+Let’s rephrase that definition in the context of an API:
+a consumer will get a &lt;code&gt;405 Method Not Allowed&lt;/code&gt; response when sending a request with a method which is not explicitly mentioned in in the contract or documentation on the target resource.
+For instance, that means if the API’s contract or documentation states the only method supported by a resource &lt;code&gt;/resource&lt;/code&gt; is &lt;code&gt;GET&lt;/code&gt;, a consumer sending a request on this resource using any other method, like &lt;code&gt;DELETE /resource&lt;/code&gt; for instance, will get a &lt;code&gt;405 Method Not Allowed&lt;/code&gt; response.&lt;/p&gt;
+
+&lt;p&gt;Therefore, the &lt;code&gt;405&lt;/code&gt; status code is the one I would have expected from the Github REST API when I tried to delete an issue.
+Indeed, the API’s documentation describing the API’s contract of the issue resource (&lt;code&gt;/{user}/{repository}/issues/{issueId}&lt;/code&gt;) only mentions &lt;code&gt;GET&lt;/code&gt; and I sent &lt;code&gt;DELETE&lt;/code&gt;.
+It’s clearly my fault, though it’s quite surprising to NOT be able to delete an issue (but that’s another story).&lt;/p&gt;
+
+&lt;p&gt;A &lt;code&gt;405 Method Not Allowed&lt;/code&gt; is the right choice when the method is not defined in contract, but sending a “wrong” method is not always consumer’s fault, that’s where a &lt;code&gt;501 Not Implemented&lt;/code&gt; could be interesting.&lt;/p&gt;
+
+&lt;h1 id=&quot;use-501-not-implemented-when-partially-implementing-a-standard&quot;&gt;Use 501 Not Implemented when partially implementing a “standard”&lt;/h1&gt;
+
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 501 (Not Implemented) status code indicates that the server does not support the functionality required to fulfill the request. This is the appropriate response when the server does not recognize the request method and is not capable of supporting it for any resource.&lt;/p&gt;
+    &lt;footer class=&quot;blockquote-footer&quot;&gt;&lt;cite title=&quot;Source Title&quot;&gt;
+            &lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.6.2&quot;&gt;RFC 7231, Section 6.6.2&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A &lt;code&gt;5xx&lt;/code&gt; class error means the server is at fault.
+A &lt;code&gt;501 Not Implemented&lt;/code&gt; basically says “we’re deeply sorry but &lt;code&gt;METHOD&lt;/code&gt; has not been implemented on this resource and maybe has not been implemented at all on any resource”.&lt;/p&gt;
+
+&lt;p&gt;Sending a &lt;code&gt;TOTALLY-UNKNOWN-METHOD /whatever-resource&lt;/code&gt; could result in getting a &lt;code&gt;501&lt;/code&gt; if the method does not match any &lt;a href=&quot;https://webconcepts.info/concepts/http-method/&quot;&gt;generally known one&lt;/a&gt;, but in that case I would prefer to return a &lt;code&gt;405 Method Not Allowed&lt;/code&gt; as it’s not the server’s fault if the consumer really sent a bullshit method in its request and must send an acceptable one.&lt;/p&gt;
+
+&lt;p&gt;But, imagine you are implementing a “more or less standard” interface contract.
+It could be because you work in a regulated industry like banking or an highly inter-connected one like travel or logistics.
+It could be because you want to implement a protocol such as WebDAV, which is a extended version of HTTP adding new methods.
+It could also be simply because inside your company several components have to share a common interface in order to facilitate communication.&lt;/p&gt;
+
+&lt;p&gt;Imagine now that standard contract you need to implement says consumer can use &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;PUT&lt;/code&gt; on &lt;code&gt;/resource&lt;/code&gt; but you only implement &lt;code&gt;GET&lt;/code&gt; in your version 1 for whatever reasonable reason.
+In that case, returning a &lt;code&gt;501 Not Implemented&lt;/code&gt; would be the perfect answer as the “standard” contract says that &lt;code&gt;PUT /whatever-resource&lt;/code&gt; is possible but it has not been implemented by the actual provider.&lt;/p&gt;
+
+&lt;p&gt;If a &lt;code&gt;501 Not Implemented&lt;/code&gt; is a very good answer in such a context of partially implementing a “more or less standard” API, returning a &lt;code&gt;404 Not Found&lt;/code&gt; is totally out of question in any HTTP method related error.&lt;/p&gt;
+
+&lt;h1 id=&quot;never-use-404-not-found-when-receiving-wrong-or-unknown-method&quot;&gt;Never use 404 Not Found when receiving wrong or unknown method&lt;/h1&gt;
+
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.&lt;/p&gt;
+    &lt;footer class=&quot;blockquote-footer&quot;&gt;&lt;cite title=&quot;Source Title&quot;&gt;
+            &lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.5.4&quot;&gt;RFC 7231, section 6.5.4&lt;/a&gt;&lt;/cite&gt;&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The Github REST API responded with a &lt;code&gt;404 Not Found&lt;/code&gt; to my &lt;code&gt;DELETE /issue-resource-path&lt;/code&gt; request.
+According to RFC 7231, that tells the issue identified by the path doesn’t exist (A) or Github is not willing to disclose that issue actually exists (B).
+Unfortunately, both options were contradicted by the &lt;code&gt;GET /issue-resource-path&lt;/code&gt; returning a &lt;code&gt;200 OK&lt;/code&gt;.
+Indeed, getting this &lt;code&gt;200&lt;/code&gt; tells the issue actually exists (Not A) and Github is willing to disclose it exists (Not B).&lt;/p&gt;
+
+&lt;p&gt;And even if for any reason I was actually not able to see this issue (we’ll talk about that in a later post) and so get a &lt;code&gt;404&lt;/code&gt; on my &lt;code&gt;GET&lt;/code&gt;, I still would prefer to get a &lt;code&gt;405&lt;/code&gt; on my &lt;code&gt;DELETE&lt;/code&gt;, that way I could have quickly know that whatever the issue I want to delete, I will never be able to delete it as it’s not possible according to the API’s contract.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This first post answers the following question: given that a GET /resources/123 request returns a 200 OK, what should be the response to DELETE /resources/123 if DELETE method is not implemented? 404 Not Found, 405 Method Not Allowed or 501 Not Implemented?</summary></entry><entry><title type="html">When unicorn poop hits the fan (or how APIs can improve how we build software)</title><link href="https://apihandyman.io/when-unicorn-poop-hits-the-fan-or-how-apis-can-improve-how-we-build-software/" rel="alternate" type="text/html" title="When unicorn poop hits the fan (or how APIs can improve how we build software)" /><published>2021-04-14T00:00:00+00:00</published><updated>2021-04-14T00:00:00+00:00</updated><id>https://apihandyman.io/unicorn-poop</id><content type="html" xml:base="https://apihandyman.io/when-unicorn-poop-hits-the-fan-or-how-apis-can-improve-how-we-build-software/">&lt;p&gt;Do you know what happens when you throw unicorn poop into a fan?
 It makes everything better, everyone and everything around looks perfect, covered with joy and happiness.
 Working seriously on (public or private) APIs can lead to the same kind of effect on how we build software.
 Why?
@@ -2216,54 +2295,4 @@ oas_operations
 
 &lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
 
-&lt;p&gt;That concludes for now this JQ and OpenAPI series, I may add some other posts if I create interesting JQ+OpenAPI modules. Thanks to what you have learned about JQ, you should be able to do whatever you want on any OpenAPI file and even on any JSON document, especially the one you may retrieve with &lt;code&gt;curl&lt;/code&gt;; that may be a good topic for another series by the way …&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="API Toolbox" /><summary type="html">Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. The three previous parts of this JQ and OpenAPI Series, taught us to extract data from JSON (OpenAPI) files and modify them using many filters, creating modules and using command line arguments. To finish this series, we’ll learn to color JQ’s raw terminal output and do a colored version of part 2’s search operations.</summary></entry><entry><title type="html">API Design Reviewer’s Starter Set</title><link href="https://apihandyman.io/api-design-reviewers-starter-set/" rel="alternate" type="text/html" title="API Design Reviewer’s Starter Set" /><published>2020-06-29T00:00:00+00:00</published><updated>2020-06-29T00:00:00+00:00</updated><id>https://apihandyman.io/api-design-reviewers-starter-set</id><content type="html" xml:base="https://apihandyman.io/api-design-reviewers-starter-set/">&lt;p&gt;My 2019 talk, The API Design Reviewer’s Starter Set, is about API design reviews and Dungeons and Dragons.
-You’ll find here its abstract, slides and video recorded at API Days London 2019.&lt;/p&gt;
-
-&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
-
-&lt;p&gt;What could go possibly wrong when designing APIs? Everything.
-Among many other things, API Design may be inconsistent with pre-existing elements, may be bugged, may not fulfill needs, may be hard to understand or use, may be too specific and impossible to reuse, …&lt;/p&gt;
-
-&lt;p&gt;Whatever the organization’s size, the type of APIs and the designers skills and experience, something will go wrong. That is why, any API design must be reviewed.&lt;/p&gt;
-
-&lt;p&gt;During this session, I uncover everything you need to start reviewing the designs of your organization’s APIs.&lt;/p&gt;
-
-&lt;p&gt;Explore subterranean needs! Plunder hoards of inconsistency! Battle legendary design flaws!&lt;/p&gt;
-
-&lt;p&gt;The API Design Reviewer’s Starter Set is your gateway to exhaustive and constructive API design reviews. This session contains the essential rules of design reviews plus a few tips and trick that will be of great help on your perilous adventures in the API world.&lt;/p&gt;
-
-&lt;h1 id=&quot;video&quot;&gt;Video&lt;/h1&gt;
-
-&lt;div id=&quot;pOmmkbCJCu0&quot; class=&quot;third-party-content third-party-content-youtube&quot;&gt;
-    &lt;div class=&quot;card third-party-content-warning&quot;&gt;
-        &lt;img class=&quot;card-img&quot; src=&quot;/images/thirdpartycontents/api-design-reviewers-starter-set-apidays-london.jpg&quot; alt=&quot;Card image&quot; /&gt;
-        &lt;div class=&quot;card-img-overlay d-flex&quot;&gt;
-            &lt;div class=&quot;my-auto mx-auto text-center&quot;&gt;
-                &lt;p&gt;This content is hosted on youtube.com.&lt;/p&gt;
-                &lt;p&gt;By showing this third party content you accept YouTube (Google)'s 
-                    &lt;a class=&quot;privacy-policy&quot; href=&quot;https://policies.google.com/privacy&quot; target=&quot;_blank&quot;&gt;privacy policy&lt;/a&gt;.
-                &lt;/p&gt;
-                &lt;form&gt;
-                    &lt;a href=&quot;javascript:thirdPartyConsent('pOmmkbCJCu0', 'youtube')&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Show third party content&lt;/a&gt;
-                    &lt;div class=&quot;form-check&quot;&gt;
-                        &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input third-party-content-remember&quot; /&gt;
-                        &lt;label class=&quot;form-check-label&quot; for=&quot;exampleCheck1&quot;&gt;Remember my choice&lt;/label&gt;
-                        &lt;p&gt;(can be changed in &lt;a class=&quot;privacy-policy&quot; href=&quot;/privacy&quot;&gt;privacy settings&lt;/a&gt;)&lt;/p&gt;
-                      &lt;/div&gt;
-                &lt;/form&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;iframe-container third-party-content-iframe third-party-content-iframe-disabled&quot;&gt;
-        &lt;iframe class=&quot;iframe-responsive&quot; data-src=&quot;https://www.youtube-nocookie.com/embed/pOmmkbCJCu0?color=white&amp;amp;theme=light&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
-        &lt;/iframe&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;slides&quot;&gt;Slides&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;/slidedecks/api-design-reviewers-starter-set/api-design-reviewers-starter-set.pdf&quot; download=&quot;api-design-reviewers-starter-set.pdf&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Download PDF&lt;/a&gt;
-&lt;a href=&quot;/slidedecks/api-design-reviewers-starter-set/api-design-reviewers-starter-set.pdf&quot; target=&quot;_blank&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Open PDF&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&quot;iframe-container&quot;&gt;
-    &lt;iframe class=&quot;iframe-responsive&quot; src=&quot;/slidedecks/api-design-reviewers-starter-set/index.html&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talk" /><summary type="html">My 2019 talk, The API Design Reviewer’s Starter Set, is about API design reviews and Dungeons and Dragons. You’ll find here its abstract, slides and video recorded at API Days London 2019. Abstract What could go possibly wrong when designing APIs? Everything. Among many other things, API Design may be inconsistent with pre-existing elements, may be bugged, may not fulfill needs, may be hard to understand or use, may be too specific and impossible to reuse, … Whatever the organization’s size, the type of APIs and the designers skills and experience, something will go wrong. That is why, any API design must be reviewed. During this session, I uncover everything you need to start reviewing the designs of your organization’s APIs. Explore subterranean needs! Plunder hoards of inconsistency! Battle legendary design flaws! The API Design Reviewer’s Starter Set is your gateway to exhaustive and constructive API design reviews. This session contains the essential rules of design reviews plus a few tips and trick that will be of great help on your perilous adventures in the API world. Video This content is hosted on youtube.com. By showing this third party content you accept YouTube (Google)'s privacy policy. Show third party content Remember my choice (can be changed in privacy settings) Slides Download PDF Open PDF</summary></entry></feed>
+&lt;p&gt;That concludes for now this JQ and OpenAPI series, I may add some other posts if I create interesting JQ+OpenAPI modules. Thanks to what you have learned about JQ, you should be able to do whatever you want on any OpenAPI file and even on any JSON document, especially the one you may retrieve with &lt;code&gt;curl&lt;/code&gt;; that may be a good topic for another series by the way …&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="API Toolbox" /><summary type="html">Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. The three previous parts of this JQ and OpenAPI Series, taught us to extract data from JSON (OpenAPI) files and modify them using many filters, creating modules and using command line arguments. To finish this series, we’ll learn to color JQ’s raw terminal output and do a colored version of part 2’s search operations.</summary></entry></feed>
