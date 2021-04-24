@@ -14,6 +14,8 @@ tags:
   - Swagger
   - OpenAPI
   - Documentation
+tools:
+  - OpenAPI Specification
 ---
 When watching a movie, have you ever noticed how characters *interact* with computers? If someone wants to destroy a computer, what does he or she smash?  
 The computer's screen...<!--more-->

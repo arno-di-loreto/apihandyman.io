@@ -9,6 +9,8 @@ type: link
 tags:
   - Design
   - API Stylebook
+tools:
+  - API Stylebook Specification
 full: true
 comments: false
 target_link: http://apistylebook.com/blog/google-api-design-guide-added-on-the-api-stylebook

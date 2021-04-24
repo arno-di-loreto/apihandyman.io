@@ -16,6 +16,8 @@ tags:
   - NordicAPIs
   - NordicAPIs Summit
   - NordicAPIs Summit Stockholm
+tools:
+  - OpenAPI Specification
 series: OpenAPI Trek
 series_title: OpenAPI Trek Into Fastness
 series_number: 2

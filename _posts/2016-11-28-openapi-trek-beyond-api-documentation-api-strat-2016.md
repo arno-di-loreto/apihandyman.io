@@ -16,6 +16,8 @@ tags:
   - Video
   - Slides
   - Series
+tools:
+  - OpenAPI Specification
 series: OpenAPI Trek
 series_title: OpenAPI Trek Beyond API Documentation
 series_number: 3

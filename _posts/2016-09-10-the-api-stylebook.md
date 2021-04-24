@@ -13,6 +13,8 @@ type: link
 tags:
   - Design
   - API Stylebook
+tools:
+  - API Stylebook
 full: true
 comments: false
 ---

@@ -7,6 +7,10 @@ category: talk
 permalink: /the-augmented-api-design-reviewer/
 catchphrase: API Design Reviews can be a total nightmare when it comes to check API Design Guidelines conformance. Hopefully, this can be automated using the OpenAPI Specification and Spectral, helping you to focus on real API design matters. 
 catchphrase_as_excerpt: true
+tools:
+    - OpenAPI Specification
+    - Spectral
+    - Studio
 ---
 
 My 2020 talk, _The Augmented API Design Reviewer_ is about (partial) API Design review automation with the OpenAPI Specification and Spectral.

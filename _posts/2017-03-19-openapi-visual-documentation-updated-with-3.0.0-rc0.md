@@ -8,6 +8,9 @@ category: post
 type: link
 tags:
   - OpenAPI
+tools:
+  - OpenAPI Specification
+  - OpenAPI Map
 ---
 The [OpenAPI Visual Documentation has been updated](http://openapi-specification-visual-documentation.apihandyman.io/). The new version 3.0.0-rc0 of the OpenAPI specification has been added. The addition brings a fully detailed change log of what has change from version 2.<!--more-->
 
