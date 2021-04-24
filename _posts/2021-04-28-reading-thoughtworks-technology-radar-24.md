@@ -3,14 +3,14 @@ date: 2021-04-23
 author: Arnaud Lauret
 layout: post
 category: post
-permalink: /reading-thoughtworks-technology-radar-24-from-an-api-perspective-and-nearly-falling-off-my-chair/
-title: Reading Thoughtworks Technology Radar 24 from an API perspective (and nearly falling off my chair)
+permalink: /reading-thoughtworks-technology-radar-24/
+title: Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24
 tags:
-    - Thoughtworks Technolohy Radar
+    - Thoughtworks Technology Radar
 ---
 
-Thoughtworks Technology Radar 24, an opinionated guide to technology frontiers, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it.
-As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section (if it's not a click bait, I don't know what it is).
+Thoughtworks Technology Radar 24, an "opinionated guide to technology frontiers", came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it.
+As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it's not a click bait, I don't know what it is).
 <!--more-->
 
 # What is Thoughtworks Technology Radar
@@ -27,7 +27,7 @@ Links:
 
 While authors claim it's not a deep market analysis, it's still full of highly valuable insights that you, as a developer, architect, CTO or whatever is your title should have in mind for your next tech related decisions or simply to discover new tools, language, trends, ...
 
-In what follows, I picked up a few topics of the 24th edition of this radar that raise my interest from an API perspective (and if you can't wait to know why I nearly fell off my chair, you can jump to the [penultimate section](#lint-your-openapi-contracts-and-why-i-nearly-fell-off-my-chair)).
+In what follows, I picked up a few topics of the 24th edition of this radar that raise my interest from an API perspective (and if you can't wait to know why I nearly fell off my chair, you can jump to the [last section](#adopt-and-not-assess-openapi-linting-and-why-i-nearly-fell-off-my-chair)).
 
 # Reminder, there are no silver bullets in architecture
 
@@ -90,52 +90,54 @@ So, discovering in the [Languages & Frameworks](https://www.thoughtworks.com/rad
 Beware, Fast API is still on "Trial" for Thoughtworks, that means "Enterprises should try this technology on a project that can handle the risk".
 As I'm starting to work with Python for a complete overhaul of the API Stylebook, a personal project that perfectly can handle such risk, I may give it a try.
 
-# Lint your OpenAPI contracts (and why I nearly fell off my chair)
+# Adopt and not assess OpenAPI linting (and why I nearly fell off my chair)
 
 And last but not least, the radar mentions 2 OpenAPI linters in the [tools](https://www.thoughtworks.com/radar/tools) section:
 
 - [77. Spectral](https://www.thoughtworks.com/radar/tools/spectral)
 - [79. Zally](https://www.thoughtworks.com/radar/tools/zally)
 
-The OpenAPI Specification (fka. the Swagger Specification) is a format allowing you to describe a web API contract.
+The [OpenAPI Specification](https://www.openapis.org/) (fka. the Swagger Specification) is a format allowing you to describe a web API contract.
 An OpenAPI linter will help you to ensure that the design of an API conforms to your guidelines (or style guide).
 
 I know both of these tools for quite a long time now.
-[Zally](https://opensource.zalando.com/zally/) was the first high quality OpenAPI linter I encountered but I find it quite complex to use, there's a cli, a server, a database, you need to use Kotlin to write your rules.
+[Zally](https://opensource.zalando.com/zally/) was the first industrial/high quality OpenAPI linter I encountered but I find it quite complex to use, there's a cli, a server, you need to use Kotlin to write your rules.
 And once I discovered [Spectral](https://github.com/stoplightio/spectral), I totally forgot Zally.
 
 A simple `npm install -g @stoplight/spectral` and you can start.
 Writing rules is quite simple, though like any "code", you definitely need to test them.
 I use it extensively every day while doing API design reviews, check my [Augmented API Design Reviewer](https://apihandyman.io/the-augmented-api-design-reviewer/) talk to learn more about it.
 
-While being quite happy to see those 2 linter in the radar, there are 2 problems in the radar regarding this topic in my humble opinion.
+Note that I prefer Spectral in my context, I find it simpler, I could simply achieve what I wanted easily, it's integration with Stoplight Studio is very convenient and it constantly evolves.
+But remember, there are no silver bullets, so test those 2 and choose the one that suits you.
 
-First, they are in "assess" (worth exploring to see how it will affect you), I definitely think they should be in "adopt" (industry should adopt these items).
-Designing API is hard, ensuring consistency is hard and such linters participate in simplifyling designers job and ensure a certain level of consistency in your API surface.
-Not that such tools will never, ever replace a human power API design review.
+While being quite happy to see those 2 OpenAPI linters in the radar, there are 2 problems regarding how this topic is presented in my humble opinion.
 
-The second problem in the radar is what is said in the Spectral description:
+First, they are in "assess" (worth exploring to see how it will affect you), while I can understand that classification probably based on "how many companies use them", I definitely think they should be in "adopt" (industry should adopt these items).
+Designing API is hard, ensuring consistency is hard and such linters participate in simplifying designers job and ensure a certain level of consistency in your API surface.
+Note that such tools will never, ever replace a human powered API design review.
+
+The second problem in the radar is what is said about "specs" and OpenAPI in the Spectral description, and especially this:
 
 > While this tool is a welcome addition to the API development workflow, it does raise the question of whether a non-executable specification should be so complex as to require an error-checking technique designed for programming languages. Perhaps developers should be writing code instead of specs?
 
 I nearly fell off my chair.
 
-I feel that the authors seem unaware of API design question and to not grasp how you can take advantage of the OpenAPI specification to design your API and how such linter can help you design consistent APIs.
-That gives a totally wrong perspectives of OpenAPI and OpenAPI linters in general and Spectral in particular.
-I met and still meet many developers who actually are in such state of mind, don't giving a 💩 about API design and everything around (hopefully, I always succeed to change people mind about this topic).
-But I find that quite surprising to read such comments in something coming from a company such as Thoughtworks, I would love to know how the authors came to writing this, did I missed something?
+This completely misses the point.
+It leaves readers totally unaware of API design questions and do not help to grasp how they can take advantage of the OpenAPI specification and such a linter to design consistent APIs.
+That gives a totally wrong perspective of OpenAPI and OpenAPI linters in general, and Spectral in particular.
+While I met and still meet people who actually are in such state of mind, even don't giving a 💩 about API design and everything around, I wouldn't have expected that from a company such as Thoughtworks.
+I usually succeed to change people mind about this topic, they realize API design and everything around is a thing, but if Thoughtworks tells something different that will make my work more complicated 😅.
+I would love to know how the authors came to writing this, did I missed something?
 
 Hopefully, I was glad to see the discourse about OpenAPI linters is totally different in the Zally's description and offers the right perspective on the topic.
 
 > As the API specification ecosystem matures, we're seeing more tools built to automate style checks. Zally is a minimalist OpenAPI linter that helps to ensure an API conforms to the team's API style guide. 
 
-Maybe it's due to these particular pandemic times, but it seems that there's a lack of alignment between the 2 authors of these advices. 
+Maybe it's due to these particular pandemic times, but it seems that there's a lack of alignment between the 2 authors of these advices.
+That second advice on OpenAPI linters is far much better, consider it applies to Spectral too.
 
-# Trust carefully famous companies and people
-
-There's an interesting take-away here, it's not because it's a famous company who do or say something that it is always 100% good (see this [post](/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/) for another example coming from Github).
-We all can do mistakes.
-So, let me be clear:
+And if I can add my opinionated 2 cents about API design, OpenAPI and linters:
 
 - You MUST have an API design first approach
 - You MUST write API design guidelines (or style guide) describe the look and feel of your APIs
@@ -143,7 +145,7 @@ So, let me be clear:
 - You MUST use an OpenAPI (or whatever) linter to ensure your APIs conform to your style guides (and Spectral is a very good tool to do that)
 - You MUST do an API design review with human beings
 
-(But can you trust me? I'm not that famous)
+Consider all those items should be "Adopt" according to Thoughtworks classification.
 
 If you want to learn more about the OpenAPI Specification, API guidelines, API design reviews and Spectral, you should look at my following talks:
 
