@@ -11,6 +11,8 @@ tags:
   - API Stylebook
 full: true
 comments: false
+tools:
+  - API Stylebook
 ---
 I've added the Deliveroo API Design Guidelines to the API Stylebook. 
 

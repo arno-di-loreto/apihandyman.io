@@ -8,6 +8,9 @@ category: post
 permalink: /batch-github-api-call-with-csv-and-postman-runner-and-visualizer/
 tags:
   - API Toolbox
+tools:
+    - Postman
+    - Newman
 ---
 
 Do you need to make a repetitive task that could be done through an API instead of a UI?

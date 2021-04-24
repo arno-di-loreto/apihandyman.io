@@ -15,6 +15,8 @@ tags:
   - API Specification
   - Documentation
   - API First
+tools:
+  - OpenAPI Specification
 series: Writing OpenAPI (Swagger) Specification Tutorial
 series_title: Advanced Data
 series_number: 4

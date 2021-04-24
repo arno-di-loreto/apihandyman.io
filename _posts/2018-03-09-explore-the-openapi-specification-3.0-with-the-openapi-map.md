@@ -5,6 +5,9 @@ author: Arnaud Lauret
 layout: post
 permalink: /explore-the-openapi-specification-3.0-with-the-openapi-map/
 category: post
+tools:
+  - OpenAPI Specification
+  - OpenAPI Map
 ---
 
 So you want to explore in depth the OpenAPI Specification version 3.0? You should take the OpenAPI Map with you!<!--more-->

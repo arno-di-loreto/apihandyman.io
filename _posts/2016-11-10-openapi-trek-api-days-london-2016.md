@@ -16,6 +16,8 @@ tags:
   - Design
   - Video
   - Slides
+tools:
+  - OpenAPI Specification
 series: OpenAPI Trek
 series_title: OpenAPI Trek
 series_number: 1

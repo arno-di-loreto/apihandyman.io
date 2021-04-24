@@ -5,8 +5,10 @@ layout: post
 category: post
 permalink: /reading-thoughtworks-technology-radar-24/
 title: Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24
-tags:
-    - Thoughtworks Technology Radar
+tools:
+    - Technology Radar
+    - Spectral
+    - OpenAPI Specification
 ---
 
 Thoughtworks Technology Radar 24, an "opinionated guide to technology frontiers", came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it.

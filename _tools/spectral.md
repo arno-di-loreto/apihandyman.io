@@ -9,6 +9,9 @@ links:
     url: https://stoplight.io/open-source/spectral
   - type: github
     url: https://github.com/stoplightio/spectral
+related_links:
+  - type: post
+    name: Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24
 ---
 
 I use Spectral while designing APIs and during API design reviews. It is a JSON/YAML linter with built-in support for OpenAPI 2 and 3 (and also AsyncAPI). I use it to check that API designs conform to my guidelines and also to spot unusual design patterns that needs to be discussed with the people in charge of the API. It really speeds up my reviews and help me avoid oversights.

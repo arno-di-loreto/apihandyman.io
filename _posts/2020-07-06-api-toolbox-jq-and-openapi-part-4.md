@@ -13,6 +13,9 @@ series_number: 4
 #published: false
 tags:
   - API Toolbox
+tools:
+  - JQ
+  - OpenAPI Specification
 ---
 
 Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. The three previous parts of this JQ and OpenAPI Series, taught us to extract data from JSON (OpenAPI) files and modify them using many filters, creating modules and using command line arguments. To finish this series, we'll learn to color JQ's raw terminal output and do a colored version of part 2's search operations. <!--more-->
