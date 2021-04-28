@@ -1,4 +1,163 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-04-27T04:18:23+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">404 Vs 405 Vs 501</title><link href="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/" rel="alternate" type="text/html" title="404 Vs 405 Vs 501" /><published>2021-04-21T00:00:00+00:00</published><updated>2021-04-21T00:00:00+00:00</updated><id>https://apihandyman.io/404-vs-405-vs-501</id><content type="html" xml:base="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-04-28T04:19:02+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24</title><link href="https://apihandyman.io/reading-thoughtworks-technology-radar-24/" rel="alternate" type="text/html" title="Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24" /><published>2021-04-28T00:00:00+00:00</published><updated>2021-04-28T00:00:00+00:00</updated><id>https://apihandyman.io/reading-thoughtworks-technology-radar-24</id><content type="html" xml:base="https://apihandyman.io/reading-thoughtworks-technology-radar-24/">&lt;p&gt;Thoughtworks Technology Radar 24, an “opinionated guide to technology frontiers”, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it.
+As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it’s not a click bait, I don’t know what it is).
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-thoughtworks-technology-radar&quot;&gt;What is Thoughtworks Technology Radar&lt;/h1&gt;
+
+&lt;p&gt;Thoughtworks is a quite famous software consultancy company, brilliant minds such as &lt;a href=&quot;https://martinfowler.com/&quot;&gt;Martin Fowler&lt;/a&gt; are working there.
+Every 6 months, they publish their Technology Radar:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Radar is a document that sets out the changes that we think are currently interesting in software development - things in motion that we think you should pay attention to and consider using in your projects. It reflects the idiosyncratic opinion of a bunch of senior technologists and is based on our day-to-day work and experiences. While we think this is interesting, it shouldn’t be taken as a deep market analysis.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Links:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.thoughtworks.com/radar/faq&quot;&gt;Radar FAQ&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.thoughtworks.com/radar&quot;&gt;Latest Thoughtworks Technology Radar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://assets.thoughtworks.com/assets/technology-radar-vol-24-en.pdf&quot;&gt;Thoughtworks Technology Radar Volume 24 (PDF version)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;While authors claim it’s not a deep market analysis, it’s still full of highly valuable insights that you, as a developer, architect, CTO or whatever is your title should have in mind for your next tech related decisions or simply to discover new tools, language, trends, …&lt;/p&gt;
+
+&lt;p&gt;In what follows, I picked up a few topics of the 24th edition of this radar that raise my interest from an API perspective (and if you can’t wait to know why I nearly fell off my chair, you can jump to the &lt;a href=&quot;#adopt-and-not-assess-openapi-linting-and-why-i-nearly-fell-off-my-chair&quot;&gt;last section&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h1 id=&quot;reminder-there-are-no-silver-bullets-in-architecture&quot;&gt;Reminder, there are no silver bullets in architecture&lt;/h1&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://www.thoughtworks.com/radar#discerning-the-context-for-architectural-coupling&quot;&gt;Discerning the Context for Architectural Coupling&lt;/a&gt; theme is a gentle reminder of what I called “design in context”.
+Never choose a solution just because this is “the” solution, because depending on the context it could be totally wrong.
+That works for anything in general and in the API architecture world, that works for instance for “BFF or not” and “REST ot GraphQL or gRPC”.&lt;/p&gt;
+
+&lt;h1 id=&quot;smoothly-evolve-your-apis&quot;&gt;Smoothly evolve your APIs&lt;/h1&gt;
+
+&lt;p&gt;The radar authors strongly think that people should be adopting the &lt;a href=&quot;https://www.thoughtworks.com/radar/techniques/api-expand-contract&quot;&gt;1. API expand-contract&lt;/a&gt; technique (also called &lt;a href=&quot;https://www.martinfowler.com/bliki/ParallelChange.html&quot;&gt;parallel change&lt;/a&gt;).
+The API expand pattern allows to introduce a breaking in 3 steps:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add element&lt;/li&gt;
+  &lt;li&gt;Deprecate what added element replace&lt;/li&gt;
+  &lt;li&gt;Remove once consumers have switched&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;While it’s a totally valid technique, the last step can be tricky if there are many consumers or if there are far from you.
+You should read what &lt;a href=&quot;/apidays-interface-doing-apis-right-and-doing-right-apis/#versioning-handling-changes&quot;&gt;Sam Newman said about the cost of change at API Days Interface 2020&lt;/a&gt;.
+In my humble opinion, working seriously on design and thinking about how your API may evolve will help you avoid having to use this technique.&lt;/p&gt;
+
+&lt;p&gt;I will not say more for now, writing one or more posts about API change and versioning is on my to-do list.&lt;/p&gt;
+
+&lt;h1 id=&quot;share-between-ui-and-bff-when-owning-both&quot;&gt;Share between UI and BFF when owning both&lt;/h1&gt;
+
+&lt;p&gt;The radar states that the use of &lt;a href=&quot;https://www.thoughtworks.com/radar/techniques/ui-bff-shared-types&quot;&gt;16. UI/BFF shared types&lt;/a&gt; is increasing and that companies should try this technique on a project that can handle the risk (trial).
+That looks like a very good idea as long as both UI and BFF belong to the same team.
+So don’t ever think about using this technique between UI and regular API, you should be decoupled as much as you can from elements you don’t own.&lt;/p&gt;
+
+&lt;h1 id=&quot;compute-encrypted-data-to-preserve-privacy&quot;&gt;Compute encrypted data to preserve privacy&lt;/h1&gt;
+
+&lt;p&gt;The first time I heard about the &lt;a href=&quot;&quot;&gt;20. Homomorphic encryption&lt;/a&gt; (&lt;a href=&quot;&quot;&gt;technique section&lt;/a&gt;) was in 2016 at an API conference: The Česká spořitelna bank was using it experimentally to share data with third party.
+The idea is that using this technique, the encrypted data are still computable.
+You can send them to an untrusted third party who will do some calculation with them and return you the results that you will decrypt.
+According to the radar, it became fairly easy to use it.
+But while having this technique in mind since 2016 and working in the financial industry, I’m still longing to work an API that will allow me to use it.&lt;/p&gt;
+
+&lt;h1 id=&quot;unleash-the-power-of-apis-while-its-possible&quot;&gt;Unleash the power of APIs (while it’s possible)&lt;/h1&gt;
+
+&lt;p&gt;If you want to build an event-driven architecture, you should take a look at &lt;a href=&quot;http://kafka.apache.org/&quot;&gt;Apache Kafka&lt;/a&gt;.
+While being a widely adopted distributed event streaming platform, actually managing it does not seem quite simple.
+That’s why some companies launch their Kafka as a service offers, they run it, you use it.
+But as stated in the radar, some companies have gone a little farther and started to offer “Kafka without Kafka”.
+How is this possible?
+Only thanks to APIs.&lt;/p&gt;
+
+&lt;p&gt;APIs (whatever their nature, web, messaging or whatever) offer amazing possibilities when it comes to replace the engine behind the interface.
+Thanks to these &lt;a href=&quot;https://www.thoughtworks.com/radar/platforms/kafka-api-without-kafka&quot;&gt;45. Kafka API without Kafka&lt;/a&gt; describes in the &lt;a href=&quot;https://www.thoughtworks.com/radar/platforms&quot;&gt;Platforms&lt;/a&gt; section, you use a service that looks like Kafka but that is actually not.
+It allows companies to provide their technology similar to kafka to people who are used to it without any modification.
+From my perspective, the main to understand point here is not about Kafka (though it is actually interesting) but how anyone can provide a service compatible with an existing solution.
+What is needed is to simply offer the same interface.
+And, for now, that’s still “possible but check your lawyers are ready” thanks to the recent legal decision in the &lt;a href=&quot;https://apievangelist.com/2021/04/13/My-oracle-vs-google-api-copyright-journey/&quot;&gt;Google vs Oracle API Copyright case&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Beware that &lt;a href=&quot;https://www.thoughtworks.com/radar/platforms/kafka-api-without-kafka&quot;&gt;Kafka API without Kafka&lt;/a&gt; is in “Assess”, it’s worth exploring to understand how it could affect you.
+Note also that such solutions may not be fully compatible all Kafka features&lt;/p&gt;
+
+&lt;h1 id=&quot;lets-give-a-try-to-fast-api-python-framework&quot;&gt;Let’s give a try to Fast API Python framework&lt;/h1&gt;
+
+&lt;p&gt;I work with data scientists to help them build APIs and they obviously use Python.
+So, discovering in the &lt;a href=&quot;https://www.thoughtworks.com/radar/languages-and-frameworks&quot;&gt;Languages &amp;amp; Frameworks&lt;/a&gt; section of the radar, a new Python web API framework such &lt;a href=&quot;https://fastapi.tiangolo.com/&quot;&gt;Fast API&lt;/a&gt; having Thoughtworks seal of approval (&lt;a href=&quot;https://www.thoughtworks.com/radar/languages-and-frameworks/fastapi&quot;&gt;86. FastAPI&lt;/a&gt;), made my day.
+Beware, Fast API is still on “Trial” for Thoughtworks, that means “Enterprises should try this technology on a project that can handle the risk”.
+As I’m starting to work with Python for a complete overhaul of the API Stylebook, a personal project that perfectly can handle such risk, I may give it a try.&lt;/p&gt;
+
+&lt;h1 id=&quot;adopt-and-not-assess-openapi-linting-and-why-i-nearly-fell-off-my-chair&quot;&gt;Adopt and not assess OpenAPI linting (and why I nearly fell off my chair)&lt;/h1&gt;
+
+&lt;p&gt;And last but not least, the radar mentions 2 OpenAPI linters in the &lt;a href=&quot;https://www.thoughtworks.com/radar/tools&quot;&gt;tools&lt;/a&gt; section:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.thoughtworks.com/radar/tools/spectral&quot;&gt;77. Spectral&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.thoughtworks.com/radar/tools/zally&quot;&gt;79. Zally&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://www.openapis.org/&quot;&gt;OpenAPI Specification&lt;/a&gt; (fka. the Swagger Specification) is a format allowing you to describe a web API contract.
+An OpenAPI linter will help you to ensure that the design of an API conforms to your guidelines (or style guide).&lt;/p&gt;
+
+&lt;p&gt;I know both of these tools for quite a long time now.
+&lt;a href=&quot;https://opensource.zalando.com/zally/&quot;&gt;Zally&lt;/a&gt; was the first industrial/high quality OpenAPI linter I encountered but I find it quite complex to use, there’s a cli, a server, you need to use Kotlin to write your rules.
+And once I discovered &lt;a href=&quot;https://github.com/stoplightio/spectral&quot;&gt;Spectral&lt;/a&gt;, I totally forgot Zally.&lt;/p&gt;
+
+&lt;p&gt;A simple &lt;code&gt;npm install -g @stoplight/spectral&lt;/code&gt; and you can start.
+Writing rules is quite simple, though like any “code”, you definitely need to test them.
+I use it extensively every day while doing API design reviews, check my &lt;a href=&quot;https://apihandyman.io/the-augmented-api-design-reviewer/&quot;&gt;Augmented API Design Reviewer&lt;/a&gt; talk to learn more about it.&lt;/p&gt;
+
+&lt;p&gt;Note that I prefer Spectral in my context, I find it simpler, I could simply achieve what I wanted easily, it’s integration with Stoplight Studio is very convenient and it constantly evolves.
+But remember, there are no silver bullets, so test those 2 and choose the one that suits you.&lt;/p&gt;
+
+&lt;p&gt;While being quite happy to see those 2 OpenAPI linters in the radar, there are 2 problems regarding how this topic is presented in my humble opinion.&lt;/p&gt;
+
+&lt;p&gt;First, they are in “assess” (worth exploring to see how it will affect you), while I can understand that classification probably based on “how many companies use them”, I definitely think they should be in “adopt” (industry should adopt these items).
+Designing API is hard, ensuring consistency is hard and such linters participate in simplifying designers job and ensure a certain level of consistency in your API surface.
+Note that such tools will never, ever replace a human powered API design review.&lt;/p&gt;
+
+&lt;p&gt;The second problem in the radar is what is said about “specs” and OpenAPI in the Spectral description, and especially this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;While this tool is a welcome addition to the API development workflow, it does raise the question of whether a non-executable specification should be so complex as to require an error-checking technique designed for programming languages. Perhaps developers should be writing code instead of specs?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I nearly fell off my chair.&lt;/p&gt;
+
+&lt;p&gt;This completely misses the point.
+It leaves readers totally unaware of API design questions and do not help to grasp how they can take advantage of the OpenAPI specification and such a linter to design consistent APIs.
+That gives a totally wrong perspective of OpenAPI and OpenAPI linters in general, and Spectral in particular.
+While I met and still meet people who actually are in such state of mind, even don’t giving a 💩 about API design and everything around, I wouldn’t have expected that from a company such as Thoughtworks.
+I usually succeed to change people mind about this topic, they realize API design and everything around is a thing, but if Thoughtworks tells something different that will make my work more complicated 😅.
+I would love to know how the authors came to writing this, did I missed something?&lt;/p&gt;
+
+&lt;p&gt;Hopefully, I was glad to see the discourse about OpenAPI linters is totally different in the Zally’s description and offers the right perspective on the topic.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As the API specification ecosystem matures, we’re seeing more tools built to automate style checks. Zally is a minimalist OpenAPI linter that helps to ensure an API conforms to the team’s API style guide.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Maybe it’s due to these particular pandemic times, but it seems that there’s a lack of alignment between the 2 authors of these advices.
+That second advice on OpenAPI linters is far much better, consider it applies to Spectral too.&lt;/p&gt;
+
+&lt;p&gt;And if I can add my opinionated 2 cents about API design, OpenAPI and linters:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You MUST have an API design first approach&lt;/li&gt;
+  &lt;li&gt;You MUST write API design guidelines (or style guide) describe the look and feel of your APIs&lt;/li&gt;
+  &lt;li&gt;You MUST use the OpenAPI (or whatever) specification to describe the result of your work on design&lt;/li&gt;
+  &lt;li&gt;You MUST use an OpenAPI (or whatever) linter to ensure your APIs conform to your style guides (and Spectral is a very good tool to do that)&lt;/li&gt;
+  &lt;li&gt;You MUST do an API design review with human beings&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Consider all those items should be “Adopt” according to Thoughtworks classification.&lt;/p&gt;
+
+&lt;p&gt;If you want to learn more about the OpenAPI Specification, API guidelines, API design reviews and Spectral, you should look at my following talks:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/openapi-trek-api-days-london-2016/&quot;&gt;OpenAPI Trek&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/api-styleguide-the-lord-of-api-designs/&quot;&gt;The Lord of API Designs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/api-design-reviewers-starter-set/&quot;&gt;The API Design Reviewer’s Starter Set&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/the-augmented-api-design-reviewer/&quot;&gt;The Augmented API Design Reviewer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Thoughtworks Technology Radar 24, an “opinionated guide to technology frontiers”, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it. As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it’s not a click bait, I don’t know what it is).</summary></entry><entry><title type="html">404 Vs 405 Vs 501</title><link href="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/" rel="alternate" type="text/html" title="404 Vs 405 Vs 501" /><published>2021-04-21T00:00:00+00:00</published><updated>2021-04-21T00:00:00+00:00</updated><id>https://apihandyman.io/404-vs-405-vs-501</id><content type="html" xml:base="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
 This first post answers the following question: given that a &lt;code&gt;GET /resources/123&lt;/code&gt; request returns a &lt;code&gt;200 OK&lt;/code&gt;, what should be the response to &lt;code&gt;DELETE /resources/123&lt;/code&gt; if &lt;code&gt;DELETE&lt;/code&gt; method is not implemented? &lt;code&gt;404 Not Found&lt;/code&gt;, &lt;code&gt;405 Method Not Allowed&lt;/code&gt; or &lt;code&gt;501 Not Implemented&lt;/code&gt;?
 &lt;!--more--&gt;&lt;/p&gt;
 
@@ -1638,661 +1797,4 @@ Sharing your screen is the online version of connecting to the projector (cable 
 
 &lt;p&gt;Regarding the content, it was, as always, great (I’ll talk more about it in my next post). The overall experience offered by the platform when attending sessions was good. But, I clearly had far less interactions than during a live conference where attendees can come to me right after the talk or later and where I can talk to people during breaks. The platform offers features allowing to do so though, I think it’s just a matter of time and changing my habits.&lt;/p&gt;
 
-&lt;p&gt;So, am I 100% convinced by online conference? No. Because I will never have as much fun as I have when hanging out with my friends and attendees in the alleys and in the city where the conference takes place. But in these times, online conferences are far better than no conference at all. Thanks to them, we can still share our experiences and learn from others, even if we have less or different interactions with people.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I’ve attended and spoke at API Days Interface online conference on June 20, July 1 &amp;amp; 2, 2020. Being online made the experience a bit different but after almost 3 days, I felt almost as usual; exhausted and my brain boiling with all what I’ve heard and seen. In this first post I share my feelings about attending and speaking at an online conference.</summary></entry><entry><title type="html">API Toolbox - JQ and OpenAPI - Part 4 - Bonus: Coloring JQ’s raw output</title><link href="https://apihandyman.io/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/" rel="alternate" type="text/html" title="API Toolbox - JQ and OpenAPI - Part 4 - Bonus: Coloring JQ’s raw output" /><published>2020-07-06T00:00:00+00:00</published><updated>2020-07-06T00:00:00+00:00</updated><id>https://apihandyman.io/api-toolbox-jq-and-openapi-part-4</id><content type="html" xml:base="https://apihandyman.io/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/">&lt;p&gt;Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. The three previous parts of this JQ and OpenAPI Series, taught us to extract data from JSON (OpenAPI) files and modify them using many filters, creating modules and using command line arguments. To finish this series, we’ll learn to color JQ’s raw terminal output and do a colored version of part 2’s search operations. &lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;The screen capture below shows what we already have seen in part 1, JQ “colors its output” by default, but what it actually does is JSON syntax highlighting. What we want to do now is coloring raw terminal output, the one you get when using the &lt;code&gt;-r&lt;/code&gt; flag and outputing text instead of JSON. After reading this post, you’ll be able to create JQ module doing output such as the colored version of search operations you see below.&lt;/p&gt;
-
-&lt;div class=&quot;text-center&quot;&gt;
-      &lt;figure class=&quot;figure&quot;&gt;
-        
-        &lt;img src=&quot;/images/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/syntax-vs-coloring.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        
-      &lt;/figure&gt;
-    &lt;/div&gt;
-
-&lt;div class=&quot;card series-toc&quot;&gt;
-  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
-    &lt;h5 id=&quot;series&quot;&gt;JQ and OpenAPI Series&lt;/h5&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;row series-toc_content&quot;&gt;
-    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
-      &lt;div class=&quot;card-body&quot;&gt;
-        &lt;p class=&quot;card-text&quot;&gt;
-JQ's &lt;a href=&quot;https://stedolan.github.io/jq/manual/v1.6/&quot; target=&quot;jq&quot;&gt;documentation&lt;/a&gt; is quite complete and there are many tutorials and Stackoverflow answers, so why bother writing this series? First reason, I regularly meet people working with APIs and/or JSON files who actually don't know JQ exists and how it could save their life (or at least their time). Second reason, I often use it with OpenAPI specification files and I found that showing how JQ can be used on such a widely adopted and familiar JSON based format could help to learn how to use it (and also writing this post actually helped me to improve my JQ skills!).
-&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
-      
-      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/&quot;&gt;1 - Using JQ to extract data from OpenAPI files&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/&quot;&gt;2 - Using JQ command line arguments, functions and modules&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/&quot;&gt;3 - Modifying OpenAPI files with JQ&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item active&quot;&gt;4 - Bonus: Coloring JQ's raw output&lt;/li&gt;
-          
-        
-        
-          
-          
-          
-        
-          
-          
-          
-        
-      &lt;/ul&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;get-posts-content&quot;&gt;Get post’s content&lt;/h1&gt;
-
-&lt;p&gt;All examples shown in this post are based on JQ 1.6 and OpenAPI 3. All examples can be copied using the &lt;span class=&quot;icon-inline icon-text&quot; aria-label=&quot;copy button icon&quot;&gt;&lt;svg height=&quot;100px&quot; width=&quot;100px&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; version=&quot;1.1&quot; x=&quot;0px&quot; y=&quot;0px&quot; viewBox=&quot;0 0 20 20&quot; enable-background=&quot;new 0 0 20 20&quot; xml:space=&quot;preserve&quot;&gt;&lt;path d=&quot;M14,2V0H6v2H2v18h16V2H14z M12,2v2H8V2H12z M16,18H4V4h2v2h8V4h2V18z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt; button and downloaded using the &lt;span class=&quot;icon-inline icon-text&quot; aria-label=&quot;download button icon&quot;&gt;&lt;svg height=&quot;100px&quot; width=&quot;100px&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; version=&quot;1.1&quot; x=&quot;0px&quot; y=&quot;0px&quot; viewBox=&quot;0 0 20 20&quot; enable-background=&quot;new 0 0 20 20&quot; xml:space=&quot;preserve&quot;&gt;&lt;g&gt;&lt;polygon points=&quot;15,11 13.6,9.6 11,12.2 11,0 9,0 9,12.2 6.4,9.6 5,11 10,16  &quot;&gt;&lt;/polygon&gt;&lt;polygon points=&quot;18,12 18,18 2,18 2,12 0,12 0,20 20,20 20,12  &quot;&gt;&lt;/polygon&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/span&gt; one on code snippets. All source code can be retrieved from the &lt;a href=&quot;https://github.com/arno-di-loreto/jq-and-openapi/&quot; target=&quot;jq&quot;&gt;JQ and OpenAPI post series’ github repository&lt;/a&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;pre class=&quot;copy-hidden code-copy&quot;&gt;git clone https://github.com/arno-di-loreto/jq-and-openapi/
-cd jq-and-openapi
-git checkout part-4
-
-&lt;/pre&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;[apihandyman.io]$ git clone https://github.com/arno-di-loreto/jq-and-openapi/
-[apihandyman.io]$ cd jq-and-openapi
-[apihandyman.io]$ git checkout part-4&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;coloring-jqs-raw-terminal-output&quot;&gt;Coloring JQ’s raw terminal output&lt;/h1&gt;
-
-&lt;p&gt;Before working on the colored version of the search operation jq module, we need to learn how to ouput basic raw colored text. As in previous posts, the content of this section is available as an Asciinema session.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code card-bash text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Coloring JQ's output&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;bash session player controls&quot;&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body bash-player&quot;&gt;
-    &lt;asciinema-player id=&quot;player&quot; title=&quot;Coloring JQ's output&quot; author=&quot;Arnaud Lauret&quot; rows=&quot;24&quot; cols=&quot;125&quot; src=&quot;/code/api-toolbox-jq-and-openapi/part-4/coloring-jq.cast&quot;&gt;&lt;/asciinema-player&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;printing-colored-text-in-terminal&quot;&gt;Printing colored text in terminal&lt;/h2&gt;
-
-&lt;p&gt;When I got this idea of coloring jq’s raw output, I was not familiar with colored printing in terminal, so I started to tinker with the echo command as shown below. Line 1 simply prints Hello World without colors (in white). Line 2’s purpose is only to show what happens if you don’t provide the -e flag to echo: no colors. Line 3 prints Hello World in red. And eventually, line 4 prints Hello in red and World in white.&lt;/p&gt;
-
-&lt;div class=&quot;text-center&quot;&gt;
-      &lt;figure class=&quot;figure&quot;&gt;
-        
-        &lt;img src=&quot;/images/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/colored-echo.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        
-      &lt;/figure&gt;
-    &lt;/div&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Colored echo&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-bash line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;echo Hello World
-echo &amp;#39;\e[31mHello World&amp;#39;
-echo -e &amp;#39;\e[31mHello World&amp;#39;
-echo -e &amp;#39;\e[31mHello\e[0m World&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;As you can see, printing in color requires to use cryptic character sequences. Basically, to print some text in color you need to concatenate:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The escape character &lt;code&gt;\e&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;A color code like &lt;code&gt;[31m&lt;/code&gt; (red)&lt;/li&gt;
-  &lt;li&gt;The text to color&lt;/li&gt;
-  &lt;li&gt;The escape character &lt;code&gt;\e&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;The “reset” color code &lt;code&gt;[0m&lt;/code&gt; which remove any style modification previously set&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you want to learn more about coloring text in terminal, I highly recommend reading &lt;a href=&quot;https://misc.flogisoft.com/bash/tip_colors_and_formatting&quot;&gt;bash:tip_colors_and_formatting&lt;/a&gt;, I learned everything I know about this topic reading this post.&lt;/p&gt;
-
-&lt;h2 id=&quot;coloring-jq-raw-output&quot;&gt;Coloring JQ raw output&lt;/h2&gt;
-
-&lt;p&gt;Let’s try to replicate this colored echo example with jq. Line 1 is equivalent to our first non-colored &lt;code&gt;echo &quot;Hello World&quot;&lt;/code&gt;. We provide a JSON object with &lt;code&gt;greeeting&lt;/code&gt; and &lt;code&gt;who&lt;/code&gt; properties and concatenate them. On line 2 we add the escape charaecters and color codes to print the &lt;code&gt;greeting&lt;/code&gt; value in red. But jq returns two “Invalid espace” errors (one for each &lt;code&gt;\e&lt;/code&gt; escape character. It seems jq does not like it. Hopefully there are multiple variant of this escape character. And replacing &lt;code&gt;\e&lt;/code&gt; by its unicode equivalent &lt;code&gt;\u001b&lt;/code&gt; do the trick: jq is able to concatenate all values (line 3). But the text is printed as a JSON string; simply because I did not put the -r flag. Line 4 shows &lt;code&gt;jq -r&lt;/code&gt; printing colored raw text.&lt;/p&gt;
-
-&lt;div class=&quot;text-center&quot;&gt;
-      &lt;figure class=&quot;figure&quot;&gt;
-        
-        &lt;img src=&quot;/images/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/colored-jq.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        
-      &lt;/figure&gt;
-    &lt;/div&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Colored jq&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-bash line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;echo &amp;#39;{ &amp;quot;greeting&amp;quot;: &amp;quot;Hello&amp;quot;, &amp;quot;who&amp;quot;:&amp;quot;World&amp;quot; }&amp;#39; | jq &amp;#39;.greeting + &amp;quot; &amp;quot; + .who&amp;#39;
-echo &amp;#39;{ &amp;quot;greeting&amp;quot;: &amp;quot;Hello&amp;quot;, &amp;quot;who&amp;quot;:&amp;quot;World&amp;quot; }&amp;#39; | jq &amp;#39;&amp;quot;\e[31m&amp;quot; + .greeting + &amp;quot;\e[0m &amp;quot; + .who&amp;#39;
-echo &amp;#39;{ &amp;quot;greeting&amp;quot;: &amp;quot;Hello&amp;quot;, &amp;quot;who&amp;quot;:&amp;quot;World&amp;quot; }&amp;#39; | jq &amp;#39;&amp;quot;\u001b[31m&amp;quot; + .greeting + &amp;quot;\u001b[0m &amp;quot; + .who&amp;#39;
-echo &amp;#39;{ &amp;quot;greeting&amp;quot;: &amp;quot;Hello&amp;quot;, &amp;quot;who&amp;quot;:&amp;quot;World&amp;quot; }&amp;#39; | jq -r &amp;#39;&amp;quot;\u001b[31m&amp;quot; + .greeting + &amp;quot;\u001b[0m &amp;quot; + .who&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;defining-a-colored_text-function&quot;&gt;Defining a colored_text function&lt;/h2&gt;
-
-&lt;p&gt;Printing colored text with jq is is working almost like with echo. We just need to use the unicode escape character instead of &lt;code&gt;\e&lt;/code&gt;. But to be honest it’s quite complicated to write this escape character and color codes are not user friendly at all. So, let’s write some jq function in a &lt;code&gt;module-color.jq&lt;/code&gt; file to make colored printing easier. The idea is to have a &lt;code&gt;colored_text(&quot;some text&quot;; &quot;red&quot;)&lt;/code&gt; function that prints “some text” in “red” (or “blue”).&lt;/p&gt;
-
-&lt;p&gt;First, let’s define a variable holding the not-easy-to-type-and-remember unicode escape character. To use it, just include the jq file (see part 2) in which its defined and use its name.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Escape character variable (module-color.jq)&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-jq line-numbers code-copy&quot; data-start=&quot;6&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;def escape: &quot;\u001b&quot;;
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;pre class=&quot;copy-hidden code-copy&quot;&gt;jq -n &amp;#39;include &amp;quot;module-color&amp;quot;;escape&amp;#39;
-
-&lt;/pre&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Using escape variable&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;[apihandyman.io] $ jq -n &amp;#39;include &amp;quot;module-color&amp;quot;;escape&amp;#39;
-&amp;quot;\u001b&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Then, we define a map with user-friendly color names as keys and ugly color codes as values. Each value of a map can be accessed with &lt;code&gt;map.key&lt;/code&gt; or &lt;code&gt;map[&quot;key&quot;]&lt;/code&gt; syntax as shown in the bash snippet below.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;User friendly colors map (module-color.jq)&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0&quot; aria-label=&quot;download file&quot; target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-4/module-color.jq&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Download&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/download.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-jq line-numbers code-copy&quot; data-start=&quot;9&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;def colors:
- {
-  &quot;red&quot;: &quot;[31m&quot;,
-  &quot;green&quot;: &quot;[32m&quot;,
-  &quot;yellow&quot;: &quot;[33m&quot;,
-  &quot;blue&quot;: &quot;[34m&quot;,
-  &quot;darkgray&quot;: &quot;[90m&quot;,
-  &quot;disabled&quot;: &quot;[30;100m&quot;, # Black on darkgray
-  &quot;reset&quot;: &quot;[0m&quot;
-};
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;pre class=&quot;copy-hidden code-copy&quot;&gt;jq -n &amp;#39;include &amp;quot;module-color&amp;quot;;colors.red&amp;#39;
-jq -n &amp;#39;include &amp;quot;module-color&amp;quot;;colors[&amp;quot;blue&amp;quot;]&amp;#39;
-
-&lt;/pre&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Using escape variable&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;[apihandyman.io] $ jq -n &amp;#39;include &amp;quot;module-color&amp;quot;;colors.red&amp;#39;
-&amp;quot;[31m&amp;quot;
-[apihandyman.io] $ jq -n &amp;#39;include &amp;quot;module-color&amp;quot;;colors[&amp;quot;blue&amp;quot;]&amp;#39;
-&amp;quot;[34m&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Now that the variables are defined, we need to define a function that do all the needed concatenation to generate a string containing some &lt;code&gt;text&lt;/code&gt; in color &lt;code&gt;color&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;What the function does (module-color.jq)&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0&quot; aria-label=&quot;download file&quot; target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-4/module-color.jq&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Download&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/download.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-jq line-numbers code-copy&quot; data-start=&quot;25&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;def colored_text(text; color):
-  escape + colors[color] + text + escape + colors.reset;
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;text-center&quot;&gt;
-      &lt;figure class=&quot;figure&quot;&gt;
-        
-        &lt;img src=&quot;/images/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/colored-text-function.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        
-      &lt;/figure&gt;
-    &lt;/div&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Using colored_text function&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-bash line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;jq -n &amp;#39;include &amp;quot;module-color&amp;quot;;colored_text(&amp;quot;some text&amp;quot;; &amp;quot;red&amp;quot;)&amp;#39;
-jq -r -n &amp;#39;include &amp;quot;module-color&amp;quot;;colored_text(&amp;quot;some text&amp;quot;; &amp;quot;red&amp;quot;)&amp;#39;
-jq -n &amp;#39;include &amp;quot;module-color&amp;quot;;colored_text(&amp;quot;some text&amp;quot;; &amp;quot;blue&amp;quot;)&amp;#39;
-jq -r -n &amp;#39;include &amp;quot;module-color&amp;quot;;colored_text(&amp;quot;some text&amp;quot;; &amp;quot;blue&amp;quot;)&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Here’s the complete module:&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Complete module-color.jq module&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0&quot; aria-label=&quot;download file&quot; target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-4/module-color.jq&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Download&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/download.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0 code-expandcollapse-btn&quot; aria-label=&quot;expand or shrink&quot; onclick=&quot;expandCollapseCode(this)&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Expand/Shrink&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/maximize.svg&quot; /&gt;&lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-jq line-numbers code-collapsed code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;# To learn more about colors in terminal, see https://misc.flogisoft.com/bash/tip_colors_and_formatting
-# use with -r flag on jq command
-
-# Unicode escape character
-# \e, \033 and \x1b cause &quot;Invalid escape&quot; error
-def escape: &quot;\u001b&quot;;
-
-# Terminal color codes
-def colors:
- {
-  &quot;red&quot;: &quot;[31m&quot;,
-  &quot;green&quot;: &quot;[32m&quot;,
-  &quot;yellow&quot;: &quot;[33m&quot;,
-  &quot;blue&quot;: &quot;[34m&quot;,
-  &quot;darkgray&quot;: &quot;[90m&quot;,
-  &quot;disabled&quot;: &quot;[30;100m&quot;, # Black on darkgray
-  &quot;reset&quot;: &quot;[0m&quot;
-};
-
-# Colors text with the given color
-# colored_text(&quot;some text&quot;; &quot;red&quot;)
-# will output 
-# \u001b[31msome text\u001b[0m
-# WARNING parameters are separated by ; not ,
-def colored_text(text; color):
-  escape + colors[color] + text + escape + colors.reset;
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;coloring-openapi-search-operations-output&quot;&gt;Coloring OpenAPI search operations output&lt;/h1&gt;
-
-&lt;p&gt;Now that we know how to output colored raw text, creating a colored version of search operation should be quite easy.&lt;/p&gt;
-
-&lt;div class=&quot;text-center&quot;&gt;
-      &lt;figure class=&quot;figure&quot;&gt;
-        
-        &lt;img src=&quot;/images/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/search-operations.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;
-        
-        
-      &lt;/figure&gt;
-    &lt;/div&gt;
-
-&lt;p&gt;This section’s content is available as an Asciinema session:&lt;/p&gt;
-
-&lt;div class=&quot;card card-code card-bash text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Colored search operations&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;bash session player controls&quot;&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body bash-player&quot;&gt;
-    &lt;asciinema-player id=&quot;player&quot; title=&quot;Colored search operations&quot; author=&quot;Arnaud Lauret&quot; rows=&quot;24&quot; cols=&quot;125&quot; src=&quot;/code/api-toolbox-jq-and-openapi/part-4/search-operations-color.cast&quot;&gt;&lt;/asciinema-player&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;analyzing-original-search-operations&quot;&gt;Analyzing original search operations&lt;/h2&gt;
-
-&lt;p&gt;The original non-colored search-operaions module shown below is quite simple thanks to what we have learned in part 2 of this series. It consists in three steps:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Retrieving operations data by reorganizing the data coming from an OpenAPI JSON file with &lt;code&gt;oas_operation&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Filters returned operation based on optionnal –arg parameters with &lt;code&gt;filter_oas_operations&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Print the result in JSON or text with &lt;code&gt;print_oas_operations&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;search-operations.jq&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0&quot; aria-label=&quot;download file&quot; target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-4/search-operations.jq&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Download&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/download.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-jq line-numbers code-copy&quot; data-line=&quot;10&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;include &quot;module-openapi&quot;;
-include &quot;module-args&quot;;
-include &quot;module-openapi-search&quot;;
-
-# Gets operations data
-oas_operations
-# Filters operations
-| filter_oas_operations(init_parameters(default_filters))
-# Prints operations
-| print_oas_operations(init_parameters(default_print_parameters).format)
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;What we actually need to do to created a colored version of this module is copying it and modifythe last step to call a new function that will output text with some cryptic color codes.&lt;/p&gt;
-
-&lt;h2 id=&quot;creating-a-new-print-colored-oas-function&quot;&gt;Creating a new print colored oas function&lt;/h2&gt;
-
-&lt;p&gt;As we have created a useful function that prints colored text, let’s include its module to be able to use it:&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Including colored_text function (module-openapi-operations-color.jq)&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-jq line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;include &quot;module-color&quot;;
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The colored version of the &lt;code&gt;print_oas_operations&lt;/code&gt; function, will print HTTP method in colors. In order to avoir having a complex &lt;code&gt;if then elif else end&lt;/code&gt; statement, we proceeed like for color codes; we create a map but now each key is an HTTP method and its value is its user friendly color. So &lt;code&gt;delete&lt;/code&gt; value is &lt;code&gt;red&lt;/code&gt; for example.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Defining HTTP colors (module-openapi-operations-color.jq)&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-jq line-numbers code-copy&quot; data-start=&quot;4&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;def http_method_colors:
- {
- &quot;delete&quot;: &quot;red&quot;,
- &quot;post&quot;: &quot;green&quot;,
- &quot;patch&quot;: &quot;yellow&quot;,
- &quot;put&quot;: &quot;yellow&quot;,
- &quot;get&quot;: &quot;blue&quot;
-};
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;And then in the &lt;code&gt;print_colored_oas_operations&lt;/code&gt; to generate a string for each operation we &lt;code&gt;colored_text&lt;/code&gt; on the various elements. Note on line 22 how the HTTP method color is easily chosen. Note also that deprecated operations are printined in black on dark gray using the &lt;code&gt;disabled&lt;/code&gt; color.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Generating string for each operation (module-openapi-operations-color.jq)&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-jq line-numbers code-copy&quot; data-start=&quot;16&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;    if .original.deprecated then
-      colored_text(
-        .method + &quot;\t&quot; + .path + &quot;\t&quot; + .summary + &quot; (deprecated)&quot;; 
-        &quot;disabled&quot;
-      )
-    else
-      colored_text(.method;http_method_colors[.method]) + &quot;\t&quot; + 
-      .path + &quot;\t&quot; + 
-      colored_text(.summary; &quot;darkgray&quot;)
-    end
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Here’s the complete module:&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Complete module-openapi-operations-color.jq module&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0&quot; aria-label=&quot;download file&quot; target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-4/module-openapi-operations-color.jq&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Download&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/download.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0 code-expandcollapse-btn&quot; aria-label=&quot;expand or shrink&quot; onclick=&quot;expandCollapseCode(this)&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Expand/Shrink&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/maximize.svg&quot; /&gt;&lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-jq line-numbers code-collapsed code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;include &quot;module-color&quot;;
-
-# Colors to apply for each HTTP method
-def http_method_colors:
- {
- &quot;delete&quot;: &quot;red&quot;,
- &quot;post&quot;: &quot;green&quot;,
- &quot;patch&quot;: &quot;yellow&quot;,
- &quot;put&quot;: &quot;yellow&quot;,
- &quot;get&quot;: &quot;blue&quot;
-};
-
-# Prints operations in SwaggerUI like style
-def print_colored_oas_operations:
-  map( # Applies a transformation to each element
-    if .original.deprecated then
-      colored_text(
-        .method + &quot;\t&quot; + .path + &quot;\t&quot; + .summary + &quot; (deprecated)&quot;; 
-        &quot;disabled&quot;
-      )
-    else
-      colored_text(.method;http_method_colors[.method]) + &quot;\t&quot; + 
-      .path + &quot;\t&quot; + 
-      colored_text(.summary; &quot;darkgray&quot;)
-    end
-  )
-  [] # Flattens array for raw output
-;&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;creating-a-new-search-operations-in-color-module&quot;&gt;Creating a new search operations in color module&lt;/h2&gt;
-
-&lt;p&gt;And lastly, we create a new module that will be used with the -f parameter. The only difference with its uncolored counterpart is on line 4 (including the jq file containing the &lt;code&gt;print_colored_oas_operation&lt;/code&gt;) and line 11 (actually calling the new function instead of &lt;code&gt;print_oas_operation&lt;/code&gt;). Reminder, here’s the command line to use it &lt;code&gt;jq -r -f search-operations-color.jq demo-api-openapi.json&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;search-operations-color.jq&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0&quot; aria-label=&quot;download file&quot; target=&quot;_blank&quot; href=&quot;/code/api-toolbox-jq-and-openapi/part-4/search-operations-color.jq&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Download&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/download.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-jq line-numbers code-copy&quot; data-line=&quot;4&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;include &quot;module-openapi&quot;;
-include &quot;module-args&quot;;
-include &quot;module-openapi-search&quot;;
-include &quot;module-openapi-operations-color&quot;;
-
-# Gets operations data
-oas_operations
-# Filters operations
-| filter_oas_operations(init_parameters(default_filters))
-# Prints operations
-| print_colored_oas_operations
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Obviously, it is quite possible to merge the colored and uncolored search operations to have a single module taking format parameters to print how you want. I let you work on that to apply everything you have learned so far.&lt;/p&gt;
-
-&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;That concludes for now this JQ and OpenAPI series, I may add some other posts if I create interesting JQ+OpenAPI modules. Thanks to what you have learned about JQ, you should be able to do whatever you want on any OpenAPI file and even on any JSON document, especially the one you may retrieve with &lt;code&gt;curl&lt;/code&gt;; that may be a good topic for another series by the way …&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="API Toolbox" /><summary type="html">Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. The three previous parts of this JQ and OpenAPI Series, taught us to extract data from JSON (OpenAPI) files and modify them using many filters, creating modules and using command line arguments. To finish this series, we’ll learn to color JQ’s raw terminal output and do a colored version of part 2’s search operations.</summary></entry></feed>
+&lt;p&gt;So, am I 100% convinced by online conference? No. Because I will never have as much fun as I have when hanging out with my friends and attendees in the alleys and in the city where the conference takes place. But in these times, online conferences are far better than no conference at all. Thanks to them, we can still share our experiences and learn from others, even if we have less or different interactions with people.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I’ve attended and spoke at API Days Interface online conference on June 20, July 1 &amp;amp; 2, 2020. Being online made the experience a bit different but after almost 3 days, I felt almost as usual; exhausted and my brain boiling with all what I’ve heard and seen. In this first post I share my feelings about attending and speaking at an online conference.</summary></entry></feed>
