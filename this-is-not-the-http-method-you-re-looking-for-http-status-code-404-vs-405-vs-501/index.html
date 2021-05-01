@@ -1331,6 +1331,11 @@
     
     
     
+      
+    
+    
+    
+    
     
     
     
@@ -1456,14 +1461,35 @@ Choosing HTTP status codes Series - Part 1
         <hr/>
         
         <p>When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
-This first post answers the following question: given that a <code>GET /resources/123</code> request returns a <code>200 OK</code>, what should be the response to <code>DELETE /resources/123</code> if <code>DELETE</code> method is not implemented? <code>404 Not Found</code>, <code>405 Method Not Allowed</code> or <code>501 Not Implemented</code>?
-<!--more--></p>
+This first post answers the following question: given that a <code>GET /resources/123</code> request returns a <code>200 OK</code>, what should be the response to <code>DELETE /resources/123</code> if <code>DELETE</code> method is not implemented? <code>404 Not Found</code>, <code>405 Method Not Allowed</code> or <code>501 Not Implemented</code>?</p>
 
-<div class="alert alert-info" role="alert">
+<!--more-->
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Choosing HTTP status codes Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.<div class="alert alert-info">
 I never remember in which RFCs HTTP status codes are defined.
-To get a quick access to their documentation, I use <a href="https://webconcepts.info/concepts/http-status-code/" class="alert-link">Erik Wilde's Web Concepts</a>.
+To get a quick access to their documentation, I use <a class="alert-link" href="https://webconcepts.info/concepts/http-status-code/">Erik Wilde's Web Concepts</a>.
+</div>Very special thanks to all Twitter people participating to the <a href="https://twitter.com/search?q=%23choosehttpstatuscode&amp;src=typed_query">#choosehttpstatuscode</a> polls and discussions</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item active">1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501</li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
 </div>
-
 
         
       </div>
@@ -1505,10 +1531,9 @@ Let’s see which HTTP status code(s) can be used when a resource actually exist
         <h1 id="use-405-method-not-allowed-when-method-isnt-defined-in-contract">Use 405 Method Not Allowed when method isn’t defined in contract</h1>
 
 <blockquote class="blockquote">
-    <p class="mb-0">The 405 (Method Not Allowed) status code indicates that the method received in the request-line is known by the origin server but not supported by the target resource.</p>
-    <footer class="blockquote-footer"><cite title="Source Title">
-            <a href="http://tools.ietf.org/html/rfc7231#section-6.5.5">RFC 7231, section 6.5.5</a></cite></footer>
-</blockquote>
+    <p class="mb-0">The 405 (Method Not Allowed) status code indicates that the method received in the request-line is known by the origin server but not supported by the target resource.</p><footer class="blockquote-footer">
+        <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.5.5">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.5</a></cite>
+    </footer></blockquote>
 
 <p>A <code>405</code> is a <code>4xx</code> class status code, which means it’s client’s fault.
 Receiving such a response means the client sent to the origin server a request with a method that is not allowed/supported by the target resource.
@@ -1536,10 +1561,9 @@ It’s clearly my fault, though it’s quite surprising to NOT be able to delete
         <h1 id="use-501-not-implemented-when-partially-implementing-a-standard">Use 501 Not Implemented when partially implementing a “standard”</h1>
 
 <blockquote class="blockquote">
-    <p class="mb-0">The 501 (Not Implemented) status code indicates that the server does not support the functionality required to fulfill the request. This is the appropriate response when the server does not recognize the request method and is not capable of supporting it for any resource.</p>
-    <footer class="blockquote-footer"><cite title="Source Title">
-            <a href="http://tools.ietf.org/html/rfc7231#section-6.6.2">RFC 7231, Section 6.6.2</a></cite></footer>
-</blockquote>
+    <p class="mb-0">The 501 (Not Implemented) status code indicates that the server does not support the functionality required to fulfill the request. This is the appropriate response when the server does not recognize the request method and is not capable of supporting it for any resource.</p><footer class="blockquote-footer">
+        <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.6.2">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, Section 6.6.2</a></cite>
+    </footer></blockquote>
 
 <p>A <code>5xx</code> class error means the server is at fault.
 A <code>501 Not Implemented</code> basically says “we’re deeply sorry but <code>METHOD</code> has not been implemented on this resource and maybe has not been implemented at all on any resource”.</p>
@@ -1570,10 +1594,9 @@ In that case, returning a <code>501 Not Implemented</code> would be the perfect 
         <h1 id="never-use-404-not-found-when-receiving-wrong-or-unknown-method">Never use 404 Not Found when receiving wrong or unknown method</h1>
 
 <blockquote class="blockquote">
-    <p class="mb-0">The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.</p>
-    <footer class="blockquote-footer"><cite title="Source Title">
-            <a href="http://tools.ietf.org/html/rfc7231#section-6.5.4">RFC 7231, section 6.5.4</a></cite></footer>
-</blockquote>
+    <p class="mb-0">The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.</p><footer class="blockquote-footer">
+        <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.5.4">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.4</a></cite>
+    </footer></blockquote>
 
 <p>The Github REST API responded with a <code>404 Not Found</code> to my <code>DELETE /issue-resource-path</code> request.
 According to RFC 7231, that tells the issue identified by the path doesn’t exist (A) or Github is not willing to disclose that issue actually exists (B).
