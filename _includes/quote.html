@@ -1,16 +1,19 @@
 <blockquote class="blockquote">
     <p class="mb-0">{{include.text}}</p>
+    {%- if include.source or include.author -%}
     <footer class="blockquote-footer">
-        {%- if include.source -%}
         <cite title="Source Title">
-            {{include.author}}
-            {%- if include.author and include.source -%},&nbsp;{%- endif -%}
-            {%- if include.url -%}
-            <a href="{{include.url}}">{{include.source}}</a>
+            {%- if include.author and include.source -%}
+                {%- assign authorAndSource = include.author | append:", " | append:include.source  -%}
             {%- else -%}
-            {{include.source}}
+                {%- assign authorAndSource = include.author | append:include.source -%}
+            {%- endif -%}
+            {%- if include.url -%}
+            <a href="{{include.url}}">{{authorAndSource}}</a>
+            {%- else -%}
+            {{authorAndSource}}
             {%- endif -%}
         </cite>
-        {%- endif -%}
     </footer>
+    {%- endif -%}
 </blockquote>
