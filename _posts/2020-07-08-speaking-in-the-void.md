@@ -14,6 +14,8 @@ series_number: 1
 I've attended and spoke at API Days Interface online conference on June 20, July 1 & 2, 2020. Being online made the experience a bit different but after almost 3 days, I felt almost as usual; exhausted and my brain boiling with all what I've heard and seen. In this first post I share my feelings about attending and speaking at an online conference.
 <!--more-->
 
+{% include _postincludes/api-days-interface-2020.md %}
+
 # API Days Interface Online conference
 
 API Days Interface was my first online conference. It was a 2 days long conference with 3 to 4 parallel tracks, workshops and booths, just like a regular conference. All usual API conference topics were discussed; design, governance, security, documentation, architecture, developer experience, ... The line up of speakers and topics was as always quite impressive. So many great speakers (especially Mary Poppendiek and Sam Newman who gave awesome talks) coming from a wide range of domains from culture to government agencies and finance to travel and many others.

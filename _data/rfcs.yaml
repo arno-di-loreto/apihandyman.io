@@ -1,0 +1,9 @@
+- id: 6750
+  name: "The OAuth 2.0 Authorization Framework: Bearer Token Usage"
+  url: https://tools.ietf.org/html/rfc6750
+- id: 7231
+  name: "Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content"
+  url: https://tools.ietf.org/html/rfc7231
+- id: 7235
+  name: "Hypertext Transfer Protocol (HTTP/1.1): Authentication"
+  url: https://tools.ietf.org/html/rfc7235
