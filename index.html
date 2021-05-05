@@ -990,18 +990,20 @@
 
 <div class="card card-home rounded-0 border-0 h-100">
   
-  <img src="https://apihandyman.io/images/reading-thoughtworks-technology-radar-24/banner.png" class="card-img-top rounded-0" alt="include.image_alt">
+  <img src="https://apihandyman.io/images/hands-off-that-resource-http-status-code-401-vs-403-vs-404/banner.png" class="card-img-top rounded-0" alt="include.image_alt">
   
   <div class="card-body">
     
+    <h5 class="card-surtitle font-weight-lighter">Choosing HTTP status codes Series - Part 2</h5>
     
     
-    <a href="https://apihandyman.io/reading-thoughtworks-technology-radar-24/" class="stretched-link"><h4 class="card-title">Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24</h4></a>
+    
+    <a href="https://apihandyman.io/hands-off-that-resource-http-status-code-401-vs-403-vs-404/" class="stretched-link"><h4 class="card-title">Hands off that resource, HTTP status code 401 vs 403 vs 404</h4></a>
     
     <h6 class="card-subtitle mb-2 text-muted">By Arnaud Lauret</h6>
     
-    <div class="card-text card-content text-justify"><p>Thoughtworks Technology Radar 24, an “opinionated guide to technology frontiers”, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it.
-As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it’s not a click bait, I don’t know what it is).</p>
+    <div class="card-text card-content text-justify"><p>When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This second post answers the following question: given that resource with id 123 actually exists in the underlying database, what should be the response to <code>GET /resources/123</code> when consumer is not allowed to access it? <code>401 Unauthorized</code>, <code>403 Forbidden</code> or <code>404 Not Found</code>?</p>
+
 </div>
   </div>
   
@@ -1025,21 +1027,18 @@ As always it is really interesting and full of valuable insights, though I nearl
 
 <div class="card card-home rounded-0 border-0 h-100">
   
-  <img src="https://apihandyman.io/images/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/banner.png" class="card-img-top rounded-0" alt="include.image_alt">
+  <img src="https://apihandyman.io/images/reading-thoughtworks-technology-radar-24/banner.png" class="card-img-top rounded-0" alt="include.image_alt">
   
   <div class="card-body">
     
-    <h5 class="card-surtitle font-weight-lighter">Choosing HTTP status codes Series - Part 1</h5>
     
     
-    
-    <a href="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/" class="stretched-link"><h4 class="card-title">This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501</h4></a>
+    <a href="https://apihandyman.io/reading-thoughtworks-technology-radar-24/" class="stretched-link"><h4 class="card-title">Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24</h4></a>
     
     <h6 class="card-subtitle mb-2 text-muted">By Arnaud Lauret</h6>
     
-    <div class="card-text card-content text-justify"><p>When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
-This first post answers the following question: given that a <code>GET /resources/123</code> request returns a <code>200 OK</code>, what should be the response to <code>DELETE /resources/123</code> if <code>DELETE</code> method is not implemented? <code>404 Not Found</code>, <code>405 Method Not Allowed</code> or <code>501 Not Implemented</code>?</p>
-
+    <div class="card-text card-content text-justify"><p>Thoughtworks Technology Radar 24, an “opinionated guide to technology frontiers”, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it.
+As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it’s not a click bait, I don’t know what it is).</p>
 </div>
   </div>
   
