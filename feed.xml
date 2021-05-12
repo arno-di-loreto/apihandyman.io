@@ -1,4 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-05-11T04:24:35+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">401 Vs 403 Vs 404</title><link href="https://apihandyman.io/hands-off-that-resource-http-status-code-401-vs-403-vs-404/" rel="alternate" type="text/html" title="401 Vs 403 Vs 404" /><published>2021-05-05T00:00:00+00:00</published><updated>2021-05-05T00:00:00+00:00</updated><id>https://apihandyman.io/401-vs-403-vs-404</id><content type="html" xml:base="https://apihandyman.io/hands-off-that-resource-http-status-code-401-vs-403-vs-404/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This second post answers the following question: given that resource with id 123 actually exists in the underlying database, what should be the response to &lt;code&gt;GET /resources/123&lt;/code&gt; when consumer is not allowed to access it? &lt;code&gt;401 Unauthorized&lt;/code&gt;, &lt;code&gt;403 Forbidden&lt;/code&gt; or &lt;code&gt;404 Not Found&lt;/code&gt;?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-05-12T04:25:17+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">6 reasons why generating OpenAPI from code when designing and documenting APIs sucks</title><link href="https://apihandyman.io/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/" rel="alternate" type="text/html" title="6 reasons why generating OpenAPI from code when designing and documenting APIs sucks" /><published>2021-05-12T00:00:00+00:00</published><updated>2021-05-12T00:00:00+00:00</updated><id>https://apihandyman.io/generating-openapi-sucks</id><content type="html" xml:base="https://apihandyman.io/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/">&lt;p&gt;When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementation’s code (using annotations).
+Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;If you know me, have seen me talking at conferences, have read my posts or my book, you know what is my favorite approach (spoiler: the “write it” one).
+But as an API design reviewer I work with many different teams: some use the first approach and others the second one and some use both.
+Slowly but surely, the write it approach is gaining ground.
+I am pleased to see new teams I have never work with before are already convinced that writing OpenAPI (when design and documenting) is a better approach for them.
+And I am even more pleased to see some who were using the “generate it” approach switching to other other one, convinced by my reasons and the problems their encountered.
+I thought it could be interesting to share the 6 main reasons why people would stop to use the “generate it” approach and switch to the “write it” one, hence this post.&lt;/p&gt;
+
+&lt;h1 id=&quot;complicates-design&quot;&gt;Complicates design&lt;/h1&gt;
+
+&lt;p&gt;The first reason is that generating OpenAPI from code complicates design.
+Indeed, you need to write actual implementation’s code to get something.
+You need a fully functional development environment to code and build a more or less empty API’s implementation’s skeleton.&lt;/p&gt;
+
+&lt;p&gt;And not everybody who work on the design of an API can write code.
+That may be strange to your eyes, but there are places where developers of an API’s implementation are not the one who will actually design the API, business analysts may have that role.
+They work closely with developers but they are the one who actually write the API’s contract.
+There are places where those people may work more closely together, contributing to the same OpenAPI document, that would be quite complicated to do that with a generated one if one of them don’t code.&lt;/p&gt;
+
+&lt;p&gt;Some would argue that “writing” OpenAPI is like writing code.
+Until not so long ago, you would need to know the syntax to actually write it, but that’s not true anymore.
+There are API design GUI that allows anyone (with basic HTTP knowledge) to describe an API without having to write a single line of YAML (or JSON for the most masochistic).&lt;/p&gt;
+
+&lt;h1 id=&quot;forces-to-choose-development-stack&quot;&gt;Forces to choose development stack&lt;/h1&gt;
+
+&lt;p&gt;The second reason is an annoying side effect of having to write actual implementation’s code to get something.
+To write code, you actually have to choose a development stack.
+When you are working on a totally new software solution making such decisions too early during the overall solution’s design phase may reveal to be a problem.
+Indeed, you may realize that the chosen stack was not the more adapted one once you have a full view on what the API is supposed to do and so the written code must be thrown to garbage.
+Obviously if that’s just “yet another API in familiar environment”, that reason is null and void.&lt;/p&gt;
+
+&lt;h1 id=&quot;lessens-design-quality&quot;&gt;Lessens design quality&lt;/h1&gt;
+
+&lt;p&gt;Having to write code, especially on an existing application, risks to lessen the API design quality because it may lead to being “inside out” or also less accurate.&lt;/p&gt;
+
+&lt;p&gt;An inside out API design brutally exposes what is happening under the hood resulting in less easy to understand, less easy to use, less easy to evolve APIs.
+Seeing existing functions, existing databases, you may be tempted to expose them as is without rethinking them.
+That will lead to consumers needing to know how your implementation works when they shouldn’t, leading to tight coupling with them crippling the possibility of evolutions on your side.&lt;/p&gt;
+
+&lt;p&gt;Being polluted by existing implementation or purely development oriented concerns, not only will you expose the engine that should be hidden but you may take shortcuts resulting in less accurate design.
+Indeed, for instance, you may choose wrong resources, wrong operations, wrong granularity for an operation or data model or you may simply miss that you should have created a totally new API; all that simply because you were too close to the existing code or data.
+Such design will obviously also be less easy to understand, less easy to use, less easy to evolve APIs.&lt;/p&gt;
+
+&lt;h1 id=&quot;casts-doubt-upon-implementation&quot;&gt;Casts doubt upon implementation&lt;/h1&gt;
+
+&lt;p&gt;The big argument of the generate it approach is “no need to synchronize spec and code anymore!”.
+Yes that’s true, but that also means you don’t have an independent source of truth for your API’s contract.
+Whats was agreed on during the design phase may not be what is actually implemented in the end.
+Without a source of truth independent from actual code, there’s no way to test that what is implement is actually ok.
+A long time ago, having working with third party contractors building applications for my company that revealed to be a major problem.
+And even when working with the family, some errors or modifications may happen inadvertently.&lt;/p&gt;
+
+&lt;h1 id=&quot;complicates-writing-documentation&quot;&gt;Complicates writing documentation&lt;/h1&gt;
+
+&lt;p&gt;Developers who love to write documentation raise your hands!&lt;/p&gt;
+
+&lt;p&gt;Not so many hands risen (that’s a pity, but that’s another story).&lt;/p&gt;
+
+&lt;p&gt;This reason is similar to the first one “Complicates design”.
+When working on APIs, people who write the documentation may not be the one who write the code (and note also they may not be the one who do the design).
+Doc writers may not want to write code and developers may not want to have people mingling with their codebase.&lt;/p&gt;
+
+&lt;h1 id=&quot;lessens-documentation-quality&quot;&gt;Lessens documentation quality&lt;/h1&gt;
+
+&lt;p&gt;You may not know it but pushing the OpenAPI Specification to its limits allows to write totally awesome API documentation that everyone will love (writing about that is on my to do list).
+That’s especially interesting for private APIs, indeed you may not want to do the same level of effort regarding developer portal and producing content.
+A complete OpenAPI shown in Redoc, Stoplight Elements or even SwaggerUI will do the trick at almost 0 cost.&lt;/p&gt;
+
+&lt;p&gt;But producing such specification requires to uses all the OpenAPI Specification subtleties and unfortunately not all (if not no) generator allows that (and not all developers are willing to do such effort in their code, because previous reason).
+You may possibly tweak what the generator does to achieve some interesting modifications but at what cost?
+Whatever you do, generating code irremediably results in less expressive and less complete OpenAPI documents.&lt;/p&gt;
+
+&lt;h1 id=&quot;so-generating-openapi-sucks&quot;&gt;So generating OpenAPI sucks?&lt;/h1&gt;
+
+&lt;p&gt;That’s not what I said, what you should retain from this is is that there are &lt;em&gt;concerns to be aware of&lt;/em&gt; when generating OpenAPI Specification &lt;em&gt;from code when designing and documenting API&lt;/em&gt;.
+OK, the post’s title says “suck”, that’s a clickbait (for totally honorable reasons 😅).
+Actually and as always, it’s not a matter of right or wrong, it’s a matter of choosing a solution to a given problem according to a context and living with the consequences.&lt;/p&gt;
+
+&lt;p&gt;If in your context, people who design, code, and document are the same or are ok to work with code.
+And if people working on design are sufficiently experimented to not be polluted by existing code and data.
+And if you’re confident that there will be no variation during implementation.
+And if you don’t need all OpenAPI subtleties for your API documentation (and frankly, for private APIs, you can live with that).
+You may generate your OpenAPI documents from code.
+If not, you may have to rethink your strategy or if it’s too complicated decide knowingly to live with the risks listed in this post.&lt;/p&gt;
+
+&lt;p&gt;And regarding “generating OpenAPI” in general there are use cases where it’s incredibly interesting to do it.
+But that’s another story.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementation’s code (using annotations). Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.</summary></entry><entry><title type="html">401 Vs 403 Vs 404</title><link href="https://apihandyman.io/hands-off-that-resource-http-status-code-401-vs-403-vs-404/" rel="alternate" type="text/html" title="401 Vs 403 Vs 404" /><published>2021-05-05T00:00:00+00:00</published><updated>2021-05-05T00:00:00+00:00</updated><id>https://apihandyman.io/401-vs-403-vs-404</id><content type="html" xml:base="https://apihandyman.io/hands-off-that-resource-http-status-code-401-vs-403-vs-404/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This second post answers the following question: given that resource with id 123 actually exists in the underlying database, what should be the response to &lt;code&gt;GET /resources/123&lt;/code&gt; when consumer is not allowed to access it? &lt;code&gt;401 Unauthorized&lt;/code&gt;, &lt;code&gt;403 Forbidden&lt;/code&gt; or &lt;code&gt;404 Not Found&lt;/code&gt;?&lt;/p&gt;
 
 &lt;!--more--&gt;
 &lt;div class=&quot;card series-toc&quot;&gt;
@@ -1912,7 +2002,4 @@ Also, if your “microservices” share a database with others or are wars or ea
 
 &lt;p&gt;It’s time to conclude. What do I retain in the end? Well, besides Sam Newman doing a facepalm, I will remember that “it’s the people that matter, the people that last, not machines, not technology. Change is not Kubernetes or Service Mesh, change is people” (&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f096a054b0835001b00cd16&quot; title=&quot;APIs are Arrangements of Power. Now what?&quot;&gt;Matthew Reinbold&lt;/a&gt;). And also a clever way to say that they are two sides of doing APIs:  “Doing APIs right and doing right APIs” (&lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f0bde6f86dfb0001b75dfb9&quot; title=&quot;/Contract/{Collaboration}/DrivenDevelopment&quot;&gt;Alianna Inzana&lt;/a&gt; and &lt;a href=&quot;https://interface.virtualconference.com/#/conference/5f09b44c8c46ce001bff21a0&quot; title=&quot;Automating API Governance&quot;&gt;John Phenix&lt;/a&gt;). Based on my experience, I can tell you that helping people doing the APIs right with appropriate governance will help them making right APIs by themselves in the long run.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">API Days Interface being online made the experience a bit different but after 3 days, I felt almost as usual; exhausted and my brain boiling. In previous post, I shared my feelings about my first online conference. Now let’s talk about the content; Sam Newman doing a facepalm, API design, architecture, governance and my new favorite quote “Doing APIs right, doing right APIs”.</summary></entry><entry><title type="html">APIs You Won’t Hate Podcast - The API Handyman Cometh</title><link href="https://apihandyman.io/apis-you-wont-hate-podcast-the-api-handyman-cometh/" rel="alternate" type="text/html" title="APIs You Won’t Hate Podcast - The API Handyman Cometh" /><published>2020-07-09T00:00:00+00:00</published><updated>2020-07-09T00:00:00+00:00</updated><id>https://apihandyman.io/apis-you-wont-hate-podcast-the-api-handyman-cometh</id><content type="html" xml:base="https://apihandyman.io/apis-you-wont-hate-podcast-the-api-handyman-cometh/">&lt;p&gt;It was great to chat with Phil Sturgeon and Matt Trask on the APIs You Won’t Hate Podcast. We talked about API Design and Reviews, and we also talk about life in quarantine, as France completely shut down and how Phil made it back in time to England before the lock downs took place.
 &lt;!--more--&gt;
-Listen on &lt;a href=&quot;https://dev.to/apisyouwonthatepodcast/episode-6-the-api-handyman-cometh&quot;&gt;APIs You Won’t Hate&lt;/a&gt;&lt;/p&gt;</content><author><name>Phil Sturgeon, Matt Trask &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">It was great to chat with Phil Sturgeon and Matt Trask on the APIs You Won’t Hate Podcast. We talked about API Design and Reviews, and we also talk about life in quarantine, as France completely shut down and how Phil made it back in time to England before the lock downs took place.</summary></entry><entry><title type="html">I’d Rather Be Writing Podcast - API Design and Usability</title><link href="https://apihandyman.io/i-d-rather-be-writing-podcast-api-design-and-usability/" rel="alternate" type="text/html" title="I’d Rather Be Writing Podcast - API Design and Usability" /><published>2020-07-08T00:00:00+00:00</published><updated>2020-07-08T00:00:00+00:00</updated><id>https://apihandyman.io/i-d-rather-be-writing-podcast-api-design-and-usability</id><content type="html" xml:base="https://apihandyman.io/i-d-rather-be-writing-podcast-api-design-and-usability/">&lt;p&gt;I had the pleasure to chat with Tom Johnson for his I’d Rather Be Writing Podcast. We talked about my book, The Design of Web APIs, and specifically best practices for designing web APIs and focus on the roles technical writers can play.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;Listen on &lt;a href=&quot;https://idratherbewriting.com/blog/api-design-usability-arnaud-lauret-podcast/&quot;&gt;idratherbewriting.com&lt;/a&gt;&lt;/p&gt;</content><author><name>Tom Johnson &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">I had the pleasure to chat with Tom Johnson for his I’d Rather Be Writing Podcast. We talked about my book, The Design of Web APIs, and specifically best practices for designing web APIs and focus on the roles technical writers can play.</summary></entry></feed>
+Listen on &lt;a href=&quot;https://dev.to/apisyouwonthatepodcast/episode-6-the-api-handyman-cometh&quot;&gt;APIs You Won’t Hate&lt;/a&gt;&lt;/p&gt;</content><author><name>Phil Sturgeon, Matt Trask &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">It was great to chat with Phil Sturgeon and Matt Trask on the APIs You Won’t Hate Podcast. We talked about API Design and Reviews, and we also talk about life in quarantine, as France completely shut down and how Phil made it back in time to England before the lock downs took place.</summary></entry></feed>
