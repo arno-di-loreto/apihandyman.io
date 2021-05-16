@@ -1,3 +1,12 @@
+- code: 2xx
+  source:
+    type: RFC
+    id: 7231
+    location: section 6.3
+    url: http://tools.ietf.org/html/rfc7231#section-6.3
+  description: The 2xx (Successful) class of status code indicates that the client's
+   request was successfully received, understood, and accepted.
+  reason: Success class
 - code: 200
   source:
     type: RFC
@@ -6,7 +15,14 @@
     url: http://tools.ietf.org/html/rfc7231#section-6.3.1
   description: The 200 (OK) status code indicates that the request has succeeded.
   reason: OK
-  description:  
+- code: 204
+  source:
+    type: RFC
+    id: 7231
+    location: section 6.3.5
+    url: http://tools.ietf.org/html/rfc7231#section-6.3.5
+  description: The 204 (No Content) status code indicates that the server has successfully fulfilled the request and that there is no additional content to send in the response payload body.
+  reason: No Content
 - code: 4xx
   source:
     type: RFC
@@ -47,6 +63,14 @@
     url: http://tools.ietf.org/html/rfc7231#section-6.5.5
   reason: Method Not Allowed
   description: The 405 (Method Not Allowed) status code indicates that the method received in the request-line is known by the origin server but not supported by the target resource.
+- code: 410
+  source:
+    type: RFC
+    id: 7231
+    location: section 6.5.9
+    url: http://tools.ietf.org/html/rfc7231#section-6.5.9
+  reason: Gone
+  description: The 410 (Gone) status code indicates that access to the target resource is no longer available at the origin server and that this condition is likely to be permanent.
 - code: 501
   source:
     type: RFC
