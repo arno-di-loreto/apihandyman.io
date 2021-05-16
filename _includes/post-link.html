@@ -1,2 +1,6 @@
 {%- assign post = site.posts | find: "alias",include.alias -%}
+{%- if post.series-%}
+<a class="post-link" href="{{ post.permalink }}">{{post.series}} Part {{post.series_number}} - {{post.series_title}}</a>
+{%- else -%}
 <a class="post-link" href="{{ post.permalink }}">{{post.title}}</a>
+{%- endif -%}
