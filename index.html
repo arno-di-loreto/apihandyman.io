@@ -990,18 +990,19 @@
 
 <div class="card card-home rounded-0 border-0 h-100">
   
-  <img src="https://apihandyman.io/images/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/banner.png" class="card-img-top rounded-0" alt="include.image_alt">
+  <img src="https://apihandyman.io/images/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/banner.png" class="card-img-top rounded-0" alt="include.image_alt">
   
   <div class="card-body">
     
+    <h5 class="card-surtitle font-weight-lighter">Choosing HTTP status codes Series - Part 3</h5>
     
     
-    <a href="https://apihandyman.io/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/" class="stretched-link"><h4 class="card-title">6 reasons why generating OpenAPI from code when designing and documenting APIs sucks</h4></a>
+    
+    <a href="https://apihandyman.io/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/" class="stretched-link"><h4 class="card-title">Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410</h4></a>
     
     <h6 class="card-subtitle mb-2 text-muted">By Arnaud Lauret</h6>
     
-    <div class="card-text card-content text-justify"><p>When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementation’s code (using annotations).
-Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.</p>
+    <div class="card-text card-content text-justify"><p>When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This third post answers the following question: given that resource with id 123 actually doesn’t exist in the underlying database, what should be the response to <code>GET /resources/123</code> when consumer is allowed to access such ressource? <code>204 No Content</code>, <code>403 Forbidden</code>, <code>404 Not Found</code> or <code>410 Gone</code>?</p>
 
 </div>
   </div>
@@ -1026,19 +1027,18 @@ Generating OpenAPI Specification documents from code has major drawbacks that yo
 
 <div class="card card-home rounded-0 border-0 h-100">
   
-  <img src="https://apihandyman.io/images/hands-off-that-resource-http-status-code-401-vs-403-vs-404/banner.png" class="card-img-top rounded-0" alt="include.image_alt">
+  <img src="https://apihandyman.io/images/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/banner.png" class="card-img-top rounded-0" alt="include.image_alt">
   
   <div class="card-body">
     
-    <h5 class="card-surtitle font-weight-lighter">Choosing HTTP status codes Series - Part 2</h5>
     
     
-    
-    <a href="https://apihandyman.io/hands-off-that-resource-http-status-code-401-vs-403-vs-404/" class="stretched-link"><h4 class="card-title">Hands off that resource, HTTP status code 401 vs 403 vs 404</h4></a>
+    <a href="https://apihandyman.io/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/" class="stretched-link"><h4 class="card-title">6 reasons why generating OpenAPI from code when designing and documenting APIs sucks</h4></a>
     
     <h6 class="card-subtitle mb-2 text-muted">By Arnaud Lauret</h6>
     
-    <div class="card-text card-content text-justify"><p>When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This second post answers the following question: given that resource with id 123 actually exists in the underlying database, what should be the response to <code>GET /resources/123</code> when consumer is not allowed to access it? <code>401 Unauthorized</code>, <code>403 Forbidden</code> or <code>404 Not Found</code>?</p>
+    <div class="card-text card-content text-justify"><p>When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementation’s code (using annotations).
+Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.</p>
 
 </div>
   </div>
