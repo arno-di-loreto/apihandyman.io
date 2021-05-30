@@ -1,6 +1,7 @@
 ---
 date: 2021-05-26
 author: Arnaud Lauret
+alias: resources-vs-resource
 layout: post
 category: post
 permalink: /resources-rules-and-resource-sucks-or-is-it-the-other-way-around/
