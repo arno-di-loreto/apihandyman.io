@@ -1,4 +1,142 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-06-01T04:36:53+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">/resources rules and /resource sucks … or is it the other way around?</title><link href="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/" rel="alternate" type="text/html" title="/resources rules and /resource sucks … or is it the other way around?" /><published>2021-05-26T00:00:00+00:00</published><updated>2021-05-26T00:00:00+00:00</updated><id>https://apihandyman.io/resources-vs-resource</id><content type="html" xml:base="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">&lt;p&gt;Using singular or plural to represent a list of something is an old debate in computer science, especially in the database field.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-06-02T04:37:17+00:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">200 Vs 204 Vs 404</title><link href="https://apihandyman.io/empty-lists-http-status-code-200-vs-204-vs-404/" rel="alternate" type="text/html" title="200 Vs 204 Vs 404" /><published>2021-06-02T00:00:00+00:00</published><updated>2021-06-02T00:00:00+00:00</updated><id>https://apihandyman.io/200-vs-204-vs-404</id><content type="html" xml:base="https://apihandyman.io/empty-lists-http-status-code-200-vs-204-vs-404/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
+This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 
+&lt;code&gt;200 OK&lt;/code&gt;, &lt;code&gt;204 No Content&lt;/code&gt; or &lt;code&gt;404 Not Found&lt;/code&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;div class=&quot;card series-toc&quot;&gt;
+  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
+    &lt;h5 id=&quot;series&quot;&gt;Choosing HTTP status codes Series&lt;/h5&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;row series-toc_content&quot;&gt;
+    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;
+        &lt;p class=&quot;card-text&quot;&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.&lt;div class=&quot;alert alert-info&quot;&gt;
+I never remember in which RFCs HTTP status codes are defined.
+To get a quick access to their documentation, I use &lt;a class=&quot;alert-link&quot; href=&quot;https://webconcepts.info/concepts/http-status-code/&quot;&gt;Erik Wilde's Web Concepts&lt;/a&gt;.
+&lt;/div&gt;Very special thanks to all Twitter people participating to the &lt;a href=&quot;https://twitter.com/search?q=%23choosehttpstatuscode&amp;amp;src=typed_query&quot;&gt;#choosehttpstatuscode&lt;/a&gt; polls and discussions&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
+      
+      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/&quot;&gt;1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/hands-off-that-resource-http-status-code-401-vs-403-vs-404/&quot;&gt;2 - Hands off that resource, HTTP status code 401 vs 403 vs 404&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/&quot;&gt;3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item active&quot;&gt;4 - Empty list, HTTP status code 200 vs 204 vs 404&lt;/li&gt;
+          
+        
+        
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;the-context&quot;&gt;The context&lt;/h1&gt;
+
+&lt;p&gt;When you need to represent lists (aka collection resources) in a REST/RESTful/RESTish API, a usual design pattern is to represented with them a &lt;code&gt;/resources&lt;/code&gt; (or &lt;code&gt;/resource&lt;/code&gt;, read &lt;a class=&quot;post-link&quot; href=&quot;/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/&quot;&gt;/resources rules and /resource sucks … or is it the other way around?&lt;/a&gt;).
+More often than not, you’ll need to be able to return a subset of the list’s elements.
+To do so, a usual (if not standard) design pattern is to add query parameters to provide search filters.
+If a &lt;code&gt;GET /users&lt;/code&gt; is supposed to return a list containing all (actually accessible to the consumer and possibly to the end user) users, a &lt;code&gt;GET /users?name=spock&lt;/code&gt; is supposed to return a list containing only the users whose name is &lt;code&gt;spock&lt;/code&gt;.
+The question we will answer today basically is: which HTTP status code respond with when returning an empty list.&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/empty-lists-http-status-code-200-vs-204-vs-404/twitter-poll.png&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Twitter poll results&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;According to my Twitter pool, 51% of respondents would return a &lt;code&gt;200 OK&lt;/code&gt;, while 24% would return a &lt;code&gt;204 No Content&lt;/code&gt; and 25% would return a &lt;code&gt;404 Not Found&lt;/code&gt;.
+Let’s see what could be the correct answers according to RFC(s) and common practice.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-obvious-200-ok&quot;&gt;The obvious 200 OK&lt;/h1&gt;
+
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 200 (OK) status code indicates that the request has succeeded.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.3.1&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.3.1&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Let’s start with the most common and valid response in such a case: &lt;code&gt;200 OK&lt;/code&gt;.
+When responding to &lt;code&gt;GET /users&lt;/code&gt;, the API will respond with that HTTP status code along with a list of all (actually accessible to the consumer and possibly to the end user) users users.
+When responding to &lt;code&gt;GET /users?name=smith&lt;/code&gt;, the API will respond also that with HTTP status code along with a list contains all users named &lt;code&gt;smith&lt;/code&gt;.
+And finally when responding to &lt;code&gt;GET /users?name=spock&lt;/code&gt; and if there are no user name &lt;code&gt;spock&lt;/code&gt;, the API will respond yet another time with that HTTP status code but this time along with an empty list.
+That is actually the most common response I have ever seen, probably because most people consider that the &lt;code&gt;/users&lt;/code&gt; collection/list resource exists and &lt;code&gt;name&lt;/code&gt; query param is used to filter the content of the list.&lt;/p&gt;
+
+&lt;p&gt;But there is a more specific HTTP status code that could do the trick too.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-not-so-current-204&quot;&gt;The not so current 204&lt;/h1&gt;
+
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 204 (No Content) status code indicates that the server has successfully fulfilled the request and that there is no additional content to send in the response payload body.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.3.5&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.3.5&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;While &lt;code&gt;200 OK&lt;/code&gt; being a valid and the most common answer, returning a &lt;code&gt;204 No Content&lt;/code&gt; could make sense as there is absolutely nothing to return.
+It is indeed more often used when responding to a &lt;code&gt;PUT&lt;/code&gt; (replace) or a &lt;code&gt;PATCH&lt;/code&gt; (partial update), when servers don’t want to bother returning the replaced/updated resource or on a &lt;code&gt;DELETE&lt;/code&gt; because there is usually nothing to return after a deletion.
+But it can be used on a &lt;code&gt;GET&lt;/code&gt; too.
+If the request is valid, has been successfully fulfilled and if there is no additional content to send (which is the case as the returned list would be empty),  &lt;code&gt;204 No Content&lt;/code&gt; is perfectly understandable and valid answer.&lt;/p&gt;
+
+&lt;p&gt;It’s a valid response but I personally will not use it and do not recommend to use it in that case in my context.
+Because it is not that common (based on my experience, it’s not absolute truth) and may imply more work.
+Actually, I try to avoid using specific/uncommon HTTP status when a more generic/common one works too, that usually simplifies consumer’s job and also designer’s one as there are less possible choices and behaviors (I’ll write a post about that).
+Though a consumer must be able to interpret any &lt;code&gt;2xx&lt;/code&gt; as as success and fallback to treat it as &lt;code&gt;200 OK&lt;/code&gt;, that means there will be no response body, so no empty list.
+That could easily lead to to possible “null pointer exception” or any equivalent requiring more controls in code.
+A &lt;code&gt;200 OK&lt;/code&gt; with an empty list can be treated the same as non empty list without thinking about it.
+Note that, consumer may obviously have to check il the list is empty or not to possibly show a message to end user, but the exact same code will work without that control.&lt;/p&gt;
+
+&lt;p&gt;But while simplifying choices, note that using that “simplified HTTP” stance, you’ll loose some “HTTP semantic out of the box”. 
+Indeed tne major argument in favor of &lt;code&gt;204 No Content&lt;/code&gt; is that is allows to check empty search results (especially in logs) vs non empty ones without relying on specific response body’s semantic.
+That’s quite an interesting feature.
+Maybe we need more APIs actually fully using HTTP semantic to make this &lt;code&gt;204 No Content&lt;/code&gt; response more common and a no brainer.&lt;/p&gt;
+
+&lt;p&gt;So choosing between &lt;code&gt;200 OK&lt;/code&gt; and &lt;code&gt;204 No Content&lt;/code&gt;, depends on you and your context.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-not-recommended-404&quot;&gt;The not recommended 404&lt;/h1&gt;
+
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.5.4&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.4&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;I just realized that’s the fourth post in this series and &lt;code&gt;404 Not Found&lt;/code&gt; has been involved in all posts so far.
+Let’s see what say the HTTP RFCs (with an s) about using it in that use case.&lt;/p&gt;
+
+&lt;p&gt;If we look at this status code definition in RFC 7231 and if we consider that &lt;code&gt;/users&lt;/code&gt; is the resource used even when doing a &lt;code&gt;GET /users?name=spock&lt;/code&gt;, returning that HTTP status code makes no sense at all because the resource &lt;code&gt;/users&lt;/code&gt; exists, it’s just that the list it contains may be empty.&lt;/p&gt;
+
+&lt;p&gt;But is this definition of a resource identifier (excluding query parameters) is actually the correct one?
+&lt;a href=&quot;https://datatracker.ietf.org/doc/html/rfc7231#section-2&quot;&gt;Section 2 of RFC 7231&lt;/a&gt; states &lt;em&gt;each resource is identified by a Uniform Resource Identifier (URI), as described in Section 2.7 of &lt;a href=&quot;https://datatracker.ietf.org/doc/html/rfc7230#section-2.7&quot;&gt;RFC 7230&lt;/a&gt;&lt;/em&gt;.
+That section 2.7 of RFC 7230 says the “query” (what is between the first &lt;code&gt;?&lt;/code&gt; and &lt;code&gt;#&lt;/code&gt;) is a part of the resource identifier.
+If we follow the link (it’s quite a maze!) conducting to complete description of the query, we eventually arrive at &lt;a href=&quot;https://datatracker.ietf.org/doc/html/rfc3986#section-3.4&quot;&gt;Section 3.4 of RFC 3986&lt;/a&gt; that says &lt;em&gt;the query component contains non-hierarchical data that, along with data in the path component (Section 3.3), serves to identify a resource&lt;/em&gt;.
+That basically means that &lt;code&gt;/users?name=spock&lt;/code&gt; is a resource identifier, so returning 404 is valid according to HTTP RFCs if we want to say “sorry no resource match the strict identifier provided in your query” or “there is no such a users list containing users named spock”.
+But using that HTTP status code being valid from a pure HTTP perspective, is it actually a good idea to use it in that use case?&lt;/p&gt;
+
+&lt;p&gt;In my humble opinion, based on my experience designing APIs, reading and listening to many API practitioners, analyzing many APIs and doing hundreds of API design reviews, I do not recommend to use it in that case because that would break a common practice.
+In most REST/RESTful/RESTish APIs, a “resource identifier” is actually the resource path without the query part, that may be wrong when speaking strictly HTTP but that is the current state of common practice.
+In most APIs, &lt;code&gt;404 Not Found&lt;/code&gt; is strongly attached to “there is nothing for the requested path (excluding query parameters)”.
+It is returned in case involving &lt;code&gt;/path-that-does-not-exist&lt;/code&gt; or &lt;code&gt;/collection/{id that does not exist}&lt;/code&gt; (see &lt;a class=&quot;post-link&quot; href=&quot;/hands-off-that-resource-http-status-code-401-vs-403-vs-404/&quot;&gt;Choosing HTTP status codes Part 2 - Hands off that resource, HTTP status code 401 vs 403 vs 404&lt;/a&gt; or &lt;a class=&quot;post-link&quot; href=&quot;/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/&quot;&gt;Choosing HTTP status codes Part 3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410&lt;/a&gt;) but not for empty lists (that’s usually a &lt;code&gt;2xx Success class&lt;/code&gt;).
+Also, returning a &lt;code&gt;4xx Client Error Class&lt;/code&gt; says that consumer made an error, is that really the case here?
+I don’t think so, the consumer just provided search filters that don’t match any element in a list.&lt;/p&gt;
+
+&lt;p&gt;That’s my reasoned opinion of not using &lt;code&gt;404 Not Found&lt;/code&gt; for empty lists, but if you have valid reasons to use this HTTP status code for this use case, don’t forget to be consistent and provide informative error feedback.
+Indeed, if we take for granted that &lt;code&gt;GET /users?name=spock&lt;/code&gt; returns a &lt;code&gt;404 Not Found&lt;/code&gt; if there are no users named spock.
+What about &lt;code&gt;GET /users&lt;/code&gt; if there are no users at all? 
+It should return the same HTTP status code.
+And differentiating this it from a more common &lt;code&gt;/path-that-does-not-exist&lt;/code&gt; will require to add some information in the response body to explain the actual cause of this response.&lt;/p&gt;
+
+&lt;h1 id=&quot;dx-above-all&quot;&gt;DX above all&lt;/h1&gt;
+
+&lt;p&gt;The lesson of today is that following the HTTP protocol is one thing but there are sometimes various options with pros and cons and sometimes being overly strict can lead to design that are less easy to understand.
+The question is not about achieving the most perfect design (regarding HTTP) but just achieve a design that makes sense for most people involved and proposes the best as possible DX.
+And that D in DX includes developers but also designers.
+Simple design rules that makes sense for most are a key factor in your APIs success.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 200 OK, 204 No Content or 404 Not Found</summary></entry><entry><title type="html">/resources rules and /resource sucks … or is it the other way around?</title><link href="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/" rel="alternate" type="text/html" title="/resources rules and /resource sucks … or is it the other way around?" /><published>2021-05-26T00:00:00+00:00</published><updated>2021-05-26T00:00:00+00:00</updated><id>https://apihandyman.io/resources-vs-resource</id><content type="html" xml:base="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">&lt;p&gt;Using singular or plural to represent a list of something is an old debate in computer science, especially in the database field.
 But what about APIs then?
 It’s still the same, if you look at various APIs, you’ll see that something like “list/search resources” could be either represented by a &lt;code&gt;GET /resources&lt;/code&gt; or a &lt;code&gt;GET /resource&lt;/code&gt;.
 Who is right?
@@ -107,6 +245,10 @@ To get a quick access to their documentation, I use &lt;a class=&quot;alert-link
         
           
           &lt;li class=&quot;list-group-item active&quot;&gt;3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/empty-lists-http-status-code-200-vs-204-vs-404/&quot;&gt;4 - Empty list, HTTP status code 200 vs 204 vs 404&lt;/a&gt;&lt;/li&gt;
           
         
         
@@ -316,6 +458,10 @@ To get a quick access to their documentation, I use &lt;a class=&quot;alert-link
         
           
           &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/&quot;&gt;3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/empty-lists-http-status-code-200-vs-204-vs-404/&quot;&gt;4 - Empty list, HTTP status code 200 vs 204 vs 404&lt;/a&gt;&lt;/li&gt;
           
         
         
@@ -632,6 +778,10 @@ To get a quick access to their documentation, I use &lt;a class=&quot;alert-link
         
           
           &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/&quot;&gt;3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/empty-lists-http-status-code-200-vs-204-vs-404/&quot;&gt;4 - Empty list, HTTP status code 200 vs 204 vs 404&lt;/a&gt;&lt;/li&gt;
           
         
         
@@ -1786,44 +1936,4 @@ It must:&lt;/p&gt;
   &lt;li&gt;Be able to actually implement&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;An “organization” can be a team or a group of teams but be warned that making different teams working together may not be that easy, maybe you should rethink your human organization to solve that problem.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">After hundreds of API design reviews, I can tell that the most neglected aspect of API governance is ownership. Unfortunately, that’s probably the most important one. Without true ownership, your APIs will probably be totally wrong. Without true ownership, your employees will be terribly sad or leave. Without true ownership, your company may even die. As an API design reviewer, I believe that my role is also to warn the teams I’m working with about this topic and help them to fix the problem.</summary></entry><entry><title type="html">The Augmented API Design Reviewer</title><link href="https://apihandyman.io/the-augmented-api-design-reviewer/" rel="alternate" type="text/html" title="The Augmented API Design Reviewer" /><published>2020-12-13T00:00:00+00:00</published><updated>2020-12-13T00:00:00+00:00</updated><id>https://apihandyman.io/the-augmented-api-design-reviewer</id><content type="html" xml:base="https://apihandyman.io/the-augmented-api-design-reviewer/">&lt;p&gt;My 2020 talk, &lt;em&gt;The Augmented API Design Reviewer&lt;/em&gt; is about (partial) API Design review automation with the OpenAPI Specification and Spectral.&lt;/p&gt;
-
-&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
-
-&lt;p&gt;API Design Reviews can be a total nightmare when it comes to check API Design Guidelines conformance. Hopefully, this can be automated using the OpenAPI Specification and Spectral, a JSON/YAML linter. Using these tools, you’ll be able to focus on other more interesting tasks such as investigating if the API fullfils the identified needs. But that will only work if you know how to build and use Spectral rulesets. During this session you’ll discover the basics of Spectral and how to actually use it at scale by discovering how to design rules and rulesets, how to ensure they actually work, and also by learning the differents ways of using Spectral.&lt;/p&gt;
-
-&lt;h1 id=&quot;video&quot;&gt;Video&lt;/h1&gt;
-
-&lt;div id=&quot;MAHW5DmM9j4&quot; class=&quot;third-party-content third-party-content-youtube&quot;&gt;
-    &lt;div class=&quot;card third-party-content-warning&quot;&gt;
-        &lt;img class=&quot;card-img&quot; src=&quot;/images/thirdpartycontents/the-augmented-api-design-reviewer-asc.jpg&quot; alt=&quot;Card image&quot; /&gt;
-        &lt;div class=&quot;card-img-overlay d-flex&quot;&gt;
-            &lt;div class=&quot;my-auto mx-auto text-center&quot;&gt;
-                &lt;p&gt;This content is hosted on youtube.com.&lt;/p&gt;
-                &lt;p&gt;By showing this third party content you accept YouTube (Google)'s 
-                    &lt;a class=&quot;privacy-policy&quot; href=&quot;https://policies.google.com/privacy&quot; target=&quot;_blank&quot;&gt;privacy policy&lt;/a&gt;.
-                &lt;/p&gt;
-                &lt;form&gt;
-                    &lt;a href=&quot;javascript:thirdPartyConsent('MAHW5DmM9j4', 'youtube')&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Show third party content&lt;/a&gt;
-                    &lt;div class=&quot;form-check&quot;&gt;
-                        &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input third-party-content-remember&quot; /&gt;
-                        &lt;label class=&quot;form-check-label&quot; for=&quot;exampleCheck1&quot;&gt;Remember my choice&lt;/label&gt;
-                        &lt;p&gt;(can be changed in &lt;a class=&quot;privacy-policy&quot; href=&quot;/privacy&quot;&gt;privacy settings&lt;/a&gt;)&lt;/p&gt;
-                      &lt;/div&gt;
-                &lt;/form&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;iframe-container third-party-content-iframe third-party-content-iframe-disabled&quot;&gt;
-        &lt;iframe class=&quot;iframe-responsive&quot; data-src=&quot;https://www.youtube-nocookie.com/embed/MAHW5DmM9j4?color=white&amp;amp;theme=light&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
-        &lt;/iframe&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;slides&quot;&gt;Slides&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;/slidedecks/the-augmented-api-design-reviewer/the-augmented-api-design-reviewer.pdf&quot; download=&quot;the-augmented-api-design-reviewer.pdf&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Download PDF&lt;/a&gt;
-&lt;a href=&quot;/slidedecks/the-augmented-api-design-reviewer/the-augmented-api-design-reviewer.pdf&quot; target=&quot;_blank&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Open PDF&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&quot;iframe-container&quot;&gt;
-    &lt;iframe class=&quot;iframe-responsive&quot; src=&quot;/slidedecks/the-augmented-api-design-reviewer/index.html&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talk" /><summary type="html">My 2020 talk, The Augmented API Design Reviewer is about (partial) API Design review automation with the OpenAPI Specification and Spectral. Abstract API Design Reviews can be a total nightmare when it comes to check API Design Guidelines conformance. Hopefully, this can be automated using the OpenAPI Specification and Spectral, a JSON/YAML linter. Using these tools, you’ll be able to focus on other more interesting tasks such as investigating if the API fullfils the identified needs. But that will only work if you know how to build and use Spectral rulesets. During this session you’ll discover the basics of Spectral and how to actually use it at scale by discovering how to design rules and rulesets, how to ensure they actually work, and also by learning the differents ways of using Spectral. Video This content is hosted on youtube.com. By showing this third party content you accept YouTube (Google)'s privacy policy. Show third party content Remember my choice (can be changed in privacy settings) Slides Download PDF Open PDF</summary></entry></feed>
+&lt;p&gt;An “organization” can be a team or a group of teams but be warned that making different teams working together may not be that easy, maybe you should rethink your human organization to solve that problem.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">After hundreds of API design reviews, I can tell that the most neglected aspect of API governance is ownership. Unfortunately, that’s probably the most important one. Without true ownership, your APIs will probably be totally wrong. Without true ownership, your employees will be terribly sad or leave. Without true ownership, your company may even die. As an API design reviewer, I believe that my role is also to warn the teams I’m working with about this topic and help them to fix the problem.</summary></entry></feed>

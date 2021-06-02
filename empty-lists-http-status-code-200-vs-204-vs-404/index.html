@@ -14,27 +14,27 @@
 
 <html lang="en">
   <head>
-  <title>API Handyman | This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501</title>
-  <meta name="description" content="When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This first post answers the following question: given that a GET /resources/123 request returns a 200 OK, what should be the response to DELETE /resources/123 if DELETE method is not implemented? 404 Not Found, 405 Method Not Allowed or 501 Not Implemented?">
+  <title>API Handyman | Empty list, HTTP status code 200 vs 204 vs 404</title>
+  <meta name="description" content="When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 200 OK, 204 No Content or 404 Not Found">
 <meta name="keywords" content="API,Web API,Web Service">
 <meta name="author" content="Arnaud Lauret">
-<meta name="description" content="When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This first post answers the following question: given that a GET /resources/123 request returns a 200 OK, what should be the response to DELETE /resources/123 if DELETE method is not implemented? 404 Not Found, 405 Method Not Allowed or 501 Not Implemented?">
+<meta name="description" content="When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 200 OK, 204 No Content or 404 Not Found">
 
 <!-- Facebook & LinkedIn -->
-<meta property="og:title"         content="This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501"/>
+<meta property="og:title"         content="Empty list, HTTP status code 200 vs 204 vs 404"/>
 <meta property="og:type"          content="article"/>
-<meta property="og:description"   content="When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This first post answers the following question: given that a GET /resources/123 request returns a 200 OK, what should be the response to DELETE /resources/123 if DELETE method is not implemented? 404 Not Found, 405 Method Not Allowed or 501 Not Implemented?"/>
-<meta property="og:url"           content="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/"/>
-<meta property="og:image"         content="https://apihandyman.io/images/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/banner.png"/>
+<meta property="og:description"   content="When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 200 OK, 204 No Content or 404 Not Found"/>
+<meta property="og:url"           content="https://apihandyman.io/empty-lists-http-status-code-200-vs-204-vs-404/"/>
+<meta property="og:image"         content="https://apihandyman.io/images/empty-lists-http-status-code-200-vs-204-vs-404/banner.png"/>
 
 <!-- Twitter -->
 <meta name="twitter:card"         content="summary">
 <meta name="twitter:site"         content="@apihandyman">
 <meta name="twitter:creator"      content="@apihandyman" />
-<meta name="twitter:title"        content="This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501">
-<meta name="twitter:url"          content="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/">
-<meta name="twitter:description"  content="When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This first post answers the following question: given that a GET /resources/123 request returns a 200 OK, what should be the response to DELETE /resources/123 if DELETE method is not implemented? 404 Not Found, 405 Method Not Allowed or 501 Not Implemented?">
-<meta name="twitter:image:src"    content="https://apihandyman.io/images/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/banner.png">
+<meta name="twitter:title"        content="Empty list, HTTP status code 200 vs 204 vs 404">
+<meta name="twitter:url"          content="https://apihandyman.io/empty-lists-http-status-code-200-vs-204-vs-404/">
+<meta name="twitter:description"  content="When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 200 OK, 204 No Content or 404 Not Found">
+<meta name="twitter:image:src"    content="https://apihandyman.io/images/empty-lists-http-status-code-200-vs-204-vs-404/banner.png">
 
   
   
@@ -1239,7 +1239,7 @@
   <div class="row row-banner-small row-banner-small-">
     <div class="banner-small-container">
       <div class="banner-small-column-main">
-        <img src="https://apihandyman.io/images/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/banner.png" class="img-fluid" alt="">
+        <img src="https://apihandyman.io/images/empty-lists-http-status-code-200-vs-204-vs-404/banner.png" class="img-fluid" alt="">
       </div>
     </div>
   </div>
@@ -1280,7 +1280,7 @@
   
   
     
-    <a class="dropdown-item active disabled text-wrap">1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501</a>
+   <a class="dropdown-item selectable text-wrap" href="/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/">1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501</a>
   
 
     
@@ -1292,7 +1292,7 @@
   
 
     
-   <a class="dropdown-item selectable text-wrap" href="/empty-lists-http-status-code-200-vs-204-vs-404/">4 - Empty list, HTTP status code 200 vs 204 vs 404</a>
+    <a class="dropdown-item active disabled text-wrap">4 - Empty list, HTTP status code 200 vs 204 vs 404</a>
   
 
 
@@ -1376,7 +1376,7 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#use-405-method-not-allowed-when-method-isnt-defined-in-contract">Use 405 Method Not Allowed when method isn’t defined in contract</a>
+          <a class="nav-link toc-level-1" href="#the-obvious-200-ok">The obvious 200 OK</a>
           
       
       
@@ -1395,7 +1395,7 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#use-501-not-implemented-when-partially-implementing-a-standard">Use 501 Not Implemented when partially implementing a “standard”</a>
+          <a class="nav-link toc-level-1" href="#the-not-so-current-204">The not so current 204</a>
           
       
       
@@ -1414,7 +1414,26 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#never-use-404-not-found-when-receiving-wrong-or-unknown-method">Never use 404 Not Found when receiving wrong or unknown method</a>
+          <a class="nav-link toc-level-1" href="#the-not-recommended-404">The not recommended 404</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#dx-above-all">DX above all</a>
           
       
       
@@ -1462,18 +1481,19 @@
       <div class="body">
         
         <h5 class="surtitle">
-Choosing HTTP status codes Series - Part 1
+Choosing HTTP status codes Series - Part 4
 </h5>
         
         
-        <h1 class="title">This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501</h1>
+        <h1 class="title">Empty list, HTTP status code 200 vs 204 vs 404</h1>
         
         
-        <h6 class="subtitle">By Arnaud Lauret, April 21, 2021</h6>
+        <h6 class="subtitle">By Arnaud Lauret, June 2, 2021</h6>
         <hr/>
         
         <p>When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
-This first post answers the following question: given that a <code>GET /resources/123</code> request returns a <code>200 OK</code>, what should be the response to <code>DELETE /resources/123</code> if <code>DELETE</code> method is not implemented? <code>404 Not Found</code>, <code>405 Method Not Allowed</code> or <code>501 Not Implemented</code>?</p>
+This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 
+<code>200 OK</code>, <code>204 No Content</code> or <code>404 Not Found</code></p>
 
 <!--more-->
 <div class="card series-toc">
@@ -1494,7 +1514,7 @@ To get a quick access to their documentation, I use <a class="alert-link" href="
       <ul class="list-group list-group-flush">
         
           
-          <li class="list-group-item active">1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501</li>
+          <li class="list-group-item"><a href="/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/">1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501</a></li>
           
         
           
@@ -1506,7 +1526,7 @@ To get a quick access to their documentation, I use <a class="alert-link" href="
           
         
           
-          <li class="list-group-item"><a href="/empty-lists-http-status-code-200-vs-204-vs-404/">4 - Empty list, HTTP status code 200 vs 204 vs 404</a></li>
+          <li class="list-group-item active">4 - Empty list, HTTP status code 200 vs 204 vs 404</li>
           
         
         
@@ -1529,17 +1549,19 @@ To get a quick access to their documentation, I use <a class="alert-link" href="
       
         <h1 id="the-context">The context</h1>
 
-<p>In my <a class="post-link" href="/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/">Batch (Github) API calls with CSV and Postman runner and visualizer</a> post, I used the Github REST API and discovered it was impossible to delete an issue on a repository with a <code>DELETE /{user}/{repository}/issues/{issueId}</code> request simply because it was not implemented.
-Unfortunately, the Github API warned me with a quite awkward <code>404 Not Found</code> though a <code>GET</code> on the very same issue returned a <code>200 OK</code> that tells “this issue exists”.
-That’s quite a contradiction.</p>
+<p>When you need to represent lists (aka collection resources) in a REST/RESTful/RESTish API, a usual design pattern is to represented with them a <code>/resources</code> (or <code>/resource</code>, read <a class="post-link" href="/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">/resources rules and /resource sucks … or is it the other way around?</a>).
+More often than not, you’ll need to be able to return a subset of the list’s elements.
+To do so, a usual (if not standard) design pattern is to add query parameters to provide search filters.
+If a <code>GET /users</code> is supposed to return a list containing all (actually accessible to the consumer and possibly to the end user) users, a <code>GET /users?name=spock</code> is supposed to return a list containing only the users whose name is <code>spock</code>.
+The question we will answer today basically is: which HTTP status code respond with when returning an empty list.</p>
 
 <div class="image ">
     <figure class="figure">
-        <img src="/images/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/twitter-poll.png" class="figure-img img-fluid" alt="Twitter poll results" /></figure>
+        <img src="/images/empty-lists-http-status-code-200-vs-204-vs-404/twitter-poll.png" class="figure-img img-fluid" alt="Twitter poll results" /></figure>
 </div>
 
-<p>According to a Twitter poll I made, a few voters (10%) agreed with Github REST API’s <code>404 Not Found</code> response, most people (56%) would use a <code>405 Method Not Allowed</code>, but a significant amount (34%) would use <code>501 Not Implemented</code>.
-Let’s see which HTTP status code(s) can be used when a resource actually exists but the method provided in the request is not available.</p>
+<p>According to my Twitter pool, 51% of respondents would return a <code>200 OK</code>, while 24% would return a <code>204 No Content</code> and 25% would return a <code>404 Not Found</code>.
+Let’s see what could be the correct answers according to RFC(s) and common practice.</p>
 
 
       </div>
@@ -1552,24 +1574,20 @@ Let’s see which HTTP status code(s) can be used when a resource actually exist
     <div class="card-page-section page-section-not-title">
       <div class="card-body">
       
-        <h1 id="use-405-method-not-allowed-when-method-isnt-defined-in-contract">Use 405 Method Not Allowed when method isn’t defined in contract</h1>
+        <h1 id="the-obvious-200-ok">The obvious 200 OK</h1>
 
 <blockquote class="blockquote">
-    <p class="mb-0">The 405 (Method Not Allowed) status code indicates that the method received in the request-line is known by the origin server but not supported by the target resource.</p><footer class="blockquote-footer">
-        <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.5.5">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.5</a></cite>
+    <p class="mb-0">The 200 (OK) status code indicates that the request has succeeded.</p><footer class="blockquote-footer">
+        <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.3.1">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.3.1</a></cite>
     </footer></blockquote>
 
-<p>A <code>405</code> is a <code>4xx</code> class status code, which means it’s client’s fault.
-Receiving such a response means the client sent to the origin server a request with a method that is not allowed/supported by the target resource.
-Let’s rephrase that definition in the context of an API:
-a consumer will get a <code>405 Method Not Allowed</code> response when sending a request with a method which is not explicitly mentioned in in the contract or documentation on the target resource.
-For instance, that means if the API’s contract or documentation states the only method supported by a resource <code>/resource</code> is <code>GET</code>, a consumer sending a request on this resource using any other method, like <code>DELETE /resource</code> for instance, will get a <code>405 Method Not Allowed</code> response.</p>
+<p>Let’s start with the most common and valid response in such a case: <code>200 OK</code>.
+When responding to <code>GET /users</code>, the API will respond with that HTTP status code along with a list of all (actually accessible to the consumer and possibly to the end user) users users.
+When responding to <code>GET /users?name=smith</code>, the API will respond also that with HTTP status code along with a list contains all users named <code>smith</code>.
+And finally when responding to <code>GET /users?name=spock</code> and if there are no user name <code>spock</code>, the API will respond yet another time with that HTTP status code but this time along with an empty list.
+That is actually the most common response I have ever seen, probably because most people consider that the <code>/users</code> collection/list resource exists and <code>name</code> query param is used to filter the content of the list.</p>
 
-<p>Therefore, the <code>405</code> status code is the one I would have expected from the Github REST API when I tried to delete an issue.
-Indeed, the API’s documentation describing the API’s contract of the issue resource (<code>/{user}/{repository}/issues/{issueId}</code>) only mentions <code>GET</code> and I sent <code>DELETE</code>.
-It’s clearly my fault, though it’s quite surprising to NOT be able to delete an issue (but that’s another story).</p>
-
-<p>A <code>405 Method Not Allowed</code> is the right choice when the method is not defined in contract, but sending a “wrong” method is not always consumer’s fault, that’s where a <code>501 Not Implemented</code> could be interesting.</p>
+<p>But there is a more specific HTTP status code that could do the trick too.</p>
 
 
       </div>
@@ -1582,27 +1600,32 @@ It’s clearly my fault, though it’s quite surprising to NOT be able to delete
     <div class="card-page-section page-section-not-title">
       <div class="card-body">
       
-        <h1 id="use-501-not-implemented-when-partially-implementing-a-standard">Use 501 Not Implemented when partially implementing a “standard”</h1>
+        <h1 id="the-not-so-current-204">The not so current 204</h1>
 
 <blockquote class="blockquote">
-    <p class="mb-0">The 501 (Not Implemented) status code indicates that the server does not support the functionality required to fulfill the request. This is the appropriate response when the server does not recognize the request method and is not capable of supporting it for any resource.</p><footer class="blockquote-footer">
-        <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.6.2">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, Section 6.6.2</a></cite>
+    <p class="mb-0">The 204 (No Content) status code indicates that the server has successfully fulfilled the request and that there is no additional content to send in the response payload body.</p><footer class="blockquote-footer">
+        <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.3.5">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.3.5</a></cite>
     </footer></blockquote>
 
-<p>A <code>5xx</code> class error means the server is at fault.
-A <code>501 Not Implemented</code> basically says “we’re deeply sorry but <code>METHOD</code> has not been implemented on this resource and maybe has not been implemented at all on any resource”.</p>
+<p>While <code>200 OK</code> being a valid and the most common answer, returning a <code>204 No Content</code> could make sense as there is absolutely nothing to return.
+It is indeed more often used when responding to a <code>PUT</code> (replace) or a <code>PATCH</code> (partial update), when servers don’t want to bother returning the replaced/updated resource or on a <code>DELETE</code> because there is usually nothing to return after a deletion.
+But it can be used on a <code>GET</code> too.
+If the request is valid, has been successfully fulfilled and if there is no additional content to send (which is the case as the returned list would be empty),  <code>204 No Content</code> is perfectly understandable and valid answer.</p>
 
-<p>Sending a <code>TOTALLY-UNKNOWN-METHOD /whatever-resource</code> could result in getting a <code>501</code> if the method does not match any <a href="https://webconcepts.info/concepts/http-method/">generally known one</a>, but in that case I would prefer to return a <code>405 Method Not Allowed</code> as it’s not the server’s fault if the consumer really sent a bullshit method in its request and must send an acceptable one.</p>
+<p>It’s a valid response but I personally will not use it and do not recommend to use it in that case in my context.
+Because it is not that common (based on my experience, it’s not absolute truth) and may imply more work.
+Actually, I try to avoid using specific/uncommon HTTP status when a more generic/common one works too, that usually simplifies consumer’s job and also designer’s one as there are less possible choices and behaviors (I’ll write a post about that).
+Though a consumer must be able to interpret any <code>2xx</code> as as success and fallback to treat it as <code>200 OK</code>, that means there will be no response body, so no empty list.
+That could easily lead to to possible “null pointer exception” or any equivalent requiring more controls in code.
+A <code>200 OK</code> with an empty list can be treated the same as non empty list without thinking about it.
+Note that, consumer may obviously have to check il the list is empty or not to possibly show a message to end user, but the exact same code will work without that control.</p>
 
-<p>But, imagine you are implementing a “more or less standard” interface contract.
-It could be because you work in a regulated industry like banking or an highly inter-connected one like travel or logistics.
-It could be because you want to implement a protocol such as WebDAV, which is a extended version of HTTP adding new methods.
-It could also be simply because inside your company several components have to share a common interface in order to facilitate communication.</p>
+<p>But while simplifying choices, note that using that “simplified HTTP” stance, you’ll loose some “HTTP semantic out of the box”. 
+Indeed tne major argument in favor of <code>204 No Content</code> is that is allows to check empty search results (especially in logs) vs non empty ones without relying on specific response body’s semantic.
+That’s quite an interesting feature.
+Maybe we need more APIs actually fully using HTTP semantic to make this <code>204 No Content</code> response more common and a no brainer.</p>
 
-<p>Imagine now that standard contract you need to implement says consumer can use <code>GET</code> and <code>PUT</code> on <code>/resource</code> but you only implement <code>GET</code> in your version 1 for whatever reasonable reason.
-In that case, returning a <code>501 Not Implemented</code> would be the perfect answer as the “standard” contract says that <code>PUT /whatever-resource</code> is possible but it has not been implemented by the actual provider.</p>
-
-<p>If a <code>501 Not Implemented</code> is a very good answer in such a context of partially implementing a “more or less standard” API, returning a <code>404 Not Found</code> is totally out of question in any HTTP method related error.</p>
+<p>So choosing between <code>200 OK</code> and <code>204 No Content</code>, depends on you and your context.</p>
 
 
       </div>
@@ -1615,19 +1638,55 @@ In that case, returning a <code>501 Not Implemented</code> would be the perfect 
     <div class="card-page-section page-section-not-title">
       <div class="card-body">
       
-        <h1 id="never-use-404-not-found-when-receiving-wrong-or-unknown-method">Never use 404 Not Found when receiving wrong or unknown method</h1>
+        <h1 id="the-not-recommended-404">The not recommended 404</h1>
 
 <blockquote class="blockquote">
     <p class="mb-0">The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.</p><footer class="blockquote-footer">
         <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.5.4">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.4</a></cite>
     </footer></blockquote>
 
-<p>The Github REST API responded with a <code>404 Not Found</code> to my <code>DELETE /issue-resource-path</code> request.
-According to RFC 7231, that tells the issue identified by the path doesn’t exist (A) or Github is not willing to disclose that issue actually exists (B).
-Unfortunately, both options were contradicted by the <code>GET /issue-resource-path</code> returning a <code>200 OK</code>.
-Indeed, getting this <code>200</code> tells the issue actually exists (Not A) and Github is willing to disclose it exists (Not B).</p>
+<p>I just realized that’s the fourth post in this series and <code>404 Not Found</code> has been involved in all posts so far.
+Let’s see what say the HTTP RFCs (with an s) about using it in that use case.</p>
 
-<p>And even if for any reason I was actually not able to see this issue (we’ll talk about that in a later post) and so get a <code>404</code> on my <code>GET</code>, I still would prefer to get a <code>405</code> on my <code>DELETE</code>, that way I could have quickly know that whatever the issue I want to delete, I will never be able to delete it as it’s not possible according to the API’s contract.</p>
+<p>If we look at this status code definition in RFC 7231 and if we consider that <code>/users</code> is the resource used even when doing a <code>GET /users?name=spock</code>, returning that HTTP status code makes no sense at all because the resource <code>/users</code> exists, it’s just that the list it contains may be empty.</p>
+
+<p>But is this definition of a resource identifier (excluding query parameters) is actually the correct one?
+<a href="https://datatracker.ietf.org/doc/html/rfc7231#section-2">Section 2 of RFC 7231</a> states <em>each resource is identified by a Uniform Resource Identifier (URI), as described in Section 2.7 of <a href="https://datatracker.ietf.org/doc/html/rfc7230#section-2.7">RFC 7230</a></em>.
+That section 2.7 of RFC 7230 says the “query” (what is between the first <code>?</code> and <code>#</code>) is a part of the resource identifier.
+If we follow the link (it’s quite a maze!) conducting to complete description of the query, we eventually arrive at <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-3.4">Section 3.4 of RFC 3986</a> that says <em>the query component contains non-hierarchical data that, along with data in the path component (Section 3.3), serves to identify a resource</em>.
+That basically means that <code>/users?name=spock</code> is a resource identifier, so returning 404 is valid according to HTTP RFCs if we want to say “sorry no resource match the strict identifier provided in your query” or “there is no such a users list containing users named spock”.
+But using that HTTP status code being valid from a pure HTTP perspective, is it actually a good idea to use it in that use case?</p>
+
+<p>In my humble opinion, based on my experience designing APIs, reading and listening to many API practitioners, analyzing many APIs and doing hundreds of API design reviews, I do not recommend to use it in that case because that would break a common practice.
+In most REST/RESTful/RESTish APIs, a “resource identifier” is actually the resource path without the query part, that may be wrong when speaking strictly HTTP but that is the current state of common practice.
+In most APIs, <code>404 Not Found</code> is strongly attached to “there is nothing for the requested path (excluding query parameters)”.
+It is returned in case involving <code>/path-that-does-not-exist</code> or <code>/collection/{id that does not exist}</code> (see <a class="post-link" href="/hands-off-that-resource-http-status-code-401-vs-403-vs-404/">Choosing HTTP status codes Part 2 - Hands off that resource, HTTP status code 401 vs 403 vs 404</a> or <a class="post-link" href="/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/">Choosing HTTP status codes Part 3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410</a>) but not for empty lists (that’s usually a <code>2xx Success class</code>).
+Also, returning a <code>4xx Client Error Class</code> says that consumer made an error, is that really the case here?
+I don’t think so, the consumer just provided search filters that don’t match any element in a list.</p>
+
+<p>That’s my reasoned opinion of not using <code>404 Not Found</code> for empty lists, but if you have valid reasons to use this HTTP status code for this use case, don’t forget to be consistent and provide informative error feedback.
+Indeed, if we take for granted that <code>GET /users?name=spock</code> returns a <code>404 Not Found</code> if there are no users named spock.
+What about <code>GET /users</code> if there are no users at all? 
+It should return the same HTTP status code.
+And differentiating this it from a more common <code>/path-that-does-not-exist</code> will require to add some information in the response body to explain the actual cause of this response.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="dx-above-all">DX above all</h1>
+
+<p>The lesson of today is that following the HTTP protocol is one thing but there are sometimes various options with pros and cons and sometimes being overly strict can lead to design that are less easy to understand.
+The question is not about achieving the most perfect design (regarding HTTP) but just achieve a design that makes sense for most people involved and proposes the best as possible DX.
+And that D in DX includes developers but also designers.
+Simple design rules that makes sense for most are a key factor in your APIs success.</p>
 
       </div>
     </div><!-- Next cards END -->
