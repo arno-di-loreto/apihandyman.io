@@ -1,5 +1,5 @@
 ---
-date: 2021-06-05
+date: 2021-06-09
 author: Arnaud Lauret
 layout: post
 category: post
@@ -16,6 +16,8 @@ So let's see 3 reasons why choosing a not meaningful API name can be a problem.
 This post is a follow up of a tweet I did a few weeks ago: _"Pink Fluffy Unicorn" is a cute but totally wrong name for an API unless it actually deals with pink fluffy unicorns. Please choose a meaningful name that tells what the API does_.
 Someone asked some arguments to back this statement because they seem to have to deal with such cute but counter-productive if not dangerous naming strategy.
 And I realized that I have never formalized my thoughts on this topic, hence this post (thanks so much Twitter people!) 
+
+_Very special thanks to [@mrlapingdesign](https://twitter.com/mrlapindesign) for drawing this post's banner._
 
 # It needs explanations
 
