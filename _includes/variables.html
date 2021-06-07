@@ -45,10 +45,14 @@
   {%- assign item_banner = item.banner -%}
 {%- else -%}
   {%- assign item_banner = site.default_banner -%}
-  {%- assign item_banner_default = '/images' | append: item.permalink | append: 'banner.png' -%}
+  {%- assign item_banner_default_png = '/images' | append: item.permalink | append: 'banner.png' -%}
+  {%- assign item_banner_default_jpg = '/images' | append: item.permalink | append: 'banner.jpg' -%}
   {%- for static_file in site.static_files -%}
-    {%- if static_file.path == item_banner_default -%}
-        {%- assign item_banner = item_banner_default -%}
+    {%- if static_file.path == item_banner_default_png -%}
+        {%- assign item_banner = item_banner_default_png -%}
+    {%- endif -%}
+    {%- if static_file.path == item_banner_default_jpg -%}
+        {%- assign item_banner = item_banner_default_jpg -%}
     {%- endif -%}
   {%- endfor -%}
 {%- endif -%}
