@@ -18,7 +18,9 @@
 <div class="image {{include.class}}">
     <figure class="figure">
         <img src="{{source}}" class="figure-img img-fluid"{{alt}}>
-        {%- if include.caption -%}
+        {%- if include.caption and include.url -%}
+        <figcaption class="figure-caption"><a href="{{include.url}}">{{include.caption}}</a></figcaption>
+        {%- elsif include.caption -%}
         <figcaption class="figure-caption">{{include.caption}}</figcaption>
         {%- endif -%}
     </figure>
