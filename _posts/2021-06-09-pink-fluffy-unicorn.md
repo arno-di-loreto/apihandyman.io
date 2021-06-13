@@ -7,7 +7,7 @@ permalink: /pink-fluffy-unicorn-api-wtf-or-3-reasons-why-choosing-a-not-meaningf
 title: Pink Fluffy Unicorn API? WTF? (or 3 reasons why choosing a not meaningful API name can be a problem)
 ---
 
-It is usually considered a terrible practice to name a property ot a function with a meaningless name when writing code.
+It is usually considered a terrible practice to name a property or a function with a meaningless name when writing code.
 But surprisingly, when it comes to choosing application or API name, some people tend to choose names in a more artistic way (says the "API Handyman" who can name some tool "OpenAPI Chainsaw").
 So let's see 3 reasons why choosing a not meaningful API name can be a problem.
 
