@@ -1,0 +1,39 @@
+I"”<p>I had the luck to go back to <a href="http://www.restfest.org/">REST Fest</a>, this second time was as awesome as last one. Hereâ€™s the video and slides of my 5 in 5 about HTTP Status Codes.
+<!--more--></p>
+
+<h1 id="video">Video</h1>
+
+<div id="183658014" class="third-party-content third-party-content-vimeo">
+    <div class="card third-party-content-warning">
+        <img class="card-img" src="/images/thirdpartycontents/http-status-trek-restfest.jpg" alt="Card image" />
+        <div class="card-img-overlay d-flex">
+            <div class="my-auto mx-auto text-center">
+                <p>This content is hosted on vimeo.com.</p>
+                <p>By showing this third party content you accept Vimeo's 
+                    <a class="privacy-policy" href="https://vimeo.com/cookie_policy" target="_blank">cookie policy</a>.
+                </p>
+                <form>
+                    <a href="javascript:thirdPartyConsent('183658014', 'vimeo')" class="btn btn-primary" role="button">Show third party content</a>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input third-party-content-remember" />
+                        <label class="form-check-label" for="exampleCheck1">Remember my choice</label>
+                        <p>(can be changed in <a class="privacy-policy" href="/privacy">privacy settings</a>)</p>
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="iframe-container third-party-content-iframe third-party-content-iframe-disabled">
+        <iframe class="iframe-responsive" data-src="https://player.vimeo.com/video/183658014" frameborder="0" allowfullscreen="">
+        </iframe>
+    </div>
+</div>
+
+<h1 id="slides">Slides</h1>
+
+<p><a href="/slidedecks/http-status-trek/http-status-trek.pdf" download="http-status-trek.pdf" class="btn btn-primary" role="button">Download PDF</a>
+<a href="/slidedecks/http-status-trek/http-status-trek.pdf" target="_blank" class="btn btn-primary" role="button">Open PDF</a></p>
+<div class="iframe-container">
+    <iframe class="iframe-responsive" src="/slidedecks/http-status-trek/index.html"></iframe>
+</div>
+:ET

@@ -1,0 +1,28 @@
+I"d<p>API Days London 2016, take 2! I was very happy when Ronnie Mitra (<a href="https://twitter.com/mitraman">@mitraman</a>) from the <a href="http://www.apiacademy.co/">API Academy</a> invited me to do a fireside chat on API Style Guides at API Days London.<!--more--> Here’s the video:</p>
+
+<div id="2hxTmJsVHIc" class="third-party-content third-party-content-youtube">
+    <div class="card third-party-content-warning">
+        <img class="card-img" src="/images/thirdpartycontents/api-style-guides-fireside-chat-api-days-london.jpg" alt="Card image" />
+        <div class="card-img-overlay d-flex">
+            <div class="my-auto mx-auto text-center">
+                <p>This content is hosted on youtube.com.</p>
+                <p>By showing this third party content you accept YouTube (Google)'s 
+                    <a class="privacy-policy" href="https://policies.google.com/privacy" target="_blank">privacy policy</a>.
+                </p>
+                <form>
+                    <a href="javascript:thirdPartyConsent('2hxTmJsVHIc', 'youtube')" class="btn btn-primary" role="button">Show third party content</a>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input third-party-content-remember" />
+                        <label class="form-check-label" for="exampleCheck1">Remember my choice</label>
+                        <p>(can be changed in <a class="privacy-policy" href="/privacy">privacy settings</a>)</p>
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="iframe-container third-party-content-iframe third-party-content-iframe-disabled">
+        <iframe class="iframe-responsive" data-src="https://www.youtube-nocookie.com/embed/2hxTmJsVHIc?color=white&amp;theme=light" frameborder="0" allowfullscreen="">
+        </iframe>
+    </div>
+</div>
+:ET

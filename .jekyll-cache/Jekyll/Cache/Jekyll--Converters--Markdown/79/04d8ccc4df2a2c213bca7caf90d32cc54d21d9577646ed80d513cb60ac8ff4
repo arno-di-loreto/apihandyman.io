@@ -1,0 +1,659 @@
+I"a�<p>Ever wanted to quickly find, extract or modify data coming from some JSON documents on the command line? JQ is the tool you’re looking for. The three previous parts of this JQ and OpenAPI Series, taught us to extract data from JSON (OpenAPI) files and modify them using many filters, creating modules and using command line arguments. To finish this series, we’ll learn to color JQ’s raw terminal output and do a colored version of part 2’s search operations. <!--more--></p>
+
+<p>The screen capture below shows what we already have seen in part 1, JQ “colors its output” by default, but what it actually does is JSON syntax highlighting. What we want to do now is coloring raw terminal output, the one you get when using the <code>-r</code> flag and outputing text instead of JSON. After reading this post, you’ll be able to create JQ module doing output such as the colored version of search operations you see below.</p>
+
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/syntax-vs-coloring.png" class="figure-img img-fluid" />
+        
+        
+      </figure>
+    </div>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">JQ and OpenAPI Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+JQ's <a href="https://stedolan.github.io/jq/manual/v1.6/" target="jq">documentation</a> is quite complete and there are many tutorials and Stackoverflow answers, so why bother writing this series? First reason, I regularly meet people working with APIs and/or JSON files who actually don't know JQ exists and how it could save their life (or at least their time). Second reason, I often use it with OpenAPI specification files and I found that showing how JQ can be used on such a widely adopted and familiar JSON based format could help to learn how to use it (and also writing this post actually helped me to improve my JQ skills!).
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item"><a href="/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">1 - Using JQ to extract data from OpenAPI files</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/">2 - Using JQ command line arguments, functions and modules</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/">3 - Modifying OpenAPI files with JQ</a></li>
+          
+        
+          
+          <li class="list-group-item active">4 - Bonus: Coloring JQ's raw output</li>
+          
+        
+        
+          
+          
+          
+        
+          
+          
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h1 id="get-posts-content">Get post’s content</h1>
+
+<p>All examples shown in this post are based on JQ 1.6 and OpenAPI 3. All examples can be copied using the <span class="icon-inline icon-text" aria-label="copy button icon"><svg height="100px" width="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path d="M14,2V0H6v2H2v18h16V2H14z M12,2v2H8V2H12z M16,18H4V4h2v2h8V4h2V18z"></path></svg></span> button and downloaded using the <span class="icon-inline icon-text" aria-label="download button icon"><svg height="100px" width="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><polygon points="15,11 13.6,9.6 11,12.2 11,0 9,0 9,12.2 6.4,9.6 5,11 10,16  "></polygon><polygon points="18,12 18,18 2,18 2,12 0,12 0,20 20,20 20,12  "></polygon></g></svg></span> one on code snippets. All source code can be retrieved from the <a href="https://github.com/arno-di-loreto/jq-and-openapi/" target="jq">JQ and OpenAPI post series’ github repository</a>.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">git clone https://github.com/arno-di-loreto/jq-and-openapi/
+cd jq-and-openapi
+git checkout part-4
+
+</pre>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ git clone https://github.com/arno-di-loreto/jq-and-openapi/
+[apihandyman.io]$ cd jq-and-openapi
+[apihandyman.io]$ git checkout part-4</code></pre>
+  </div>
+</div>
+
+<h1 id="coloring-jqs-raw-terminal-output">Coloring JQ’s raw terminal output</h1>
+
+<p>Before working on the colored version of the search operation jq module, we need to learn how to ouput basic raw colored text. As in previous posts, the content of this section is available as an Asciinema session.</p>
+
+<div class="card card-code card-bash text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Coloring JQ's output</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="bash session player controls">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body bash-player">
+    <asciinema-player id="player" title="Coloring JQ's output" author="Arnaud Lauret" rows="24" cols="125" src="/code/api-toolbox-jq-and-openapi/part-4/coloring-jq.cast"></asciinema-player>
+  </div>
+</div>
+
+<h2 id="printing-colored-text-in-terminal">Printing colored text in terminal</h2>
+
+<p>When I got this idea of coloring jq’s raw output, I was not familiar with colored printing in terminal, so I started to tinker with the echo command as shown below. Line 1 simply prints Hello World without colors (in white). Line 2’s purpose is only to show what happens if you don’t provide the -e flag to echo: no colors. Line 3 prints Hello World in red. And eventually, line 4 prints Hello in red and World in white.</p>
+
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/colored-echo.png" class="figure-img img-fluid" />
+        
+        
+      </figure>
+    </div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Colored echo</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers code-copy"><code class="code-block">echo Hello World
+echo &#39;\e[31mHello World&#39;
+echo -e &#39;\e[31mHello World&#39;
+echo -e &#39;\e[31mHello\e[0m World&#39;</code></pre>
+  </div>
+</div>
+
+<p>As you can see, printing in color requires to use cryptic character sequences. Basically, to print some text in color you need to concatenate:</p>
+
+<ul>
+  <li>The escape character <code>\e</code></li>
+  <li>A color code like <code>[31m</code> (red)</li>
+  <li>The text to color</li>
+  <li>The escape character <code>\e</code></li>
+  <li>The “reset” color code <code>[0m</code> which remove any style modification previously set</li>
+</ul>
+
+<p>If you want to learn more about coloring text in terminal, I highly recommend reading <a href="https://misc.flogisoft.com/bash/tip_colors_and_formatting">bash:tip_colors_and_formatting</a>, I learned everything I know about this topic reading this post.</p>
+
+<h2 id="coloring-jq-raw-output">Coloring JQ raw output</h2>
+
+<p>Let’s try to replicate this colored echo example with jq. Line 1 is equivalent to our first non-colored <code>echo "Hello World"</code>. We provide a JSON object with <code>greeeting</code> and <code>who</code> properties and concatenate them. On line 2 we add the escape charaecters and color codes to print the <code>greeting</code> value in red. But jq returns two “Invalid espace” errors (one for each <code>\e</code> escape character. It seems jq does not like it. Hopefully there are multiple variant of this escape character. And replacing <code>\e</code> by its unicode equivalent <code>\u001b</code> do the trick: jq is able to concatenate all values (line 3). But the text is printed as a JSON string; simply because I did not put the -r flag. Line 4 shows <code>jq -r</code> printing colored raw text.</p>
+
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/colored-jq.png" class="figure-img img-fluid" />
+        
+        
+      </figure>
+    </div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Colored jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers code-copy"><code class="code-block">echo &#39;{ &quot;greeting&quot;: &quot;Hello&quot;, &quot;who&quot;:&quot;World&quot; }&#39; | jq &#39;.greeting + &quot; &quot; + .who&#39;
+echo &#39;{ &quot;greeting&quot;: &quot;Hello&quot;, &quot;who&quot;:&quot;World&quot; }&#39; | jq &#39;&quot;\e[31m&quot; + .greeting + &quot;\e[0m &quot; + .who&#39;
+echo &#39;{ &quot;greeting&quot;: &quot;Hello&quot;, &quot;who&quot;:&quot;World&quot; }&#39; | jq &#39;&quot;\u001b[31m&quot; + .greeting + &quot;\u001b[0m &quot; + .who&#39;
+echo &#39;{ &quot;greeting&quot;: &quot;Hello&quot;, &quot;who&quot;:&quot;World&quot; }&#39; | jq -r &#39;&quot;\u001b[31m&quot; + .greeting + &quot;\u001b[0m &quot; + .who&#39;</code></pre>
+  </div>
+</div>
+
+<h2 id="defining-a-colored_text-function">Defining a colored_text function</h2>
+
+<p>Printing colored text with jq is is working almost like with echo. We just need to use the unicode escape character instead of <code>\e</code>. But to be honest it’s quite complicated to write this escape character and color codes are not user friendly at all. So, let’s write some jq function in a <code>module-color.jq</code> file to make colored printing easier. The idea is to have a <code>colored_text("some text"; "red")</code> function that prints “some text” in “red” (or “blue”).</p>
+
+<p>First, let’s define a variable holding the not-easy-to-type-and-remember unicode escape character. To use it, just include the jq file (see part 2) in which its defined and use its name.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Escape character variable (module-color.jq)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy" data-start="6"><code class="code-block">def escape: "\u001b";
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">jq -n &#39;include &quot;module-color&quot;;escape&#39;
+
+</pre>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Using escape variable</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io] $ jq -n &#39;include &quot;module-color&quot;;escape&#39;
+&quot;\u001b&quot;</code></pre>
+  </div>
+</div>
+
+<p>Then, we define a map with user-friendly color names as keys and ugly color codes as values. Each value of a map can be accessed with <code>map.key</code> or <code>map["key"]</code> syntax as shown in the bash snippet below.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">User friendly colors map (module-color.jq)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-4/module-color.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy" data-start="9"><code class="code-block">def colors:
+ {
+  "red": "[31m",
+  "green": "[32m",
+  "yellow": "[33m",
+  "blue": "[34m",
+  "darkgray": "[90m",
+  "disabled": "[30;100m", # Black on darkgray
+  "reset": "[0m"
+};
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">jq -n &#39;include &quot;module-color&quot;;colors.red&#39;
+jq -n &#39;include &quot;module-color&quot;;colors[&quot;blue&quot;]&#39;
+
+</pre>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Using escape variable</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io] $ jq -n &#39;include &quot;module-color&quot;;colors.red&#39;
+&quot;[31m&quot;
+[apihandyman.io] $ jq -n &#39;include &quot;module-color&quot;;colors[&quot;blue&quot;]&#39;
+&quot;[34m&quot;</code></pre>
+  </div>
+</div>
+
+<p>Now that the variables are defined, we need to define a function that do all the needed concatenation to generate a string containing some <code>text</code> in color <code>color</code>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">What the function does (module-color.jq)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-4/module-color.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy" data-start="25"><code class="code-block">def colored_text(text; color):
+  escape + colors[color] + text + escape + colors.reset;
+</code></pre>
+  </div>
+</div>
+
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/colored-text-function.png" class="figure-img img-fluid" />
+        
+        
+      </figure>
+    </div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Using colored_text function</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers code-copy"><code class="code-block">jq -n &#39;include &quot;module-color&quot;;colored_text(&quot;some text&quot;; &quot;red&quot;)&#39;
+jq -r -n &#39;include &quot;module-color&quot;;colored_text(&quot;some text&quot;; &quot;red&quot;)&#39;
+jq -n &#39;include &quot;module-color&quot;;colored_text(&quot;some text&quot;; &quot;blue&quot;)&#39;
+jq -r -n &#39;include &quot;module-color&quot;;colored_text(&quot;some text&quot;; &quot;blue&quot;)&#39;</code></pre>
+  </div>
+</div>
+
+<p>Here’s the complete module:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Complete module-color.jq module</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-4/module-color.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-collapsed code-copy"><code class="code-block"># To learn more about colors in terminal, see https://misc.flogisoft.com/bash/tip_colors_and_formatting
+# use with -r flag on jq command
+
+# Unicode escape character
+# \e, \033 and \x1b cause "Invalid escape" error
+def escape: "\u001b";
+
+# Terminal color codes
+def colors:
+ {
+  "red": "[31m",
+  "green": "[32m",
+  "yellow": "[33m",
+  "blue": "[34m",
+  "darkgray": "[90m",
+  "disabled": "[30;100m", # Black on darkgray
+  "reset": "[0m"
+};
+
+# Colors text with the given color
+# colored_text("some text"; "red")
+# will output 
+# \u001b[31msome text\u001b[0m
+# WARNING parameters are separated by ; not ,
+def colored_text(text; color):
+  escape + colors[color] + text + escape + colors.reset;
+</code></pre>
+  </div>
+</div>
+
+<h1 id="coloring-openapi-search-operations-output">Coloring OpenAPI search operations output</h1>
+
+<p>Now that we know how to output colored raw text, creating a colored version of search operation should be quite easy.</p>
+
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/search-operations.png" class="figure-img img-fluid" />
+        
+        
+      </figure>
+    </div>
+
+<p>This section’s content is available as an Asciinema session:</p>
+
+<div class="card card-code card-bash text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Colored search operations</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="bash session player controls">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body bash-player">
+    <asciinema-player id="player" title="Colored search operations" author="Arnaud Lauret" rows="24" cols="125" src="/code/api-toolbox-jq-and-openapi/part-4/search-operations-color.cast"></asciinema-player>
+  </div>
+</div>
+
+<h2 id="analyzing-original-search-operations">Analyzing original search operations</h2>
+
+<p>The original non-colored search-operaions module shown below is quite simple thanks to what we have learned in part 2 of this series. It consists in three steps:</p>
+
+<ul>
+  <li>Retrieving operations data by reorganizing the data coming from an OpenAPI JSON file with <code>oas_operation</code></li>
+  <li>Filters returned operation based on optionnal –arg parameters with <code>filter_oas_operations</code></li>
+  <li>Print the result in JSON or text with <code>print_oas_operations</code></li>
+</ul>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">search-operations.jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-4/search-operations.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy" data-line="10"><code class="code-block">include "module-openapi";
+include "module-args";
+include "module-openapi-search";
+
+# Gets operations data
+oas_operations
+# Filters operations
+| filter_oas_operations(init_parameters(default_filters))
+# Prints operations
+| print_oas_operations(init_parameters(default_print_parameters).format)
+</code></pre>
+  </div>
+</div>
+
+<p>What we actually need to do to created a colored version of this module is copying it and modifythe last step to call a new function that will output text with some cryptic color codes.</p>
+
+<h2 id="creating-a-new-print-colored-oas-function">Creating a new print colored oas function</h2>
+
+<p>As we have created a useful function that prints colored text, let’s include its module to be able to use it:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Including colored_text function (module-openapi-operations-color.jq)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy"><code class="code-block">include "module-color";
+</code></pre>
+  </div>
+</div>
+
+<p>The colored version of the <code>print_oas_operations</code> function, will print HTTP method in colors. In order to avoir having a complex <code>if then elif else end</code> statement, we proceeed like for color codes; we create a map but now each key is an HTTP method and its value is its user friendly color. So <code>delete</code> value is <code>red</code> for example.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Defining HTTP colors (module-openapi-operations-color.jq)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy" data-start="4"><code class="code-block">def http_method_colors:
+ {
+ "delete": "red",
+ "post": "green",
+ "patch": "yellow",
+ "put": "yellow",
+ "get": "blue"
+};
+</code></pre>
+  </div>
+</div>
+
+<p>And then in the <code>print_colored_oas_operations</code> to generate a string for each operation we <code>colored_text</code> on the various elements. Note on line 22 how the HTTP method color is easily chosen. Note also that deprecated operations are printined in black on dark gray using the <code>disabled</code> color.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Generating string for each operation (module-openapi-operations-color.jq)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy" data-start="16"><code class="code-block">    if .original.deprecated then
+      colored_text(
+        .method + "\t" + .path + "\t" + .summary + " (deprecated)"; 
+        "disabled"
+      )
+    else
+      colored_text(.method;http_method_colors[.method]) + "\t" + 
+      .path + "\t" + 
+      colored_text(.summary; "darkgray")
+    end
+</code></pre>
+  </div>
+</div>
+
+<p>Here’s the complete module:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Complete module-openapi-operations-color.jq module</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-4/module-openapi-operations-color.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-collapsed code-copy"><code class="code-block">include "module-color";
+
+# Colors to apply for each HTTP method
+def http_method_colors:
+ {
+ "delete": "red",
+ "post": "green",
+ "patch": "yellow",
+ "put": "yellow",
+ "get": "blue"
+};
+
+# Prints operations in SwaggerUI like style
+def print_colored_oas_operations:
+  map( # Applies a transformation to each element
+    if .original.deprecated then
+      colored_text(
+        .method + "\t" + .path + "\t" + .summary + " (deprecated)"; 
+        "disabled"
+      )
+    else
+      colored_text(.method;http_method_colors[.method]) + "\t" + 
+      .path + "\t" + 
+      colored_text(.summary; "darkgray")
+    end
+  )
+  [] # Flattens array for raw output
+;</code></pre>
+  </div>
+</div>
+
+<h2 id="creating-a-new-search-operations-in-color-module">Creating a new search operations in color module</h2>
+
+<p>And lastly, we create a new module that will be used with the -f parameter. The only difference with its uncolored counterpart is on line 4 (including the jq file containing the <code>print_colored_oas_operation</code>) and line 11 (actually calling the new function instead of <code>print_oas_operation</code>). Reminder, here’s the command line to use it <code>jq -r -f search-operations-color.jq demo-api-openapi.json</code>.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">search-operations-color.jq</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-4/search-operations-color.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-jq line-numbers code-copy" data-line="4"><code class="code-block">include "module-openapi";
+include "module-args";
+include "module-openapi-search";
+include "module-openapi-operations-color";
+
+# Gets operations data
+oas_operations
+# Filters operations
+| filter_oas_operations(init_parameters(default_filters))
+# Prints operations
+| print_colored_oas_operations
+</code></pre>
+  </div>
+</div>
+
+<p>Obviously, it is quite possible to merge the colored and uncolored search operations to have a single module taking format parameters to print how you want. I let you work on that to apply everything you have learned so far.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>That concludes for now this JQ and OpenAPI series, I may add some other posts if I create interesting JQ+OpenAPI modules. Thanks to what you have learned about JQ, you should be able to do whatever you want on any OpenAPI file and even on any JSON document, especially the one you may retrieve with <code>curl</code>; that may be a good topic for another series by the way …</p>
+:ET

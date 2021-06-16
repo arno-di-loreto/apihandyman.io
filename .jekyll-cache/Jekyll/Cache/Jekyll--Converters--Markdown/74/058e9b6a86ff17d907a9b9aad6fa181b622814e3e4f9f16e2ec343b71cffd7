@@ -1,0 +1,1052 @@
+I"�<p>After learning how to <a href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">simplify specification files</a>, let’s start delving into the <a href="https://openapis.org/">OpenAPI specification’s</a> and discover how to describe a high accuracy API’s data model.<!--more--></p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Writing OpenAPI (Swagger) Specification Tutorial Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+This tutorial teaches everything about the OpenAPI 2.0 Specification (fka. as Swagger), most of what you'll read here can still be applied on version 3.
+
+If you're a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a> (version 2 or 3), take a look at the <a href="http://openapi-map.apihandyman.io/?version=2.0)">OpenAPI Map</a>:
+<div class="text-center">
+      <figure class="figure">
+        <a href="http://openapi-map.apihandyman.io/?version=2.0">
+        <img src="/images/commons/openapi/openapi-map-v2.png" class="figure-img img-fluid" />
+        </a>
+        
+      </figure>
+    </div>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">1 - Introduction</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">2 - The basics</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">3 - Simplifying specification file</a></li>
+          
+        
+          
+          <li class="list-group-item active">4 - Advanced Data</li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">5 - Advanced Input And Output Modeling</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">6 - Defining Security</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">7 - Documentation</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">8 - Splitting specification file</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">9 - Extending the OpenAPI specification</a></li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p>In this fourth part you will discover all the tips and tricks you can use to describe properties and definitions to describe an accurate API’s data model.</p>
+
+<h1 id="tailor-made-properties">Tailor made properties</h1>
+
+<blockquote>
+  <p>Primitive data types in the Swagger Specification are based on the types supported by the JSON-Schema Draft 4. Models are described using the Schema Object which is a subset of JSON Schema Draft 4.
+<a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types">OpenAPI Specification Data Types</a></p>
+</blockquote>
+
+<p>Using the <a href="http://json-schema.org/documentation.html">JSON Schema Draft 4</a>, the OpenAPI Specification allows to define every aspects of any type of property.</p>
+
+<h2 id="strings-length-and-pattern">Strings length and pattern</h2>
+<p>When defining a <em>string</em> property, we can specify its length range and its pattern:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>minLength</td>
+      <td>number</td>
+      <td>String’s minimum length</td>
+    </tr>
+    <tr>
+      <td>maxLength</td>
+      <td>number</td>
+      <td>String’s maximum length</td>
+    </tr>
+    <tr>
+      <td>pattern</td>
+      <td>string</td>
+      <td>Regular expression (if you’re not a regex expert, you should try <a href="https://regex101.com/">Regex 101</a>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <em>username</em> in the <em>Person</em> definition is a string which length is between 8 and 64 and composed of lower case alphanumeric characters:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3-5" data-start="118"><code class="code-block">      username:
+        type: string
+        pattern: "[a-z0-9]{8,64}"
+        minLength: 8
+        maxLength: 64
+</code></pre>
+  </div>
+</div>
+
+<h2 id="dates-and-times">Dates and times</h2>
+<p>Date and time are handled with <em>string</em> properties conforming to <a href="http://xml2rfc.ietf.org/public/rfc/html/rfc3339">RFC 3339</a>, all you need to do is to use the appropriate <em>format</em>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Format</th>
+      <th>Property contains</th>
+      <th>Property’s value example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>date</td>
+      <td><a href="http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14">ISO8601 full-date</a></td>
+      <td>2016-04-01</td>
+    </tr>
+    <tr>
+      <td>date-time</td>
+      <td><a href="http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14">ISO8601 date-time</a></td>
+      <td>2016-04-16T16:06:05Z</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In the <em>Person</em> definition, <em>dateOfBirth</em> is a date and <em>lastTimeOnline</em> is a timestamp:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3,6" data-start="123"><code class="code-block">      dateOfBirth:
+        type: string
+        format: date
+      lastTimeOnline:
+        type: string
+        format: date-time
+</code></pre>
+  </div>
+</div>
+
+<p>You should read the <a href="http://apiux.com/2013/03/20/5-laws-api-dates-and-times/">5 laws of API dates and times</a> by <a href="https://twitter.com/jharmn">Jason Harmon</a> to learn how to handle date and time with an API.</p>
+
+<h2 id="numbers-type-and-range">Numbers type and range</h2>
+
+<p>When defining a number property, we can specify if this property is an integer, a long, a float or a double by using the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types">appropriate type and format combination</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Type</th>
+      <th>Format</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>integer</td>
+      <td>int32</td>
+    </tr>
+    <tr>
+      <td>long</td>
+      <td>integer</td>
+      <td>int64</td>
+    </tr>
+    <tr>
+      <td>float</td>
+      <td>number</td>
+      <td>float</td>
+    </tr>
+    <tr>
+      <td>double</td>
+      <td>number</td>
+      <td>double</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And just like string, we can define additional properties like the value range and also indicate if the value is a multiple of something:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>minimum</td>
+      <td>number</td>
+      <td>Minimum value</td>
+    </tr>
+    <tr>
+      <td>maximum</td>
+      <td>number</td>
+      <td>Maximum value</td>
+    </tr>
+    <tr>
+      <td>exclusiveMinimum</td>
+      <td>boolean</td>
+      <td>Value must be &gt; minimum</td>
+    </tr>
+    <tr>
+      <td>exclusiveMaximum</td>
+      <td>boolean</td>
+      <td>Value must be &lt; maximum</td>
+    </tr>
+    <tr>
+      <td>multipleOf</td>
+      <td>number</td>
+      <td>Value is a multiple of multipleOf</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <em>pageSize</em> parameter is an integer &gt; 0 and &lt;= 100 and a multiple of 10:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5-11" data-start="288"><code class="code-block">  pageSize:
+    name: pageSize
+    in: query
+    description: Number of persons returned
+    type: integer
+    format: int32
+    minimum: 0
+    exclusiveMinimum: true
+    maximum: 100
+    exclusiveMaximum: false
+    multipleOf: 10
+</code></pre>
+  </div>
+</div>
+
+<p>The <em>maxPrice</em> property of <em>CollectingItem</em> definition is a double value &gt; 0 and &lt;= 10000:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="2-7" data-start="190"><code class="code-block">      maxPrice:
+        type: number
+        format: double
+        minimum: 0
+        maximum: 10000
+        exclusiveMinimum: true
+        exclusiveMaximum: false
+</code></pre>
+  </div>
+</div>
+
+<h2 id="enumerations">Enumerations</h2>
+<p>On each property we can define a set of accepted value with the <em>enum</em> property.</p>
+
+<p>The property <em>code</em> of definition <em>Error</em> can take only three value (DBERR, NTERR and UNERR):</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3-6" data-start="169"><code class="code-block">      code:
+        type: string
+        enum:
+          - DBERR
+          - NTERR
+          - UNERR
+</code></pre>
+  </div>
+</div>
+
+<h2 id="arrays-size-and-uniqueness">Arrays size and uniqueness</h2>
+<p>Arrays size and uniqueness are defined by these properties:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>minItems</td>
+      <td>number</td>
+      <td>Minimum number of items in the array</td>
+    </tr>
+    <tr>
+      <td>maxItem</td>
+      <td>number</td>
+      <td>Maximum number of items in the array</td>
+    </tr>
+    <tr>
+      <td>uniqueItems</td>
+      <td>boolean</td>
+      <td>Indicate if all array’s elements are unique</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <em>Person</em> definition contains a property <em>items</em> which is an array of <em>Person</em>. This array contain only unique elements and can have between 10 and 100 items:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5-7" data-start="140"><code class="code-block">  Persons:
+    properties:
+      items:
+        type: array
+        minItems: 10
+        maxItems: 100
+        uniqueItems: true
+        items:
+          $ref: "#/definitions/Person"
+</code></pre>
+  </div>
+</div>
+
+<h2 id="binary-data">Binary data</h2>
+<p>Binary data can be handled with <em>string</em> properties using the appropriate <em>format</em>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Format</th>
+      <th>Property contains</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>byte</td>
+      <td>Base64 encoded characters</td>
+    </tr>
+    <tr>
+      <td>binary</td>
+      <td>Any sequence of octets</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The property <em>avatarBase64PNG</em> of <em>Person</em> definition is a base64 encoded PNG image:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3" data-start="130"><code class="code-block">      avatarBase64PNG:
+        type: string
+        format: byte
+</code></pre>
+  </div>
+</div>
+
+<h1 id="advanced-definition-modeling">Advanced definition modeling</h1>
+
+<h2 id="using-same-definitions-on-read-and-write-operations">Using same definitions on read and write operations</h2>
+<p>It’s not unusual that reading a resource returns more than the data needed when creating or updating it. To solve this problem you’ll probably end having two different definitions, one for creating or updating and the other for reading. Fortunately, it can be avoided.</p>
+
+<p>When describing a property in a definition, we can set a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schema-object">readOnly</a></em> property to <em>true</em> to explain that this property may be sent in a response and must not be sent in a request.</p>
+
+<p>In the example below, the <em>lastTimeOnline</em> property in the <em>Person</em> definition does not have sense when creating an <em>Person</em>. With <em>readOnly</em> set to true on this property, we can use the same <em>Person</em> definition in both <em>post /persons</em> and <em>get /persons/{username}</em>, <em>lastTimeOnline</em> will only be of interest when using get:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="4" data-start="126"><code class="code-block">      lastTimeOnline:
+        type: string
+        format: date-time
+        readOnly: true
+</code></pre>
+  </div>
+</div>
+
+<h2 id="combining-multiple-definitions-to-ensure-consistency">Combining multiple definitions to ensure consistency</h2>
+<p>When designing an API, it is highly recommended to propose a consistent design. You can for example decide that paged collection data should always be accompanied on the root level by the <em>same</em> data explaining the current paging status (totalItems, totalPage, pageSize, currentPage).</p>
+
+<p>A first option would be to define this attribute on every single collection:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="7-14" data-start="221"><code class="code-block">  PagedPersonsV1:
+    properties:
+      items:
+        type: array
+        items:
+          $ref: "#/definitions/Person"
+      totalItems:
+        type: integer
+      totalPages:
+        type: integer
+      pageSize:
+        type: integer
+      currentPage:
+        type: integer
+</code></pre>
+  </div>
+</div>
+
+<p>Having to describe again and again, endlessly the same properties on each collection is not only boring but also dangerous: you can forget some properties or misspelled them. And what will happen when you’ll want to add a new information on paging? You’ll have to update every single collection.</p>
+
+<p>A better option would be to define a Paging model and then use it in every collection:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="7-8,10-19" data-start="236"><code class="code-block">  PagedPersonsV2:
+    properties:
+      items:
+        type: array
+        items:
+          $ref: "#/definitions/Person"
+      paging:
+        $ref: "#/definitions/Paging"
+
+  Paging:
+    properties:
+      totalItems:
+        type: integer
+      totalPages:
+        type: integer
+      pageSize:
+        type: integer
+      currentPage:
+        type: integer
+</code></pre>
+  </div>
+</div>
+
+<p>But the paging attributes are not on the root level anymore.
+The <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#composition-and-inheritance-polymorphism"><em>allOf</em> JSON Schema v4 property</a> can provide an elegant and simple solution to this problem:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="256"><code class="code-block">  PagedPersons:
+    allOf:
+      - $ref: "#/definitions/Persons"
+      - $ref: "#/definitions/Paging"
+</code></pre>
+  </div>
+</div>
+
+<p>The allOf property allow to create a new definition composed of all referenced definitions attributes.
+It also functions perfectly with inline definitions:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="261"><code class="code-block">  PagedCollectingItems:
+    allOf:
+      - properties:
+          items:
+            type: array
+            minItems: 10
+            maxItems: 100
+            uniqueItems: true
+            items:
+              $ref: "#/definitions/CollectingItem"
+      - $ref: "#/definitions/Paging"
+</code></pre>
+  </div>
+</div>
+
+<h2 id="create-a-hierarchy-between-definitions-to-implement-inheritance-highly-experimentatl">Create a hierarchy between definitions to implement inheritance (highly experimentatl)</h2>
+<p>As stated in the OpenAPI Specification, composition do not imply hierarchy. The use of <em>discriminator</em> indicate the property used to know which is the type of the <em>sub-definition</em> or <em>sub-class</em> (this property MUST be in the required list).</p>
+
+<p>Here we define a CollectingItem <em>super-definition</em>, which is subclassed using the <em>allOf</em> property. The consumer will determine which <em>sub-definition</em> used by scanning the <em>itemType</em> property.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="1-4,21-23,33-35" data-start="178"><code class="code-block">  CollectingItem:
+    discriminator: itemType
+    required:
+      - itemType
+    properties:
+      itemType:
+        type: string
+        enum:
+          - Vinyl
+          - VHS
+      imageId:
+        type: string
+      maxPrice:
+        type: number
+        format: double
+        minimum: 0
+        maximum: 10000
+        exclusiveMinimum: true
+        exclusiveMaximum: false
+
+  Vinyl:
+    allOf:
+      - $ref: "#/definitions/CollectingItem"
+      - required:
+          - albumName
+          - artist
+        properties:
+          albumName:
+            type: string
+          artist:
+            type: string
+
+  VHS:
+    allOf:
+      - $ref: "#/definitions/CollectingItem"
+      - required:
+          - movieTitle
+        properties:
+          movieTitle:
+            type: string
+</code></pre>
+  </div>
+</div>
+
+<p>This is highly experimental as the content of <em>discriminator</em> field is not clear in the specification’s current version (<a href="https://github.com/OAI/OpenAPI-Specification/issues/403">issue 403</a>) and as far as I know it is not supported by any tool using OpenAPI specification.</p>
+
+<h2 id="maps-hashmap-associative-array">Maps, Hashmap, Associative array</h2>
+
+<blockquote>
+  <p>A map is structure that can map key to value
+<a href="https://en.wikipedia.org/wiki/Hash_table">Hash table on Wikipedia</a></p>
+</blockquote>
+
+<p>A string/string JSON map:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{ 
+  &quot;key1&quot;: &quot;value1&quot;,
+  &quot;key2&quot;: &quot;value2&quot;
+}</code></pre>
+  </div>
+</div>
+
+<p>A string/object JSON map:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{ 
+  &quot;key1&quot;: {&quot;complexValue1&quot;: &quot;value1&quot;},
+  &quot;key2&quot;: {&quot;complexValue2&quot;: &quot;value2&quot;}
+}</code></pre>
+  </div>
+</div>
+
+<p>In an OpenAPI specification the key is always a string and do not need to be defined (if the key is an integer, it will be considered as a string).
+The value’s type is defined within the property: <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#model-with-mapdictionary-properties"><em>additionalProperties</em></a>.</p>
+
+<h3 id="string-to-string-hashmap">String to String Hashmap:</h3>
+<p>If you want to have a string to string map property in the <em>Person</em> definition explaining which languages this person speaks, the resulting data would look like this:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+&quot;username&quot;: &quot;apihandyman&quot;,
+&quot;spokenLanguage&quot;: { 
+    &quot;en&quot;: &quot;english&quot;,
+    &quot;fr&quot;: &quot;French&quot;
+  }
+}</code></pre>
+  </div>
+</div>
+
+<p>Defining the <em>spokenLanguage</em> property in the <em>Person</em> definition is done this way:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="25-26,28-30" data-start="109"><code class="code-block">definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+        pattern: "[a-z0-9]{8,64}"
+        minLength: 8
+        maxLength: 64
+      dateOfBirth:
+        type: string
+        format: date
+      lastTimeOnline:
+        type: string
+        format: date-time
+        readOnly: true
+      avatarBase64PNG:
+        type: string
+        format: byte
+      spokenLanguages:
+        $ref: "#/definitions/SpokenLanguages"
+  
+  SpokenLanguages:
+    additionalProperties:
+      type: string
+</code></pre>
+  </div>
+</div>
+
+<h3 id="string-to-object-map">String to Object Map</h3>
+<p>If you want to have a string to object map property in the <em>Error</em> definition to provide a multilingual long and short error message, the resulting data would look like this:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+  &quot;code&quot;: &quot;UNERR&quot;,
+  &quot;message&quot;: { 
+    &quot;en&quot;: {
+        &quot;shortMessage&quot;:&quot;Error&quot;, 
+        &quot;longMessage&quot;:&quot;Error. Sorry for the inconvenience.&quot;
+    },
+    &quot;fr&quot;: {
+        &quot;shortMessage&quot;:&quot;Erreur&quot;, 
+        &quot;longMessage&quot;:&quot;Erreur. Désolé pour le dérangement.&quot;
+    }
+  }
+}</code></pre>
+  </div>
+</div>
+
+<p>Defining the <em>message</em> property in the <em>Error</em> definition is done this way:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="9-10" data-start="150"><code class="code-block">  ErrorMessage:
+    properties:
+      longMessage:
+        type: string
+      shortMessage:
+        type: string
+  
+  MultilingualErrorMessage:
+    additionalProperties:
+      $ref: "#/definitions/ErrorMessage"
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="12-13" data-start="164"><code class="code-block">  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: string
+        enum:
+          - DBERR
+          - NTERR
+          - UNERR
+      message:
+        $ref: "#/definitions/MultilingualErrorMessage"
+</code></pre>
+  </div>
+</div>
+
+<h3 id="hashmap-with-default-values">Hashmap with default value(s)</h3>
+<p>And finally, if you want to add a default language multilingual error message in your map (i.e. adding a default value in the map).</p>
+
+<p>The returned structure do not differs from the precedent example:</p>
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+  &quot;code&quot;: &quot;UNERR&quot;,
+  &quot;message&quot;: {
+    &quot;defaultLanguage&quot;: {
+        &quot;shortMessage&quot;:&quot;Error&quot;, 
+        &quot;longMessage&quot;:&quot;Error. Sorry for the inconvenience.&quot;
+    }, 
+    &quot;en&quot;: {
+        &quot;shortMessage&quot;:&quot;Error&quot;, 
+        &quot;longMessage&quot;:&quot;Error. Sorry for the inconvenience.&quot;
+    },
+    &quot;fr&quot;: {
+        &quot;shortMessage&quot;:&quot;Erreur&quot;, 
+        &quot;longMessage&quot;:&quot;Erreur. Désolé pour le dérangement.&quot;
+    }
+  }
+}</code></pre>
+  </div>
+</div>
+
+<p>But in the OpenAPI Specification, we add a <em>defaultLanguage</em> property to the <em>MultilingualErrorMessage</em> definition to the explicitly declare this value in the map:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_14_advanced_data_modeling.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="11-13" data-start="150"><code class="code-block">  ErrorMessage:
+    properties:
+      longMessage:
+        type: string
+      shortMessage:
+        type: string
+  
+  MultilingualErrorMessage:
+    additionalProperties:
+      $ref: "#/definitions/ErrorMessage"
+    properties:
+      defaultLanguage:
+        $ref: "#/definitions/ErrorMessage"
+  
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: string
+        enum:
+          - DBERR
+          - NTERR
+          - UNERR
+      message:
+        $ref: "#/definitions/MultilingualErrorMessage"
+</code></pre>
+  </div>
+</div>
+
+<p>You can define as many as “default” values as you want.
+This also can be used for string to string map.</p>
+
+<p><em>Inspired by this <a href="(http://stackoverflow.com/questions/29666480/how-can-i-define-a-map-with-arbitrary-keys-in-a-swagger-model)">stackoverflow question</a> answered by <a href="https://twitter.com/webron">Ron Ratovsky</a></em></p>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>You now have mastered the art of defining an accurate data model with the OpenAPI Specification.
+Be aware that even if the OpenAPI Specification defines all this possibilities, some may not be supported/used by every tool working with OpenAPI specification files. But at least your API data model’s description will be highly accurate.
+In the <a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">next post</a> we’ll continue our delving in the specification and learn all tips and tricks to describe the input and outputs of an API.</p>
+:ET

@@ -1,0 +1,242 @@
+I"9<p>When I look at hypermedia media-types and API definition languages I feel that the frontier between data and documentation is becoming thinner as my knowledge of the API world grows and as the API world evolves.<!--more--></p>
+
+<p>Some complain that hypermedia APIs are overloaded with useless, redundant, ugly, complex, …  data and/or tend to be hardly readable and/or are inefficient in environments where 1 byte is what separates total failure from awesome success (have you ever feared the <em>E</em> icon on your smartphone when using an app relying on data?) .</p>
+
+<p>Others complain that some APIs are not developer/consumer friendly and it’s boring, hard, painful, … to find , <em>when</em> needed, the accurate documentation or information, wether it’s machine or human readable (have you ever feared the enigmatic <em>1138 error and we will not tell you more</em> message or the cryptic <em>understandableButEnigmaticName</em> field while using an API?).</p>
+
+<p>The API inquisition may find all this a bit exaggerated and put you on trial for even thinking about these heretic opinions, but we can’t deny there’s <em>some</em> truth in that.</p>
+
+<blockquote>
+  <p>REST is defined by four interface constraints: identification of resources; manipulation of resources through representations; self-descriptive messages; and, hypermedia as the engine of application state.<br />
+[…] the messages are self-descriptive and their semantics are visible to intermediaries.<br />
+<em>Roy Fielding, <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">Architectural Styles and
+the Design of Network-based Software Architectures</a></em></p>
+</blockquote>
+
+<p>When I read that, I understand <em>message = data + hypermedia + documentation</em> but I’ve no clue about what it means concerning the <em>organization</em> of the <em>message</em>.</p>
+
+<blockquote>
+  <p>Documentation <em>is</em> data. Hypermedia <em>is</em> data. <em>All</em> is data. <br />
+<em>My new motto.</em></p>
+</blockquote>
+
+<p>Let’s see how data, documentation and hypermedia are intertwined in REST APIs, I sense there’s something to dig in there…</p>
+
+<h1 id="api-documentation">API documentation</h1>
+<p>In the API world there are two types of API:</p>
+
+<ul>
+  <li>The good ones: those which have a documentation</li>
+  <li>The bad ones: those which don’t</li>
+</ul>
+
+<p>In the <em>good</em> API world there are two types of documentations:</p>
+
+<ul>
+  <li>Machine readable documentation</li>
+  <li>Human readable documentation</li>
+</ul>
+
+<h2 id="machine-readable-documentation">Machine readable documentation</h2>
+
+<p>Nowadays, talking about machine readable API documentation, is talking about API definition language. <br />
+<em>This post is not intended to be a detailed description and comparison of API definition languages. For more information you may take a look at these <a href="http://www.mikestowe.com/2014/07/raml-vs-swagger-vs-api-blueprint.php">Mike Stowe’s</a> and <a href="http://apievangelist.com/2014/03/08/hello-world-product-api-with-blueprint-raml-and-swagger/">Kin Lane’s</a> posts.</em></p>
+
+<p>The most known are RAML, Swagger and Blueprint. These API definition languages allow you to define and describe:</p>
+
+<ul>
+  <li>Endpoints</li>
+  <li>HTTP verbs you can use on endpoints</li>
+  <li>Input needed when calling an endpoint with a specific HTTP verb</li>
+  <li>Output returned when calling an endpoint with a specific HTTP verb</li>
+  <li>Error handling</li>
+  <li>Data models used on input and output (to avoid defining multiple times the same resource)</li>
+  <li>Security</li>
+  <li>Media-types awaited and returned</li>
+</ul>
+
+<p>None of them, <em>for now</em>, handles hypermedia APIs definition.</p>
+
+<p>By the way, actually many people (like myself some time ago) think that <em>Swagger UI</em> (or equivalent) aka <em>The Swagger</em> is an end in itself, but it’s only <em>a representation</em> of an API’s Swagger definition. You can use API definitions to generate SDK, mocks, server stubs, Postman collections or whatever you wish related to your API’s definition.</p>
+
+<p>You may also have heard about another thing called ALPS.</p>
+
+<p class="tweet"><a class="tweet-link" href="https://twitter.com/apihandyman/status/589521751694008321" target="twitter">
+  <img class="tweet-img" src="/images/the-data-the-hypermedia-and-the-documentation/tweet-589521751694008321.png" />
+</a></p>
+
+<p>Not Alps, <a href="http://en.wikipedia.org/wiki/Alps">the european mountain range</a>, but <a href="http://alps.io/">ALPS</a>, the <em>Application-Level Profile Semantics</em> created by Mike Amundsen, Leonard Richardson and Mark Foster.</p>
+
+<blockquote>
+  <p>ALPS describes the operations (actions) and data elements of a service. that’s all. that description is the same no matter the designtime tooling, protocol, or message format used. that description is the same whether you are implementing code on the client-side or server-side.<br />
+ <em>Kin Lane, <a href="http://apievangelist.com/2015/03/10/what-is-alps/">What is ALPS</a></em></p>
+</blockquote>
+
+<p>To be frank, I have not yet fully grasp ALPS, how it differs from RAML, Swagger and Blueprint and all its implications. I’ll have to dig into the IETF draft, discuss with smart people, test via my <em>API crash test</em> and write some post(s) about this.<br />
+But, for now, I understand that ALPS allows you to describe your data and what you can do with them.
+It can be used as source material to generate:</p>
+
+<ul>
+  <li>Swagger, RAML or Blueprint API definition</li>
+  <li>Simple CRUD service</li>
+  <li>The hypermedia meta-data for your hypermedia API</li>
+</ul>
+
+<p>I also understand that using ALPS to describe a service, even as a simple specification/contract, on each level (client/server) you ensure that implementation are sharing the same “vision” of the limits of the service.</p>
+
+<p>To learn more about ALPS you can read this <a href="http://apievangelist.com/2015/03/10/what-is-alps/">introduction</a> by Kin Lane and the <a href="http://tools.ietf.org/id/draft-amundsen-richardson-foster-alps-01.html">IETF draft</a>.</p>
+
+<p>Putting all these machine readable documentations together we’re able to define and describe:</p>
+
+<ul>
+  <li>Data and relations between data</li>
+  <li>Possible actions on these data</li>
+  <li>What we need to do these actions</li>
+  <li>What we get in return</li>
+  <li>How errors are handled</li>
+  <li>How consumer and provider could talk to each other (security, data format)</li>
+</ul>
+
+<p>Of course nowadays not every API in the world offers this level of completeness in machine readable documentation. And even if this level is reached, there are always a few things, that do not fit in this kind of documentation, to explain to poor humans who have to use your API.</p>
+
+<h2 id="human-readable-documentation">Human readable documentation</h2>
+
+<p>Human readable documentation takes roughly three forms:</p>
+
+<ul>
+  <li>Pretty machine readable documention</li>
+  <li>Novel documentation</li>
+  <li>Dark documentation</li>
+</ul>
+
+<h3 id="pretty-machine-readable-documentation">Pretty machine readable documentation</h3>
+<p>Machine readable documentation is written by humans and therefore is readable by humans (but not all of them).<br />
+This kind of documentation can be displayed in a more accessible and visually appealing way with tools like Swagger UI for example.<br />
+This kind of documentation is not only pretty it’s also smart, it offers users a way of testing the API within its documentation.</p>
+
+<h3 id="novel-documentation">Novel documentation</h3>
+<p>API’s definition is only the Alpha of documentation.<br />
+The Omega is every single thing you think to explain and that do not fit in API’s definition:</p>
+
+<ul>
+  <li>How to connect using Oauth 3.2b3</li>
+  <li>Throttling limitations (3,5 calls every 56 seconds for bronze users)</li>
+  <li>How the Cobol/Pascal/Basic sdk works on an Apple ][</li>
+  <li>…</li>
+</ul>
+
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/the-data-the-hypermedia-and-the-documentation/docsrocks.png" class="figure-img img-fluid" />
+        
+        <figcaption class="figure-caption text-left">Oops, I did memegenerate Charlton Heston again. I just loved this picture.</figcaption>
+      </figure>
+    </div>
+
+<p>You explain these things by writting (<em>ed. and drawing!</em>) plain good old documentation with text, snippets, diagrams… You provide it to users in HTML, PDF, markdown, printed books with rich illuminations or even engraved stones (for gold users only).<br />
+You can also use tools like API notebook to make this documentation more interactive.</p>
+
+<h3 id="dark-documentation">Dark documentation</h3>
+<p><em>Dark documentation</em> (in reference to <em><a href="http://en.wikipedia.org/wiki/Dark_matter">dark matter</a></em>) is all that’s between the Alpha (pretty machine readable documentation) and the Omega (novel documentation).<br />
+It’s all the piece of informations we can find in the API designers and developers brains, by contacting the support, searching stackoverflow, reading blog posts or forums.</p>
+
+<h1 id="data-and-hypermedia-media-types-vs-documentation">Data and Hypermedia media-types vs documentation</h1>
+<p>After documentation comes implementation, what do we get with our data in API’s message? Many things.</p>
+
+<p>A good practice when handling error with your API is to give a link pointing to documentation concerning the error (human readable documentation).
+Some APIs, like PayPal’s, allow developers to choose the level of information they get when there’s an error.</p>
+
+<p>When you add the hypermedia dimension (<em>ed. sounds like a sci-fi book or movie title</em>) to your API, you add data that define and describe:</p>
+
+<ul>
+  <li>Data and relations between data</li>
+  <li>Possible actions on these data</li>
+  <li>What we need to do these actions</li>
+  <li>What we get in return</li>
+  <li>How errors are handled</li>
+</ul>
+
+<p>All of this sounds familiar, no? It looks like a lot of what we have with machine readable documentation and a bit a human readable documentation!</p>
+
+<p>But there’s more. If documentation describes what <em>could be</em>, hypermedia describes <em>what is</em>. Hypermedia gives you informations based on the context:</p>
+
+<ul>
+  <li>The actions that are <em>actually</em> possible in the context</li>
+  <li>Prefilled links with ids and parameters (or templates to build this links)</li>
+  <li>Prefilled value for actions</li>
+</ul>
+
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/the-data-the-hypermedia-and-the-documentation/data-hypermedia-documentation.png" class="figure-img img-fluid" />
+        
+        <figcaption class="figure-caption text-left">Let's do some cool Venn diagram</figcaption>
+      </figure>
+    </div>
+
+<p>What I see now is that most of hypermedia data comes from the documentation and even part of the informations based on context could come from the documentation.</p>
+
+<h1 id="what-else">What else?</h1>
+<p>Here comes the true purpose of this post.</p>
+
+<h2 id="the-web-browsing-analogy">The web browsing analogy</h2>
+<p>When you browse a website:</p>
+
+<ul>
+  <li>Your web client first loads an HTML file /persons/1234/items.html</li>
+  <li>Then it loads all resources (css, js, images) referenced by this file</li>
+  <li>It can therefore present you a rendering of all these elements</li>
+  <li>If you click on a link, the browser loads another HTML file /persons/1235/items.html</li>
+  <li>But, then it will only load <em>new</em> or <em>modified</em> referenced resources</li>
+  <li>It can therefore present you <em>faster</em> and with <em>less data</em> a rendering of all these elements</li>
+</ul>
+
+<p>When you build a website:</p>
+
+<ul>
+  <li>If you want, you could choose to only load the HTML and read it</li>
+  <li>If you use tools like Firebug you can actually have a complete vision of HTML, css, js and other resources in one place</li>
+</ul>
+
+<p>Why couldn’t we do all that with hypermedia APIs?</p>
+
+<h2 id="browsing-hypermedia-apis">Browsing hypermedia APIs</h2>
+
+<p>We could apply a separation between concepts when <em>browsing</em> a hypermedia API like we do with HTML:</p>
+
+<ul>
+  <li>Your API client first load some data GET /persons/1234/items</li>
+  <li>Within these data (or in headers) you have a (or some) reference(s) to the machine and human readable documentation</li>
+  <li>It can therefore build a <em>complete</em> message including all data, hypermedia and documentation</li>
+  <li>If you make another call GET /persons/1235/items</li>
+  <li>Within these data (or in headers)</li>
+  <li>The API client can build a consolidated message including all data, hypermedia and documentation <em>faster</em> as all redundant data has already been loaded</li>
+</ul>
+
+<p>Let’s push the enveloppe on this, we could also imagine to modulate the level of enhancement we apply to the data, we could:</p>
+
+<ul>
+  <li>have the data alone</li>
+  <li>add linked resources to hypermedia data</li>
+  <li>add linked resources to human readable documentation</li>
+  <li>embed hypermedia data</li>
+  <li>embed human readable documentation</li>
+</ul>
+
+<p>You may ask: but why would we do all that? We would do that to propose the necessary level of information depending on the context:</p>
+
+<ul>
+  <li>A developer wants to discover the API? Let’s put all we have and present it via the ultimate API playground: a hypermedia API browser able to present all these informations (data, hypermedia, human readable documentation) in a cool way</li>
+  <li>After playing with the API, the developer starts to build an application to consume it. Let’s give then data + hypermedia data + a part of documentation (detailed errors for example)</li>
+  <li>The application goes on the App Store, we juste give then data + hypermedia</li>
+  <li>We could also send data only (don’t know why… but why not)</li>
+</ul>
+
+<h2 id="to-be-continued">To be continued</h2>
+<p>This ideal is not yet real but as things evolves around hypermedia APIs I think we could see quickly arisen the tools which will help to create this ideal.
+Stay tuned, I’ll be back with other posts about this.</p>
+
+<p><em>PS: I had the pleasure to finish this post after #apisberlin birds of a feather where I had the opportunity to talk about this subject with other API nerds. That was great to talk hypermedia with you guys!</em></p>
+:ET

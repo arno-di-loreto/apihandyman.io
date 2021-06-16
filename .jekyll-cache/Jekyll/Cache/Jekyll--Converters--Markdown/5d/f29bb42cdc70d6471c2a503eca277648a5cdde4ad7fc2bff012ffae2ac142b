@@ -1,0 +1,78 @@
+I"�<p>After API Days London, and Nordic APIs Summit in Stockholm, Scottie beamed me to API Strat Boston 2016 for the final part of my OpenAPI specification (fka. Swagger specification) talk series: <em>OpenAPI Trek Beyond API Documentation</em>. This last talk is the (not so uncommon) story of how I came to use Swagger/OpenAPI for API documentation and how it changed many things beyond API documentation.</p>
+
+<p>You’ll find here the abstract, slides and the video (very special thanks to <a href="https://twitter.com/libel_vox">Matthew Reinbold</a> for recording this talk with my crappy phone).</p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">OpenAPI Trek Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+This 3 talk series provide insight on what is the OpenAPI Specification and how to take advantage of it during the whole API life cycle, especially for design and documentation, and also how to use it to secure and accelerate API creations and evolutions.
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item"><a href="/openapi-trek-api-days-london-2016/">1 - OpenAPI Trek</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/openapi-trek-into-fastness-nordic-apis-summit-2016/">2 - OpenAPI Trek Into Fastness</a></li>
+          
+        
+          
+          <li class="list-group-item active">3 - OpenAPI Trek Beyond API Documentation</li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h1 id="abstract">Abstract</h1>
+
+<p>OpenAPI offers many possibilities that span the full API lifecycle, yet it is seen purely as a solution for generating API documentation. This session will tell the story of AXA Banque’s evolution from .doc and .pdf API documentation to the extensive use of OpenAPI Specification (formerly Swagger). Throughout the journey, we will identify the many advantages of API definition languages beyond simply generating API documentation, including design, testing, documentation continuous delivery, code generation, mocking, and prototyping new ideas.</p>
+
+<h1 id="video">Video</h1>
+
+<div id="EtQbaZwCv5o" class="third-party-content third-party-content-youtube">
+    <div class="card third-party-content-warning">
+        <img class="card-img" src="/images/thirdpartycontents/openapi-trek-beyond-apistrat.jpg" alt="Card image" />
+        <div class="card-img-overlay d-flex">
+            <div class="my-auto mx-auto text-center">
+                <p>This content is hosted on youtube.com.</p>
+                <p>By showing this third party content you accept YouTube (Google)'s 
+                    <a class="privacy-policy" href="https://policies.google.com/privacy" target="_blank">privacy policy</a>.
+                </p>
+                <form>
+                    <a href="javascript:thirdPartyConsent('EtQbaZwCv5o', 'youtube')" class="btn btn-primary" role="button">Show third party content</a>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input third-party-content-remember" />
+                        <label class="form-check-label" for="exampleCheck1">Remember my choice</label>
+                        <p>(can be changed in <a class="privacy-policy" href="/privacy">privacy settings</a>)</p>
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="iframe-container third-party-content-iframe third-party-content-iframe-disabled">
+        <iframe class="iframe-responsive" data-src="https://www.youtube-nocookie.com/embed/EtQbaZwCv5o?color=white&amp;theme=light" frameborder="0" allowfullscreen="">
+        </iframe>
+    </div>
+</div>
+
+<h1 id="slides">Slides</h1>
+
+<p><a href="/slidedecks/openapi-trek-beyond-api-documentation/openapi-trek-beyond-api-documentation.pdf" download="openapi-trek-beyond-api-documentation.pdf" class="btn btn-primary" role="button">Download PDF</a>
+<a href="/slidedecks/openapi-trek-beyond-api-documentation/openapi-trek-beyond-api-documentation.pdf" target="_blank" class="btn btn-primary" role="button">Open PDF</a></p>
+<div class="iframe-container">
+    <iframe class="iframe-responsive" src="/slidedecks/openapi-trek-beyond-api-documentation/index.html"></iframe>
+</div>
+:ET

@@ -1,0 +1,1734 @@
+I"$<p>After <a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">learning the basics</a> and having written a <em>little bit huge</em> file for a <em>so simple</em> API, you may be concerned by what nightmare it could be to handle a bigger and more complex API. REST assured that the <a href="https://openapis.org/">OpenAPI Specification (formerly Swagger Specification)</a> format offers all means to write really <em>small and simple</em> specification files whatever the described API’s size and complexity.<!--more--></p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Writing OpenAPI (Swagger) Specification Tutorial Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+This tutorial teaches everything about the OpenAPI 2.0 Specification (fka. as Swagger), most of what you'll read here can still be applied on version 3.
+
+If you're a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a> (version 2 or 3), take a look at the <a href="http://openapi-map.apihandyman.io/?version=2.0)">OpenAPI Map</a>:
+<div class="text-center">
+      <figure class="figure">
+        <a href="http://openapi-map.apihandyman.io/?version=2.0">
+        <img src="/images/commons/openapi/openapi-map-v2.png" class="figure-img img-fluid" />
+        </a>
+        
+      </figure>
+    </div>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">1 - Introduction</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">2 - The basics</a></li>
+          
+        
+          
+          <li class="list-group-item active">3 - Simplifying specification file</li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">4 - Advanced Data</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">5 - Advanced Input And Output Modeling</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">6 - Defining Security</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">7 - Documentation</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">8 - Splitting specification file</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">9 - Extending the OpenAPI specification</a></li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p>In this third part you will learn how to simplifiy the specification file by defining <em>reusable</em> <em>definitions</em>, <em>responses</em> and <em>parameters</em> and using them with <em>references</em> and thus make the writing and reading of OpenAPI Specification fairly easy.</p>
+
+<h1 id="simplifying-data-model-description">Simplifying data model description</h1>
+<p>We’ll use the final example of the <a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">previous part</a> as starting point. When taking a look at this specification file, the obvious problem is that a <em>Person</em> is defined three times:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="33-41,50-58,78-86"><code class="code-block">swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            type: array
+            items:
+              required:
+                - username
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                username:
+                  type: string
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            required:
+              - username
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            required:
+              - username
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+        404:
+          description: The Person does not exists.</code></pre>
+  </div>
+</div>
+
+<p>By using <em>reusable definitions</em> this <em>not so simple specification</em> will be transformed into this one:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="31,40,60,64-78"><code class="code-block">swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+
+definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"</code></pre>
+  </div>
+</div>
+
+<p>The <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">definitions section (Swagger Object)</a></em> allows you to define <em>once and for all</em> objects/entities/models that can be used anywhere in the specification (i.e. where a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject">schema</a></em> is defined).</p>
+
+<h2 id="adding-definitions-section">Adding definitions section</h2>
+<p>We’ll start by adding a new <em>definitions</em> section at the end of the document (nb: it can be placed anywhere as long as it’s on the root of the OpenAPI Specification tree structure).</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="4" data-start="61"><code class="code-block">        404:
+          description: The Person does not exists.
+
+definitions:
+</code></pre>
+  </div>
+</div>
+
+<h2 id="defining-a-reusable-definition">Defining a reusable definition</h2>
+<p>Then we define a <em>Person</em> once and for all in the <em>definitions</em> section:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="2-11" data-start="64"><code class="code-block">definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+</code></pre>
+  </div>
+</div>
+
+<p>Note that the information provided in <em>Person</em> are exactly the same as the one provided in the three schemas describing a person in previous version. A <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#definitionsObject">definition</a></em> is simply a named <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject">schema object</a></em>.</p>
+
+<h2 id="referencing-a-definition-from-another-definition">Referencing a definition from another definition</h2>
+<p>We’ll start using this newly created <em>definition</em> by referencing it in another one. As we have defined a <em>Person</em> we’ll also define <em>Persons</em> which is an array (or a list) of <em>Persons</em>. The information provided in <em>Persons</em> are <em>almost</em> the same as the one provided in the <em>get /persons</em> response:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="29"><code class="code-block">          description: A list of Person
+          schema:
+            type: array
+            items:
+              required:
+                - username
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                username:
+                  type: string
+</code></pre>
+  </div>
+</div>
+
+<p>The only difference is that the schema describing the array’s <em>items</em> has been replaced by a <em><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#referenceObject">reference ($ref)</a></em> to the <em>Persons definition</em>.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="4" data-start="75"><code class="code-block">  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"</code></pre>
+  </div>
+</div>
+
+<p>A reference is only a path to another declaration within the OpenAPI Specification.</p>
+
+<h2 id="using-definitions-in-responses">Using definitions in responses</h2>
+<p>Once we have defined <em>Person</em> and <em>Persons</em>, we can use them to replace the inline schemas by references in all operations responses.</p>
+
+<h3 id="get-persons">get /persons</h3>
+<p>Before</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5-13" data-start="27"><code class="code-block">      responses:
+        200:
+          description: A list of Person
+          schema:
+            type: array
+            items:
+              required:
+                - username
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+</code></pre>
+  </div>
+</div>
+
+<p>After</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5" data-start="27"><code class="code-block">      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+</code></pre>
+  </div>
+</div>
+
+<h3 id="get-personsusername">get /persons/{username}</h3>
+<p>Before</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5-13" data-start="74"><code class="code-block">      responses:
+        200:
+          description: A Person
+          schema:
+            required:
+              - username
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+</code></pre>
+  </div>
+</div>
+
+<p>After</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5" data-start="56"><code class="code-block">      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+</code></pre>
+  </div>
+</div>
+
+<h2 id="using-definitions-in-parameters">Using definitions in parameters</h2>
+<p>Definitions are not only meant to be used within the <em>definitions</em> section (it would be pointless), they can also be used in operations <em>parameters</em>.</p>
+
+<h3 id="post-persons">post /persons:</h3>
+<p>Before</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_05_with_body_parameter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="9-17" data-start="42"><code class="code-block">    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            required:
+              - username
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+</code></pre>
+  </div>
+</div>
+
+<p>After</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="9" data-start="32"><code class="code-block">    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+</code></pre>
+  </div>
+</div>
+
+<h1 id="simplifying-responses-description">Simplifying responses description</h1>
+<p>Now we have discovered references (<em>$ref</em>), we’ll see they can be used for other matters like <em>responses</em> definition.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="32-33,48-49,68-69,86-91,93-97"><code class="code-block">swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+          
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+
+definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"
+  Error:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+
+responses:
+  Standard500ErrorResponse:
+    description: An unexpected error occured.
+    schema:
+      $ref: "#/definitions/Error"</code></pre>
+  </div>
+</div>
+
+<h2 id="defining-a-reusable-http-500-response">Defining a reusable HTTP 500 response</h2>
+<p>Let’s say, we want <em>every</em> API’s operation to return an error code and message to provide more detailed information about what happened when an operation failed with an HTTP 500 error.
+If we do that the <em>basic</em> way, we’ll end adding a 500 response on each operation like this:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_07_with_responses_wrong.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="20-27,42-49,69-76" data-start="13"><code class="code-block">paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+        500:
+          description: An unexpected error occured.
+          schema:
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+        500:
+          description: An unexpected error occured.
+          schema:
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+
+          
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+        500:
+          description: An unexpected error occured.
+          schema:
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+</code></pre>
+  </div>
+</div>
+
+<p>As every operation will handle HTTP 500 error exactly the same way, it’s a pity to have to declare three times exactly the same thing.</p>
+
+<h2 id="defining-an-error-definition">Defining an Error definition</h2>
+<p>But, we have learned that we can define a schema once and for all. So let’s create an <em>Error</em> definition containing string code and message in the <em>definitions</em> section.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="16-21" data-start="71"><code class="code-block">definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"
+  Error:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+</code></pre>
+  </div>
+</div>
+
+<p>A first <em>almost</em> good idea would be to use this definition in every operation for 500 response schema.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_08_with_responses_less_wrong.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="23,41,62" data-start="13"><code class="code-block">paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+        500:
+          description: An unexpected error occured.
+          schema:
+            $ref: "#/definitions/Error"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+        500:
+          description: An unexpected error occured.
+          schema:
+            $ref: "#/definitions/Error"          
+  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+        500:
+          description: An unexpected error occured.
+          schema:
+            $ref: "#/definitions/Error"
+</code></pre>
+  </div>
+</div>
+
+<h2 id="defining-a-reusable-response">Defining a reusable response</h2>
+
+<p>But it can be even more simple if we declare a response once and for all within the <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">responses section (Swagger Object)</a></em>. This section allows to define reusable responses definitions.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="23-27" data-start="71"><code class="code-block">definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"
+  Error:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+
+responses:
+  Standard500ErrorResponse:
+    description: An unexpected error occured.
+    schema:
+      $ref: "#/definitions/Error"</code></pre>
+  </div>
+</div>
+
+<p><em>Note that the response use the Error definition.</em></p>
+
+<h2 id="using-the-defined-response">Using the defined response</h2>
+<p>Using a defined response is done through a <em>$ref</em> (just like we did when using definitions).</p>
+<h3 id="get-users">get /users</h3>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="6-7" data-start="27"><code class="code-block">      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  </div>
+</div>
+
+<h3 id="post-users">post /users</h3>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="6-7" data-start="43"><code class="code-block">      responses:
+        204:
+          description: Persons succesfully created.
+        400:
+          description: Persons couldn't have been created.
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  </div>
+</div>
+
+<h3 id="get-usersusername">get /users/{username}</h3>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_09_with_responses.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="8-9" data-start="61"><code class="code-block">      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          description: The Person does not exists.
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  </div>
+</div>
+
+<h1 id="simplifying-parameters-description">Simplifying parameters description</h1>
+<p>Like models/schemas and responses, parameters description can be simplified easily.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="18-20,46-47,72-73,77-79,123-139"><code class="code-block">swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - $ref: "#/parameters/pageSize"
+       - $ref: "#/parameters/pageNumber"
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            $ref: "#/definitions/Persons"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+    post:
+      summary: Creates a person
+      description: Adds a new person to the persons list.
+      parameters:
+        - name: person
+          in: body
+          description: The person to create.
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        204:
+          description: Person succesfully created.
+        400:
+          description: Person couldn't have been created.
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+          
+  /persons/{username}:
+    parameters:
+      - $ref: "#/parameters/username"
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+    delete:
+      summary: Deletes a person
+      description: Delete a single person identified via its username
+      responses:
+        204:
+          description: Person successfully deleted.
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+          
+  /persons/{username}/friends:
+    parameters:
+      - $ref: "#/parameters/username"
+    get:
+      summary: Gets a person's friends
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - $ref: "#/parameters/pageSize"
+       - $ref: "#/parameters/pageNumber"
+      responses:
+        200:
+          description: A person's friends list 
+          schema:
+            $ref: "#/definitions/Persons"
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+
+definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+
+responses:
+  Standard500ErrorResponse:
+    description: An unexpected error occured.
+    schema:
+      $ref: "#/definitions/Error"
+  PersonDoesNotExistResponse:
+    description: Person does not exist.
+
+parameters:
+  username:
+    name: username
+    in: path
+    required: true
+    description: The person's username
+    type: string
+  pageSize:
+    name: pageSize
+    in: query
+    description: Number of persons returned
+    type: integer
+  pageNumber:
+    name: pageNumber
+    in: query
+    description: Page number
+    type: integer
+    </code></pre>
+  </div>
+</div>
+
+<h2 id="defining-a-path-parameter-once-for-a-path">Defining a path parameter once for a path</h2>
+<p>If we add a <em>delete</em> operation to the <em>/persons/{username}</em> path, a first idea could be to do it that way:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_10_with_single_path_parameter_wrong.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="6-10,24-28" data-start="51"><code class="code-block">  /persons/{username}:
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+    delete:
+      summary: Deletes a person
+      description: Delete a single person identified via its username
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        204:
+          description: Person successfully deleted.
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  </div>
+</div>
+
+<p><em>Note that we had the good idea to create a reusable 404 response.</em></p>
+
+<p>But having to redefine the <em>username</em> parameter which is shared by each operation on <em>/persons/{username}</em> path is a bit cumbersome. Luckily you can define <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#pathItemObject"><em>parameters</em> on path level</a>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_11_with_single_path_parameter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="1-7" data-start="51"><code class="code-block">  /persons/{username}:
+    parameters:
+      - name: username
+        in: path
+        required: true
+        description: The person's username
+        type: string
+    get:
+      summary: Gets a person
+      description: Returns a single person for its username.
+      responses:
+        200:
+          description: A Person
+          schema:
+            $ref: "#/definitions/Person"
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+    delete:
+      summary: Deletes a person
+      description: Delete a single person identified via its username
+      responses:
+        204:
+          description: Person successfully deleted.
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  </div>
+</div>
+
+<h2 id="defining-reusable-parameters">Defining reusable parameters</h2>
+<p>If we add a <em>get /persons/{username}/friends</em> operations to get a paginated list of a person’s friends, a first idea could be to do it that way:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="2-7,11-19" data-start="81"><code class="code-block">  /persons/{username}/friends:
+    parameters:
+      - name: username
+        in: path
+        required: true
+        description: The person's username
+        type: string
+    get:
+      summary: Gets a person's friends
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+      responses:
+        200:
+          description: A person's friends list 
+          schema:
+            $ref: "#/definitions/Persons"
+        404:
+          $ref: "#/responses/PersonDoesNotExistResponse"
+        500:
+          $ref: "#/responses/Standard500ErrorResponse"
+</code></pre>
+  </div>
+</div>
+
+<p><em>Note that we reuse the 500 and 404 responses</em>.</p>
+
+<p>But that way, we redefine the <em>username</em> parameter just like on path <em>/persons/{username}</em>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3-7" data-start="51"><code class="code-block">  /persons/{username}:
+    parameters:
+      - name: username
+        in: path
+        required: true
+        description: The person's username
+        type: string
+</code></pre>
+  </div>
+</div>
+
+<p>And we also redefine the <em>pageNumber</em> and <em>pageSize</em> parameters which already exist on <em>get /persons</em>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="6-13" data-start="14"><code class="code-block">  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+</code></pre>
+  </div>
+</div>
+
+<h3 id="define-reusable-parameters">Define reusable parameters</h3>
+<p>As we have done with <em>definitions</em> and <em>responses</em>, we can define reusable parameters within the <em>OpenAPI Specification <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#swaggerObject">parameters section (Swagger Object)</a></em>.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="123"><code class="code-block">parameters:
+  username:
+    name: username
+    in: path
+    required: true
+    description: The person's username
+    type: string
+  pageSize:
+    name: pageSize
+    in: query
+    description: Number of persons returned
+    type: integer
+  pageNumber:
+    name: pageNumber
+    in: query
+    description: Page number
+    type: integer
+</code></pre>
+  </div>
+</div>
+
+<h3 id="use-reusable-parameters">Use reusable parameters</h3>
+<p>These reusable parameters can be used with a reference just like definitions and responses.</p>
+
+<h4 id="get-persons-1">get /persons</h4>
+<p>Before</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="6-13" data-start="14"><code class="code-block">  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+</code></pre>
+  </div>
+</div>
+
+<p>After</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="6-7" data-start="14"><code class="code-block">  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - $ref: "#/parameters/pageSize"
+       - $ref: "#/parameters/pageNumber"
+</code></pre>
+  </div>
+</div>
+
+<h4 id="get-and-delete-personsusername">get and delete /persons/{username}</h4>
+<p>Before</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3-7" data-start="51"><code class="code-block">  /persons/{username}:
+    parameters:
+      - name: username
+        in: path
+        required: true
+        description: The person's username
+        type: string
+</code></pre>
+  </div>
+</div>
+
+<p>After</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3" data-start="45"><code class="code-block">  /persons/{username}:
+    parameters:
+      - $ref: "#/parameters/username"
+</code></pre>
+  </div>
+</div>
+
+<h4 id="get-personsusernamefriends">get /persons/{username}/friends</h4>
+<p>Before</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_12_with_parameters_wrong.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3-7,12-19" data-start="81"><code class="code-block">  /persons/{username}/friends:
+    parameters:
+      - name: username
+        in: path
+        required: true
+        description: The person's username
+        type: string
+    get:
+      summary: Gets a person's friends
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of persons returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+</code></pre>
+  </div>
+</div>
+
+<p>After</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_13_with_parameters.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3,8-9" data-start="71"><code class="code-block">  /persons/{username}/friends:
+    parameters:
+      - $ref: "#/parameters/username"
+    get:
+      summary: Gets a person's friends
+      description: Returns a list containing all persons. The list supports paging.
+      parameters:
+       - $ref: "#/parameters/pageSize"
+       - $ref: "#/parameters/pageNumber"
+</code></pre>
+  </div>
+</div>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>By defining reusable <em>definitions</em>, <em>responses</em> and <em>parameters</em> and using them with <em>references</em> you can easily write OpenAPI Specification files which are simple and easily understandable. 
+In <a href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">next post</a>, we’ll dig deeper in various aspect of the OpenAPI Specification.</p>
+:ET

@@ -1,0 +1,73 @@
+I"<p>This page lists the OpenAPI Specification resources available on apihandyman.io.</p>
+
+<h1 id="but-what-is-the-openapi-specification">But what is the OpenAPI Specification?</h1>
+
+<p>The OpenAPI Specification (or OAS) is a standard and programming-language agnostic REST API description format.
+Formerly known as the <em>Swagger Specification</em>, this format has been donated to the <a href="[https://www.openapis.org/]">Open API Initiative (or OAI)</a> which is a Linux Foundation Collaborative Project.</p>
+
+<p>There are two versions of the OpenAPI Specification:</p>
+
+<ul>
+  <li><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">Version 2.0</a> which is basically Swagger 2.0 Specification</li>
+  <li><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md">Version 3.0</a> which is the first evolution after the donation of the Swagger Specification to the Open API Initiative</li>
+</ul>
+
+<p>The OpenAPI Specification is a community driven format, anyone can contribute to it through its github <a href="[https://github.com/OAI/OpenAPI-Specification]">repository</a>.</p>
+
+<h1 id="openapi-specification-version-20-tutorial">OpenAPI Specification version 2.0 Tutorial</h1>
+
+<p>Learn all OpenAPI Specification 2.0 secrets with this 9 parts tutorial:</p>
+
+<ul>
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">Advanced Data</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">Advanced Input And Output Modeling</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">Defining Security</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">Documentation</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">Extending the OpenAPI specification</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">Introduction</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">Simplifying specification file</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">Splitting specification file</a></li>
+    
+  
+    
+    <li><a class="page-link" href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">The basics</a></li>
+    
+  
+</ul>
+
+<h1 id="openapi-map-for-version-20--30">OpenAPI Map for version 2.0 &amp; 3.0</h1>
+
+<p>If you’re a bit lost in the OpenAPI Specification documentation, take a look at the <em><a href="http://openapi-map.apihandyman.io/">OpenAPI Map</a>:</em></p>
+
+<div class="text-center">
+      <figure class="figure">
+        <a href="http://openapi-map.apihandyman.io/">
+        <img src="/images/commons/openapi/openapi-map.png" class="figure-img img-fluid" />
+        </a>
+        <figcaption class="figure-caption text-left">OpenAPI Map</figcaption>
+      </figure>
+    </div>
+:ET

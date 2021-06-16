@@ -1,0 +1,28 @@
+I"ì<p>Just before the <a href="http://apihandyman.io/developing-an-api-strategy-for-2017-api-strat-boston-2016/">Developing an API Strategy for 2017 panel</a>, I have been <a href="http://blog.swaggerhub.com/api-design/getting-started-with-swagger/">interviewed about Swagger/OpenAPI specification and the API Stylebook</a> by <a href="https://twitter.com/keshinpoint">Keshav Vasudevan</a> from Smartbear.<!--more--> Hereâ€™s the video:</p>
+
+<div id="nwBTsFNjRQk" class="third-party-content third-party-content-youtube">
+    <div class="card third-party-content-warning">
+        <img class="card-img" src="/images/thirdpartycontents/interview-on-api-design-with-swagger.jpg" alt="Card image" />
+        <div class="card-img-overlay d-flex">
+            <div class="my-auto mx-auto text-center">
+                <p>This content is hosted on youtube.com.</p>
+                <p>By showing this third party content you accept YouTube (Google)'s 
+                    <a class="privacy-policy" href="https://policies.google.com/privacy" target="_blank">privacy policy</a>.
+                </p>
+                <form>
+                    <a href="javascript:thirdPartyConsent('nwBTsFNjRQk', 'youtube')" class="btn btn-primary" role="button">Show third party content</a>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input third-party-content-remember" />
+                        <label class="form-check-label" for="exampleCheck1">Remember my choice</label>
+                        <p>(can be changed in <a class="privacy-policy" href="/privacy">privacy settings</a>)</p>
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="iframe-container third-party-content-iframe third-party-content-iframe-disabled">
+        <iframe class="iframe-responsive" data-src="https://www.youtube-nocookie.com/embed/nwBTsFNjRQk?color=white&amp;theme=light" frameborder="0" allowfullscreen="">
+        </iframe>
+    </div>
+</div>
+:ET

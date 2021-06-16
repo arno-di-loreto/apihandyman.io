@@ -1,0 +1,4 @@
+I"©<p>When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementationâ€™s code (using annotations).
+Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.</p>
+
+:ET

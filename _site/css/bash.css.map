@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "bash.css",
+	"sources": [
+		"bash.scss"
+	],
+	"sourcesContent": [
+		".card-bash {\n  .control-bar {\n    position: relative;\n    bottom: 0px;\n  }\n\n  .dropdown-menu {\n    background-color: black;\n    color: white;\n    .dropdown-item-text {\n      color: gray\n    }\n    .dropdown-item:hover {\n      color: black\n    }\n  }\n}"
+	],
+	"names": [],
+	"mappings": "AAAA,AACE,UADQ,CACR,YAAY,AAAC,CACX,QAAQ,CAAE,QAAQ,CAClB,MAAM,CAAE,GAAG,CACZ,AAJH,AAME,UANQ,CAMR,cAAc,AAAC,CACb,gBAAgB,CAAE,KAAK,CACvB,KAAK,CAAE,KAAK,CAOb,AAfH,AASI,UATM,CAMR,cAAc,CAGZ,mBAAmB,AAAC,CAClB,KAAK,CAAE,IACT,CAAC,AAXL,AAYI,UAZM,CAMR,cAAc,CAMZ,cAAc,CAAC,KAAK,AAAC,CACnB,KAAK,CAAE,KACT,CAAC"
+}

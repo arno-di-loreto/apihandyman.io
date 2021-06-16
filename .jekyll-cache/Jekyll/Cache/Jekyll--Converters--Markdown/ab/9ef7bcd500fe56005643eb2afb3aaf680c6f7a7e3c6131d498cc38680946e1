@@ -1,0 +1,1108 @@
+I"��<p>Previous <a href="http://apihandyman.io/category/openapi-swagger-specification/">posts</a> showed how to write a highly accurate description of an API interface contract with the <a href="https://openapis.org/">OpenAPI specification</a>. But an interface contract, no matter how brilliant, is nothing without some explainations. A fully documented OpenAPI specification file can provide some useful information and be used as a part of an API’s documentation.<!--more--></p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Writing OpenAPI (Swagger) Specification Tutorial Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+This tutorial teaches everything about the OpenAPI 2.0 Specification (fka. as Swagger), most of what you'll read here can still be applied on version 3.
+
+If you're a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a> (version 2 or 3), take a look at the <a href="http://openapi-map.apihandyman.io/?version=2.0)">OpenAPI Map</a>:
+<div class="text-center">
+      <figure class="figure">
+        <a href="http://openapi-map.apihandyman.io/?version=2.0">
+        <img src="/images/commons/openapi/openapi-map-v2.png" class="figure-img img-fluid" />
+        </a>
+        
+      </figure>
+    </div>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">1 - Introduction</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">2 - The basics</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">3 - Simplifying specification file</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">4 - Advanced Data</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">5 - Advanced Input And Output Modeling</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">6 - Defining Security</a></li>
+          
+        
+          
+          <li class="list-group-item active">7 - Documentation</li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">8 - Splitting specification file</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">9 - Extending the OpenAPI specification</a></li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p>In previous parts we’ve learned to create highly accurate API description, in this seventh part we’ll learn how to use the OpenAPI specification to make it a valuable part of an API documentation.</p>
+
+<h1 id="apis-general-informations">API’s general informations</h1>
+<p>First things first. When using an API, API consumers want to have some general informations about it like its version, its name, some description, term of service, how to contact the API provider, what kind of licencing it uses. The <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#infoObject"><code>info</code></a> object placed on root level can be used to provide such information:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="3"><code class="code-block">info:
+  version: 1.1.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+  termsOfService: http://simple.api/terms-of-service
+  contact:
+    name: John Doe
+    url: http://simple.api/contact
+    email: contact@simple.api
+  license:
+    name: Apache-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+</code></pre>
+  </div>
+</div>
+
+<h1 id="categorizing-operations-with-tags">Categorizing operations with Tags</h1>
+<p>By using <code>tags</code> on operation level, we can categorize operations. <code>tags</code> is a simple list of names.</p>
+
+<h2 id="single-tag">Single tag</h2>
+<p>This operation belongs to the <code>Person</code> category:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="9-10" data-start="78"><code class="code-block">paths:
+  /persons:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      operationId: searchUsers
+      tags:
+        - Persons
+</code></pre>
+  </div>
+</div>
+
+<h2 id="multiple-tags">Multiple tags</h2>
+<p>An operation can belong to different categories:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="9-11" data-start="152"><code class="code-block">  /js-less-consumer-persons:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    post:
+      summary: Creates a person
+      description: For JS-less partners
+      operationId: createUserJS
+      deprecated: true
+      tags:
+        - JSLess
+        - Persons
+</code></pre>
+  </div>
+</div>
+
+<h1 id="descriptions-everywhere">Descriptions everywhere</h1>
+<p>We can add some descriptions at almost every level of the OpenAPI specification.</p>
+
+<h2 id="security-definitions">Security definitions</h2>
+<p>A <code>description</code> can be added to security definitions:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3,12,17" data-start="54"><code class="code-block">securityDefinitions:
+  OauthSecurity:
+    description: New Oauth security system. Do not use MediaSecurity or LegacySecurity.
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: 'https://oauth.simple.api/authorization'
+    tokenUrl: 'https://oauth.simple.api/token'
+    scopes:
+      admin: Admin scope
+      user: User scope
+  MediaSecurity:
+    description: Specific media security for backward compatibility. Use OauthSecurity instead.
+    type: apiKey
+    in: query
+    name: media-api-key
+  LegacySecurity:
+    description: Legacy security system for backward compatibility. Use OauthSecurity instead.
+    type: basic
+</code></pre>
+  </div>
+</div>
+
+<h2 id="schema-title-and-description">Schema title and description</h2>
+<p>Each schema (used in a definition, a parameter or a response) can have a <code>title</code> and a <code>description</code>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3,4" data-start="460"><code class="code-block">definitions:
+  Person:
+    title: Human
+    description: A person which can be the user itself or one of his friend
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="2,3" data-start="500"><code class="code-block">  SpokenLanguages:
+    title: Languages
+    description: A hashmap of spoken languages
+</code></pre>
+  </div>
+</div>
+
+<h2 id="property-description">Property description</h2>
+<p>Properties can be described with <code>description</code>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3" data-start="466"><code class="code-block">    properties:
+      firstName:
+        description: first name
+        type: string
+</code></pre>
+  </div>
+</div>
+
+<h2 id="parameters-description">Parameter’s description</h2>
+<p>Whether defined inline or in <code>parameters</code> section, a parameter can have a <code>description</code>.</p>
+
+<h3 id="inline-parameters-description">Inline parameter’s description</h3>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="78"><code class="code-block">paths:
+  /persons:
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="110"><code class="code-block">    post:
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5" data-start="120"><code class="code-block">      parameters:
+        - name: person
+          in: body
+          required: true
+          description: The person to create.
+          schema:
+            $ref: '#/definitions/Person'
+</code></pre>
+  </div>
+</div>
+
+<h3 id="reusable-parameters-description">Reusable parameter’s description</h3>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="6,11" data-start="702"><code class="code-block">parameters:
+  username:
+    name: username
+    in: path
+    required: true
+    description: The person's username
+    type: string
+  pageSize:
+    name: pageSize
+    in: query
+    description: Number of persons returned
+</code></pre>
+  </div>
+</div>
+
+<h2 id="operations-summary-description-and-operationid">Operation’s summary, description and operationId:</h2>
+<p>An operation can be described with a <code>summary</code> and a longer <code>description</code>. An <code>operationId</code> can be added. It can be used as a link to the implementation running behind the API for example.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="6-8" data-start="78"><code class="code-block">paths:
+  /persons:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons. The list supports paging.
+      operationId: searchUsers
+</code></pre>
+  </div>
+</div>
+
+<h2 id="responses-description">Response’s description</h2>
+<p>Whether inline or defined in <code>responses</code>, a response can have a <code>description</code>.</p>
+
+<h3 id="inline-responses-description">Inline response’s description</h3>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="78"><code class="code-block">paths:
+  /persons:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    get:
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3" data-start="93"><code class="code-block">      responses:
+        '200':
+          description: A list of Person
+</code></pre>
+  </div>
+</div>
+
+<h3 id="reusable-responses-description">Reusable response’s description</h3>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3" data-start="668"><code class="code-block">responses:
+  Standard500ErrorResponse:
+    description: An unexpected error occured.
+</code></pre>
+  </div>
+</div>
+
+<h2 id="reponses-headers-description">Reponse’s header’s description</h2>
+<p>Headers returned with a response can have a <code>description</code>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3,6" data-start="671"><code class="code-block">    headers:
+      X-Rate-Limit-Remaining:
+        description: How many calls consumer can do
+        type: integer
+      X-Rate-Limit-Reset:
+        description: When rate limit will be reset
+        type: string
+        format: date-time
+</code></pre>
+  </div>
+</div>
+
+<h2 id="tags-descriptions">Tags descriptions</h2>
+<p>Tags can have <code>descriptions</code>. We need to add a <code>tags</code> section on specification file root level, on each item in this list we set a <code>name</code> (corresponding to the name used in tags list on operation level) and a <code>description</code>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="20"><code class="code-block">tags:
+  - name: Persons
+    description: Everything you need to handle users and friends
+</code></pre>
+  </div>
+</div>
+
+<h1 id="using-gfm-in-descriptions">Using GFM in descriptions</h1>
+<p>In almost all <code>description</code>, we can use <code>GFM</code> (<a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Github Flavored Markdown</a>). To check if an object description support GFM, take a look at my <a href="http://openapi-specification-visual-documentation.apihandyman.io/">visual documentation</a> or the original <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a>.
+<em>Note that GFM support can vary depending the tool processing the OpenAPI specification file.</em></p>
+
+<h2 id="simple-multiline-description">Simple multiline description</h2>
+<p>By adding a <code>|</code> and a new line with a new tab, we can write multiline descriptions:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_22_documentation_with_gfm.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="7-9" data-start="320"><code class="code-block">  '/persons/{username}/collecting-items':
+    parameters:
+      - $ref: '#/parameters/username'
+      - $ref: '#/parameters/userAgent'
+    get:
+      summary: Gets a person's collecting items list
+      description: |
+        Returns a list containing all items this person is looking for.  
+        The list supports paging.
+</code></pre>
+  </div>
+</div>
+
+<h2 id="simple-gfm-description">Simple GFM description</h2>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_22_documentation_with_gfm.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="2-3" data-start="27"><code class="code-block">externalDocs: 
+  description: |
+    **Complete** documentation describing how to use this API
+  url: http://doc.simple.api/
+</code></pre>
+  </div>
+</div>
+
+<h2 id="description-with-array">Description with array</h2>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_22_documentation_with_gfm.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="7-14" data-start="598"><code class="code-block">  CollectingItem:
+    discriminator: itemType
+    required:
+      - itemType
+    properties:
+      itemType:
+        description: |
+          An item can be of different type:
+            
+          type | definition
+          -----|-----------
+          Vinyl| #/definitions/Vinyl
+          VHS  | #/definitions/VHS
+          AudioCassette | #/definitions/AudioCassette
+        type: string
+        enum:
+          - AudioCassette
+          - Vinyl
+          - VHS
+</code></pre>
+  </div>
+</div>
+
+<h2 id="description-with-code">Description with code</h2>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_22_documentation_with_gfm.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line=""><code class="code-block">swagger: '2.0'
+
+info:
+  version: 1.1.0
+  title: Simple API
+  description: |
+    A simple API to learn how to write OpenAPI Specification.
+    This file uses almost every single aspect of the [Open API Specification](https://openapis.org/).  
+    This API will use JSON.  
+    JSON looks like this:  
+    
+    ```JSON
+    {
+      "key": "value",
+      "anotherKey": "anotherValue"
+    }
+    ```
+  termsOfService: http://simple.api/terms-of-service
+</code></pre>
+  </div>
+</div>
+
+<h1 id="examples">Examples</h1>
+<p>Examples can be provided for atomic or object properties, definitions, and responses.</p>
+
+<h2 id="atomic-property-example">Atomic property example</h2>
+<p>Atomic properties can be illustrated with an <code>example</code>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="5,9,16,21,27" data-start="466"><code class="code-block">    properties:
+      firstName:
+        description: first name
+        type: string
+        example: John
+      lastName:
+        description: last name
+        type: string
+        example: Doe
+      username:
+        description: Username used to connect to the service
+        type: string
+        pattern: '[a-z0-9]{8,64}'
+        minLength: 8
+        maxLength: 64
+        example: john1doe6
+      dateOfBirth:
+        description: Date of birth
+        type: string
+        format: date
+        example: 1978-06-21
+      lastTimeOnline:
+        description: The last time this person was connected to the service as a 
+        type: string
+        format: date-time
+        readOnly: true
+        example: 2016-06-10T12:36:58.014Z
+</code></pre>
+  </div>
+</div>
+
+<h2 id="object-property-example">Object property example</h2>
+<p>Object properties, can also be illustrated with a complex <code>example</code> complying to the underlying JSON Schema:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="15-25" data-start="515"><code class="code-block">  Persons:
+    title: Humans
+    description: A list of users or friends
+    required:
+      - items
+    properties:
+      items:
+        description: Array containg the list
+        type: array
+        minItems: 10
+        maxItems: 100
+        uniqueItems: true
+        items:
+          $ref: '#/definitions/Person'
+        example:
+          - firstname: Robert
+            lastname": Doe
+            username": robdo
+            dateOfBirth: 1970-01-28
+            lastTimeOnline: 2016-04-10T14:36:58.014Z
+          - firstname: Jane
+            lastname: Doe
+            username: jdoe123
+            dateOfBirth: 1980-05-12
+            lastTimeOnline: 2016-05-12T19:23:59.014Z
+</code></pre>
+  </div>
+</div>
+
+<h2 id="definition-example">Definition Example</h2>
+<p>An example can be defined for the entire definition just like for an object property (it must conforms to its underlying JSON schema):</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="9-15" data-start="553"><code class="code-block">  MultilingualErrorMessage:
+    title: MultiLingualMultiDeviceErrorMessage
+    description: An multilingual error message (hashmap) with a long and a short description
+    additionalProperties:
+      $ref: '#/definitions/ErrorMessage'
+    properties:
+      defaultLanguage:
+        $ref: '#/definitions/ErrorMessage'
+    example:
+      defaultLanguage:
+        longMessage: We're deeply sorry but an error occured
+        shortMessage: Error
+      fr:
+        longMessage: Nous sommes désolé mais une erreur est survenu
+        shortMessage: Erreur
+</code></pre>
+  </div>
+</div>
+
+<h2 id="responses-example">Response’s Example</h2>
+<p>On response level, we can provide <code>example</code>, each one corresponding to a media type returned by the operation. Here’s an example for an application/json media type:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="308"><code class="code-block">  '/persons/{username}/collecting-items':
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="312"><code class="code-block">    get:
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="324"><code class="code-block">      responses:
+        '200':
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-line="1-32" data-start="337"><code class="code-block">          examples:
+            application/json:
+              {
+                "totalItems": 10,
+                "totalPage": 4,
+                "pageSize": 3,
+                "currentPage": 2,
+                "items": 
+                [
+                  { 
+                    "itemType": "Vinyl",
+                    "maxPrice": 20,
+                    "imageId": "98096838-04eb-4bac-b32e-cd5b7196de71",
+                    "albumName": "Captain Future Original Soundtrack",
+                    "artist": "Yuji Ohno"
+                  },
+                  { 
+                    "itemType": "VHS",
+                    "maxPrice": 10,
+                    "imageId": "b74469bc-e6a1-4a90-858a-88ef94079356",
+                    "movieTitle": "Star Crash",
+                    "director": "Luigi Cozzi"
+                  },
+                  { 
+                    "itemType": "AudioCassette",
+                    "maxPrice": 10,
+                    "imageId": "b74469bc-e6a1-4a90-858a-88ef94079356",
+                    "albumName": "Star Wars",
+                    "artist": "John Williams"
+                  }
+                ]
+              }
+        '404':
+          $ref: '#/responses/PersonDoesNotExistResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+        default:
+          $ref: '#/responses/TotallyUnexpectedResponse'
+</code></pre>
+  </div>
+</div>
+
+<h2 id="examples-precedence">Examples precedence</h2>
+<p>If we defined examples on multiple levels (property, object, definition, response), it’s always the higher level which is taken into account by tools processing OpenAPI specification file.</p>
+
+<h1 id="operations-deprecation">Operation’s deprecation</h1>
+<p>An operation can be deprecated by setting <code>deprecated</code> to <code>true</code>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="8" data-start="152"><code class="code-block">  /js-less-consumer-persons:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    post:
+      summary: Creates a person
+      description: For JS-less partners
+      operationId: createUserJS
+      deprecated: true
+</code></pre>
+  </div>
+</div>
+
+<h1 id="links-to-external-api-documentation">Links to external API documentation</h1>
+<p>In most case, the OpenAPI specification file MUST NOT be the only API’s documentation. How to create an application key, use cases, operation chaining and many other things need to be documented. All these other documentations can be separated from the specification file.
+However, the OpenAPI specification allow to provide links to these other documentations when needed.</p>
+
+<h2 id="link-to-general-api-documentation">Link to general API documentation</h2>
+<p>We can add an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#externalDocumentationObject"><code>externalDoc</code></a> object on root level with a link to the API documentation.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="16"><code class="code-block">externalDocs: 
+  description: Complete documentation describing how to use this API
+  url: http://doc.simple.api/
+</code></pre>
+  </div>
+</div>
+
+<h2 id="link-to-specific-operation-documentation">Link to specific operation documentation</h2>
+<p>Each operation can have its own link to an external documentation using the same <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#externalDocumentationObject"><code>externalDoc</code></a> object:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="8-10" data-start="375"><code class="code-block">  /images:
+    parameters:
+      - $ref: '#/parameters/userAgent'
+    post:
+      summary: Uploads an image
+      description: Upload an image, will return an image id. 
+      operationId: storeImage
+      externalDocs:
+        description: How to upload media
+        url: http://doc.simple.api/media/upload
+</code></pre>
+  </div>
+</div>
+
+<h2 id="link-to-tag-documentation">Link to tag documentation</h2>
+<p>A tag’s description can also provide an external link:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_21_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5-6" data-start="20"><code class="code-block">tags:
+  - name: Persons
+    description: Everything you need to handle users and friends
+    externalDocs:
+      description: Peopls category documentation
+      url: http://doc.simple.api/people
+</code></pre>
+  </div>
+</div>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>Even if an OpenAPI specification MUST NOT be the only documentation for an API, it can be a good part of it, and you now have mastered this aspect of the specification. In <a href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">next post</a> we’ll see how we can split a OpenAPI specification file in different files.</p>
+:ET

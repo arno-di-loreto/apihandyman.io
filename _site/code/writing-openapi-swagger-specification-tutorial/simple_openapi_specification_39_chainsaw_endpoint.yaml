@@ -1,0 +1,4 @@
+schemes:
+  - https
+server_and_port: simple.api
+path: /openapi102

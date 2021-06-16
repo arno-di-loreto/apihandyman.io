@@ -1,0 +1,9 @@
+swagger: '2.0'
+
+info:
+  version: 1.0.0
+  title: x-tended OpenAPI Specification
+  description: An OpenAPI specification containing custom data
+  x-custom-info: Here's some custom information
+
+paths: {}

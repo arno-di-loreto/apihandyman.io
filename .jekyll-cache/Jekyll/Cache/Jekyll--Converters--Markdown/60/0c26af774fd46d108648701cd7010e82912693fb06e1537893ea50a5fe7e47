@@ -1,0 +1,292 @@
+I"�9<p>Previously in the APIverse…<br />
+Since I started my <a href="/starting-a-swagger-journey-beyond-generated-swagger-ui/"><em>Swagger</em> journey</a>, there have been <em>some</em> changes. The <em>Swagger Specification</em> has been <a href="http://swagger.io/introducing-the-open-api-initiative/">donated</a> to the newly created <a href="https://openapis.org/news/announcement/2015/11/new-collaborative-project-extend-swagger-specification-building-connected">OpenAPI Initiative</a> under the Linux foundation and is reborn as the <em><a href="http://apievangelist.com/2016/01/04/the-openapi-specification-fka-the-swagger-specification/">OpenAPI Specification</a></em>. Therefore, my Swagger Journey will become an <em>OpenAPI Specification (fka Swagger Specification) Journey</em>.<!--more--></p>
+
+<p>This first part explains what is the OpenAPI Specification, why you <em>will</em> use it and what tools you can use to write these specifications.</p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Writing OpenAPI (Swagger) Specification Tutorial Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+This tutorial teaches everything about the OpenAPI 2.0 Specification (fka. as Swagger), most of what you'll read here can still be applied on version 3.
+
+If you're a bit lost in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">specification</a> (version 2 or 3), take a look at the <a href="http://openapi-map.apihandyman.io/?version=2.0)">OpenAPI Map</a>:
+<div class="text-center">
+      <figure class="figure">
+        <a href="http://openapi-map.apihandyman.io/?version=2.0">
+        <img src="/images/commons/openapi/openapi-map-v2.png" class="figure-img img-fluid" />
+        </a>
+        
+      </figure>
+    </div>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item active">1 - Introduction</li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">2 - The basics</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">3 - Simplifying specification file</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">4 - Advanced Data</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">5 - Advanced Input And Output Modeling</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">6 - Defining Security</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">7 - Documentation</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-8-splitting-specification-file/">8 - Splitting specification file</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">9 - Extending the OpenAPI specification</a></li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h1 id="the-openapi-specification">The OpenAPI Specification</h1>
+
+<p>The OpenAPI Specification is an API description format or API definition language. Basically, an OpenAPI Specification file allow you to describe an API including (among other things):</p>
+
+<ul>
+  <li>General information about the API</li>
+  <li>Available paths (/resources)</li>
+  <li>Available operations on each path (get /resources)</li>
+  <li>Input/Output for each operation</li>
+</ul>
+
+<p>The Open API Specification’s specification can be found in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">github repository of the Open API Initiative</a>. This document describes every aspect of the Open API Specification.
+Even if this documentation is fairly easy to read, I was sometimes a little bit lost. So, based on this <em>text</em> specification, I have created the <em><a href="http://openapi-map.apihandyman.io/?version=2.0">OpenAPI Map</a></em> a <em>visual</em> documentation which can help to figure how a OpenAPI specification file is structured for people who are more visual like me.</p>
+
+<div class="text-center">
+      <figure class="figure">
+        <a href="http://openapi-map.apihandyman.io/?version=2.0">
+        <img src="/images/commons/openapi/openapi-map-v2.png" class="figure-img img-fluid" />
+        </a>
+        <figcaption class="figure-caption text-left">OpenAPI Map</figcaption>
+      </figure>
+    </div>
+
+<p>Reading the specification is not mandatory to do this tutorial, you can dig into the specification as you discover it through this tutorial.</p>
+
+<h1 id="why-using-an-api-definition-language-such-as-openapi-specification">Why using an API definition language such as OpenAPI specification?</h1>
+<p>Using an API definition language such as OpenAPI specification helps to describe easily and quickly an API. It’s particularly useful when you’re in the design process of your API (cf. my <a href="/starting-a-swagger-journey-beyond-generated-swagger-ui/">first post in the series</a>).</p>
+
+<p>Being a simple text file, the OpenAPI specification file can be shared and managed within any <a href="https://en.wikipedia.org/wiki/Version_control">VCS</a> just like [code]<a href="http://blog.smartbear.com/documentation/the-utopia-of-api-documentation/">/code</a>.</p>
+
+<p>Once written, OpenAPI specification file can also be used as:</p>
+
+<ul>
+  <li>source material for documentation</li>
+  <li>specification for developers</li>
+  <li>partial or complete code generation</li>
+  <li>and many other things…</li>
+</ul>
+
+<h1 id="writing-openapi-specification">Writing OpenAPI Specification</h1>
+
+<p>What can we use to write an OpenAPI Specification file?</p>
+
+<blockquote>
+  <p>You kids keep your noses clean, you understand? You’ll be hearing from me if you don’t! We ain’t gonna stand for any weirdness out here! 
+<em><a href="http://www.imdb.com/name/nm0589798/?ref_=tt_trv_qu">Officer Dorf</a> about OpenAPI Specification writing</em></p>
+</blockquote>
+
+<h2 id="json-vs-yaml">JSON vs YAML</h2>
+
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/writing-openapi-swagger-specification-tutorial-part-1-introduction/fridopenapi.png" class="figure-img img-fluid" />
+        
+        
+      </figure>
+    </div>
+
+<p>An Open API Specification file can be written either in <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> or <a href="https://en.wikipedia.org/wiki/YAML">YAML</a>. But, if you intend to <em>write</em> and not generate this file, I urge you to do that in YAML as YAML is far more easy to write and read than JSON.</p>
+
+<p>A picture is worth a thousand words, let’s compare a simple definition in JSON…</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_00_YAML_vs_JSON.json" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Simple API",
+        "description": "A simple API to learn how to write OpenAPI Specification"
+    },
+    "schemes": [
+        "https"
+    ],
+    "host": "simple.api",
+    "basePath": "/openapi101",
+    "paths": {
+        "/persons": {
+            "get": {
+                "summary": "Gets some persons",
+                "description": "Returns a list containing all persons.",
+                "responses": {
+                    "200": {
+                        "description": "A list of Person",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "properties": {
+                                    "firstName": {
+                                        "type": "string"
+                                    },
+                                    "lastName": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+<p>…to the same definition in YAML:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title"></p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_02_with_operation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy"><code class="code-block">swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: Gets some persons
+      description: Returns a list containing all persons.
+      responses:
+        200:
+          description: A list of Person
+          schema:
+            type: array
+            items:
+              required:
+                - username
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                username:
+                  type: string</code></pre>
+  </div>
+</div>
+
+<p>YAML seems definitely more easy to write and read for humans. And almost every tool using OpenAPI specification files handle YAML. In last resort, you can easiliy convert YAML to JSON (and vice versa).</p>
+
+<h2 id="editor">Editor</h2>
+<p>Even if an OpenAPI specification is a simple text file which can be edited with any text editor, it’s better to use a specialized one. The best available tool to write Open API Specification file is <em>Swagger Editor</em>. It’s a set of static file allowing you to write and validate Open API Specification in YAML and see a rendering of the written specification.</p>
+
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/writing-openapi-swagger-specification-tutorial-part-1-introduction/swaggereditor-petstore.png" class="figure-img img-fluid" />
+        
+        
+      </figure>
+    </div>
+
+<p>On the left pane, you write your API definition.
+On the right one you see a rendering of your definition and potential syntax errors.</p>
+
+<p>The editor also provides useful snippets to guide you:</p>
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/writing-openapi-swagger-specification-tutorial-part-1-introduction/swagger.editor.gif" class="figure-img img-fluid" />
+        
+        
+      </figure>
+    </div>
+
+<p>You can use the <a href="http://editor.swagger.io/">online version</a> but you can also have your own editor instance on any http server. You just need to download the <a href="https://github.com/swagger-api/swagger-editor/releases/latest">lastest build</a> and serve it with an http server. Go to <a href="https://github.com/swagger-api/swagger-editor/#running-locally">Swagger Editor Github repository</a> for a complete how-to.</p>
+
+<h1 id="what-about-writing-your-first-openapi-specification">What about writing your first OpenAPI Specification?</h1>
+
+<div class="text-center">
+      <figure class="figure">
+        
+        <img src="/images/writing-openapi-swagger-specification-tutorial-part-1-introduction/jason.gif" class="figure-img img-fluid" />
+        
+        <figcaption class="figure-caption text-left">YAML + editor. You've been warned.</figcaption>
+      </figure>
+    </div>
+
+<p>We are now ready to proceed to <a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">Part 2 - The basics</a> and write our first API definition using the Open API Specification.</p>
+:ET

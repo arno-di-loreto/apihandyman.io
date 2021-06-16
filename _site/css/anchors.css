@@ -1,0 +1,10 @@
+.anchorjs-link {
+  color: #D0DBD6;
+}
+.anchorjs-link:hover {
+  color: #E66C29;
+  text-decoration: none;
+}
+*:hover > .anchorjs-link {
+  transition: color .25s linear;
+}

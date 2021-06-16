@@ -1,0 +1,5 @@
+I"Ï<p>When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
+This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 
+<code>200 OK</code>, <code>204 No Content</code> or <code>404 Not Found</code></p>
+
+:ET

@@ -1,0 +1,103 @@
+I"�<blockquote>
+  <p>Why you must design your private API in english.<br />
+Pourquoi vous devez concevoir votre API privée en anglais.<br />
+Perché è necessario progettare la vostra API privata in inglese.<br />
+Por qué debe diseñar su API privada en Inglés.<br />
+Deshalb müssen Sie Ihre private API in Englisch entwerfen.<br />
+なぜあなたは英語であなたのプライベートAPIを設計する必要があります.</p>
+</blockquote>
+
+<p>As you might have guess, this post targets people designing APIs in non english speaking countries.
+When you design an API there are many little things that you risk to forget or not take into account, especially when this API is private/internal, and later you may bitterly regret it.
+<em>Choosing</em> a language for your API is one of them.<!--more--></p>
+
+<h1 id="the-enut-project">The eNut project</h1>
+<p>You work for <em>Complètement Noix Cie</em> (<em>Totally Nut Co</em>) a small family nutgrowing company in France.
+This company launches the project <em>eNoix</em> (<em>eNut</em>) based on patent <a href="http://www.google.com/patents/US2427486">US 2427486 A</a> which will cut nuts collection costs by 300%.
+You have to design a private API to control and monitor this totally awesome device. You’ll have to deal with nuts, squirrels and …. Wait! Stop!
+Before designing anything you have to choose a language for your API.</p>
+
+<h1 id="choosing-a-language-to-design-an-api">Choosing a language to design an API?</h1>
+<p>I’m not talking about internationalization or choosing a programming language …
+I’m talking about choosing a human language for the interface: english, french, italian, spanish, german, japanese…</p>
+
+<blockquote>
+  <p>Jean-Philippe wants to get a list of squirrels, how does he get it?<br />
+GET /squirrels<br />
+GET /ecureuils<br />
+GET /scoiattoli<br />
+GET /ardillas<br />
+GET /eichhornchen<br />
+GET /リス</p>
+</blockquote>
+
+<p>The choice should be quite simple because this should be a single-choice question instead of a multiple-choice question.
+The only possible response should be english.</p>
+
+<p>The only possible response <strong>IS</strong> english.</p>
+
+<blockquote>
+  <p>But this API is private and will only be used by squirrels or us or people understanding our language. Why should we care to design it in english instead of (whatever language you speak)?<br />
+<em>(me some time ago, I could just kick myself)</em></p>
+</blockquote>
+
+<p>There are two reasons rhyming with “<em>ization</em>”: standardization and externalization.</p>
+
+<h1 id="follow-the-standards">Follow the standards</h1>
+<blockquote>
+  <p>Stop building super custom APIs.<br />
+<em>(<a href="http://www.steveklabnik.com/">Steve Klabnick</a>, API Days Paris 2014)</em></p>
+</blockquote>
+
+<p>Even if your API is private, it must be <em>standard</em>, the more your conform to standards the more your API is simple to design and to use.
+In IT field, standard generally means <em>english</em>.
+You could for example want to:</p>
+
+<ul>
+  <li>use <a href="http://jsonapi.org/">{json:api}</a> format which define some attributes in english.</li>
+  <li>use <a href="http://schema.org/">schema.org</a> schemas for some of your data. Everything is in english.</li>
+  <li>use <a href="http://www.hydra-cg.com/">Hydra</a> to build a powerful hypermedia API (and use automatic tools to create a console for your API), english attributes again.</li>
+  <li>integrate other APIs with yours. These APIs will probably be in english (for example the famous <a href="http://pokeapi.co/">Poké API</a>). Depending on the integration level, the combination of two APIs using different languages might  be weird and hard to understand.</li>
+</ul>
+
+<p>And even if <em>now</em> you don’t need any of these <em>english</em> things, you may need one <em>someday</em>.</p>
+
+<p>Using a language other than english for your API might complicate its design and evolution when you want to integrate existing things and lead to a <em>too-much-custom-two-languages</em> API.
+Too much custom APIs are hard to understand and use so imagine one with two languages.</p>
+
+<h1 id="assume-that-your-api-will-not-be-private-forever">Assume that your API will not be private forever</h1>
+<blockquote>
+  <p>Anyone who doesn’t do this will be fired.<br />
+<em>(Jeff Bezos, <a href="http://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/">about service interface externalization and other things</a>)</em></p>
+</blockquote>
+
+<p>When you create an API you must always design it as it will be externalized, exposed to the outside world (read this <a href="http://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/">post from API Evangelist</a> about Amazon’s internal APIs).</p>
+
+<ul>
+  <li>You may need developers outside of your company to build the application which will consume it on the eNoix (iNut) device
+    <ul>
+      <li>They can be foreigner and not speak your language (try to explain a french API to indian developers…).</li>
+      <li>Even if they speak your language, they may have problems understanding your <em>too-much-custom-two-languages</em> API.</li>
+    </ul>
+  </li>
+  <li>You may work for a small entity in a big multinational group, your API may be used or taken as a model by other entities and/or in other countries.</li>
+  <li>You may want to show what you have done to the world because it’s cool.</li>
+  <li>And because it’s cool, everybody wants to use it, so you want to open it.</li>
+</ul>
+
+<p>The success of this externalization may be tempered by your <em>non-english</em> API.</p>
+
+<h1 id="api-designs-commandment">API design’s commandment</h1>
+<blockquote>
+  <p>English shalt be the language thou use to design an API, and the language of the API designing shalt be english.<br />
+<em>(Book of <del>Armaments</del> API Design)</em></p>
+</blockquote>
+
+<p>But even if you design your API in english, you can at least write documentation in your language… and in english.</p>
+
+<p>If my poor argumentation do not convince you to design your API in english, I hope that at least you will <em>choose</em> a language for your API in full knowledge of the facts and not build your API without thinking about it.</p>
+
+<p>If someone has a really good reason to not design an API in english (or others good reasons to design in english), let me know, I’ll be happy to discuss on this subject.</p>
+
+<p><em>Image credit: <a href="http://en.wikipedia.org/wiki/The_Tower_of_Babel_%28Bruegel%29">The tower of Babel, Peter Bruegel</a>.</em></p>
+:ET

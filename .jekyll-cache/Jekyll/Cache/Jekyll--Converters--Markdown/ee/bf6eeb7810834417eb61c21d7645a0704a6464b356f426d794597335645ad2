@@ -1,0 +1,140 @@
+I"E5<p>When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
+This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 
+<code>200 OK</code>, <code>204 No Content</code> or <code>404 Not Found</code></p>
+
+<!--more-->
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Choosing HTTP status codes Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.<div class="alert alert-info">
+I never remember in which RFCs HTTP status codes are defined.
+To get a quick access to their documentation, I use <a class="alert-link" href="https://webconcepts.info/concepts/http-status-code/">Erik Wilde's Web Concepts</a>.
+</div>Very special thanks to all Twitter people participating to the <a href="https://twitter.com/search?q=%23choosehttpstatuscode&amp;src=typed_query">#choosehttpstatuscode</a> polls and discussions</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item"><a href="/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/">1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/hands-off-that-resource-http-status-code-401-vs-403-vs-404/">2 - Hands off that resource, HTTP status code 401 vs 403 vs 404</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/">3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410</a></li>
+          
+        
+          
+          <li class="list-group-item active">4 - Empty list, HTTP status code 200 vs 204 vs 404</li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+<h1 id="the-context">The context</h1>
+
+<p>When you need to represent lists (aka collection resources) in a REST/RESTful/RESTish API, a usual design pattern is to represented with them a <code>/resources</code> (or <code>/resource</code>, read <a class="post-link" href="/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">/resources rules and /resource sucks … or is it the other way around?</a>).
+More often than not, you’ll need to be able to return a subset of the list’s elements.
+To do so, a usual (if not standard) design pattern is to add query parameters to provide search filters.
+If a <code>GET /users</code> is supposed to return a list containing all (actually accessible to the consumer and possibly to the end user) users, a <code>GET /users?name=spock</code> is supposed to return a list containing only the users whose name is <code>spock</code>.
+The question we will answer today basically is: which HTTP status code respond with when returning an empty list.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/empty-lists-http-status-code-200-vs-204-vs-404/twitter-poll.png" class="figure-img img-fluid" alt="Twitter poll results" /></figure>
+</div>
+
+<p>According to my Twitter pool, 51% of respondents would return a <code>200 OK</code>, while 24% would return a <code>204 No Content</code> and 25% would return a <code>404 Not Found</code>.
+Let’s see what could be the correct answers according to RFC(s) and common practice.</p>
+
+<h1 id="the-obvious-200-ok">The obvious 200 OK</h1>
+
+<blockquote class="blockquote">
+    <p class="mb-0">The 200 (OK) status code indicates that the request has succeeded.</p><footer class="blockquote-footer">
+        <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.3.1">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.3.1</a></cite>
+    </footer></blockquote>
+
+<p>Let’s start with the most common and valid response in such a case: <code>200 OK</code>.
+When responding to <code>GET /users</code>, the API will respond with that HTTP status code along with a list of all (actually accessible to the consumer and possibly to the end user) users users.
+When responding to <code>GET /users?name=smith</code>, the API will respond also that with HTTP status code along with a list contains all users named <code>smith</code>.
+And finally when responding to <code>GET /users?name=spock</code> and if there are no user name <code>spock</code>, the API will respond yet another time with that HTTP status code but this time along with an empty list.
+That is actually the most common response I have ever seen, probably because most people consider that the <code>/users</code> collection/list resource exists and <code>name</code> query param is used to filter the content of the list.</p>
+
+<p>But there is a more specific HTTP status code that could do the trick too.</p>
+
+<h1 id="the-not-so-current-204">The not so current 204</h1>
+
+<blockquote class="blockquote">
+    <p class="mb-0">The 204 (No Content) status code indicates that the server has successfully fulfilled the request and that there is no additional content to send in the response payload body.</p><footer class="blockquote-footer">
+        <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.3.5">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.3.5</a></cite>
+    </footer></blockquote>
+
+<p>While <code>200 OK</code> being a valid and the most common answer, returning a <code>204 No Content</code> could make sense as there is absolutely nothing to return.
+It is indeed more often used when responding to a <code>PUT</code> (replace) or a <code>PATCH</code> (partial update), when servers don’t want to bother returning the replaced/updated resource or on a <code>DELETE</code> because there is usually nothing to return after a deletion.
+But it can be used on a <code>GET</code> too.
+If the request is valid, has been successfully fulfilled and if there is no additional content to send (which is the case as the returned list would be empty),  <code>204 No Content</code> is perfectly understandable and valid answer.</p>
+
+<p>It’s a valid response but I personally will not use it and do not recommend to use it in that case in my context.
+Because it is not that common (based on my experience, it’s not absolute truth) and may imply more work.
+Actually, I try to avoid using specific/uncommon HTTP status when a more generic/common one works too, that usually simplifies consumer’s job and also designer’s one as there are less possible choices and behaviors (I’ll write a post about that).
+Though a consumer must be able to interpret any <code>2xx</code> as as success and fallback to treat it as <code>200 OK</code>, that means there will be no response body, so no empty list.
+That could easily lead to to possible “null pointer exception” or any equivalent requiring more controls in code.
+A <code>200 OK</code> with an empty list can be treated the same as non empty list without thinking about it.
+Note that, consumer may obviously have to check il the list is empty or not to possibly show a message to end user, but the exact same code will work without that control.</p>
+
+<p>But while simplifying choices, note that using that “simplified HTTP” stance, you’ll loose some “HTTP semantic out of the box”. 
+Indeed tne major argument in favor of <code>204 No Content</code> is that is allows to check empty search results (especially in logs) vs non empty ones without relying on specific response body’s semantic.
+That’s quite an interesting feature.
+Maybe we need more APIs actually fully using HTTP semantic to make this <code>204 No Content</code> response more common and a no brainer.</p>
+
+<p>So choosing between <code>200 OK</code> and <code>204 No Content</code>, depends on you and your context.</p>
+
+<h1 id="the-not-recommended-404">The not recommended 404</h1>
+
+<blockquote class="blockquote">
+    <p class="mb-0">The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.</p><footer class="blockquote-footer">
+        <cite title="Source Title"><a href="http://tools.ietf.org/html/rfc7231#section-6.5.4">RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.4</a></cite>
+    </footer></blockquote>
+
+<p>I just realized that’s the fourth post in this series and <code>404 Not Found</code> has been involved in all posts so far.
+Let’s see what say the HTTP RFCs (with an s) about using it in that use case.</p>
+
+<p>If we look at this status code definition in RFC 7231 and if we consider that <code>/users</code> is the resource used even when doing a <code>GET /users?name=spock</code>, returning that HTTP status code makes no sense at all because the resource <code>/users</code> exists, it’s just that the list it contains may be empty.</p>
+
+<p>But is this definition of a resource identifier (excluding query parameters) is actually the correct one?
+<a href="https://datatracker.ietf.org/doc/html/rfc7231#section-2">Section 2 of RFC 7231</a> states <em>each resource is identified by a Uniform Resource Identifier (URI), as described in Section 2.7 of <a href="https://datatracker.ietf.org/doc/html/rfc7230#section-2.7">RFC 7230</a></em>.
+That section 2.7 of RFC 7230 says the “query” (what is between the first <code>?</code> and <code>#</code>) is a part of the resource identifier.
+If we follow the link (it’s quite a maze!) conducting to complete description of the query, we eventually arrive at <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-3.4">Section 3.4 of RFC 3986</a> that says <em>the query component contains non-hierarchical data that, along with data in the path component (Section 3.3), serves to identify a resource</em>.
+That basically means that <code>/users?name=spock</code> is a resource identifier, so returning 404 is valid according to HTTP RFCs if we want to say “sorry no resource match the strict identifier provided in your query” or “there is no such a users list containing users named spock”.
+But using that HTTP status code being valid from a pure HTTP perspective, is it actually a good idea to use it in that use case?</p>
+
+<p>In my humble opinion, based on my experience designing APIs, reading and listening to many API practitioners, analyzing many APIs and doing hundreds of API design reviews, I do not recommend to use it in that case because that would break a common practice.
+In most REST/RESTful/RESTish APIs, a “resource identifier” is actually the resource path without the query part, that may be wrong when speaking strictly HTTP but that is the current state of common practice.
+In most APIs, <code>404 Not Found</code> is strongly attached to “there is nothing for the requested path (excluding query parameters)”.
+It is returned in case involving <code>/path-that-does-not-exist</code> or <code>/collection/{id that does not exist}</code> (see <a class="post-link" href="/hands-off-that-resource-http-status-code-401-vs-403-vs-404/">Choosing HTTP status codes Part 2 - Hands off that resource, HTTP status code 401 vs 403 vs 404</a> or <a class="post-link" href="/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/">Choosing HTTP status codes Part 3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410</a>) but not for empty lists (that’s usually a <code>2xx Success class</code>).
+Also, returning a <code>4xx Client Error Class</code> says that consumer made an error, is that really the case here?
+I don’t think so, the consumer just provided search filters that don’t match any element in a list.</p>
+
+<p>That’s my reasoned opinion of not using <code>404 Not Found</code> for empty lists, but if you have valid reasons to use this HTTP status code for this use case, don’t forget to be consistent and provide informative error feedback.
+Indeed, if we take for granted that <code>GET /users?name=spock</code> returns a <code>404 Not Found</code> if there are no users named spock.
+What about <code>GET /users</code> if there are no users at all? 
+It should return the same HTTP status code.
+And differentiating this it from a more common <code>/path-that-does-not-exist</code> will require to add some information in the response body to explain the actual cause of this response.</p>
+
+<h1 id="dx-above-all">DX above all</h1>
+
+<p>The lesson of today is that following the HTTP protocol is one thing but there are sometimes various options with pros and cons and sometimes being overly strict can lead to design that are less easy to understand.
+The question is not about achieving the most perfect design (regarding HTTP) but just achieve a design that makes sense for most people involved and proposes the best as possible DX.
+And that D in DX includes developers but also designers.
+Simple design rules that makes sense for most are a key factor in your APIs success.</p>
+:ET

@@ -1,0 +1,3 @@
+I"¶<p>When we talk about hypermedia for an API, weâ€™re talking about making it discoverable or browsable. Adding hypermedia to an API <em>potentially</em> brings flexibility, loose coupling, better human readability on the fly and even machine readability on the fly. 
+But nowadays, the hypermedia area for APIs is still a work in progress and it can be implemented in many ways leading to different levels of <em>hypermedia-ness</em>.</p>
+:ET
