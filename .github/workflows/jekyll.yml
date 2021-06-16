@@ -21,3 +21,4 @@ jobs:
     - name: Check build
       run: |
         ls _site
+        cat 6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/index.html
