@@ -20,5 +20,11 @@ jobs:
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
     - name: Check build
       run: |
-        ls _site
-        cat _site/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/index.html
+        git clone --depth 1 https://github.com/arno-di-loreto/apihandyman.io  --branch gh-pages-test --single-branch gh-pages-test
+        rm -rf gh-pages-test/*
+        cp -r _site/* gh-pages-test
+        cd gh-pages-test
+        git add .
+        git commit -m "publish"
+        git push
+        
