@@ -20,7 +20,7 @@ jobs:
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
     - name: Download gh-pages
       run: |
-        git clone --depth 1 https://{{secrets.GH_TOKEN}}@github.com/arno-di-loreto/apihandyman.io  --branch gh-pages-test --single-branch gh-pages-test
+        git clone --depth 1 https://github.com/arno-di-loreto/apihandyman.io  --branch gh-pages-test --single-branch gh-pages-test
     - name: Cleaning gh-pages and copying from _site
       run: |
         rm -rf gh-pages-test/*
@@ -28,6 +28,8 @@ jobs:
     - name: Commit updated gh-pages
       run: | 
         cd gh-pages-test
+        git config user.email "{{secrets.GH_EMAIL"
+        git config user.name "{{secrets.GH_NAME}}"
         git add .
         git commit -m "publish"
         git push
