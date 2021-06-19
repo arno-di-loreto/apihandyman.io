@@ -51,6 +51,8 @@ jobs:
     steps:
       - name: Check collection
         run: |
+          pwd
+          ls
           ls -l ${{ github.workspace }}/${{env.POSTMAN_COLLECTION_FOLDER}}/cloudflare-clearcache.postman_collection.json
       - name: Clear Cloudflare cache
         run: |
