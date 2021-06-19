@@ -14,31 +14,19 @@ jobs:
       PUBLISH_BRANCH_FOLDER: publish
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout default source branch in ${{env.SOURCE_BRANCH}}
+    - name: ⬇️ Checkout default source branch in ${{env.SOURCE_BRANCH}}
       uses: actions/checkout@v2
       with:
         path: ${{env.SOURCE_BRANCH_FOLDER}}
-    - name: Checkout publish branch ${{env.PUBLISH_BRANCH}} in ${{env.PUBLISH_BRANCH_FOLDER}}
-      uses: actions/checkout@v2
-      with:
-        ref: ${{env.PUBLISH_BRANCH}}
-        fetch-depth: 1
-        path: ${{env.PUBLISH_BRANCH_FOLDER}}
-    - name: Cleaning ${{env.PUBLISH_BRANCH_FOLDER}} folder
-      run: |
-        rm -rf ${{env.PUBLISH_BRANCH_FOLDER}}/*
-    - name: Build the site in the jekyll/builder container
+    - name: 👷🏻‍♂️ Build with jekyll/builder container
       run: |
         docker run \
         -v ${{ github.workspace }}/${{env.SOURCE_BRANCH_FOLDER}}:/srv/jekyll \
         -v ${{ github.workspace }}/${{env.PUBLISH_BRANCH_FOLDER}}:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
-    - name: Commit on ${{env.PUBLISH_BRANCH}}
-      run: |  
-        cd ${{env.PUBLISH_BRANCH_FOLDER}}
-        git add .
-        git status
-        git config user.name github-actions
-        git config user.email github-actions@github.com  
-        git commit -m "Github action publish"
-        git push
+    - name: 🚀 Push on ${{env.PUBLISH_BRANCH}}
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: ${{env.PUBLISH_BRANCH}} # The branch the action should deploy to.
+        folder: ${{env.PUBLISH_BRANCH_FOLDER}} # The folder the action should deploy.        
+        token: ${{secrets.GH_TOKEN}} # Needed to trigger action on target branch (without it no action will be triggered)

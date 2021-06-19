@@ -18,12 +18,12 @@ jobs:
       CLOUDFLARE_WEBSITE: apihandyman.io
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout ${{env.POSTMAN_COLLECTION_BRANCH}} branch to get Cloudflare Clear Cache Postman collection
+      - name: ⬇️ Checkout ${{env.POSTMAN_COLLECTION_BRANCH}} branch to get Cloudflare Clear Cache Postman collection
         uses: actions/checkout@v2
         with:
           ref: ${{env.POSTMAN_COLLECTION_BRANCH}}
           fetch-depth: 1
-      - name: Clear Cloudflare cache
+      - name: 💥 Clear Cloudflare cache
         run: |
           docker run \
           -v ${{ github.workspace }}/${{env.POSTMAN_COLLECTION_FOLDER}}:/etc/newman \
