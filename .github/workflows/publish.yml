@@ -18,6 +18,15 @@ jobs:
       uses: actions/checkout@v2
       with:
         path: ${{env.SOURCE_BRANCH_FOLDER}}
+    - name: ⬇️ Checkout publish branch ${{env.PUBLISH_BRANCH}} in ${{env.PUBLISH_BRANCH_FOLDER}}
+      uses: actions/checkout@v2
+      with:
+        ref: ${{env.PUBLISH_BRANCH}}
+        fetch-depth: 1
+        path: ${{env.PUBLISH_BRANCH_FOLDER}}
+    - name: 💥 Cleaning ${{env.PUBLISH_BRANCH_FOLDER}} folder
+      run: |
+        rm -rf ${{env.PUBLISH_BRANCH_FOLDER}}/*
     - name: 👷🏻‍♂️ Build with jekyll/builder container
       run: |
         docker run \
