@@ -26,7 +26,6 @@ jobs:
       with:
         branch: ${{env.PUBLISH_BRANCH}} # The branch the action should deploy to.
         folder: ${{ github.workspace }}/${{env.PUBLISH_BRANCH_FOLDER}} # The folder the action should deploy.        
-        token: ${{secrets.GH_TOKEN}} # Needed to trigger action on target branch (without it no action will be triggered)
         clean: true
         commit-message: Publish
   clear_cdn_cache:
