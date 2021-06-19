@@ -7,14 +7,16 @@ on:
     branches: [ master ]
 
 jobs:
-  publish:
+  build_and_publish:
     env:
       PUBLISH_BRANCH: gh-pages-test
       PUBLISH_BRANCH_FOLDER: _site
     runs-on: ubuntu-latest
     steps:
-    - name: ⬇️ Checkout default source branch in ${{env.SOURCE_BRANCH}}
+    - name: ⬇️ Checkout current branch
       uses: actions/checkout@v2
+      with:
+          fetch-depth: 1
     - name: 👷🏻‍♂️ Build with jekyll/builder container
       run: |
         docker run \
@@ -29,3 +31,24 @@ jobs:
         token: ${{secrets.GH_TOKEN}} # Needed to trigger action on target branch (without it no action will be triggered)
         clean: true
         commit-message: Publish
+  clear_cdn_cache:
+    needs: [ publish ]
+    env:
+      POSTMAN_COLLECTION_BRANCH: master
+      POSTMAN_COLLECTION_FOLDER: scripts
+      CLOUDFLARE_WEBSITE: apihandyman.io
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Download Cloudflare Clear Cache Postman collection
+        uses: actions/checkout@v2
+        with:
+          ref: ${{env.POSTMAN_COLLECTION_BRANCH}}
+          fetch-depth: 1
+      - name: 💥 Clear Cloudflare cache
+        run: |
+          docker run \
+          -v ${{ github.workspace }}/${{env.POSTMAN_COLLECTION_FOLDER}}:/etc/newman \
+          -t postman/newman:alpine run \
+          --global-var token=${{secrets.CLOUDFLARE_TOKEN}} \
+          --global-var website=${{env.CLOUDFLARE_WEBSITE}} \
+          cloudflare-clearcache.postman_collection.json
