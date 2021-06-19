@@ -7,7 +7,7 @@ on:
 jobs:
   build_and_publish:
     env:
-      PUBLISH_BRANCH: gh-pages-test
+      PUBLISH_BRANCH: gh-pages
       PUBLISH_BRANCH_FOLDER: _site
     runs-on: ubuntu-latest
     steps:
