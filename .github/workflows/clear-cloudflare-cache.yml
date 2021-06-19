@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Clear Cloudflare Cache
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ gh-pages-test ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    env:
+      POSTMAN_COLLECTION_BRANCH: master
+      POSTMAN_COLLECTION_FOLDER: scripts
+      CLOUDFLARE_WEBSITE: apihandyman.io
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ${{env.POSTMAN_COLLECTION_BRANCH}} branch to get Cloudflare Clear Cache Postman collection
+        uses: actions/checkout@v2
+        with:
+          ref: ${{env.POSTMAN_COLLECTION_BRANCH}}
+          fetch-depth: 1
+      - name: Clear Cloudflare cache
+        run: |
+          docker run \
+          -v ${{ github.workspace }}/${{env.POSTMAN_COLLECTION_FOLDER}}:/etc/newman \
+          -t postman/newman:alpine run \
+          --global-var token=${{secrets.CLOUDFLARE_TOKEN}} \
+          --global-var website=${{env.CLOUDFLARE_WEBSITE}} \
+          cloudflare-clearcache.postman_collection.json
