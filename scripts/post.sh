@@ -34,7 +34,7 @@ IMAGES_DIR="images/$URL_TITLE"
 
 echo "Creating post [$TITLE] under url [$URL_TITLE] with category [$CATEGORY] and date [$DATE] on branch [$BRANCH] with file [$FILE]"
 
-git checkout -b $BRANCH
+# git checkout -b $BRANCH
 cp _templates/post.md $FILE
 
 sed -e "s/TITLE/$TITLE/" -i "" $FILE
