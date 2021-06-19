@@ -43,6 +43,7 @@ jobs:
         git commit -m "Github action publish"
         git push
   deploy:
+    needs: [build]
     env:
       POSTMAN_COLLECTION_FOLDER: scripts
       CLOUDFLARE_WEBSITE: apihandyman.io
@@ -51,7 +52,7 @@ jobs:
       - name: Clear Cloudflare cache
         run: |
           docker run \
-          -v ${{env.POSTMAN_COLLECTION_FOLDER}}:/etc/newman \
+          -v ${{ github.workspace }}/${{env.POSTMAN_COLLECTION_FOLDER}}:/etc/newman \
           -t postman/newman:alpine run \
           --global-var token=${{secrets.CLOUDFLARE_TOKEN}} \
           --global-var website=${{env.CLOUDFLARE_WEBSITE}} \
