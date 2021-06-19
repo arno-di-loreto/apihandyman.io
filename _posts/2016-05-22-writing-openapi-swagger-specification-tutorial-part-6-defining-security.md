@@ -164,4 +164,4 @@ On `POST /images` operation, the top level security is fully overridden by the A
 {% codefile file:simple_openapi_specification_20_defining_security_multiple.yaml lines:"260-266" highlight:"260,263,265-266" footer:true %}
 
 # Conclusion
-You now have mastered security. With this new post you are now a full expert when it comes to describe an API interface with the OpenAPI specification. But an interface contract alone may not be easy to understand without some explainations. In next post we'll learn how to document this interface description (coming soon) to ease its understanding.
+You now have mastered security. With this new post you are now a full expert when it comes to describe an API interface with the OpenAPI specification. But an interface contract alone may not be easy to understand without some explainations. In [next post](/writing-openapi-swagger-specification-tutorial-part-7-documentation/) we'll learn how to document this interface description to ease its understanding.

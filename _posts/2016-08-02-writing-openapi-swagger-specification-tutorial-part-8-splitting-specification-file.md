@@ -475,4 +475,4 @@ After modification (all `/` in reference name have been replaced by `~1`):
 And now the main file and all its sub-files are considered valid by the editor.
 
 # Conclusion
-You are now ready to split any OpenAPI specification file into valid sub-files in any possible ways. In this 8th part you've learned how to use JSON pointers in almost any places in an OpenAPI specification to references items from other files and how to create valid sub-files containing partial informations. In the next final part (at last) we will learn how to extend the OpenAPI specification (coming soon).
+You are now ready to split any OpenAPI specification file into valid sub-files in any possible ways. In this 8th part you've learned how to use JSON pointers in almost any places in an OpenAPI specification to references items from other files and how to create valid sub-files containing partial information. In the [next final](/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/) part (at last) we will learn how to extend the OpenAPI specification.
