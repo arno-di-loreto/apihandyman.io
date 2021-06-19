@@ -9,7 +9,7 @@
             "command": "scripts/serve.sh",
             "presentation": {
                 "reveal": "always",
-                "panel": "new"
+                "panel": "dedicated"
             },
             "runOptions": {
                 "runOn": "folderOpen"
@@ -22,9 +22,37 @@
             "command": "scripts/create-docker-image.sh apihandyman/jekyll 4.1.0",
             "presentation": {
                 "reveal": "always",
-                "panel": "new"
+                "panel": "shared"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "New Post",
+            "type": "shell",
+            "command": "scripts/post.sh \"${input:newPostTitle}\" ${input:newPostCategory} ${input:newPostDate}",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "newPostTitle",
+            "description": "Title",
+            "type": "promptString"
+        },
+        {
+            "id": "newPostCategory",
+            "description": "Category",
+            "default": "posts",
+            "type": "pickString",
+            "options": ["post","talk"]
+        },
+        {
+            "id": "newPostDate",
+            "description": "Publish date (YYYY-MM-DD, empty for today)",
+            "type": "promptString"
         }
     ]
 }
