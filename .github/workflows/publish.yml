@@ -49,6 +49,9 @@ jobs:
       CLOUDFLARE_WEBSITE: apihandyman.io
     runs-on: ubuntu-latest
     steps:
+      - name: Check collection
+        run: |
+          ls -l ${{ github.workspace }}/${{env.POSTMAN_COLLECTION_FOLDER}}/cloudflare-clearcache.postman_collection.json
       - name: Clear Cloudflare cache
         run: |
           docker run \
