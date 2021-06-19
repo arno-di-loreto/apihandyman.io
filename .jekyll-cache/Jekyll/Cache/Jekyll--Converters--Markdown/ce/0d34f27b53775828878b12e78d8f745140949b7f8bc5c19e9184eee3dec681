@@ -1,3 +1,0 @@
-I"
-<p>With <a href="(http://apihandyman.io/category/openapi-swagger-specification/)">previous posts</a> we have learned to produce an <a href="https://openapis.org/">OpenAPI specification</a> containing all OpenAPI specification subtleties. Some specification files may become quite large or may contain elements which could be reused in other APIs. Splitting a specification file will help to keep it maintainable by creating smaller files and also help to ensure consistency throughout APIs by sharing common elements.</p>
-:ET

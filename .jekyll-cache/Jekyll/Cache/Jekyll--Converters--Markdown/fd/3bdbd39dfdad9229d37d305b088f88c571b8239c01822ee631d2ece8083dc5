@@ -1,9 +1,0 @@
-I"}<p>Using singular or plural to represent a list of something is an old debate in computer science, especially in the database field.
-But what about APIs then?
-It’s still the same, if you look at various APIs, you’ll see that something like “list/search resources” could be either represented by a <code>GET /resources</code> or a <code>GET /resource</code>.
-Who is right?
-Who is wrong?
-I have a preference, you may have another, but should we really give importance to such a debate?
-Aren’t we missing something?
-Let’s investigate that topic and discover what’s really important when choosing collection resource path.</p>
-:ET

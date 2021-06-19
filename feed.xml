@@ -1,531 +1,626 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-06-16T11:08:00-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Handling breaking ch-ch-changes</title><link href="https://apihandyman.io/handling-breaking-ch-ch-changes/" rel="alternate" type="text/html" title="Handling breaking ch-ch-changes" /><published>2021-06-16T00:00:00-05:00</published><updated>2021-06-16T00:00:00-05:00</updated><id>https://apihandyman.io/breaking-changes</id><content type="html" xml:base="https://apihandyman.io/handling-breaking-ch-ch-changes/">In (Ch-ch-) Changes, David Bowie sang &quot;Every time I thought I'd got it made, it seemed the taste was not so sweet&quot;, that's a good metaphor for API design.
-An API will irremediably evolve because it will lack some features or because of mistakes, and so sooner or later, you may have to introduce a &quot;breaking change&quot;.
-That's usually when people start to run in circle, scream and shout &quot;Oh! Please no! Please, not a breaking ch-ch-change&quot;.
-But, what is it actually? How to handle it? And should you always be afraid of it?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-06-19T10:40:33-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Handling breaking ch-ch-changes</title><link href="https://apihandyman.io/handling-breaking-ch-ch-changes/" rel="alternate" type="text/html" title="Handling breaking ch-ch-changes" /><published>2021-06-16T00:00:00-05:00</published><updated>2021-06-16T00:00:00-05:00</updated><id>https://apihandyman.io/breaking-changes</id><content type="html" xml:base="https://apihandyman.io/handling-breaking-ch-ch-changes/">&lt;p&gt;In (Ch-ch-) Changes, David Bowie sang “Every time I thought I’d got it made, it seemed the taste was not so sweet”, that’s a good metaphor for API design.
+An API will irremediably evolve because it will lack some features or because of mistakes, and so sooner or later, you may have to introduce a “breaking change”.
+That’s usually when people start to run in circle, scream and shout “Oh! Please no! Please, not a breaking ch-ch-change”.
+But, what is it actually? How to handle it? And should you always be afraid of it?&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-# What is a breaking change
+&lt;h1 id=&quot;what-is-a-breaking-change&quot;&gt;What is a breaking change&lt;/h1&gt;
 
-A breaking change is non backward-compatible modification that requires consumers to modify their code in order to continue using an API (or at least modify the part of their code using the modified part of the API).
-There are many different ways to introduce breaking changes in APIs, some are obvious, some are not.
+&lt;p&gt;A breaking change is non backward-compatible modification that requires consumers to modify their code in order to continue using an API (or at least modify the part of their code using the modified part of the API).
+There are many different ways to introduce breaking changes in APIs, some are obvious, some are not.&lt;/p&gt;
 
-The most common obvious way to introduce a breaking change is to rename or remove something in the interface contract.
-Rename `GET /usrs` to `GET /users` or remove the `isAdmin` property from the User data model and there's a huge risk that it will break some if not all of the API's consumers.
-There are also less obvious interface contract's breaking changes. Turning an optional parameter into a required one or adding new values to enumerations that consumer is supposed to interpret. And there are even less obvious and far more treacherous breaking changes:
+&lt;p&gt;The most common obvious way to introduce a breaking change is to rename or remove something in the interface contract.
+Rename &lt;code&gt;GET /usrs&lt;/code&gt; to &lt;code&gt;GET /users&lt;/code&gt; or remove the &lt;code&gt;isAdmin&lt;/code&gt; property from the User data model and there’s a huge risk that it will break some if not all of the API’s consumers.
+There are also less obvious interface contract’s breaking changes. Turning an optional parameter into a required one or adding new values to enumerations that consumer is supposed to interpret. And there are even less obvious and far more treacherous breaking changes:&lt;/p&gt;
 
-{% include quote.html 
-    author=&quot;Hyrum Wright&quot;
-    source=&quot;Hyrum's Law&quot;
-    url=&quot;https://www.hyrumslaw.com/&quot;
-    text=&quot;With a sufficient number of users of an API, it does not matter what you promise in the contract: all observable behaviors of your system will be depended on by somebody.&quot;
-%}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;With a sufficient number of users of an API, it does not matter what you promise in the contract: all observable behaviors of your system will be depended on by somebody.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;https://www.hyrumslaw.com/&quot;&gt;Hyrum Wright, Hyrum's Law&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-{% include image.html source=&quot;xkcd.png&quot; caption=&quot;XKCD: Workflow&quot; url=&quot;https://xkcd.com/1172/&quot; %}
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/handling-breaking-ch-ch-changes/xkcd.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;&lt;a href=&quot;https://xkcd.com/1172/&quot;&gt;XKCD: Workflow&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;
 
-A breaking change can happen without actually modifying the API's interface contract.
-Change a business rule so that given the same conditions a user's &quot;asshole level&quot; is set to orange instead of green when analyzing their last comments and that may break something. 
-Pushing the concept to the extreme, that also means some consumers could depend on an API's long response time and optimizing the API's implementation to make things go faster on provider's side could put them at risk.
-That's probably going a little bit too far, but keep that in mind, just in case.
+&lt;p&gt;A breaking change can happen without actually modifying the API’s interface contract.
+Change a business rule so that given the same conditions a user’s “asshole level” is set to orange instead of green when analyzing their last comments and that may break something. 
+Pushing the concept to the extreme, that also means some consumers could depend on an API’s long response time and optimizing the API’s implementation to make things go faster on provider’s side could put them at risk.
+That’s probably going a little bit too far, but keep that in mind, just in case.&lt;/p&gt;
 
-So a breaking change is a change that could literally break something on the consumer side.
-That does not sound good but is it actually always that bad?
+&lt;p&gt;So a breaking change is a change that could literally break something on the consumer side.
+That does not sound good but is it actually always that bad?&lt;/p&gt;
 
-# Evaluating the cost of breaking change
+&lt;h1 id=&quot;evaluating-the-cost-of-breaking-change&quot;&gt;Evaluating the cost of breaking change&lt;/h1&gt;
 
-As an architect, my favorite answer to any question is &quot;it depends&quot;.
+&lt;p&gt;As an architect, my favorite answer to any question is “it depends”.
 And in that case, it applies yet another time.
-Depending on the context, the cost of a breaking change vary.
+Depending on the context, the cost of a breaking change vary.&lt;/p&gt;
 
-If the API is in early stage and not even yet consumed, you can break whatever you want without even thinking about it.
+&lt;p&gt;If the API is in early stage and not even yet consumed, you can break whatever you want without even thinking about it.
 If the API is consumed only by a single application that you build yourself, you can most probably do it with not much work.
-On the opposite, if the API is consumed by many consumers that are &quot;far&quot; from you, another team, another business unit or worse partners or customers.
-The cost will be high.
+On the opposite, if the API is consumed by many consumers that are “far” from you, another team, another business unit or worse partners or customers.
+The cost will be high.&lt;/p&gt;
 
-The less consumers and the more you control them, the less will cost a breaking change. 
-The more consumers and the less you control them, the more will cost a breaking change.
+&lt;p&gt;The less consumers and the more you control them, the less will cost a breaking change. 
+The more consumers and the less you control them, the more will cost a breaking change.&lt;/p&gt;
 
-# How to avoid it
+&lt;h1 id=&quot;how-to-avoid-it&quot;&gt;How to avoid it&lt;/h1&gt;
 
-Before requiring consumers to update their code, maybe you should think twice and find a way to avoid that.
-Here are 3 ways to more or less &quot;avoid&quot; introducing breaking changes.
+&lt;p&gt;Before requiring consumers to update their code, maybe you should think twice and find a way to avoid that.
+Here are 3 ways to more or less “avoid” introducing breaking changes.&lt;/p&gt;
 
-## Don't do it
+&lt;h2 id=&quot;dont-do-it&quot;&gt;Don’t do it&lt;/h2&gt;
 
-First, triple check that you actually desperately need to make this breaking change.
+&lt;p&gt;First, triple check that you actually desperately need to make this breaking change.
 Evaluate the value it brings versus its cost.
 You want to fix some mistake (like a typo or a terrible name) to make a perfectly clean API?
-That's nice but probably counter-productive, perfection is not of this world, especially in API design.
+That’s nice but probably counter-productive, perfection is not of this world, especially in API design.
 Live with it for the time being, you may be able to fix that when introducing actually awaited new features that your consumers will be totally crazy about.
-In the meanwhile, you may try to limit problems by improving the documentation if that help.
+In the meanwhile, you may try to limit problems by improving the documentation if that help.&lt;/p&gt;
 
-## Make it backward-compatible
+&lt;h2 id=&quot;make-it-backward-compatible&quot;&gt;Make it backward-compatible&lt;/h2&gt;
 
-If there are good reason to introduce this change, maybe there's a way to make it in a non-breaking way.
-The usual strategy to do that is only to &quot;add&quot; in a clever way.
+&lt;p&gt;If there are good reason to introduce this change, maybe there’s a way to make it in a non-breaking way.
+The usual strategy to do that is only to “add” in a clever way.&lt;/p&gt;
 
-Instead of modifying an existing operation, you may simply add a new one.
-Why not adding a `POST /administrators` instead of modifying `POST /users` to introduce the new administrator user type?
+&lt;p&gt;Instead of modifying an existing operation, you may simply add a new one.
+Why not adding a &lt;code&gt;POST /administrators&lt;/code&gt; instead of modifying &lt;code&gt;POST /users&lt;/code&gt; to introduce the new administrator user type?
 On the inputs, always add optional properties/parameters with default values.
-Let's say you have a &quot;create user&quot; features and want introduce different service level (regular vs gold).
-Instead of required `serviceLevel` that will hold `regular` or `gold`, set it optional with `regular` as default value.
-On the output, it's simpler, just add, it doesn't really matter if the new data is always returned or not.
+Let’s say you have a “create user” features and want introduce different service level (regular vs gold).
+Instead of required &lt;code&gt;serviceLevel&lt;/code&gt; that will hold &lt;code&gt;regular&lt;/code&gt; or &lt;code&gt;gold&lt;/code&gt;, set it optional with &lt;code&gt;regular&lt;/code&gt; as default value.
+On the output, it’s simpler, just add, it doesn’t really matter if the new data is always returned or not.&lt;/p&gt;
 
-There's more often than not a way to turn a backward-incompatible change into a backward-compatible one, it may not lead to the best design but sometimes you have to make compromises.
+&lt;p&gt;There’s more often than not a way to turn a backward-incompatible change into a backward-compatible one, it may not lead to the best design but sometimes you have to make compromises.&lt;/p&gt;
 
-## Use breaking change proof design
+&lt;h2 id=&quot;use-breaking-change-proof-design&quot;&gt;Use breaking change proof design&lt;/h2&gt;
 
-The third way to avoid breaking change is a little bit different: it's about to preemptively ensure that breaking changes have less risk to happen by choosing a breaking change proof design.
+&lt;p&gt;The third way to avoid breaking change is a little bit different: it’s about to preemptively ensure that breaking changes have less risk to happen by choosing a breaking change proof design.&lt;/p&gt;
 
-You can work on data types, avoid using booleans or arrays of atomic (string, number, ...) for instance.
-A `isAdmin` property is less extensible than a `role: &quot;admin&quot;` one, indeed, there may be more roles than admin and non admin users in the future.
-Which is less extensible than a `roles: [&quot;admin&quot;]`, because a user may have more than one role in the future.
-Which is less extensible than a `roles: [{ type: &quot;admin&quot;}]`, because a role may need more features such as a start and end date for example.
+&lt;p&gt;You can work on data types, avoid using booleans or arrays of atomic (string, number, …) for instance.
+A &lt;code&gt;isAdmin&lt;/code&gt; property is less extensible than a &lt;code&gt;role: &quot;admin&quot;&lt;/code&gt; one, indeed, there may be more roles than admin and non admin users in the future.
+Which is less extensible than a &lt;code&gt;roles: [&quot;admin&quot;]&lt;/code&gt;, because a user may have more than one role in the future.
+Which is less extensible than a &lt;code&gt;roles: [{ type: &quot;admin&quot;}]&lt;/code&gt;, because a role may need more features such as a start and end date for example.&lt;/p&gt;
 
-You can work building self sufficient features by adding data or new operations.
+&lt;p&gt;You can work building self sufficient features by adding data or new operations.
 When accessing a user, consumer may need to know what their role mean, at the beginning they can hardcode that an admin user can do everything while a non admin one can only read data for example.
 But if you provide the role description along with its type, you may seamlessly introduce new user types.
-When creating a user, consumer need to know the available types of user they can create, they can hardcode that based on an enumeration provided in your documentation or they could call a `GET /userTypes` and get up to date data.
+When creating a user, consumer need to know the available types of user they can create, they can hardcode that based on an enumeration provided in your documentation or they could call a &lt;code&gt;GET /userTypes&lt;/code&gt; and get up to date data.&lt;/p&gt;
 
-And last but not least, you can also lessen the risk of breaking changes by hiding as much as possible what happens inside your API, inside your domain.
-The less the outside world know about your internal business rules and way of working, the less coupled with consumers you'll be.
+&lt;p&gt;And last but not least, you can also lessen the risk of breaking changes by hiding as much as possible what happens inside your API, inside your domain.
+The less the outside world know about your internal business rules and way of working, the less coupled with consumers you’ll be.&lt;/p&gt;
 
-# How to handle it
+&lt;h1 id=&quot;how-to-handle-it&quot;&gt;How to handle it&lt;/h1&gt;
 
-When the breaking change cost is low or when it is unavoidable even though its cost is high, you have to actually handle it.
-Here are a few good practices and tips to have in mind in such a situation.
+&lt;p&gt;When the breaking change cost is low or when it is unavoidable even though its cost is high, you have to actually handle it.
+Here are a few good practices and tips to have in mind in such a situation.&lt;/p&gt;
 
-## Synchronized modifications
+&lt;h2 id=&quot;synchronized-modifications&quot;&gt;Synchronized modifications&lt;/h2&gt;
 
-The most simple way to handle breaking change is to synchronize modified API and consumers deployment.
+&lt;p&gt;The most simple way to handle breaking change is to synchronize modified API and consumers deployment.
 This strategy will only work when you have full control on consumers.
 While it is fairly easy to do that with a web application, it can be more trick for rich clients such as mobile application as end users may not want to update them if they are not forced to do it.
-My rule of thumb: always implement a &quot;force update&quot; in your mobile application, let it check regularly or at startup if it is still up to date and if not refuse to start and request update to user.
-That will allow you to synchronize its update with the underlying API. 
+My rule of thumb: always implement a “force update” in your mobile application, let it check regularly or at startup if it is still up to date and if not refuse to start and request update to user.
+That will allow you to synchronize its update with the underlying API.&lt;/p&gt;
 
-## Wait for the right moment
+&lt;h2 id=&quot;wait-for-the-right-moment&quot;&gt;Wait for the right moment&lt;/h2&gt;
 
-A corollary to the &quot;make it backward compatible even that is not totally clean&quot; strategy is to wait for the right moment.
+&lt;p&gt;A corollary to the “make it backward compatible even that is not totally clean” strategy is to wait for the right moment.
 I always recommend to the team I work with to let their API live and evolve possibly introducing API design compromises.
-Then after a while, once they have sufficient experience with the domain of the API and if there's a killer new feature to introduce, that's the right moment to clean all this mess and break everything.
+Then after a while, once they have sufficient experience with the domain of the API and if there’s a killer new feature to introduce, that’s the right moment to clean all this mess and break everything.&lt;/p&gt;
 
-## Create a separated new API and migrate (or not)
+&lt;h2 id=&quot;create-a-separated-new-api-and-migrate-or-not&quot;&gt;Create a separated new API and migrate (or not)&lt;/h2&gt;
 
-Breaking everything does not actually mean removing the previous version of the API.
+&lt;p&gt;Breaking everything does not actually mean removing the previous version of the API.
 You can create a new one and then request consumers migrate to the new version.
-There are many things to say about that, we'll talk more about API versioning and its implication in a later post.
+There are many things to say about that, we’ll talk more about API versioning and its implication in a later post.&lt;/p&gt;
 
-## Include breaking change policy in your terms of services
+&lt;h2 id=&quot;include-breaking-change-policy-in-your-terms-of-services&quot;&gt;Include breaking change policy in your terms of services&lt;/h2&gt;
 
-And last tip, don't forget to include your breaking change policy in your terms of service: how you define a breaking change, when you'll warn people about an upcoming one and how long time they'll have to migrate to a new API version if they have to.
-Depending on your context, you may not want to let consumers stay on an outdated previous version for too long but think about their context, below a year could be tricky for many consumers as their budget are annualized.
+&lt;p&gt;And last tip, don’t forget to include your breaking change policy in your terms of service: how you define a breaking change, when you’ll warn people about an upcoming one and how long time they’ll have to migrate to a new API version if they have to.
+Depending on your context, you may not want to let consumers stay on an outdated previous version for too long but think about their context, below a year could be tricky for many consumers as their budget are annualized.&lt;/p&gt;
 
-Note while that's a must have for a public/partner API that you sell to people outside of your organization, it that could be interesting to define terms of service including such policy for your private APIs too.</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">In (Ch-ch-) Changes, David Bowie sang “Every time I thought I’d got it made, it seemed the taste was not so sweet”, that’s a good metaphor for API design. An API will irremediably evolve because it will lack some features or because of mistakes, and so sooner or later, you may have to introduce a “breaking change”. That’s usually when people start to run in circle, scream and shout “Oh! Please no! Please, not a breaking ch-ch-change”. But, what is it actually? How to handle it? And should you always be afraid of it?</summary></entry><entry><title type="html">Pink Fluffy Unicorn API? WTF? (or 3 reasons why choosing a not meaningful API name can be a problem)</title><link href="https://apihandyman.io/pink-fluffy-unicorn-api-wtf-or-3-reasons-why-choosing-a-not-meaningful-API-name-can-be-a-problem/" rel="alternate" type="text/html" title="Pink Fluffy Unicorn API? WTF? (or 3 reasons why choosing a not meaningful API name can be a problem)" /><published>2021-06-09T00:00:00-05:00</published><updated>2021-06-09T00:00:00-05:00</updated><id>https://apihandyman.io/pink-fluffy-unicorn</id><content type="html" xml:base="https://apihandyman.io/pink-fluffy-unicorn-api-wtf-or-3-reasons-why-choosing-a-not-meaningful-API-name-can-be-a-problem/">It is usually considered a terrible practice to name a property or a function with a meaningless name when writing code.
-But surprisingly, when it comes to choosing application or API name, some people tend to choose names in a more artistic way (says the &quot;API Handyman&quot; who can name some tool &quot;OpenAPI Chainsaw&quot;).
-So let's see 3 reasons why choosing a not meaningful API name can be a problem.
+&lt;p&gt;Note while that’s a must have for a public/partner API that you sell to people outside of your organization, it that could be interesting to define terms of service including such policy for your private APIs too.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">In (Ch-ch-) Changes, David Bowie sang “Every time I thought I’d got it made, it seemed the taste was not so sweet”, that’s a good metaphor for API design. An API will irremediably evolve because it will lack some features or because of mistakes, and so sooner or later, you may have to introduce a “breaking change”. That’s usually when people start to run in circle, scream and shout “Oh! Please no! Please, not a breaking ch-ch-change”. But, what is it actually? How to handle it? And should you always be afraid of it?</summary></entry><entry><title type="html">Pink Fluffy Unicorn API? WTF? (or 3 reasons why choosing a not meaningful API name can be a problem)</title><link href="https://apihandyman.io/pink-fluffy-unicorn-api-wtf-or-3-reasons-why-choosing-a-not-meaningful-API-name-can-be-a-problem/" rel="alternate" type="text/html" title="Pink Fluffy Unicorn API? WTF? (or 3 reasons why choosing a not meaningful API name can be a problem)" /><published>2021-06-09T00:00:00-05:00</published><updated>2021-06-09T00:00:00-05:00</updated><id>https://apihandyman.io/pink-fluffy-unicorn</id><content type="html" xml:base="https://apihandyman.io/pink-fluffy-unicorn-api-wtf-or-3-reasons-why-choosing-a-not-meaningful-API-name-can-be-a-problem/">&lt;p&gt;It is usually considered a terrible practice to name a property or a function with a meaningless name when writing code.
+But surprisingly, when it comes to choosing application or API name, some people tend to choose names in a more artistic way (says the “API Handyman” who can name some tool “OpenAPI Chainsaw”).
+So let’s see 3 reasons why choosing a not meaningful API name can be a problem.&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-This post is a follow up of a tweet I did a few weeks ago: _&quot;Pink Fluffy Unicorn&quot; is a cute but totally wrong name for an API unless it actually deals with pink fluffy unicorns. Please choose a meaningful name that tells what the API does_.
+&lt;p&gt;This post is a follow up of a tweet I did a few weeks ago: &lt;em&gt;“Pink Fluffy Unicorn” is a cute but totally wrong name for an API unless it actually deals with pink fluffy unicorns. Please choose a meaningful name that tells what the API does&lt;/em&gt;.
 Someone asked some arguments to back this statement because they seem to have to deal with such cute but counter-productive if not dangerous naming strategy.
-And I realized that I have never formalized my thoughts on this topic, hence this post (thanks so much Twitter people!) 
+And I realized that I have never formalized my thoughts on this topic, hence this post (thanks so much Twitter people!)&lt;/p&gt;
 
-_Very special thanks to [@mrlapingdesign](https://twitter.com/mrlapindesign) for drawing this post's banner._
+&lt;p&gt;&lt;em&gt;Very special thanks to &lt;a href=&quot;https://twitter.com/mrlapindesign&quot;&gt;@mrlapingdesign&lt;/a&gt; for drawing this post’s banner.&lt;/em&gt;&lt;/p&gt;
 
-# It needs explanations
+&lt;h1 id=&quot;it-needs-explanations&quot;&gt;It needs explanations&lt;/h1&gt;
 
-First and most obvious reason why choosing a not totally meaningful name is a terrible idea: it needs explanations.
+&lt;p&gt;First and most obvious reason why choosing a not totally meaningful name is a terrible idea: it needs explanations.&lt;/p&gt;
 
-When starting a new job in a another company/organization, don't you ever have grumbled when discovering that all internal tools such as the credential manager or the leave management tool have totally awkward not obvious names?
+&lt;p&gt;When starting a new job in a another company/organization, don’t you ever have grumbled when discovering that all internal tools such as the credential manager or the leave management tool have totally awkward not obvious names?
 Of course, after someone explained you all that (for the 99th time) and if you use them everyday, you may remember their names.
 But your new colleague, who arrived a few months later, will also struggle to understand what does what at the beginning.
 And someone will have to explain all that (again, for the 100th time).
-And if you don't use them often, you'll forget their name and struggle to find them when you desperately need them.
+And if you don’t use them often, you’ll forget their name and struggle to find them when you desperately need them.&lt;/p&gt;
 
-And that applies to anything, including APIs.
-If I'm looking for the API managing users, I will not search for Pink Fluffy Unicorn API.
-And if I'm looking for the API managing file transfers, I will not search for Blue Fluffy Unicorn API.
-When I see a Pink Fluffy Unicorn API, I have absolutely no clue about what it does by just reading its name, and that is really annoying.
+&lt;p&gt;And that applies to anything, including APIs.
+If I’m looking for the API managing users, I will not search for Pink Fluffy Unicorn API.
+And if I’m looking for the API managing file transfers, I will not search for Blue Fluffy Unicorn API.
+When I see a Pink Fluffy Unicorn API, I have absolutely no clue about what it does by just reading its name, and that is really annoying.&lt;/p&gt;
 
-Of course, some may object that I could use our awesome API catalog search engine or read the documentation to see that, so using such a not so meaningful name may not be such a big problem.
-Maybe, so let's see the second reason, which is major no-go for me.
+&lt;p&gt;Of course, some may object that I could use our awesome API catalog search engine or read the documentation to see that, so using such a not so meaningful name may not be such a big problem.
+Maybe, so let’s see the second reason, which is major no-go for me.&lt;/p&gt;
 
-# It does not set boundaries
+&lt;h1 id=&quot;it-does-not-set-boundaries&quot;&gt;It does not set boundaries&lt;/h1&gt;
 
-Second reason why choosing a not totally meaningful name is a terrible idea: it does not set boundaries.
-And that's a major concerns.
-Indeed, a well defined and designed API is supposed to be a independent set of operations covering a meaningful set of related use cases.
+&lt;p&gt;Second reason why choosing a not totally meaningful name is a terrible idea: it does not set boundaries.
+And that’s a major concerns.
+Indeed, a well defined and designed API is supposed to be a independent set of operations covering a meaningful set of related use cases.&lt;/p&gt;
 
-If this set of operations don't have a meaningful name such as User but is named Pink Fluffy Unicorn, what stops someone to add new features related to a completely different topic such as file transfers?
+&lt;p&gt;If this set of operations don’t have a meaningful name such as User but is named Pink Fluffy Unicorn, what stops someone to add new features related to a completely different topic such as file transfers?
 What stops someone transforming this well defined API into a big ball of mud, a do-it-all API that will make no sense at all and be more complex to maintain?
 What stops someone to create a dangerous mixtures composed of internal facing and external facing operations.
 Not its name.
-Some experienced API designers and developers having working in the team for quite a long time, taking their time to think, actually knowing the purpose of the Pink Fluffly Unicorn, probably won't do such a mistake but what about beginners or people in a rush?
+Some experienced API designers and developers having working in the team for quite a long time, taking their time to think, actually knowing the purpose of the Pink Fluffly Unicorn, probably won’t do such a mistake but what about beginners or people in a rush?&lt;/p&gt;
 
-Using a meaningful name creates boundaries that will make most people think twice before adding new features into an API while a meaningless name will open doors to anything.
+&lt;p&gt;Using a meaningful name creates boundaries that will make most people think twice before adding new features into an API while a meaningless name will open doors to anything.&lt;/p&gt;
 
-# It is possibly a sign of API design smell
+&lt;h1 id=&quot;it-is-possibly-a-sign-of-api-design-smell&quot;&gt;It is possibly a sign of API design smell&lt;/h1&gt;
 
-{% include quote.html 
-    author=&quot;Nicolas Boileau-Despréaux&quot;
-    source=&quot;L'art poétique&quot;
-    text=&quot;Ce que l'on conçoit bien s’énonce clairement, Et les mots pour le dire arrivent aisément (What is well understood is clearly stated, And the words to say it come easily)&quot; %}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;Ce que l'on conçoit bien s’énonce clairement, Et les mots pour le dire arrivent aisément (What is well understood is clearly stated, And the words to say it come easily)&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;Nicolas Boileau-Despréaux, L'art poétique&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-The third reason why choosing a not totally meaningful name is a terrible idea is a corollary to the second one: it can be a sign of API design smell.
+&lt;p&gt;The third reason why choosing a not totally meaningful name is a terrible idea is a corollary to the second one: it can be a sign of API design smell.&lt;/p&gt;
 
-Did you choose a meaningless name because you're actually unable to find a meaningful one?
-We all know that choosing names is hard, but if you are really struggling to find a meaningful name for your API, your API Designer senses should tell you that there's something wrong. 
-That could mean your API is not solving the good problem, or solving too much problems or not enough of them.
+&lt;p&gt;Did you choose a meaningless name because you’re actually unable to find a meaningful one?
+We all know that choosing names is hard, but if you are really struggling to find a meaningful name for your API, your API Designer senses should tell you that there’s something wrong. 
+That could mean your API is not solving the good problem, or solving too much problems or not enough of them.&lt;/p&gt;
 
-Easily finding a meaningful name can comfort your vision of the use case/problems you're trying to solve with it.
+&lt;p&gt;Easily finding a meaningful name can comfort your vision of the use case/problems you’re trying to solve with it.&lt;/p&gt;
 
-# Sometimes you have to deal with it
+&lt;h1 id=&quot;sometimes-you-have-to-deal-with-it&quot;&gt;Sometimes you have to deal with it&lt;/h1&gt;
 
-There are cases where a domain, a team or a tool has a not so meaningful name that you would like to keep for reasons such as not totally changing people habits.
+&lt;p&gt;There are cases where a domain, a team or a tool has a not so meaningful name that you would like to keep for reasons such as not totally changing people habits.
 Indeed, some people working there for a long time know what means Pink Fluffy Unicorn.
 So how to satisfy newcomers and seasoned colleagues?
-In such a case you can use a middle ground approach and name your API(s) &quot;Pink Fluffy Unicorn - Meaningful Name&quot;.
-That way you ensure seasoned colleagues won't be surprised.
+In such a case you can use a middle ground approach and name your API(s) “Pink Fluffy Unicorn - Meaningful Name”.
+That way you ensure seasoned colleagues won’t be surprised.
 But most important you ensure that your API surface (your APIs) is well defined (not a big ball of mud) and understandable by newcomers.
-Icing on the cake, you also ensure that people easily connect APIs together which can be interesting in a big organization or when providing public/partner APIs (&quot;Twilio&quot; doesn't mean anything to me but I can get what the &quot;Twilio Messaging API&quot; does).</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">It is usually considered a terrible practice to name a property or a function with a meaningless name when writing code. But surprisingly, when it comes to choosing application or API name, some people tend to choose names in a more artistic way (says the “API Handyman” who can name some tool “OpenAPI Chainsaw”). So let’s see 3 reasons why choosing a not meaningful API name can be a problem.</summary></entry><entry><title type="html">200 Vs 204 Vs 404</title><link href="https://apihandyman.io/empty-lists-http-status-code-200-vs-204-vs-404/" rel="alternate" type="text/html" title="200 Vs 204 Vs 404" /><published>2021-06-02T00:00:00-05:00</published><updated>2021-06-02T00:00:00-05:00</updated><id>https://apihandyman.io/200-vs-204-vs-404</id><content type="html" xml:base="https://apihandyman.io/empty-lists-http-status-code-200-vs-204-vs-404/">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
+Icing on the cake, you also ensure that people easily connect APIs together which can be interesting in a big organization or when providing public/partner APIs (“Twilio” doesn’t mean anything to me but I can get what the “Twilio Messaging API” does).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">It is usually considered a terrible practice to name a property or a function with a meaningless name when writing code. But surprisingly, when it comes to choosing application or API name, some people tend to choose names in a more artistic way (says the “API Handyman” who can name some tool “OpenAPI Chainsaw”). So let’s see 3 reasons why choosing a not meaningful API name can be a problem.</summary></entry><entry><title type="html">200 Vs 204 Vs 404</title><link href="https://apihandyman.io/empty-lists-http-status-code-200-vs-204-vs-404/" rel="alternate" type="text/html" title="200 Vs 204 Vs 404" /><published>2021-06-02T00:00:00-05:00</published><updated>2021-06-02T00:00:00-05:00</updated><id>https://apihandyman.io/200-vs-204-vs-404</id><content type="html" xml:base="https://apihandyman.io/empty-lists-http-status-code-200-vs-204-vs-404/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
 This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 
-{% include http-status-code.html code=&quot;200&quot; %}, {% include http-status-code.html code=&quot;204&quot; %} or {% include http-status-code.html code=&quot;404&quot; %}
+&lt;code&gt;200 OK&lt;/code&gt;, &lt;code&gt;204 No Content&lt;/code&gt; or &lt;code&gt;404 Not Found&lt;/code&gt;&lt;/p&gt;
 
 &lt;!--more--&gt;
+&lt;div class=&quot;card series-toc&quot;&gt;
+  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
+    &lt;h5 id=&quot;series&quot;&gt;Choosing HTTP status codes Series&lt;/h5&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;row series-toc_content&quot;&gt;
+    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;
+        &lt;p class=&quot;card-text&quot;&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.&lt;div class=&quot;alert alert-info&quot;&gt;
+I never remember in which RFCs HTTP status codes are defined.
+To get a quick access to their documentation, I use &lt;a class=&quot;alert-link&quot; href=&quot;https://webconcepts.info/concepts/http-status-code/&quot;&gt;Erik Wilde's Web Concepts&lt;/a&gt;.
+&lt;/div&gt;Very special thanks to all Twitter people participating to the &lt;a href=&quot;https://twitter.com/search?q=%23choosehttpstatuscode&amp;amp;src=typed_query&quot;&gt;#choosehttpstatuscode&lt;/a&gt; polls and discussions&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
+      
+      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/&quot;&gt;1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/hands-off-that-resource-http-status-code-401-vs-403-vs-404/&quot;&gt;2 - Hands off that resource, HTTP status code 401 vs 403 vs 404&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/&quot;&gt;3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item active&quot;&gt;4 - Empty list, HTTP status code 200 vs 204 vs 404&lt;/li&gt;
+          
+        
+        
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;the-context&quot;&gt;The context&lt;/h1&gt;
 
-{%- include _postincludes/choosing-http-status-codes.md -%}
-
-# The context
-
-When you need to represent lists (aka collection resources) in a REST/RESTful/RESTish API, a usual design pattern is to represented with them a `/resources` (or `/resource`, read {% include post-link.html alias=&quot;resources-vs-resource&quot; %}).
-More often than not, you'll need to be able to return a subset of the list's elements.
+&lt;p&gt;When you need to represent lists (aka collection resources) in a REST/RESTful/RESTish API, a usual design pattern is to represented with them a &lt;code&gt;/resources&lt;/code&gt; (or &lt;code&gt;/resource&lt;/code&gt;, read &lt;a class=&quot;post-link&quot; href=&quot;/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/&quot;&gt;/resources rules and /resource sucks … or is it the other way around?&lt;/a&gt;).
+More often than not, you’ll need to be able to return a subset of the list’s elements.
 To do so, a usual (if not standard) design pattern is to add query parameters to provide search filters.
-If a `GET /users` is supposed to return a list containing all (actually accessible to the consumer and possibly to the end user) users, a `GET /users?name=spock` is supposed to return a list containing only the users whose name is `spock`.
-The question we will answer today basically is: which HTTP status code respond with when returning an empty list.
+If a &lt;code&gt;GET /users&lt;/code&gt; is supposed to return a list containing all (actually accessible to the consumer and possibly to the end user) users, a &lt;code&gt;GET /users?name=spock&lt;/code&gt; is supposed to return a list containing only the users whose name is &lt;code&gt;spock&lt;/code&gt;.
+The question we will answer today basically is: which HTTP status code respond with when returning an empty list.&lt;/p&gt;
 
-{% include image.html source=&quot;twitter-poll.png&quot; alt=&quot;Twitter poll results&quot; %}
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/empty-lists-http-status-code-200-vs-204-vs-404/twitter-poll.png&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Twitter poll results&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
 
-According to my Twitter pool, 51% of respondents would return a {% include http-status-code.html code=&quot;200&quot; %}, while 24% would return a {% include http-status-code.html code=&quot;204&quot; %} and 25% would return a {% include http-status-code.html code=&quot;404&quot; %}.
-Let's see what could be the correct answers according to RFC(s) and common practice.
+&lt;p&gt;According to my Twitter pool, 51% of respondents would return a &lt;code&gt;200 OK&lt;/code&gt;, while 24% would return a &lt;code&gt;204 No Content&lt;/code&gt; and 25% would return a &lt;code&gt;404 Not Found&lt;/code&gt;.
+Let’s see what could be the correct answers according to RFC(s) and common practice.&lt;/p&gt;
 
-# The obvious 200 OK
+&lt;h1 id=&quot;the-obvious-200-ok&quot;&gt;The obvious 200 OK&lt;/h1&gt;
 
-{% include http-status-code.html code=&quot;200&quot; style=&quot;quote&quot; %}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 200 (OK) status code indicates that the request has succeeded.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.3.1&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.3.1&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-Let's start with the most common and valid response in such a case: {% include http-status-code.html code=&quot;200&quot; %}.
-When responding to `GET /users`, the API will respond with that HTTP status code along with a list of all (actually accessible to the consumer and possibly to the end user) users users.
-When responding to `GET /users?name=smith`, the API will respond also that with HTTP status code along with a list contains all users named `smith`.
-And finally when responding to `GET /users?name=spock` and if there are no user name `spock`, the API will respond yet another time with that HTTP status code but this time along with an empty list.
-That is actually the most common response I have ever seen, probably because most people consider that the `/users` collection/list resource exists and `name` query param is used to filter the content of the list.
+&lt;p&gt;Let’s start with the most common and valid response in such a case: &lt;code&gt;200 OK&lt;/code&gt;.
+When responding to &lt;code&gt;GET /users&lt;/code&gt;, the API will respond with that HTTP status code along with a list of all (actually accessible to the consumer and possibly to the end user) users users.
+When responding to &lt;code&gt;GET /users?name=smith&lt;/code&gt;, the API will respond also that with HTTP status code along with a list contains all users named &lt;code&gt;smith&lt;/code&gt;.
+And finally when responding to &lt;code&gt;GET /users?name=spock&lt;/code&gt; and if there are no user name &lt;code&gt;spock&lt;/code&gt;, the API will respond yet another time with that HTTP status code but this time along with an empty list.
+That is actually the most common response I have ever seen, probably because most people consider that the &lt;code&gt;/users&lt;/code&gt; collection/list resource exists and &lt;code&gt;name&lt;/code&gt; query param is used to filter the content of the list.&lt;/p&gt;
 
-But there is a more specific HTTP status code that could do the trick too.
+&lt;p&gt;But there is a more specific HTTP status code that could do the trick too.&lt;/p&gt;
 
-# The not so current 204
+&lt;h1 id=&quot;the-not-so-current-204&quot;&gt;The not so current 204&lt;/h1&gt;
 
-{% include http-status-code.html code=&quot;204&quot; style=&quot;quote&quot; %}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 204 (No Content) status code indicates that the server has successfully fulfilled the request and that there is no additional content to send in the response payload body.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.3.5&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.3.5&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-While {% include http-status-code.html code=&quot;200&quot; %} being a valid and the most common answer, returning a {% include http-status-code.html code=&quot;204&quot; %} could make sense as there is absolutely nothing to return.
-It is indeed more often used when responding to a `PUT` (replace) or a `PATCH` (partial update), when servers don't want to bother returning the replaced/updated resource or on a `DELETE` because there is usually nothing to return after a deletion.
-But it can be used on a `GET` too.
-If the request is valid, has been successfully fulfilled and if there is no additional content to send (which is the case as the returned list would be empty),  {% include http-status-code.html code=&quot;204&quot; %} is perfectly understandable and valid answer.
+&lt;p&gt;While &lt;code&gt;200 OK&lt;/code&gt; being a valid and the most common answer, returning a &lt;code&gt;204 No Content&lt;/code&gt; could make sense as there is absolutely nothing to return.
+It is indeed more often used when responding to a &lt;code&gt;PUT&lt;/code&gt; (replace) or a &lt;code&gt;PATCH&lt;/code&gt; (partial update), when servers don’t want to bother returning the replaced/updated resource or on a &lt;code&gt;DELETE&lt;/code&gt; because there is usually nothing to return after a deletion.
+But it can be used on a &lt;code&gt;GET&lt;/code&gt; too.
+If the request is valid, has been successfully fulfilled and if there is no additional content to send (which is the case as the returned list would be empty),  &lt;code&gt;204 No Content&lt;/code&gt; is perfectly understandable and valid answer.&lt;/p&gt;
 
-It's a valid response but I personally will not use it and do not recommend to use it in that case in my context.
-Because it is not that common (based on my experience, it's not absolute truth) and may imply more work.
-Actually, I try to avoid using specific/uncommon HTTP status when a more generic/common one works too, that usually simplifies consumer's job and also designer's one as there are less possible choices and behaviors (I'll write a post about that).
-Though a consumer must be able to interpret any `2xx` as as success and fallback to treat it as {% include http-status-code.html code=&quot;200&quot; %}, that means there will be no response body, so no empty list.
-That could easily lead to to possible &quot;null pointer exception&quot; or any equivalent requiring more controls in code.
-A {% include http-status-code.html code=&quot;200&quot; %} with an empty list can be treated the same as non empty list without thinking about it.
-Note that, consumer may obviously have to check il the list is empty or not to possibly show a message to end user, but the exact same code will work without that control.
+&lt;p&gt;It’s a valid response but I personally will not use it and do not recommend to use it in that case in my context.
+Because it is not that common (based on my experience, it’s not absolute truth) and may imply more work.
+Actually, I try to avoid using specific/uncommon HTTP status when a more generic/common one works too, that usually simplifies consumer’s job and also designer’s one as there are less possible choices and behaviors (I’ll write a post about that).
+Though a consumer must be able to interpret any &lt;code&gt;2xx&lt;/code&gt; as as success and fallback to treat it as &lt;code&gt;200 OK&lt;/code&gt;, that means there will be no response body, so no empty list.
+That could easily lead to to possible “null pointer exception” or any equivalent requiring more controls in code.
+A &lt;code&gt;200 OK&lt;/code&gt; with an empty list can be treated the same as non empty list without thinking about it.
+Note that, consumer may obviously have to check il the list is empty or not to possibly show a message to end user, but the exact same code will work without that control.&lt;/p&gt;
 
-But while simplifying choices, note that using that &quot;simplified HTTP&quot; stance, you'll loose some &quot;HTTP semantic out of the box&quot;. 
-Indeed tne major argument in favor of {% include http-status-code.html code=&quot;204&quot; %} is that is allows to check empty search results (especially in logs) vs non empty ones without relying on specific response body's semantic.
-That's quite an interesting feature.
-Maybe we need more APIs actually fully using HTTP semantic to make this {% include http-status-code.html code=&quot;204&quot; %} response more common and a no brainer.
+&lt;p&gt;But while simplifying choices, note that using that “simplified HTTP” stance, you’ll loose some “HTTP semantic out of the box”. 
+Indeed tne major argument in favor of &lt;code&gt;204 No Content&lt;/code&gt; is that is allows to check empty search results (especially in logs) vs non empty ones without relying on specific response body’s semantic.
+That’s quite an interesting feature.
+Maybe we need more APIs actually fully using HTTP semantic to make this &lt;code&gt;204 No Content&lt;/code&gt; response more common and a no brainer.&lt;/p&gt;
 
-So choosing between {% include http-status-code.html code=&quot;200&quot; %} and {% include http-status-code.html code=&quot;204&quot; %}, depends on you and your context.
+&lt;p&gt;So choosing between &lt;code&gt;200 OK&lt;/code&gt; and &lt;code&gt;204 No Content&lt;/code&gt;, depends on you and your context.&lt;/p&gt;
 
-# The not recommended 404
+&lt;h1 id=&quot;the-not-recommended-404&quot;&gt;The not recommended 404&lt;/h1&gt;
 
-{% include http-status-code.html code=&quot;404&quot; style=&quot;quote&quot; %}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.5.4&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.4&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-I just realized that's the fourth post in this series and {% include http-status-code.html code=&quot;404&quot; %} has been involved in all posts so far.
-Let's see what say the HTTP RFCs (with an s) about using it in that use case.
+&lt;p&gt;I just realized that’s the fourth post in this series and &lt;code&gt;404 Not Found&lt;/code&gt; has been involved in all posts so far.
+Let’s see what say the HTTP RFCs (with an s) about using it in that use case.&lt;/p&gt;
 
-If we look at this status code definition in {% include http-status-code.html code=&quot;404&quot; style=&quot;rfc&quot; %} and if we consider that `/users` is the resource used even when doing a `GET /users?name=spock`, returning that HTTP status code makes no sense at all because the resource `/users` exists, it's just that the list it contains may be empty.
+&lt;p&gt;If we look at this status code definition in RFC 7231 and if we consider that &lt;code&gt;/users&lt;/code&gt; is the resource used even when doing a &lt;code&gt;GET /users?name=spock&lt;/code&gt;, returning that HTTP status code makes no sense at all because the resource &lt;code&gt;/users&lt;/code&gt; exists, it’s just that the list it contains may be empty.&lt;/p&gt;
 
-But is this definition of a resource identifier (excluding query parameters) is actually the correct one?
-[Section 2 of RFC 7231](https://datatracker.ietf.org/doc/html/rfc7231#section-2) states _each resource is identified by a Uniform Resource Identifier (URI), as described in Section 2.7 of [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-2.7)_.
-That section 2.7 of RFC 7230 says the &quot;query&quot; (what is between the first `?` and `#`) is a part of the resource identifier.
-If we follow the link (it's quite a maze!) conducting to complete description of the query, we eventually arrive at [Section 3.4 of RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3.4) that says _the query component contains non-hierarchical data that, along with data in the path component (Section 3.3), serves to identify a resource_.
-That basically means that `/users?name=spock` is a resource identifier, so returning 404 is valid according to HTTP RFCs if we want to say &quot;sorry no resource match the strict identifier provided in your query&quot; or &quot;there is no such a users list containing users named spock&quot;.
-But using that HTTP status code being valid from a pure HTTP perspective, is it actually a good idea to use it in that use case?
+&lt;p&gt;But is this definition of a resource identifier (excluding query parameters) is actually the correct one?
+&lt;a href=&quot;https://datatracker.ietf.org/doc/html/rfc7231#section-2&quot;&gt;Section 2 of RFC 7231&lt;/a&gt; states &lt;em&gt;each resource is identified by a Uniform Resource Identifier (URI), as described in Section 2.7 of &lt;a href=&quot;https://datatracker.ietf.org/doc/html/rfc7230#section-2.7&quot;&gt;RFC 7230&lt;/a&gt;&lt;/em&gt;.
+That section 2.7 of RFC 7230 says the “query” (what is between the first &lt;code&gt;?&lt;/code&gt; and &lt;code&gt;#&lt;/code&gt;) is a part of the resource identifier.
+If we follow the link (it’s quite a maze!) conducting to complete description of the query, we eventually arrive at &lt;a href=&quot;https://datatracker.ietf.org/doc/html/rfc3986#section-3.4&quot;&gt;Section 3.4 of RFC 3986&lt;/a&gt; that says &lt;em&gt;the query component contains non-hierarchical data that, along with data in the path component (Section 3.3), serves to identify a resource&lt;/em&gt;.
+That basically means that &lt;code&gt;/users?name=spock&lt;/code&gt; is a resource identifier, so returning 404 is valid according to HTTP RFCs if we want to say “sorry no resource match the strict identifier provided in your query” or “there is no such a users list containing users named spock”.
+But using that HTTP status code being valid from a pure HTTP perspective, is it actually a good idea to use it in that use case?&lt;/p&gt;
 
-In my humble opinion, based on my experience designing APIs, reading and listening to many API practitioners, analyzing many APIs and doing hundreds of API design reviews, I do not recommend to use it in that case because that would break a common practice.
-In most REST/RESTful/RESTish APIs, a &quot;resource identifier&quot; is actually the resource path without the query part, that may be wrong when speaking strictly HTTP but that is the current state of common practice.
-In most APIs, {% include http-status-code.html code=&quot;404&quot; %} is strongly attached to &quot;there is nothing for the requested path (excluding query parameters)&quot;.
-It is returned in case involving `/path-that-does-not-exist` or `{% raw %}/collection/{id that does not exist}{% endraw %}` (see {% include post-link.html alias=&quot;hands-off-that-resource&quot; %} or {% include post-link.html alias=&quot;no-resource-to-see-here&quot; %}) but not for empty lists (that's usually a {% include http-status-code.html code=&quot;2xx&quot; %}).
-Also, returning a {% include http-status-code.html code=&quot;4xx&quot; %} says that consumer made an error, is that really the case here?
-I don't think so, the consumer just provided search filters that don't match any element in a list.
+&lt;p&gt;In my humble opinion, based on my experience designing APIs, reading and listening to many API practitioners, analyzing many APIs and doing hundreds of API design reviews, I do not recommend to use it in that case because that would break a common practice.
+In most REST/RESTful/RESTish APIs, a “resource identifier” is actually the resource path without the query part, that may be wrong when speaking strictly HTTP but that is the current state of common practice.
+In most APIs, &lt;code&gt;404 Not Found&lt;/code&gt; is strongly attached to “there is nothing for the requested path (excluding query parameters)”.
+It is returned in case involving &lt;code&gt;/path-that-does-not-exist&lt;/code&gt; or &lt;code&gt;/collection/{id that does not exist}&lt;/code&gt; (see &lt;a class=&quot;post-link&quot; href=&quot;/hands-off-that-resource-http-status-code-401-vs-403-vs-404/&quot;&gt;Choosing HTTP status codes Part 2 - Hands off that resource, HTTP status code 401 vs 403 vs 404&lt;/a&gt; or &lt;a class=&quot;post-link&quot; href=&quot;/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/&quot;&gt;Choosing HTTP status codes Part 3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410&lt;/a&gt;) but not for empty lists (that’s usually a &lt;code&gt;2xx Success class&lt;/code&gt;).
+Also, returning a &lt;code&gt;4xx Client Error Class&lt;/code&gt; says that consumer made an error, is that really the case here?
+I don’t think so, the consumer just provided search filters that don’t match any element in a list.&lt;/p&gt;
 
-That's my reasoned opinion of not using {% include http-status-code.html code=&quot;404&quot; %} for empty lists, but if you have valid reasons to use this HTTP status code for this use case, don't forget to be consistent and provide informative error feedback.
-Indeed, if we take for granted that `GET /users?name=spock` returns a {% include http-status-code.html code=&quot;404&quot; %} if there are no users named spock.
-What about `GET /users` if there are no users at all? 
+&lt;p&gt;That’s my reasoned opinion of not using &lt;code&gt;404 Not Found&lt;/code&gt; for empty lists, but if you have valid reasons to use this HTTP status code for this use case, don’t forget to be consistent and provide informative error feedback.
+Indeed, if we take for granted that &lt;code&gt;GET /users?name=spock&lt;/code&gt; returns a &lt;code&gt;404 Not Found&lt;/code&gt; if there are no users named spock.
+What about &lt;code&gt;GET /users&lt;/code&gt; if there are no users at all? 
 It should return the same HTTP status code.
-And differentiating this it from a more common `/path-that-does-not-exist` will require to add some information in the response body to explain the actual cause of this response.
+And differentiating this it from a more common &lt;code&gt;/path-that-does-not-exist&lt;/code&gt; will require to add some information in the response body to explain the actual cause of this response.&lt;/p&gt;
 
-# DX above all
+&lt;h1 id=&quot;dx-above-all&quot;&gt;DX above all&lt;/h1&gt;
 
-The lesson of today is that following the HTTP protocol is one thing but there are sometimes various options with pros and cons and sometimes being overly strict can lead to design that are less easy to understand.
+&lt;p&gt;The lesson of today is that following the HTTP protocol is one thing but there are sometimes various options with pros and cons and sometimes being overly strict can lead to design that are less easy to understand.
 The question is not about achieving the most perfect design (regarding HTTP) but just achieve a design that makes sense for most people involved and proposes the best as possible DX.
 And that D in DX includes developers but also designers.
-Simple design rules that makes sense for most are a key factor in your APIs success.</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 200 OK, 204 No Content or 404 Not Found</summary></entry><entry><title type="html">Generating OpenAPI Descriptions. When is it a good idea?</title><link href="https://apihandyman.io/generating-openapi-descriptions-when-is-it-a-good-idea/" rel="alternate" type="text/html" title="Generating OpenAPI Descriptions. When is it a good idea?" /><published>2021-06-01T00:00:00-05:00</published><updated>2021-06-01T00:00:00-05:00</updated><id>https://apihandyman.io/generating-openapi-descriptions-with-erik-wilde</id><content type="html" xml:base="https://apihandyman.io/generating-openapi-descriptions-when-is-it-a-good-idea/">As a follow up of my &quot;6 reasons why generating OpenAPI sucks&quot; post, I had the pleasure to talk about &quot;is it a good idea to generate OpenAPI descriptions?&quot; with [Erik Wilde](https://twitter.com/dret). In this discussion, we answer this questions at various stages of the API lifecycle: design time, code time, and runtime.
+Simple design rules that makes sense for most are a key factor in your APIs success.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 200 OK, 204 No Content or 404 Not Found</summary></entry><entry><title type="html">Generating OpenAPI Descriptions. When is it a good idea?</title><link href="https://apihandyman.io/generating-openapi-descriptions-when-is-it-a-good-idea/" rel="alternate" type="text/html" title="Generating OpenAPI Descriptions. When is it a good idea?" /><published>2021-06-01T00:00:00-05:00</published><updated>2021-06-01T00:00:00-05:00</updated><id>https://apihandyman.io/generating-openapi-descriptions-with-erik-wilde</id><content type="html" xml:base="https://apihandyman.io/generating-openapi-descriptions-when-is-it-a-good-idea/">&lt;p&gt;As a follow up of my “6 reasons why generating OpenAPI sucks” post, I had the pleasure to talk about “is it a good idea to generate OpenAPI descriptions?” with &lt;a href=&quot;https://twitter.com/dret&quot;&gt;Erik Wilde&lt;/a&gt;. In this discussion, we answer this questions at various stages of the API lifecycle: design time, code time, and runtime.
 &lt;!--more--&gt;
-Watch on [Erik Wilde's Youtube Channel]({{page.external_url}})</content><author><name>Erik Wilde &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">As a follow up of my “6 reasons why generating OpenAPI sucks” post, I had the pleasure to talk about “is it a good idea to generate OpenAPI descriptions?” with Erik Wilde. In this discussion, we answer this questions at various stages of the API lifecycle: design time, code time, and runtime.</summary></entry><entry><title type="html">/resources rules and /resource sucks … or is it the other way around?</title><link href="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/" rel="alternate" type="text/html" title="/resources rules and /resource sucks ... or is it the other way around?" /><published>2021-05-26T00:00:00-05:00</published><updated>2021-05-26T00:00:00-05:00</updated><id>https://apihandyman.io/resources-vs-resource</id><content type="html" xml:base="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">Using singular or plural to represent a list of something is an old debate in computer science, especially in the database field.
+Watch on &lt;a href=&quot;https://youtu.be/YaiGbEZ0EH4&quot;&gt;Erik Wilde’s Youtube Channel&lt;/a&gt;&lt;/p&gt;</content><author><name>Erik Wilde &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">As a follow up of my “6 reasons why generating OpenAPI sucks” post, I had the pleasure to talk about “is it a good idea to generate OpenAPI descriptions?” with Erik Wilde. In this discussion, we answer this questions at various stages of the API lifecycle: design time, code time, and runtime.</summary></entry><entry><title type="html">/resources rules and /resource sucks … or is it the other way around?</title><link href="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/" rel="alternate" type="text/html" title="/resources rules and /resource sucks … or is it the other way around?" /><published>2021-05-26T00:00:00-05:00</published><updated>2021-05-26T00:00:00-05:00</updated><id>https://apihandyman.io/resources-vs-resource</id><content type="html" xml:base="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">&lt;p&gt;Using singular or plural to represent a list of something is an old debate in computer science, especially in the database field.
 But what about APIs then?
-It's still the same, if you look at various APIs, you'll see that something like &quot;list/search resources&quot; could be either represented by a `GET /resources` or a `GET /resource`.
+It’s still the same, if you look at various APIs, you’ll see that something like “list/search resources” could be either represented by a &lt;code&gt;GET /resources&lt;/code&gt; or a &lt;code&gt;GET /resource&lt;/code&gt;.
 Who is right?
 Who is wrong?
 I have a preference, you may have another, but should we really give importance to such a debate?
-Aren't we missing something?
-Let's investigate that topic and discover what's really important when choosing collection resource path.
-&lt;!--more--&gt;
+Aren’t we missing something?
+Let’s investigate that topic and discover what’s really important when choosing collection resource path.
+&lt;!--more--&gt;&lt;/p&gt;
 
-# Is there a &quot;right&quot; REST solution?
+&lt;h1 id=&quot;is-there-a-right-rest-solution&quot;&gt;Is there a “right” REST solution?&lt;/h1&gt;
 
-Regarding choosing between `/customer` and `/customers`, I often meet people who ask me &quot;is _whatever solution_ RESTful?&quot; which basically means &quot;what is the _right_ solution?&quot;.
-When doing a choice, I always try to refer to a RFC, standard or common practice in order to make the &quot;right&quot; choice.
-So, let's see what the [REST Architectural Style dissertation](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm) says about that.
+&lt;p&gt;Regarding choosing between &lt;code&gt;/customer&lt;/code&gt; and &lt;code&gt;/customers&lt;/code&gt;, I often meet people who ask me “is &lt;em&gt;whatever solution&lt;/em&gt; RESTful?” which basically means “what is the &lt;em&gt;right&lt;/em&gt; solution?”.
+When doing a choice, I always try to refer to a RFC, standard or common practice in order to make the “right” choice.
+So, let’s see what the &lt;a href=&quot;https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm&quot;&gt;REST Architectural Style dissertation&lt;/a&gt; says about that.&lt;/p&gt;
 
-In short, REST is an architectural style which has been created by Roy Fielding to explain how distributed applications should interact with each other.
+&lt;p&gt;In short, REST is an architectural style which has been created by Roy Fielding to explain how distributed applications should interact with each other.
 He did that to explain how the HTTP protocol work and analyze factually the impact of its possible evolutions.
-Actually, he chose to describe factually a model and confront others ideas to this model, rather than just saying &quot;my way is the best&quot;, which is something that we all should think about.
-This architectural style defines a set of constraints (client/server separation, statelessness, cacheability, layered system, uniform interface and code on demand)that a REST system must conforms to.
+Actually, he chose to describe factually a model and confront others ideas to this model, rather than just saying “my way is the best”, which is something that we all should think about.
+This architectural style defines a set of constraints (client/server separation, statelessness, cacheability, layered system, uniform interface and code on demand)that a REST system must conforms to.&lt;/p&gt;
 
-REST APIs (or RESTful) APIs are supposed to embrace the REST Architectural Style and its constraints.
+&lt;p&gt;REST APIs (or RESTful) APIs are supposed to embrace the REST Architectural Style and its constraints.
 Actually, this more often than not means those APIs try to conform more or less to HTTP semantic without thinking too much about all REST constraints.
 Speaking of constraints, does Mr Fielding dissertation talks about choosing resources paths?
-Resource paths (or resource identifiers) are not precisely identified as a constraint but there are some guidance provided:
+Resource paths (or resource identifiers) are not precisely identified as a constraint but there are some guidance provided:&lt;/p&gt;
 
-{% include quote.html
-    author=&quot;Roy Fielding&quot;
-    source=&quot;Architectural Styles and the Design of Network-based Software Architectures&quot;
-    url=&quot;https://www.ics.uci.edu/~fielding/pubs/dissertation/evaluation.htm#sec_6_2_1&quot;
-    text=&quot;The definition of resource in REST is based on a simple premise: identifiers should change as infrequently as possible. Because the Web uses embedded identifiers rather than link servers, authors need an identifier that closely matches the semantics they intend by a hypermedia reference, allowing the reference to remain static even though the result of accessing that reference may change over time. REST accomplishes this by defining a resource to be the semantics of what the author intends to identify, rather than the value corresponding to those semantics at the time the reference is created. It is then left to the author to ensure that the identifier chosen for a reference does indeed identify the intended semantics.&quot;
-%}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The definition of resource in REST is based on a simple premise: identifiers should change as infrequently as possible. Because the Web uses embedded identifiers rather than link servers, authors need an identifier that closely matches the semantics they intend by a hypermedia reference, allowing the reference to remain static even though the result of accessing that reference may change over time. REST accomplishes this by defining a resource to be the semantics of what the author intends to identify, rather than the value corresponding to those semantics at the time the reference is created. It is then left to the author to ensure that the identifier chosen for a reference does indeed identify the intended semantics.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;https://www.ics.uci.edu/~fielding/pubs/dissertation/evaluation.htm#sec_6_2_1&quot;&gt;Roy Fielding, Architectural Styles and the Design of Network-based Software Architectures&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-For what matters in this post, this could be summarized by saying resource identifiers (or path) should change as infrequently as possible and it is up to the author to choose the most adapted semantics.
-So as you can see, nothing about singular or plural, according to the REST architectural style, it's up to us to choose as long as it means something.
+&lt;p&gt;For what matters in this post, this could be summarized by saying resource identifiers (or path) should change as infrequently as possible and it is up to the author to choose the most adapted semantics.
+So as you can see, nothing about singular or plural, according to the REST architectural style, it’s up to us to choose as long as it means something.&lt;/p&gt;
 
-# What is sure: don't do both
+&lt;h1 id=&quot;what-is-sure-dont-do-both&quot;&gt;What is sure: don’t do both&lt;/h1&gt;
 
-So according to REST principles, `/resources` or `/resource`, you can choose the one you like.
-But you have to choose one, you can't use both, for the sake of consistency and predictability.
+&lt;p&gt;So according to REST principles, &lt;code&gt;/resources&lt;/code&gt; or &lt;code&gt;/resource&lt;/code&gt;, you can choose the one you like.
+But you have to choose one, you can’t use both, for the sake of consistency and predictability.&lt;/p&gt;
 
-Indeed, it would be quite awkward to do `GET /customers` to search or list customers and a `GET /order` to list orders.
+&lt;p&gt;Indeed, it would be quite awkward to do &lt;code&gt;GET /customers&lt;/code&gt; to search or list customers and a &lt;code&gt;GET /order&lt;/code&gt; to list orders.
 APIs are supposed to be consistent with themselves and other APIs of the same domain/organization.
-Choose one format, write it down in your API design guidelines and ensure that everyone designing APIs in your organization stick to this choice.
+Choose one format, write it down in your API design guidelines and ensure that everyone designing APIs in your organization stick to this choice.&lt;/p&gt;
 
-And for those who would come to the idea of using `GET /customers` to search or list customers and a {% raw %}`GET /customer/{customerId}`{% endraw %} to read a specific customer, because &quot;oh, we are reading a single element so let's go singular now&quot;.
-Please don't do that.
+&lt;p&gt;And for those who would come to the idea of using &lt;code&gt;GET /customers&lt;/code&gt; to search or list customers and a &lt;code&gt;GET /customer/{customerId}&lt;/code&gt; to read a specific customer, because “oh, we are reading a single element so let’s go singular now”.
+Please don’t do that.&lt;/p&gt;
 
-If people do a `GET /whatever` to get a list of whatever they're used to brainlessly do a {% raw %}`GET /whatever/{whateverId}`{% endraw %} to get a specific element.
-You'll disturb many people by breaking habits.
+&lt;p&gt;If people do a &lt;code&gt;GET /whatever&lt;/code&gt; to get a list of whatever they’re used to brainlessly do a &lt;code&gt;GET /whatever/{whateverId}&lt;/code&gt; to get a specific element.
+You’ll disturb many people by breaking habits.
 But there are more than habits involved here, doing that simply breaks the semantic of paths.
 In a file system, do folder names change when you target a file inside them?
-In a database, do you change table name when doing a `select * where id=whateverId`?
+In a database, do you change table name when doing a &lt;code&gt;select * where id=whateverId&lt;/code&gt;?
 No.
-So, please chose one side or the other, no middle ground here.
+So, please chose one side or the other, no middle ground here.&lt;/p&gt;
 
-# My reasoned opinion: plural
+&lt;h1 id=&quot;my-reasoned-opinion-plural&quot;&gt;My reasoned opinion: plural&lt;/h1&gt;
 
-I use plural names for collections mostly because of semantics: plural means &quot;it contains multiple elements&quot;. 
-Note that I use plural in both path (`/customers` is a path of collection resource) but also in data models (`customers` is a property representing a list of customers inside a data model).
+&lt;p&gt;I use plural names for collections mostly because of semantics: plural means “it contains multiple elements”. 
+Note that I use plural in both path (&lt;code&gt;/customers&lt;/code&gt; is a path of collection resource) but also in data models (&lt;code&gt;customers&lt;/code&gt; is a property representing a list of customers inside a data model).&lt;/p&gt;
 
-Using plural name for a collection also avoid surprise when having singleton resources, for instance {% raw %}`GET /customers/{customerId}/address`{% endraw %}, I know by reading this that I'll manipulate a single address and not a list of address.
-That's the main reason why I'm not using singular.
-Using singular for collection name would make that less obvious, though the data returned by a {% raw %}`GET /customer/{customerId}/address`{% endraw %} would give more than a hints about what is actually returned (list or single element).
-But that requires to trigger a read operation call to know that (if we don't rely on documentation at all).
+&lt;p&gt;Using plural name for a collection also avoid surprise when having singleton resources, for instance &lt;code&gt;GET /customers/{customerId}/address&lt;/code&gt;, I know by reading this that I’ll manipulate a single address and not a list of address.
+That’s the main reason why I’m not using singular.
+Using singular for collection name would make that less obvious, though the data returned by a &lt;code&gt;GET /customer/{customerId}/address&lt;/code&gt; would give more than a hints about what is actually returned (list or single element).
+But that requires to trigger a read operation call to know that (if we don’t rely on documentation at all).&lt;/p&gt;
 
-But let's be objective, the plural option is not without drawbacks.
-Obviously as a machine getting data containing a `customerId` (singular) and trying to guess how the API work without taking advantage of the documentation, I have some work to do to &quot;know&quot; that the plural of customer is customers in order to try a {% raw %}`GET /customers/{customerId}`{% endraw %} (which is quite simple here but determine singular or plural is not always that simple).
-But if your API is a true REST API that shouldn't be a problem because it provides the ready to use links to other resources.
-Problem solved if that's actually a problem, which is not the case most of the time.
-Indeed most people don't care about hypermedia nor automatic API discovery and rely on the API documentation to write code that actually use the API (even for testing).
+&lt;p&gt;But let’s be objective, the plural option is not without drawbacks.
+Obviously as a machine getting data containing a &lt;code&gt;customerId&lt;/code&gt; (singular) and trying to guess how the API work without taking advantage of the documentation, I have some work to do to “know” that the plural of customer is customers in order to try a &lt;code&gt;GET /customers/{customerId}&lt;/code&gt; (which is quite simple here but determine singular or plural is not always that simple).
+But if your API is a true REST API that shouldn’t be a problem because it provides the ready to use links to other resources.
+Problem solved if that’s actually a problem, which is not the case most of the time.
+Indeed most people don’t care about hypermedia nor automatic API discovery and rely on the API documentation to write code that actually use the API (even for testing).&lt;/p&gt;
 
-Regarding the singular option, I also wonder how then would be called a customer list inside a data model?
-I would probably add a suffix (`customerList`) but then that introduce inconsistency between path and data, that is another reason why I prefer the plural option.
+&lt;p&gt;Regarding the singular option, I also wonder how then would be called a customer list inside a data model?
+I would probably add a suffix (&lt;code&gt;customerList&lt;/code&gt;) but then that introduce inconsistency between path and data, that is another reason why I prefer the plural option.&lt;/p&gt;
 
-# The truth is elsewhere
+&lt;h1 id=&quot;the-truth-is-elsewhere&quot;&gt;The truth is elsewhere&lt;/h1&gt;
 
-I think the lesson to learn here is not determining which one is &quot;better&quot; between `/resources` and `/resource`, I'm sure someone using singular name has plenty of good reason doing so.
+&lt;p&gt;I think the lesson to learn here is not determining which one is “better” between &lt;code&gt;/resources&lt;/code&gt; and &lt;code&gt;/resource&lt;/code&gt;, I’m sure someone using singular name has plenty of good reason doing so.
 No, the lesson here is that when there is non refutable standard solution, you have to reason to choose one that makes sense.
-Avoid &quot;just because&quot; solutions that you can't explain.
-Avoid at all costs &quot;wtf&quot; solutions (like `GET /customers` + {% raw %}`GET /customer/{customerId}`{% endraw %}) introducing complexity or inconsistency.
-And don't forget to put it in your guidelines and ensure that everyone in your organization stick to that decision for the sake of consistency.</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Using singular or plural to represent a list of something is an old debate in computer science, especially in the database field. But what about APIs then? It’s still the same, if you look at various APIs, you’ll see that something like “list/search resources” could be either represented by a GET /resources or a GET /resource. Who is right? Who is wrong? I have a preference, you may have another, but should we really give importance to such a debate? Aren’t we missing something? Let’s investigate that topic and discover what’s really important when choosing collection resource path.</summary></entry><entry><title type="html">204 Vs 403 Vs 404 Vs 410</title><link href="https://apihandyman.io/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/" rel="alternate" type="text/html" title="204 Vs 403 Vs 404 Vs 410" /><published>2021-05-19T00:00:00-05:00</published><updated>2021-05-19T00:00:00-05:00</updated><id>https://apihandyman.io/204-vs-403-vs-404-vs-410</id><content type="html" xml:base="https://apihandyman.io/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/">{% include _postincludes/choosing-http-status-codes.md style=&quot;intro&quot; %} This third post answers the following question: given that resource with id 123 actually doesn't exist in the underlying database, what should be the response to `GET /resources/123` when consumer is allowed to access such ressource? {% include http-status-code.html code=&quot;204&quot; %}, {% include http-status-code.html code=&quot;403&quot; %}, {% include http-status-code.html code=&quot;404&quot; %} or {% include http-status-code.html code=&quot;410&quot; %}?
+Avoid “just because” solutions that you can’t explain.
+Avoid at all costs “wtf” solutions (like &lt;code&gt;GET /customers&lt;/code&gt; + &lt;code&gt;GET /customer/{customerId}&lt;/code&gt;) introducing complexity or inconsistency.
+And don’t forget to put it in your guidelines and ensure that everyone in your organization stick to that decision for the sake of consistency.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Using singular or plural to represent a list of something is an old debate in computer science, especially in the database field. But what about APIs then? It’s still the same, if you look at various APIs, you’ll see that something like “list/search resources” could be either represented by a GET /resources or a GET /resource. Who is right? Who is wrong? I have a preference, you may have another, but should we really give importance to such a debate? Aren’t we missing something? Let’s investigate that topic and discover what’s really important when choosing collection resource path.</summary></entry><entry><title type="html">204 Vs 403 Vs 404 Vs 410</title><link href="https://apihandyman.io/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/" rel="alternate" type="text/html" title="204 Vs 403 Vs 404 Vs 410" /><published>2021-05-19T00:00:00-05:00</published><updated>2021-05-19T00:00:00-05:00</updated><id>https://apihandyman.io/204-vs-403-vs-404-vs-410</id><content type="html" xml:base="https://apihandyman.io/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This third post answers the following question: given that resource with id 123 actually doesn’t exist in the underlying database, what should be the response to &lt;code&gt;GET /resources/123&lt;/code&gt; when consumer is allowed to access such ressource? &lt;code&gt;204 No Content&lt;/code&gt;, &lt;code&gt;403 Forbidden&lt;/code&gt;, &lt;code&gt;404 Not Found&lt;/code&gt; or &lt;code&gt;410 Gone&lt;/code&gt;?&lt;/p&gt;
 
 &lt;!--more--&gt;
+&lt;div class=&quot;card series-toc&quot;&gt;
+  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
+    &lt;h5 id=&quot;series&quot;&gt;Choosing HTTP status codes Series&lt;/h5&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;row series-toc_content&quot;&gt;
+    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;
+        &lt;p class=&quot;card-text&quot;&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.&lt;div class=&quot;alert alert-info&quot;&gt;
+I never remember in which RFCs HTTP status codes are defined.
+To get a quick access to their documentation, I use &lt;a class=&quot;alert-link&quot; href=&quot;https://webconcepts.info/concepts/http-status-code/&quot;&gt;Erik Wilde's Web Concepts&lt;/a&gt;.
+&lt;/div&gt;Very special thanks to all Twitter people participating to the &lt;a href=&quot;https://twitter.com/search?q=%23choosehttpstatuscode&amp;amp;src=typed_query&quot;&gt;#choosehttpstatuscode&lt;/a&gt; polls and discussions&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
+      
+      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/&quot;&gt;1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/hands-off-that-resource-http-status-code-401-vs-403-vs-404/&quot;&gt;2 - Hands off that resource, HTTP status code 401 vs 403 vs 404&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item active&quot;&gt;3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/empty-lists-http-status-code-200-vs-204-vs-404/&quot;&gt;4 - Empty list, HTTP status code 200 vs 204 vs 404&lt;/a&gt;&lt;/li&gt;
+          
+        
+        
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;the-context&quot;&gt;The context&lt;/h1&gt;
 
-{%- include _postincludes/choosing-http-status-codes.md -%}
-
-# The context
-
-Let's say your are creating an API for a library, obviously you'll design a `GET /books` to search for books and a `GET /books/{isbn}` to get detailed information about a book.
-You did use an [International Standard Book Number](https://en.wikipedia.org/wiki/International_Standard_Book_Number) because such a unique and universally known id is far more convenient than an opaque `bookId` generated by your implementation.
+&lt;p&gt;Let’s say your are creating an API for a library, obviously you’ll design a &lt;code&gt;GET /books&lt;/code&gt; to search for books and a &lt;code&gt;GET /books/{isbn}&lt;/code&gt; to get detailed information about a book.
+You did use an &lt;a href=&quot;https://en.wikipedia.org/wiki/International_Standard_Book_Number&quot;&gt;International Standard Book Number&lt;/a&gt; because such a unique and universally known id is far more convenient than an opaque &lt;code&gt;bookId&lt;/code&gt; generated by your implementation.
 Indeed using standard/well known values for resource identifiers makes an API more interoperable and usable in other contexts than yours.
-Design digression is over, let's get back to the true topic of this post: choosing an HTTP status code.
+Design digression is over, let’s get back to the true topic of this post: choosing an HTTP status code.&lt;/p&gt;
 
-A library may not own all books that have been published on earth , end users may also simply mistype an ISBN or books may have been removed from the library.
-What should be the response to a `GET /books/{not known, totally wrong or not present anymore ISBN}`?
+&lt;p&gt;A library may not own all books that have been published on earth , end users may also simply mistype an ISBN or books may have been removed from the library.
+What should be the response to a &lt;code&gt;GET /books/{not known, totally wrong or not present anymore ISBN}&lt;/code&gt;?&lt;/p&gt;
 
-{% include image.html source=&quot;twitter-poll.png&quot; alt=&quot;Twitter poll results&quot; %}
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/twitter-poll.png&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Twitter poll results&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
 
-According to my (vague) Twitter poll (which was not explicitly talking about the removed use case), 94% of respondents would return a {% include http-status-code.html code=&quot;404&quot; %}, while 4% would return a {% include http-status-code.html code=&quot;403&quot; %} and 2% would return a {% include http-status-code.html code=&quot;410&quot; %}.
-Note also that, in the discussion, some people mentioned returning a {% include http-status-code.html code=&quot;204&quot; %}.
-Let's see what could be the correct answer(s) according to RFCs.
+&lt;p&gt;According to my (vague) Twitter poll (which was not explicitly talking about the removed use case), 94% of respondents would return a &lt;code&gt;404 Not Found&lt;/code&gt;, while 4% would return a &lt;code&gt;403 Forbidden&lt;/code&gt; and 2% would return a &lt;code&gt;410 Gone&lt;/code&gt;.
+Note also that, in the discussion, some people mentioned returning a &lt;code&gt;204 No Content&lt;/code&gt;.
+Let’s see what could be the correct answer(s) according to RFCs.&lt;/p&gt;
 
-# No brainer, use 404
+&lt;h1 id=&quot;no-brainer-use-404&quot;&gt;No brainer, use 404&lt;/h1&gt;
 
-{% include http-status-code.html code=&quot;404&quot; style=&quot;quote&quot; %}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.5.4&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.4&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-Let's start with what is the most common and valid response in such a case: {% include http-status-code.html code=&quot;404&quot; style=&quot;code&quot; %}
-This HTTP status code reason {% include http-status-code.html code=&quot;404&quot; style=&quot;reason&quot; %} is both obvious and actually means what everybody thinks it means ([which is not always the case](/hands-off-that-resource-http-status-code-401-vs-403-vs-404/#never-ever-use-401-dont-be-fooled-by-its-reason)).
+&lt;p&gt;Let’s start with what is the most common and valid response in such a case: &lt;code&gt;404&lt;/code&gt;
+This HTTP status code reason &lt;code&gt;Not Found&lt;/code&gt; is both obvious and actually means what everybody thinks it means (&lt;a href=&quot;/hands-off-that-resource-http-status-code-401-vs-403-vs-404/#never-ever-use-401-dont-be-fooled-by-its-reason&quot;&gt;which is not always the case&lt;/a&gt;).&lt;/p&gt;
 
-In our case a `GET /books/{totally wrong ISBN}` must return a {% include http-status-code.html code=&quot;404&quot; style=&quot;code&quot; %}
-And that must be your favorite response when consumer is requesting something that doesn't exist, not only because {% include http-status-code.html code=&quot;404&quot; style=&quot;rfc&quot; %} says so, but also because people are used to get that response in such a case.
-Being consistent with the rest of the world is a rule of thumb when building APIs (or whatever).
+&lt;p&gt;In our case a &lt;code&gt;GET /books/{totally wrong ISBN}&lt;/code&gt; must return a &lt;code&gt;404&lt;/code&gt;
+And that must be your favorite response when consumer is requesting something that doesn’t exist, not only because RFC 7231 says so, but also because people are used to get that response in such a case.
+Being consistent with the rest of the world is a rule of thumb when building APIs (or whatever).&lt;/p&gt;
 
-Though people are used to it, there can be some subtleties that requires a more specific HTTP status code when signifying &quot;that doesn't exist&quot;.
+&lt;p&gt;Though people are used to it, there can be some subtleties that requires a more specific HTTP status code when signifying “that doesn’t exist”.&lt;/p&gt;
 
-# Has existed and can do something about it, you may use 410
+&lt;h1 id=&quot;has-existed-and-can-do-something-about-it-you-may-use-410&quot;&gt;Has existed and can do something about it, you may use 410&lt;/h1&gt;
 
-{% include http-status-code.html code=&quot;410&quot; style=&quot;quote&quot; %}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 410 (Gone) status code indicates that access to the target resource is no longer available at the origin server and that this condition is likely to be permanent.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.5.9&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.9&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-In our case a `GET /books/{&quot;book that once has been in library but is no more&quot; ISBN}` could return such a status code, especially if the end user is a librarian who deleted a book by mistake.
+&lt;p&gt;In our case a &lt;code&gt;GET /books/{&quot;book that once has been in library but is no more&quot; ISBN}&lt;/code&gt; could return such a status code, especially if the end user is a librarian who deleted a book by mistake.&lt;/p&gt;
 
-Digression: A regular library user may get a {% include http-status-code.html code=&quot;404&quot; %} for the same request.
-That means that your API may return different responses depending on who is the consumer/end/user.
+&lt;p&gt;Digression: A regular library user may get a &lt;code&gt;404 Not Found&lt;/code&gt; for the same request.
+That means that your API may return different responses depending on who is the consumer/end/user.&lt;/p&gt;
 
-Your database state is not your API data state, the data returned by an API may not be exactly how they actually are in the underlying database (we already have seen that in [previous post](/hands-off-that-resource-http-status-code-401-vs-403-vs-404/)).
-It's not unusual to use a soft delete when removing something from a database and so simply flag it as &quot;deleted&quot; but keeping the data.
-There are many reasons to do that, regulations like [GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation) may force you to do so (though you should move such data in another database) or you may want to propose an &quot;undo&quot; possibility.
+&lt;p&gt;Your database state is not your API data state, the data returned by an API may not be exactly how they actually are in the underlying database (we already have seen that in &lt;a href=&quot;/hands-off-that-resource-http-status-code-401-vs-403-vs-404/&quot;&gt;previous post&lt;/a&gt;).
+It’s not unusual to use a soft delete when removing something from a database and so simply flag it as “deleted” but keeping the data.
+There are many reasons to do that, regulations like &lt;a href=&quot;https://en.wikipedia.org/wiki/General_Data_Protection_Regulation&quot;&gt;GDPR&lt;/a&gt; may force you to do so (though you should move such data in another database) or you may want to propose an “undo” possibility.&lt;/p&gt;
 
-A {% include http-status-code.html code=&quot;410&quot; style=&quot;code&quot; %} could also be a good response to a request made on an expired temporary URL (that was valid only for a short period of time, that reminds me to write a post about signed URLs).
+&lt;p&gt;A &lt;code&gt;410&lt;/code&gt; could also be a good response to a request made on an expired temporary URL (that was valid only for a short period of time, that reminds me to write a post about signed URLs).&lt;/p&gt;
 
-Whatever the reason of signifying that something actually existed, you may return a {% include http-status-code.html code=&quot;410&quot; %} if and only if consumers can do something about it (like undoing something or requesting a new temporary URL). 
-But in that case you should provide information about what they can do about it and how (in response body or at least in documentation).
+&lt;p&gt;Whatever the reason of signifying that something actually existed, you may return a &lt;code&gt;410 Gone&lt;/code&gt; if and only if consumers can do something about it (like undoing something or requesting a new temporary URL). 
+But in that case you should provide information about what they can do about it and how (in response body or at least in documentation).&lt;/p&gt;
 
-# No scopes, rights or privilege involved, don't use 403
+&lt;h1 id=&quot;no-scopes-rights-or-privilege-involved-dont-use-403&quot;&gt;No scopes, rights or privilege involved, don’t use 403&lt;/h1&gt;
 
-{% include http-status-code.html code=&quot;403&quot; style=&quot;quote&quot; %}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it.  A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;https://tools.ietf.org/html/rfc7231#section-6.5.3&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.3&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-In our library use case there are no scopes/privileges/rights involved, a `GET /books/{wrong ISBN}` will never ever return a {% include http-status-code.html code=&quot;403&quot; %} but a {% include http-status-code.html code=&quot;404&quot; %}.
+&lt;p&gt;In our library use case there are no scopes/privileges/rights involved, a &lt;code&gt;GET /books/{wrong ISBN}&lt;/code&gt; will never ever return a &lt;code&gt;403 Forbidden&lt;/code&gt; but a &lt;code&gt;404 Not Found&lt;/code&gt;.&lt;/p&gt;
 
-A `GET /books/{has existed ISBN}` may return a {% include http-status-code.html code=&quot;410&quot; %} as seen in previous section.
-It's only after that, when trying to undelete the book, maybe with a `PUT /books/{&quot;book that once has been in library but is no more&quot; ISBN}`, that the response could be a {% include http-status-code.html code=&quot;403&quot; %} if librarian is not allowed to to so.
+&lt;p&gt;A &lt;code&gt;GET /books/{has existed ISBN}&lt;/code&gt; may return a &lt;code&gt;410 Gone&lt;/code&gt; as seen in previous section.
+It’s only after that, when trying to undelete the book, maybe with a &lt;code&gt;PUT /books/{&quot;book that once has been in library but is no more&quot; ISBN}&lt;/code&gt;, that the response could be a &lt;code&gt;403 Forbidden&lt;/code&gt; if librarian is not allowed to to so.&lt;/p&gt;
 
-If privileges/rights are involved when accessing resources (either `WHATEVER /books/{isbn}` in general or a specific `WHATEVER /books/{specific isbn}`), a {% include http-status-code.html code=&quot;403&quot; style=&quot;code&quot; %} may be returned, you should read {% include post-link.html alias=&quot;hands-off-that-resource&quot; %} to learn more about that.
+&lt;p&gt;If privileges/rights are involved when accessing resources (either &lt;code&gt;WHATEVER /books/{isbn}&lt;/code&gt; in general or a specific &lt;code&gt;WHATEVER /books/{specific isbn}&lt;/code&gt;), a &lt;code&gt;403&lt;/code&gt; may be returned, you should read &lt;a class=&quot;post-link&quot; href=&quot;/hands-off-that-resource-http-status-code-401-vs-403-vs-404/&quot;&gt;Choosing HTTP status codes Part 2 - Hands off that resource, HTTP status code 401 vs 403 vs 404&lt;/a&gt; to learn more about that.&lt;/p&gt;
 
-# It's a consumer error, don't use 204
+&lt;h1 id=&quot;its-a-consumer-error-dont-use-204&quot;&gt;It’s a consumer error, don’t use 204&lt;/h1&gt;
 
-{% include http-status-code.html code=&quot;204&quot; style=&quot;quote&quot; %}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 204 (No Content) status code indicates that the server has successfully fulfilled the request and that there is no additional content to send in the response payload body.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.3.5&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.3.5&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-Obviously, I didn't include {% include http-status-code.html code=&quot;204&quot; %} in the poll because Twitter only allows 3 choices ... 
-Well to be honest, though I often meet people wanting to use it that way, I totally forget it for that poll 😅 (and would probably had propose it instead of {% include http-status-code.html code=&quot;403&quot; %}).
+&lt;p&gt;Obviously, I didn’t include &lt;code&gt;204 No Content&lt;/code&gt; in the poll because Twitter only allows 3 choices … 
+Well to be honest, though I often meet people wanting to use it that way, I totally forget it for that poll 😅 (and would probably had propose it instead of &lt;code&gt;403 Forbidden&lt;/code&gt;).&lt;/p&gt;
 
-
-The {% include http-status-code.html code=&quot;204&quot; style=&quot;reason&quot;%} reason may fool you, but the description is quite clear, it doesn't mean &quot;there's nothing for this path&quot; but &quot;these is something for this path but not content to return&quot;.
-Also that HTTP status is a {% include http-status-code.html code=&quot;2xx&quot; %}, it is not intended to signify that something went wrong which is the case here, consumer did send a non existing/wrong resource id.
-So you should avoid using it in such a case.</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This third post answers the following question: given that resource with id 123 actually doesn’t exist in the underlying database, what should be the response to GET /resources/123 when consumer is allowed to access such ressource? 204 No Content, 403 Forbidden, 404 Not Found or 410 Gone?</summary></entry><entry><title type="html">6 reasons why generating OpenAPI from code when designing and documenting APIs sucks</title><link href="https://apihandyman.io/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/" rel="alternate" type="text/html" title="6 reasons why generating OpenAPI from code when designing and documenting APIs sucks" /><published>2021-05-12T00:00:00-05:00</published><updated>2021-05-12T00:00:00-05:00</updated><id>https://apihandyman.io/generating-openapi-sucks</id><content type="html" xml:base="https://apihandyman.io/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/">When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementation's code (using annotations).
-Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.
+&lt;p&gt;The &lt;code&gt;No Content&lt;/code&gt; reason may fool you, but the description is quite clear, it doesn’t mean “there’s nothing for this path” but “these is something for this path but not content to return”.
+Also that HTTP status is a &lt;code&gt;2xx Success class&lt;/code&gt;, it is not intended to signify that something went wrong which is the case here, consumer did send a non existing/wrong resource id.
+So you should avoid using it in such a case.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This third post answers the following question: given that resource with id 123 actually doesn’t exist in the underlying database, what should be the response to GET /resources/123 when consumer is allowed to access such ressource? 204 No Content, 403 Forbidden, 404 Not Found or 410 Gone?</summary></entry><entry><title type="html">6 reasons why generating OpenAPI from code when designing and documenting APIs sucks</title><link href="https://apihandyman.io/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/" rel="alternate" type="text/html" title="6 reasons why generating OpenAPI from code when designing and documenting APIs sucks" /><published>2021-05-12T00:00:00-05:00</published><updated>2021-05-12T00:00:00-05:00</updated><id>https://apihandyman.io/generating-openapi-sucks</id><content type="html" xml:base="https://apihandyman.io/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/">&lt;p&gt;When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementation’s code (using annotations).
+Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-If you know me, have seen me talking at conferences, have read my posts or my book, you know what is my favorite approach (spoiler: the &quot;write it&quot; one).
+&lt;p&gt;If you know me, have seen me talking at conferences, have read my posts or my book, you know what is my favorite approach (spoiler: the “write it” one).
 But as an API design reviewer I work with many different teams: some use the first approach and others the second one and some use both.
 Slowly but surely, the write it approach is gaining ground.
 I am pleased to see new teams I have never work with before are already convinced that writing OpenAPI (when design and documenting) is a better approach for them.
-And I am even more pleased to see some who were using the &quot;generate it&quot; approach switching to other other one, convinced by my reasons and the problems their encountered.
-I thought it could be interesting to share the 6 main reasons why people would stop to use the &quot;generate it&quot; approach and switch to the &quot;write it&quot; one, hence this post.
+And I am even more pleased to see some who were using the “generate it” approach switching to other other one, convinced by my reasons and the problems their encountered.
+I thought it could be interesting to share the 6 main reasons why people would stop to use the “generate it” approach and switch to the “write it” one, hence this post.&lt;/p&gt;
 
-# Complicates design
+&lt;h1 id=&quot;complicates-design&quot;&gt;Complicates design&lt;/h1&gt;
 
-The first reason is that generating OpenAPI from code complicates design.
-Indeed, you need to write actual implementation's code to get something.
-You need a fully functional development environment to code and build a more or less empty API's implementation's skeleton. 
+&lt;p&gt;The first reason is that generating OpenAPI from code complicates design.
+Indeed, you need to write actual implementation’s code to get something.
+You need a fully functional development environment to code and build a more or less empty API’s implementation’s skeleton.&lt;/p&gt;
 
-And not everybody who work on the design of an API can write code.
-That may be strange to your eyes, but there are places where developers of an API's implementation are not the one who will actually design the API, business analysts may have that role.
-They work closely with developers but they are the one who actually write the API's contract.
-There are places where those people may work more closely together, contributing to the same OpenAPI document, that would be quite complicated to do that with a generated one if one of them don't code.
+&lt;p&gt;And not everybody who work on the design of an API can write code.
+That may be strange to your eyes, but there are places where developers of an API’s implementation are not the one who will actually design the API, business analysts may have that role.
+They work closely with developers but they are the one who actually write the API’s contract.
+There are places where those people may work more closely together, contributing to the same OpenAPI document, that would be quite complicated to do that with a generated one if one of them don’t code.&lt;/p&gt;
 
-Some would argue that &quot;writing&quot; OpenAPI is like writing code.
-Until not so long ago, you would need to know the syntax to actually write it, but that's not true anymore.
-There are API design GUI that allows anyone (with basic HTTP knowledge) to describe an API without having to write a single line of YAML (or JSON for the most masochistic).
+&lt;p&gt;Some would argue that “writing” OpenAPI is like writing code.
+Until not so long ago, you would need to know the syntax to actually write it, but that’s not true anymore.
+There are API design GUI that allows anyone (with basic HTTP knowledge) to describe an API without having to write a single line of YAML (or JSON for the most masochistic).&lt;/p&gt;
 
-# Forces to choose development stack
+&lt;h1 id=&quot;forces-to-choose-development-stack&quot;&gt;Forces to choose development stack&lt;/h1&gt;
 
-The second reason is an annoying side effect of having to write actual implementation's code to get something.
+&lt;p&gt;The second reason is an annoying side effect of having to write actual implementation’s code to get something.
 To write code, you actually have to choose a development stack.
-When you are working on a totally new software solution making such decisions too early during the overall solution's design phase may reveal to be a problem.
+When you are working on a totally new software solution making such decisions too early during the overall solution’s design phase may reveal to be a problem.
 Indeed, you may realize that the chosen stack was not the more adapted one once you have a full view on what the API is supposed to do and so the written code must be thrown to garbage.
-Obviously if that's just &quot;yet another API in familiar environment&quot;, that reason is null and void.
+Obviously if that’s just “yet another API in familiar environment”, that reason is null and void.&lt;/p&gt;
 
-# Lessens design quality
+&lt;h1 id=&quot;lessens-design-quality&quot;&gt;Lessens design quality&lt;/h1&gt;
 
-Having to write code, especially on an existing application, risks to lessen the API design quality because it may lead to being &quot;inside out&quot; or also less accurate.
+&lt;p&gt;Having to write code, especially on an existing application, risks to lessen the API design quality because it may lead to being “inside out” or also less accurate.&lt;/p&gt;
 
-An inside out API design brutally exposes what is happening under the hood resulting in less easy to understand, less easy to use, less easy to evolve APIs.
+&lt;p&gt;An inside out API design brutally exposes what is happening under the hood resulting in less easy to understand, less easy to use, less easy to evolve APIs.
 Seeing existing functions, existing databases, you may be tempted to expose them as is without rethinking them.
-That will lead to consumers needing to know how your implementation works when they shouldn't, leading to tight coupling with them crippling the possibility of evolutions on your side.
+That will lead to consumers needing to know how your implementation works when they shouldn’t, leading to tight coupling with them crippling the possibility of evolutions on your side.&lt;/p&gt;
 
-Being polluted by existing implementation or purely development oriented concerns, not only will you expose the engine that should be hidden but you may take shortcuts resulting in less accurate design.
+&lt;p&gt;Being polluted by existing implementation or purely development oriented concerns, not only will you expose the engine that should be hidden but you may take shortcuts resulting in less accurate design.
 Indeed, for instance, you may choose wrong resources, wrong operations, wrong granularity for an operation or data model or you may simply miss that you should have created a totally new API; all that simply because you were too close to the existing code or data.
-Such design will obviously also be less easy to understand, less easy to use, less easy to evolve APIs.
+Such design will obviously also be less easy to understand, less easy to use, less easy to evolve APIs.&lt;/p&gt;
 
-# Casts doubt upon implementation
+&lt;h1 id=&quot;casts-doubt-upon-implementation&quot;&gt;Casts doubt upon implementation&lt;/h1&gt;
 
-The big argument of the generate it approach is &quot;no need to synchronize spec and code anymore!&quot;.
-Yes that's true, but that also means you don't have an independent source of truth for your API's contract.
+&lt;p&gt;The big argument of the generate it approach is “no need to synchronize spec and code anymore!”.
+Yes that’s true, but that also means you don’t have an independent source of truth for your API’s contract.
 Whats was agreed on during the design phase may not be what is actually implemented in the end.
-Without a source of truth independent from actual code, there's no way to test that what is implement is actually ok.
+Without a source of truth independent from actual code, there’s no way to test that what is implement is actually ok.
 A long time ago, having working with third party contractors building applications for my company that revealed to be a major problem.
-And even when working with the family, some errors or modifications may happen inadvertently.
+And even when working with the family, some errors or modifications may happen inadvertently.&lt;/p&gt;
 
-# Complicates writing documentation
+&lt;h1 id=&quot;complicates-writing-documentation&quot;&gt;Complicates writing documentation&lt;/h1&gt;
 
-Developers who love to write documentation raise your hands!
+&lt;p&gt;Developers who love to write documentation raise your hands!&lt;/p&gt;
 
-Not so many hands risen (that's a pity, but that's another story).
+&lt;p&gt;Not so many hands risen (that’s a pity, but that’s another story).&lt;/p&gt;
 
-This reason is similar to the first one &quot;Complicates design&quot;.
+&lt;p&gt;This reason is similar to the first one “Complicates design”.
 When working on APIs, people who write the documentation may not be the one who write the code (and note also they may not be the one who do the design).
-Doc writers may not want to write code and developers may not want to have people mingling with their codebase.
+Doc writers may not want to write code and developers may not want to have people mingling with their codebase.&lt;/p&gt;
 
-# Lessens documentation quality
+&lt;h1 id=&quot;lessens-documentation-quality&quot;&gt;Lessens documentation quality&lt;/h1&gt;
 
-You may not know it but pushing the OpenAPI Specification to its limits allows to write totally awesome API documentation that everyone will love (writing about that is on my to do list).
-That's especially interesting for private APIs, indeed you may not want to do the same level of effort regarding developer portal and producing content.
-A complete OpenAPI shown in Redoc, Stoplight Elements or even SwaggerUI will do the trick at almost 0 cost.
+&lt;p&gt;You may not know it but pushing the OpenAPI Specification to its limits allows to write totally awesome API documentation that everyone will love (writing about that is on my to do list).
+That’s especially interesting for private APIs, indeed you may not want to do the same level of effort regarding developer portal and producing content.
+A complete OpenAPI shown in Redoc, Stoplight Elements or even SwaggerUI will do the trick at almost 0 cost.&lt;/p&gt;
 
-But producing such specification requires to uses all the OpenAPI Specification subtleties and unfortunately not all (if not no) generator allows that (and not all developers are willing to do such effort in their code, because previous reason).
+&lt;p&gt;But producing such specification requires to uses all the OpenAPI Specification subtleties and unfortunately not all (if not no) generator allows that (and not all developers are willing to do such effort in their code, because previous reason).
 You may possibly tweak what the generator does to achieve some interesting modifications but at what cost?
-Whatever you do, generating code irremediably results in less expressive and less complete OpenAPI documents.
+Whatever you do, generating code irremediably results in less expressive and less complete OpenAPI documents.&lt;/p&gt;
 
-# So generating OpenAPI sucks?
+&lt;h1 id=&quot;so-generating-openapi-sucks&quot;&gt;So generating OpenAPI sucks?&lt;/h1&gt;
 
-That's not what I said, what you should retain from this is is that there are *concerns to be aware of* when generating OpenAPI Specification *from code when designing and documenting API*.
-OK, the post's title says &quot;suck&quot;, that's a clickbait (for totally honorable reasons 😅).
-Actually and as always, it's not a matter of right or wrong, it's a matter of choosing a solution to a given problem according to a context and living with the consequences.
+&lt;p&gt;That’s not what I said, what you should retain from this is is that there are &lt;em&gt;concerns to be aware of&lt;/em&gt; when generating OpenAPI Specification &lt;em&gt;from code when designing and documenting API&lt;/em&gt;.
+OK, the post’s title says “suck”, that’s a clickbait (for totally honorable reasons 😅).
+Actually and as always, it’s not a matter of right or wrong, it’s a matter of choosing a solution to a given problem according to a context and living with the consequences.&lt;/p&gt;
 
-If in your context, people who design, code, and document are the same or are ok to work with code.
+&lt;p&gt;If in your context, people who design, code, and document are the same or are ok to work with code.
 And if people working on design are sufficiently experimented to not be polluted by existing code and data.
-And if you're confident that there will be no variation during implementation.
-And if you don't need all OpenAPI subtleties for your API documentation (and frankly, for private APIs, you can live with that).
+And if you’re confident that there will be no variation during implementation.
+And if you don’t need all OpenAPI subtleties for your API documentation (and frankly, for private APIs, you can live with that).
 You may generate your OpenAPI documents from code.
-If not, you may have to rethink your strategy or if it's too complicated decide knowingly to live with the risks listed in this post.
+If not, you may have to rethink your strategy or if it’s too complicated decide knowingly to live with the risks listed in this post.&lt;/p&gt;
 
-And regarding &quot;generating OpenAPI&quot; in general there are use cases where it's incredibly interesting to do it.
-But that's another story.</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementation’s code (using annotations). Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.</summary></entry><entry><title type="html">401 Vs 403 Vs 404</title><link href="https://apihandyman.io/hands-off-that-resource-http-status-code-401-vs-403-vs-404/" rel="alternate" type="text/html" title="401 Vs 403 Vs 404" /><published>2021-05-05T00:00:00-05:00</published><updated>2021-05-05T00:00:00-05:00</updated><id>https://apihandyman.io/401-vs-403-vs-404</id><content type="html" xml:base="https://apihandyman.io/hands-off-that-resource-http-status-code-401-vs-403-vs-404/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This second post answers the following question: given that resource with id 123 actually exists in the underlying database, what should be the response to &lt;code&gt;GET /resources/123&lt;/code&gt; when consumer is not allowed to access it? &lt;code&gt;401 Unauthorized&lt;/code&gt;, &lt;code&gt;403 Forbidden&lt;/code&gt; or &lt;code&gt;404 Not Found&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;And regarding “generating OpenAPI” in general there are use cases where it’s incredibly interesting to do it.
+But that’s another story.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementation’s code (using annotations). Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.</summary></entry><entry><title type="html">401 Vs 403 Vs 404</title><link href="https://apihandyman.io/hands-off-that-resource-http-status-code-401-vs-403-vs-404/" rel="alternate" type="text/html" title="401 Vs 403 Vs 404" /><published>2021-05-05T00:00:00-05:00</published><updated>2021-05-05T00:00:00-05:00</updated><id>https://apihandyman.io/401-vs-403-vs-404</id><content type="html" xml:base="https://apihandyman.io/hands-off-that-resource-http-status-code-401-vs-403-vs-404/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This second post answers the following question: given that resource with id 123 actually exists in the underlying database, what should be the response to &lt;code&gt;GET /resources/123&lt;/code&gt; when consumer is not allowed to access it? &lt;code&gt;401 Unauthorized&lt;/code&gt;, &lt;code&gt;403 Forbidden&lt;/code&gt; or &lt;code&gt;404 Not Found&lt;/code&gt;?&lt;/p&gt;
 
 &lt;!--more--&gt;
 &lt;div class=&quot;card series-toc&quot;&gt;
@@ -685,209 +780,272 @@ Note that, this made me realized that &lt;code&gt;403 Forbidden&lt;/code&gt; doe
 &lt;p&gt;Respecting HTTP and other RFCs is important to avoid surprising developers with behaviors that are against common practices, but most important, whatever the HTTP status code you’ll choose to return, what matters above all is providing the response the most adapted for the context that will actually help the developer (and the consumer and even the end user) to know what is actually happening and help them solve the problem if they can.&lt;/p&gt;
 
 &lt;p&gt;So, when consumers want to access a resource they shouldn’t, don’t return a &lt;code&gt;401 Unauthorized&lt;/code&gt;, you would go against the HTTP protocol.
-Instead, return a &lt;code&gt;404 Not Found&lt;/code&gt; if consumers can’t do anything about it (so from their perspective, it does not exist) and return a &lt;code&gt;403 Forbidden&lt;/code&gt; along with a meaningful message if they can request access.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This second post answers the following question: given that resource with id 123 actually exists in the underlying database, what should be the response to GET /resources/123 when consumer is not allowed to access it? 401 Unauthorized, 403 Forbidden or 404 Not Found?</summary></entry><entry><title type="html">Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24</title><link href="https://apihandyman.io/reading-thoughtworks-technology-radar-24/" rel="alternate" type="text/html" title="Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24" /><published>2021-04-28T00:00:00-05:00</published><updated>2021-04-28T00:00:00-05:00</updated><id>https://apihandyman.io/reading-thoughtworks-technology-radar-24</id><content type="html" xml:base="https://apihandyman.io/reading-thoughtworks-technology-radar-24/">Thoughtworks Technology Radar 24, an &quot;opinionated guide to technology frontiers&quot;, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it.
-As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it's not a click bait, I don't know what it is).
-&lt;!--more--&gt;
+Instead, return a &lt;code&gt;404 Not Found&lt;/code&gt; if consumers can’t do anything about it (so from their perspective, it does not exist) and return a &lt;code&gt;403 Forbidden&lt;/code&gt; along with a meaningful message if they can request access.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This second post answers the following question: given that resource with id 123 actually exists in the underlying database, what should be the response to GET /resources/123 when consumer is not allowed to access it? 401 Unauthorized, 403 Forbidden or 404 Not Found?</summary></entry><entry><title type="html">Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24</title><link href="https://apihandyman.io/reading-thoughtworks-technology-radar-24/" rel="alternate" type="text/html" title="Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24" /><published>2021-04-28T00:00:00-05:00</published><updated>2021-04-28T00:00:00-05:00</updated><id>https://apihandyman.io/reading-thoughtworks-technology-radar-24</id><content type="html" xml:base="https://apihandyman.io/reading-thoughtworks-technology-radar-24/">&lt;p&gt;Thoughtworks Technology Radar 24, an “opinionated guide to technology frontiers”, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it.
+As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it’s not a click bait, I don’t know what it is).
+&lt;!--more--&gt;&lt;/p&gt;
 
-# What is Thoughtworks Technology Radar
+&lt;h1 id=&quot;what-is-thoughtworks-technology-radar&quot;&gt;What is Thoughtworks Technology Radar&lt;/h1&gt;
 
-Thoughtworks is a quite famous software consultancy company, brilliant minds such as [Martin Fowler](https://martinfowler.com/) are working there.
-Every 6 months, they publish their Technology Radar:
+&lt;p&gt;Thoughtworks is a quite famous software consultancy company, brilliant minds such as &lt;a href=&quot;https://martinfowler.com/&quot;&gt;Martin Fowler&lt;/a&gt; are working there.
+Every 6 months, they publish their Technology Radar:&lt;/p&gt;
 
-&gt; The Radar is a document that sets out the changes that we think are currently interesting in software development - things in motion that we think you should pay attention to and consider using in your projects. It reflects the idiosyncratic opinion of a bunch of senior technologists and is based on our day-to-day work and experiences. While we think this is interesting, it shouldn’t be taken as a deep market analysis.
+&lt;blockquote&gt;
+  &lt;p&gt;The Radar is a document that sets out the changes that we think are currently interesting in software development - things in motion that we think you should pay attention to and consider using in your projects. It reflects the idiosyncratic opinion of a bunch of senior technologists and is based on our day-to-day work and experiences. While we think this is interesting, it shouldn’t be taken as a deep market analysis.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-Links:
-- [Radar FAQ](https://www.thoughtworks.com/radar/faq)
-- [Latest Thoughtworks Technology Radar](https://www.thoughtworks.com/radar)
-- [Thoughtworks Technology Radar Volume 24 (PDF version)](https://assets.thoughtworks.com/assets/technology-radar-vol-24-en.pdf)
+&lt;p&gt;Links:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.thoughtworks.com/radar/faq&quot;&gt;Radar FAQ&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.thoughtworks.com/radar&quot;&gt;Latest Thoughtworks Technology Radar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://assets.thoughtworks.com/assets/technology-radar-vol-24-en.pdf&quot;&gt;Thoughtworks Technology Radar Volume 24 (PDF version)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-While authors claim it's not a deep market analysis, it's still full of highly valuable insights that you, as a developer, architect, CTO or whatever is your title should have in mind for your next tech related decisions or simply to discover new tools, language, trends, ...
+&lt;p&gt;While authors claim it’s not a deep market analysis, it’s still full of highly valuable insights that you, as a developer, architect, CTO or whatever is your title should have in mind for your next tech related decisions or simply to discover new tools, language, trends, …&lt;/p&gt;
 
-In what follows, I picked up a few topics of the 24th edition of this radar that raise my interest from an API perspective (and if you can't wait to know why I nearly fell off my chair, you can jump to the [last section](#adopt-and-not-assess-openapi-linting-and-why-i-nearly-fell-off-my-chair)).
+&lt;p&gt;In what follows, I picked up a few topics of the 24th edition of this radar that raise my interest from an API perspective (and if you can’t wait to know why I nearly fell off my chair, you can jump to the &lt;a href=&quot;#adopt-and-not-assess-openapi-linting-and-why-i-nearly-fell-off-my-chair&quot;&gt;last section&lt;/a&gt;).&lt;/p&gt;
 
-# Reminder, there are no silver bullets in architecture
+&lt;h1 id=&quot;reminder-there-are-no-silver-bullets-in-architecture&quot;&gt;Reminder, there are no silver bullets in architecture&lt;/h1&gt;
 
-The [Discerning the Context for Architectural Coupling](https://www.thoughtworks.com/radar#discerning-the-context-for-architectural-coupling) theme is a gentle reminder of what I called &quot;design in context&quot;.
-Never choose a solution just because this is &quot;the&quot; solution, because depending on the context it could be totally wrong.
-That works for anything in general and in the API architecture world, that works for instance for &quot;BFF or not&quot; and &quot;REST ot GraphQL or gRPC&quot;.
+&lt;p&gt;The &lt;a href=&quot;https://www.thoughtworks.com/radar#discerning-the-context-for-architectural-coupling&quot;&gt;Discerning the Context for Architectural Coupling&lt;/a&gt; theme is a gentle reminder of what I called “design in context”.
+Never choose a solution just because this is “the” solution, because depending on the context it could be totally wrong.
+That works for anything in general and in the API architecture world, that works for instance for “BFF or not” and “REST ot GraphQL or gRPC”.&lt;/p&gt;
 
-# Smoothly evolve your APIs 
+&lt;h1 id=&quot;smoothly-evolve-your-apis&quot;&gt;Smoothly evolve your APIs&lt;/h1&gt;
 
-The radar authors strongly think that people should be adopting the [1. API expand-contract](https://www.thoughtworks.com/radar/techniques/api-expand-contract) technique (also called [parallel change](https://www.martinfowler.com/bliki/ParallelChange.html)).
-The API expand pattern allows to introduce a breaking in 3 steps:
+&lt;p&gt;The radar authors strongly think that people should be adopting the &lt;a href=&quot;https://www.thoughtworks.com/radar/techniques/api-expand-contract&quot;&gt;1. API expand-contract&lt;/a&gt; technique (also called &lt;a href=&quot;https://www.martinfowler.com/bliki/ParallelChange.html&quot;&gt;parallel change&lt;/a&gt;).
+The API expand pattern allows to introduce a breaking in 3 steps:&lt;/p&gt;
 
-- Add element
-- Deprecate what added element replace
-- Remove once consumers have switched 
+&lt;ul&gt;
+  &lt;li&gt;Add element&lt;/li&gt;
+  &lt;li&gt;Deprecate what added element replace&lt;/li&gt;
+  &lt;li&gt;Remove once consumers have switched&lt;/li&gt;
+&lt;/ul&gt;
 
-While it's a totally valid technique, the last step can be tricky if there are many consumers or if there are far from you.
-You should read what [Sam Newman said about the cost of change at API Days Interface 2020](/apidays-interface-doing-apis-right-and-doing-right-apis/#versioning-handling-changes).
-In my humble opinion, working seriously on design and thinking about how your API may evolve will help you avoid having to use this technique.
+&lt;p&gt;While it’s a totally valid technique, the last step can be tricky if there are many consumers or if there are far from you.
+You should read what &lt;a href=&quot;/apidays-interface-doing-apis-right-and-doing-right-apis/#versioning-handling-changes&quot;&gt;Sam Newman said about the cost of change at API Days Interface 2020&lt;/a&gt;.
+In my humble opinion, working seriously on design and thinking about how your API may evolve will help you avoid having to use this technique.&lt;/p&gt;
 
-I will not say more for now, writing one or more posts about API change and versioning is on my to-do list.
+&lt;p&gt;I will not say more for now, writing one or more posts about API change and versioning is on my to-do list.&lt;/p&gt;
 
-# Share between UI and BFF when owning both
+&lt;h1 id=&quot;share-between-ui-and-bff-when-owning-both&quot;&gt;Share between UI and BFF when owning both&lt;/h1&gt;
 
-The radar states that the use of [16. UI/BFF shared types](https://www.thoughtworks.com/radar/techniques/ui-bff-shared-types) is increasing and that companies should try this technique on a project that can handle the risk (trial).
+&lt;p&gt;The radar states that the use of &lt;a href=&quot;https://www.thoughtworks.com/radar/techniques/ui-bff-shared-types&quot;&gt;16. UI/BFF shared types&lt;/a&gt; is increasing and that companies should try this technique on a project that can handle the risk (trial).
 That looks like a very good idea as long as both UI and BFF belong to the same team.
-So don't ever think about using this technique between UI and regular API, you should be decoupled as much as you can from elements you don't own.
+So don’t ever think about using this technique between UI and regular API, you should be decoupled as much as you can from elements you don’t own.&lt;/p&gt;
 
-# Compute encrypted data to preserve privacy
+&lt;h1 id=&quot;compute-encrypted-data-to-preserve-privacy&quot;&gt;Compute encrypted data to preserve privacy&lt;/h1&gt;
 
-The first time I heard about the [20. Homomorphic encryption]() ([technique section]()) was in 2016 at an API conference: The Česká spořitelna bank was using it experimentally to share data with third party.
+&lt;p&gt;The first time I heard about the &lt;a href=&quot;&quot;&gt;20. Homomorphic encryption&lt;/a&gt; (&lt;a href=&quot;&quot;&gt;technique section&lt;/a&gt;) was in 2016 at an API conference: The Česká spořitelna bank was using it experimentally to share data with third party.
 The idea is that using this technique, the encrypted data are still computable.
 You can send them to an untrusted third party who will do some calculation with them and return you the results that you will decrypt.
 According to the radar, it became fairly easy to use it.
-But while having this technique in mind since 2016 and working in the financial industry, I'm still longing to work an API that will allow me to use it.
+But while having this technique in mind since 2016 and working in the financial industry, I’m still longing to work an API that will allow me to use it.&lt;/p&gt;
 
-# Unleash the power of APIs (while it's possible)
+&lt;h1 id=&quot;unleash-the-power-of-apis-while-its-possible&quot;&gt;Unleash the power of APIs (while it’s possible)&lt;/h1&gt;
 
-If you want to build an event-driven architecture, you should take a look at [Apache Kafka](http://kafka.apache.org/).
+&lt;p&gt;If you want to build an event-driven architecture, you should take a look at &lt;a href=&quot;http://kafka.apache.org/&quot;&gt;Apache Kafka&lt;/a&gt;.
 While being a widely adopted distributed event streaming platform, actually managing it does not seem quite simple.
-That's why some companies launch their Kafka as a service offers, they run it, you use it.
-But as stated in the radar, some companies have gone a little farther and started to offer &quot;Kafka without Kafka&quot;.
+That’s why some companies launch their Kafka as a service offers, they run it, you use it.
+But as stated in the radar, some companies have gone a little farther and started to offer “Kafka without Kafka”.
 How is this possible?
-Only thanks to APIs.
+Only thanks to APIs.&lt;/p&gt;
 
-APIs (whatever their nature, web, messaging or whatever) offer amazing possibilities when it comes to replace the engine behind the interface.
-Thanks to these [45. Kafka API without Kafka](https://www.thoughtworks.com/radar/platforms/kafka-api-without-kafka) describes in the [Platforms](https://www.thoughtworks.com/radar/platforms) section, you use a service that looks like Kafka but that is actually not.
+&lt;p&gt;APIs (whatever their nature, web, messaging or whatever) offer amazing possibilities when it comes to replace the engine behind the interface.
+Thanks to these &lt;a href=&quot;https://www.thoughtworks.com/radar/platforms/kafka-api-without-kafka&quot;&gt;45. Kafka API without Kafka&lt;/a&gt; describes in the &lt;a href=&quot;https://www.thoughtworks.com/radar/platforms&quot;&gt;Platforms&lt;/a&gt; section, you use a service that looks like Kafka but that is actually not.
 It allows companies to provide their technology similar to kafka to people who are used to it without any modification.
 From my perspective, the main to understand point here is not about Kafka (though it is actually interesting) but how anyone can provide a service compatible with an existing solution.
 What is needed is to simply offer the same interface.
-And, for now, that's still &quot;possible but check your lawyers are ready&quot; thanks to the recent legal decision in the [Google vs Oracle API Copyright case](https://apievangelist.com/2021/04/13/My-oracle-vs-google-api-copyright-journey/).
+And, for now, that’s still “possible but check your lawyers are ready” thanks to the recent legal decision in the &lt;a href=&quot;https://apievangelist.com/2021/04/13/My-oracle-vs-google-api-copyright-journey/&quot;&gt;Google vs Oracle API Copyright case&lt;/a&gt;.&lt;/p&gt;
 
-Beware that [Kafka API without Kafka](https://www.thoughtworks.com/radar/platforms/kafka-api-without-kafka) is in &quot;Assess&quot;, it's worth exploring to understand how it could affect you.
-Note also that such solutions may not be fully compatible all Kafka features
+&lt;p&gt;Beware that &lt;a href=&quot;https://www.thoughtworks.com/radar/platforms/kafka-api-without-kafka&quot;&gt;Kafka API without Kafka&lt;/a&gt; is in “Assess”, it’s worth exploring to understand how it could affect you.
+Note also that such solutions may not be fully compatible all Kafka features&lt;/p&gt;
 
-# Let's give a try to Fast API Python framework
+&lt;h1 id=&quot;lets-give-a-try-to-fast-api-python-framework&quot;&gt;Let’s give a try to Fast API Python framework&lt;/h1&gt;
 
-I work with data scientists to help them build APIs and they obviously use Python.
-So, discovering in the [Languages &amp; Frameworks](https://www.thoughtworks.com/radar/languages-and-frameworks) section of the radar, a new Python web API framework such [Fast API](https://fastapi.tiangolo.com/) having Thoughtworks seal of approval ([86. FastAPI](https://www.thoughtworks.com/radar/languages-and-frameworks/fastapi)), made my day.
-Beware, Fast API is still on &quot;Trial&quot; for Thoughtworks, that means &quot;Enterprises should try this technology on a project that can handle the risk&quot;.
-As I'm starting to work with Python for a complete overhaul of the API Stylebook, a personal project that perfectly can handle such risk, I may give it a try.
+&lt;p&gt;I work with data scientists to help them build APIs and they obviously use Python.
+So, discovering in the &lt;a href=&quot;https://www.thoughtworks.com/radar/languages-and-frameworks&quot;&gt;Languages &amp;amp; Frameworks&lt;/a&gt; section of the radar, a new Python web API framework such &lt;a href=&quot;https://fastapi.tiangolo.com/&quot;&gt;Fast API&lt;/a&gt; having Thoughtworks seal of approval (&lt;a href=&quot;https://www.thoughtworks.com/radar/languages-and-frameworks/fastapi&quot;&gt;86. FastAPI&lt;/a&gt;), made my day.
+Beware, Fast API is still on “Trial” for Thoughtworks, that means “Enterprises should try this technology on a project that can handle the risk”.
+As I’m starting to work with Python for a complete overhaul of the API Stylebook, a personal project that perfectly can handle such risk, I may give it a try.&lt;/p&gt;
 
-# Adopt and not assess OpenAPI linting (and why I nearly fell off my chair)
+&lt;h1 id=&quot;adopt-and-not-assess-openapi-linting-and-why-i-nearly-fell-off-my-chair&quot;&gt;Adopt and not assess OpenAPI linting (and why I nearly fell off my chair)&lt;/h1&gt;
 
-And last but not least, the radar mentions 2 OpenAPI linters in the [tools](https://www.thoughtworks.com/radar/tools) section:
+&lt;p&gt;And last but not least, the radar mentions 2 OpenAPI linters in the &lt;a href=&quot;https://www.thoughtworks.com/radar/tools&quot;&gt;tools&lt;/a&gt; section:&lt;/p&gt;
 
-- [77. Spectral](https://www.thoughtworks.com/radar/tools/spectral)
-- [79. Zally](https://www.thoughtworks.com/radar/tools/zally)
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.thoughtworks.com/radar/tools/spectral&quot;&gt;77. Spectral&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.thoughtworks.com/radar/tools/zally&quot;&gt;79. Zally&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-The [OpenAPI Specification](https://www.openapis.org/) (fka. the Swagger Specification) is a format allowing you to describe a web API contract.
-An OpenAPI linter will help you to ensure that the design of an API conforms to your guidelines (or style guide).
+&lt;p&gt;The &lt;a href=&quot;https://www.openapis.org/&quot;&gt;OpenAPI Specification&lt;/a&gt; (fka. the Swagger Specification) is a format allowing you to describe a web API contract.
+An OpenAPI linter will help you to ensure that the design of an API conforms to your guidelines (or style guide).&lt;/p&gt;
 
-I know both of these tools for quite a long time now.
-[Zally](https://opensource.zalando.com/zally/) was the first industrial/high quality OpenAPI linter I encountered but I find it quite complex to use, there's a cli, a server, you need to use Kotlin to write your rules.
-And once I discovered [Spectral](https://github.com/stoplightio/spectral), I totally forgot Zally.
+&lt;p&gt;I know both of these tools for quite a long time now.
+&lt;a href=&quot;https://opensource.zalando.com/zally/&quot;&gt;Zally&lt;/a&gt; was the first industrial/high quality OpenAPI linter I encountered but I find it quite complex to use, there’s a cli, a server, you need to use Kotlin to write your rules.
+And once I discovered &lt;a href=&quot;https://github.com/stoplightio/spectral&quot;&gt;Spectral&lt;/a&gt;, I totally forgot Zally.&lt;/p&gt;
 
-A simple `npm install -g @stoplight/spectral` and you can start.
-Writing rules is quite simple, though like any &quot;code&quot;, you definitely need to test them.
-I use it extensively every day while doing API design reviews, check my [Augmented API Design Reviewer](https://apihandyman.io/the-augmented-api-design-reviewer/) talk to learn more about it.
+&lt;p&gt;A simple &lt;code&gt;npm install -g @stoplight/spectral&lt;/code&gt; and you can start.
+Writing rules is quite simple, though like any “code”, you definitely need to test them.
+I use it extensively every day while doing API design reviews, check my &lt;a href=&quot;https://apihandyman.io/the-augmented-api-design-reviewer/&quot;&gt;Augmented API Design Reviewer&lt;/a&gt; talk to learn more about it.&lt;/p&gt;
 
-Note that I prefer Spectral in my context, I find it simpler, I could simply achieve what I wanted easily, it's integration with Stoplight Studio is very convenient and it constantly evolves.
-But remember, there are no silver bullets, so test those 2 and choose the one that suits you.
+&lt;p&gt;Note that I prefer Spectral in my context, I find it simpler, I could simply achieve what I wanted easily, it’s integration with Stoplight Studio is very convenient and it constantly evolves.
+But remember, there are no silver bullets, so test those 2 and choose the one that suits you.&lt;/p&gt;
 
-While being quite happy to see those 2 OpenAPI linters in the radar, there are 2 problems regarding how this topic is presented in my humble opinion.
+&lt;p&gt;While being quite happy to see those 2 OpenAPI linters in the radar, there are 2 problems regarding how this topic is presented in my humble opinion.&lt;/p&gt;
 
-First, they are in &quot;assess&quot; (worth exploring to see how it will affect you), while I can understand that classification probably based on &quot;how many companies use them&quot;, I definitely think they should be in &quot;adopt&quot; (industry should adopt these items).
+&lt;p&gt;First, they are in “assess” (worth exploring to see how it will affect you), while I can understand that classification probably based on “how many companies use them”, I definitely think they should be in “adopt” (industry should adopt these items).
 Designing API is hard, ensuring consistency is hard and such linters participate in simplifying designers job and ensure a certain level of consistency in your API surface.
-Note that such tools will never, ever replace a human powered API design review.
+Note that such tools will never, ever replace a human powered API design review.&lt;/p&gt;
 
-The second problem in the radar is what is said about &quot;specs&quot; and OpenAPI in the Spectral description, and especially this:
+&lt;p&gt;The second problem in the radar is what is said about “specs” and OpenAPI in the Spectral description, and especially this:&lt;/p&gt;
 
-&gt; While this tool is a welcome addition to the API development workflow, it does raise the question of whether a non-executable specification should be so complex as to require an error-checking technique designed for programming languages. Perhaps developers should be writing code instead of specs?
+&lt;blockquote&gt;
+  &lt;p&gt;While this tool is a welcome addition to the API development workflow, it does raise the question of whether a non-executable specification should be so complex as to require an error-checking technique designed for programming languages. Perhaps developers should be writing code instead of specs?&lt;/p&gt;
+&lt;/blockquote&gt;
 
-I nearly fell off my chair.
+&lt;p&gt;I nearly fell off my chair.&lt;/p&gt;
 
-This completely misses the point.
+&lt;p&gt;This completely misses the point.
 It leaves readers totally unaware of API design questions and do not help to grasp how they can take advantage of the OpenAPI specification and such a linter to design consistent APIs.
 That gives a totally wrong perspective of OpenAPI and OpenAPI linters in general, and Spectral in particular.
-While I met and still meet people who actually are in such state of mind, even don't giving a 💩 about API design and everything around, I wouldn't have expected that from a company such as Thoughtworks.
+While I met and still meet people who actually are in such state of mind, even don’t giving a 💩 about API design and everything around, I wouldn’t have expected that from a company such as Thoughtworks.
 I usually succeed to change people mind about this topic, they realize API design and everything around is a thing, but if Thoughtworks tells something different that will make my work more complicated 😅.
-I would love to know how the authors came to writing this, did I missed something?
+I would love to know how the authors came to writing this, did I missed something?&lt;/p&gt;
 
-Hopefully, I was glad to see the discourse about OpenAPI linters is totally different in the Zally's description and offers the right perspective on the topic.
+&lt;p&gt;Hopefully, I was glad to see the discourse about OpenAPI linters is totally different in the Zally’s description and offers the right perspective on the topic.&lt;/p&gt;
 
-&gt; As the API specification ecosystem matures, we're seeing more tools built to automate style checks. Zally is a minimalist OpenAPI linter that helps to ensure an API conforms to the team's API style guide. 
+&lt;blockquote&gt;
+  &lt;p&gt;As the API specification ecosystem matures, we’re seeing more tools built to automate style checks. Zally is a minimalist OpenAPI linter that helps to ensure an API conforms to the team’s API style guide.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-Maybe it's due to these particular pandemic times, but it seems that there's a lack of alignment between the 2 authors of these advices.
-That second advice on OpenAPI linters is far much better, consider it applies to Spectral too.
+&lt;p&gt;Maybe it’s due to these particular pandemic times, but it seems that there’s a lack of alignment between the 2 authors of these advices.
+That second advice on OpenAPI linters is far much better, consider it applies to Spectral too.&lt;/p&gt;
 
-And if I can add my opinionated 2 cents about API design, OpenAPI and linters:
+&lt;p&gt;And if I can add my opinionated 2 cents about API design, OpenAPI and linters:&lt;/p&gt;
 
-- You MUST have an API design first approach
-- You MUST write API design guidelines (or style guide) describe the look and feel of your APIs
-- You MUST use the OpenAPI (or whatever) specification to describe the result of your work on design
-- You MUST use an OpenAPI (or whatever) linter to ensure your APIs conform to your style guides (and Spectral is a very good tool to do that)
-- You MUST do an API design review with human beings
+&lt;ul&gt;
+  &lt;li&gt;You MUST have an API design first approach&lt;/li&gt;
+  &lt;li&gt;You MUST write API design guidelines (or style guide) describe the look and feel of your APIs&lt;/li&gt;
+  &lt;li&gt;You MUST use the OpenAPI (or whatever) specification to describe the result of your work on design&lt;/li&gt;
+  &lt;li&gt;You MUST use an OpenAPI (or whatever) linter to ensure your APIs conform to your style guides (and Spectral is a very good tool to do that)&lt;/li&gt;
+  &lt;li&gt;You MUST do an API design review with human beings&lt;/li&gt;
+&lt;/ul&gt;
 
-Consider all those items should be &quot;Adopt&quot; according to Thoughtworks classification.
+&lt;p&gt;Consider all those items should be “Adopt” according to Thoughtworks classification.&lt;/p&gt;
 
-If you want to learn more about the OpenAPI Specification, API guidelines, API design reviews and Spectral, you should look at my following talks:
+&lt;p&gt;If you want to learn more about the OpenAPI Specification, API guidelines, API design reviews and Spectral, you should look at my following talks:&lt;/p&gt;
 
-- [OpenAPI Trek](https://apihandyman.io/openapi-trek-api-days-london-2016/)
-- [The Lord of API Designs](https://apihandyman.io/api-styleguide-the-lord-of-api-designs/)
-- [The API Design Reviewer's Starter Set](https://apihandyman.io/api-design-reviewers-starter-set/)
-- [The Augmented API Design Reviewer](https://apihandyman.io/the-augmented-api-design-reviewer/)</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Thoughtworks Technology Radar 24, an “opinionated guide to technology frontiers”, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it. As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it’s not a click bait, I don’t know what it is).</summary></entry><entry><title type="html">404 Vs 405 Vs 501</title><link href="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/" rel="alternate" type="text/html" title="404 Vs 405 Vs 501" /><published>2021-04-21T00:00:00-05:00</published><updated>2021-04-21T00:00:00-05:00</updated><id>https://apihandyman.io/404-vs-405-vs-501</id><content type="html" xml:base="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
-This first post answers the following question: given that a `GET /resources/123` request returns a `200 OK`, what should be the response to `DELETE /resources/123` if `DELETE` method is not implemented? `404 Not Found`, `405 Method Not Allowed` or `501 Not Implemented`?
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/openapi-trek-api-days-london-2016/&quot;&gt;OpenAPI Trek&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/api-styleguide-the-lord-of-api-designs/&quot;&gt;The Lord of API Designs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/api-design-reviewers-starter-set/&quot;&gt;The API Design Reviewer’s Starter Set&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/the-augmented-api-design-reviewer/&quot;&gt;The Augmented API Design Reviewer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Thoughtworks Technology Radar 24, an “opinionated guide to technology frontiers”, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it. As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it’s not a click bait, I don’t know what it is).</summary></entry><entry><title type="html">404 Vs 405 Vs 501</title><link href="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/" rel="alternate" type="text/html" title="404 Vs 405 Vs 501" /><published>2021-04-21T00:00:00-05:00</published><updated>2021-04-21T00:00:00-05:00</updated><id>https://apihandyman.io/404-vs-405-vs-501</id><content type="html" xml:base="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
+This first post answers the following question: given that a &lt;code&gt;GET /resources/123&lt;/code&gt; request returns a &lt;code&gt;200 OK&lt;/code&gt;, what should be the response to &lt;code&gt;DELETE /resources/123&lt;/code&gt; if &lt;code&gt;DELETE&lt;/code&gt; method is not implemented? &lt;code&gt;404 Not Found&lt;/code&gt;, &lt;code&gt;405 Method Not Allowed&lt;/code&gt; or &lt;code&gt;501 Not Implemented&lt;/code&gt;?&lt;/p&gt;
 
 &lt;!--more--&gt;
+&lt;div class=&quot;card series-toc&quot;&gt;
+  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
+    &lt;h5 id=&quot;series&quot;&gt;Choosing HTTP status codes Series&lt;/h5&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;row series-toc_content&quot;&gt;
+    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;
+        &lt;p class=&quot;card-text&quot;&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.&lt;div class=&quot;alert alert-info&quot;&gt;
+I never remember in which RFCs HTTP status codes are defined.
+To get a quick access to their documentation, I use &lt;a class=&quot;alert-link&quot; href=&quot;https://webconcepts.info/concepts/http-status-code/&quot;&gt;Erik Wilde's Web Concepts&lt;/a&gt;.
+&lt;/div&gt;Very special thanks to all Twitter people participating to the &lt;a href=&quot;https://twitter.com/search?q=%23choosehttpstatuscode&amp;amp;src=typed_query&quot;&gt;#choosehttpstatuscode&lt;/a&gt; polls and discussions&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
+      
+      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+        
+          
+          &lt;li class=&quot;list-group-item active&quot;&gt;1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/hands-off-that-resource-http-status-code-401-vs-403-vs-404/&quot;&gt;2 - Hands off that resource, HTTP status code 401 vs 403 vs 404&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/&quot;&gt;3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/empty-lists-http-status-code-200-vs-204-vs-404/&quot;&gt;4 - Empty list, HTTP status code 200 vs 204 vs 404&lt;/a&gt;&lt;/li&gt;
+          
+        
+        
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;the-context&quot;&gt;The context&lt;/h1&gt;
 
-{%- include _postincludes/choosing-http-status-codes.md -%}
+&lt;p&gt;In my &lt;a class=&quot;post-link&quot; href=&quot;/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/&quot;&gt;Batch (Github) API calls with CSV and Postman runner and visualizer&lt;/a&gt; post, I used the Github REST API and discovered it was impossible to delete an issue on a repository with a &lt;code&gt;DELETE /{user}/{repository}/issues/{issueId}&lt;/code&gt; request simply because it was not implemented.
+Unfortunately, the Github API warned me with a quite awkward &lt;code&gt;404 Not Found&lt;/code&gt; though a &lt;code&gt;GET&lt;/code&gt; on the very same issue returned a &lt;code&gt;200 OK&lt;/code&gt; that tells “this issue exists”.
+That’s quite a contradiction.&lt;/p&gt;
 
-# The context
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/twitter-poll.png&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Twitter poll results&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
 
-In my {% include post-link.html alias=&quot;postman-csv-demo&quot; %} post, I used the Github REST API and discovered it was impossible to delete an issue on a repository with a {% raw %}`DELETE /{user}/{repository}/issues/{issueId}`{% endraw %} request simply because it was not implemented.
-Unfortunately, the Github API warned me with a quite awkward `404 Not Found` though a {% raw %}`GET`{% endraw %} on the very same issue returned a `200 OK` that tells &quot;this issue exists&quot;.
-That's quite a contradiction.
+&lt;p&gt;According to a Twitter poll I made, a few voters (10%) agreed with Github REST API’s &lt;code&gt;404 Not Found&lt;/code&gt; response, most people (56%) would use a &lt;code&gt;405 Method Not Allowed&lt;/code&gt;, but a significant amount (34%) would use &lt;code&gt;501 Not Implemented&lt;/code&gt;.
+Let’s see which HTTP status code(s) can be used when a resource actually exists but the method provided in the request is not available.&lt;/p&gt;
 
-{% include image.html source=&quot;twitter-poll.png&quot; alt=&quot;Twitter poll results&quot;%}
+&lt;h1 id=&quot;use-405-method-not-allowed-when-method-isnt-defined-in-contract&quot;&gt;Use 405 Method Not Allowed when method isn’t defined in contract&lt;/h1&gt;
 
-According to a Twitter poll I made, a few voters (10%) agreed with Github REST API's `404 Not Found` response, most people (56%) would use a `405 Method Not Allowed`, but a significant amount (34%) would use `501 Not Implemented`.
-Let's see which HTTP status code(s) can be used when a resource actually exists but the method provided in the request is not available.
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 405 (Method Not Allowed) status code indicates that the method received in the request-line is known by the origin server but not supported by the target resource.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.5.5&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.5&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-# Use 405 Method Not Allowed when method isn't defined in contract
-
-{% include http-status-code.html code=&quot;405&quot; style=&quot;quote&quot; %}
-
-A `405` is a `4xx` class status code, which means it's client's fault.
+&lt;p&gt;A &lt;code&gt;405&lt;/code&gt; is a &lt;code&gt;4xx&lt;/code&gt; class status code, which means it’s client’s fault.
 Receiving such a response means the client sent to the origin server a request with a method that is not allowed/supported by the target resource.
-Let's rephrase that definition in the context of an API:
-a consumer will get a `405 Method Not Allowed` response when sending a request with a method which is not explicitly mentioned in in the contract or documentation on the target resource.
-For instance, that means if the API's contract or documentation states the only method supported by a resource `/resource` is `GET`, a consumer sending a request on this resource using any other method, like `DELETE /resource` for instance, will get a `405 Method Not Allowed` response.
+Let’s rephrase that definition in the context of an API:
+a consumer will get a &lt;code&gt;405 Method Not Allowed&lt;/code&gt; response when sending a request with a method which is not explicitly mentioned in in the contract or documentation on the target resource.
+For instance, that means if the API’s contract or documentation states the only method supported by a resource &lt;code&gt;/resource&lt;/code&gt; is &lt;code&gt;GET&lt;/code&gt;, a consumer sending a request on this resource using any other method, like &lt;code&gt;DELETE /resource&lt;/code&gt; for instance, will get a &lt;code&gt;405 Method Not Allowed&lt;/code&gt; response.&lt;/p&gt;
 
-Therefore, the `405` status code is the one I would have expected from the Github REST API when I tried to delete an issue.
-Indeed, the API's documentation describing the API's contract of the issue resource ({% raw %}`/{user}/{repository}/issues/{issueId}`{% endraw %}) only mentions `GET` and I sent `DELETE`.
-It's clearly my fault, though it's quite surprising to NOT be able to delete an issue (but that's another story).
+&lt;p&gt;Therefore, the &lt;code&gt;405&lt;/code&gt; status code is the one I would have expected from the Github REST API when I tried to delete an issue.
+Indeed, the API’s documentation describing the API’s contract of the issue resource (&lt;code&gt;/{user}/{repository}/issues/{issueId}&lt;/code&gt;) only mentions &lt;code&gt;GET&lt;/code&gt; and I sent &lt;code&gt;DELETE&lt;/code&gt;.
+It’s clearly my fault, though it’s quite surprising to NOT be able to delete an issue (but that’s another story).&lt;/p&gt;
 
-A {% include http-status-code.html code=&quot;405&quot; style=&quot;with reason&quot; %} is the right choice when the method is not defined in contract, but sending a &quot;wrong&quot; method is not always consumer's fault, that's where a {% include http-status-code.html code=&quot;501&quot; style=&quot;with reason&quot; %} could be interesting.
+&lt;p&gt;A &lt;code&gt;405 Method Not Allowed&lt;/code&gt; is the right choice when the method is not defined in contract, but sending a “wrong” method is not always consumer’s fault, that’s where a &lt;code&gt;501 Not Implemented&lt;/code&gt; could be interesting.&lt;/p&gt;
 
-# Use 501 Not Implemented when partially implementing a &quot;standard&quot;
+&lt;h1 id=&quot;use-501-not-implemented-when-partially-implementing-a-standard&quot;&gt;Use 501 Not Implemented when partially implementing a “standard”&lt;/h1&gt;
 
-{% include http-status-code.html code=&quot;501&quot; style=&quot;quote&quot; %}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 501 (Not Implemented) status code indicates that the server does not support the functionality required to fulfill the request. This is the appropriate response when the server does not recognize the request method and is not capable of supporting it for any resource.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.6.2&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, Section 6.6.2&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-A `5xx` class error means the server is at fault.
-A {% include http-status-code.html code=&quot;501&quot; style=&quot;with reason&quot; %} basically says &quot;we're deeply sorry but `METHOD` has not been implemented on this resource and maybe has not been implemented at all on any resource&quot;.
+&lt;p&gt;A &lt;code&gt;5xx&lt;/code&gt; class error means the server is at fault.
+A &lt;code&gt;501 Not Implemented&lt;/code&gt; basically says “we’re deeply sorry but &lt;code&gt;METHOD&lt;/code&gt; has not been implemented on this resource and maybe has not been implemented at all on any resource”.&lt;/p&gt;
 
-Sending a `TOTALLY-UNKNOWN-METHOD /whatever-resource` could result in getting a `501` if the method does not match any [generally known one](https://webconcepts.info/concepts/http-method/), but in that case I would prefer to return a {% include http-status-code.html code=&quot;405&quot; style=&quot;with reason&quot; %} as it's not the server's fault if the consumer really sent a bullshit method in its request and must send an acceptable one.
+&lt;p&gt;Sending a &lt;code&gt;TOTALLY-UNKNOWN-METHOD /whatever-resource&lt;/code&gt; could result in getting a &lt;code&gt;501&lt;/code&gt; if the method does not match any &lt;a href=&quot;https://webconcepts.info/concepts/http-method/&quot;&gt;generally known one&lt;/a&gt;, but in that case I would prefer to return a &lt;code&gt;405 Method Not Allowed&lt;/code&gt; as it’s not the server’s fault if the consumer really sent a bullshit method in its request and must send an acceptable one.&lt;/p&gt;
 
-But, imagine you are implementing a &quot;more or less standard&quot; interface contract.
+&lt;p&gt;But, imagine you are implementing a “more or less standard” interface contract.
 It could be because you work in a regulated industry like banking or an highly inter-connected one like travel or logistics.
 It could be because you want to implement a protocol such as WebDAV, which is a extended version of HTTP adding new methods.
-It could also be simply because inside your company several components have to share a common interface in order to facilitate communication.
+It could also be simply because inside your company several components have to share a common interface in order to facilitate communication.&lt;/p&gt;
 
-Imagine now that standard contract you need to implement says consumer can use `GET` and `PUT` on `/resource` but you only implement `GET` in your version 1 for whatever reasonable reason.
-In that case, returning a `501 Not Implemented` would be the perfect answer as the &quot;standard&quot; contract says that `PUT /whatever-resource` is possible but it has not been implemented by the actual provider.
+&lt;p&gt;Imagine now that standard contract you need to implement says consumer can use &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;PUT&lt;/code&gt; on &lt;code&gt;/resource&lt;/code&gt; but you only implement &lt;code&gt;GET&lt;/code&gt; in your version 1 for whatever reasonable reason.
+In that case, returning a &lt;code&gt;501 Not Implemented&lt;/code&gt; would be the perfect answer as the “standard” contract says that &lt;code&gt;PUT /whatever-resource&lt;/code&gt; is possible but it has not been implemented by the actual provider.&lt;/p&gt;
 
-If a {% include http-status-code.html code=&quot;501&quot; style=&quot;with reason&quot; %} is a very good answer in such a context of partially implementing a &quot;more or less standard&quot; API, returning a {% include http-status-code.html code=&quot;404&quot; style=&quot;with reason&quot; %} is totally out of question in any HTTP method related error.
+&lt;p&gt;If a &lt;code&gt;501 Not Implemented&lt;/code&gt; is a very good answer in such a context of partially implementing a “more or less standard” API, returning a &lt;code&gt;404 Not Found&lt;/code&gt; is totally out of question in any HTTP method related error.&lt;/p&gt;
 
-# Never use 404 Not Found when receiving wrong or unknown method
+&lt;h1 id=&quot;never-use-404-not-found-when-receiving-wrong-or-unknown-method&quot;&gt;Never use 404 Not Found when receiving wrong or unknown method&lt;/h1&gt;
 
-{% include http-status-code.html code=&quot;404&quot; style=&quot;quote&quot; %}
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.5.4&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.4&lt;/a&gt;&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
 
-The Github REST API responded with a `{% include http-status-code.html code=&quot;404&quot; style=&quot;with reason&quot; %}` to my `DELETE /issue-resource-path` request.
-According to {% include http-status-code.html code=&quot;404&quot; style=&quot;rfc&quot; %}, that tells the issue identified by the path doesn't exist (A) or Github is not willing to disclose that issue actually exists (B).
-Unfortunately, both options were contradicted by the `GET /issue-resource-path` returning a `200 OK`.
-Indeed, getting this `200` tells the issue actually exists (Not A) and Github is willing to disclose it exists (Not B).
+&lt;p&gt;The Github REST API responded with a &lt;code&gt;404 Not Found&lt;/code&gt; to my &lt;code&gt;DELETE /issue-resource-path&lt;/code&gt; request.
+According to RFC 7231, that tells the issue identified by the path doesn’t exist (A) or Github is not willing to disclose that issue actually exists (B).
+Unfortunately, both options were contradicted by the &lt;code&gt;GET /issue-resource-path&lt;/code&gt; returning a &lt;code&gt;200 OK&lt;/code&gt;.
+Indeed, getting this &lt;code&gt;200&lt;/code&gt; tells the issue actually exists (Not A) and Github is willing to disclose it exists (Not B).&lt;/p&gt;
 
-And even if for any reason I was actually not able to see this issue (we'll talk about that in a later post) and so get a `404` on my `GET`, I still would prefer to get a `405` on my `DELETE`, that way I could have quickly know that whatever the issue I want to delete, I will never be able to delete it as it's not possible according to the API's contract.</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This first post answers the following question: given that a GET /resources/123 request returns a 200 OK, what should be the response to DELETE /resources/123 if DELETE method is not implemented? 404 Not Found, 405 Method Not Allowed or 501 Not Implemented?</summary></entry></feed>
+&lt;p&gt;And even if for any reason I was actually not able to see this issue (we’ll talk about that in a later post) and so get a &lt;code&gt;404&lt;/code&gt; on my &lt;code&gt;GET&lt;/code&gt;, I still would prefer to get a &lt;code&gt;405&lt;/code&gt; on my &lt;code&gt;DELETE&lt;/code&gt;, that way I could have quickly know that whatever the issue I want to delete, I will never be able to delete it as it’s not possible according to the API’s contract.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This first post answers the following question: given that a GET /resources/123 request returns a 200 OK, what should be the response to DELETE /resources/123 if DELETE method is not implemented? 404 Not Found, 405 Method Not Allowed or 501 Not Implemented?</summary></entry></feed>

@@ -1,3 +1,0 @@
-I"<p>When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This second post answers the following question: given that resource with id 123 actually exists in the underlying database, what should be the response to <code>GET /resources/123</code> when consumer is not allowed to access it? <code>401 Unauthorized</code>, <code>403 Forbidden</code> or <code>404 Not Found</code>?</p>
-
-:ET

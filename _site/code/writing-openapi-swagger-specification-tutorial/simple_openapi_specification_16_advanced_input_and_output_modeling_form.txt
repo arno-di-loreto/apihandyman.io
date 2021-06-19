@@ -1,3 +1,0 @@
-POST /js-less-persons
-
-username=apihandyman&firstname=API&lastname=Handyman

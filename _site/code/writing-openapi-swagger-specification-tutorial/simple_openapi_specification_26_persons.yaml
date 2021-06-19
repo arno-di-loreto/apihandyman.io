@@ -1,4 +1,0 @@
-Persons:
-  type: array
-  items:
-    $ref: "../folder/person.yaml#/Person"

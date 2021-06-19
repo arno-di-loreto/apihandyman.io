@@ -1,6 +1,0 @@
-I"$<p>In (Ch-ch-) Changes, David Bowie sang “Every time I thought I’d got it made, it seemed the taste was not so sweet”, that’s a good metaphor for API design.
-An API will irremediably evolve because it will lack some features or because of mistakes, and so sooner or later, you may have to introduce a “breaking change”.
-That’s usually when people start to run in circle, scream and shout “Oh! Please no! Please, not a breaking ch-ch-change”.
-But, what is it actually? How to handle it? And should you always be afraid of it?</p>
-
-:ET

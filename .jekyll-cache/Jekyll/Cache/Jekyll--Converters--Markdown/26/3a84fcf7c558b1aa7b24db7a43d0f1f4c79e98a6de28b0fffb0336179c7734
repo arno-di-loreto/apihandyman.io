@@ -1,3 +1,0 @@
-I"@<p>When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This third post answers the following question: given that resource with id 123 actually doesn’t exist in the underlying database, what should be the response to <code>GET /resources/123</code> when consumer is allowed to access such ressource? <code>204 No Content</code>, <code>403 Forbidden</code>, <code>404 Not Found</code> or <code>410 Gone</code>?</p>
-
-:ET
