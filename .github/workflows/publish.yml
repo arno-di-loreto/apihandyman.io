@@ -1,8 +1,11 @@
 name: Publish
 
 on:
-  push:
-    branches: [ master ]
+#  push:
+#    branches: [ master ]
+  schedule:
+    - cron: "0 16 * * WED"
+  workflow_dispatch:
 
 jobs:
   build_and_publish:
