@@ -23,7 +23,7 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll \
         -v ${{ github.workspace }}/${{env.PUBLISH_BRANCH_FOLDER}}:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build"
     - name: 🚀 Push on ${{env.PUBLISH_BRANCH}}
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
