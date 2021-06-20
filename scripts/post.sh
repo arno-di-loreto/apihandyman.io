@@ -1,45 +1,53 @@
-#! /bin/bash
-
 # scripts/post.sh "<title>" <category> <date>
-# category (option: post by default): posts, talks, elsewhere
+# category (option: post by default): post, talk
 # date: YYYY-MM-DD (option, today by default)
 
-if [ -z "$1" ]
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+ROOT_DIR=$SCRIPT_DIR/..
+
+TITLE=$1
+CATEGORY=$2
+DATE=$3
+
+if [ -z "$TITLE" ]
 then
   echo "Not post title provided"
   exit 1
-else
-  TITLE=$1
 fi
 
 URL_TITLE=`echo "$TITLE" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'`
 
-if [ -z "$2" ]
+if [ -z "$CATEGORY" ]
 then
-  CATEGORY="posts"
-else
-  CATEGORY=$2
+  echo "No post category provided"
+  exit 1
 fi
 
-if [ -z "$3" ]
+if [ -z "$DATE" ]
 then
   DATE=`date +%Y-%m-%d`
-else
-  DATE=$3
 fi
 
 BRANCH="post/$URL_TITLE"
 FILE="_posts/$DATE-$URL_TITLE.md"
 IMAGES_DIR="images/$URL_TITLE"
 
-echo "Creating post [$TITLE] under url [$URL_TITLE] with category [$CATEGORY] and date [$DATE] on branch [$BRANCH] with file [$FILE]"
+echo "Creating post [$TITLE]"
+echo "With url [$URL_TITLE]"
+echo "And images directory [$IMAGES_DIR]"
+echo "And category [$CATEGORY]"
+echo "And date [$DATE]"
+echo "On branch [$BRANCH]"
+echo "And file [$FILE]"
 
-# git checkout -b $BRANCH
-cp _templates/post.md $FILE
+git checkout -b $BRANCH
+cp $ROOT_DIR/_templates/post.md $ROOT_DIR/$FILE
 
-sed -e "s/TITLE/$TITLE/" -i "" $FILE
-sed -e "s/DATE/$DATE/" -i "" $FILE
-sed -e "s/URL_TITLE/$URL/" -i "" $FILE
-sed -e "s/CATEGORY/$CATEGORY/" -i "" $FILE
+sed -e "s/TITLE/$TITLE/" -i "" $ROOT_DIR/$FILE
+sed -e "s/DATE/$DATE/" -i "" $ROOT_DIR/$FILE
+sed -e "s/URL/$URL_TITLE/" -i "" $ROOT_DIR/$FILE
+sed -e "s/CATEGORY/$CATEGORY/" -i "" $ROOT_DIR/$FILE
 
-mkdir $IMAGES_DIR
+mkdir $ROOT_DIR/$IMAGES_DIR
+
+touch index.html
