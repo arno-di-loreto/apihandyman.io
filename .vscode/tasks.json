@@ -34,6 +34,15 @@
             "presentation": {
                 "reveal": "silent"
             }
+        },
+        {
+            "label": "Refresh index",
+            "type": "shell",
+            "command": "touch index.html",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent"
+            }
         }
     ],
     "inputs": [
