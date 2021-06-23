@@ -1,4 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-06-20T15:34:58-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Handling breaking ch-ch-changes</title><link href="https://apihandyman.io/handling-breaking-ch-ch-changes/" rel="alternate" type="text/html" title="Handling breaking ch-ch-changes" /><published>2021-06-16T00:00:00-05:00</published><updated>2021-06-16T00:00:00-05:00</updated><id>https://apihandyman.io/breaking-changes</id><content type="html" xml:base="https://apihandyman.io/handling-breaking-ch-ch-changes/">&lt;p&gt;In (Ch-ch-) Changes, David Bowie sang “Every time I thought I’d got it made, it seemed the taste was not so sweet”, that’s a good metaphor for API design.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-06-23T07:08:21-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">4 Good Reasons To Do Api Design Reviews</title><link href="https://apihandyman.io/3-good-reasons-to-do-api-design-reviews/" rel="alternate" type="text/html" title="4 Good Reasons To Do Api Design Reviews" /><published>2021-06-23T00:00:00-05:00</published><updated>2021-06-23T00:00:00-05:00</updated><id>https://apihandyman.io/4-good-reasons-to-do-api-design-reviews</id><content type="html" xml:base="https://apihandyman.io/3-good-reasons-to-do-api-design-reviews/">&lt;p&gt;More often than not when people hear “let’s do an API design review”, they hear “let’s check that an API design conforms to API design guidelines”.
+That’s only partially true and reducing API design reviews to that is a terrible mistake.
+Actually, doing API design reviews only to do that may even not make any sense at all.
+Let’s see 3 really good reasons to do API design reviews.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;h1 id=&quot;im-gonna-need-a-bigger-boat&quot;&gt;I’m gonna need a bigger boat&lt;/h1&gt;
+
+&lt;p&gt;People following me on Twitter might have expect another post this week.
+Indeed, I tweeted something like “lately, I slightly changed the way I summarize my API design reviews, that looks promising and I’m going to write about this next week”.
+But, that would be putting the cart before the horse and I have so many things to say about API design reviews that I think this topic deserves a (probably long) series.
+So before diving into how I summarize API Design Reviews, we’ll talk about the reviews themselves and especially why you should (even must) do them.&lt;/p&gt;
+
+&lt;p&gt;And we start with what most people think an API design review is …&lt;/p&gt;
+
+&lt;h1 id=&quot;check-guidelines-conformance-ensure-consistency&quot;&gt;&lt;del&gt;Check guidelines conformance&lt;/del&gt; Ensure consistency&lt;/h1&gt;
+
+&lt;p&gt;So, more often than not when people hear “API design review”, they hear “checking that an API design conforms to API design guidelines”.
+That’s only partially true, the aim of an API design review is actually less about checking guidelines conformance (which is the “how doing a review”) and more about ensuring an overall consistency (which is the “why doing a review”).&lt;/p&gt;
+
+&lt;p&gt;Consistency in API design is important because if all of your APIs and more important all operations, behaviors and data models (and whatever forms an API design) share the same look and feel, that will make your APIs easier to understand and to use.
+Once people have learned to use one of your APIs, they feel at home when switching to the next one because it looks and behaves like the previous one.&lt;/p&gt;
+
+&lt;p&gt;That’s why guidelines are important; they are many good (and wrong) ways to design (REST or other) APIs but you need to choose one (preferably a good one). 
+Guidelines define an API design look and feel, and by the way if they are well made, those guidelines are consistent with outside world common practices and so that makes your APIs even more easy to use.&lt;/p&gt;
+
+&lt;p&gt;But while guidelines may help to achieve a certain level of consistency at high level, there is still much place to introduce inconsistency.
+Indeed, your guidelines will probably not cover every single and more local design concerns.
+For instance, it’s up to the API owners (the team, not a single person) to ensure that “a cat is always called a cat” (as we say in french).
+If it’s randomly called a &lt;code&gt;cat&lt;/code&gt;, &lt;code&gt;felisCatus&lt;/code&gt; or &lt;code&gt;felidae&lt;/code&gt; across same domain APIs or worse inside an API, that will puzzle more than one consumer (and owner by the way). 
+So API designers must take care to use the same vocabulary throughout a single API and across their domain APIs (who said &lt;a href=&quot;https://martinfowler.com/bliki/UbiquitousLanguage.html&quot;&gt;ubiquitous language&lt;/a&gt;?).&lt;/p&gt;
+
+&lt;p&gt;So, ensuring consistency not only requires to observes API design guidelines but also the rest of the API and other related APIs.
+But reducing API design review to “ensuring API design consistency” is a terrible mistake.&lt;/p&gt;
+
+&lt;h1 id=&quot;help-people-shape-the-right-apis&quot;&gt;Help people shape the right APIs&lt;/h1&gt;
+
+&lt;p&gt;If an API is 100% consistent with itself, with outside world common practices, with design guidelines and existing APIs, it unfortunately still can be a terrible API.
+Indeed, it can be as simple as choosing the wrong vocabulary (&lt;code&gt;cat&lt;/code&gt; vs &lt;code&gt;felisCatus&lt;/code&gt;), making the API hard to understand for non experts.
+But it can be also less obvious, like exposing purely internal concerns that shouldn’t be exposed to the outside, making the API complex to use (if not dangerous).
+It can be even worse: choosing a totally wrong purpose, making the API a total failure.
+And everything in between (and beyond).&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/3-good-reasons-to-do-api-design-reviews/kitchenradar.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;&lt;a href=&quot;https://livebook.manning.com/book/the-design-of-everyday-apis/chapter-2/16&quot;&gt;The Kitchen Radar 3000 (from my book The Design of Web APIs)&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Hopefully, it’s not a fatality, a well conducted API design review allows to avoid such dark fates.
+Put around a table people having functional knowledge, people knowing how the software work (existing) or should work (new), and people knowing nothing about the topic (usually the reviewer, or Jon Snow) and you should be able to decipher what the API should actually do (to solve someone’s problems) and how it should actually looks like.
+With all these people discussing during the API design review, the resulting API will be the right API, or at least it shouldn’t be that far (do a final check with potential consumers to confirm).&lt;/p&gt;
+
+&lt;h1 id=&quot;improve-api-design-skills&quot;&gt;Improve &lt;del&gt;API&lt;/del&gt; design skills&lt;/h1&gt;
+
+&lt;p&gt;The more you do API design reviews, the more people involved improve their API design skills.
+I have witnessed it myself, after a few months, all people involved (including myself as a reviewer) have improved their API design skills.
+At the beginning, there can be a lot of basic mistakes (HTTP, guidelines, consistency), but review after review people understand how API design works, how the guidelines works.
+In the process, reviewers learn also a lot by confronting their views to others, discovering new patterns, new use cases.
+And in the end, reviews can focus more on doing the right APIs than doing the APIs right.&lt;/p&gt;
+
+&lt;p&gt;Icing on the cake, API design reviews may have interesting side effects on other areas.
+One day someone told me that doing API design improved their software design skills, they changed the way they designed class, methods, databases, … and even software architecture.
+That’s also true on the functional perspective, building APIs that are easy to understand, easy to use, easy to evolve, can trigger new ways of thinking that can be applied when designing business processes too.&lt;/p&gt;
+
+&lt;h1 id=&quot;api-design-review-is-a-must-do&quot;&gt;API design review is a MUST do&lt;/h1&gt;
+
+&lt;p&gt;So, API design review is a MUST do.
+It will irremediably lead to consistency across APIs.
+More important, it will lead to building the right APIs.
+And even more important, it will help people grow API design skills that, icing on the cake, can be applied to other areas.&lt;/p&gt;
+
+&lt;p&gt;But, there’s always a but, that will only work if the API designer review is conducted the right way, especially with the right mindset.
+But that’s another story (if not stories) I’ll keep for one or more later post(s).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">More often than not when people hear “let’s do an API design review”, they hear “let’s check that an API design conforms to API design guidelines”. That’s only partially true and reducing API design reviews to that is a terrible mistake. Actually, doing API design reviews only to do that may even not make any sense at all. Let’s see 3 really good reasons to do API design reviews.</summary></entry><entry><title type="html">Handling breaking ch-ch-changes</title><link href="https://apihandyman.io/handling-breaking-ch-ch-changes/" rel="alternate" type="text/html" title="Handling breaking ch-ch-changes" /><published>2021-06-16T00:00:00-05:00</published><updated>2021-06-16T00:00:00-05:00</updated><id>https://apihandyman.io/breaking-changes</id><content type="html" xml:base="https://apihandyman.io/handling-breaking-ch-ch-changes/">&lt;p&gt;In (Ch-ch-) Changes, David Bowie sang “Every time I thought I’d got it made, it seemed the taste was not so sweet”, that’s a good metaphor for API design.
 An API will irremediably evolve because it will lack some features or because of mistakes, and so sooner or later, you may have to introduce a “breaking change”.
 That’s usually when people start to run in circle, scream and shout “Oh! Please no! Please, not a breaking ch-ch-change”.
 But, what is it actually? How to handle it? And should you always be afraid of it?&lt;/p&gt;
@@ -939,113 +1011,4 @@ That second advice on OpenAPI linters is far much better, consider it applies to
   &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/api-styleguide-the-lord-of-api-designs/&quot;&gt;The Lord of API Designs&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/api-design-reviewers-starter-set/&quot;&gt;The API Design Reviewer’s Starter Set&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://apihandyman.io/the-augmented-api-design-reviewer/&quot;&gt;The Augmented API Design Reviewer&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Thoughtworks Technology Radar 24, an “opinionated guide to technology frontiers”, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it. As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it’s not a click bait, I don’t know what it is).</summary></entry><entry><title type="html">404 Vs 405 Vs 501</title><link href="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/" rel="alternate" type="text/html" title="404 Vs 405 Vs 501" /><published>2021-04-21T00:00:00-05:00</published><updated>2021-04-21T00:00:00-05:00</updated><id>https://apihandyman.io/404-vs-405-vs-501</id><content type="html" xml:base="https://apihandyman.io/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/">&lt;p&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.
-This first post answers the following question: given that a &lt;code&gt;GET /resources/123&lt;/code&gt; request returns a &lt;code&gt;200 OK&lt;/code&gt;, what should be the response to &lt;code&gt;DELETE /resources/123&lt;/code&gt; if &lt;code&gt;DELETE&lt;/code&gt; method is not implemented? &lt;code&gt;404 Not Found&lt;/code&gt;, &lt;code&gt;405 Method Not Allowed&lt;/code&gt; or &lt;code&gt;501 Not Implemented&lt;/code&gt;?&lt;/p&gt;
-
-&lt;!--more--&gt;
-&lt;div class=&quot;card series-toc&quot;&gt;
-  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
-    &lt;h5 id=&quot;series&quot;&gt;Choosing HTTP status codes Series&lt;/h5&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;row series-toc_content&quot;&gt;
-    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
-      &lt;div class=&quot;card-body&quot;&gt;
-        &lt;p class=&quot;card-text&quot;&gt;When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context.&lt;div class=&quot;alert alert-info&quot;&gt;
-I never remember in which RFCs HTTP status codes are defined.
-To get a quick access to their documentation, I use &lt;a class=&quot;alert-link&quot; href=&quot;https://webconcepts.info/concepts/http-status-code/&quot;&gt;Erik Wilde's Web Concepts&lt;/a&gt;.
-&lt;/div&gt;Very special thanks to all Twitter people participating to the &lt;a href=&quot;https://twitter.com/search?q=%23choosehttpstatuscode&amp;amp;src=typed_query&quot;&gt;#choosehttpstatuscode&lt;/a&gt; polls and discussions&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
-      
-      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
-        
-          
-          &lt;li class=&quot;list-group-item active&quot;&gt;1 - This is not the HTTP method you're looking for, HTTP status code 404 vs 405 vs 501&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/hands-off-that-resource-http-status-code-401-vs-403-vs-404/&quot;&gt;2 - Hands off that resource, HTTP status code 401 vs 403 vs 404&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/move-along-no-resource-to-see-here-seriously-http-status-code-204-vs-403-vs-404-vs-410/&quot;&gt;3 - Move along, no resource to see here (truly), HTTP status code 204 vs 403 vs 404 vs 410&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/empty-lists-http-status-code-200-vs-204-vs-404/&quot;&gt;4 - Empty list, HTTP status code 200 vs 204 vs 404&lt;/a&gt;&lt;/li&gt;
-          
-        
-        
-      &lt;/ul&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id=&quot;the-context&quot;&gt;The context&lt;/h1&gt;
-
-&lt;p&gt;In my &lt;a class=&quot;post-link&quot; href=&quot;/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/&quot;&gt;Batch (Github) API calls with CSV and Postman runner and visualizer&lt;/a&gt; post, I used the Github REST API and discovered it was impossible to delete an issue on a repository with a &lt;code&gt;DELETE /{user}/{repository}/issues/{issueId}&lt;/code&gt; request simply because it was not implemented.
-Unfortunately, the Github API warned me with a quite awkward &lt;code&gt;404 Not Found&lt;/code&gt; though a &lt;code&gt;GET&lt;/code&gt; on the very same issue returned a &lt;code&gt;200 OK&lt;/code&gt; that tells “this issue exists”.
-That’s quite a contradiction.&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/this-is-not-the-http-method-you-re-looking-for-http-status-code-404-vs-405-vs-501/twitter-poll.png&quot; class=&quot;figure-img img-fluid&quot; alt=&quot;Twitter poll results&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;According to a Twitter poll I made, a few voters (10%) agreed with Github REST API’s &lt;code&gt;404 Not Found&lt;/code&gt; response, most people (56%) would use a &lt;code&gt;405 Method Not Allowed&lt;/code&gt;, but a significant amount (34%) would use &lt;code&gt;501 Not Implemented&lt;/code&gt;.
-Let’s see which HTTP status code(s) can be used when a resource actually exists but the method provided in the request is not available.&lt;/p&gt;
-
-&lt;h1 id=&quot;use-405-method-not-allowed-when-method-isnt-defined-in-contract&quot;&gt;Use 405 Method Not Allowed when method isn’t defined in contract&lt;/h1&gt;
-
-&lt;blockquote class=&quot;blockquote&quot;&gt;
-    &lt;p class=&quot;mb-0&quot;&gt;The 405 (Method Not Allowed) status code indicates that the method received in the request-line is known by the origin server but not supported by the target resource.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
-        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.5.5&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.5&lt;/a&gt;&lt;/cite&gt;
-    &lt;/footer&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;A &lt;code&gt;405&lt;/code&gt; is a &lt;code&gt;4xx&lt;/code&gt; class status code, which means it’s client’s fault.
-Receiving such a response means the client sent to the origin server a request with a method that is not allowed/supported by the target resource.
-Let’s rephrase that definition in the context of an API:
-a consumer will get a &lt;code&gt;405 Method Not Allowed&lt;/code&gt; response when sending a request with a method which is not explicitly mentioned in in the contract or documentation on the target resource.
-For instance, that means if the API’s contract or documentation states the only method supported by a resource &lt;code&gt;/resource&lt;/code&gt; is &lt;code&gt;GET&lt;/code&gt;, a consumer sending a request on this resource using any other method, like &lt;code&gt;DELETE /resource&lt;/code&gt; for instance, will get a &lt;code&gt;405 Method Not Allowed&lt;/code&gt; response.&lt;/p&gt;
-
-&lt;p&gt;Therefore, the &lt;code&gt;405&lt;/code&gt; status code is the one I would have expected from the Github REST API when I tried to delete an issue.
-Indeed, the API’s documentation describing the API’s contract of the issue resource (&lt;code&gt;/{user}/{repository}/issues/{issueId}&lt;/code&gt;) only mentions &lt;code&gt;GET&lt;/code&gt; and I sent &lt;code&gt;DELETE&lt;/code&gt;.
-It’s clearly my fault, though it’s quite surprising to NOT be able to delete an issue (but that’s another story).&lt;/p&gt;
-
-&lt;p&gt;A &lt;code&gt;405 Method Not Allowed&lt;/code&gt; is the right choice when the method is not defined in contract, but sending a “wrong” method is not always consumer’s fault, that’s where a &lt;code&gt;501 Not Implemented&lt;/code&gt; could be interesting.&lt;/p&gt;
-
-&lt;h1 id=&quot;use-501-not-implemented-when-partially-implementing-a-standard&quot;&gt;Use 501 Not Implemented when partially implementing a “standard”&lt;/h1&gt;
-
-&lt;blockquote class=&quot;blockquote&quot;&gt;
-    &lt;p class=&quot;mb-0&quot;&gt;The 501 (Not Implemented) status code indicates that the server does not support the functionality required to fulfill the request. This is the appropriate response when the server does not recognize the request method and is not capable of supporting it for any resource.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
-        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.6.2&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, Section 6.6.2&lt;/a&gt;&lt;/cite&gt;
-    &lt;/footer&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;A &lt;code&gt;5xx&lt;/code&gt; class error means the server is at fault.
-A &lt;code&gt;501 Not Implemented&lt;/code&gt; basically says “we’re deeply sorry but &lt;code&gt;METHOD&lt;/code&gt; has not been implemented on this resource and maybe has not been implemented at all on any resource”.&lt;/p&gt;
-
-&lt;p&gt;Sending a &lt;code&gt;TOTALLY-UNKNOWN-METHOD /whatever-resource&lt;/code&gt; could result in getting a &lt;code&gt;501&lt;/code&gt; if the method does not match any &lt;a href=&quot;https://webconcepts.info/concepts/http-method/&quot;&gt;generally known one&lt;/a&gt;, but in that case I would prefer to return a &lt;code&gt;405 Method Not Allowed&lt;/code&gt; as it’s not the server’s fault if the consumer really sent a bullshit method in its request and must send an acceptable one.&lt;/p&gt;
-
-&lt;p&gt;But, imagine you are implementing a “more or less standard” interface contract.
-It could be because you work in a regulated industry like banking or an highly inter-connected one like travel or logistics.
-It could be because you want to implement a protocol such as WebDAV, which is a extended version of HTTP adding new methods.
-It could also be simply because inside your company several components have to share a common interface in order to facilitate communication.&lt;/p&gt;
-
-&lt;p&gt;Imagine now that standard contract you need to implement says consumer can use &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;PUT&lt;/code&gt; on &lt;code&gt;/resource&lt;/code&gt; but you only implement &lt;code&gt;GET&lt;/code&gt; in your version 1 for whatever reasonable reason.
-In that case, returning a &lt;code&gt;501 Not Implemented&lt;/code&gt; would be the perfect answer as the “standard” contract says that &lt;code&gt;PUT /whatever-resource&lt;/code&gt; is possible but it has not been implemented by the actual provider.&lt;/p&gt;
-
-&lt;p&gt;If a &lt;code&gt;501 Not Implemented&lt;/code&gt; is a very good answer in such a context of partially implementing a “more or less standard” API, returning a &lt;code&gt;404 Not Found&lt;/code&gt; is totally out of question in any HTTP method related error.&lt;/p&gt;
-
-&lt;h1 id=&quot;never-use-404-not-found-when-receiving-wrong-or-unknown-method&quot;&gt;Never use 404 Not Found when receiving wrong or unknown method&lt;/h1&gt;
-
-&lt;blockquote class=&quot;blockquote&quot;&gt;
-    &lt;p class=&quot;mb-0&quot;&gt;The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
-        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc7231#section-6.5.4&quot;&gt;RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content, section 6.5.4&lt;/a&gt;&lt;/cite&gt;
-    &lt;/footer&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;The Github REST API responded with a &lt;code&gt;404 Not Found&lt;/code&gt; to my &lt;code&gt;DELETE /issue-resource-path&lt;/code&gt; request.
-According to RFC 7231, that tells the issue identified by the path doesn’t exist (A) or Github is not willing to disclose that issue actually exists (B).
-Unfortunately, both options were contradicted by the &lt;code&gt;GET /issue-resource-path&lt;/code&gt; returning a &lt;code&gt;200 OK&lt;/code&gt;.
-Indeed, getting this &lt;code&gt;200&lt;/code&gt; tells the issue actually exists (Not A) and Github is willing to disclose it exists (Not B).&lt;/p&gt;
-
-&lt;p&gt;And even if for any reason I was actually not able to see this issue (we’ll talk about that in a later post) and so get a &lt;code&gt;404&lt;/code&gt; on my &lt;code&gt;GET&lt;/code&gt;, I still would prefer to get a &lt;code&gt;405&lt;/code&gt; on my &lt;code&gt;DELETE&lt;/code&gt;, that way I could have quickly know that whatever the issue I want to delete, I will never be able to delete it as it’s not possible according to the API’s contract.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This first post answers the following question: given that a GET /resources/123 request returns a 200 OK, what should be the response to DELETE /resources/123 if DELETE method is not implemented? 404 Not Found, 405 Method Not Allowed or 501 Not Implemented?</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Thoughtworks Technology Radar 24, an “opinionated guide to technology frontiers”, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it. As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it’s not a click bait, I don’t know what it is).</summary></entry></feed>
