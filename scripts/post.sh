@@ -51,3 +51,5 @@ sed -e "s/CATEGORY/$CATEGORY/" -i "" $ROOT_DIR/$FILE
 mkdir $ROOT_DIR/$IMAGES_DIR
 
 touch index.html
+
+code $ROOT_DIR/$FILE
