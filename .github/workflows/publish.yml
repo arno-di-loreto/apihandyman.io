@@ -34,7 +34,7 @@ jobs:
   clear_cdn_cache:
     needs: [ build_and_publish ]
     env:
-      POSTMAN_COLLECTION_BRANCH: master
+      POSTMAN_COLLECTION_BRANCH: main
       POSTMAN_COLLECTION_FOLDER: scripts
       CLOUDFLARE_WEBSITE: apihandyman.io
     runs-on: ubuntu-latest
