@@ -24,7 +24,11 @@
   {%- assign item_series_title = nil -%}
 {%- endif -%}
 {%- comment -%}====================================================={%- endcomment -%}
+{%- if item.author -%}
 {%- assign item_formated_author = item.author | prepend: 'By ' -%}
+{%- else -%}
+{%- assign item_formated_author = '' -%}
+{%- endif -%}
 {%- if item.date -%}
   {%- assign item_formated_date = item.date | date: "%B %-d, %Y" -%}
   {%- assign item_formated_author_date = item.author | prepend: 'By ' | append:', ' |append: item_formated_date -%}
