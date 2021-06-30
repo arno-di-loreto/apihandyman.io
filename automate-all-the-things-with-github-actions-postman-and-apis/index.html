@@ -1,0 +1,3000 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <title>API Handyman | Automate all the things (like Cloudflare cache purge) with Github actions, Postman and APIs</title>
+  <meta name="description" content="What if I tell you can run Postman collection inside Github Actions and so easily automate all the things as long as they provide APIs? Sounds interesting right? So let me show you how I migrated my Jekyll blog publication workflow to Github Actions and how I used Postman collection to clear my Cloudflare cache. Bonus: You may also learn a few things about DX and API design.">
+<meta name="keywords" content="API,Web API,Web Service">
+<meta name="author" content="Arnaud Lauret">
+<meta name="description" content="What if I tell you can run Postman collection inside Github Actions and so easily automate all the things as long as they provide APIs? Sounds interesting right? So let me show you how I migrated my Jekyll blog publication workflow to Github Actions and how I used Postman collection to clear my Cloudflare cache. Bonus: You may also learn a few things about DX and API design.">
+
+<!-- Facebook & LinkedIn -->
+<meta property="og:title"         content="Automate all the things (like Cloudflare cache purge) with Github actions, Postman and APIs"/>
+<meta property="og:type"          content="article"/>
+<meta property="og:description"   content="What if I tell you can run Postman collection inside Github Actions and so easily automate all the things as long as they provide APIs? Sounds interesting right? So let me show you how I migrated my Jekyll blog publication workflow to Github Actions and how I used Postman collection to clear my Cloudflare cache. Bonus: You may also learn a few things about DX and API design."/>
+<meta property="og:url"           content="https://apihandyman.io/automate-all-the-things-with-github-actions-postman-and-apis/"/>
+<meta property="og:image"         content="https://apihandyman.io/images/automate-all-the-things-with-github-actions-postman-and-apis/banner.jpg"/>
+
+<!-- Twitter -->
+<meta name="twitter:card"         content="summary">
+<meta name="twitter:site"         content="@apihandyman">
+<meta name="twitter:creator"      content="@apihandyman" />
+<meta name="twitter:title"        content="Automate all the things (like Cloudflare cache purge) with Github actions, Postman and APIs">
+<meta name="twitter:url"          content="https://apihandyman.io/automate-all-the-things-with-github-actions-postman-and-apis/">
+<meta name="twitter:description"  content="What if I tell you can run Postman collection inside Github Actions and so easily automate all the things as long as they provide APIs? Sounds interesting right? So let me show you how I migrated my Jekyll blog publication workflow to Github Actions and how I used Postman collection to clear my Cloudflare cache. Bonus: You may also learn a few things about DX and API design.">
+<meta name="twitter:image:src"    content="https://apihandyman.io/images/automate-all-the-things-with-github-actions-postman-and-apis/banner.jpg">
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/anchors.css">
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/prism.css">
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/asciinema-player.css">
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/code.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bash.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+</head>
+  <body  data-spy="scroll" data-target="#toc">
+    
+<div class="main-navbar fixed-top  scrolled">
+  <div class="container-lg">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">API Handyman</a>
+      
+      <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="btn-icon" src="/images/commons/icons/menu.svg" >
+      </button>
+      <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
+        <div class="navbar-nav">
+          <li class="nav-item dropdown dropdown-blog d-desktop-only">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Blog
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="/blog">All content</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/posts">Posts</a>
+              <a class="dropdown-item" href="/talks">Talks & Podcasts</a>
+            </div>
+          </li>
+          <a class="nav-item nav-link d-mobile-only" href="/Blog">Blog</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/posts">Posts</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/talks">Talks & Podcasts</a>
+          <a class="nav-item nav-link" href="/toolbox">Toolbox</a>
+          <a class="nav-item nav-link" href="/about">About</a>
+          <div class="form-search">
+    <input class="input-search" type="search" name="q" placeholder="Search" aria-label="Search">
+    <button class="btn-search"><?xml version="1.0" encoding="UTF-8"?>
+<svg width="26" height="26" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+ <path d="m85.207 79.375l-21.664-21.668c3.332-4.375 5.207-10 5.207-16.043 0-15-12.082-27.082-27.082-27.082s-27.086 12.086-27.086 27.086 12.082 27.082 27.082 27.082c6.043 0 11.457-1.875 16.043-5.207l21.668 21.668c0.83203 0.83203 1.875 1.25 2.918 1.25s2.082-0.41797 2.918-1.25c1.6641-1.668 1.6641-4.168-0.003907-5.8359zm-43.539-18.957c-10.418 0-18.75-8.332-18.75-18.75s8.332-18.75 18.75-18.75 18.75 8.332 18.75 18.75c0 10.414-8.3359 18.75-18.75 18.75z"/>
+</svg>
+</button>
+</div>
+          <a class="nav-item-book left-column-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
+        </div>
+      </div>
+      
+    </nav> <!-- class="navbar navbar-expand-md" -->
+  </div> <!--  class="container" -->
+</div> <!-- class="main-navbar fixed-top  scrolled" -->
+    <div class="page-content-container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="row row-banner-small row-banner-small-">
+    <div class="banner-small-container">
+      <div class="banner-small-column-main">
+        <img src="https://apihandyman.io/images/automate-all-the-things-with-github-actions-postman-and-apis/banner.jpg" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+
+<div class="row row-page-content">
+  <div class="container-fluid container-lg">
+    <div class="fade modal left-menu-hider left-menu-modal d-mobile-only"></div>
+    <div class="row">
+      
+      <div class="page-column-left left-menu left-menu-hider">
+        <div class="page-column-left-container">
+          
+
+
+
+<div class="left-book-ad left-book-ad-border d-desktop-only">
+  <img src="/images/commons/book/book-left-menu-cropped.png" class="card-img" alt="The Design of Web APIs book cover">
+  <div class="card-img-overlay message-cropped">
+    <a class="stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >
+      <p class="card-text">Special offer on my book</p>
+    </a>
+  </div>
+</div>
+<a class="left-book-ad-small left-menu-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button">
+  Special offer on my book
+  <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
+</a>
+
+  
+  <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
+    
+
+
+
+
+
+  <nav class="nav flex-column" id="toc">
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#migrating-to-github-actions-and-solving-an-old-problem">Migrating to Github Actions and solving an old problem</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#setting-up-a-jekyll-github-action-worflow">Setting up a Jekyll Github <del>Action</del> Worflow</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#default-jekyll-workflow">Default Jekyll workflow</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#customizing-jekyll-workflow">Customizing Jekyll workflow</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#clearing-cloudflare-cache-by-api-with-postman">Clearing Cloudflare cache by API with Postman</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#finding-the-api-documentation">Finding the API documentation</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#configuring-an-access-token">Configuring an access token</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#no-interactive-documentation-is-not-a-problem-here">No interactive documentation is not a problem here</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#verifying-the-token">Verifying the Token</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#reading-purge-cache-documentation">Reading purge cache documentation</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#guessing-how-cloudflare-api-works-thanks-to-its-design">Guessing how Cloudflare API works thanks to its design</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#purge-cache-collection">Purge cache collection</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#running-a-postman-collection-within-a-github-action">Running a Postman collection within a Github action</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#passing-variables-to-newman">Passing variables to Newman</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#running-newman-with-docker">Running Newman with Docker</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#running-newman-in-github-action-workflow">Running Newman in Github Action Workflow</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#automate-all-the-things">Automate all the things!</a>
+        
+      
+      
+    
+  
+  </nav>
+  </div>
+
+        </div>
+      </div>
+        
+      
+      <div class="page-column-main page-column-main-with-left">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="page-content-text anchors">
+  
+  
+  
+  
+  
+    
+    
+    <!-- First card with page title -->
+    <div class="card-page-section page-section-title">
+      <div class="body">
+        
+        <h5 class="surtitle"></h5>
+        
+        
+        <h1 class="title">Automate all the things (like Cloudflare cache purge) with Github actions, Postman and APIs</h1>
+        
+        
+        <h6 class="subtitle">By Arnaud Lauret, June 30, 2021</h6>
+        <hr/>
+        
+        <p>What if I tell you can run Postman collection inside Github Actions and so easily automate all the things as long as they provide APIs? Sounds interesting right? So let me show you how I migrated my Jekyll blog publication workflow to Github Actions and how I used Postman collection to clear my Cloudflare cache. Bonus: You may also learn a few things about DX and API design.
+<!--more--></p>
+
+
+        
+      </div>
+    </div><!-- First card with page title END -->
+      
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="migrating-to-github-actions-and-solving-an-old-problem">Migrating to Github Actions and solving an old problem</h1>
+
+<p>Since 2016, the API Handyman blog is powered by Jekyll, built by travis-ci.org, hosted on Github Pages and cached with Cloudflare CDN.
+On May 31, 2021, <a href="https://blog.travis-ci.com/2021-05-07-orgshutdown">travis-ci.org has been shot down</a>.
+This has been announced for quite a long time… but I managed to totally forgot to do something about it; I actually realized it simply because my 1st of June’s post has not been published. I was going to migrate to travis-ci.com but because (or thanks) to an obscure bug I wasn’t able to do it … and as I wanted to test <a href="https://github.com/features/actions">Github Actions</a>, I took the few necessary minutes to switch my build on it, and that was a blast. Ready to use actions that you can build upon, clear and simple format, good documentation, I was totally delighted.</p>
+
+<p>As changing the build system was faster than expected, I decided to tinker a bit more and solve a problem I had with my system: to ensure publication, I had to go to Cloudflare dashboard and manually clear the cache. If by chance Cloudflare propose an API, I thought I could include clearing cache after the build with a curl command, but as always I did a little bit more than that.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="setting-up-a-jekyll-github-action-worflow">Setting up a Jekyll Github <del>Action</del> Worflow</h1>
+
+<p>Migrating from travis-ci.org to Github actions was done at the speed of light.
+I will not go through all details, Github Actions, format, UI and <a href="https://docs.github.com/en/actions">documentation</a> are quite clear, but I will show you a few tips I discovered while setting up my first Github Workflow (yes, naming is hard, it’s called Github Actions but you create … Workflows, actually “actions” seems to be the reusable components that you can use in workflows).</p>
+
+<h2 id="default-jekyll-workflow">Default Jekyll workflow</h2>
+
+<p>Starting with Github Actions as a total beginner is dead simple:</p>
+
+<ul>
+  <li>Go to your repository</li>
+  <li>Click on the <em>Actions</em> tab, you should see a “Get started with Github Actions” page</li>
+  <li>Scroll down to “Continuous integration workflows” and look for “Jekyll”</li>
+</ul>
+
+<p>That should create the following workflow in <code>.github/workflows/jekyll.yml</code>in your repository:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Default Jekyll workflow</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy"><code class="code-block">name: Jekyll site CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the site in the jekyll/builder container
+      run: |
+        docker run \
+        -v $:/srv/jekyll -v $/_site:/srv/jekyll/_site \
+        jekyll/builder:latest /bin/bash -c &quot;chmod -R 777 /srv/jekyll &amp;&amp; jekyll build --future&quot;</code></pre>
+  </div>
+</div>
+
+<p>According to the <code>on</code> property, This workflow will be triggered by pushes and pull requests on main branch.
+It contains a single job (in <code>jobs</code>) named <code>build</code> which is composed of 2 <code>steps</code>:</p>
+
+<ul>
+  <li>The first one checkouts the repo taking advantage of the <code>actions/checkout@v2</code> action (that means you can call actions inside <del>actions</del> workflows! Check the <a href="https://github.com/marketplace?type=actions">Market Place</a>, there are dozens of them already)</li>
+  <li>The second step <code>run</code>s a jekyll build using Docker (that will prove to be useful) but does not publish anything (you can basically run any Linux commands with <code>run</code>)</li>
+</ul>
+
+<h2 id="customizing-jekyll-workflow">Customizing Jekyll workflow</h2>
+
+<p>My publication <a href="https://github.com/arno-di-loreto/apihandyman.io/blob/master/.github/workflows/publish.yml">workflow</a> is quite simple, each Wednesday à noon (UTC) or on demand, I want to:</p>
+
+<ul>
+  <li>Checkout repository on default branch</li>
+  <li>Run Jekyll build</li>
+  <li>Commit build’s result on gh-pages branch</li>
+</ul>
+
+<p>So I started by customizing the <code>on</code> section:</p>
+
+<ul>
+  <li>To <code>schedule</code> build every Wednesday at noon using cron syntax (<a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events">Schedule Events documentation</a>)</li>
+  <li>And I also activated “on demand” execution with the empty <code>workflow_dispath</code> (<a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events">Manual Events documentation</a>)</li>
+</ul>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Customized Jekyll workflow</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy"><code class="code-block">name: Publish
+
+on:
+  schedule:
+    - cron: &quot;0 12 * * WED&quot;
+  workflow_dispatch:</code></pre>
+  </div>
+</div>
+
+<p>Then I customized (and renamed) the <code>build</code> job as <code>build_and_publish</code>:</p>
+
+<ul>
+  <li>I added <code>PUBLISH_BRANCH_FOLDER</code> (target folder for build) and <code>PUBLISH_BRANCH</code> (publication branch) environment variables (<a href="https://docs.github.com/en/actions/reference/environment-variables">documentation</a>) in <code>env</code>. They are later used with the <code>${{env.VARIABLE_NAME}}</code> syntax.</li>
+  <li>I tweaked the checkout step to make it faster by only downloading the last version of the code (<code>fetch-depth: 1</code>)</li>
+  <li>I removed the <code>--future</code> flag on Jekyll build step to avoid having future date being published (actually I did that after realizing that future post had been published)</li>
+  <li>I modified build target directory (the second <code>-v</code> in the Docker command) and set it to <code>${{ github.workspace }}/${{env.PUBLISH_BRANCH_FOLDER}}</code>. The <code>github.workspace</code> is a variable of <a href="https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context">github context</a>, this context provides information about the workflow and the event that triggered it.</li>
+  <li>And finally, I added the publication step which consists in pushing build on <code>gh-pages</code>. This is done using the wonderful <a href="https://github.com/JamesIves/github-pages-deploy-action">JamesIves/github-pages-deploy-action</a> which can take the content of any folder and push it on any repository’s branch (the <code>clean: true</code> is a very convenient option that removes what should be removed from the target branch based on source folder)</li>
+</ul>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Customized Jekyll workflow</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy"><code class="code-block">jobs:
+  build_and_publish:
+    env:
+      PUBLISH_BRANCH: gh-pages
+      PUBLISH_BRANCH_FOLDER: _site
+    runs-on: ubuntu-latest
+    steps:
+    - name: ⬇️ Checkout current branch
+      uses: actions/checkout@v2
+      with:
+          fetch-depth: 1
+    - name: 👷🏻‍♂️ Build with jekyll/builder container
+      run: |
+        docker run \
+        -v ${{ github.workspace }}:/srv/jekyll \
+        -v ${{ github.workspace }}/${{env.PUBLISH_BRANCH_FOLDER}}:/srv/jekyll/_site \
+        jekyll/builder:latest /bin/bash -c &quot;chmod -R 777 /srv/jekyll &amp;&amp; jekyll build&quot;
+    - name: 🚀 Push on ${{env.PUBLISH_BRANCH}}
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: ${{env.PUBLISH_BRANCH}} # The branch the action should deploy to.
+        folder: ${{ github.workspace }}/${{env.PUBLISH_BRANCH_FOLDER}} # The folder the action should deploy.        
+        clean: true
+        commit-message: Publish</code></pre>
+  </div>
+</div>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="clearing-cloudflare-cache-by-api-with-postman">Clearing Cloudflare cache by API with Postman</h1>
+
+<p>Now that the blog is published, let’s see how to clear Cloudflare cache.</p>
+
+<p><em>Spoiler: Do Cloudflare offers a good DX (Developer eXperience)?
+Yes, definitely, I was able to do what I wanted in a matter of minutes.</em></p>
+
+<h2 id="finding-the-api-documentation">Finding the API documentation</h2>
+
+<p>I opened <a href="https://cloudflare.com">cloudflare.com</a> website to locate their API documentation but was quite disappointed, no mention of any Cloudflare API at all.
+That was not starting well; don’t do that at home, if you have API(s) advertize them on your homepage.
+Hopefully, I found the link to <a href="https://api.cloudflare.com/">Cloudflare API documentation</a> once I logged in my account and … scrolled all the way down to the page footer.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/cloudflare-hidden-api-link.png" class="figure-img img-fluid" /><figcaption class="figure-caption">Log in your Cloudflare account and scroll all the way down</figcaption></figure>
+</div>
+
+<p>To be honest, I could simply have googled Clouflare API and I would have arrived directly on the documentation, searching “company name api” is the best way to find a company’s API documentation.</p>
+
+<p>Though, Cloudflare doesn’t advertize them on their homepage, they did a great job on their APIs.
+Crystal clear documentation going straight to the point; it took me a few seconds to arrive to the <a href="https://api.cloudflare.com/#getting-started-requests">“Getting start -&gt; Requests”</a> section explaining how to make API calls using an API token.
+Icing on the cake: the direct link to your user profile for <a href="https://dash.cloudflare.com/profile/api-tokens">token configuration</a>.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/cloudflare-documentation.png" class="figure-img img-fluid" /><figcaption class="figure-caption">How to do a Cloudflare API request</figcaption></figure>
+</div>
+
+<h2 id="configuring-an-access-token">Configuring an access token</h2>
+
+<p>Once arrived on the <em>API Tokens</em> tab of your profile, click on the <em>Create Token</em> blue button, the following page will appear:</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/cloudflare-create-token.png" class="figure-img img-fluid" /><figcaption class="figure-caption">Create Cloudflare API Token</figcaption></figure>
+</div>
+
+<p>Cloudflare allows to create tailor made tokens with only the permissions you actually need which is great for security.
+The create token page propose pre-configured token templates which is good, but there was no template matching my need, so I created a custom token.</p>
+
+<h3 id="configuring-a-custom-token">Configuring a custom token</h3>
+
+<p>Configuring an access token is dead simple:</p>
+
+<ol>
+  <li>Give it a name (useful when wanting to delete a token)</li>
+  <li>Select permissions Zone -&gt; Cache Purge -&gt; Purge</li>
+  <li>Select resources to purge, I chose to include only the apihandyman.io domain</li>
+  <li>Click on continue to summary</li>
+</ol>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/cloudflare-token-configuration.png" class="figure-img img-fluid" /><figcaption class="figure-caption">Configure Cloudflare API Token</figcaption></figure>
+</div>
+
+<p>Cloudflare allows to generate tokens with really fine grain permissions and the way they are organized and what you can do with them is crystal clear.
+Github should get inspired by this, their <a href="/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/#getting-a-github-personal-access-token">token configuration</a> is light years behind this.</p>
+
+<h3 id="checking-configuration">Checking configuration</h3>
+
+<p>Once configuration is done, you’ll get a summary of permissions granted by this token.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/cloudflare-token-summary.png" class="figure-img img-fluid" /><figcaption class="figure-caption">Cloudflare API Token Summary</figcaption></figure>
+</div>
+
+<h3 id="token-created">Token created</h3>
+
+<p>And when token is created, you can copy it to use it, but quite convenient, you get a ready to use curl command to check it actually works (I wouldn’t have designed the endpoint like this though, but that’s not the point here).</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/cloudflare-token-created.png" class="figure-img img-fluid" /><figcaption class="figure-caption">Cloudflare API Token Created</figcaption></figure>
+</div>
+
+<h2 id="no-interactive-documentation-is-not-a-problem-here">No interactive documentation is not a problem here</h2>
+
+<p>Ok, Cloudflare could propose an interactive documentation using pre-generated tokens.
+But in that context and as the API is quite simple I was not annoyed at all by the static documentation.
+I even wonder if that would be a good idea to have such dynamic documentation based on the terrible actions you can trigger with their API.</p>
+
+<h2 id="verifying-the-token">Verifying the Token</h2>
+
+<p>Instead of using curl to verify token, I used <a href="/toolbox/postman">Postman</a>.</p>
+
+<p><em>If you’re not familiar with Postman, follow the detailed steps described in my <a href="/batch-github-api-call-with-csv-and-postman-runner-and-visualizer/#configuring-authorization-in-postman-and-make-a-successful-first-api-call">Batch (Github) API calls with CSV and Postman</a> to setup workspace, collection and environment variables</em></p>
+
+<p>I created a <em>Cloudflare</em> workspace and a <em>Cloudflare Clear Cache</em> collection in Postman to tinker with the Cloudflare API.
+I added a collection variable called <code>root</code> containing the url (https://api.cloudflare.com/client/v4) of Cloudflare API 
+And I added a <em>Cloudflare</em> environment containing my newly created <code>token</code> (and saved and selected it in the upper right environment drop list!).</p>
+
+<p>In the collection, I set up Authorization type to Bearer Token (as stated by Cloudflare API documentation) and set the Token value to <code>{{token}}</code>.
+And the I created a Verify Token request as a <code>GET {{root}}/user/tokens/verify</code>.
+Before hitting the <em>Send</em> button, I added a Test snippet to check that the response is a <code>200 OK</code> by going to the request’s <em>Tests</em> tab then click on the “Status code: Code is 200” snippet as shown below.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/postman-verify-token.png" class="figure-img img-fluid" /><figcaption class="figure-caption">Verifying Cloudflare Token in Postman</figcaption></figure>
+</div>
+
+<h2 id="reading-purge-cache-documentation">Reading purge cache documentation</h2>
+
+<p>Now that we’re all set to make Cloudflare API calls, let’s see how to purge cache.
+Finding out how to do that is again dead simple, go to Cloudflare API documentation, type “purge” in the top left search box, and click on “Purge All Files”.
+Note that depending on your Cloudflare subscriptions, you can get access to more sophisticated purge cache features.
+As I have a small github hosted website, I can afford to do a brutal total cache purge, I may use the purge files by URL to make this more efficient.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/cloudflare-documentation-purge.png" class="figure-img img-fluid" /><figcaption class="figure-caption">Verifying Cloudflare Token in Postman</figcaption></figure>
+</div>
+
+<p>So purging cache requires to send a <code>POST {{root}}/zones/{zone identifier}/purge_cache</code> request, according to the curl example, that will be the technical identifier of my apihandyman.io zone.
+I think I could get that identifier from the dashboard but I’m too lazy to do that.</p>
+
+<h2 id="guessing-how-cloudflare-api-works-thanks-to-its-design">Guessing how Cloudflare API works thanks to its design</h2>
+
+<p>Though I wouldn’t have design the Cloudflare API that way, it is still a little bit predictable.
+I can get what I want (my apihandyman.io zone identifier) without reading the documentation.
+First, based on the <code>{{root}}/zones/{zone identifier}/purge_cache</code>, I can guess that doing a <code>GET {{root}}/zones</code> will let me list all my zones, and the guess is correct!
+I get a list of zone and the <code>name</code> property contains the domain name, so let’s try a <code>GET {{root}}/zones?name=apihandyman.io</code> to get only the zone I need, that works too!</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/postman-get-zone.png" class="figure-img img-fluid" /><figcaption class="figure-caption">Getting apihandyman.io zone and storing in zone_id environment variable</figcaption></figure>
+</div>
+
+<p>In order to make all this reusable, I set the website name as an environment variable.
+And in the Tests tab, I add some code based on Postman’s snippets to check that I get a successful response with a non empty list and then I store the zone identifier in a environment variable.</p>
+
+<p>Now that I have my zone identifier, I can easily purge cache using the <code>zone_id</code> variable:</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/postman-purge-cache.png" class="figure-img img-fluid" /><figcaption class="figure-caption">Purging apihandyman.io cache</figcaption></figure>
+</div>
+
+<p>I just add a new <code>{{root}}/zones/{{zone_id_}}/purge_cache</code> request with a body containing the <code>purge_everything</code> set to true and I’m done.
+Well, almost done, I also added a test to check that the request is successful using the snippet “code is 200”.</p>
+
+<h2 id="purge-cache-collection">Purge cache collection</h2>
+
+<p>Now I have collection that contains 3 requests:</p>
+
+<ul>
+  <li>Verify token</li>
+  <li>Get zone identifier for website name</li>
+  <li>Purge cache</li>
+</ul>
+
+<p>Those requests relies on the following variables</p>
+
+<div class="table-wrapper"><table></div>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>collection</td>
+      <td>The root URL of Cloudflare API (collection hard coded)</td>
+    </tr>
+    <tr>
+      <td>token</td>
+      <td>environment</td>
+      <td>The Cloudflare API bearer token (set by user)</td>
+    </tr>
+    <tr>
+      <td>website</td>
+      <td>environment</td>
+      <td>The website name to purge (set by user)</td>
+    </tr>
+    <tr>
+      <td>zone_id</td>
+      <td>environment</td>
+      <td>The zone identifier of the website (set by Get zone identifier request)</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p>Now we know how to purge Cloudflare cache, let’s see how to do it with a Github action.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="running-a-postman-collection-within-a-github-action">Running a Postman collection within a Github action</h1>
+
+<p>In the beginning my idea was to simply do a curl command to call cloudflare API and possibly use <a href="/toolbox/jq/">jq</a> if needed between calls but once I have seen that you can use Docker withing Github Actions and so run almost anything you want, I came to the idea of using <a href="/toolbox/newman/">Newman</a>, Postman’s CLI, to run a Postman collection.
+I exported my <em>Cloudflare Clear Cache</em> Postman collection as <code>cloudflare-clearcache.postman_collection.json</code> in the <code>scripts</code> folder of my <code>apihandyman.io</code> Github repository.</p>
+
+<h2 id="passing-variables-to-newman">Passing variables to Newman</h2>
+
+<p>Running “Clearing Cloudflare cache” collection on the command line is as simple as running <code>newman run scripts/cloudflare-clearcache.postman_collection.json</code>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Failed run</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers code-copy"><code class="code-block">Cloudflare Clear Cache
+
+→ Verify Token
+  GET https://api.cloudflare.com/client/v4/user/tokens/verify [400 Bad Request, 1.08KB, 1034ms]
+  1. Status code is 200</code></pre>
+  </div>
+</div>
+
+<p>Oops, got a 400 instead of 200 when verifying token because there simply was no token provided.
+Newman is unaware of Postman’s environment variables.
+This is simply fixed as follow using <code>--env-var name=value</code> for each user defined variable of my <em>Cloudflare Clear Cache</em> Postman collection:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Setting environment variables</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers code-copy"><code class="code-block">newman run \
+    --env-var token=REDACTED_CLOUDFLARE_TOKEN \
+    --env-var website=apihandyman.io \
+    scripts/cloudflare-clearcache.postman_collection.json</code></pre>
+  </div>
+</div>
+
+<h2 id="running-newman-with-docker">Running Newman with Docker</h2>
+
+<p>Running Newman with Docker is almost as simple using the <a href="https://hub.docker.com/r/postman/newman/">postman/newman</a> image.
+The thing you need to know is that when running a local collection file, the <code>newman</code> CLI inside  Docker expects to find it in <code>/etc/newman</code>.
+That’s why there’s a <code>-v</code> parameter in the following command, which mounts the folder containing the <code>cloudflare-clearcache.postman_collection.json</code> on <code>/etc/newman</code>:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Newman, Docker and Variables</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers code-copy"><code class="code-block">docker run \
+    -v /path/to/scripts:/etc/newman \
+    -t postman/newman:alpine run \
+    --env-var token=REDACTED_CLOUDFLARE_TOKEN \
+    --env-var website=apihandyman.io \
+    cloudflare-clearcache.postman_collection.json</code></pre>
+  </div>
+</div>
+
+<h2 id="running-newman-in-github-action-workflow">Running Newman in Github Action Workflow</h2>
+
+<p>Now that we know how to run the <code>cloudflare-clearcache.postman_collection.json</code> with Newman and Docker, let’s add a job doing so to the Github workflow:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Newman in Github Actions</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy"><code class="code-block">jobs:
+  build_and_publish:
+    [...]
+  clear_cdn_cache:
+    needs: [ build_and_publish ]
+    env:
+      POSTMAN_COLLECTION_BRANCH: main
+      POSTMAN_COLLECTION_FOLDER: scripts
+      CLOUDFLARE_WEBSITE: apihandyman.io
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Download Cloudflare Clear Cache Postman collection
+        uses: actions/checkout@v2
+        with:
+          ref: ${{env.POSTMAN_COLLECTION_BRANCH}}
+          fetch-depth: 1
+      - name: 💥 Clear Cloudflare cache
+        run: |
+          docker run \
+          -v ${{ github.workspace }}/${{env.POSTMAN_COLLECTION_FOLDER}}:/etc/newman \
+          -t postman/newman:alpine run \
+          --env-var token=${{secrets.CLOUDFLARE_TOKEN}} \
+          --env-var website=${{env.CLOUDFLARE_WEBSITE}} \
+          cloudflare-clearcache.postman_collection.json</code></pre>
+  </div>
+</div>
+
+<p>I added <code>clear_cdn_cache</code> job after the <code>build_and_publish</code> one:</p>
+
+<ul>
+  <li>The <code>needs</code> property says this job will only start AFTER <code>build_and_publish</code> success (without that both jobs start in parallel)</li>
+  <li>In <code>env</code> I declare a few variables and especially the <code>CLOUDFLARE_WEBSITE</code> needed by the Postman collection</li>
+  <li>The first step downloads the collection, it’s in current repo, but it could be elsewhere</li>
+  <li>The second step runs the collection with newman, note that I obviously didn’t put my Cloudflare token there, instead I’m using a secret <code>${{secrets.CLOUDFLARE_TOKEN}}</code>. To configure a secret, go to the repository’s <em>Settings</em> tab, then <em>Secrets</em>.</li>
+</ul>
+
+<p>And 🎉:</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/automate-all-the-things-with-github-actions-postman-and-apis/github-clear-cdn-cache.png" class="figure-img img-fluid" /><figcaption class="figure-caption">Purging apihandyman.io cache done!</figcaption></figure>
+</div>
+
+<p>Note that, on line 5, the token value (<code>${{secrets.CLOUDFLARE_TOKEN}}</code>) is (hopefully) not printed as it is as secret.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="automate-all-the-things">Automate all the things!</h1>
+
+<p>Being able to run Postman collection within Github actions opens endless possibilities but more important, all what I’ve done here can be done because people actually worked hard to bring the best possible user experience at every level:</p>
+
+<ul>
+  <li>Regarding APIs DX, the Cloudflare API and its documentation can be taken as a good example (even though I would tweak a thing or 2 in their design), it’s a shame they don’t advertize their wonderful API on their homepage.</li>
+  <li>Postman and Newman easily help me to avoid writing painful bash/curl scripting.</li>
+  <li>Github actions being so well documented and simple are a pleasure to use, being able to use others’ actions and the Docker capability are killer features</li>
+  <li>And so Docker participates greatly in this awesome user experience, making it easy to run absolutely everything wherever you want</li>
+</ul>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+  
+</div><!-- class="page-content-text"-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-page-bottom-nav nav-fixed-bottom">
+  <div class="container-fluid container-lg">
+    <nav class="nav-page " aria-label="Page navigation">
+      <a class="nav-page-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top"><svg height='100px' width='100px' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><polygon points="4.1,10 5.5,11.4 9,7.8 9,20 11,20 11,7.8 14.5,11.4 16,10 10,4  "></polygon><rect x="0" width="20" height="2"></rect></g></svg></a>
+      
+      <a class="nav-page-btn left-menu-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><rect x="0" y="2" width="4" height="4"></rect><rect x="0" y="8" width="4" height="4"></rect><rect x="0" y="14" width="4" height="4"></rect><rect x="6" y="3" width="14" height="2"></rect><rect x="6" y="9" width="14" height="2"></rect><rect x="6" y="15" width="14" height="2"></rect></g></svg></a>
+      
+    </nav>
+  </div>
+</div>
+
+
+      <div class="row row-footer-margin">
+
+</div>
+<div class="row row-footer">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container footer-content">
+        <div class="row align-items-end row-cols-1 row-cols-md-2">
+          <div class="col d-flex justify-content-center mb-1 mb-md-4">
+            <div class="icon"><a href="https://twitter.com/apihandyman" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a></div>
+            <div class="icon"><a href="https://www.linkedin.com/in/arnaudlauret" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></div>
+            <div class="icon"><a href="https://github.com/arno-di-loreto" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a></div>
+            <div class="icon"><a href="/feed.xml" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg></a></div>
+          </div>
+          <div class="col text-center">
+            <a class="btn border-0 rounded-0 p-0" data-toggle="modal" data-target="#bookModal" role="button" ><img class="img-footer-book" src="/images/commons/book/book-footer.png"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-footer-second">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col col-footer-privacy mb-3 mb-md-0">
+            <div class="icon privacy-link"><a href="/privacy"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg><span class="privacy-link-text">Privacy Policy & Settings<span></span></a></div>
+          </div>
+          <div class="col col-footer-copyright">
+            &copy; 2015-2021 Arnaud Lauret
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            <!-- Modal -->
+      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-book" role="document">
+          <div class="modal-content border-0">
+            <div class="modal-body p-0">
+              <div class="container-fluid p-0">
+                <button type="button" class="close pr-2 pt-1" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row modal-book-cover-center"></div>
+                <div class="row mb-3 mb-lg-0 ml-0 mr-0 pt-3 pt-md-0">
+                  <div class="col col-lg-4 d-none d-md-block p-0">
+                    <img class="img-fluid" src="/images/commons/book/book-modal.png"/>
+                  </div>
+                  <div class="col col-12 col-lg-8 pt-2 pt-lg-4 text-justify">
+                    <p>Want to learn how to design simple, user friendly, secure and implementable APIs that do everything they should?</p>
+                    <p>Use code <code class="book-discount-code text-copy" aria-label="copy discount code" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to copy">fcclauret</code> to get 37% off my book The Design of Web APIs (works also on any other Manning product!).</p>
+                    <p class="text-center"><a href="http://bit.ly/designwebapis" target="_blank" class="btn btn-primary">Buy on manning.com</a></p>
+                    <p class="text-muted pt-3 mb-0">Disclosure: the link above is an affiliated link, meaning, at no additional cost to you, I will earn a commission if you click through and make a purchase.</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+<div class="privacy-message d-none fixed-bottom container-fluid bg-dark text-white p-3">
+  <div class="container">
+    <div class="row text-center pt-2 pb-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+      <div class="col text-justify">
+        By continuing to use this web site you agree with the API Handyman website privacy policy (effective date , June 28, 2020).
+      </div>
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+          <a class="btn btn-primary" href="/privacy">Read privacy policy</a>
+          <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+    <div class="row text-center pt-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <a class="btn btn-primary" href="/privacy">Read privacy policy</a>
+        <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/jquery-3.4.1.slim.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/popper.min.js" ></script>
+<script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script type="text/javascript" src="/js/anchors.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/main.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/prism.js" ></script>
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/asciinema-player.js" ></script>
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/code.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<div id="device-size-detector">
+  <div id="xs" class="d-xs-only"></div>
+  <div id="sm" class="d-sm-only"></div>
+  <div id="md" class="d-md-only"></div>
+  <div id="lg" class="d-lg-only"></div>
+  <div id="xl" class="d-xl-only"></div>
+</div>
+<script type="text/javascript" src="/js/size.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/bash.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/toc.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/fingerprint2.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/google-analytics.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/search-bar.js" ></script>
+
+
+
+    
+  
+
+
+  </body>
+</html>
