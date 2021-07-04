@@ -15,7 +15,7 @@ then
   exit 1
 fi
 
-URL_TITLE=`echo "$TITLE" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'`
+URL_TITLE=`echo "$TITLE" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr ',' ''`
 
 if [ -z "$CATEGORY" ]
 then
