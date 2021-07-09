@@ -95,7 +95,7 @@ When creating tools, ensure they are user friendly.
 Take advantage of standard/common practices, using the OpenAPI specification instead of wiki pages or spreadsheet to describe an API for instance.
 Ensure also they are the most open possible, providing APIs for instance, so designers can use them in a wide range of context because not all teams build APIs in the same way.
 
-# Fear the consequences of terrible Developer eXperience
+# Fear the consequences of terrible Designer eXperience
 
 Just in case you think that's not something you should care about because you think governance should be strong and only care about ensuring nobody breaks the law, let's briefly talk about the consequences of not caring about this other DX.
 
