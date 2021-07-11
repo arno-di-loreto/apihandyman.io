@@ -1,6 +1,16 @@
 {%- assign post = site.posts | find: "alias",include.alias -%}
 {%- if post.series-%}
-<a class="post-link" href="{{ post.permalink }}">{{post.series}} Part {{post.series_number}} - {{post.series_title}}</a>
+{%- assign post_title = post.series | append: " Part " | append: post.series_number | append: " - " | append: post.series_title -%}
 {%- else -%}
-<a class="post-link" href="{{ post.permalink }}">{{post.title}}</a>
+{%- assign post_title = post.title -%}
 {%- endif -%}
+
+{%- if include.format=="note-read" -%}
+{%- assign comment = include.comment | markdownify | remove: "<p>" | remove: "</p>" -%}
+<div class="alert alert-info" role="alert">
+    {{comment}}, read <a class="post-link" href="{{ post.permalink }}">{{post_title}}</a>
+</div>    
+{%- else -%}
+<a class="post-link" href="{{ post.permalink }}">{{post_title}}</a>
+{%- endif -%}
+
