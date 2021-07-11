@@ -1,0 +1,7 @@
+{%- assign rfc = site.data.rfcs | find: "id", include.code -%}
+{%- if include.section -%}
+{%- assign rfcurl= rfc.url | append: "#section-" | append: include.section -%}
+{%- else -%}
+{%- assign rfcurl= rfc.url -%}
+{%- endif -%}
+<a href="{{rfcurl}}">RFC{{rfc.id | append: " " | append: rfc.name}}</a>

@@ -40,6 +40,8 @@ echo "And date [$DATE]"
 echo "On branch [$BRANCH]"
 echo "And file [$FILE]"
 
+git checkout master
+git pull
 git checkout -b $BRANCH
 cp $ROOT_DIR/_templates/post.md $ROOT_DIR/$FILE
 
