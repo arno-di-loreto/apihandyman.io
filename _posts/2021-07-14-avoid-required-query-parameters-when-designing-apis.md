@@ -3,7 +3,7 @@ title: What's the problem with required query parameters?
 date: 2021-07-14
 author: Arnaud Lauret
 layout: post
-permalink: /avoid-required-query-parameters-when-designing-apis/
+permalink: /what-s-the-problem-with-required-query-parameters/
 category: post
 ---
 
