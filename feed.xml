@@ -1,4 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-07-09T11:07:03-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">API Designer Experience, the other DX</title><link href="https://apihandyman.io/api-designer-experience-the-other-dx/" rel="alternate" type="text/html" title="API Designer Experience, the other DX" /><published>2021-07-07T00:00:00-05:00</published><updated>2021-07-07T00:00:00-05:00</updated><id>https://apihandyman.io/designer-experience--the-other-dx</id><content type="html" xml:base="https://apihandyman.io/api-designer-experience-the-other-dx/">&lt;p&gt;Nobody expects the API inquisition!
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-07-14T07:10:09-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What’s the problem with required query parameters?</title><link href="https://apihandyman.io/what-s-the-problem-with-required-query-parameters/" rel="alternate" type="text/html" title="What’s the problem with required query parameters?" /><published>2021-07-14T00:00:00-05:00</published><updated>2021-07-14T00:00:00-05:00</updated><id>https://apihandyman.io/avoid-required-query-parameters-when-designing-apis</id><content type="html" xml:base="https://apihandyman.io/what-s-the-problem-with-required-query-parameters/">&lt;p&gt;When reviewing API designs, I often encounter operations such as &lt;code&gt;GET /resources?queryParameter=value&lt;/code&gt; where the query parameter is required.
+Consumers won’t be able to make that request without providing this parameter and a correct value; that’s usually a problem.
+Indeed, at best it will ruin developer experience and at worst it is a sign of design smell.
+Let’s see why.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;what-are-query-parameters-and-how-they-are-usually-used&quot;&gt;What are query parameters and how they are usually used&lt;/h1&gt;
+
+&lt;p&gt;According to &lt;a href=&quot;https://tools.ietf.org/html/rfc3986#section-3.4&quot;&gt;RFC3986 Uniform Resource Identifier (URI): Generic Syntax&lt;/a&gt;, the “query component” of a URI is everything that goes after a question mark (&lt;code&gt;?&lt;/code&gt;).
+The elements coming after that question mark are often in the form of a &lt;code&gt;key=value&lt;/code&gt; pair. 
+That means in &lt;code&gt;https://api.eternia.com/characters?hasMagicalPowers=true&lt;/code&gt;, &lt;code&gt;hasMagicalPowers&lt;/code&gt; is a query parameter and its value is &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Query parameters can be used in any type of HTTP requests but in most REST/RESTful/RESTish APIs, such query parameters are added on operations such as &lt;code&gt;GET /characters&lt;/code&gt;, that represents something like “list characters” or “search for characters”, in order to allow consumers to filter the results.
+While a &lt;code&gt;GET /characters&lt;/code&gt; is supposed to return all characters, a &lt;code&gt;GET /characters?hasMagicalPowers=true&lt;/code&gt; will only return the ones having magical powers.&lt;/p&gt;
+
+&lt;div class=&quot;alert alert-info&quot; role=&quot;alert&quot;&gt;
+    If you wonder why &lt;code&gt;/characters&lt;/code&gt; and not &lt;code&gt;/character&lt;/code&gt;
+, read &lt;a class=&quot;post-link&quot; href=&quot;/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/&quot;&gt;/resources rules and /resource sucks ... or is it the other way around?&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;required-query-parameters-ruin-dx&quot;&gt;Required query parameters ruin DX&lt;/h1&gt;
+
+&lt;p&gt;I have a rule of thumb when designing APIs: whatever the type of inputs, the less you request, the better because that help people do their first request and later ones without having to think too much.
+That is key when you want to build the best possible DX (developer experience).
+And query parameters are no exception.&lt;/p&gt;
+
+&lt;p&gt;In the example above, turning &lt;code&gt;hasMagicalPowers&lt;/code&gt; into a required query parameters will first lead to people failing their very first request because they expect that a &lt;code&gt;GET /characters&lt;/code&gt; can be done without any query parameters.
+Why would they expect that?
+Because it’s the most encountered behavior.
+That does not seem much, that’s not exactly “ruining” the developer experience but that’s quite annoying.
+This could be the straw that breaks the camel’s back, people may go elsewhere especially if there are other APIs offering the same services without such silly behavior.&lt;/p&gt;
+
+&lt;p&gt;And second problem, that leads to consumers having to make at least 2 requests in order to get all characters (pagination set aside), one to get those having magical powers and another one to those who haven’t.
+That is not really good for developer experience, it may actually ruin it.
+Obviously, in such situation, most of designers would never do that as beyond crippling developer experience, such design does not make any sense at all from this domain (Masters of the Universe franchise’s characters) perspective.&lt;/p&gt;
+
+&lt;p&gt;But there are other use cases that are less obvious.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/Masters_of_the_Universe&quot;&gt;Masters of the Universe&lt;/a&gt; franchise had multiple TV cartoon installments (and no, the live action movie does not exist).
+Let’s take for granted that the original one made at the beginning of the 80s is the most known and loved one.
+Let’s take also for granted one that people looking for information about that franchise’s characters want to be able to get information about the characters of that specific version.&lt;/p&gt;
+
+&lt;p&gt;That means when calling &lt;code&gt;GET /characters&lt;/code&gt;, it could make sense to filter the results based on the TV show and so add a &lt;code&gt;tvShow&lt;/code&gt; query parameter that could take values such as &lt;code&gt;80s_original_that_rules&lt;/code&gt;, &lt;code&gt;90s_version_that_sucks&lt;/code&gt; or &lt;code&gt;all&lt;/code&gt;.
+Some designer could be tempted to make this query parameter a required one, letting consumers choose which characters list they want.
+But the rule of thumb is to request the less possible information to consumers.
+So let’s avoid this by keeping the &lt;code&gt;tvShow&lt;/code&gt; parameter optional and using the most expected default value, obviously &lt;code&gt;80s_original_that_rules&lt;/code&gt;.
+That way, consumers could do a successful &lt;code&gt;GET /characters&lt;/code&gt; without thinking much, the implementation filling the gap returning the results that would please most consumers (characters from the 80s version).
+After that, having read the documentation further, consumers may use the other possible values of &lt;code&gt;tvShow&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In a more real use case, the problem could come from a date filter on time series data.
+Let’s say that for performance reasons for instance, the implementation absolutely needs a date to returns a subset of all available data.
+In such a case, keep the parameter optional but choose the “best” default date to use if it is not provided by consumers.
+It could be today, first day of the month, last whatever processing date or whatever date will make sense from a business rule perspective and that will please most consumers.&lt;/p&gt;
+
+&lt;p&gt;Whatever the query parameter, there is most of the time a way to keep it optional… if that parameter is not the sign of something more nasty.&lt;/p&gt;
+
+&lt;h1 id=&quot;required-query-parameters-can-be-signs-of-design-smells&quot;&gt;Required query parameters can be signs of design smells&lt;/h1&gt;
+
+&lt;p&gt;Indeed besides possibly “ruining” the developer experience, a required parameter can be a sign of design smell.&lt;/p&gt;
+
+&lt;p&gt;Let’s analyse the &lt;code&gt;GET /enemies?of=characterId&lt;/code&gt; request which has an &lt;code&gt;of&lt;/code&gt; required query parameter.
+It is supposed to return the enemies of someone, for example Skeletor and Beast Man are enemies of He-Man (&lt;code&gt;GET /enemies?of=he-man&lt;/code&gt;) while He-Man and Teela are enemies of Beast Man (&lt;code&gt;GET /enemies?of=beast-man&lt;/code&gt;).
+The &lt;code&gt;of&lt;/code&gt; parameter being required, my API design reviewer senses tell me there’s something wrong without even thinking about the purpose of this operation.&lt;/p&gt;
+
+&lt;p&gt;My first attempt is usually to check if the required parameter can be turned into an optional one.
+Here, returning the enemies of “no one” doesn’t make sense.
+Returning the enemies of a default character also makes no sense at all.
+So that does not smell good.&lt;/p&gt;
+
+&lt;p&gt;Indeed, if any character can be seen as an enemy by any other character, the resource that should be manipulated when representing “listing the enemies of someone”, is not just “enemies” but the “enemies of someone”.
+That means the resource path should be something like &lt;code&gt;/characters/{characterId}/enemies&lt;/code&gt; instead of just &lt;code&gt;/enemies&lt;/code&gt; (the character).&lt;/p&gt;
+
+&lt;p&gt;Based on my experience, when the query parameter cannot be removed that is most of the time the sign of a “wrong resource identified” and the fix is usually adding a level in the resource’s path hierarchy.&lt;/p&gt;
+
+&lt;h1 id=&quot;think-twice-before-adding-a-required-query-parameter&quot;&gt;Think twice before adding a required query parameter&lt;/h1&gt;
+
+&lt;p&gt;So the next time you’re tempted to make a query parameter required, double check that you’re using the right resource and especially not missing a level in your resources hierarchy.
+If the parameter actually makes sense, think about what could be the more useful value for most consumers and use it as default when that parameter is not provided.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">When reviewing API designs, I often encounter operations such as GET /resources?queryParameter=value where the query parameter is required. Consumers won’t be able to make that request without providing this parameter and a correct value; that’s usually a problem. Indeed, at best it will ruin developer experience and at worst it is a sign of design smell. Let’s see why.</summary></entry><entry><title type="html">API Designer Experience, the other DX</title><link href="https://apihandyman.io/api-designer-experience-the-other-dx/" rel="alternate" type="text/html" title="API Designer Experience, the other DX" /><published>2021-07-07T00:00:00-05:00</published><updated>2021-07-07T00:00:00-05:00</updated><id>https://apihandyman.io/designer-experience--the-other-dx</id><content type="html" xml:base="https://apihandyman.io/api-designer-experience-the-other-dx/">&lt;p&gt;Nobody expects the API inquisition!
 Literally.
 When creating public or private APIs, an organization must work hard on creating the best possible developer experience or DX.
 That requires to ensure that API designers “do their job well”: creating APIs that fulfill actual needs and are easy to understand and use.
@@ -1226,94 +1303,4 @@ Well to be honest, though I often meet people wanting to use it that way, I tota
 
 &lt;p&gt;The &lt;code&gt;No Content&lt;/code&gt; reason may fool you, but the description is quite clear, it doesn’t mean “there’s nothing for this path” but “these is something for this path but not content to return”.
 Also that HTTP status is a &lt;code&gt;2xx Success class&lt;/code&gt;, it is not intended to signify that something went wrong which is the case here, consumer did send a non existing/wrong resource id.
-So you should avoid using it in such a case.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This third post answers the following question: given that resource with id 123 actually doesn’t exist in the underlying database, what should be the response to GET /resources/123 when consumer is allowed to access such ressource? 204 No Content, 403 Forbidden, 404 Not Found or 410 Gone?</summary></entry><entry><title type="html">6 reasons why generating OpenAPI from code when designing and documenting APIs sucks</title><link href="https://apihandyman.io/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/" rel="alternate" type="text/html" title="6 reasons why generating OpenAPI from code when designing and documenting APIs sucks" /><published>2021-05-12T00:00:00-05:00</published><updated>2021-05-12T00:00:00-05:00</updated><id>https://apihandyman.io/generating-openapi-sucks</id><content type="html" xml:base="https://apihandyman.io/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/">&lt;p&gt;When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementation’s code (using annotations).
-Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;If you know me, have seen me talking at conferences, have read my posts or my book, you know what is my favorite approach (spoiler: the “write it” one).
-But as an API design reviewer I work with many different teams: some use the first approach and others the second one and some use both.
-Slowly but surely, the write it approach is gaining ground.
-I am pleased to see new teams I have never work with before are already convinced that writing OpenAPI (when design and documenting) is a better approach for them.
-And I am even more pleased to see some who were using the “generate it” approach switching to other other one, convinced by my reasons and the problems their encountered.
-I thought it could be interesting to share the 6 main reasons why people would stop to use the “generate it” approach and switch to the “write it” one, hence this post.&lt;/p&gt;
-
-&lt;h1 id=&quot;complicates-design&quot;&gt;Complicates design&lt;/h1&gt;
-
-&lt;p&gt;The first reason is that generating OpenAPI from code complicates design.
-Indeed, you need to write actual implementation’s code to get something.
-You need a fully functional development environment to code and build a more or less empty API’s implementation’s skeleton.&lt;/p&gt;
-
-&lt;p&gt;And not everybody who work on the design of an API can write code.
-That may be strange to your eyes, but there are places where developers of an API’s implementation are not the one who will actually design the API, business analysts may have that role.
-They work closely with developers but they are the one who actually write the API’s contract.
-There are places where those people may work more closely together, contributing to the same OpenAPI document, that would be quite complicated to do that with a generated one if one of them don’t code.&lt;/p&gt;
-
-&lt;p&gt;Some would argue that “writing” OpenAPI is like writing code.
-Until not so long ago, you would need to know the syntax to actually write it, but that’s not true anymore.
-There are API design GUI that allows anyone (with basic HTTP knowledge) to describe an API without having to write a single line of YAML (or JSON for the most masochistic).&lt;/p&gt;
-
-&lt;h1 id=&quot;forces-to-choose-development-stack&quot;&gt;Forces to choose development stack&lt;/h1&gt;
-
-&lt;p&gt;The second reason is an annoying side effect of having to write actual implementation’s code to get something.
-To write code, you actually have to choose a development stack.
-When you are working on a totally new software solution making such decisions too early during the overall solution’s design phase may reveal to be a problem.
-Indeed, you may realize that the chosen stack was not the more adapted one once you have a full view on what the API is supposed to do and so the written code must be thrown to garbage.
-Obviously if that’s just “yet another API in familiar environment”, that reason is null and void.&lt;/p&gt;
-
-&lt;h1 id=&quot;lessens-design-quality&quot;&gt;Lessens design quality&lt;/h1&gt;
-
-&lt;p&gt;Having to write code, especially on an existing application, risks to lessen the API design quality because it may lead to being “inside out” or also less accurate.&lt;/p&gt;
-
-&lt;p&gt;An inside out API design brutally exposes what is happening under the hood resulting in less easy to understand, less easy to use, less easy to evolve APIs.
-Seeing existing functions, existing databases, you may be tempted to expose them as is without rethinking them.
-That will lead to consumers needing to know how your implementation works when they shouldn’t, leading to tight coupling with them crippling the possibility of evolutions on your side.&lt;/p&gt;
-
-&lt;p&gt;Being polluted by existing implementation or purely development oriented concerns, not only will you expose the engine that should be hidden but you may take shortcuts resulting in less accurate design.
-Indeed, for instance, you may choose wrong resources, wrong operations, wrong granularity for an operation or data model or you may simply miss that you should have created a totally new API; all that simply because you were too close to the existing code or data.
-Such design will obviously also be less easy to understand, less easy to use, less easy to evolve APIs.&lt;/p&gt;
-
-&lt;h1 id=&quot;casts-doubt-upon-implementation&quot;&gt;Casts doubt upon implementation&lt;/h1&gt;
-
-&lt;p&gt;The big argument of the generate it approach is “no need to synchronize spec and code anymore!”.
-Yes that’s true, but that also means you don’t have an independent source of truth for your API’s contract.
-Whats was agreed on during the design phase may not be what is actually implemented in the end.
-Without a source of truth independent from actual code, there’s no way to test that what is implement is actually ok.
-A long time ago, having working with third party contractors building applications for my company that revealed to be a major problem.
-And even when working with the family, some errors or modifications may happen inadvertently.&lt;/p&gt;
-
-&lt;h1 id=&quot;complicates-writing-documentation&quot;&gt;Complicates writing documentation&lt;/h1&gt;
-
-&lt;p&gt;Developers who love to write documentation raise your hands!&lt;/p&gt;
-
-&lt;p&gt;Not so many hands risen (that’s a pity, but that’s another story).&lt;/p&gt;
-
-&lt;p&gt;This reason is similar to the first one “Complicates design”.
-When working on APIs, people who write the documentation may not be the one who write the code (and note also they may not be the one who do the design).
-Doc writers may not want to write code and developers may not want to have people mingling with their codebase.&lt;/p&gt;
-
-&lt;h1 id=&quot;lessens-documentation-quality&quot;&gt;Lessens documentation quality&lt;/h1&gt;
-
-&lt;p&gt;You may not know it but pushing the OpenAPI Specification to its limits allows to write totally awesome API documentation that everyone will love (writing about that is on my to do list).
-That’s especially interesting for private APIs, indeed you may not want to do the same level of effort regarding developer portal and producing content.
-A complete OpenAPI shown in Redoc, Stoplight Elements or even SwaggerUI will do the trick at almost 0 cost.&lt;/p&gt;
-
-&lt;p&gt;But producing such specification requires to uses all the OpenAPI Specification subtleties and unfortunately not all (if not no) generator allows that (and not all developers are willing to do such effort in their code, because previous reason).
-You may possibly tweak what the generator does to achieve some interesting modifications but at what cost?
-Whatever you do, generating code irremediably results in less expressive and less complete OpenAPI documents.&lt;/p&gt;
-
-&lt;h1 id=&quot;so-generating-openapi-sucks&quot;&gt;So generating OpenAPI sucks?&lt;/h1&gt;
-
-&lt;p&gt;That’s not what I said, what you should retain from this is is that there are &lt;em&gt;concerns to be aware of&lt;/em&gt; when generating OpenAPI Specification &lt;em&gt;from code when designing and documenting API&lt;/em&gt;.
-OK, the post’s title says “suck”, that’s a clickbait (for totally honorable reasons 😅).
-Actually and as always, it’s not a matter of right or wrong, it’s a matter of choosing a solution to a given problem according to a context and living with the consequences.&lt;/p&gt;
-
-&lt;p&gt;If in your context, people who design, code, and document are the same or are ok to work with code.
-And if people working on design are sufficiently experimented to not be polluted by existing code and data.
-And if you’re confident that there will be no variation during implementation.
-And if you don’t need all OpenAPI subtleties for your API documentation (and frankly, for private APIs, you can live with that).
-You may generate your OpenAPI documents from code.
-If not, you may have to rethink your strategy or if it’s too complicated decide knowingly to live with the risks listed in this post.&lt;/p&gt;
-
-&lt;p&gt;And regarding “generating OpenAPI” in general there are use cases where it’s incredibly interesting to do it.
-But that’s another story.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">When working with OpenAPI Specification documents to design and document APIs, there are two approaches: either you write it (directly using a text editor or indirectly using an API design GUI), either you generate it from the implementation’s code (using annotations). Generating OpenAPI Specification documents from code has major drawbacks that you should be aware of in order to choose this approach knowingly.</summary></entry></feed>
+So you should avoid using it in such a case.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This third post answers the following question: given that resource with id 123 actually doesn’t exist in the underlying database, what should be the response to GET /resources/123 when consumer is allowed to access such ressource? 204 No Content, 403 Forbidden, 404 Not Found or 410 Gone?</summary></entry></feed>
