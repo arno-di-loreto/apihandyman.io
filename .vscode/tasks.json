@@ -38,12 +38,21 @@
         {
             "label": "Refresh index",
             "type": "shell",
-            "command": "touch index.html",
+            "command": "scripts/refresh-index.sh",
             "problemMatcher": [],
             "presentation": {
                 "reveal": "silent"
             }
-        }
+        },
+        {
+            "label": "Update post title",
+            "type": "shell",
+            "command": "scripts/update-post.sh ${file}",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent"
+            }
+        },
     ],
     "inputs": [
         {

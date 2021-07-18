@@ -15,7 +15,7 @@ then
   exit 1
 fi
 
-URL_TITLE=`echo "$TITLE" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr ',' ''`
+URL_TITLE=`$SCRIPT_DIR/slugify.sh "$TITLE"`
 
 if [ -z "$CATEGORY" ]
 then
