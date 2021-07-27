@@ -1,5 +1,6 @@
 ---
 title: API Design Tips And Tricks - What if consumers can't do PATCH, PUT or DELETE?
+alias: http-method-override
 date: 2019-11-07
 author: Arnaud Lauret
 layout: post
