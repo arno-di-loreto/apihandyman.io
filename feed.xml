@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-07-21T07:10:01-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">An API Gateway alone will not secure your API</title><link href="https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api/" rel="alternate" type="text/html" title="An API Gateway alone will not secure your API" /><published>2021-07-21T00:00:00-05:00</published><updated>2021-07-21T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api</id><content type="html" xml:base="https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api/">&lt;p&gt;How many times people realized that an API was not so secured despite being exposed on an API gateway?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-07-28T07:10:11-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">An API gateway must be a dumb pipe</title><link href="https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe/" rel="alternate" type="text/html" title="An API gateway must be a dumb pipe" /><published>2021-07-28T00:00:00-05:00</published><updated>2021-07-28T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe</id><content type="html" xml:base="https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe/">&lt;p&gt;An API gateway is a proxy that sits between API providers and their consumers.
+Its main role is to ensure that only authorized consumers consume some APIs.
+But API gateways usually come also with features such as request/response transformation and some of them even allow to code complex orchestration.
+Such transformation features can be very useful if used wisely.
+But they also can give terrible ideas with terrible consequences.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;good-transformation-and-orchestration&quot;&gt;Good transformation and orchestration&lt;/h1&gt;
+
+&lt;p&gt;The most basic API gateway will allow to expose an API on &lt;code&gt;https://api.motu.com/v1&lt;/code&gt; while it’s implementation is exposed on &lt;code&gt;https/under.lying.server.prod/whatever/path&lt;/code&gt;.
+Before transmitting the request to the underlying server &lt;code&gt;https/under.lying.server.prod&lt;/code&gt;, it will modify the path, replacing &lt;code&gt;v1&lt;/code&gt; by &lt;code&gt;/whatever/path&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;As security is probably not handled the same way before and after the gateway, it may remove the original Authorization header containing a meaningless access token and replace by another one containing a JWT token holding information such as which consumer app made this call and in the name of who.&lt;/p&gt;
+
+&lt;p&gt;If it takes advantage of an API description format such as the OpenAPI Specification, it may strip the a &lt;code&gt;GET https://api.motu.com/v1/characters?unknownFilter=skeletor&lt;/code&gt; request from the &lt;code&gt;unknownFilter&lt;/code&gt; query parameter which is not declared in the interface contract.
+It may does the same on the response and strip any undeclared headers.&lt;/p&gt;
+
+&lt;p&gt;Possibly, it may seamlessly handle a &lt;code&gt;POST /whatever&lt;/code&gt; request coming with a &lt;code&gt;X-HTTP-Method-Override: PUT&lt;/code&gt; header and turn it into a &lt;code&gt;PUT /whatever&lt;/code&gt;. (See &lt;a class=&quot;post-link&quot; href=&quot;/api-design-tips-and-tricks-what-if-consumers-cant-do-patch-put-or-delete/&quot;&gt;API Design Tips And Tricks - What if consumers can’t do PATCH, PUT or DELETE?&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Beyond simple transformation, an API gateway may do some orchestration like sending request and response logs somewhere for instance.&lt;/p&gt;
+
+&lt;h1 id=&quot;bad-transformation-and-orchestration&quot;&gt;Bad transformation and orchestration&lt;/h1&gt;
+
+&lt;p&gt;All that basically means an API gateway allows to “write code”, real code using JavaScript, Java, Groovy or whatever language and/or pseudo-code using box and arrow based GUIs.
+And seeing that, some may have terrible ideas.&lt;/p&gt;
+
+&lt;p&gt;When returning the response of &lt;code&gt;GET /characters/he-man&lt;/code&gt; why not transforming &lt;code&gt;&quot;type&quot;: &quot;H&quot;&lt;/code&gt; to &lt;code&gt;&quot;side&quot;: &quot;hero&quot;&lt;/code&gt;?
+Why not taking the USD &lt;code&gt;price&lt;/code&gt; in &lt;code&gt;GET /toys/he-man&lt;/code&gt; response and convert it into EUR calling a third party API?
+Why not returning a subset of &lt;code&gt;GET /characters/he-man&lt;/code&gt; and &lt;code&gt;GET /toys/he-man&lt;/code&gt; when responding to &lt;code&gt;GET /action-figures/he-man&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;Why not indeed?&lt;/p&gt;
+
+&lt;p&gt;If you do that, you put business logic outside of its original domain, its original implementation.
+It’s not uncommon to have business logic split across various components but putting it in an API gateway can be a problem.&lt;/p&gt;
+
+&lt;p&gt;It may simply introduce complexity in the development workflow.
+Coding on this component may be easy … but coding with all the CI/CD, quality checks, … stuff may not be that simple.&lt;/p&gt;
+
+&lt;p&gt;Also, coding in that component may require special skills that the team owning the business logic, the team actually implementing the original underlying APIs may not have.
+So this team may have to delegate that code to someone else.
+And that may lead to organizational issue and a lack of ownership.
+The original team may think they don’t own that code and not really care about it.
+The other team coding on the gateway may not care as much as the original team, and even if it’s not the case, as they may not know the underlying business rules that can cause some bugs.&lt;/p&gt;
+
+&lt;h1 id=&quot;an-api-gateway-is-a-smart-dumb-pipe&quot;&gt;An API gateway is a smart-dumb pipe&lt;/h1&gt;
+
+&lt;p&gt;Introducing business logic in an API gateway basically transforms it into a good (or very bad I should say) old ESB.
+Remember them?
+Those bloated too smart pipes that ruined many information systems because they were so complicated to manage.
+So don’t do that, keep API gateways dumb.
+Well, not so dumb; as long as an API gateway do smart “API exposition related stuff” and stays dumb from a business perspective, that’s totally ok.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">An API gateway is a proxy that sits between API providers and their consumers. Its main role is to ensure that only authorized consumers consume some APIs. But API gateways usually come also with features such as request/response transformation and some of them even allow to code complex orchestration. Such transformation features can be very useful if used wisely. But they also can give terrible ideas with terrible consequences.</summary></entry><entry><title type="html">An API Gateway alone will not secure your API</title><link href="https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api/" rel="alternate" type="text/html" title="An API Gateway alone will not secure your API" /><published>2021-07-21T00:00:00-05:00</published><updated>2021-07-21T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api</id><content type="html" xml:base="https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api/">&lt;p&gt;How many times people realized that an API was not so secured despite being exposed on an API gateway?
 Too many times.
 While being a must have to securely expose APIs, an API gateway will not do all the security work for you.
 Security in general, and API security in particular, is a matter for everyone.
@@ -1206,83 +1256,4 @@ The question is not about achieving the most perfect design (regarding HTTP) but
 And that D in DX includes developers but also designers.
 Simple design rules that makes sense for most are a key factor in your APIs success.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><category term="HTTP Status Codes" /><summary type="html">When designing APIs, choosing HTTP status codes is not always that obvious and prone to errors, I hope this post series will help you to avoid common mistakes and choose an adapted one according to the context. This fourth post answers the following question: given that /users is a collection (a list) and no users are named Spock, what should return GET /users?name=spock? 200 OK, 204 No Content or 404 Not Found</summary></entry><entry><title type="html">Generating OpenAPI Descriptions. When is it a good idea?</title><link href="https://apihandyman.io/generating-openapi-descriptions-when-is-it-a-good-idea/" rel="alternate" type="text/html" title="Generating OpenAPI Descriptions. When is it a good idea?" /><published>2021-06-01T00:00:00-05:00</published><updated>2021-06-01T00:00:00-05:00</updated><id>https://apihandyman.io/generating-openapi-descriptions-with-erik-wilde</id><content type="html" xml:base="https://apihandyman.io/generating-openapi-descriptions-when-is-it-a-good-idea/">&lt;p&gt;As a follow up of my “6 reasons why generating OpenAPI sucks” post, I had the pleasure to talk about “is it a good idea to generate OpenAPI descriptions?” with &lt;a href=&quot;https://twitter.com/dret&quot;&gt;Erik Wilde&lt;/a&gt;. In this discussion, we answer this questions at various stages of the API lifecycle: design time, code time, and runtime.
 &lt;!--more--&gt;
-Watch on &lt;a href=&quot;https://youtu.be/YaiGbEZ0EH4&quot;&gt;Erik Wilde’s Youtube Channel&lt;/a&gt;&lt;/p&gt;</content><author><name>Erik Wilde &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">As a follow up of my “6 reasons why generating OpenAPI sucks” post, I had the pleasure to talk about “is it a good idea to generate OpenAPI descriptions?” with Erik Wilde. In this discussion, we answer this questions at various stages of the API lifecycle: design time, code time, and runtime.</summary></entry><entry><title type="html">/resources rules and /resource sucks … or is it the other way around?</title><link href="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/" rel="alternate" type="text/html" title="/resources rules and /resource sucks … or is it the other way around?" /><published>2021-05-26T00:00:00-05:00</published><updated>2021-05-26T00:00:00-05:00</updated><id>https://apihandyman.io/resources-vs-resource</id><content type="html" xml:base="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">&lt;p&gt;Using singular or plural to represent a list of something is an old debate in computer science, especially in the database field.
-But what about APIs then?
-It’s still the same, if you look at various APIs, you’ll see that something like “list/search resources” could be either represented by a &lt;code&gt;GET /resources&lt;/code&gt; or a &lt;code&gt;GET /resource&lt;/code&gt;.
-Who is right?
-Who is wrong?
-I have a preference, you may have another, but should we really give importance to such a debate?
-Aren’t we missing something?
-Let’s investigate that topic and discover what’s really important when choosing collection resource path.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;is-there-a-right-rest-solution&quot;&gt;Is there a “right” REST solution?&lt;/h1&gt;
-
-&lt;p&gt;Regarding choosing between &lt;code&gt;/customer&lt;/code&gt; and &lt;code&gt;/customers&lt;/code&gt;, I often meet people who ask me “is &lt;em&gt;whatever solution&lt;/em&gt; RESTful?” which basically means “what is the &lt;em&gt;right&lt;/em&gt; solution?”.
-When doing a choice, I always try to refer to a RFC, standard or common practice in order to make the “right” choice.
-So, let’s see what the &lt;a href=&quot;https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm&quot;&gt;REST Architectural Style dissertation&lt;/a&gt; says about that.&lt;/p&gt;
-
-&lt;p&gt;In short, REST is an architectural style which has been created by Roy Fielding to explain how distributed applications should interact with each other.
-He did that to explain how the HTTP protocol work and analyze factually the impact of its possible evolutions.
-Actually, he chose to describe factually a model and confront others ideas to this model, rather than just saying “my way is the best”, which is something that we all should think about.
-This architectural style defines a set of constraints (client/server separation, statelessness, cacheability, layered system, uniform interface and code on demand)that a REST system must conforms to.&lt;/p&gt;
-
-&lt;p&gt;REST APIs (or RESTful) APIs are supposed to embrace the REST Architectural Style and its constraints.
-Actually, this more often than not means those APIs try to conform more or less to HTTP semantic without thinking too much about all REST constraints.
-Speaking of constraints, does Mr Fielding dissertation talks about choosing resources paths?
-Resource paths (or resource identifiers) are not precisely identified as a constraint but there are some guidance provided:&lt;/p&gt;
-
-&lt;blockquote class=&quot;blockquote&quot;&gt;
-    &lt;p class=&quot;mb-0&quot;&gt;The definition of resource in REST is based on a simple premise: identifiers should change as infrequently as possible. Because the Web uses embedded identifiers rather than link servers, authors need an identifier that closely matches the semantics they intend by a hypermedia reference, allowing the reference to remain static even though the result of accessing that reference may change over time. REST accomplishes this by defining a resource to be the semantics of what the author intends to identify, rather than the value corresponding to those semantics at the time the reference is created. It is then left to the author to ensure that the identifier chosen for a reference does indeed identify the intended semantics.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
-        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;https://www.ics.uci.edu/~fielding/pubs/dissertation/evaluation.htm#sec_6_2_1&quot;&gt;Roy Fielding, Architectural Styles and the Design of Network-based Software Architectures&lt;/a&gt;&lt;/cite&gt;
-    &lt;/footer&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;For what matters in this post, this could be summarized by saying resource identifiers (or path) should change as infrequently as possible and it is up to the author to choose the most adapted semantics.
-So as you can see, nothing about singular or plural, according to the REST architectural style, it’s up to us to choose as long as it means something.&lt;/p&gt;
-
-&lt;h1 id=&quot;what-is-sure-dont-do-both&quot;&gt;What is sure: don’t do both&lt;/h1&gt;
-
-&lt;p&gt;So according to REST principles, &lt;code&gt;/resources&lt;/code&gt; or &lt;code&gt;/resource&lt;/code&gt;, you can choose the one you like.
-But you have to choose one, you can’t use both, for the sake of consistency and predictability.&lt;/p&gt;
-
-&lt;p&gt;Indeed, it would be quite awkward to do &lt;code&gt;GET /customers&lt;/code&gt; to search or list customers and a &lt;code&gt;GET /order&lt;/code&gt; to list orders.
-APIs are supposed to be consistent with themselves and other APIs of the same domain/organization.
-Choose one format, write it down in your API design guidelines and ensure that everyone designing APIs in your organization stick to this choice.&lt;/p&gt;
-
-&lt;p&gt;And for those who would come to the idea of using &lt;code&gt;GET /customers&lt;/code&gt; to search or list customers and a &lt;code&gt;GET /customer/{customerId}&lt;/code&gt; to read a specific customer, because “oh, we are reading a single element so let’s go singular now”.
-Please don’t do that.&lt;/p&gt;
-
-&lt;p&gt;If people do a &lt;code&gt;GET /whatever&lt;/code&gt; to get a list of whatever they’re used to brainlessly do a &lt;code&gt;GET /whatever/{whateverId}&lt;/code&gt; to get a specific element.
-You’ll disturb many people by breaking habits.
-But there are more than habits involved here, doing that simply breaks the semantic of paths.
-In a file system, do folder names change when you target a file inside them?
-In a database, do you change table name when doing a &lt;code&gt;select * where id=whateverId&lt;/code&gt;?
-No.
-So, please chose one side or the other, no middle ground here.&lt;/p&gt;
-
-&lt;h1 id=&quot;my-reasoned-opinion-plural&quot;&gt;My reasoned opinion: plural&lt;/h1&gt;
-
-&lt;p&gt;I use plural names for collections mostly because of semantics: plural means “it contains multiple elements”. 
-Note that I use plural in both path (&lt;code&gt;/customers&lt;/code&gt; is a path of collection resource) but also in data models (&lt;code&gt;customers&lt;/code&gt; is a property representing a list of customers inside a data model).&lt;/p&gt;
-
-&lt;p&gt;Using plural name for a collection also avoid surprise when having singleton resources, for instance &lt;code&gt;GET /customers/{customerId}/address&lt;/code&gt;, I know by reading this that I’ll manipulate a single address and not a list of address.
-That’s the main reason why I’m not using singular.
-Using singular for collection name would make that less obvious, though the data returned by a &lt;code&gt;GET /customer/{customerId}/address&lt;/code&gt; would give more than a hints about what is actually returned (list or single element).
-But that requires to trigger a read operation call to know that (if we don’t rely on documentation at all).&lt;/p&gt;
-
-&lt;p&gt;But let’s be objective, the plural option is not without drawbacks.
-Obviously as a machine getting data containing a &lt;code&gt;customerId&lt;/code&gt; (singular) and trying to guess how the API work without taking advantage of the documentation, I have some work to do to “know” that the plural of customer is customers in order to try a &lt;code&gt;GET /customers/{customerId}&lt;/code&gt; (which is quite simple here but determine singular or plural is not always that simple).
-But if your API is a true REST API that shouldn’t be a problem because it provides the ready to use links to other resources.
-Problem solved if that’s actually a problem, which is not the case most of the time.
-Indeed most people don’t care about hypermedia nor automatic API discovery and rely on the API documentation to write code that actually use the API (even for testing).&lt;/p&gt;
-
-&lt;p&gt;Regarding the singular option, I also wonder how then would be called a customer list inside a data model?
-I would probably add a suffix (&lt;code&gt;customerList&lt;/code&gt;) but then that introduce inconsistency between path and data, that is another reason why I prefer the plural option.&lt;/p&gt;
-
-&lt;h1 id=&quot;the-truth-is-elsewhere&quot;&gt;The truth is elsewhere&lt;/h1&gt;
-
-&lt;p&gt;I think the lesson to learn here is not determining which one is “better” between &lt;code&gt;/resources&lt;/code&gt; and &lt;code&gt;/resource&lt;/code&gt;, I’m sure someone using singular name has plenty of good reason doing so.
-No, the lesson here is that when there is non refutable standard solution, you have to reason to choose one that makes sense.
-Avoid “just because” solutions that you can’t explain.
-Avoid at all costs “wtf” solutions (like &lt;code&gt;GET /customers&lt;/code&gt; + &lt;code&gt;GET /customer/{customerId}&lt;/code&gt;) introducing complexity or inconsistency.
-And don’t forget to put it in your guidelines and ensure that everyone in your organization stick to that decision for the sake of consistency.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Using singular or plural to represent a list of something is an old debate in computer science, especially in the database field. But what about APIs then? It’s still the same, if you look at various APIs, you’ll see that something like “list/search resources” could be either represented by a GET /resources or a GET /resource. Who is right? Who is wrong? I have a preference, you may have another, but should we really give importance to such a debate? Aren’t we missing something? Let’s investigate that topic and discover what’s really important when choosing collection resource path.</summary></entry></feed>
+Watch on &lt;a href=&quot;https://youtu.be/YaiGbEZ0EH4&quot;&gt;Erik Wilde’s Youtube Channel&lt;/a&gt;&lt;/p&gt;</content><author><name>Erik Wilde &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">As a follow up of my “6 reasons why generating OpenAPI sucks” post, I had the pleasure to talk about “is it a good idea to generate OpenAPI descriptions?” with Erik Wilde. In this discussion, we answer this questions at various stages of the API lifecycle: design time, code time, and runtime.</summary></entry></feed>
