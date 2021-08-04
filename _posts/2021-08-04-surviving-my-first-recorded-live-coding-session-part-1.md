@@ -165,8 +165,11 @@ I finally didn't needed it but I keep that in mind for another time.
 I wanted something that look different from my good old VS Code standard theme and discovered many 80s theme in the marketplace.
 I finally choose [Synthwave x Fluoromachine](https://marketplace.visualstudio.com/items?itemName=webrender.synthwave-x-fluoromachine) which comes with a nice background image for the editor.
 To make it fully work you'll need [Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css).
+
 As I have done many tests, I don't remember if that theme was the actual cause but as I had some standard VS code CSS customized, "Unsupported" appeared in the window's title.
 To get rid of it, I used [Fix VSCodeCheckums](https://marketplace.visualstudio.com/items?itemName=lehni.vscode-fix-checksums), it fixes VS code files checksum and make the "Unsupported" disappear.
+
+And I also use the [Indent Rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow) extension that obviously colors indentations. Besides being pretty that's very useful.
 
 ## Drawing on screen
 
