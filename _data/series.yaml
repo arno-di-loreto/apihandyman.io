@@ -3,3 +3,12 @@ JQ and OpenAPI:
     series_title: Modifying OpenAPI files with JQ
   - series_number: 4
     series_title: "Bonus: coloring JQ's raw output"
+Surviving my first (recorded) live coding session:
+  - series_number: 2
+    series_title: Preparing session content and realizing it's not working well
+  - series_number: 3
+    series_title: Slide deck like live coding with titles and speaker's notes using OBS and VS Code
+  - series_number: 4
+    series_title: Live coding at light speed with VS Code
+  - series_number: 5
+    series_title: Improving live coding session tuning and rehearsing with VS Code

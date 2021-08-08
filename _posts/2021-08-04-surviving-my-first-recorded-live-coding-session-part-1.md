@@ -17,14 +17,7 @@ But I did it and learned a lot of stuff that deserves to be shared.
 In this first post, I'll talk about how "it started well": setting up OBS, mic, cam and VS Code to record myself speaking and coding.
 <!--more-->
 
-{% capture alert %}
-This live coding session was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
-The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
-
-Note that I'll soon start an OpenAPI Tips & Trick series including this session contents and a few other things I couldn't show during this session.
-{% endcapture %}
-
-{% include alert.html content=alert level="info" %}
+{% include _postincludes/live-coding-session.md %}
 
 # Discovering OBS Studio
 
@@ -202,4 +195,4 @@ So making it static solves the problem.
 Besides the mic and cam "problems", which were not a real problems, it was starting well.
 I was ready to record myself coding and talking.
 So I started to actually work on the content for the recording and realized it was more than just coding and talking.
-But it's a story that will be told in next post.
+But it's a story that will be told in [next post](/it-was-more-complicated-than-just-coding-and-talking/).
