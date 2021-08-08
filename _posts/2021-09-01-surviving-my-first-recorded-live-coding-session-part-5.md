@@ -9,13 +9,15 @@ permalink: /improving-live-coding-session-tuning-and-rehearsing-with-vs-code/
 category: post
 ---
 
-Fifth and last post about my first ever (recorded) live coding session.
-Blah blah blah
+Fifth and last post about my first ever (recorded) live coding session given at the Manning API Conference.
+Thanks to all the work done, I had a good setup, great visual style, titles over VS Code, speaker's notes and was able to code at light speed.
+But I was hesitant and not fast enough when presenting, I needed to train myself and fine tune, optimize or remove content to make things smooth and keep in given time frame.
+And once again VS Code went to the rescue.
 <!--more-->
 
 {% include _postincludes/live-coding-session.md %}
 
-# Achieving training almost as usual
+# Training as usual was not easy
 
 It's not specific to this coding session, but when I prepare a talk there are always parts that needs more training than others.
 It is quite easy when working on slides to just jump to the first slide of the part I need to work on, and again, and again until satisfied.
@@ -24,10 +26,11 @@ And I can work on parts almost randomly depending on my mood.
 While training, I can also adapt content to shorten/remove some element because it's too long.
 
 It was not that easy to do that here.
+Jump back and forth was complicated and modifying the content also.
 
-## Jumping back and forth to any step
+# Jumping back and forth to any step
 
-Jumping to any part of the presentation was complicated here in the beginning because when I wanted to practice a specific part I had to re-prepare the OpenAPI file to put it in the state needed for this part. 
+Jumping to any part of the presentation was complicated in the beginning because when I wanted to practice a specific part I had to re-prepare the OpenAPI file to put it in the state needed for this part. 
 If I wanted to go "1 or 2 slides" back I had to carefully remember what to remove in my OpenAPI file.
 
 At first I thought using branches or tagged commits, but based on a previous experience (for my JQ and OpenAPI series) I knew this was not going to work here.
@@ -53,14 +56,14 @@ After a while, once content has been stabilized I also added other scripts and t
 | Clean before commit | `steps/clean.sh` | Remove `index.css`, `index.html`, `todo.html`, `motu.yaml` files from root folder
 
 I only defined key bindings for Next and Previous step tasks.
-The "Go to step" is quite convenient but unfortunately the step list is hardcoded and I only had the idea after the recording (I added it so people using the repo could go the the step they want).
+The "Go to step" is quite convenient but unfortunately the step list is hardcoded and I only had the idea after the recording (I added it so people using the repo could go to the step they want).
 
 {% include image.html source="go-to-step.png" %}
 
-## Removing stuff was a pain
+# Removing stuff was a pain
 
-As I was able to work on each step, I could easily evaluate the best possible time for each step.
-And so I came  to the conclusion that I was still not fitting into the time frame, though I had an extra 5 minutes granted by conference organizers, saperlipopette! (french polite curse word).
+As I was able to work on each step, I could easily train myself on each steap and evaluate the best possible time for each step.
+And so I came to the conclusion that I was still not fitting into the time frame, though I had an extra 5 minutes granted by conference organizers, saperlipopette! (french polite curse word).
 Thanks to my list of steps and their timing, I had a better vision of what I should modify and so I:
 
 - Shorten some steps, by for instance starting with a pre-filled basic OpenAPI files or adding snippets
@@ -75,7 +78,7 @@ But sometimes it is better to leave well enough alone ("the best is the enemy of
 # Recording, celebrating and recovering
 
 And after all that, working weekends and nights (I have a day job and a blog to handle), I was able to do the recording at last, and that went well on second take (the first one was 95% good but I forgot something just in the end... saperlipopette again).
-I did not really practice the full session before the actual recording, with more time to practice I should be able to do this session totally live without problem.
+I did not really practiced the full session before the actual recording, as I worked more on separated steps, but with more time to practice I should be able to do this session totally live without problem.
 By the way, final tips: don't forget to put you phone AND you computer in do not disturb mode in order to avoid unwanted notifications when giving or recording a presentation.
 
 I was really happy when it was at last done.
@@ -86,8 +89,7 @@ I was happy but that left me totally exhausted.
 I felt just like if I had traveled to the other side of earth, spoke and attended at a in person 2 days conference and suffered jet lag.
 It took me more than a week to recover.
 
-But this was worth the cost, I learned a lot, attendees were happy and I hope that these 2 posts will help others doing coding sessions!
-I hope also that I was able to show you that behind what may look like total perfection, total mastery, there is practice, simple tools but also failures, doubts, curse words ... and magic tricks.
+# Sharing successes and failures
 
-Final note, though I have been keeping the one post per week rate for a few months and was proud of that, I am taking some vacations.
-I'll be back with a new post at the beginning of September.
+But all this was worth the cost; I learned a lot, attendees were happy and I hope that this 5 posts series will help others doing coding sessions!
+I hope also that I was able to show you that behind what may look like total perfection, total mastery, there is practice, simple tools but also failures, doubts, curse words ... and magic tricks.
