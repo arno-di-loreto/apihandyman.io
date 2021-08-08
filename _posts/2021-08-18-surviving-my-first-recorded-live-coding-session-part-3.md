@@ -9,8 +9,11 @@ permalink: /slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-ob
 category: post
 ---
 
-Third post about about my first ever (recorded) live coding session.
-Blah blah blah
+Third post about about my first ever (recorded) live coding session given at the Manning API conference.
+In [previous post](/preparing-session-content-and-realizing-its-not-working-well/), I encountered various problems.
+Two of them were related to not delivering the session like one of my regular slide deck presentation.
+I wanted to add titles and have speaker's notes.
+In this post, I'll show you how I solved those two problems with OBS, VS Code and a little bit of magic.
 <!--more-->
 
 {% include _postincludes/live-coding-session.md %}
@@ -75,6 +78,44 @@ In its most basic version, this script did the following:
 - Checking if a `current.txt` file exists, if not creating it and putting `0` in it
 - Reading the `current.txt` file, adding `1` to its value and updating it
 - Copying the content of {% raw %}`step-{new value}`{% endraw %} to workspace root
+
+Afterward, I added some controls to do nothing and output some warning when the next step actually doesn't exist in the `steps` folder.
+
+{% code language:bash title:"The ugly next.sh script" %}
+# That's a trick I use in all my shell script
+# To get the script actual folder
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# Setting root dir and current.txt variables
+ROOT_DIR=$SCRIPT_DIR/..
+CURRENT_FILE=$SCRIPT_DIR/current.txt
+
+# If current.txt doesn't exist, creating it
+if [[ -f $CURRENT_FILE ]]
+then
+    echo "not first step"
+else
+    echo "first step"
+    echo "0" > $CURRENT_FILE
+fi
+
+# Adding 1 to current.txt value
+CURRENT_STEP=`cat $CURRENT_FILE`
+CURRENT_STEP=$((CURRENT_STEP+1))
+CURRENT_DIR="$SCRIPT_DIR/step-$CURRENT_STEP"
+echo $CURRENT_STEP > $CURRENT_FILE
+echo "step $CURRENT_STEP, DIR $CURRENT_DIR"
+
+# Checking the next step actually exists
+if [[ -d "$CURRENT_DIR" ]]
+then
+    # Copying everything in step-X folder to root folder
+    echo "step exists"
+    cp "$CURRENT_DIR"/* "$ROOT_DIR"
+else
+    echo "no more steps"
+fi
+{% endcode %}
 
 So, running the `steps/next.sh` script (don't forget to `chmod u+x` it, like I always do) I could change title from step X to step X+1.  
 But how to run this script while doing the session?
@@ -141,8 +182,8 @@ That way, I could be like "blah blah blah, and now _next topic_" ... while magic
 
 I could change my title but it was simple black text on white background, I wanted something with more style and if possible matching VS Code Style.
 Hopefully, while configuring VS Code to use the [Synthwave x Fluoromachine theme](https://marketplace.visualstudio.com/items?itemName=webrender.synthwave-x-fluoromachine), I discovered that VS Code theming relies on good old CSS and that this theme CSS was located in `$HOME/.vscode/extensions/webrender.synthwave-x-fluoromachine-0.0.12/synthwave-x-fluoromachine.css`.
-I copy/pasted the file in my workspace and added it to my index.html files then used some css classes defined for this theme: `monaco-editor` on body then `mtk6`, `mtk7` and `mtk8` on the various elements in my title, et voilà!
-I had shiny neon styled titles.
+I copy/pasted the file's content into a `index.css` file in my workspace and added it to my index.html files then used some css classes defined for this theme: `monaco-editor` on body then `mtk6`, `mtk7` and `mtk8` on the various elements in my title, et voilà!
+I now had shiny neon styled titles.
 
 {% code title:"Styling index.html" language:"html" %}
 <html>
@@ -214,6 +255,7 @@ I also used various emojis to "type" the actions to do:
 - 📺 (old TV) to show a rendering og the file (with Redoc or SwaggerUI) 
 - 💬 (Speech bubble) to say something
 
-# Next problem
+# Heading to next problem
 
-Blah blah blah
+With all that I was totally satisfied with the style of the session and I was as comfortable as delivering a regular slide deck session thanks to my speaker's note.
+In next post, I'll show you how I was able to code at light speed.
