@@ -10,13 +10,11 @@ category: post
 ---
 
 Second post about about my first ever (recorded) live coding session.
-So, here I was in last post;
-ready to record myself coding and talking...
+So, here I was in my [previous post](/setting-up-everything-to-record-myself-coding-and-talking/): Ready to record myself coding and talking...
 But I didn't told the whole story, it actually was more complicated than that to get there.
-I struggled with session's content and length, typing fast enough, not forgetting to do or tell something.
-And on top of that I had some brilliant idea to enhance the session visual style but that required more work. 
+I really struggled with session's content and how to deliver it.
 At some moment, I was totally desperate and I thought I wasn't going to make it.
-But I finally succeed to make it and attendees seem to have enjoyed it!
+But I finally did it, thanks to some VS Code and OBS magic and much elbow grease; and attendees seem to have enjoyed it!
 <!--more-->
 
 {% capture alert %}
@@ -36,14 +34,14 @@ Actually, in the beginning I planned to do far more stuff and differently, and t
 
 ## Preparing content almost as usual
 
-I actually worked on the content before mingling with OBS, VS Code and all other stuff.
+I actually worked on the content before tinkering with OBS, VS Code and all other stuff.
 I treated this session's content almost like I usually do for my regular slides-based talks.
 
 Usually, I list the topics I want to talk about and then sort them in order to tell a story with a beginning and an end.
 I go deeper into the story by writing a detailed table of content.
 Then I write my full speech exactly as I will say it.
-It need to be precise because English is my second language and I want to avoid stumble on words.
-And after that, I do the slides using a (pop culture) theme that usually had popped in my mind while working topics, toc or speech.
+It need to be precise because (Fr)English is a second language for me and I want to avoid stumble on words.
+After that, I do the slides using a (pop culture) theme that usually had popped in my mind while working on topics, toc or speech.
 
 Here, the topics were the OpenAPI Specification features and tools I wanted to show.
 Building the story was made first by organizing the features in two categories: interface contract features and documentation features.
@@ -63,10 +61,10 @@ Indeed, my original plan for "how to show that" had not worked well.
 
 The plan was to write the OpenAPI document using [Stoplight Studio](https://stoplight.io/studio/), but not for its GUI feature that allows to NOT write OpenAPI code, but because it provides a cool renderer that updates itself smartly as you write code.
 Indeed when using renderers such as [Redoc](https://github.com/Redocly/redoc) or [Swagger UI](https://github.com/swagger-api/swagger-ui), even embedded in VS Code (using the really good [42 Crunch OpenAPI Editor extension](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi)), the experience is not good.
-For instance in Swagger UI, if you had opened en operation and selected the Schema pane, modify something and you'll to re-switch to schema pane yourself.
+For instance in Swagger UI, if you had opened en operation and selected the Schema panel, modify something and you'll to re-switch to schema panel yourself.
 Studio comes also with an embedded mock server based on [Stoplight Prism](https://stoplight.io/open-source/prism/) that I wanted to use in [Postman](https://www.postman.com/).
 I made a few test, writing code in Studio, importing the created OpenAPI file in Postman so it generated a ready to use collection targeting the Prism mock.
-Mostly to showcase various usage of an OpenAPI document.
+Mostly to showcase various ways of using an OpenAPI document.
 
 While all those tools are great and all this actually worked ... it was too long, too complicated to switch between tools.
 And on top of that, my research for the best zoom level to use in order to keep code readable ended with being unable to have both code and rendering visible in Studio.
@@ -91,12 +89,13 @@ Also, it was taking me an awfully long time to type everything or do copy/paste 
 I was struggling to switch between writing code and going to the terminal.
 
 I realized that I was often forgetting things to do or not doing them the right way.
-During a rehearsal that was starting very well, I lost all my means because I forget to do a modification and so was totally puzzled not understanding why it was not working. 
+During a rehearsal that was starting very well, I lost all my means because I forget to do a modification and so was totally puzzled, not understanding at all why it was not working suddenly. 
 
-It was not going well and as it was difficult to work on specific sections of the sessions, to train/improve, I was starting loose my temper and my confidence.
+It was not going well and as it was difficult to work on specific sections of the sessions to train myself or improve the content, I was starting to loose my temper and my confidence.
 
-And as if I didn't have enough problems, I had a new terrible idea.
-I was really missing having titles like on my slides, I feared attendees would be lost without visual indication about what was happening.
+And as if I didn't have enough problems, I had a terrible new idea.
+I was really missing having titles like on my slides.
+I feared attendees would be lost without visual indication about what was happening.
 I decided to do something about that.
 
 What follows explain how I solved all those problems.
@@ -104,6 +103,7 @@ What follows explain how I solved all those problems.
 {% capture alert %}
 You can get all VS Code stuff explained in this post in my [supercharged-openapi](https://github.com/arno-di-loreto/supercharged-openapi) github repository.
 It is the one that I actually used during the session.
+The readme explains how to set up everything in VS Code, don't hesitate to ping me if that's not the case.
 {% include image.html source="github.png" %}
 {% endcapture %}
 
@@ -123,22 +123,26 @@ By taking advantage of both OBS and VS Code features.
 
 {% include image.html source="magic.jpg" %}
 
-In OBS, you can add various sources in a scene, I already had 3:
+In OBS, you can add various sources in a scene, I already had 3 in my Macbook scene:
 
-- An Image source: the foreground Manning provided to me
-- A Video Capture Device source: my webcam (or my IPhone)
-- A Display Capture Source: my MacBook display cropped on VS Code window titled "Supercharged OpenAPI" (By the way, regarding capturing VS Code, during my tests I also tried the Window Capture source and was not really satisfied with it. There was a huge lag, especially when I was scrolling.)
+- An _Image_ source: the foreground Manning provided to me
+- A _Video Capture Device_ source: my webcam (or my IPhone)
+- A _Display Capture_ source: my MacBook display cropped on VS Code window titled "Supercharged OpenAPI" (By the way, regarding capturing VS Code, during my tests I also tried the _Window Capture_ source and was not really satisfied with it. There was a huge lag, especially when I was scrolling.)
 
-But there are other types of sources, as you can see in the screen capture above, the one that caught my eye when trying to find a solution for my idea was the Browser source.
-I created a simple HTML file with "WTF it works!" (yes, I tend to curse in my code when testing) then started a [simple web server](https://www.npmjs.com/package/http-server). 
-In the configuration window, I set up the URL, width, height, and there's some custom CSS that comes by default, I didn't modify it and hit OK.
-Then I positioned the new source on top of the zone for my screen, above the Display Capture Source (the new source hides the VS Code window title) but below the Image source.
+But there are other types of sources, as you can see in the screen capture above, the one that caught my eye when trying to find a solution for my idea was the _Browser_ source.
+I created a simple `index.html` file containing a "WTF it works!" level 1 header in the body (yes, I tend to curse in my code when testing) then started a [simple web server](https://www.npmjs.com/package/http-server) in the folder containing that file. 
+In OBS, I added a _Browser_ source to my Macbook scene.
+In the configuration window, I set up the URL to target `http://localhost:8080/index.html`, and set width to 1980 (pixels) and height to 100.
+There's some custom CSS that comes by default, I didn't modify it and hit OK.
+Once added, I moved the new source in the scene on top of the zone for my screen and resized it to fit in the reserved space.
+Finally in the "Sources" panel, I renamed the new source to "Title" (by right clicking on it and choosing rename).
+And I reordered the sources to put "Title" in the "Template" folder, putting above the Display Capture Source (the new source hiding the VS Code window title) but below the Image source.
 
 So I had my title, but it was a static one.
 
 ## Updating titles POC
 
-I thought I could find a configuration to trigger refresh at regular interval in OBS, but there's actually no such configuration.
+I thought I could find a configuration to trigger a refresh at regular interval in OBS, but there's actually no such configuration.
 Hopefully, I remembered that while I was reading some post about useful VS Code extensions, the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension caught my eye.
 This extension allows to start a web server in your workspace and it includes a live refresh out of the box.
 That means a webpage loaded through this web server will be updated automatically in the browser when something change in the workspace.
@@ -152,16 +156,17 @@ Now that my proof of concept (POC) worked, I needed to show the real titles and 
 
 What I did is quite ugly, it's a very first solution that would deserve to be improved (it will be improved!).
 But it works.
+The solution is based on static files, an ugly shell script, VS Code custom tasks and custom key bindings.
 
 ### First, write some ugly shell
 
-In a `steps` folder, I created sub-folders named `step-1` to `step-19` (because there were 19 steps in my TOC ... at that time) and then put an index.html file in each one.
+In a `steps` folder, I created sub-folders named `step-1` to `step-19` (because there were 19 steps in my TOC ... at that time) and then put an `index.html` file in each one.
 Obviously, each file contained the title to be shown at each step (title coming from my TOC).
 
 Then I wrote the ugliest possible bash script named `next.sh` (in `steps`).
 In its most basic version, this script did the following:
 
-- Checking if a `current.txt` file exist, if not creating it and putting `0` in it
+- Checking if a `current.txt` file exists, if not creating it and putting `0` in it
 - Reading the `current.txt` file, adding `1` to its value and updating it
 - Copying the content of {% raw %}`step-{new value}`{% endraw %} to workspace root
 
@@ -172,7 +177,7 @@ I couldn't open a terminal and run it when needed, that wouldn't be very conveni
 ### Second, automate with VS Code task
 
 Hopefully, I already partially knew how to solve that because in order to optimize my Jekyll workspace for the apihandyman.io blog I use [VS Code Custom tasks](https://code.visualstudio.com/docs/editor/tasks#_custom-tasks) to run bach scripts.
-So I created a `.vscode` folder (it holds VS Code stuff) and added the following `tasks.json` file. 
+So I created a `.vscode` folder (its the standard folder holding VS Code stuff) and added the following `tasks.json` file. 
 This file define the custom tasks that will be available when this workspace/folder is opened in VS Code.
 
 {% code title:".vscode/tasks.json" language:"json" %}
@@ -200,8 +205,8 @@ That's better but still cumbersome, I didn't want people watching me do that eve
 
 ### Third, add a little bit of shortcut magic
 
-VS Code allows to customize keyboard shortcuts and even define one to trigger a task (check [documentation here](https://code.visualstudio.com/docs/editor/tasks#_binding-keyboard-shortcuts-to-tasks)).
-Note that unlike tasks that can be configured inside a workspace, key bindings are only defined globally.
+VS Code allows to customize keyboard shortcuts and even define ones to trigger tasks (check [documentation here](https://code.visualstudio.com/docs/editor/tasks#_binding-keyboard-shortcuts-to-tasks)).
+Note that unlike tasks that can be configured locally inside a workspace/folder, key bindings are only defined globally.
 
 {% include image.html source="shortcuts.png" %}
 
@@ -260,8 +265,8 @@ text-shadow: 0 0 2px #100c0f, 0 0 3px #61e2ff, 0 0 5px #61e2ff, 0 0 10px #03edf9
 
 # Adding speaker's note to avoid forgetting something
 
-When I do a "regular" presentation, you may not notice when seeing on stage or watching me on a video, but I heavily rely on my speaker's notes.
-There's my full speech there on each slide with some other information such as timing or "CLICK" when there are animation or transition to trigger at a specific moment in a sentence.
+When I do a "regular" presentation, you may not notice it when seeing me on stage or watching me on a video, but I heavily rely on my speaker's notes.
+There's my full speech there on each slide with some other information such as timing or "CLICK" when there is an animation or a transition to trigger at a specific moment in a sentence.
 The more I practice a talk, the less I need them but I'm relieved to just know they are there if needed.
 
 Unfortunately, there are no "speaker's notes" in VS Code and I was struggling to not forget something to say or to do.
@@ -270,10 +275,11 @@ Unfortunately, there are no "speaker's notes" in VS Code and I was struggling to
 
 {% include image.html source="todo-v1.png" %}
 
-My first attempt in order to void forgetting something was to use the [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) extension.
+My first attempt in order to avoid forgetting something was to use the [Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) extension.
 I created a steps.todo file basically containing my TOC.
 The idea was to have the Todo+ panel opened while coding the OpenAPI file.
 But that was not really convenient because it was visible to attendees and occupying space that I desperately needed.
+I though to hide it by cropping the VS Code window in OBS but that would have possible hidden a space where I could have wanted to show something.
 It was also not really convenient as, in order to keep the todo list usable for me, I had to open/close tasks folders.
 
 ## The todo.html + iPad solution
@@ -281,7 +287,7 @@ It was also not really convenient as, in order to keep the todo list usable for 
 {% include image.html source="todo-v2.jpg" %}
 
 My second idea was to use almost the same trick as for the titles.
-I added a todo.html in each `steps/step-x` folder.
+I added a `todo.html` file in each `steps/step-x` folder.
 That way when I was using the "Next step" task, not only it was copying the `index.html` file of the step to the root folder, it was also copying the `todo.html` file too.
 Having a browser showing `http://localhost:5500/todo.html` allowed to me have speaker's notes updated at each step just like titles.
 
@@ -291,8 +297,11 @@ Don't forget to position it relatively to other screens as it is in reality in o
 And you're done you have a third (or second) display screen.
 Note that sidecar can be used over wifi but I never had satisfying result with it (maybe my wifi is not fast enough).
 
+Note that as OBS is able to crop on a specific window, I probably could had both VS Code and todo on my MacBook display.
+But I wanted to test the side car, and it was working, so I moved on to next problem to solve.
+
 I choose to use the same style as for the titles though is was only visible to my eyes.
-I also used various emojis to type the actions to do:
+I also used various emojis to "type" the actions to do:
 
 - ✏️ (pen) to write code
 - ⌨️ (keyboard) to use the terminal
@@ -308,8 +317,8 @@ I was already satisfied with the way I was activiting/deactivating the Redoc or 
 {% include image.html source="copy-paste-indent.gif" %}
 
 At some moment, I had to copy/paste sections of code but that requires fixing indentation, and I was not good at that.
-In the beginning I was relying to the Indent Rainbow extension to give me indications on how to indent after pasting.
-But after that I found a faster way to fix indentation on copy/paste:
+In the beginning I was relying to the Indent Rainbow extension to give me indications on how to indent after pasting, but it was taking too much time.
+Hopefully, I found a faster way to fix indentation on copy/paste:
 
 1. Copy the lines, but carefully include the full first list. It's easier to start by the end of selection of go up (do not start selecting at the first word of first line)
 1. Put cursor at the beginning of the line where you need to paste
@@ -327,21 +336,21 @@ So be careful about that.
 ## The magic of code snippets
 
 The trick that made me gain much time while coding is [user defined snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
-Thanks to some configuration, type "some keyword" and boom a complex regex or 20 lines of code appear magically.
+Thanks to some configuration, just type "some magic keyword" and boom a complex regex or 20 lines of code appears magically.
 
 {% include image.html source="snippets.gif" %}
 
-You can defined global or local snippets.
-In used local ones define in `.vscode/supercharged-openapi.code-snippets` which is a json file.
+You can define global or local snippets.
+I used local ones defined in `.vscode/supercharged-openapi.code-snippets` which is a json file.
 A snippet can be a static text but you can also use variables and even choices list (probably among other awesome things I didn't used yet, check the [document](https://code.visualstudio.com/docs/editor/userdefinedsnippets)).
 
 The following example allows to add a "Read an element" operation in the form of the `GET /somethings/{somethingId}`.
-It is triggered when typing "Read" then hitting the tab key.
+It is triggered when typing "Read" (`prefix`) then hitting the tab key.
 There are two variables `$1` and `$2` to provide, note how `$1` appears multiple times.
 Once you hit tab, you type the first variable value which is filled wherever there's a `$1` in the body.
 Hit tab to set `$2`.
 And don't forget to hit tab another time to finish.
-If you don't do that last tab, you'll be unable to use another snippet.  
+If you don't do that last tab, you'll be unable to use another snippet, it took me a moment to figure that.  
 
 {% code language:"json" title:"A snippet with variables" %}
 {
@@ -370,7 +379,15 @@ If you don't do that last tab, you'll be unable to use another snippet.
 }
 {% endcode %}
 
-Using generated such as [this one](https://snippet-generator.app/?description=&tabtrigger=&snippet=&mode=vscode) can be useful to turn your code template into a snippet.
+Beware of tabs count, the snippet will be magically indented correctly based on where you put it, so there's no need to add extra tabs.
+The example above is supposed to go into `paths:` which is at the root level of the document.
+So I thought the first line would need a tab (and all the the other ones below too), but no.
+The whole body is indented based on first line having no indentation.
+
+Note also that multiple snippets can match a keyword/key sentence, there will be a drop list to let you choose the one you want (with a full view of the body).
+Just don't forget to look at the one that is chosen to add the right snippet to your code.
+
+Using snippets generator such as [this one](https://snippet-generator.app/?description=&tabtrigger=&snippet=&mode=vscode) can be useful to turn your code template into a snippet.
 
 # Achieving training almost as usual
 
@@ -388,9 +405,13 @@ Jumping to any part of the presentation was complicated here in the beginning be
 If I wanted to go "1 or 2 slides" back I had to carefully remember what to remove in my OpenAPI file.
 
 At first I thought using branches or tagged commits, but based on a previous experience (for my JQ and OpenAPI series) I knew this was not going to work here.
+Indeed, it's complicated to do a "replace all" across files in separate branches, while it's dead simple to do that on multiple files in a folder (even when there are sub folders).
+
 And I already had a good part of the solution: I just had to create a `motu.yaml` file in each `steps/step-X` folder.
+Thanks to the "Next step" task, the OpenAPI file corresponding to the step was copied to the root folder just like index and todo files.
+VS Code handled the `motu.yaml` file reloading totally seamlessly.
 That trick also allowed to magically add code (actual code or comments) when switching to a new step, that was really convenient. 
-That also ensured that I when switching to a new step, the OpenAPI file was in the expected status even if I had to skip something in previous step.
+That also ensured that when switching to a new step, the OpenAPI file was in the expected status even if I had to skip something in previous step.
 
 I also added new bash scripts and new tasks to be able to go to previous step and restart.
 That way I could easily go to the step I wanted to practice.
@@ -406,6 +427,9 @@ After a while, once content has been stabilized I also added other scripts and t
 | Clean before commit | `steps/clean.sh` | Remove `index.css`, `index.html`, `todo.html`, `motu.yaml` files from root folder
 
 I only defined key bindings for Next and Previous step tasks.
+The "Go to step" is quite convenient but unfortunately the step list is hardcoded and I only had the idea after the recording (I added it so people using the repo could go the the step they want).
+
+{% include image.html source="go-to-step.png" %}
 
 ## Removing stuff was a pain
 
@@ -413,18 +437,31 @@ As I was able to work on each step, I could easily evaluate the best possible ti
 And so I came  to the conclusion that I was still not fitting into the time frame, though I had an extra 5 minutes granted by conference organizers, saperlipopette! (french polite curse word).
 Thanks to my list of steps and their timing, I had a better vision of what I should modify and so I:
 
-- shorten some steps, by for instance starting with a pre-filled basic OpenAPI files or adding snippets
-- remove some steps not bringing interesting information (like spending 30s explaining the various use of the OpenAPI Spec)
-- remove some steps that were kind of duplicating other steps or not bringing interesting information
+- Shorten some steps, by for instance starting with a pre-filled basic OpenAPI files or adding snippets
+- Removed some steps not bringing interesting information (like spending 30s explaining the various use of the OpenAPI Spec)
+- Removed some steps that were kind of duplicating other steps or not bringing interesting information
 
-The modifications were easy to do on my list ... but doing it with my pretty dumb system and its `steps/step-X` folders containing many files, some of them (the todo.html) including "step X/Y".
-It was a bit laborious to fix all that.
+The modifications were easy to do on my list ... but handling the impacts on my various files was a bit laborious.
+Especially the todo files containing the useful "step X/Y" information.
 If I was not in a rush I would have redo everything in order to make such modification simpler ...
-But sometimes it is better to leave well enough alone (the best is the enemy of good as we say in french), it took me less time to do that the ugly way than rethink the entire system.
+But sometimes it is better to leave well enough alone ("the best is the enemy of good" as we say in french), it took me less time to fix all that the ugly way than rethink the entire system.
 
-# Recording and recovering
+# Recording, celebrating and recovering
 
-And after all that, working weekends and nights (I have a day job and a blog to handle), I was able to do the recording at last, and that went well on second take (the first one was 95% good but I forget something just in the end... saperlipopette again).
+And after all that, working weekends and nights (I have a day job and a blog to handle), I was able to do the recording at last, and that went well on second take (the first one was 95% good but I forgot something just in the end... saperlipopette again).
+I did not really practice the full session before the actual recording, with more time to practice I should be able to do this session totally live without problem.
 By the way, final tips: don't forget to put you phone AND you computer in do not disturb mode in order to avoid unwanted notifications when giving or recording a presentation.
-I was happy, but totally exhausted, just like if I had spoke and attended at a in person 2 days conference and suffered jet lag, it took me more than a week to recover.
-But this was worth the cost, attendees were happy and I hope that these 2 posts will help others doing coding sessions! 
+
+I was really happy when it was at last done.
+I was quite proud of this very first coding session though it did not looked as expected and I always see some imperfections and possible improvements.
+Being able to talk without having my word for word speech was a also great achievement.
+
+I was happy but that left me totally exhausted.
+I felt just like if I had traveled to the other side of earth, spoke and attended at a in person 2 days conference and suffered jet lag.
+It took me more than a week to recover.
+
+But this was worth the cost, I learned a lot, attendees were happy and I hope that these 2 posts will help others doing coding sessions!
+I hope also that I was able to show you that behind what may look like total perfection, total mastery, there is practice, simple tools but also failures, doubts, curse words ... and magic tricks.
+
+Final note, though I have been keeping the one post per week rate for a few months and was proud of that, I am taking some vacations.
+I'll be back with a new post at the beginning of September.

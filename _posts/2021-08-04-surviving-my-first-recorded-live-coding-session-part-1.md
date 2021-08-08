@@ -202,4 +202,4 @@ So making it static solves the problem.
 Besides the mic and cam "problems", which were not a real problems, it was starting well.
 I was ready to record myself coding and talking.
 So I started to actually work on the content for the recording and realized it was more than just coding and talking.
-But it's a story that will be told in next post.
+But it's a story that will be told in [next post](/it-was-more-complicated-than-just-coding-and-talking/).
