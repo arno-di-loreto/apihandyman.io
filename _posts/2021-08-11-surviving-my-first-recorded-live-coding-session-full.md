@@ -10,7 +10,7 @@ category: post
 published: false
 ---
 
-Second post about about my first ever (recorded) live coding session.
+Second post about my first ever (recorded) live coding session.
 So, here I was in my [previous post](/setting-up-everything-to-record-myself-coding-and-talking/): Ready to record myself coding and talking...
 But I didn't told the whole story, it actually was more complicated than that to get there.
 I really struggled with session's content and how to deliver it.

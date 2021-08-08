@@ -9,7 +9,7 @@ permalink: /improving-live-coding-session-tuning-and-rehearsing-with-vs-code/
 category: post
 ---
 
-Fifth and last post about about my first ever (recorded) live coding session.
+Fifth and last post about my first ever (recorded) live coding session.
 Blah blah blah
 <!--more-->
 

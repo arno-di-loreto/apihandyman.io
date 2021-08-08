@@ -9,20 +9,32 @@ permalink: /live-coding-at-light-speed-with-vs-code/
 category: post
 ---
 
-Fourth post about about my first ever (recorded) live coding session.
-Blah blah blah
+This is the fourth post about my first ever (recorded) live coding session given at the Manning API conference.
+In this series [second post](/preparing-session-content-and-realizing-its-not-working-well/), I listed some problems I encountered and started to solve them in [previous post](/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/).
+But there are other problems to solve, one of them was that I was not coding and using VS Code fast enough.
+In this post, I'll show you how I solved that using a few VS Code tricks, the most important one being: the absolutely [rad](https://aarongilbreath.medium.com/a-brief-history-of-the-word-rad-972a989617c8) custom code snippet feature.
 <!--more-->
 
 {% include _postincludes/live-coding-session.md %}
 
-I was already satisfied with the way I was activiting/deactivating the Redoc or Swagger UI renderings using the command palette (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>P</kbd> on MacOs or <kbd>ctrl</kbd><kbd>⇧</kbd><kbd>P</kbd> on Windows) and the "OpenAPI: show preview using X" tasks coming with the OpenAPI extension, but I still needed to speed up coding.
+# Mastering the command palette
+
+{% include image.html source="palette.png" %}
+
+If there is one thing you need to master with VS Code, it's the command palette.
+This is what allows to access all VS Code and its extensions functions quickly.
+Use <kbd>⌘</kbd><kbd>⇧</kbd><kbd>P</kbd> on MacOs or <kbd>ctrl</kbd><kbd>⇧</kbd><kbd>P</kbd> on Windows to open it.
+Then type what you want to do, the palette will show you relevant actions.
+
+Once you have used some actions, the palette will show them first, so you just have to use the arrow keys to move down to the one you want.
+That allowed me to quickly show the Redoc or SwaggerUI renderings coming with the [42 Crunch OpenAPI Editor extension](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi)).
 
 # Copy/Paste and indent
 
 {% include image.html source="copy-paste-indent.gif" %}
 
 At some moment, I had to copy/paste sections of code but that requires fixing indentation, and I was not good at that.
-In the beginning I was relying to the Indent Rainbow extension to give me indications on how to indent after pasting, but it was taking too much time.
+In the beginning I was relying to the [Indent Rainbow extension](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow) to give me indications on how to indent after pasting (that extension can really save your life when working with indent-based formats), but it was taking too much time.
 Hopefully, I found a faster way to fix indentation on copy/paste:
 
 1. Copy the lines, but carefully include the full first list. It's easier to start by the end of selection of go up (do not start selecting at the first word of first line)
@@ -30,24 +42,30 @@ Hopefully, I found a faster way to fix indentation on copy/paste:
 1. Paste
 1. Format whole file using <kbd>⌥</kbd><kbd>⇧</kbd><kbd>F</kbd> (MacOS) or <kbd>ctrl</kbd><kbd>⇧</kbd><kbd>F</kbd> (Windows). This will fix indentation based on the line above the one where you pasted. But that only works if the whole pasted block is already correctly indenting (relatively).
 
+While writing this post, I realized that I could probably have defined keybindings (as I did to run my custom tasks) to show Redoc or SwaggerUI and gain a few milliseconds.
+
 # The tip you need when opening/closing terminal
 
-I had hard time showing and hiding the terminal, sometimes it was working and sometimes not and that was making me loosing precious seconds.
-I was starting to get mad until I figured out how it works.
-Showing and hiding the terminal can be done with <kbd>ctrl</kbd><kbd>`</kbd>.
-The problem is if the terminal is shown but has not the focus <kbd>ctrl</kbd><kbd>`</kbd> will just give it focus. 
-So be careful about that.
+Showing and hiding the terminal can be done with the <kbd>ctrl</kbd><kbd>`</kbd> shortcut.
+That seems quite simple but strangely I had hard time showing and hiding the terminal.
+Sometimes it was working, and sometimes not; and that was making me loosing precious seconds.
+I was starting to get mad until I figured out what the problem was.
+The problem is if the terminal is shown, but has not the focus, the <kbd>ctrl</kbd><kbd>`</kbd> shortcut will just give it focus. 
+Once I started to take care about that and NOT clicking elsewhere than in the terminal when using it, I no more had this problem.
 
 # The magic of code snippets
 
 The trick that made me gain much time while coding is [user defined snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
+That's a totally rad feature.
 Thanks to some configuration, just type "some magic keyword" and boom a complex regex or 20 lines of code appears magically.
 
-{% include image.html source="snippets.gif" %}
+{% include image.html source="rad.gif" %}
 
 You can define global or local snippets.
 I used local ones defined in `.vscode/supercharged-openapi.code-snippets` which is a json file.
-A snippet can be a static text but you can also use variables and even choices list (probably among other awesome things I didn't used yet, check the [document](https://code.visualstudio.com/docs/editor/userdefinedsnippets)).
+A snippet can be a static text but you can also use variables and even choices list (probably among other awesome things I didn't used yet, check the [documentation](https://code.visualstudio.com/docs/editor/userdefinedsnippets)).
+
+{% include image.html source="snippets.gif" %}
 
 The following example allows to add a "Read an element" operation in the form of the `GET /somethings/{somethingId}`.
 It is triggered when typing "Read" (`prefix`) then hitting the tab key.
@@ -94,6 +112,10 @@ Just don't forget to look at the one that is chosen to add the right snippet to 
 
 Using snippets generator such as [this one](https://snippet-generator.app/?description=&tabtrigger=&snippet=&mode=vscode) can be useful to turn your code template into a snippet.
 
-# Next problem
+# Heading to last problem!
 
-Blah blah blah
+VS Code never stops to amaze.
+I remember that I was totally skeptical at the beginning but as I was using Atom which was not totally meeting my expectations and had huge problem when VS Code showed up (it was 5 years ago I think), I decided to gave it a try and never left it since. 
+With all of the extensions, tasks, snippets that's not only a coding tool but a huge problem solver as you can see in this post series.
+And VS Code actually helped me to solve my last problem: rehearsing and fine tuning the presentation before recording.
+But that's a story you'll see in next and final post of this Surviving my first (recorded) live session series.

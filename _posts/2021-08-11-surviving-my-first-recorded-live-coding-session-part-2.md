@@ -9,7 +9,7 @@ permalink: /preparing-session-content-and-realizing-its-not-working-well/
 category: post
 ---
 
-Second post about about my first ever (recorded) live coding session.
+Second post about my first ever (recorded) live coding session.
 So, here I was in my [previous post](/setting-up-everything-to-record-myself-coding-and-talking/): ready to record myself coding and talking without any slides...
 But I didn't told the whole story, I actually struggled a lot before actually being able to record myself coding and talking.
 In the beginning, I had planned to do far more stuff and differently than what people had seen.

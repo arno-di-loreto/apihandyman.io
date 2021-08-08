@@ -9,7 +9,7 @@ permalink: /slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-ob
 category: post
 ---
 
-Third post about about my first ever (recorded) live coding session given at the Manning API conference.
+Third post about my first ever (recorded) live coding session given at the Manning API conference.
 In [previous post](/preparing-session-content-and-realizing-its-not-working-well/), I encountered various problems.
 Two of them were related to not delivering the session like one of my regular slide deck presentation.
 I wanted to add titles and have speaker's notes.
