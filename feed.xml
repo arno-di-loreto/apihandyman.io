@@ -1,4 +1,412 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-08-11T07:10:46-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Surviving My First Recorded Live Coding Session Part 2</title><link href="https://apihandyman.io/preparing-session-content-and-realizing-its-not-working-well/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 2" /><published>2021-08-11T00:00:00-05:00</published><updated>2021-08-11T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-2</id><content type="html" xml:base="https://apihandyman.io/preparing-session-content-and-realizing-its-not-working-well/">&lt;p&gt;Second post about my first ever (recorded) live coding session.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-08-18T07:11:00-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Surviving My First Recorded Live Coding Session Part 3</title><link href="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 3" /><published>2021-08-18T00:00:00-05:00</published><updated>2021-08-18T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-3</id><content type="html" xml:base="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/">&lt;p&gt;Third post about my first ever (recorded) live coding session given at the Manning API conference.
+In &lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;previous post&lt;/a&gt;, I encountered various problems.
+Two of them were related to not delivering the session like one of my regular slide deck presentation.
+I wanted to add titles and have speaker’s notes.
+In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div class=&quot;card series-toc&quot;&gt;
+  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
+    &lt;h5 id=&quot;series&quot;&gt;Surviving my first (recorded) live coding session Series&lt;/h5&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;row series-toc_content&quot;&gt;
+    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;
+        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API confernce.
+It was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
+The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
+This post series aim to share all what I’ve learned preparing this session.&lt;/p&gt;
+
+&lt;div class=&quot;alert alert-info&quot;&gt;&lt;h4 class=&quot;alert-heading&quot;&gt;Spoiler alert!&lt;/h4&gt;&lt;hr /&gt;
+&lt;p&gt;You can get all VS Code stuff explained in this series in my &lt;a href=&quot;https://github.com/arno-di-loreto/supercharged-openapi&quot;&gt;supercharged-openapi&lt;/a&gt; github repository.
+It is the one that I actually used during the session.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Note that I’ll soon start an OpenAPI Tips &amp;amp; Trick series including this session contents and a few other things I couldn’t show during this session.&lt;/p&gt;
+&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
+      
+      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/&quot;&gt;1 - Setting up everything to record myself coding and talking&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;2 - Preparing session content and realizing it's not working well&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item active&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code&lt;/li&gt;
+          
+        
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+          &lt;li class=&quot;list-group-item disabled&quot;&gt;4 - Live coding at light speed with VS Code (coming soon)&lt;/li&gt;
+          
+        
+          
+          
+          
+          &lt;li class=&quot;list-group-item disabled&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code (coming soon)&lt;/li&gt;
+          
+        
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;adding-titles-to-avoid-loosing-attendees&quot;&gt;Adding titles to avoid loosing attendees&lt;/h1&gt;
+
+&lt;p&gt;OK, that was not the most important problem, but I care a lot about how my presentations look like: how they can be beautiful but also readable. 
+So though this was a no slides session, I wanted to provide some indications about what was happening.
+I needed to show some title, like “Describe once (EXPERT): Read/Write with same schema”, as I have on my regular slide.
+But this time, I was not showing pre-made slides using Google Slides but coding in VS Code.
+How to add good looking titles in that context?
+By taking advantage of both OBS and VS Code features.&lt;/p&gt;
+
+&lt;h2 id=&quot;showing-titles-above-vs-code&quot;&gt;Showing titles above VS Code&lt;/h2&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/magic.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In OBS, you can add various sources in a scene, I already had 3 in my Macbook scene:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;An &lt;em&gt;Image&lt;/em&gt; source: the foreground Manning provided to me&lt;/li&gt;
+  &lt;li&gt;A &lt;em&gt;Video Capture Device&lt;/em&gt; source: my webcam (or my IPhone)&lt;/li&gt;
+  &lt;li&gt;A &lt;em&gt;Display Capture&lt;/em&gt; source: my MacBook display cropped on VS Code window titled “Supercharged OpenAPI” (By the way, regarding capturing VS Code, during my tests I also tried the &lt;em&gt;Window Capture&lt;/em&gt; source and was not really satisfied with it. There was a huge lag, especially when I was scrolling.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But there are other types of sources, as you can see in the screen capture above, the one that caught my eye when trying to find a solution for my idea was the &lt;em&gt;Browser&lt;/em&gt; source.
+I created a simple &lt;code&gt;index.html&lt;/code&gt; file containing a “WTF it works!” level 1 header in the body (yes, I tend to curse in my code when testing) then started a &lt;a href=&quot;https://www.npmjs.com/package/http-server&quot;&gt;simple web server&lt;/a&gt; in the folder containing that file. 
+In OBS, I added a &lt;em&gt;Browser&lt;/em&gt; source to my Macbook scene.
+In the configuration window, I set up the URL to target &lt;code&gt;http://localhost:8080/index.html&lt;/code&gt;, and set width to 1980 (pixels) and height to 100.
+There’s some custom CSS that comes by default, I didn’t modify it and hit OK.
+Once added, I moved the new source in the scene on top of the zone for my screen and resized it to fit in the reserved space.
+Finally in the “Sources” panel, I renamed the new source to “Title” (by right clicking on it and choosing rename).
+And I reordered the sources to put “Title” in the “Template” folder, putting above the Display Capture Source (the new source hiding the VS Code window title) but below the Image source.&lt;/p&gt;
+
+&lt;p&gt;So I had my title, but it was a static one.&lt;/p&gt;
+
+&lt;h2 id=&quot;updating-titles-poc&quot;&gt;Updating titles POC&lt;/h2&gt;
+
+&lt;p&gt;I thought I could find a configuration to trigger a refresh at regular interval in OBS, but there’s actually no such configuration.
+Hopefully, I remembered that while I was reading some post about useful VS Code extensions, the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer&quot;&gt;Live Server&lt;/a&gt; extension caught my eye.
+This extension allows to start a web server in your workspace and it includes a live refresh out of the box.
+That means a webpage loaded through this web server will be updated automatically in the browser when something change in the workspace.
+So once the extension installed and started, I modified the Browser source configuration in OBS to target this web server, and I was still able to see the “WTF it works!” title.
+Then I modified the HTML file by replacing the title with “WTF it has been updated!”, hit save …
+And the title has been updated in OBS seamlessly!&lt;/p&gt;
+
+&lt;p&gt;Now that my proof of concept (POC) worked, I needed to show the real titles and switch to the next one when needed but without the attendees noticing anything.&lt;/p&gt;
+
+&lt;h2 id=&quot;updating-titles-magically-during-the-session&quot;&gt;Updating titles magically during the session&lt;/h2&gt;
+
+&lt;p&gt;What I did is quite ugly, it’s a very first solution that would deserve to be improved (it will be improved!).
+But it works.
+The solution is based on static files, an ugly shell script, VS Code custom tasks and custom key bindings.&lt;/p&gt;
+
+&lt;h3 id=&quot;first-write-some-ugly-shell&quot;&gt;First, write some ugly shell&lt;/h3&gt;
+
+&lt;p&gt;In a &lt;code&gt;steps&lt;/code&gt; folder, I created sub-folders named &lt;code&gt;step-1&lt;/code&gt; to &lt;code&gt;step-19&lt;/code&gt; (because there were 19 steps in my TOC … at that time) and then put an &lt;code&gt;index.html&lt;/code&gt; file in each one.
+Obviously, each file contained the title to be shown at each step (title coming from my TOC).&lt;/p&gt;
+
+&lt;p&gt;Then I wrote the ugliest possible bash script named &lt;code&gt;next.sh&lt;/code&gt; (in &lt;code&gt;steps&lt;/code&gt;).
+In its most basic version, this script did the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Checking if a &lt;code&gt;current.txt&lt;/code&gt; file exists, if not creating it and putting &lt;code&gt;0&lt;/code&gt; in it&lt;/li&gt;
+  &lt;li&gt;Reading the &lt;code&gt;current.txt&lt;/code&gt; file, adding &lt;code&gt;1&lt;/code&gt; to its value and updating it&lt;/li&gt;
+  &lt;li&gt;Copying the content of &lt;code&gt;step-{new value}&lt;/code&gt; to workspace root&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Afterward, I added some controls to do nothing and output some warning when the next step actually doesn’t exist in the &lt;code&gt;steps&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;The ugly next.sh script&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0 code-expandcollapse-btn&quot; aria-label=&quot;expand or shrink&quot; onclick=&quot;expandCollapseCode(this)&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Expand/Shrink&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/maximize.svg&quot; /&gt;&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-bash line-numbers code-collapsed code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;# That&amp;#39;s a trick I use in all my shell script
+# To get the script actual folder
+SCRIPT_DIR=&amp;quot;$( cd &amp;quot;$( dirname &amp;quot;${BASH_SOURCE[0]}&amp;quot; )&amp;quot; &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;&amp;amp; pwd )&amp;quot;
+
+# Setting root dir and current.txt variables
+ROOT_DIR=$SCRIPT_DIR/..
+CURRENT_FILE=$SCRIPT_DIR/current.txt
+
+# If current.txt doesn&amp;#39;t exist, creating it
+if [[ -f $CURRENT_FILE ]]
+then
+    echo &amp;quot;not first step&amp;quot;
+else
+    echo &amp;quot;first step&amp;quot;
+    echo &amp;quot;0&amp;quot; &amp;gt; $CURRENT_FILE
+fi
+
+# Adding 1 to current.txt value
+CURRENT_STEP=`cat $CURRENT_FILE`
+CURRENT_STEP=$((CURRENT_STEP+1))
+CURRENT_DIR=&amp;quot;$SCRIPT_DIR/step-$CURRENT_STEP&amp;quot;
+echo $CURRENT_STEP &amp;gt; $CURRENT_FILE
+echo &amp;quot;step $CURRENT_STEP, DIR $CURRENT_DIR&amp;quot;
+
+# Checking the next step actually exists
+if [[ -d &amp;quot;$CURRENT_DIR&amp;quot; ]]
+then
+    # Copying everything in step-X folder to root folder
+    echo &amp;quot;step exists&amp;quot;
+    cp &amp;quot;$CURRENT_DIR&amp;quot;/* &amp;quot;$ROOT_DIR&amp;quot;
+else
+    echo &amp;quot;no more steps&amp;quot;
+fi&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So, running the &lt;code&gt;steps/next.sh&lt;/code&gt; script (don’t forget to &lt;code&gt;chmod u+x&lt;/code&gt; it, like I always do) I could change title from step X to step X+1.&lt;br /&gt;
+But how to run this script while doing the session?
+I couldn’t open a terminal and run it when needed, that wouldn’t be very convenient.&lt;/p&gt;
+
+&lt;h3 id=&quot;second-automate-with-vs-code-task&quot;&gt;Second, automate with VS Code task&lt;/h3&gt;
+
+&lt;p&gt;Hopefully, I already partially knew how to solve that because in order to optimize my Jekyll workspace for the apihandyman.io blog I use &lt;a href=&quot;https://code.visualstudio.com/docs/editor/tasks#_custom-tasks&quot;&gt;VS Code Custom tasks&lt;/a&gt; to run bach scripts.
+So I created a &lt;code&gt;.vscode&lt;/code&gt; folder (its the standard folder holding VS Code stuff) and added the following &lt;code&gt;tasks.json&lt;/code&gt; file. 
+This file define the custom tasks that will be available when this workspace/folder is opened in VS Code.&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;.vscode/tasks.json&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-json line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;{
+  &amp;quot;version&amp;quot;: &amp;quot;2.0.0&amp;quot;,
+  &amp;quot;tasks&amp;quot;: [
+    {
+      &amp;quot;label&amp;quot;: &amp;quot;Next step&amp;quot;,
+      &amp;quot;type&amp;quot;: &amp;quot;shell&amp;quot;,
+      &amp;quot;command&amp;quot;: &amp;quot;steps/next.sh&amp;quot;,
+      &amp;quot;presentation&amp;quot;: {
+        &amp;quot;reveal&amp;quot;: &amp;quot;never&amp;quot;,
+        &amp;quot;panel&amp;quot;: &amp;quot;shared&amp;quot;
+      },
+      &amp;quot;problemMatcher&amp;quot;: []
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now instead of opening a terminal and typing a command line to run the script, I could open VS Code command palette (&lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;P&lt;/kbd&gt; on MacOs or &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;P&lt;/kbd&gt; on Windows) and choose &lt;code&gt;Tasks: Run task&lt;/code&gt;, then choose the “Next step” one.
+That actually runs the shell command &lt;code&gt;steps/next.sh&lt;/code&gt; and that is done silently thanks to the &lt;code&gt;presentation.reveal: never&lt;/code&gt;.
+In the beginning, I actually set &lt;code&gt;presentation.reveal: always&lt;/code&gt; to be sure that something was actually happening.
+That’s better but still cumbersome, I didn’t want people watching me do that even if that’s really quick.&lt;/p&gt;
+
+&lt;h3 id=&quot;third-add-a-little-bit-of-shortcut-magic&quot;&gt;Third, add a little bit of shortcut magic&lt;/h3&gt;
+
+&lt;p&gt;VS Code allows to customize keyboard shortcuts and even define ones to trigger tasks (check &lt;a href=&quot;https://code.visualstudio.com/docs/editor/tasks#_binding-keyboard-shortcuts-to-tasks&quot;&gt;documentation here&lt;/a&gt;).
+Note that unlike tasks that can be configured locally inside a workspace/folder, key bindings are only defined globally.&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/shortcuts.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To show shortcuts configuration use &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;K&lt;/kbd&gt;&lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;S&lt;/kbd&gt; on MacOs or &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;K&lt;/kbd&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;S&lt;/kbd&gt; on Windows.
+Then click on the file icon on top right corner to see the json content of your custom configuration (&lt;code&gt;keybindings.json&lt;/code&gt; file).&lt;/p&gt;
+
+&lt;p&gt;In order to trigger my “Next step” task when typing &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;m&lt;/kbd&gt;, I modified my configuration as follow:&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;keybindings.json&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-json line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;// Place your key bindings in this file to override the defaults
+[
+    {
+        &amp;quot;key&amp;quot;: &amp;quot;ctrl+m&amp;quot;,
+        &amp;quot;command&amp;quot;: &amp;quot;workbench.action.tasks.runTask&amp;quot;,
+        &amp;quot;args&amp;quot;: &amp;quot;Next step&amp;quot;
+    }
+]&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note that before choosing &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;m&lt;/kbd&gt;, I actually tested a few other shortcuts before finding one that was not already used.
+To check if a key binding already exists, type it in the text field above the lists as shown in the screenshot above.&lt;/p&gt;
+
+&lt;p&gt;That way, I could be like “blah blah blah, and now &lt;em&gt;next topic&lt;/em&gt;” … while magically changing the title with &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;m&lt;/kbd&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;styling-titles&quot;&gt;Styling titles&lt;/h2&gt;
+
+&lt;p&gt;I could change my title but it was simple black text on white background, I wanted something with more style and if possible matching VS Code Style.
+Hopefully, while configuring VS Code to use the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=webrender.synthwave-x-fluoromachine&quot;&gt;Synthwave x Fluoromachine theme&lt;/a&gt;, I discovered that VS Code theming relies on good old CSS and that this theme CSS was located in &lt;code&gt;$HOME/.vscode/extensions/webrender.synthwave-x-fluoromachine-0.0.12/synthwave-x-fluoromachine.css&lt;/code&gt;.
+I copy/pasted the file’s content into a &lt;code&gt;index.css&lt;/code&gt; file in my workspace and added it to my index.html files then used some css classes defined for this theme: &lt;code&gt;monaco-editor&lt;/code&gt; on body then &lt;code&gt;mtk6&lt;/code&gt;, &lt;code&gt;mtk7&lt;/code&gt; and &lt;code&gt;mtk8&lt;/code&gt; on the various elements in my title, et voilà!
+I now had shiny neon styled titles.&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Styling index.html&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-html line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;index.css&amp;quot;&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body class=&amp;quot;monaco-editor&amp;quot;&amp;gt;
+        &amp;lt;h1&amp;gt;
+            &amp;lt;span class=&amp;quot;mtk7&amp;quot;&amp;gt;@apihandyman&amp;lt;/span&amp;gt;
+            &amp;lt;span class=&amp;quot;mtk6&amp;quot;&amp;gt; Supercharged OpenAPI&amp;lt;/span&amp;gt;
+            &amp;lt;span id=&amp;quot;section&amp;quot; class=&amp;quot;mtk8&amp;quot;&amp;gt;A basic OpenAPI File&amp;lt;/span&amp;gt;
+        &amp;lt;/h1&amp;gt;
+    &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I was quite satisfied until I realized that the blue text (&lt;code&gt;mtk6&lt;/code&gt;) had not the neon effect (attention to details is both my super power and my curse).
+I’m definitely not a CSS expert, but I’m damn good at copy/pasting.
+So, I compared its definition with the two other &lt;code&gt;mtk&lt;/code&gt;, and notice a difference: the &lt;code&gt;text-shadow&lt;/code&gt; of the blue class had less parameters.
+The neon effect is actually achieved by adding shadows of different colors. 
+So I added the missing values, struggle a bit to choose the various colors but I ended with the following &lt;code&gt;text-shadow&lt;/code&gt; that looked great!&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Styling index.html&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-html line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;text-shadow: 0 0 2px #100c0f, 0 0 3px #61e2ff, 0 0 5px #61e2ff, 0 0 10px #03edf933;&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;adding-speakers-note-to-avoid-forgetting-something&quot;&gt;Adding speaker’s note to avoid forgetting something&lt;/h1&gt;
+
+&lt;p&gt;When I do a “regular” presentation, you may not notice it when seeing me on stage or watching me on a video, but I heavily rely on my speaker’s notes.
+There’s my full speech there on each slide with some other information such as timing or “CLICK” when there is an animation or a transition to trigger at a specific moment in a sentence.
+The more I practice a talk, the less I need them but I’m relieved to just know they are there if needed.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, there are no “speaker’s notes” in VS Code and I was struggling to not forget something to say or to do.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-todo-attempt&quot;&gt;The Todo+ attempt&lt;/h2&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/todo-v1.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;My first attempt in order to avoid forgetting something was to use the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus&quot;&gt;Todo+&lt;/a&gt; extension.
+I created a steps.todo file basically containing my TOC.
+The idea was to have the Todo+ panel opened while coding the OpenAPI file.
+But that was not really convenient because it was visible to attendees and occupying space that I desperately needed.
+I though to hide it by cropping the VS Code window in OBS but that would have possible hidden a space where I could have wanted to show something.
+It was also not really convenient as, in order to keep the todo list usable for me, I had to open/close tasks folders.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-todohtml--ipad-solution&quot;&gt;The todo.html + iPad solution&lt;/h2&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/todo-v2.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;My second idea was to use almost the same trick as for the titles.
+I added a &lt;code&gt;todo.html&lt;/code&gt; file in each &lt;code&gt;steps/step-x&lt;/code&gt; folder.
+That way when I was using the “Next step” task, not only it was copying the &lt;code&gt;index.html&lt;/code&gt; file of the step to the root folder, it was also copying the &lt;code&gt;todo.html&lt;/code&gt; file too.
+Having a browser showing &lt;code&gt;http://localhost:5500/todo.html&lt;/code&gt; allowed to me have speaker’s notes updated at each step just like titles.&lt;/p&gt;
+
+&lt;p&gt;In order to keep those notes out of the way but still allowing me to look at them without loosing eye contact with my main screen and its web cam, I used the “sidecar” feature of my iPad.
+All that is needed is to plug the iPad to the Macbook with a USB cable then go to display preferences, choose the iPad as an Airplay display.
+Don’t forget to position it relatively to other screens as it is in reality in order to keep moving mouse to it simple.
+And you’re done you have a third (or second) display screen.
+Note that sidecar can be used over wifi but I never had satisfying result with it (maybe my wifi is not fast enough).&lt;/p&gt;
+
+&lt;p&gt;Note that as OBS is able to crop on a specific window, I probably could had both VS Code and todo on my MacBook display.
+But I wanted to test the side car, and it was working, so I moved on to next problem to solve.&lt;/p&gt;
+
+&lt;p&gt;I choose to use the same style as for the titles though is was only visible to my eyes.
+I also used various emojis to “type” the actions to do:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;✏️ (pen) to write code&lt;/li&gt;
+  &lt;li&gt;⌨️ (keyboard) to use the terminal&lt;/li&gt;
+  &lt;li&gt;📺 (old TV) to show a rendering og the file (with Redoc or SwaggerUI)&lt;/li&gt;
+  &lt;li&gt;💬 (Speech bubble) to say something&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;heading-to-next-problem&quot;&gt;Heading to next problem&lt;/h1&gt;
+
+&lt;p&gt;With all that I was totally satisfied with the style of the session and I was as comfortable as delivering a regular slide deck session thanks to my speaker’s note.
+In next post, I’ll show you how I was able to code at light speed.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Third post about my first ever (recorded) live coding session given at the Manning API conference. In previous post, I encountered various problems. Two of them were related to not delivering the session like one of my regular slide deck presentation. I wanted to add titles and have speaker’s notes. In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic.</summary></entry><entry><title type="html">Surviving My First Recorded Live Coding Session Part 2</title><link href="https://apihandyman.io/preparing-session-content-and-realizing-its-not-working-well/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 2" /><published>2021-08-11T00:00:00-05:00</published><updated>2021-08-11T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-2</id><content type="html" xml:base="https://apihandyman.io/preparing-session-content-and-realizing-its-not-working-well/">&lt;p&gt;Second post about my first ever (recorded) live coding session.
 So, here I was in my &lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/&quot;&gt;previous post&lt;/a&gt;: ready to record myself coding and talking without any slides…
 But I didn’t told the whole story, I actually struggled a lot before actually being able to record myself coding and talking.
 In the beginning, I had planned to do far more stuff and differently than what people had seen.
@@ -39,6 +447,10 @@ It is the one that I actually used during the session.&lt;/p&gt;
           &lt;li class=&quot;list-group-item active&quot;&gt;2 - Preparing session content and realizing it's not working well&lt;/li&gt;
           
         
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
         
           
           
@@ -46,8 +458,6 @@ It is the one that I actually used during the session.&lt;/p&gt;
         
           
           
-          
-          &lt;li class=&quot;list-group-item disabled&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code (coming soon)&lt;/li&gt;
           
         
           
@@ -210,6 +620,10 @@ It is the one that I actually used during the session.&lt;/p&gt;
           &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;2 - Preparing session content and realizing it's not working well&lt;/a&gt;&lt;/li&gt;
           
         
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
         
           
           
@@ -217,8 +631,6 @@ It is the one that I actually used during the session.&lt;/p&gt;
         
           
           
-          
-          &lt;li class=&quot;list-group-item disabled&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code (coming soon)&lt;/li&gt;
           
         
           
@@ -1500,71 +1912,4 @@ There are many things to say about that, we’ll talk more about API versioning 
 &lt;p&gt;And last tip, don’t forget to include your breaking change policy in your terms of service: how you define a breaking change, when you’ll warn people about an upcoming one and how long time they’ll have to migrate to a new API version if they have to.
 Depending on your context, you may not want to let consumers stay on an outdated previous version for too long but think about their context, below a year could be tricky for many consumers as their budget are annualized.&lt;/p&gt;
 
-&lt;p&gt;Note while that’s a must have for a public/partner API that you sell to people outside of your organization, it that could be interesting to define terms of service including such policy for your private APIs too.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">In (Ch-ch-) Changes, David Bowie sang “Every time I thought I’d got it made, it seemed the taste was not so sweet”, that’s a good metaphor for API design. An API will irremediably evolve because it will lack some features or because of mistakes, and so sooner or later, you may have to introduce a “breaking change”. That’s usually when people start to run in circle, scream and shout “Oh! Please no! Please, not a breaking ch-ch-change”. But, what is it actually? How to handle it? And should you always be afraid of it?</summary></entry><entry><title type="html">Pink Fluffy Unicorn API? WTF? (or 3 reasons why choosing a not meaningful API name can be a problem)</title><link href="https://apihandyman.io/pink-fluffy-unicorn-api-wtf-or-3-reasons-why-choosing-a-not-meaningful-API-name-can-be-a-problem/" rel="alternate" type="text/html" title="Pink Fluffy Unicorn API? WTF? (or 3 reasons why choosing a not meaningful API name can be a problem)" /><published>2021-06-09T00:00:00-05:00</published><updated>2021-06-09T00:00:00-05:00</updated><id>https://apihandyman.io/pink-fluffy-unicorn</id><content type="html" xml:base="https://apihandyman.io/pink-fluffy-unicorn-api-wtf-or-3-reasons-why-choosing-a-not-meaningful-API-name-can-be-a-problem/">&lt;p&gt;It is usually considered a terrible practice to name a property or a function with a meaningless name when writing code.
-But surprisingly, when it comes to choosing application or API name, some people tend to choose names in a more artistic way (says the “API Handyman” who can name some tool “OpenAPI Chainsaw”).
-So let’s see 3 reasons why choosing a not meaningful API name can be a problem.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;This post is a follow up of a tweet I did a few weeks ago: &lt;em&gt;“Pink Fluffy Unicorn” is a cute but totally wrong name for an API unless it actually deals with pink fluffy unicorns. Please choose a meaningful name that tells what the API does&lt;/em&gt;.
-Someone asked some arguments to back this statement because they seem to have to deal with such cute but counter-productive if not dangerous naming strategy.
-And I realized that I have never formalized my thoughts on this topic, hence this post (thanks so much Twitter people!)&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Very special thanks to &lt;a href=&quot;https://twitter.com/mrlapindesign&quot;&gt;@mrlapingdesign&lt;/a&gt; for drawing this post’s banner.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;it-needs-explanations&quot;&gt;It needs explanations&lt;/h1&gt;
-
-&lt;p&gt;First and most obvious reason why choosing a not totally meaningful name is a terrible idea: it needs explanations.&lt;/p&gt;
-
-&lt;p&gt;When starting a new job in a another company/organization, don’t you ever have grumbled when discovering that all internal tools such as the credential manager or the leave management tool have totally awkward not obvious names?
-Of course, after someone explained you all that (for the 99th time) and if you use them everyday, you may remember their names.
-But your new colleague, who arrived a few months later, will also struggle to understand what does what at the beginning.
-And someone will have to explain all that (again, for the 100th time).
-And if you don’t use them often, you’ll forget their name and struggle to find them when you desperately need them.&lt;/p&gt;
-
-&lt;p&gt;And that applies to anything, including APIs.
-If I’m looking for the API managing users, I will not search for Pink Fluffy Unicorn API.
-And if I’m looking for the API managing file transfers, I will not search for Blue Fluffy Unicorn API.
-When I see a Pink Fluffy Unicorn API, I have absolutely no clue about what it does by just reading its name, and that is really annoying.&lt;/p&gt;
-
-&lt;p&gt;Of course, some may object that I could use our awesome API catalog search engine or read the documentation to see that, so using such a not so meaningful name may not be such a big problem.
-Maybe, so let’s see the second reason, which is major no-go for me.&lt;/p&gt;
-
-&lt;h1 id=&quot;it-does-not-set-boundaries&quot;&gt;It does not set boundaries&lt;/h1&gt;
-
-&lt;p&gt;Second reason why choosing a not totally meaningful name is a terrible idea: it does not set boundaries.
-And that’s a major concerns.
-Indeed, a well defined and designed API is supposed to be a independent set of operations covering a meaningful set of related use cases.&lt;/p&gt;
-
-&lt;p&gt;If this set of operations don’t have a meaningful name such as User but is named Pink Fluffy Unicorn, what stops someone to add new features related to a completely different topic such as file transfers?
-What stops someone transforming this well defined API into a big ball of mud, a do-it-all API that will make no sense at all and be more complex to maintain?
-What stops someone to create a dangerous mixtures composed of internal facing and external facing operations.
-Not its name.
-Some experienced API designers and developers having working in the team for quite a long time, taking their time to think, actually knowing the purpose of the Pink Fluffly Unicorn, probably won’t do such a mistake but what about beginners or people in a rush?&lt;/p&gt;
-
-&lt;p&gt;Using a meaningful name creates boundaries that will make most people think twice before adding new features into an API while a meaningless name will open doors to anything.&lt;/p&gt;
-
-&lt;h1 id=&quot;it-is-possibly-a-sign-of-api-design-smell&quot;&gt;It is possibly a sign of API design smell&lt;/h1&gt;
-
-&lt;blockquote class=&quot;blockquote&quot;&gt;
-    &lt;p class=&quot;mb-0&quot;&gt;Ce que l'on conçoit bien s’énonce clairement, Et les mots pour le dire arrivent aisément (What is well understood is clearly stated, And the words to say it come easily)&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
-        &lt;cite title=&quot;Source Title&quot;&gt;Nicolas Boileau-Despréaux, L'art poétique&lt;/cite&gt;
-    &lt;/footer&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;The third reason why choosing a not totally meaningful name is a terrible idea is a corollary to the second one: it can be a sign of API design smell.&lt;/p&gt;
-
-&lt;p&gt;Did you choose a meaningless name because you’re actually unable to find a meaningful one?
-We all know that choosing names is hard, but if you are really struggling to find a meaningful name for your API, your API Designer senses should tell you that there’s something wrong. 
-That could mean your API is not solving the good problem, or solving too much problems or not enough of them.&lt;/p&gt;
-
-&lt;p&gt;Easily finding a meaningful name can comfort your vision of the use case/problems you’re trying to solve with it.&lt;/p&gt;
-
-&lt;h1 id=&quot;sometimes-you-have-to-deal-with-it&quot;&gt;Sometimes you have to deal with it&lt;/h1&gt;
-
-&lt;p&gt;There are cases where a domain, a team or a tool has a not so meaningful name that you would like to keep for reasons such as not totally changing people habits.
-Indeed, some people working there for a long time know what means Pink Fluffy Unicorn.
-So how to satisfy newcomers and seasoned colleagues?
-In such a case you can use a middle ground approach and name your API(s) “Pink Fluffy Unicorn - Meaningful Name”.
-That way you ensure seasoned colleagues won’t be surprised.
-But most important you ensure that your API surface (your APIs) is well defined (not a big ball of mud) and understandable by newcomers.
-Icing on the cake, you also ensure that people easily connect APIs together which can be interesting in a big organization or when providing public/partner APIs (“Twilio” doesn’t mean anything to me but I can get what the “Twilio Messaging API” does).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">It is usually considered a terrible practice to name a property or a function with a meaningless name when writing code. But surprisingly, when it comes to choosing application or API name, some people tend to choose names in a more artistic way (says the “API Handyman” who can name some tool “OpenAPI Chainsaw”). So let’s see 3 reasons why choosing a not meaningful API name can be a problem.</summary></entry></feed>
+&lt;p&gt;Note while that’s a must have for a public/partner API that you sell to people outside of your organization, it that could be interesting to define terms of service including such policy for your private APIs too.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">In (Ch-ch-) Changes, David Bowie sang “Every time I thought I’d got it made, it seemed the taste was not so sweet”, that’s a good metaphor for API design. An API will irremediably evolve because it will lack some features or because of mistakes, and so sooner or later, you may have to introduce a “breaking change”. That’s usually when people start to run in circle, scream and shout “Oh! Please no! Please, not a breaking ch-ch-change”. But, what is it actually? How to handle it? And should you always be afraid of it?</summary></entry></feed>

@@ -14,27 +14,27 @@
 
 <html lang="en">
   <head>
-  <title>API Handyman | Preparing session content and realizing it's not working well</title>
-  <meta name="description" content="Second post about my first ever (recorded) live coding session. So, here I was in my previous post: ready to record myself coding and talking without any slides… But I didn’t told the whole story, I actually struggled a lot before actually being able to record myself coding and talking. In the beginning, I had planned to do far more stuff and differently than what people had seen. In this post, I’ll talk about how I prepared content and realized that it was not working well.">
+  <title>API Handyman | Slide deck like live coding with titles and speaker's notes using OBS and VS Code</title>
+  <meta name="description" content="Third post about my first ever (recorded) live coding session given at the Manning API conference. In previous post, I encountered various problems. Two of them were related to not delivering the session like one of my regular slide deck presentation. I wanted to add titles and have speaker’s notes. In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic.">
 <meta name="keywords" content="API,Web API,Web Service">
 <meta name="author" content="Arnaud Lauret">
-<meta name="description" content="Second post about my first ever (recorded) live coding session. So, here I was in my previous post: ready to record myself coding and talking without any slides… But I didn’t told the whole story, I actually struggled a lot before actually being able to record myself coding and talking. In the beginning, I had planned to do far more stuff and differently than what people had seen. In this post, I’ll talk about how I prepared content and realized that it was not working well.">
+<meta name="description" content="Third post about my first ever (recorded) live coding session given at the Manning API conference. In previous post, I encountered various problems. Two of them were related to not delivering the session like one of my regular slide deck presentation. I wanted to add titles and have speaker’s notes. In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic.">
 
 <!-- Facebook & LinkedIn -->
-<meta property="og:title"         content="Preparing session content and realizing it's not working well"/>
+<meta property="og:title"         content="Slide deck like live coding with titles and speaker's notes using OBS and VS Code"/>
 <meta property="og:type"          content="article"/>
-<meta property="og:description"   content="Second post about my first ever (recorded) live coding session. So, here I was in my previous post: ready to record myself coding and talking without any slides… But I didn’t told the whole story, I actually struggled a lot before actually being able to record myself coding and talking. In the beginning, I had planned to do far more stuff and differently than what people had seen. In this post, I’ll talk about how I prepared content and realized that it was not working well."/>
-<meta property="og:url"           content="https://apihandyman.io/preparing-session-content-and-realizing-its-not-working-well/"/>
-<meta property="og:image"         content="https://apihandyman.io/images/preparing-session-content-and-realizing-its-not-working-well/banner.jpg"/>
+<meta property="og:description"   content="Third post about my first ever (recorded) live coding session given at the Manning API conference. In previous post, I encountered various problems. Two of them were related to not delivering the session like one of my regular slide deck presentation. I wanted to add titles and have speaker’s notes. In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic."/>
+<meta property="og:url"           content="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/"/>
+<meta property="og:image"         content="https://apihandyman.io/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/banner.jpg"/>
 
 <!-- Twitter -->
 <meta name="twitter:card"         content="summary">
 <meta name="twitter:site"         content="@apihandyman">
 <meta name="twitter:creator"      content="@apihandyman" />
-<meta name="twitter:title"        content="Preparing session content and realizing it's not working well">
-<meta name="twitter:url"          content="https://apihandyman.io/preparing-session-content-and-realizing-its-not-working-well/">
-<meta name="twitter:description"  content="Second post about my first ever (recorded) live coding session. So, here I was in my previous post: ready to record myself coding and talking without any slides… But I didn’t told the whole story, I actually struggled a lot before actually being able to record myself coding and talking. In the beginning, I had planned to do far more stuff and differently than what people had seen. In this post, I’ll talk about how I prepared content and realized that it was not working well.">
-<meta name="twitter:image:src"    content="https://apihandyman.io/images/preparing-session-content-and-realizing-its-not-working-well/banner.jpg">
+<meta name="twitter:title"        content="Slide deck like live coding with titles and speaker's notes using OBS and VS Code">
+<meta name="twitter:url"          content="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/">
+<meta name="twitter:description"  content="Third post about my first ever (recorded) live coding session given at the Manning API conference. In previous post, I encountered various problems. Two of them were related to not delivering the session like one of my regular slide deck presentation. I wanted to add titles and have speaker’s notes. In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic.">
+<meta name="twitter:image:src"    content="https://apihandyman.io/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/banner.jpg">
 
   
   
@@ -1239,7 +1239,7 @@
   <div class="row row-banner-small row-banner-small-">
     <div class="banner-small-container">
       <div class="banner-small-column-main">
-        <img src="https://apihandyman.io/images/preparing-session-content-and-realizing-its-not-working-well/banner.jpg" class="img-fluid" alt="">
+        <img src="https://apihandyman.io/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/banner.jpg" class="img-fluid" alt="">
       </div>
     </div>
   </div>
@@ -1284,11 +1284,11 @@
   
 
     
-    <a class="dropdown-item active disabled text-wrap">2 - Preparing session content and realizing it's not working well</a>
+   <a class="dropdown-item selectable text-wrap" href="/preparing-session-content-and-realizing-its-not-working-well/">2 - Preparing session content and realizing it's not working well</a>
   
 
     
-   <a class="dropdown-item selectable text-wrap" href="/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/">3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code</a>
+    <a class="dropdown-item active disabled text-wrap">3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code</a>
   
 
 
@@ -1383,7 +1383,44 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#preparing-content-almost-as-usual">Preparing content almost as usual</a>
+          <a class="nav-link toc-level-1" href="#adding-titles-to-avoid-loosing-attendees">Adding titles to avoid loosing attendees</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#showing-titles-above-vs-code">Showing titles above VS Code</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#updating-titles-poc">Updating titles POC</a>
           
       
       
@@ -1402,7 +1439,41 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#too-much-too-complicated-a-bit-off-topic">Too much, too complicated, a bit off topic</a>
+          <a class="nav-link toc-level-2" href="#updating-titles-magically-during-the-session">Updating titles magically during the session</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#styling-titles">Styling titles</a>
           
       
       
@@ -1421,7 +1492,45 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#focusing-on-the-real-topic">Focusing on the real topic</a>
+        </nav>
+          <a class="nav-link toc-level-1" href="#adding-speakers-note-to-avoid-forgetting-something">Adding speaker’s note to avoid forgetting something</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#the-todo-attempt">The Todo+ attempt</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#the-todohtml--ipad-solution">The todo.html + iPad solution</a>
           
       
       
@@ -1440,8 +1549,9 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#still-not-working-well-and-terrible-new-idea">Still not working well and terrible new idea</a>
-          
+        </nav>
+          <a class="nav-link toc-level-1" href="#heading-to-next-problem">Heading to next problem</a>
+        
       
       
     
@@ -1488,21 +1598,21 @@
       <div class="body">
         
         <h5 class="surtitle">
-Surviving my first (recorded) live coding session Series - Part 2
+Surviving my first (recorded) live coding session Series - Part 3
 </h5>
         
         
-        <h1 class="title">Preparing session content and realizing it's not working well</h1>
+        <h1 class="title">Slide deck like live coding with titles and speaker's notes using OBS and VS Code</h1>
         
         
-        <h6 class="subtitle">By Arnaud Lauret, August 11, 2021</h6>
+        <h6 class="subtitle">By Arnaud Lauret, August 18, 2021</h6>
         <hr/>
         
-        <p>Second post about my first ever (recorded) live coding session.
-So, here I was in my <a href="/setting-up-everything-to-record-myself-coding-and-talking/">previous post</a>: ready to record myself coding and talking without any slides…
-But I didn’t told the whole story, I actually struggled a lot before actually being able to record myself coding and talking.
-In the beginning, I had planned to do far more stuff and differently than what people had seen.
-In this post, I’ll talk about how I prepared content and realized that it was not working well.
+        <p>Third post about my first ever (recorded) live coding session given at the Manning API conference.
+In <a href="/preparing-session-content-and-realizing-its-not-working-well/">previous post</a>, I encountered various problems.
+Two of them were related to not delivering the session like one of my regular slide deck presentation.
+I wanted to add titles and have speaker’s notes.
+In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic.
 <!--more--></p>
 
 <div class="card series-toc">
@@ -1536,11 +1646,11 @@ It is the one that I actually used during the session.</p>
           
         
           
-          <li class="list-group-item active">2 - Preparing session content and realizing it's not working well</li>
+          <li class="list-group-item"><a href="/preparing-session-content-and-realizing-its-not-working-well/">2 - Preparing session content and realizing it's not working well</a></li>
           
         
           
-          <li class="list-group-item"><a href="/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/">3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code</a></li>
+          <li class="list-group-item active">3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code</li>
           
         
         
@@ -1582,110 +1692,285 @@ It is the one that I actually used during the session.</p>
     <div class="card-page-section page-section-not-title">
       <div class="card-body">
       
-        <h1 id="preparing-content-almost-as-usual">Preparing content almost as usual</h1>
+        <h1 id="adding-titles-to-avoid-loosing-attendees">Adding titles to avoid loosing attendees</h1>
 
-<p>I actually worked on the content before tinkering with OBS, VS Code and all other stuff.
-I treated this session’s content almost like I usually do for my regular slides-based talks.</p>
+<p>OK, that was not the most important problem, but I care a lot about how my presentations look like: how they can be beautiful but also readable. 
+So though this was a no slides session, I wanted to provide some indications about what was happening.
+I needed to show some title, like “Describe once (EXPERT): Read/Write with same schema”, as I have on my regular slide.
+But this time, I was not showing pre-made slides using Google Slides but coding in VS Code.
+How to add good looking titles in that context?
+By taking advantage of both OBS and VS Code features.</p>
 
-<p>Usually, I list the topics I want to talk about and then sort them in order to tell a story with a beginning and an end.
-I go deeper into the story by writing a detailed table of content.
-Then I write my full speech exactly as I will say it.
-It need to be precise because (Fr)English is a second language for me and I want to avoid stumble on words.
-After that, I do the slides using a (pop culture) theme that usually had popped in my mind while working on topics, toc or speech.</p>
-
-<p>Here, the topics were the OpenAPI Specification features and tools I wanted to show.
-Building the story was made first by organizing the features in two categories: interface contract features and documentation features.
-Then in each category, I sorted the features from simple/beginner to complex/advanced.
-I added some extra entries in both categories to showcase various tools. 
-With that, I had my table of content.</p>
-
-<p>Then instead of writing my speech, I wrote an OpenAPI file adding each feature one by one.
-I had to think about an example. 
-I wanted to keep things simple in order to have a simple CRUD API, but as always I added some pop culture reference … and ended with the Masters of the Universe API, an API providing information about characters and toys from the franchise.</p>
-
-<p>The OpenAPI file did not came right at first try, I had to rework it several times.
-I improved it while working the “how to show that”, but it was more complicated than expected.
-Indeed, my original plan for “how to show that” had not worked well.</p>
-
-
-      </div>
-    </div><!-- Next cards END -->
-    
-  
-    
-    
-    <!-- Next cards -->
-    <div class="card-page-section page-section-not-title">
-      <div class="card-body">
-      
-        <h1 id="too-much-too-complicated-a-bit-off-topic">Too much, too complicated, a bit off topic</h1>
-
-<p>The plan was to write the OpenAPI document using <a href="https://stoplight.io/studio/">Stoplight Studio</a>, not for its GUI feature that allows to NOT write OpenAPI code (and that I use everyday).</p>
+<h2 id="showing-titles-above-vs-code">Showing titles above VS Code</h2>
 
 <div class="image ">
     <figure class="figure">
-        <img src="/images/preparing-session-content-and-realizing-its-not-working-well/stoplight-studio.png" class="figure-img img-fluid" /></figure>
+        <img src="/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/magic.jpg" class="figure-img img-fluid" /></figure>
 </div>
 
-<p>But because it provides a cool renderer that updates itself smartly as you write code.
-Indeed when using renderers such as <a href="https://github.com/Redocly/redoc">Redoc</a> or <a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a>, even embedded in VS Code (using the really good <a href="https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi">42 Crunch OpenAPI Editor extension</a>), the experience is not so good.
-For instance in Swagger UI, if you had opened an operation and selected the schema panel, modify something and the page is reloaded, still on the operation but you’ll have to re-switch to schema panel yourself.
-There’s no such problem in Studio.</p>
-
-<p>I also wanted to show how the API I was designing would work.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/preparing-session-content-and-realizing-its-not-working-well/postman.png" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>Studio comes with an embedded mock server powered by <a href="https://stoplight.io/open-source/prism/">Stoplight Prism</a>.
-Prism is quite cool, feed it an OpenAPI file and it will magically generate a (basic) API mock server simulating the API described in the OpenAPI file.
-The idea was to call this mocked API in <a href="https://www.postman.com/">Postman</a> one of the best API GUI playground out there.</p>
-
-<p>I made a few test, writing code in Studio, importing the created OpenAPI file in Postman so it generated a ready to use collection targeting the Prism mock.
-Mostly to showcase various ways of using an OpenAPI document.</p>
-
-<p>While all those tools are great and all this actually worked … it was too long, too complicated to switch between tools.
-And on top of that, my research for the best zoom level to use in order to keep code readable ended with being unable to have both code and rendering visible in Studio.
-All that actually helped me realized that I was probably also going a bit off topic in the way of presenting things.</p>
-
-
-      </div>
-    </div><!-- Next cards END -->
-    
-  
-    
-    
-    <!-- Next cards -->
-    <div class="card-page-section page-section-not-title">
-      <div class="card-body">
-      
-        <h1 id="focusing-on-the-real-topic">Focusing on the real topic</h1>
-
-<p>What I wanted to show was more the OpenAPI Specification itself and its inner possibilities rather than showing tools using it just to show them using it.
-I needed to focus on the real topic of the session and do that efficiently using tools only to showcase the features I was using.</p>
-
-<p>So, that’s why I chose to</p>
+<p>In OBS, you can add various sources in a scene, I already had 3 in my Macbook scene:</p>
 
 <ul>
-  <li>Use only <a href="https://code.visualstudio.com/">VS Code</a>, showing only OpenAPI code most of the time without anything else</li>
-  <li>Show rendering with <a href="https://github.com/Redocly/redoc">Redoc</a> or <a href="https://github.com/swagger-api/swagger-ui">Swagger UI</a> only when actually needed (using <a href="https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi">42 Crunch OpenAPI Editor extension</a>)</li>
-  <li>Use <a href="https://stoplight.io/open-source/prism/">Stoplight Prism</a> and <a href="https://httpie.io/">httpie</a> in VS Code embedded terminal only to illustrate OpenAPI features I was actually using with dummy API calls</li>
+  <li>An <em>Image</em> source: the foreground Manning provided to me</li>
+  <li>A <em>Video Capture Device</em> source: my webcam (or my IPhone)</li>
+  <li>A <em>Display Capture</em> source: my MacBook display cropped on VS Code window titled “Supercharged OpenAPI” (By the way, regarding capturing VS Code, during my tests I also tried the <em>Window Capture</em> source and was not really satisfied with it. There was a huge lag, especially when I was scrolling.)</li>
 </ul>
 
-<p>That way I was able to do everything inside VS Code with a clean (but stylish, see <a href="/setting-up-everything-to-record-myself-coding-and-talking/">previous post</a>) interface focusing on code.</p>
+<p>But there are other types of sources, as you can see in the screen capture above, the one that caught my eye when trying to find a solution for my idea was the <em>Browser</em> source.
+I created a simple <code>index.html</code> file containing a “WTF it works!” level 1 header in the body (yes, I tend to curse in my code when testing) then started a <a href="https://www.npmjs.com/package/http-server">simple web server</a> in the folder containing that file. 
+In OBS, I added a <em>Browser</em> source to my Macbook scene.
+In the configuration window, I set up the URL to target <code>http://localhost:8080/index.html</code>, and set width to 1980 (pixels) and height to 100.
+There’s some custom CSS that comes by default, I didn’t modify it and hit OK.
+Once added, I moved the new source in the scene on top of the zone for my screen and resized it to fit in the reserved space.
+Finally in the “Sources” panel, I renamed the new source to “Title” (by right clicking on it and choosing rename).
+And I reordered the sources to put “Title” in the “Template” folder, putting above the Display Capture Source (the new source hiding the VS Code window title) but below the Image source.</p>
 
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/preparing-session-content-and-realizing-its-not-working-well/code-only.png" class="figure-img img-fluid" /></figure>
+<p>So I had my title, but it was a static one.</p>
+
+<h2 id="updating-titles-poc">Updating titles POC</h2>
+
+<p>I thought I could find a configuration to trigger a refresh at regular interval in OBS, but there’s actually no such configuration.
+Hopefully, I remembered that while I was reading some post about useful VS Code extensions, the <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server</a> extension caught my eye.
+This extension allows to start a web server in your workspace and it includes a live refresh out of the box.
+That means a webpage loaded through this web server will be updated automatically in the browser when something change in the workspace.
+So once the extension installed and started, I modified the Browser source configuration in OBS to target this web server, and I was still able to see the “WTF it works!” title.
+Then I modified the HTML file by replacing the title with “WTF it has been updated!”, hit save …
+And the title has been updated in OBS seamlessly!</p>
+
+<p>Now that my proof of concept (POC) worked, I needed to show the real titles and switch to the next one when needed but without the attendees noticing anything.</p>
+
+<h2 id="updating-titles-magically-during-the-session">Updating titles magically during the session</h2>
+
+<p>What I did is quite ugly, it’s a very first solution that would deserve to be improved (it will be improved!).
+But it works.
+The solution is based on static files, an ugly shell script, VS Code custom tasks and custom key bindings.</p>
+
+<h3 id="first-write-some-ugly-shell">First, write some ugly shell</h3>
+
+<p>In a <code>steps</code> folder, I created sub-folders named <code>step-1</code> to <code>step-19</code> (because there were 19 steps in my TOC … at that time) and then put an <code>index.html</code> file in each one.
+Obviously, each file contained the title to be shown at each step (title coming from my TOC).</p>
+
+<p>Then I wrote the ugliest possible bash script named <code>next.sh</code> (in <code>steps</code>).
+In its most basic version, this script did the following:</p>
+
+<ul>
+  <li>Checking if a <code>current.txt</code> file exists, if not creating it and putting <code>0</code> in it</li>
+  <li>Reading the <code>current.txt</code> file, adding <code>1</code> to its value and updating it</li>
+  <li>Copying the content of <code>step-{new value}</code> to workspace root</li>
+</ul>
+
+<p>Afterward, I added some controls to do nothing and output some warning when the next step actually doesn’t exist in the <code>steps</code> folder.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">The ugly next.sh script</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers code-collapsed code-copy"><code class="code-block"># That&#39;s a trick I use in all my shell script
+# To get the script actual folder
+SCRIPT_DIR=&quot;$( cd &quot;$( dirname &quot;${BASH_SOURCE[0]}&quot; )&quot; &gt;/dev/null 2&gt;&amp;1 &amp;&amp; pwd )&quot;
+
+# Setting root dir and current.txt variables
+ROOT_DIR=$SCRIPT_DIR/..
+CURRENT_FILE=$SCRIPT_DIR/current.txt
+
+# If current.txt doesn&#39;t exist, creating it
+if [[ -f $CURRENT_FILE ]]
+then
+    echo &quot;not first step&quot;
+else
+    echo &quot;first step&quot;
+    echo &quot;0&quot; &gt; $CURRENT_FILE
+fi
+
+# Adding 1 to current.txt value
+CURRENT_STEP=`cat $CURRENT_FILE`
+CURRENT_STEP=$((CURRENT_STEP+1))
+CURRENT_DIR=&quot;$SCRIPT_DIR/step-$CURRENT_STEP&quot;
+echo $CURRENT_STEP &gt; $CURRENT_FILE
+echo &quot;step $CURRENT_STEP, DIR $CURRENT_DIR&quot;
+
+# Checking the next step actually exists
+if [[ -d &quot;$CURRENT_DIR&quot; ]]
+then
+    # Copying everything in step-X folder to root folder
+    echo &quot;step exists&quot;
+    cp &quot;$CURRENT_DIR&quot;/* &quot;$ROOT_DIR&quot;
+else
+    echo &quot;no more steps&quot;
+fi</code></pre>
+  </div>
 </div>
 
-<p>Being able to open two terminals side by side revealed to be convenient when comparing API calls result to talk about inconsistencies.</p>
+<p>So, running the <code>steps/next.sh</code> script (don’t forget to <code>chmod u+x</code> it, like I always do) I could change title from step X to step X+1.<br />
+But how to run this script while doing the session?
+I couldn’t open a terminal and run it when needed, that wouldn’t be very convenient.</p>
+
+<h3 id="second-automate-with-vs-code-task">Second, automate with VS Code task</h3>
+
+<p>Hopefully, I already partially knew how to solve that because in order to optimize my Jekyll workspace for the apihandyman.io blog I use <a href="https://code.visualstudio.com/docs/editor/tasks#_custom-tasks">VS Code Custom tasks</a> to run bach scripts.
+So I created a <code>.vscode</code> folder (its the standard folder holding VS Code stuff) and added the following <code>tasks.json</code> file. 
+This file define the custom tasks that will be available when this workspace/folder is opened in VS Code.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">.vscode/tasks.json</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+  &quot;version&quot;: &quot;2.0.0&quot;,
+  &quot;tasks&quot;: [
+    {
+      &quot;label&quot;: &quot;Next step&quot;,
+      &quot;type&quot;: &quot;shell&quot;,
+      &quot;command&quot;: &quot;steps/next.sh&quot;,
+      &quot;presentation&quot;: {
+        &quot;reveal&quot;: &quot;never&quot;,
+        &quot;panel&quot;: &quot;shared&quot;
+      },
+      &quot;problemMatcher&quot;: []
+    }
+  ]
+}</code></pre>
+  </div>
+</div>
+
+<p>Now instead of opening a terminal and typing a command line to run the script, I could open VS Code command palette (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>P</kbd> on MacOs or <kbd>ctrl</kbd><kbd>⇧</kbd><kbd>P</kbd> on Windows) and choose <code>Tasks: Run task</code>, then choose the “Next step” one.
+That actually runs the shell command <code>steps/next.sh</code> and that is done silently thanks to the <code>presentation.reveal: never</code>.
+In the beginning, I actually set <code>presentation.reveal: always</code> to be sure that something was actually happening.
+That’s better but still cumbersome, I didn’t want people watching me do that even if that’s really quick.</p>
+
+<h3 id="third-add-a-little-bit-of-shortcut-magic">Third, add a little bit of shortcut magic</h3>
+
+<p>VS Code allows to customize keyboard shortcuts and even define ones to trigger tasks (check <a href="https://code.visualstudio.com/docs/editor/tasks#_binding-keyboard-shortcuts-to-tasks">documentation here</a>).
+Note that unlike tasks that can be configured locally inside a workspace/folder, key bindings are only defined globally.</p>
 
 <div class="image ">
     <figure class="figure">
-        <img src="/images/preparing-session-content-and-realizing-its-not-working-well/two-terminals.png" class="figure-img img-fluid" /></figure>
+        <img src="/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/shortcuts.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>To show shortcuts configuration use <kbd>⌘</kbd><kbd>K</kbd><kbd>⌘</kbd><kbd>S</kbd> on MacOs or <kbd>ctrl</kbd><kbd>K</kbd><kbd>ctrl</kbd><kbd>S</kbd> on Windows.
+Then click on the file icon on top right corner to see the json content of your custom configuration (<code>keybindings.json</code> file).</p>
+
+<p>In order to trigger my “Next step” task when typing <kbd>ctrl</kbd><kbd>m</kbd>, I modified my configuration as follow:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">keybindings.json</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">// Place your key bindings in this file to override the defaults
+[
+    {
+        &quot;key&quot;: &quot;ctrl+m&quot;,
+        &quot;command&quot;: &quot;workbench.action.tasks.runTask&quot;,
+        &quot;args&quot;: &quot;Next step&quot;
+    }
+]</code></pre>
+  </div>
+</div>
+
+<p>Note that before choosing <kbd>ctrl</kbd><kbd>m</kbd>, I actually tested a few other shortcuts before finding one that was not already used.
+To check if a key binding already exists, type it in the text field above the lists as shown in the screenshot above.</p>
+
+<p>That way, I could be like “blah blah blah, and now <em>next topic</em>” … while magically changing the title with <kbd>ctrl</kbd><kbd>m</kbd>.</p>
+
+<h2 id="styling-titles">Styling titles</h2>
+
+<p>I could change my title but it was simple black text on white background, I wanted something with more style and if possible matching VS Code Style.
+Hopefully, while configuring VS Code to use the <a href="https://marketplace.visualstudio.com/items?itemName=webrender.synthwave-x-fluoromachine">Synthwave x Fluoromachine theme</a>, I discovered that VS Code theming relies on good old CSS and that this theme CSS was located in <code>$HOME/.vscode/extensions/webrender.synthwave-x-fluoromachine-0.0.12/synthwave-x-fluoromachine.css</code>.
+I copy/pasted the file’s content into a <code>index.css</code> file in my workspace and added it to my index.html files then used some css classes defined for this theme: <code>monaco-editor</code> on body then <code>mtk6</code>, <code>mtk7</code> and <code>mtk8</code> on the various elements in my title, et voilà!
+I now had shiny neon styled titles.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Styling index.html</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-html line-numbers code-copy"><code class="code-block">&lt;html&gt;
+    &lt;head&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;index.css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body class=&quot;monaco-editor&quot;&gt;
+        &lt;h1&gt;
+            &lt;span class=&quot;mtk7&quot;&gt;@apihandyman&lt;/span&gt;
+            &lt;span class=&quot;mtk6&quot;&gt; Supercharged OpenAPI&lt;/span&gt;
+            &lt;span id=&quot;section&quot; class=&quot;mtk8&quot;&gt;A basic OpenAPI File&lt;/span&gt;
+        &lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </div>
+</div>
+
+<p>I was quite satisfied until I realized that the blue text (<code>mtk6</code>) had not the neon effect (attention to details is both my super power and my curse).
+I’m definitely not a CSS expert, but I’m damn good at copy/pasting.
+So, I compared its definition with the two other <code>mtk</code>, and notice a difference: the <code>text-shadow</code> of the blue class had less parameters.
+The neon effect is actually achieved by adding shadows of different colors. 
+So I added the missing values, struggle a bit to choose the various colors but I ended with the following <code>text-shadow</code> that looked great!</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Styling index.html</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-html line-numbers code-copy"><code class="code-block">text-shadow: 0 0 2px #100c0f, 0 0 3px #61e2ff, 0 0 5px #61e2ff, 0 0 10px #03edf933;</code></pre>
+  </div>
 </div>
 
 
@@ -1699,24 +1984,74 @@ I needed to focus on the real topic of the session and do that efficiently using
     <div class="card-page-section page-section-not-title">
       <div class="card-body">
       
-        <h1 id="still-not-working-well-and-terrible-new-idea">Still not working well and terrible new idea</h1>
+        <h1 id="adding-speakers-note-to-avoid-forgetting-something">Adding speaker’s note to avoid forgetting something</h1>
 
-<p>But even taking those decisions, it was still hard to deliver the session smoothly and in the given time frame.
-There was still probably too much content.
-Also, it was taking me an awfully long time to type everything or do copy/paste and fix indentation.
-I was struggling to switch between writing code and going to the terminal.</p>
+<p>When I do a “regular” presentation, you may not notice it when seeing me on stage or watching me on a video, but I heavily rely on my speaker’s notes.
+There’s my full speech there on each slide with some other information such as timing or “CLICK” when there is an animation or a transition to trigger at a specific moment in a sentence.
+The more I practice a talk, the less I need them but I’m relieved to just know they are there if needed.</p>
 
-<p>I realized that I was often forgetting things to do or not doing them the right way.
-During a rehearsal that was starting very well, I lost all my means because I forget to do a modification and so was totally puzzled, not understanding at all why it was not working suddenly.</p>
+<p>Unfortunately, there are no “speaker’s notes” in VS Code and I was struggling to not forget something to say or to do.</p>
 
-<p>It was not going well and as it was difficult to work on specific sections of the sessions to train myself or improve the content, I was starting to loose my temper and my confidence.</p>
+<h2 id="the-todo-attempt">The Todo+ attempt</h2>
 
-<p>And as if I didn’t have enough problems, I had a terrible new idea.
-I was really missing having titles like on my slides.
-I feared attendees would be lost without visual indication about what was happening.
-I decided to do something about that.</p>
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/todo-v1.png" class="figure-img img-fluid" /></figure>
+</div>
 
-<p>In the next posts, I’ll explain how I solved all those problems.</p>
+<p>My first attempt in order to avoid forgetting something was to use the <a href="https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus">Todo+</a> extension.
+I created a steps.todo file basically containing my TOC.
+The idea was to have the Todo+ panel opened while coding the OpenAPI file.
+But that was not really convenient because it was visible to attendees and occupying space that I desperately needed.
+I though to hide it by cropping the VS Code window in OBS but that would have possible hidden a space where I could have wanted to show something.
+It was also not really convenient as, in order to keep the todo list usable for me, I had to open/close tasks folders.</p>
+
+<h2 id="the-todohtml--ipad-solution">The todo.html + iPad solution</h2>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/todo-v2.jpg" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>My second idea was to use almost the same trick as for the titles.
+I added a <code>todo.html</code> file in each <code>steps/step-x</code> folder.
+That way when I was using the “Next step” task, not only it was copying the <code>index.html</code> file of the step to the root folder, it was also copying the <code>todo.html</code> file too.
+Having a browser showing <code>http://localhost:5500/todo.html</code> allowed to me have speaker’s notes updated at each step just like titles.</p>
+
+<p>In order to keep those notes out of the way but still allowing me to look at them without loosing eye contact with my main screen and its web cam, I used the “sidecar” feature of my iPad.
+All that is needed is to plug the iPad to the Macbook with a USB cable then go to display preferences, choose the iPad as an Airplay display.
+Don’t forget to position it relatively to other screens as it is in reality in order to keep moving mouse to it simple.
+And you’re done you have a third (or second) display screen.
+Note that sidecar can be used over wifi but I never had satisfying result with it (maybe my wifi is not fast enough).</p>
+
+<p>Note that as OBS is able to crop on a specific window, I probably could had both VS Code and todo on my MacBook display.
+But I wanted to test the side car, and it was working, so I moved on to next problem to solve.</p>
+
+<p>I choose to use the same style as for the titles though is was only visible to my eyes.
+I also used various emojis to “type” the actions to do:</p>
+
+<ul>
+  <li>✏️ (pen) to write code</li>
+  <li>⌨️ (keyboard) to use the terminal</li>
+  <li>📺 (old TV) to show a rendering og the file (with Redoc or SwaggerUI)</li>
+  <li>💬 (Speech bubble) to say something</li>
+</ul>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="heading-to-next-problem">Heading to next problem</h1>
+
+<p>With all that I was totally satisfied with the style of the session and I was as comfortable as delivering a regular slide deck session thanks to my speaker’s note.
+In next post, I’ll show you how I was able to code at light speed.</p>
 
       </div>
     </div><!-- Next cards END -->
