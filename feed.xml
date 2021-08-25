@@ -1,4 +1,207 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-08-18T07:11:00-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Surviving My First Recorded Live Coding Session Part 3</title><link href="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 3" /><published>2021-08-18T00:00:00-05:00</published><updated>2021-08-18T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-3</id><content type="html" xml:base="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/">&lt;p&gt;Third post about my first ever (recorded) live coding session given at the Manning API conference.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-08-25T07:10:56-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Surviving My First Recorded Live Coding Session Part 4</title><link href="https://apihandyman.io/live-coding-at-light-speed-with-vs-code/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 4" /><published>2021-08-25T00:00:00-05:00</published><updated>2021-08-25T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-4</id><content type="html" xml:base="https://apihandyman.io/live-coding-at-light-speed-with-vs-code/">&lt;p&gt;This is the fourth post about my first ever (recorded) live coding session given at the Manning API conference.
+In this series &lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;second post&lt;/a&gt;, I listed some problems I encountered and started to solve them in &lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;previous post&lt;/a&gt;.
+But there are other problems to solve, one of them was that I was not coding and using VS Code fast enough.
+In this post, I’ll show you how I solved that using a few VS Code tricks, the most important one being: the absolutely &lt;a href=&quot;https://aarongilbreath.medium.com/a-brief-history-of-the-word-rad-972a989617c8&quot;&gt;rad&lt;/a&gt; custom code snippet feature.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div class=&quot;card series-toc&quot;&gt;
+  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
+    &lt;h5 id=&quot;series&quot;&gt;Surviving my first (recorded) live coding session Series&lt;/h5&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;row series-toc_content&quot;&gt;
+    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;
+        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API confernce.
+It was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
+The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
+This post series aim to share all what I’ve learned preparing this session.&lt;/p&gt;
+
+&lt;div class=&quot;alert alert-info&quot;&gt;&lt;h4 class=&quot;alert-heading&quot;&gt;Spoiler alert!&lt;/h4&gt;&lt;hr /&gt;
+&lt;p&gt;You can get all VS Code stuff explained in this series in my &lt;a href=&quot;https://github.com/arno-di-loreto/supercharged-openapi&quot;&gt;supercharged-openapi&lt;/a&gt; github repository.
+It is the one that I actually used during the session.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Note that I’ll soon start an OpenAPI Tips &amp;amp; Trick series including this session contents and a few other things I couldn’t show during this session.&lt;/p&gt;
+&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
+      
+      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/&quot;&gt;1 - Setting up everything to record myself coding and talking&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;2 - Preparing session content and realizing it's not working well&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item active&quot;&gt;4 - Live coding at light speed with VS Code&lt;/li&gt;
+          
+        
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+          &lt;li class=&quot;list-group-item disabled&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code (coming soon)&lt;/li&gt;
+          
+        
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;mastering-the-command-palette&quot;&gt;Mastering the command palette&lt;/h1&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/live-coding-at-light-speed-with-vs-code/palette.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If there is one thing you need to master with VS Code, it’s the command palette.
+This is what allows to access all VS Code and its extensions functions quickly.
+Use &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;P&lt;/kbd&gt; on MacOs or &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;P&lt;/kbd&gt; on Windows to open it.
+Then type what you want to do, the palette will show you relevant actions.&lt;/p&gt;
+
+&lt;p&gt;Once you have used some actions, the palette will show them first, so you just have to use the arrow keys to move down to the one you want.
+That allowed me to quickly show the Redoc or SwaggerUI renderings coming with the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi&quot;&gt;42 Crunch OpenAPI Editor extension&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h1 id=&quot;copypaste-and-indent&quot;&gt;Copy/Paste and indent&lt;/h1&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/live-coding-at-light-speed-with-vs-code/copy-paste-indent.gif&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;At some moment, I had to copy/paste sections of code but that requires fixing indentation, and I was not good at that.
+In the beginning I was relying to the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow&quot;&gt;Indent Rainbow extension&lt;/a&gt; to give me indications on how to indent after pasting (that extension can really save your life when working with indent-based formats), but it was taking too much time.
+Hopefully, I found a faster way to fix indentation on copy/paste:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Copy the lines, but carefully include the full first list. It’s easier to start by the end of selection of go up (do not start selecting at the first word of first line)&lt;/li&gt;
+  &lt;li&gt;Put cursor at the beginning of the line where you need to paste&lt;/li&gt;
+  &lt;li&gt;Paste&lt;/li&gt;
+  &lt;li&gt;Format whole file using &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;F&lt;/kbd&gt; (MacOS) or &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;F&lt;/kbd&gt; (Windows). This will fix indentation based on the line above the one where you pasted. But that only works if the whole pasted block is already correctly indenting (relatively).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;While writing this post, I realized that I could probably have defined keybindings (as I did to run my custom tasks) to show Redoc or SwaggerUI and gain a few milliseconds.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-tip-you-need-when-openingclosing-terminal&quot;&gt;The tip you need when opening/closing terminal&lt;/h1&gt;
+
+&lt;p&gt;Showing and hiding the terminal can be done with the &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;`&lt;/kbd&gt; shortcut.
+That seems quite simple but strangely I had hard time showing and hiding the terminal.
+Sometimes it was working, and sometimes not; and that was making me loosing precious seconds.
+I was starting to get mad until I figured out what the problem was.
+The problem is if the terminal is shown, but has not the focus, the &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;`&lt;/kbd&gt; shortcut will just give it focus. 
+Once I started to take care about that and NOT clicking elsewhere than in the terminal when using it, I no more had this problem.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-magic-of-code-snippets&quot;&gt;The magic of code snippets&lt;/h1&gt;
+
+&lt;p&gt;The trick that made me gain much time while coding is &lt;a href=&quot;https://code.visualstudio.com/docs/editor/userdefinedsnippets&quot;&gt;user defined snippets&lt;/a&gt;.
+That’s a totally rad feature.
+Thanks to some configuration, just type “some magic keyword” and boom a complex regex or 20 lines of code appears magically.&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/live-coding-at-light-speed-with-vs-code/rad.gif&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can define global or local snippets.
+I used local ones defined in &lt;code&gt;.vscode/supercharged-openapi.code-snippets&lt;/code&gt; which is a json file.
+A snippet can be a static text but you can also use variables and even choices list (probably among other awesome things I didn’t used yet, check the &lt;a href=&quot;https://code.visualstudio.com/docs/editor/userdefinedsnippets&quot;&gt;documentation&lt;/a&gt;).&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/live-coding-at-light-speed-with-vs-code/snippets.gif&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The following example allows to add a “Read an element” operation in the form of the &lt;code&gt;GET /somethings/{somethingId}&lt;/code&gt;.
+It is triggered when typing “Read” (&lt;code&gt;prefix&lt;/code&gt;) then hitting the tab key.
+There are two variables &lt;code&gt;$1&lt;/code&gt; and &lt;code&gt;$2&lt;/code&gt; to provide, note how &lt;code&gt;$1&lt;/code&gt; appears multiple times.
+Once you hit tab, you type the first variable value which is filled wherever there’s a &lt;code&gt;$1&lt;/code&gt; in the body.
+Hit tab to set &lt;code&gt;$2&lt;/code&gt;.
+And don’t forget to hit tab another time to finish.
+If you don’t do that last tab, you’ll be unable to use another snippet, it took me a moment to figure that.&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;A snippet with variables&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0 code-expandcollapse-btn&quot; aria-label=&quot;expand or shrink&quot; onclick=&quot;expandCollapseCode(this)&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Expand/Shrink&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/maximize.svg&quot; /&gt;&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-json line-numbers code-collapsed code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;{
+	&amp;quot;Read an element&amp;quot;: {
+		&amp;quot;scope&amp;quot;: &amp;quot;yaml&amp;quot;,
+		&amp;quot;prefix&amp;quot;: &amp;quot;Read&amp;quot;,
+		&amp;quot;body&amp;quot;: [
+			&amp;quot;/$1s/{$1Id}:&amp;quot;,
+			&amp;quot;\tget:&amp;quot;,
+			&amp;quot;\t\tsummary: Read a $1&amp;quot;,
+			&amp;quot;\t\tparameters:&amp;quot;,
+			&amp;quot;\t\t\t- name: $1Id&amp;quot;,
+			&amp;quot;\t\t\t  in: path&amp;quot;,
+			&amp;quot;\t\t\t  required: true&amp;quot;,
+			&amp;quot;\t\t\t  schema:&amp;quot;,
+			&amp;quot;\t\t\t  \ttype: $2&amp;quot;,
+			&amp;quot;\t\tresponses:&amp;quot;,
+			&amp;quot;\t\t\t&amp;#39;200&amp;#39;:&amp;quot;,
+			&amp;quot;\t\t\t\tdescription: OK&amp;quot;,
+			&amp;quot;\t\t\t\tcontent:&amp;quot;,
+			&amp;quot;\t\t\t\t\tapplication/json:&amp;quot;,
+			&amp;quot;\t\t\t\t\t\tschema:&amp;quot;,
+			&amp;quot;\t\t\t\t\t\t\ttype: object&amp;quot;
+		]
+	},
+}&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Beware of tabs count, the snippet will be magically indented correctly based on where you put it, so there’s no need to add extra tabs.
+The example above is supposed to go into &lt;code&gt;paths:&lt;/code&gt; which is at the root level of the document.
+So I thought the first line would need a tab (and all the the other ones below too), but no.
+The whole body is indented based on first line having no indentation.&lt;/p&gt;
+
+&lt;p&gt;Note also that multiple snippets can match a keyword/key sentence, there will be a drop list to let you choose the one you want (with a full view of the body).
+Just don’t forget to look at the one that is chosen to add the right snippet to your code.&lt;/p&gt;
+
+&lt;p&gt;Using snippets generator such as &lt;a href=&quot;https://snippet-generator.app/?description=&amp;amp;tabtrigger=&amp;amp;snippet=&amp;amp;mode=vscode&quot;&gt;this one&lt;/a&gt; can be useful to turn your code template into a snippet.&lt;/p&gt;
+
+&lt;h1 id=&quot;heading-to-last-problem&quot;&gt;Heading to last problem!&lt;/h1&gt;
+
+&lt;p&gt;VS Code never stops to amaze.
+I remember that I was totally skeptical at the beginning but as I was using Atom which was not totally meeting my expectations and had huge problem when VS Code showed up (it was 5 years ago I think), I decided to gave it a try and never left it since. 
+With all of the extensions, tasks, snippets that’s not only a coding tool but a huge problem solver as you can see in this post series.
+And VS Code actually helped me to solve my last problem: rehearsing and fine tuning the presentation before recording.
+But that’s a story you’ll see in next and final post of this Surviving my first (recorded) live session series.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">This is the fourth post about my first ever (recorded) live coding session given at the Manning API conference. In this series second post, I listed some problems I encountered and started to solve them in previous post. But there are other problems to solve, one of them was that I was not coding and using VS Code fast enough. In this post, I’ll show you how I solved that using a few VS Code tricks, the most important one being: the absolutely rad custom code snippet feature.</summary></entry><entry><title type="html">Surviving My First Recorded Live Coding Session Part 3</title><link href="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 3" /><published>2021-08-18T00:00:00-05:00</published><updated>2021-08-18T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-3</id><content type="html" xml:base="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/">&lt;p&gt;Third post about my first ever (recorded) live coding session given at the Manning API conference.
 In &lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;previous post&lt;/a&gt;, I encountered various problems.
 Two of them were related to not delivering the session like one of my regular slide deck presentation.
 I wanted to add titles and have speaker’s notes.
@@ -43,6 +246,10 @@ It is the one that I actually used during the session.&lt;/p&gt;
           &lt;li class=&quot;list-group-item active&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code&lt;/li&gt;
           
         
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/live-coding-at-light-speed-with-vs-code/&quot;&gt;4 - Live coding at light speed with VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
         
           
           
@@ -54,8 +261,6 @@ It is the one that I actually used during the session.&lt;/p&gt;
         
           
           
-          
-          &lt;li class=&quot;list-group-item disabled&quot;&gt;4 - Live coding at light speed with VS Code (coming soon)&lt;/li&gt;
           
         
           
@@ -451,6 +656,10 @@ It is the one that I actually used during the session.&lt;/p&gt;
           &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code&lt;/a&gt;&lt;/li&gt;
           
         
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/live-coding-at-light-speed-with-vs-code/&quot;&gt;4 - Live coding at light speed with VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
         
           
           
@@ -462,8 +671,6 @@ It is the one that I actually used during the session.&lt;/p&gt;
         
           
           
-          
-          &lt;li class=&quot;list-group-item disabled&quot;&gt;4 - Live coding at light speed with VS Code (coming soon)&lt;/li&gt;
           
         
           
@@ -624,6 +831,10 @@ It is the one that I actually used during the session.&lt;/p&gt;
           &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code&lt;/a&gt;&lt;/li&gt;
           
         
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/live-coding-at-light-speed-with-vs-code/&quot;&gt;4 - Live coding at light speed with VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
         
           
           
@@ -635,8 +846,6 @@ It is the one that I actually used during the session.&lt;/p&gt;
         
           
           
-          
-          &lt;li class=&quot;list-group-item disabled&quot;&gt;4 - Live coding at light speed with VS Code (coming soon)&lt;/li&gt;
           
         
           
@@ -1789,127 +1998,4 @@ More important, it will lead to building the right APIs.
 And even more important, it will help people grow API design skills that, icing on the cake, can be applied to other areas.&lt;/p&gt;
 
 &lt;p&gt;But, there’s always a but, that will only work if the API designer review is conducted the right way, especially with the right mindset.
-But that’s another story (if not stories) I’ll keep for one or more later post(s).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">More often than not when people hear “let’s do an API design review”, they hear “let’s check that an API design conforms to API design guidelines”. That’s only partially true and reducing API design reviews to that is a terrible mistake. Actually, doing API design reviews only to do that may even not make any sense at all. Let’s see 3 really good reasons to do API design reviews.</summary></entry><entry><title type="html">Handling breaking ch-ch-changes</title><link href="https://apihandyman.io/handling-breaking-ch-ch-changes/" rel="alternate" type="text/html" title="Handling breaking ch-ch-changes" /><published>2021-06-16T00:00:00-05:00</published><updated>2021-06-16T00:00:00-05:00</updated><id>https://apihandyman.io/breaking-changes</id><content type="html" xml:base="https://apihandyman.io/handling-breaking-ch-ch-changes/">&lt;p&gt;In (Ch-ch-) Changes, David Bowie sang “Every time I thought I’d got it made, it seemed the taste was not so sweet”, that’s a good metaphor for API design.
-An API will irremediably evolve because it will lack some features or because of mistakes, and so sooner or later, you may have to introduce a “breaking change”.
-That’s usually when people start to run in circle, scream and shout “Oh! Please no! Please, not a breaking ch-ch-change”.
-But, what is it actually? How to handle it? And should you always be afraid of it?&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h1 id=&quot;what-is-a-breaking-change&quot;&gt;What is a breaking change&lt;/h1&gt;
-
-&lt;p&gt;A breaking change is non backward-compatible modification that requires consumers to modify their code in order to continue using an API (or at least modify the part of their code using the modified part of the API).
-There are many different ways to introduce breaking changes in APIs, some are obvious, some are not.&lt;/p&gt;
-
-&lt;p&gt;The most common obvious way to introduce a breaking change is to rename or remove something in the interface contract.
-Rename &lt;code&gt;GET /usrs&lt;/code&gt; to &lt;code&gt;GET /users&lt;/code&gt; or remove the &lt;code&gt;isAdmin&lt;/code&gt; property from the User data model and there’s a huge risk that it will break some if not all of the API’s consumers.
-There are also less obvious interface contract’s breaking changes. Turning an optional parameter into a required one or adding new values to enumerations that consumer is supposed to interpret. And there are even less obvious and far more treacherous breaking changes:&lt;/p&gt;
-
-&lt;blockquote class=&quot;blockquote&quot;&gt;
-    &lt;p class=&quot;mb-0&quot;&gt;With a sufficient number of users of an API, it does not matter what you promise in the contract: all observable behaviors of your system will be depended on by somebody.&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
-        &lt;cite title=&quot;Source Title&quot;&gt;&lt;a href=&quot;https://www.hyrumslaw.com/&quot;&gt;Hyrum Wright, Hyrum's Law&lt;/a&gt;&lt;/cite&gt;
-    &lt;/footer&gt;&lt;/blockquote&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/handling-breaking-ch-ch-changes/xkcd.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;&lt;a href=&quot;https://xkcd.com/1172/&quot;&gt;XKCD: Workflow&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;A breaking change can happen without actually modifying the API’s interface contract.
-Change a business rule so that given the same conditions a user’s “asshole level” is set to orange instead of green when analyzing their last comments and that may break something. 
-Pushing the concept to the extreme, that also means some consumers could depend on an API’s long response time and optimizing the API’s implementation to make things go faster on provider’s side could put them at risk.
-That’s probably going a little bit too far, but keep that in mind, just in case.&lt;/p&gt;
-
-&lt;p&gt;So a breaking change is a change that could literally break something on the consumer side.
-That does not sound good but is it actually always that bad?&lt;/p&gt;
-
-&lt;h1 id=&quot;evaluating-the-cost-of-breaking-change&quot;&gt;Evaluating the cost of breaking change&lt;/h1&gt;
-
-&lt;p&gt;As an architect, my favorite answer to any question is “it depends”.
-And in that case, it applies yet another time.
-Depending on the context, the cost of a breaking change vary.&lt;/p&gt;
-
-&lt;p&gt;If the API is in early stage and not even yet consumed, you can break whatever you want without even thinking about it.
-If the API is consumed only by a single application that you build yourself, you can most probably do it with not much work.
-On the opposite, if the API is consumed by many consumers that are “far” from you, another team, another business unit or worse partners or customers.
-The cost will be high.&lt;/p&gt;
-
-&lt;p&gt;The less consumers and the more you control them, the less will cost a breaking change. 
-The more consumers and the less you control them, the more will cost a breaking change.&lt;/p&gt;
-
-&lt;h1 id=&quot;how-to-avoid-it&quot;&gt;How to avoid it&lt;/h1&gt;
-
-&lt;p&gt;Before requiring consumers to update their code, maybe you should think twice and find a way to avoid that.
-Here are 3 ways to more or less “avoid” introducing breaking changes.&lt;/p&gt;
-
-&lt;h2 id=&quot;dont-do-it&quot;&gt;Don’t do it&lt;/h2&gt;
-
-&lt;p&gt;First, triple check that you actually desperately need to make this breaking change.
-Evaluate the value it brings versus its cost.
-You want to fix some mistake (like a typo or a terrible name) to make a perfectly clean API?
-That’s nice but probably counter-productive, perfection is not of this world, especially in API design.
-Live with it for the time being, you may be able to fix that when introducing actually awaited new features that your consumers will be totally crazy about.
-In the meanwhile, you may try to limit problems by improving the documentation if that help.&lt;/p&gt;
-
-&lt;h2 id=&quot;make-it-backward-compatible&quot;&gt;Make it backward-compatible&lt;/h2&gt;
-
-&lt;p&gt;If there are good reason to introduce this change, maybe there’s a way to make it in a non-breaking way.
-The usual strategy to do that is only to “add” in a clever way.&lt;/p&gt;
-
-&lt;p&gt;Instead of modifying an existing operation, you may simply add a new one.
-Why not adding a &lt;code&gt;POST /administrators&lt;/code&gt; instead of modifying &lt;code&gt;POST /users&lt;/code&gt; to introduce the new administrator user type?
-On the inputs, always add optional properties/parameters with default values.
-Let’s say you have a “create user” features and want introduce different service level (regular vs gold).
-Instead of required &lt;code&gt;serviceLevel&lt;/code&gt; that will hold &lt;code&gt;regular&lt;/code&gt; or &lt;code&gt;gold&lt;/code&gt;, set it optional with &lt;code&gt;regular&lt;/code&gt; as default value.
-On the output, it’s simpler, just add, it doesn’t really matter if the new data is always returned or not.&lt;/p&gt;
-
-&lt;p&gt;There’s more often than not a way to turn a backward-incompatible change into a backward-compatible one, it may not lead to the best design but sometimes you have to make compromises.&lt;/p&gt;
-
-&lt;h2 id=&quot;use-breaking-change-proof-design&quot;&gt;Use breaking change proof design&lt;/h2&gt;
-
-&lt;p&gt;The third way to avoid breaking change is a little bit different: it’s about to preemptively ensure that breaking changes have less risk to happen by choosing a breaking change proof design.&lt;/p&gt;
-
-&lt;p&gt;You can work on data types, avoid using booleans or arrays of atomic (string, number, …) for instance.
-A &lt;code&gt;isAdmin&lt;/code&gt; property is less extensible than a &lt;code&gt;role: &quot;admin&quot;&lt;/code&gt; one, indeed, there may be more roles than admin and non admin users in the future.
-Which is less extensible than a &lt;code&gt;roles: [&quot;admin&quot;]&lt;/code&gt;, because a user may have more than one role in the future.
-Which is less extensible than a &lt;code&gt;roles: [{ type: &quot;admin&quot;}]&lt;/code&gt;, because a role may need more features such as a start and end date for example.&lt;/p&gt;
-
-&lt;p&gt;You can work building self sufficient features by adding data or new operations.
-When accessing a user, consumer may need to know what their role mean, at the beginning they can hardcode that an admin user can do everything while a non admin one can only read data for example.
-But if you provide the role description along with its type, you may seamlessly introduce new user types.
-When creating a user, consumer need to know the available types of user they can create, they can hardcode that based on an enumeration provided in your documentation or they could call a &lt;code&gt;GET /userTypes&lt;/code&gt; and get up to date data.&lt;/p&gt;
-
-&lt;p&gt;And last but not least, you can also lessen the risk of breaking changes by hiding as much as possible what happens inside your API, inside your domain.
-The less the outside world know about your internal business rules and way of working, the less coupled with consumers you’ll be.&lt;/p&gt;
-
-&lt;h1 id=&quot;how-to-handle-it&quot;&gt;How to handle it&lt;/h1&gt;
-
-&lt;p&gt;When the breaking change cost is low or when it is unavoidable even though its cost is high, you have to actually handle it.
-Here are a few good practices and tips to have in mind in such a situation.&lt;/p&gt;
-
-&lt;h2 id=&quot;synchronized-modifications&quot;&gt;Synchronized modifications&lt;/h2&gt;
-
-&lt;p&gt;The most simple way to handle breaking change is to synchronize modified API and consumers deployment.
-This strategy will only work when you have full control on consumers.
-While it is fairly easy to do that with a web application, it can be more trick for rich clients such as mobile application as end users may not want to update them if they are not forced to do it.
-My rule of thumb: always implement a “force update” in your mobile application, let it check regularly or at startup if it is still up to date and if not refuse to start and request update to user.
-That will allow you to synchronize its update with the underlying API.&lt;/p&gt;
-
-&lt;h2 id=&quot;wait-for-the-right-moment&quot;&gt;Wait for the right moment&lt;/h2&gt;
-
-&lt;p&gt;A corollary to the “make it backward compatible even that is not totally clean” strategy is to wait for the right moment.
-I always recommend to the team I work with to let their API live and evolve possibly introducing API design compromises.
-Then after a while, once they have sufficient experience with the domain of the API and if there’s a killer new feature to introduce, that’s the right moment to clean all this mess and break everything.&lt;/p&gt;
-
-&lt;h2 id=&quot;create-a-separated-new-api-and-migrate-or-not&quot;&gt;Create a separated new API and migrate (or not)&lt;/h2&gt;
-
-&lt;p&gt;Breaking everything does not actually mean removing the previous version of the API.
-You can create a new one and then request consumers migrate to the new version.
-There are many things to say about that, we’ll talk more about API versioning and its implication in a later post.&lt;/p&gt;
-
-&lt;h2 id=&quot;include-breaking-change-policy-in-your-terms-of-services&quot;&gt;Include breaking change policy in your terms of services&lt;/h2&gt;
-
-&lt;p&gt;And last tip, don’t forget to include your breaking change policy in your terms of service: how you define a breaking change, when you’ll warn people about an upcoming one and how long time they’ll have to migrate to a new API version if they have to.
-Depending on your context, you may not want to let consumers stay on an outdated previous version for too long but think about their context, below a year could be tricky for many consumers as their budget are annualized.&lt;/p&gt;
-
-&lt;p&gt;Note while that’s a must have for a public/partner API that you sell to people outside of your organization, it that could be interesting to define terms of service including such policy for your private APIs too.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">In (Ch-ch-) Changes, David Bowie sang “Every time I thought I’d got it made, it seemed the taste was not so sweet”, that’s a good metaphor for API design. An API will irremediably evolve because it will lack some features or because of mistakes, and so sooner or later, you may have to introduce a “breaking change”. That’s usually when people start to run in circle, scream and shout “Oh! Please no! Please, not a breaking ch-ch-change”. But, what is it actually? How to handle it? And should you always be afraid of it?</summary></entry></feed>
+But that’s another story (if not stories) I’ll keep for one or more later post(s).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">More often than not when people hear “let’s do an API design review”, they hear “let’s check that an API design conforms to API design guidelines”. That’s only partially true and reducing API design reviews to that is a terrible mistake. Actually, doing API design reviews only to do that may even not make any sense at all. Let’s see 3 really good reasons to do API design reviews.</summary></entry></feed>
