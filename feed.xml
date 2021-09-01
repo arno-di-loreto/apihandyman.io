@@ -1,4 +1,191 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-08-25T07:10:56-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Surviving My First Recorded Live Coding Session Part 4</title><link href="https://apihandyman.io/live-coding-at-light-speed-with-vs-code/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 4" /><published>2021-08-25T00:00:00-05:00</published><updated>2021-08-25T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-4</id><content type="html" xml:base="https://apihandyman.io/live-coding-at-light-speed-with-vs-code/">&lt;p&gt;This is the fourth post about my first ever (recorded) live coding session given at the Manning API conference.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-01T07:11:20-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Surviving My First Recorded Live Coding Session Part 5</title><link href="https://apihandyman.io/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 5" /><published>2021-09-01T00:00:00-05:00</published><updated>2021-09-01T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-5</id><content type="html" xml:base="https://apihandyman.io/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/">&lt;p&gt;Fifth and last post about my first ever (recorded) live coding session given at the Manning API Conference.
+Thanks to all the work done, I had a good setup, great visual style, titles over VS Code, speaker’s notes and was able to code at light speed.
+But I was hesitant and not fast enough when presenting, I needed to train myself and fine tune, optimize or remove content to make things smooth and keep in given time frame.
+And once again VS Code went to the rescue.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div class=&quot;card series-toc&quot;&gt;
+  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
+    &lt;h5 id=&quot;series&quot;&gt;Surviving my first (recorded) live coding session Series&lt;/h5&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;row series-toc_content&quot;&gt;
+    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;
+        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API confernce.
+It was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
+The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
+This post series aim to share all what I’ve learned preparing this session.&lt;/p&gt;
+
+&lt;div class=&quot;alert alert-info&quot;&gt;&lt;h4 class=&quot;alert-heading&quot;&gt;Spoiler alert!&lt;/h4&gt;&lt;hr /&gt;
+&lt;p&gt;You can get all VS Code stuff explained in this series in my &lt;a href=&quot;https://github.com/arno-di-loreto/supercharged-openapi&quot;&gt;supercharged-openapi&lt;/a&gt; github repository.
+It is the one that I actually used during the session.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Note that I’ll soon start an OpenAPI Tips &amp;amp; Trick series including this session contents and a few other things I couldn’t show during this session.&lt;/p&gt;
+&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
+      
+      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/&quot;&gt;1 - Setting up everything to record myself coding and talking&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;2 - Preparing session content and realizing it's not working well&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/live-coding-at-light-speed-with-vs-code/&quot;&gt;4 - Live coding at light speed with VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
+          
+          &lt;li class=&quot;list-group-item active&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code&lt;/li&gt;
+          
+        
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;training-as-usual-was-not-easy&quot;&gt;Training as usual was not easy&lt;/h1&gt;
+
+&lt;p&gt;It’s not specific to this coding session, but when I prepare a talk there are always parts that needs more training than others.
+It is quite easy when working on slides to just jump to the first slide of the part I need to work on, and again, and again until satisfied.
+I can go 1 or 2 slides back if I want.
+And I can work on parts almost randomly depending on my mood.
+While training, I can also adapt content to shorten/remove some element because it’s too long.&lt;/p&gt;
+
+&lt;p&gt;It was not that easy to do that here.
+Jump back and forth was complicated and modifying the content also.&lt;/p&gt;
+
+&lt;h1 id=&quot;jumping-back-and-forth-to-any-step&quot;&gt;Jumping back and forth to any step&lt;/h1&gt;
+
+&lt;p&gt;Jumping to any part of the presentation was complicated in the beginning because when I wanted to practice a specific part I had to re-prepare the OpenAPI file to put it in the state needed for this part. 
+If I wanted to go “1 or 2 slides” back I had to carefully remember what to remove in my OpenAPI file.&lt;/p&gt;
+
+&lt;p&gt;At first I thought using branches or tagged commits, but based on a previous experience (for my JQ and OpenAPI series) I knew this was not going to work here.
+Indeed, it’s complicated to do a “replace all” across files in separate branches, while it’s dead simple to do that on multiple files in a folder (even when there are sub folders).&lt;/p&gt;
+
+&lt;p&gt;And I already had a good part of the solution: I just had to create a &lt;code&gt;motu.yaml&lt;/code&gt; file in each &lt;code&gt;steps/step-X&lt;/code&gt; folder.
+Thanks to the “Next step” task, the OpenAPI file corresponding to the step was copied to the root folder just like index and todo files.
+VS Code handled the &lt;code&gt;motu.yaml&lt;/code&gt; file reloading totally seamlessly.
+That trick also allowed to magically add code (actual code or comments) when switching to a new step, that was really convenient. 
+That also ensured that when switching to a new step, the OpenAPI file was in the expected status even if I had to skip something in previous step.&lt;/p&gt;
+
+&lt;p&gt;I also added new bash scripts and new tasks to be able to go to previous step and restart.
+That way I could easily go to the step I wanted to practice.
+After a while, once content has been stabilized I also added other scripts and tasks and ended with the followings:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Task&lt;/th&gt;
+      &lt;th&gt;Script triggered&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Go to step&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;steps/go.sh $step&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Copy &lt;code&gt;steps/step-{$step}&lt;/code&gt; content to root level (does nothing if step doesn’t exist). The &lt;code&gt;$step&lt;/code&gt; can be either a number or the step’s name coming from the todo.html files, &lt;code&gt;&quot;More accurate data description (4/15)&quot;&lt;/code&gt; for instance. The tasks shows the list of available steps (hardcoded in &lt;code&gt;tasks.json&lt;/code&gt; file)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Next step&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;steps/next.sh&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Copy &lt;code&gt;steps/step-{current step + 1}&lt;/code&gt; content to root level (does nothing if step doesn’t exist)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Previous step&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;steps/previous.sh&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Copy &lt;code&gt;steps/step-{current step - 1}&lt;/code&gt; content to root level (does nothing if step doesn’t exist)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Reload step&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;steps/reload.sh&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Copy &lt;code&gt;steps/step-{current step}&lt;/code&gt; content to root level (useful to check modifications done on current step)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Reset step&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;steps/reset.sh&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Copy &lt;code&gt;steps/reset&lt;/code&gt; content to root level (to restart from the beginning)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Clean before commit&lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;steps/clean.sh&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Remove &lt;code&gt;index.css&lt;/code&gt;, &lt;code&gt;index.html&lt;/code&gt;, &lt;code&gt;todo.html&lt;/code&gt;, &lt;code&gt;motu.yaml&lt;/code&gt; files from root folder&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;I only defined key bindings for Next and Previous step tasks.
+The “Go to step” is quite convenient but unfortunately the step list is hardcoded and I only had the idea after the recording (I added it so people using the repo could go to the step they want).&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/go-to-step.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;removing-stuff-was-a-pain&quot;&gt;Removing stuff was a pain&lt;/h1&gt;
+
+&lt;p&gt;As I was able to work on each step, I could easily train myself on each steap and evaluate the best possible time for each step.
+And so I came to the conclusion that I was still not fitting into the time frame, though I had an extra 5 minutes granted by conference organizers, saperlipopette! (french polite curse word).
+Thanks to my list of steps and their timing, I had a better vision of what I should modify and so I:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Shorten some steps, by for instance starting with a pre-filled basic OpenAPI files or adding snippets&lt;/li&gt;
+  &lt;li&gt;Removed some steps not bringing interesting information (like spending 30s explaining the various use of the OpenAPI Spec)&lt;/li&gt;
+  &lt;li&gt;Removed some steps that were kind of duplicating other steps or not bringing interesting information&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The modifications were easy to do on my list … but handling the impacts on my various files was a bit laborious.
+Especially the todo files containing the useful “step X/Y” information.
+If I was not in a rush I would have redo everything in order to make such modification simpler …
+But sometimes it is better to leave well enough alone (“the best is the enemy of good” as we say in french), it took me less time to fix all that the ugly way than rethink the entire system.&lt;/p&gt;
+
+&lt;h1 id=&quot;recording-celebrating-and-recovering&quot;&gt;Recording, celebrating and recovering&lt;/h1&gt;
+
+&lt;p&gt;And after all that, working weekends and nights (I have a day job and a blog to handle), I was able to do the recording at last, and that went well on second take (the first one was 95% good but I forgot something just in the end… saperlipopette again).
+I did not really practiced the full session before the actual recording, as I worked more on separated steps, but with more time to practice I should be able to do this session totally live without problem.
+By the way, final tips: don’t forget to put you phone AND you computer in do not disturb mode in order to avoid unwanted notifications when giving or recording a presentation.&lt;/p&gt;
+
+&lt;p&gt;I was really happy when it was at last done.
+I was quite proud of this very first coding session though it did not looked as expected and I always see some imperfections and possible improvements.
+Being able to talk without having my word for word speech was a also great achievement.&lt;/p&gt;
+
+&lt;p&gt;I was happy but that left me totally exhausted.
+I felt just like if I had traveled to the other side of earth, spoke and attended at a in person 2 days conference and suffered jet lag.
+It took me more than a week to recover.&lt;/p&gt;
+
+&lt;h1 id=&quot;sharing-successes-and-failures&quot;&gt;Sharing successes and failures&lt;/h1&gt;
+
+&lt;p&gt;But all this was worth the cost; I learned a lot, attendees were happy and I hope that this 5 posts series will help others doing coding sessions!
+I hope also that I was able to show you that behind what may look like total perfection, total mastery, there is practice, simple tools but also failures, doubts, curse words … and magic tricks.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Fifth and last post about my first ever (recorded) live coding session given at the Manning API Conference. Thanks to all the work done, I had a good setup, great visual style, titles over VS Code, speaker’s notes and was able to code at light speed. But I was hesitant and not fast enough when presenting, I needed to train myself and fine tune, optimize or remove content to make things smooth and keep in given time frame. And once again VS Code went to the rescue.</summary></entry><entry><title type="html">Surviving My First Recorded Live Coding Session Part 4</title><link href="https://apihandyman.io/live-coding-at-light-speed-with-vs-code/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 4" /><published>2021-08-25T00:00:00-05:00</published><updated>2021-08-25T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-4</id><content type="html" xml:base="https://apihandyman.io/live-coding-at-light-speed-with-vs-code/">&lt;p&gt;This is the fourth post about my first ever (recorded) live coding session given at the Manning API conference.
 In this series &lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;second post&lt;/a&gt;, I listed some problems I encountered and started to solve them in &lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;previous post&lt;/a&gt;.
 But there are other problems to solve, one of them was that I was not coding and using VS Code fast enough.
 In this post, I’ll show you how I solved that using a few VS Code tricks, the most important one being: the absolutely &lt;a href=&quot;https://aarongilbreath.medium.com/a-brief-history-of-the-word-rad-972a989617c8&quot;&gt;rad&lt;/a&gt; custom code snippet feature.
@@ -46,6 +233,10 @@ It is the one that I actually used during the session.&lt;/p&gt;
           &lt;li class=&quot;list-group-item active&quot;&gt;4 - Live coding at light speed with VS Code&lt;/li&gt;
           
         
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
         
           
           
@@ -61,8 +252,6 @@ It is the one that I actually used during the session.&lt;/p&gt;
         
           
           
-          
-          &lt;li class=&quot;list-group-item disabled&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code (coming soon)&lt;/li&gt;
           
         
       &lt;/ul&gt;
@@ -250,6 +439,10 @@ It is the one that I actually used during the session.&lt;/p&gt;
           &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/live-coding-at-light-speed-with-vs-code/&quot;&gt;4 - Live coding at light speed with VS Code&lt;/a&gt;&lt;/li&gt;
           
         
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
         
           
           
@@ -265,8 +458,6 @@ It is the one that I actually used during the session.&lt;/p&gt;
         
           
           
-          
-          &lt;li class=&quot;list-group-item disabled&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code (coming soon)&lt;/li&gt;
           
         
       &lt;/ul&gt;
@@ -660,6 +851,10 @@ It is the one that I actually used during the session.&lt;/p&gt;
           &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/live-coding-at-light-speed-with-vs-code/&quot;&gt;4 - Live coding at light speed with VS Code&lt;/a&gt;&lt;/li&gt;
           
         
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
         
           
           
@@ -675,8 +870,6 @@ It is the one that I actually used during the session.&lt;/p&gt;
         
           
           
-          
-          &lt;li class=&quot;list-group-item disabled&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code (coming soon)&lt;/li&gt;
           
         
       &lt;/ul&gt;
@@ -835,6 +1028,10 @@ It is the one that I actually used during the session.&lt;/p&gt;
           &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/live-coding-at-light-speed-with-vs-code/&quot;&gt;4 - Live coding at light speed with VS Code&lt;/a&gt;&lt;/li&gt;
           
         
+          
+          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code&lt;/a&gt;&lt;/li&gt;
+          
+        
         
           
           
@@ -850,8 +1047,6 @@ It is the one that I actually used during the session.&lt;/p&gt;
         
           
           
-          
-          &lt;li class=&quot;list-group-item disabled&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code (coming soon)&lt;/li&gt;
           
         
       &lt;/ul&gt;
@@ -1926,76 +2121,4 @@ That’s why there’s a &lt;code&gt;-v&lt;/code&gt; parameter in the following 
   &lt;li&gt;Postman and Newman easily help me to avoid writing painful bash/curl scripting.&lt;/li&gt;
   &lt;li&gt;Github actions being so well documented and simple are a pleasure to use, being able to use others’ actions and the Docker capability are killer features&lt;/li&gt;
   &lt;li&gt;And so Docker participates greatly in this awesome user experience, making it easy to run absolutely everything wherever you want&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">What if I tell you can run Postman collection inside Github Actions and so easily automate all the things as long as they provide APIs? Sounds interesting right? So let me show you how I migrated my Jekyll blog publication workflow to Github Actions and how I used Postman collection to clear my Cloudflare cache. Bonus: You may also learn a few things about DX and API design.</summary></entry><entry><title type="html">4 Good Reasons To Do Api Design Reviews</title><link href="https://apihandyman.io/3-good-reasons-to-do-api-design-reviews/" rel="alternate" type="text/html" title="4 Good Reasons To Do Api Design Reviews" /><published>2021-06-23T00:00:00-05:00</published><updated>2021-06-23T00:00:00-05:00</updated><id>https://apihandyman.io/4-good-reasons-to-do-api-design-reviews</id><content type="html" xml:base="https://apihandyman.io/3-good-reasons-to-do-api-design-reviews/">&lt;p&gt;More often than not when people hear “let’s do an API design review”, they hear “let’s check that an API design conforms to API design guidelines”.
-That’s only partially true and reducing API design reviews to that is a terrible mistake.
-Actually, doing API design reviews only to do that may even not make any sense at all.
-Let’s see 3 really good reasons to do API design reviews.&lt;/p&gt;
-
-&lt;!--more--&gt;
-&lt;h1 id=&quot;im-gonna-need-a-bigger-boat&quot;&gt;I’m gonna need a bigger boat&lt;/h1&gt;
-
-&lt;p&gt;People following me on Twitter might have expect another post this week.
-Indeed, I tweeted something like “lately, I slightly changed the way I summarize my API design reviews, that looks promising and I’m going to write about this next week”.
-But, that would be putting the cart before the horse and I have so many things to say about API design reviews that I think this topic deserves a (probably long) series.
-So before diving into how I summarize API Design Reviews, we’ll talk about the reviews themselves and especially why you should (even must) do them.&lt;/p&gt;
-
-&lt;p&gt;And we start with what most people think an API design review is …&lt;/p&gt;
-
-&lt;h1 id=&quot;check-guidelines-conformance-ensure-consistency&quot;&gt;&lt;del&gt;Check guidelines conformance&lt;/del&gt; Ensure consistency&lt;/h1&gt;
-
-&lt;p&gt;So, more often than not when people hear “API design review”, they hear “checking that an API design conforms to API design guidelines”.
-That’s only partially true, the aim of an API design review is actually less about checking guidelines conformance (which is the “how doing a review”) and more about ensuring an overall consistency (which is the “why doing a review”).&lt;/p&gt;
-
-&lt;p&gt;Consistency in API design is important because if all of your APIs and more important all operations, behaviors and data models (and whatever forms an API design) share the same look and feel, that will make your APIs easier to understand and to use.
-Once people have learned to use one of your APIs, they feel at home when switching to the next one because it looks and behaves like the previous one.&lt;/p&gt;
-
-&lt;p&gt;That’s why guidelines are important; they are many good (and wrong) ways to design (REST or other) APIs but you need to choose one (preferably a good one). 
-Guidelines define an API design look and feel, and by the way if they are well made, those guidelines are consistent with outside world common practices and so that makes your APIs even more easy to use.&lt;/p&gt;
-
-&lt;p&gt;But while guidelines may help to achieve a certain level of consistency at high level, there is still much place to introduce inconsistency.
-Indeed, your guidelines will probably not cover every single and more local design concerns.
-For instance, it’s up to the API owners (the team, not a single person) to ensure that “a cat is always called a cat” (as we say in french).
-If it’s randomly called a &lt;code&gt;cat&lt;/code&gt;, &lt;code&gt;felisCatus&lt;/code&gt; or &lt;code&gt;felidae&lt;/code&gt; across same domain APIs or worse inside an API, that will puzzle more than one consumer (and owner by the way). 
-So API designers must take care to use the same vocabulary throughout a single API and across their domain APIs (who said &lt;a href=&quot;https://martinfowler.com/bliki/UbiquitousLanguage.html&quot;&gt;ubiquitous language&lt;/a&gt;?).&lt;/p&gt;
-
-&lt;p&gt;So, ensuring consistency not only requires to observes API design guidelines but also the rest of the API and other related APIs.
-But reducing API design review to “ensuring API design consistency” is a terrible mistake.&lt;/p&gt;
-
-&lt;h1 id=&quot;help-people-shape-the-right-apis&quot;&gt;Help people shape the right APIs&lt;/h1&gt;
-
-&lt;p&gt;If an API is 100% consistent with itself, with outside world common practices, with design guidelines and existing APIs, it unfortunately still can be a terrible API.
-Indeed, it can be as simple as choosing the wrong vocabulary (&lt;code&gt;cat&lt;/code&gt; vs &lt;code&gt;felisCatus&lt;/code&gt;), making the API hard to understand for non experts.
-But it can be also less obvious, like exposing purely internal concerns that shouldn’t be exposed to the outside, making the API complex to use (if not dangerous).
-It can be even worse: choosing a totally wrong purpose, making the API a total failure.
-And everything in between (and beyond).&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/3-good-reasons-to-do-api-design-reviews/kitchenradar.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;&lt;a href=&quot;https://livebook.manning.com/book/the-design-of-everyday-apis/chapter-2/16&quot;&gt;The Kitchen Radar 3000 (from my book The Design of Web APIs)&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Hopefully, it’s not a fatality, a well conducted API design review allows to avoid such dark fates.
-Put around a table people having functional knowledge, people knowing how the software work (existing) or should work (new), and people knowing nothing about the topic (usually the reviewer, or Jon Snow) and you should be able to decipher what the API should actually do (to solve someone’s problems) and how it should actually looks like.
-With all these people discussing during the API design review, the resulting API will be the right API, or at least it shouldn’t be that far (do a final check with potential consumers to confirm).&lt;/p&gt;
-
-&lt;h1 id=&quot;improve-api-design-skills&quot;&gt;Improve &lt;del&gt;API&lt;/del&gt; design skills&lt;/h1&gt;
-
-&lt;p&gt;The more you do API design reviews, the more people involved improve their API design skills.
-I have witnessed it myself, after a few months, all people involved (including myself as a reviewer) have improved their API design skills.
-At the beginning, there can be a lot of basic mistakes (HTTP, guidelines, consistency), but review after review people understand how API design works, how the guidelines works.
-In the process, reviewers learn also a lot by confronting their views to others, discovering new patterns, new use cases.
-And in the end, reviews can focus more on doing the right APIs than doing the APIs right.&lt;/p&gt;
-
-&lt;p&gt;Icing on the cake, API design reviews may have interesting side effects on other areas.
-One day someone told me that doing API design improved their software design skills, they changed the way they designed class, methods, databases, … and even software architecture.
-That’s also true on the functional perspective, building APIs that are easy to understand, easy to use, easy to evolve, can trigger new ways of thinking that can be applied when designing business processes too.&lt;/p&gt;
-
-&lt;h1 id=&quot;api-design-review-is-a-must-do&quot;&gt;API design review is a MUST do&lt;/h1&gt;
-
-&lt;p&gt;So, API design review is a MUST do.
-It will irremediably lead to consistency across APIs.
-More important, it will lead to building the right APIs.
-And even more important, it will help people grow API design skills that, icing on the cake, can be applied to other areas.&lt;/p&gt;
-
-&lt;p&gt;But, there’s always a but, that will only work if the API designer review is conducted the right way, especially with the right mindset.
-But that’s another story (if not stories) I’ll keep for one or more later post(s).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">More often than not when people hear “let’s do an API design review”, they hear “let’s check that an API design conforms to API design guidelines”. That’s only partially true and reducing API design reviews to that is a terrible mistake. Actually, doing API design reviews only to do that may even not make any sense at all. Let’s see 3 really good reasons to do API design reviews.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">What if I tell you can run Postman collection inside Github Actions and so easily automate all the things as long as they provide APIs? Sounds interesting right? So let me show you how I migrated my Jekyll blog publication workflow to Github Actions and how I used Postman collection to clear my Cloudflare cache. Bonus: You may also learn a few things about DX and API design.</summary></entry></feed>
