@@ -47,10 +47,19 @@
         {
             "label": "Update post title",
             "type": "shell",
-            "command": "scripts/update-post.sh ${file}",
+            "command": "scripts/post-update.sh ${file}",
             "problemMatcher": [],
             "presentation": {
                 "reveal": "silent"
+            }
+        },
+        {
+            "label": "New slidedeck (open PDF file first!)",
+            "type": "shell",
+            "command": "scripts/slidedeck.sh \"${input:newPostTitle}\" \"${file}\"",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always"
             }
         },
     ],
