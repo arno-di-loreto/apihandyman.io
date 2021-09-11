@@ -34,7 +34,7 @@ get_fm_value $FILE "date"
 DATE=$FM_VALUE
 echo DATE:$DATE
 
-get_fm_value $FILE "permalink"
+----getfmvalue-file-title
 PERMALINK=`echo "$FM_VALUE" | tr -d '/'`
 echo PERMALINK:[$PERMALINK]
 
