@@ -1,6 +1,6 @@
 ---
 title: ...And GraphQL for all?
-date: 2017-09-29
+date: 2016-12-13
 author: Arnaud Lauret
 layout: post
 permalink: /graphql-for-all-talk-video-on-infoq/

@@ -1,7 +1,7 @@
 ---
 id: 633
 title: Don't mess with hypermedia controls (REST Fest 2015)
-date: 2015-12-28T18:07:29+00:00
+date: 2015-09-18
 author: Arnaud Lauret
 layout: post
 guid: http://apihandyman.io/?p=633
