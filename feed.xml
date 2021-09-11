@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-11T07:29:43-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">An Api Design Review Is Based On Facts Not Opinions</title><link href="https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions/" rel="alternate" type="text/html" title="An Api Design Review Is Based On Facts Not Opinions" /><published>2021-09-08T00:00:00-05:00</published><updated>2021-09-08T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions</id><content type="html" xml:base="https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions/">&lt;p&gt;If you’re an API design reviewer and, like the Who, you got a feeling inside that you can’t explain during an API design review, maybe you’re falling in love with the API designer… or more probably: you’re on the verge of giving an opinion.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-11T10:20:49-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">An Api Design Review Is Based On Facts Not Opinions</title><link href="https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions/" rel="alternate" type="text/html" title="An Api Design Review Is Based On Facts Not Opinions" /><published>2021-09-08T00:00:00-05:00</published><updated>2021-09-08T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions</id><content type="html" xml:base="https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions/">&lt;p&gt;If you’re an API design reviewer and, like the Who, you got a feeling inside that you can’t explain during an API design review, maybe you’re falling in love with the API designer… or more probably: you’re on the verge of giving an opinion.
 And that is a problem.
 What is the role of an API design reviewer?
 Distort API designs to their liking or objectively analyze them based on facts?&lt;/p&gt;
@@ -63,7 +63,7 @@ And once again VS Code went to the rescue.
   &lt;div class=&quot;row series-toc_content&quot;&gt;
     &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
       &lt;div class=&quot;card-body&quot;&gt;
-        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API confernce.
+        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API conference: &lt;a href=&quot;/supercharge-openapi-to-efficiently-describe-apis/&quot;&gt;Supercharge OpenAPI to efficiently describe APIs (click to what it!)&lt;/a&gt;.
 It was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
 The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
 This post series aim to share all what I’ve learned preparing this session.&lt;/p&gt;
@@ -73,8 +73,6 @@ This post series aim to share all what I’ve learned preparing this session.&lt
 It is the one that I actually used during the session.&lt;/p&gt;
 
 &lt;/div&gt;
-
-&lt;p&gt;Note that I’ll soon start an OpenAPI Tips &amp;amp; Trick series including this session contents and a few other things I couldn’t show during this session.&lt;/p&gt;
 &lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -250,7 +248,7 @@ In this post, I’ll show you how I solved that using a few VS Code tricks, the 
   &lt;div class=&quot;row series-toc_content&quot;&gt;
     &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
       &lt;div class=&quot;card-body&quot;&gt;
-        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API confernce.
+        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API conference: &lt;a href=&quot;/supercharge-openapi-to-efficiently-describe-apis/&quot;&gt;Supercharge OpenAPI to efficiently describe APIs (click to what it!)&lt;/a&gt;.
 It was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
 The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
 This post series aim to share all what I’ve learned preparing this session.&lt;/p&gt;
@@ -260,8 +258,6 @@ This post series aim to share all what I’ve learned preparing this session.&lt
 It is the one that I actually used during the session.&lt;/p&gt;
 
 &lt;/div&gt;
-
-&lt;p&gt;Note that I’ll soon start an OpenAPI Tips &amp;amp; Trick series including this session contents and a few other things I couldn’t show during this session.&lt;/p&gt;
 &lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -442,7 +438,11 @@ Just don’t forget to look at the one that is chosen to add the right snippet t
 I remember that I was totally skeptical at the beginning but as I was using Atom which was not totally meeting my expectations and had huge problem when VS Code showed up (it was 5 years ago I think), I decided to gave it a try and never left it since. 
 With all of the extensions, tasks, snippets that’s not only a coding tool but a huge problem solver as you can see in this post series.
 And VS Code actually helped me to solve my last problem: rehearsing and fine tuning the presentation before recording.
-But that’s a story you’ll see in next and final post of this Surviving my first (recorded) live session series.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">This is the fourth post about my first ever (recorded) live coding session given at the Manning API conference. In this series second post, I listed some problems I encountered and started to solve them in previous post. But there are other problems to solve, one of them was that I was not coding and using VS Code fast enough. In this post, I’ll show you how I solved that using a few VS Code tricks, the most important one being: the absolutely rad custom code snippet feature.</summary></entry><entry><title type="html">Surviving My First Recorded Live Coding Session Part 3</title><link href="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 3" /><published>2021-08-18T00:00:00-05:00</published><updated>2021-08-18T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-3</id><content type="html" xml:base="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/">&lt;p&gt;Third post about my first ever (recorded) live coding session given at the Manning API conference.
+But that’s a story you’ll see in next and final post of this Surviving my first (recorded) live session series.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">This is the fourth post about my first ever (recorded) live coding session given at the Manning API conference. In this series second post, I listed some problems I encountered and started to solve them in previous post. But there are other problems to solve, one of them was that I was not coding and using VS Code fast enough. In this post, I’ll show you how I solved that using a few VS Code tricks, the most important one being: the absolutely rad custom code snippet feature.</summary></entry><entry><title type="html">Electro Monkeys Podcast - Le Design des APIs Web</title><link href="https://apihandyman.io/electro-monkeys-podcast-le-design-des-apis-web/" rel="alternate" type="text/html" title="Electro Monkeys Podcast - Le Design des APIs Web" /><published>2021-08-25T00:00:00-05:00</published><updated>2021-08-25T00:00:00-05:00</updated><id>https://apihandyman.io/electro-monkeys-podcast--le-design-des-apis-web</id><content type="html" xml:base="https://apihandyman.io/electro-monkeys-podcast-le-design-des-apis-web/">&lt;p&gt;C’est avec un grand plaisir que j’ai répondu à l’invitation de Stéphane Beuret pour parler d’API (en français pour une fois) dans son podcast Electro Monkeys.
+On y parle de lavabo, de mon livre (The Design of Web APIs, en anglais lui) mais aussi et surtout de design d’API, de sécurité, cycle de vie et gestion des erreurs.
+Toutes ces choses auxquelles il faut penser pour faire de bonnes API Web.&lt;/p&gt;
+
+&lt;!--more--&gt;</content><author><name>Stéphane Beuret &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">C’est avec un grand plaisir que j’ai répondu à l’invitation de Stéphane Beuret pour parler d’API (en français pour une fois) dans son podcast Electro Monkeys. On y parle de lavabo, de mon livre (The Design of Web APIs, en anglais lui) mais aussi et surtout de design d’API, de sécurité, cycle de vie et gestion des erreurs. Toutes ces choses auxquelles il faut penser pour faire de bonnes API Web.</summary></entry><entry><title type="html">Surviving My First Recorded Live Coding Session Part 3</title><link href="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 3" /><published>2021-08-18T00:00:00-05:00</published><updated>2021-08-18T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-3</id><content type="html" xml:base="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/">&lt;p&gt;Third post about my first ever (recorded) live coding session given at the Manning API conference.
 In &lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;previous post&lt;/a&gt;, I encountered various problems.
 Two of them were related to not delivering the session like one of my regular slide deck presentation.
 I wanted to add titles and have speaker’s notes.
@@ -456,7 +456,7 @@ In this post, I’ll show you how I solved those two problems with OBS, VS Code 
   &lt;div class=&quot;row series-toc_content&quot;&gt;
     &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
       &lt;div class=&quot;card-body&quot;&gt;
-        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API confernce.
+        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API conference: &lt;a href=&quot;/supercharge-openapi-to-efficiently-describe-apis/&quot;&gt;Supercharge OpenAPI to efficiently describe APIs (click to what it!)&lt;/a&gt;.
 It was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
 The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
 This post series aim to share all what I’ve learned preparing this session.&lt;/p&gt;
@@ -466,8 +466,6 @@ This post series aim to share all what I’ve learned preparing this session.&lt
 It is the one that I actually used during the session.&lt;/p&gt;
 
 &lt;/div&gt;
-
-&lt;p&gt;Note that I’ll soon start an OpenAPI Tips &amp;amp; Trick series including this session contents and a few other things I couldn’t show during this session.&lt;/p&gt;
 &lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -868,7 +866,7 @@ In this post, I’ll talk about how I prepared content and realized that it was 
   &lt;div class=&quot;row series-toc_content&quot;&gt;
     &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
       &lt;div class=&quot;card-body&quot;&gt;
-        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API confernce.
+        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API conference: &lt;a href=&quot;/supercharge-openapi-to-efficiently-describe-apis/&quot;&gt;Supercharge OpenAPI to efficiently describe APIs (click to what it!)&lt;/a&gt;.
 It was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
 The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
 This post series aim to share all what I’ve learned preparing this session.&lt;/p&gt;
@@ -878,8 +876,6 @@ This post series aim to share all what I’ve learned preparing this session.&lt
 It is the one that I actually used during the session.&lt;/p&gt;
 
 &lt;/div&gt;
-
-&lt;p&gt;Note that I’ll soon start an OpenAPI Tips &amp;amp; Trick series including this session contents and a few other things I couldn’t show during this session.&lt;/p&gt;
 &lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -1045,7 +1041,7 @@ In this first post, I’ll talk about how “it started well”: setting up OBS,
   &lt;div class=&quot;row series-toc_content&quot;&gt;
     &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
       &lt;div class=&quot;card-body&quot;&gt;
-        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API confernce.
+        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API conference: &lt;a href=&quot;/supercharge-openapi-to-efficiently-describe-apis/&quot;&gt;Supercharge OpenAPI to efficiently describe APIs (click to what it!)&lt;/a&gt;.
 It was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
 The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
 This post series aim to share all what I’ve learned preparing this session.&lt;/p&gt;
@@ -1055,8 +1051,6 @@ This post series aim to share all what I’ve learned preparing this session.&lt
 It is the one that I actually used during the session.&lt;/p&gt;
 
 &lt;/div&gt;
-
-&lt;p&gt;Note that I’ll soon start an OpenAPI Tips &amp;amp; Trick series including this session contents and a few other things I couldn’t show during this session.&lt;/p&gt;
 &lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -1317,7 +1311,48 @@ So making it static solves the problem.&lt;/p&gt;
 &lt;p&gt;Besides the mic and cam “problems”, which were not a real problems, it was starting well.
 I was ready to record myself coding and talking.
 So I started to actually work on the content for the recording and realized it was more than just coding and talking.
-But it’s a story that will be told in &lt;a href=&quot;/it-was-more-complicated-than-just-coding-and-talking/&quot;&gt;next post&lt;/a&gt;.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I did my first ever (recorded) live coding session at the Manning API conference. During 30 minutes I talked and coded … without any slides; that was totally new to me. While it started well, preparing and recording this session turned out to be quite complicated. At some moment, I was totally desperate and I thought I wasn’t going to make it. But I did it and learned a lot of stuff that deserves to be shared. In this first post, I’ll talk about how “it started well”: setting up OBS, mic, cam and VS Code to record myself speaking and coding.</summary></entry><entry><title type="html">An API gateway must be a dumb pipe</title><link href="https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe/" rel="alternate" type="text/html" title="An API gateway must be a dumb pipe" /><published>2021-07-28T00:00:00-05:00</published><updated>2021-07-28T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe</id><content type="html" xml:base="https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe/">&lt;p&gt;An API gateway is a proxy that sits between API providers and their consumers.
+But it’s a story that will be told in &lt;a href=&quot;/it-was-more-complicated-than-just-coding-and-talking/&quot;&gt;next post&lt;/a&gt;.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I did my first ever (recorded) live coding session at the Manning API conference. During 30 minutes I talked and coded … without any slides; that was totally new to me. While it started well, preparing and recording this session turned out to be quite complicated. At some moment, I was totally desperate and I thought I wasn’t going to make it. But I did it and learned a lot of stuff that deserves to be shared. In this first post, I’ll talk about how “it started well”: setting up OBS, mic, cam and VS Code to record myself speaking and coding.</summary></entry><entry><title type="html">Supercharge OpenAPI to efficiently describe APIs</title><link href="https://apihandyman.io/supercharge-openapi-to-efficiently-describe-apis/" rel="alternate" type="text/html" title="Supercharge OpenAPI to efficiently describe APIs" /><published>2021-08-03T00:00:00-05:00</published><updated>2021-08-03T00:00:00-05:00</updated><id>https://apihandyman.io/supercharge-openapi-to-efficiently-describe-apis</id><content type="html" xml:base="https://apihandyman.io/supercharge-openapi-to-efficiently-describe-apis/">&lt;p&gt;If you want to discover the OpenAPI Specification format, this video is for you!
+In my first ever (recorded) live coding session, given at the 2021 Manning API Conference,
+I demonstrate basic, advanced, and even hidden features that will help you to efficiently create complete, accurate, and maintainable API descriptions when designing documenting APIs.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div class=&quot;alert alert-info&quot;&gt;&lt;h4 class=&quot;alert-heading&quot;&gt;Making Of&lt;/h4&gt;&lt;hr /&gt;
+&lt;p&gt;If you want to learn how I did that session, you can read my &lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/&quot;&gt;Surviving my first (recorded) live code session post series&lt;/a&gt;.
+I share all what I’ve learned preparing it: how I prepared the content, the tools I used, and the struggles and doubts I had.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+
+&lt;p&gt;The OpenAPI Specification has become an industry standard to describe Web APIs during design phase or to create API documentation. During this session, Arnaud Lauret will demonstrate how to take advantage of OpenAPI specification’s basic to advanced features to efficiently create complete, accurate, maintainable and user friendly API descriptions.&lt;/p&gt;
+
+&lt;h1 id=&quot;video&quot;&gt;Video&lt;/h1&gt;
+
+&lt;div id=&quot;-ZhrJzGjJQE&quot; class=&quot;third-party-content third-party-content-youtube&quot;&gt;
+    &lt;div class=&quot;card third-party-content-warning&quot;&gt;
+        &lt;img class=&quot;card-img&quot; src=&quot;/images/thirdpartycontents/supercharge-openapi-manning-api-conference.jpg&quot; alt=&quot;Card image&quot; /&gt;
+        &lt;div class=&quot;card-img-overlay d-flex&quot;&gt;
+            &lt;div class=&quot;my-auto mx-auto text-center&quot;&gt;
+                &lt;p&gt;This content is hosted on youtube.com.&lt;/p&gt;
+                &lt;p&gt;By showing this third party content you accept YouTube (Google)'s 
+                    &lt;a class=&quot;privacy-policy&quot; href=&quot;https://policies.google.com/privacy&quot; target=&quot;_blank&quot;&gt;privacy policy&lt;/a&gt;.
+                &lt;/p&gt;
+                &lt;form&gt;
+                    &lt;a href=&quot;javascript:thirdPartyConsent('-ZhrJzGjJQE', 'youtube')&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Show third party content&lt;/a&gt;
+                    &lt;div class=&quot;form-check&quot;&gt;
+                        &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input third-party-content-remember&quot; /&gt;
+                        &lt;label class=&quot;form-check-label&quot; for=&quot;exampleCheck1&quot;&gt;Remember my choice&lt;/label&gt;
+                        &lt;p&gt;(can be changed in &lt;a class=&quot;privacy-policy&quot; href=&quot;/privacy&quot;&gt;privacy settings&lt;/a&gt;)&lt;/p&gt;
+                      &lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;iframe-container third-party-content-iframe third-party-content-iframe-disabled&quot;&gt;
+        &lt;iframe class=&quot;iframe-responsive&quot; data-src=&quot;https://www.youtube-nocookie.com/embed/-ZhrJzGjJQE?color=white&amp;amp;theme=light&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
+        &lt;/iframe&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talk" /><summary type="html">If you want to discover the OpenAPI Specification format, this video is for you! In my first ever (recorded) live coding session, given at the 2021 Manning API Conference, I demonstrate basic, advanced, and even hidden features that will help you to efficiently create complete, accurate, and maintainable API descriptions when designing documenting APIs.</summary></entry><entry><title type="html">An API gateway must be a dumb pipe</title><link href="https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe/" rel="alternate" type="text/html" title="An API gateway must be a dumb pipe" /><published>2021-07-28T00:00:00-05:00</published><updated>2021-07-28T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe</id><content type="html" xml:base="https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe/">&lt;p&gt;An API gateway is a proxy that sits between API providers and their consumers.
 Its main role is to ensure that only authorized consumers consume some APIs.
 But API gateways usually come also with features such as request/response transformation and some of them even allow to code complex orchestration.
 Such transformation features can be very useful if used wisely.
@@ -1472,181 +1507,4 @@ A consumer which has been granted the “crm:partner” scope can only do “Cre
 &lt;h1 id=&quot;an-api-gateway-is-not-the-api-security-panacea&quot;&gt;An API gateway is not the API security panacea&lt;/h1&gt;
 
 &lt;p&gt;So, putting an API gateway in front of your API’s implementation may makes your life easier but don’t be fooled, you’ll still have to actively work on security yourself.
-API security concerns the API gateway configuration (consumers, security mode, lifecycle), the implementation (application/fine grained security) and the design (what you expose and how you expose it).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">How many times people realized that an API was not so secured despite being exposed on an API gateway? Too many times. While being a must have to securely expose APIs, an API gateway will not do all the security work for you. Security in general, and API security in particular, is a matter for everyone. Let’s see what is the job of an API gateway and what you still have to do to actually securely expose APIs.</summary></entry><entry><title type="html">What’s the problem with required query parameters?</title><link href="https://apihandyman.io/what-s-the-problem-with-required-query-parameters/" rel="alternate" type="text/html" title="What’s the problem with required query parameters?" /><published>2021-07-14T00:00:00-05:00</published><updated>2021-07-14T00:00:00-05:00</updated><id>https://apihandyman.io/avoid-required-query-parameters-when-designing-apis</id><content type="html" xml:base="https://apihandyman.io/what-s-the-problem-with-required-query-parameters/">&lt;p&gt;When reviewing API designs, I often encounter operations such as &lt;code&gt;GET /resources?queryParameter=value&lt;/code&gt; where the query parameter is required.
-Consumers won’t be able to make that request without providing this parameter and a correct value; that’s usually a problem.
-Indeed, at best it will ruin developer experience and at worst it is a sign of design smell.
-Let’s see why.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;what-are-query-parameters-and-how-they-are-usually-used&quot;&gt;What are query parameters and how they are usually used&lt;/h1&gt;
-
-&lt;p&gt;According to &lt;a href=&quot;https://tools.ietf.org/html/rfc3986#section-3.4&quot;&gt;RFC3986 Uniform Resource Identifier (URI): Generic Syntax&lt;/a&gt;, the “query component” of a URI is everything that goes after a question mark (&lt;code&gt;?&lt;/code&gt;).
-The elements coming after that question mark are often in the form of a &lt;code&gt;key=value&lt;/code&gt; pair. 
-That means in &lt;code&gt;https://api.eternia.com/characters?hasMagicalPowers=true&lt;/code&gt;, &lt;code&gt;hasMagicalPowers&lt;/code&gt; is a query parameter and its value is &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Query parameters can be used in any type of HTTP requests but in most REST/RESTful/RESTish APIs, such query parameters are added on operations such as &lt;code&gt;GET /characters&lt;/code&gt;, that represents something like “list characters” or “search for characters”, in order to allow consumers to filter the results.
-While a &lt;code&gt;GET /characters&lt;/code&gt; is supposed to return all characters, a &lt;code&gt;GET /characters?hasMagicalPowers=true&lt;/code&gt; will only return the ones having magical powers.&lt;/p&gt;
-
-&lt;div class=&quot;alert alert-info&quot; role=&quot;alert&quot;&gt;
-    If you wonder why &lt;code&gt;/characters&lt;/code&gt; and not &lt;code&gt;/character&lt;/code&gt;
-, read &lt;a class=&quot;post-link&quot; href=&quot;/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/&quot;&gt;/resources rules and /resource sucks ... or is it the other way around?&lt;/a&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;required-query-parameters-ruin-dx&quot;&gt;Required query parameters ruin DX&lt;/h1&gt;
-
-&lt;p&gt;I have a rule of thumb when designing APIs: whatever the type of inputs, the less you request, the better because that help people do their first request and later ones without having to think too much.
-That is key when you want to build the best possible DX (developer experience).
-And query parameters are no exception.&lt;/p&gt;
-
-&lt;p&gt;In the example above, turning &lt;code&gt;hasMagicalPowers&lt;/code&gt; into a required query parameters will first lead to people failing their very first request because they expect that a &lt;code&gt;GET /characters&lt;/code&gt; can be done without any query parameters.
-Why would they expect that?
-Because it’s the most encountered behavior.
-That does not seem much, that’s not exactly “ruining” the developer experience but that’s quite annoying.
-This could be the straw that breaks the camel’s back, people may go elsewhere especially if there are other APIs offering the same services without such silly behavior.&lt;/p&gt;
-
-&lt;p&gt;And second problem, that leads to consumers having to make at least 2 requests in order to get all characters (pagination set aside), one to get those having magical powers and another one to those who haven’t.
-That is not really good for developer experience, it may actually ruin it.
-Obviously, in such situation, most of designers would never do that as beyond crippling developer experience, such design does not make any sense at all from this domain (Masters of the Universe franchise’s characters) perspective.&lt;/p&gt;
-
-&lt;p&gt;But there are other use cases that are less obvious.&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/Masters_of_the_Universe&quot;&gt;Masters of the Universe&lt;/a&gt; franchise had multiple TV cartoon installments (and no, the live action movie does not exist).
-Let’s take for granted that the original one made at the beginning of the 80s is the most known and loved one.
-Let’s take also for granted one that people looking for information about that franchise’s characters want to be able to get information about the characters of that specific version.&lt;/p&gt;
-
-&lt;p&gt;That means when calling &lt;code&gt;GET /characters&lt;/code&gt;, it could make sense to filter the results based on the TV show and so add a &lt;code&gt;tvShow&lt;/code&gt; query parameter that could take values such as &lt;code&gt;80s_original_that_rules&lt;/code&gt;, &lt;code&gt;90s_version_that_sucks&lt;/code&gt; or &lt;code&gt;all&lt;/code&gt;.
-Some designer could be tempted to make this query parameter a required one, letting consumers choose which characters list they want.
-But the rule of thumb is to request the less possible information to consumers.
-So let’s avoid this by keeping the &lt;code&gt;tvShow&lt;/code&gt; parameter optional and using the most expected default value, obviously &lt;code&gt;80s_original_that_rules&lt;/code&gt;.
-That way, consumers could do a successful &lt;code&gt;GET /characters&lt;/code&gt; without thinking much, the implementation filling the gap returning the results that would please most consumers (characters from the 80s version).
-After that, having read the documentation further, consumers may use the other possible values of &lt;code&gt;tvShow&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;In a more real use case, the problem could come from a date filter on time series data.
-Let’s say that for performance reasons for instance, the implementation absolutely needs a date to returns a subset of all available data.
-In such a case, keep the parameter optional but choose the “best” default date to use if it is not provided by consumers.
-It could be today, first day of the month, last whatever processing date or whatever date will make sense from a business rule perspective and that will please most consumers.&lt;/p&gt;
-
-&lt;p&gt;Whatever the query parameter, there is most of the time a way to keep it optional… if that parameter is not the sign of something more nasty.&lt;/p&gt;
-
-&lt;h1 id=&quot;required-query-parameters-can-be-signs-of-design-smells&quot;&gt;Required query parameters can be signs of design smells&lt;/h1&gt;
-
-&lt;p&gt;Indeed besides possibly “ruining” the developer experience, a required parameter can be a sign of design smell.&lt;/p&gt;
-
-&lt;p&gt;Let’s analyse the &lt;code&gt;GET /enemies?of=characterId&lt;/code&gt; request which has an &lt;code&gt;of&lt;/code&gt; required query parameter.
-It is supposed to return the enemies of someone, for example Skeletor and Beast Man are enemies of He-Man (&lt;code&gt;GET /enemies?of=he-man&lt;/code&gt;) while He-Man and Teela are enemies of Beast Man (&lt;code&gt;GET /enemies?of=beast-man&lt;/code&gt;).
-The &lt;code&gt;of&lt;/code&gt; parameter being required, my API design reviewer senses tell me there’s something wrong without even thinking about the purpose of this operation.&lt;/p&gt;
-
-&lt;p&gt;My first attempt is usually to check if the required parameter can be turned into an optional one.
-Here, returning the enemies of “no one” doesn’t make sense.
-Returning the enemies of a default character also makes no sense at all.
-So that does not smell good.&lt;/p&gt;
-
-&lt;p&gt;Indeed, if any character can be seen as an enemy by any other character, the resource that should be manipulated when representing “listing the enemies of someone”, is not just “enemies” but the “enemies of someone”.
-That means the resource path should be something like &lt;code&gt;/characters/{characterId}/enemies&lt;/code&gt; instead of just &lt;code&gt;/enemies&lt;/code&gt; (the character).&lt;/p&gt;
-
-&lt;p&gt;Based on my experience, when the query parameter cannot be removed that is most of the time the sign of a “wrong resource identified” and the fix is usually adding a level in the resource’s path hierarchy.&lt;/p&gt;
-
-&lt;h1 id=&quot;think-twice-before-adding-a-required-query-parameter&quot;&gt;Think twice before adding a required query parameter&lt;/h1&gt;
-
-&lt;p&gt;So the next time you’re tempted to make a query parameter required, double check that you’re using the right resource and especially not missing a level in your resources hierarchy.
-If the parameter actually makes sense, think about what could be the more useful value for most consumers and use it as default when that parameter is not provided.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">When reviewing API designs, I often encounter operations such as GET /resources?queryParameter=value where the query parameter is required. Consumers won’t be able to make that request without providing this parameter and a correct value; that’s usually a problem. Indeed, at best it will ruin developer experience and at worst it is a sign of design smell. Let’s see why.</summary></entry><entry><title type="html">API Designer Experience, the other DX</title><link href="https://apihandyman.io/api-designer-experience-the-other-dx/" rel="alternate" type="text/html" title="API Designer Experience, the other DX" /><published>2021-07-07T00:00:00-05:00</published><updated>2021-07-07T00:00:00-05:00</updated><id>https://apihandyman.io/designer-experience--the-other-dx</id><content type="html" xml:base="https://apihandyman.io/api-designer-experience-the-other-dx/">&lt;p&gt;Nobody expects the API inquisition!
-Literally.
-When creating public or private APIs, an organization must work hard on creating the best possible developer experience or DX.
-That requires to ensure that API designers “do their job well”: creating APIs that fulfill actual needs and are easy to understand and use.
-This is the aim of governance which may help creating the best APIs or may slowly killing the organization, depending on the designer experience, the other DX, it provides.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h1 id=&quot;what-usually-is-dx&quot;&gt;What usually is DX&lt;/h1&gt;
-
-&lt;p&gt;In the API world, DX stands for Developer eXperience.
-It consists in providing APIs that fullfil their needs but that also are easy to understand and easy to use in a matter of minutes if not seconds.
-Developers should be able to understand the purpose of an API in 3 seconds, identify the operation in 30 seconds and be able to make their first API call within 3 minutes.
-That latter time including creating an account, getting credentials and then calling the API.&lt;/p&gt;
-
-&lt;p&gt;Achieving such a great DX does not only rely on the API itself, its purpose and its design.
-It relies also on everything that comes around:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The way people will find it&lt;/li&gt;
-  &lt;li&gt;Its various documentations from high level description (that allows to understand what the API does) to instruction manual (ready to use recipes) and reference documentation (describing all operations and how the API works)&lt;/li&gt;
-  &lt;li&gt;And the tools provided (in a broad sense: account creation and management, credentials, billing, …)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Working on DX is basically aiming at making developers life simpler.
-That’s the usual DX, but there’s another one, that an organization creating public but also private APIs, should care about.&lt;/p&gt;
-
-&lt;h1 id=&quot;the-other-dx-designer-experience&quot;&gt;The other DX: Designer eXperience&lt;/h1&gt;
-
-&lt;p&gt;Those APIs are actually designed in order to make them easy to understand and easy to use.
-Succeeding in consistently and in the long run creating such APIs at scale requires governance.
-Governance implies defining rules, controls and processes that will ensure that all APIs will share a common look and feel, be consistent and have the same level of quality.&lt;/p&gt;
-
-&lt;p&gt;The problem with governance is that sometimes it is so focused on rules, controls and processes that people, and especially API designers, actually dealing with it are totally forgotten resulting in the most terrible Design eXperience, the other DX.&lt;/p&gt;
-
-&lt;h1 id=&quot;create-user-friendly-design-guidelines&quot;&gt;Create user friendly design guidelines&lt;/h1&gt;
-
-&lt;p&gt;API design guidelines are the set of rules that will define the look and feel of an organization’s APIs.
-They can be compared to an organization’s graphic charter and also to &lt;a href=&quot;https://en.wikipedia.org/wiki/Design_system&quot;&gt;design system&lt;/a&gt;, but instead of defining its visual identity that will be used when creating websites or mobile apps for instance, it defines its APIs identity.
-These guidelines are mandatory to build a good developer experience because consistent APIs are easier to understand and use.&lt;/p&gt;
-
-&lt;p&gt;But they also matter for people who will design APIs. Defining a common design base allows each designer to avoid wasting time and trying to find a solution to a design problem that has already been solved. But that will only work if those guidelines apply the same principles used to create APIs: guidelines must be simple to understand, simple to use and fulfill actual designers needs.&lt;/p&gt;
-
-&lt;p&gt;So do not reinvent the wheel, do not reuse your possibly outdated and highly specific practices, follow outside world standards and common practices. Define rules only when that is actually necessary, if you’re unable to explain a rule, don’t put it in your guidelines. Design rules must exist only to help people not unnecessarily constrain them.&lt;/p&gt;
-
-&lt;p&gt;Do not write your guidelines in an “incomprehensible super expert that loves to hear themselves” style. Make them simple to use, just like you would do when creating API documentation. Once you have defined rules, create use case oriented design patterns describing in one place all rules that actually apply to a specific use case.&lt;/p&gt;
-
-&lt;p&gt;And listen to people. Accept changes, evolutions. Rules are not set in stone, you must never hesitate to make them evolve by adjusting or completing them based on API designers and implementers feedback.&lt;/p&gt;
-
-&lt;h1 id=&quot;conduct-user-friendly-design-reviews-workshops&quot;&gt;Conduct user friendly design &lt;del&gt;reviews&lt;/del&gt; workshops&lt;/h1&gt;
-
-&lt;p&gt;But even with the user friendly-est guidelines are not enough, designers may make mistakes and most important a consistent style is only a fraction of what makes an API a good one.
-Consistency goes beyond style, inside an API one must ensure that all data models are consistent for example, as we say in french, a cat must always be called a cat for instance.
-And worse, one can create an API complying a 100% to guidelines that will be a terrible one.
-Indeed, guidelines do not guarantee that an API will meet the right need in an efficient way. 
-Do we have the right vision of the need? Is the resulting API really user friendly? Easy to understand, easy to use for someone outside the organization (another team or a partner or a customer)?&lt;/p&gt;
-
-&lt;p&gt;So, irremediably coming along with guidelines, there are the mandatory API design reviews.
-It is important that several people can look at and challenge a design.
-An API must be analyzed from different perspectives: business, technical, developer experience to guarantee its success.
-And it is important that at least one “external” person, or one who can act as if, participates in this analysis, because we can quickly fall into the creation of specialist APIs like Kitchen Radar if we are not careful.&lt;/p&gt;
-
-&lt;p&gt;But beware, this exercise can quickly turn into a counterproductive trial if you are not careful.
-A design review is not about policing and beating up on people because their design is “breaking the law”,  “non-compliant” or worse “sucks” from the reviewer’s perspective.
-An API design reviewer is not the inquisition of API design.
-Actually, nobody expects the API inquisition, literally.&lt;/p&gt;
-
-&lt;p&gt;An API design review must be seen more as a design workshop.
-Being an API design reviewer is more about being a consultant, helping people identify their needs, choosing the best possible representation, helping them make decisions adapted to their context, explaining the consequences of going in one direction or another.
-Once everything is analyzed and explained, API designer reviewers must let designers choose because they are the owners of their APIs.&lt;/p&gt;
-
-&lt;p&gt;API design reviewers must help designers and respect API ownership.&lt;/p&gt;
-
-&lt;h1 id=&quot;build-user-friendly-organization-processes-and-tools&quot;&gt;Build user friendly organization, processes and tools&lt;/h1&gt;
-
-&lt;p&gt;Just like a terrible registration process can ruin the best API’s developer experience, there are other aspects of API governance to take care of to ensure creating the best possible developer experience.
-Indeed, if guidelines and reviews are the most obvious aspects of API governance participating in building the better or the worst designer experience, wrong human organization, processes and tools can cripple all efforts.&lt;/p&gt;
-
-&lt;p&gt;When possible, prefer decentralized organization, aim on training all designers in order to make them the most autonomous possible.
-It’s far better for the organization that people add to their expertise than having a small set of not always available experts.
-That can be done gradually by identifying local experts that will be trained and then help and train other themselves.&lt;/p&gt;
-
-&lt;p&gt;When defining processes, never lose sight that governance is there to enable designers to the right thing simply.
-If it takes weeks if not month to do an API design review, it’s a terrible designer experience.
-If processes lead to designers losing ownership, it’s an even more terrible design experience.&lt;/p&gt;
-
-&lt;p&gt;When creating tools, ensure they are user friendly.
-Take advantage of standard/common practices, using the OpenAPI specification instead of wiki pages or spreadsheet to describe an API for instance.
-Ensure also they are the most open possible, providing APIs for instance, so designers can use them in a wide range of context because not all teams build APIs in the same way.&lt;/p&gt;
-
-&lt;h1 id=&quot;fear-the-consequences-of-terrible-designer-experience&quot;&gt;Fear the consequences of terrible Designer eXperience&lt;/h1&gt;
-
-&lt;p&gt;Just in case you think that’s not something you should care about because you think governance should be strong and only care about ensuring nobody breaks the law, let’s briefly talk about the consequences of not caring about this other DX.&lt;/p&gt;
-
-&lt;p&gt;A terrible designer experience will irremediably lead to designers not learning how to actually create good APIs, they may even loose interest in designing APIs and delegate that to the governance zealot henchmen.
-It will irremediably lead to terrible APIs created by outsider experts only caring about not breaking the law and totally not caring about creating actually good APIs.
-Terrible private APIs mean higher costs, increase of technical debt, less flexible IT, longer time to market.
-Terrible public APIs mean not used APIs…
-And in the end, people who actually care will just leave the organization that may just collapse in the end.&lt;/p&gt;
-
-&lt;p&gt;So, don’t underestimate the importance of the other DX, Designer eXperience.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Nobody expects the API inquisition! Literally. When creating public or private APIs, an organization must work hard on creating the best possible developer experience or DX. That requires to ensure that API designers “do their job well”: creating APIs that fulfill actual needs and are easy to understand and use. This is the aim of governance which may help creating the best APIs or may slowly killing the organization, depending on the designer experience, the other DX, it provides.</summary></entry></feed>
+API security concerns the API gateway configuration (consumers, security mode, lifecycle), the implementation (application/fine grained security) and the design (what you expose and how you expose it).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">How many times people realized that an API was not so secured despite being exposed on an API gateway? Too many times. While being a must have to securely expose APIs, an API gateway will not do all the security work for you. Security in general, and API security in particular, is a matter for everyone. Let’s see what is the job of an API gateway and what you still have to do to actually securely expose APIs.</summary></entry></feed>
