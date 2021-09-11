@@ -1,6 +1,6 @@
 ---
 title: The Design of Everyday APIs
-date: 2020-06-28
+date: 2018-10-23
 author: Arnaud Lauret
 category: talk
 layout: post

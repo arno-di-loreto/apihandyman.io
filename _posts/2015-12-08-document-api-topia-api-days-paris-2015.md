@@ -1,7 +1,7 @@
 ---
 id: 663
 title: Document-API-topia (API Days Paris 2015)
-date: 2015-12-16T18:07:20+00:00
+date: 2015-12-08
 author: Arnaud Lauret
 layout: post
 guid: http://apihandyman.io/?p=663

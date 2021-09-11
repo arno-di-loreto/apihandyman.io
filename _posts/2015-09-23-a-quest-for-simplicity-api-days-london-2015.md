@@ -1,7 +1,7 @@
 ---
 id: 655
 title: A quest for simplicity (API Days London 2015)
-date: 2015-12-22T18:07:57+00:00
+date: 2015-09-23
 author: Arnaud Lauret
 layout: post
 guid: http://apihandyman.io/?p=655

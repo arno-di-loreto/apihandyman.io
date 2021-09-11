@@ -1,6 +1,6 @@
 ---
 title: API Design Reviewer's Starter Set
-date: 2020-06-29
+date: 2019-11-13
 author: Arnaud Lauret
 category: talk
 layout: post
