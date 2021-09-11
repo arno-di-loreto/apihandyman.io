@@ -2,6 +2,8 @@
 layout: default
 with_banner: true
 book_in_nav: true
+libs:
+  infinitescroll: true
 ---
 {% capture overlay %}
 <p class="card-text text-justify">Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. {{site.data.categories[page.category].description}}.</p>
@@ -10,9 +12,9 @@ book_in_nav: true
 {%include full-width-banner.html overlay=overlay css=page.category %}
 <div class="row row-list">
   <div id="list" class="container">
-    <div class="row row-cols-1 row-cols-lg-2">
+    <div class="row row-cols-1 row-cols-lg-2 paginated-elements">
         {% for post in paginator.posts %}
-          <div class="col mb-4">
+          <div class="col mb-4 paginated-element">
           {% include post-summary.html  date=true %}
           </div>
         {% endfor %}
