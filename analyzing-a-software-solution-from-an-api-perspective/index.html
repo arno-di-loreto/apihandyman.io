@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <title>API Handyman | Analyzing a software solution from an API perspective</title>
+  <meta name="description" content="I regularly participate to CFP (Call For Proposals) aiming to choose a software solution. My role is to analyze solutions from an API perspective. And I do that even if there’s no specific API concern regarding the context in which the CFP is made. Why doing so and what to look at? This should be of interest for people having to choose a solution but also to people proposing them. Indeed, some (corporate) software solution vendors should take this seriously … Unless they want to finish at the bottom of the list.">
+<meta name="keywords" content="API,Web API,Web Service">
+<meta name="author" content="Arnaud Lauret">
+<meta name="description" content="I regularly participate to CFP (Call For Proposals) aiming to choose a software solution. My role is to analyze solutions from an API perspective. And I do that even if there’s no specific API concern regarding the context in which the CFP is made. Why doing so and what to look at? This should be of interest for people having to choose a solution but also to people proposing them. Indeed, some (corporate) software solution vendors should take this seriously … Unless they want to finish at the bottom of the list.">
+
+<!-- Facebook & LinkedIn -->
+<meta property="og:title"         content="Analyzing a software solution from an API perspective"/>
+<meta property="og:type"          content="article"/>
+<meta property="og:description"   content="I regularly participate to CFP (Call For Proposals) aiming to choose a software solution. My role is to analyze solutions from an API perspective. And I do that even if there’s no specific API concern regarding the context in which the CFP is made. Why doing so and what to look at? This should be of interest for people having to choose a solution but also to people proposing them. Indeed, some (corporate) software solution vendors should take this seriously … Unless they want to finish at the bottom of the list."/>
+<meta property="og:url"           content="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/"/>
+<meta property="og:image"         content="https://apihandyman.io/images/analyzing-a-software-solution-from-an-api-perspective/banner.jpg"/>
+
+<!-- Twitter -->
+<meta name="twitter:card"         content="summary">
+<meta name="twitter:site"         content="@apihandyman">
+<meta name="twitter:creator"      content="@apihandyman" />
+<meta name="twitter:title"        content="Analyzing a software solution from an API perspective">
+<meta name="twitter:url"          content="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/">
+<meta name="twitter:description"  content="I regularly participate to CFP (Call For Proposals) aiming to choose a software solution. My role is to analyze solutions from an API perspective. And I do that even if there’s no specific API concern regarding the context in which the CFP is made. Why doing so and what to look at? This should be of interest for people having to choose a solution but also to people proposing them. Indeed, some (corporate) software solution vendors should take this seriously … Unless they want to finish at the bottom of the list.">
+<meta name="twitter:image:src"    content="https://apihandyman.io/images/analyzing-a-software-solution-from-an-api-perspective/banner.jpg">
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/anchors.css">
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/prism.css">
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/asciinema-player.css">
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/code.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bash.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+</head>
+  <body  data-spy="scroll" data-target="#toc">
+    
+<div class="main-navbar fixed-top  scrolled">
+  <div class="container-lg">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">API Handyman</a>
+      
+      <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="btn-icon" src="/images/commons/icons/menu.svg" >
+      </button>
+      <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
+        <div class="navbar-nav">
+          <li class="nav-item dropdown dropdown-blog d-desktop-only">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Blog
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="/blog/">All content</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/posts/">Posts</a>
+              <a class="dropdown-item" href="/talks/">Talks & Podcasts</a>
+            </div>
+          </li>
+          <a class="nav-item nav-link d-mobile-only" href="/blog/">Blog</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/posts/">Posts</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/talks/">Talks & Podcasts</a>
+          <a class="nav-item nav-link" href="/toolbox/">Toolbox</a>
+          <a class="nav-item nav-link" href="/about/">About</a>
+          <div class="form-search">
+    <input class="input-search" type="search" name="q" placeholder="Search" aria-label="Search">
+    <button class="btn-search"><?xml version="1.0" encoding="UTF-8"?>
+<svg width="26" height="26" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+ <path d="m85.207 79.375l-21.664-21.668c3.332-4.375 5.207-10 5.207-16.043 0-15-12.082-27.082-27.082-27.082s-27.086 12.086-27.086 27.086 12.082 27.082 27.082 27.082c6.043 0 11.457-1.875 16.043-5.207l21.668 21.668c0.83203 0.83203 1.875 1.25 2.918 1.25s2.082-0.41797 2.918-1.25c1.6641-1.668 1.6641-4.168-0.003907-5.8359zm-43.539-18.957c-10.418 0-18.75-8.332-18.75-18.75s8.332-18.75 18.75-18.75 18.75 8.332 18.75 18.75c0 10.414-8.3359 18.75-18.75 18.75z"/>
+</svg>
+</button>
+</div>
+          <a class="nav-item-book left-column-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
+        </div>
+      </div>
+      
+    </nav> <!-- class="navbar navbar-expand-md" -->
+  </div> <!--  class="container" -->
+</div> <!-- class="main-navbar fixed-top  scrolled" -->
+    <div class="page-content-container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="row row-banner-small row-banner-small-">
+    <div class="banner-small-container">
+      <div class="banner-small-column-main">
+        <img src="https://apihandyman.io/images/analyzing-a-software-solution-from-an-api-perspective/banner.jpg" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+
+<div class="row row-page-content">
+  <div class="container-fluid container-lg">
+    <div class="fade modal left-menu-hider left-menu-modal d-mobile-only"></div>
+    <div class="row">
+      
+      <div class="page-column-left left-menu left-menu-hider">
+        <div class="page-column-left-container">
+          
+
+
+
+<div class="left-book-ad left-book-ad-border d-desktop-only">
+  <img src="/images/commons/book/book-left-menu-cropped.png" class="card-img" alt="The Design of Web APIs book cover">
+  <div class="card-img-overlay message-cropped">
+    <a class="stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >
+      <p class="card-text">Special offer on my book</p>
+    </a>
+  </div>
+</div>
+<a class="left-book-ad-small left-menu-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button">
+  Special offer on my book
+  <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
+</a>
+
+  
+  <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
+    
+
+
+
+
+
+  <nav class="nav flex-column" id="toc">
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#why-systematically-include-the-api-perspective">Why systematically include the API perspective</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#what-to-look-at">What to look at</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#are-there-apis">Are there APIs?</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#what-is-the-quality-of-documentation">What is the quality of documentation?</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#what-is-the-quality-of-the-design">What is the quality of the design?</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#how-the-api-is-secured">How the API is secured?</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#do-the-apis-cover-100-of-features">Do the APIs cover 100% of features?</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#can-the-apis-fulfill-hypothetical-needs">Can the APIs fulfill hypothetical needs?</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#what-is-the-overall-developer-experience">What is the overall developer experience?</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#what-is-the-pricing-model">What is the pricing model?</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#what-are-the-terms-of-use">What are the terms of use?</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#does-the-company-shows-an-api-mindset">Does the company shows an API Mindset?</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#analyze-this">Analyze this</a>
+        
+      
+      
+    
+  
+  </nav>
+  </div>
+
+        </div>
+      </div>
+        
+      
+      <div class="page-column-main page-column-main-with-left">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="page-content-text anchors">
+  
+  
+  
+  
+  
+    
+    
+    <!-- First card with page title -->
+    <div class="card-page-section page-section-title">
+      <div class="body">
+        
+        <h5 class="surtitle"></h5>
+        
+        
+        <h1 class="title">Analyzing a software solution from an API perspective</h1>
+        
+        
+        <h6 class="subtitle">By Arnaud Lauret, September 15, 2021</h6>
+        <hr/>
+        
+        <p>I regularly participate to CFP (Call For Proposals) aiming to choose a software solution.
+My role is to analyze solutions from an API perspective.
+And I do that even if there’s no specific API concern regarding the context in which the CFP is made.
+Why doing so and what to look at?
+This should be of interest for people having to choose a solution but also to people proposing them.
+Indeed, some (corporate) software solution vendors should take this seriously …
+Unless they want to finish at the bottom of the list. 
+<!--more--></p>
+
+
+        
+      </div>
+    </div><!-- First card with page title END -->
+      
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="why-systematically-include-the-api-perspective">Why systematically include the API perspective</h1>
+
+<p>Before explaining what to look at when analyzing a software solution from an API perspective, maybe we should talk about why doing so even when there is no obvious and/or specific API concern.</p>
+
+<p>Most companies having IT systems couldn’t build those IT systems without APIs.
+Indeed, most IT systems are composed or more than one brick, more than one software solution.
+Some of them being built, some other being bought and deployed on premise or used as a service (SAAS).
+But either built or bought, installed or used as a service, a company will have to connect all these pieces of software together.
+And what can be used to connect all these pieces across a local network or the internet?
+APIs.</p>
+
+<p>Oh, some may think that this new piece of software, especially a SAAS one which magically solves some needs, will be used totally independently from any other of the IT system’s bricks.
+And that may actually be the case … in the beginning.
+But in the end, for one reason or another it WILL need to be connected to other pieces of software. 
+It’s not a risk, it’s a certainty.</p>
+
+<p>And if that solutions does not provide APIs …
+That may hinder severely an important project, critical for the company.
+A pity as one of the competing solutions seen during the CFP 2 years ago actually provided APIs …</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="what-to-look-at">What to look at</h1>
+
+<p>Note that this post is based on my “corporate solutions” evaluation experience, you may find totally unexpected elements that would be total science fiction for true API companies like Twilio or Stripe.
+So, here are the various topics I look at when analyzing a software solution from an API perspective:</p>
+
+<ul>
+  <li>Are there APIs?</li>
+  <li>What is the quality of documentation?</li>
+  <li>What is the quality of the design?</li>
+  <li>How the API is secured?</li>
+  <li>Do the APIs cover 100% of features?</li>
+  <li>Can the APIs fulfill hypothetical needs?</li>
+  <li>What is the overall developer experience?</li>
+  <li>What is the pricing model?</li>
+  <li>What are the terms of use?</li>
+  <li>Does the company shows an API Mindset?</li>
+</ul>
+
+<h2 id="are-there-apis">Are there APIs?</h2>
+
+<p>Very first and obvious verification: is there one or more APIs coming with the solution?
+That looks like a dead simple question, but you can’t imagine how it is difficult sometimes to verify this.
+Sometimes, it’s because the information is deeply hidden somewhere on the company’s website.
+That’s why my first move is simple to google “company name API”.</p>
+
+<p>But it’s not that rare to look at (or google) the company’s website or product’s webpage and find absolutely no information about APIs.
+And there are 2 reasons.
+First one, there’s absolutely no API at all.
+That puts the company to the bottom of the list.
+Second one, there are APIs, but you can’t see them unless you ask the sales people.
+That’s really annoying, and will make the company loose points in the rankings.</p>
+
+<h2 id="what-is-the-quality-of-documentation">What is the quality of documentation?</h2>
+
+<p>A good API documentation is not only a documentation that explains what you can do with the API (use case documentation), what are all the available operations (reference documentation), or how to get an access token.
+A good API documentation starts by being at least visible publicly!
+That sounds crazy right?
+Unfortunately what we’re used too with most API companies is not yet that obvious for many companies providing corporate solutions.
+Having to contact sales to get an access to documentation is really annoying (and that makes you loose points in the rankings).</p>
+
+<p>And beyond access and content, the form is important too.
+I prefer to get a bare Swagger 2.0 (OpenAPI 2.0) JSON file sent by email than an indigestible PDF accessible on the website.
+Actually, a documentation that does not comes with a standard OpenAPI (or Swagger) file is quite annoying for me because I need it to make some automatic controls on the design.</p>
+
+<h2 id="what-is-the-quality-of-the-design">What is the quality of the design?</h2>
+
+<p>Having access to the documentation I can evaluate the quality of the design.
+Does it respect common practices, it is easy to use, easy to understand.
+I practically do an API design review, I’m not looking for perfection but just a good looking API.</p>
+
+<h2 id="how-the-api-is-secured">How the API is secured?</h2>
+
+<p>What I want is APIs using state of the art security mechanism.
+Unfortunately, some companies don’t seem to care about security, providing good old basic authentication for instance.
+And that puts the company to the bottom of the list.</p>
+
+<h2 id="do-the-apis-cover-100-of-features">Do the APIs cover 100% of features?</h2>
+
+<p>Once I know what the API is capable of, I can check if it actually cover 100% of the product features.
+It’s not that rare to see solutions that propose APIs only covering a subset of all of their features.
+That could be a real problem unless the company shows a roadmap to achieve the 100% (but beware of promises…).</p>
+
+<h2 id="can-the-apis-fulfill-hypothetical-needs">Can the APIs fulfill hypothetical needs?</h2>
+
+<p>Once I know what the API does (thanks to the documentation), I can imagine some hypothetical but realistic needs that would require to connect the solution to others.
+I speak with the business people involved in the CFP to get some ideas.
+Then I evaluate if it’s possible and the complexity of such project (if the product lacks of useful APIs/operations you may have to do a lot of work for a simple project).</p>
+
+<h2 id="what-is-the-overall-developer-experience">What is the overall developer experience?</h2>
+
+<p>Doing all that (checking documentation, analyzing design and imagining hypothetical needs), I’m able to start evaluating the developer experience.
+If doing all that was simple, the experience is good, if not, the experience is terrible.
+When I see a company providing a state of the art self-service developer portal, that’s a total nirvana (that doesn’t happen often unfortunately)
+Being able to actually test the API at this stage is a plus (even if there’s no true dev portal).</p>
+
+<h2 id="what-is-the-pricing-model">What is the pricing model?</h2>
+
+<p>When evaluating a solution’s API, you have to look beyond the API itself and especially how much it would cost to use them.
+That’s probably the most difficult information to find when dealing with corporate software vendors: it’s almost never shown publicly.</p>
+
+<p>Be aware that most of the time, especially for SAAS solutions but also for on premise (totally crazy!), using the API is not included in the pricing proposal (because the request sent for the CFP usually don’t include the API perspective).
+Using the hypothetical needs, you should be able to get an idea of what could cost using the solution’s API.</p>
+
+<h2 id="what-are-the-terms-of-use">What are the terms of use?</h2>
+
+<p>Another thing that is really important to check is the terms of use.
+I check what is the API evolution policy (how are handled breaking changes, the delay to update).
+There can be too strict limitations regarding the number of API calls, making the solution to your hypothetical needs highly complex to build because you would need to add some cache systems for instance.
+But my concerns are not only technical.
+For instance a software solution may grant you access to some data that you can’t resell without a huge bump on the bill.</p>
+
+<h2 id="does-the-company-shows-an-api-mindset">Does the company shows an API Mindset?</h2>
+
+<p>And finally I evaluate the company’s API mindset.
+I prefer a company publicly showing it’s work-in-progress-well-designed API than a company hiding its mess hoping customers will not notice it before it’s too late (and that actually exist, I put them to the bottom of the list).
+I love when a company actually communicates about its API strategy or its roadmap, it’s not mandatory to actually talk about APIs you just need to show that you want to be part of an ecosystem, that your products can easily be connected to others.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="analyze-this">Analyze this</h1>
+
+<p>For those who have to choose solutions, I hope you found that interesting and that it will help you to choose the right solutions from an API perspective.
+For solution vendors, now you know what puts you to the bottom of the list when you see me on a CFP (and so, how to avoid that).</p>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+  
+</div><!-- class="page-content-text"-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-page-bottom-nav nav-fixed-bottom">
+  <div class="container-fluid container-lg">
+    <nav class="nav-page " aria-label="Page navigation">
+      <a class="nav-page-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top"><svg height='100px' width='100px' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><polygon points="4.1,10 5.5,11.4 9,7.8 9,20 11,20 11,7.8 14.5,11.4 16,10 10,4  "></polygon><rect x="0" width="20" height="2"></rect></g></svg></a>
+      
+      <a class="nav-page-btn left-menu-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><rect x="0" y="2" width="4" height="4"></rect><rect x="0" y="8" width="4" height="4"></rect><rect x="0" y="14" width="4" height="4"></rect><rect x="6" y="3" width="14" height="2"></rect><rect x="6" y="9" width="14" height="2"></rect><rect x="6" y="15" width="14" height="2"></rect></g></svg></a>
+      
+    </nav>
+  </div>
+</div>
+
+
+      <div class="row row-footer-margin">
+
+</div>
+<div class="row row-footer">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container footer-content">
+        <div class="row align-items-end row-cols-1 row-cols-md-2">
+          <div class="col d-flex justify-content-center mb-1 mb-md-4">
+            <div class="icon"><a href="https://twitter.com/apihandyman" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a></div>
+            <div class="icon"><a href="https://www.linkedin.com/in/arnaudlauret" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></div>
+            <div class="icon"><a href="https://github.com/arno-di-loreto" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a></div>
+            <div class="icon"><a href="/feed.xml" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg></a></div>
+          </div>
+          <div class="col text-center">
+            <a class="btn border-0 rounded-0 p-0" data-toggle="modal" data-target="#bookModal" role="button" ><img class="img-footer-book" src="/images/commons/book/book-footer.png"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-footer-second">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col col-footer-privacy mb-3 mb-md-0">
+            <div class="icon privacy-link"><a href="/privacy"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg><span class="privacy-link-text">Privacy Policy & Settings<span></span></a></div>
+          </div>
+          <div class="col col-footer-copyright">
+            &copy; 2015-2021 Arnaud Lauret
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            <!-- Modal -->
+      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-book" role="document">
+          <div class="modal-content border-0">
+            <div class="modal-body p-0">
+              <div class="container-fluid p-0">
+                <button type="button" class="close pr-2 pt-1" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row modal-book-cover-center"></div>
+                <div class="row mb-3 mb-lg-0 ml-0 mr-0 pt-3 pt-md-0">
+                  <div class="col col-lg-4 d-none d-md-block p-0">
+                    <img class="img-fluid" src="/images/commons/book/book-modal.png"/>
+                  </div>
+                  <div class="col col-12 col-lg-8 pt-2 pt-lg-4 text-justify">
+                    <p>Want to learn how to design simple, user friendly, secure and implementable APIs that do everything they should?</p>
+                    <p>Use code <code class="book-discount-code text-copy" aria-label="copy discount code" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to copy">fcclauret</code> to get 37% off my book The Design of Web APIs (works also on any other Manning product!).</p>
+                    <p class="text-center"><a href="http://bit.ly/designwebapis" target="_blank" class="btn btn-primary">Buy on manning.com</a></p>
+                    <p class="text-muted pt-3 mb-0">Disclosure: the link above is an affiliated link, meaning, at no additional cost to you, I will earn a commission if you click through and make a purchase.</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+<div class="privacy-message d-none fixed-bottom container-fluid bg-dark text-white p-3">
+  <div class="container">
+    <div class="row text-center pt-2 pb-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+      <div class="col text-justify">
+        By continuing to use this web site you agree with the API Handyman website privacy policy (effective date , June 28, 2020).
+      </div>
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+          <a class="btn btn-primary" href="/privacy/">Read privacy policy</a>
+          <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+    <div class="row text-center pt-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <a class="btn btn-primary" href="/privacy/">Read privacy policy</a>
+        <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/jquery-3.4.1.slim.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/popper.min.js" ></script>
+<script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script type="text/javascript" src="/js/anchors.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/main.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/prism.js" ></script>
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/asciinema-player.js" ></script>
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/code.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<div id="device-size-detector">
+  <div id="xs" class="d-xs-only"></div>
+  <div id="sm" class="d-sm-only"></div>
+  <div id="md" class="d-md-only"></div>
+  <div id="lg" class="d-lg-only"></div>
+  <div id="xl" class="d-xl-only"></div>
+</div>
+<script type="text/javascript" src="/js/size.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/bash.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/toc.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/fingerprint2.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/google-analytics.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/search-bar.js" ></script>
+
+
+
+    
+  
+
+  
+
+
+  </body>
+</html>

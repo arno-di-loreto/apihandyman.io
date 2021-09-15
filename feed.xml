@@ -1,4 +1,133 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-11T12:20:42-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">An Api Design Review Is Based On Facts Not Opinions</title><link href="https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions/" rel="alternate" type="text/html" title="An Api Design Review Is Based On Facts Not Opinions" /><published>2021-09-08T00:00:00-05:00</published><updated>2021-09-08T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions</id><content type="html" xml:base="https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions/">&lt;p&gt;If you’re an API design reviewer and, like the Who, you got a feeling inside that you can’t explain during an API design review, maybe you’re falling in love with the API designer… or more probably: you’re on the verge of giving an opinion.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-15T07:12:05-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Analyzing a software solution from an API perspective</title><link href="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/" rel="alternate" type="text/html" title="Analyzing a software solution from an API perspective" /><published>2021-09-15T00:00:00-05:00</published><updated>2021-09-15T00:00:00-05:00</updated><id>https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective</id><content type="html" xml:base="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/">&lt;p&gt;I regularly participate to CFP (Call For Proposals) aiming to choose a software solution.
+My role is to analyze solutions from an API perspective.
+And I do that even if there’s no specific API concern regarding the context in which the CFP is made.
+Why doing so and what to look at?
+This should be of interest for people having to choose a solution but also to people proposing them.
+Indeed, some (corporate) software solution vendors should take this seriously …
+Unless they want to finish at the bottom of the list. 
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;why-systematically-include-the-api-perspective&quot;&gt;Why systematically include the API perspective&lt;/h1&gt;
+
+&lt;p&gt;Before explaining what to look at when analyzing a software solution from an API perspective, maybe we should talk about why doing so even when there is no obvious and/or specific API concern.&lt;/p&gt;
+
+&lt;p&gt;Most companies having IT systems couldn’t build those IT systems without APIs.
+Indeed, most IT systems are composed or more than one brick, more than one software solution.
+Some of them being built, some other being bought and deployed on premise or used as a service (SAAS).
+But either built or bought, installed or used as a service, a company will have to connect all these pieces of software together.
+And what can be used to connect all these pieces across a local network or the internet?
+APIs.&lt;/p&gt;
+
+&lt;p&gt;Oh, some may think that this new piece of software, especially a SAAS one which magically solves some needs, will be used totally independently from any other of the IT system’s bricks.
+And that may actually be the case … in the beginning.
+But in the end, for one reason or another it WILL need to be connected to other pieces of software. 
+It’s not a risk, it’s a certainty.&lt;/p&gt;
+
+&lt;p&gt;And if that solutions does not provide APIs …
+That may hinder severely an important project, critical for the company.
+A pity as one of the competing solutions seen during the CFP 2 years ago actually provided APIs …&lt;/p&gt;
+
+&lt;h1 id=&quot;what-to-look-at&quot;&gt;What to look at&lt;/h1&gt;
+
+&lt;p&gt;Note that this post is based on my “corporate solutions” evaluation experience, you may find totally unexpected elements that would be total science fiction for true API companies like Twilio or Stripe.
+So, here are the various topics I look at when analyzing a software solution from an API perspective:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Are there APIs?&lt;/li&gt;
+  &lt;li&gt;What is the quality of documentation?&lt;/li&gt;
+  &lt;li&gt;What is the quality of the design?&lt;/li&gt;
+  &lt;li&gt;How the API is secured?&lt;/li&gt;
+  &lt;li&gt;Do the APIs cover 100% of features?&lt;/li&gt;
+  &lt;li&gt;Can the APIs fulfill hypothetical needs?&lt;/li&gt;
+  &lt;li&gt;What is the overall developer experience?&lt;/li&gt;
+  &lt;li&gt;What is the pricing model?&lt;/li&gt;
+  &lt;li&gt;What are the terms of use?&lt;/li&gt;
+  &lt;li&gt;Does the company shows an API Mindset?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;are-there-apis&quot;&gt;Are there APIs?&lt;/h2&gt;
+
+&lt;p&gt;Very first and obvious verification: is there one or more APIs coming with the solution?
+That looks like a dead simple question, but you can’t imagine how it is difficult sometimes to verify this.
+Sometimes, it’s because the information is deeply hidden somewhere on the company’s website.
+That’s why my first move is simple to google “company name API”.&lt;/p&gt;
+
+&lt;p&gt;But it’s not that rare to look at (or google) the company’s website or product’s webpage and find absolutely no information about APIs.
+And there are 2 reasons.
+First one, there’s absolutely no API at all.
+That puts the company to the bottom of the list.
+Second one, there are APIs, but you can’t see them unless you ask the sales people.
+That’s really annoying, and will make the company loose points in the rankings.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-the-quality-of-documentation&quot;&gt;What is the quality of documentation?&lt;/h2&gt;
+
+&lt;p&gt;A good API documentation is not only a documentation that explains what you can do with the API (use case documentation), what are all the available operations (reference documentation), or how to get an access token.
+A good API documentation starts by being at least visible publicly!
+That sounds crazy right?
+Unfortunately what we’re used too with most API companies is not yet that obvious for many companies providing corporate solutions.
+Having to contact sales to get an access to documentation is really annoying (and that makes you loose points in the rankings).&lt;/p&gt;
+
+&lt;p&gt;And beyond access and content, the form is important too.
+I prefer to get a bare Swagger 2.0 (OpenAPI 2.0) JSON file sent by email than an indigestible PDF accessible on the website.
+Actually, a documentation that does not comes with a standard OpenAPI (or Swagger) file is quite annoying for me because I need it to make some automatic controls on the design.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-the-quality-of-the-design&quot;&gt;What is the quality of the design?&lt;/h2&gt;
+
+&lt;p&gt;Having access to the documentation I can evaluate the quality of the design.
+Does it respect common practices, it is easy to use, easy to understand.
+I practically do an API design review, I’m not looking for perfection but just a good looking API.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-the-api-is-secured&quot;&gt;How the API is secured?&lt;/h2&gt;
+
+&lt;p&gt;What I want is APIs using state of the art security mechanism.
+Unfortunately, some companies don’t seem to care about security, providing good old basic authentication for instance.
+And that puts the company to the bottom of the list.&lt;/p&gt;
+
+&lt;h2 id=&quot;do-the-apis-cover-100-of-features&quot;&gt;Do the APIs cover 100% of features?&lt;/h2&gt;
+
+&lt;p&gt;Once I know what the API is capable of, I can check if it actually cover 100% of the product features.
+It’s not that rare to see solutions that propose APIs only covering a subset of all of their features.
+That could be a real problem unless the company shows a roadmap to achieve the 100% (but beware of promises…).&lt;/p&gt;
+
+&lt;h2 id=&quot;can-the-apis-fulfill-hypothetical-needs&quot;&gt;Can the APIs fulfill hypothetical needs?&lt;/h2&gt;
+
+&lt;p&gt;Once I know what the API does (thanks to the documentation), I can imagine some hypothetical but realistic needs that would require to connect the solution to others.
+I speak with the business people involved in the CFP to get some ideas.
+Then I evaluate if it’s possible and the complexity of such project (if the product lacks of useful APIs/operations you may have to do a lot of work for a simple project).&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-the-overall-developer-experience&quot;&gt;What is the overall developer experience?&lt;/h2&gt;
+
+&lt;p&gt;Doing all that (checking documentation, analyzing design and imagining hypothetical needs), I’m able to start evaluating the developer experience.
+If doing all that was simple, the experience is good, if not, the experience is terrible.
+When I see a company providing a state of the art self-service developer portal, that’s a total nirvana (that doesn’t happen often unfortunately)
+Being able to actually test the API at this stage is a plus (even if there’s no true dev portal).&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-the-pricing-model&quot;&gt;What is the pricing model?&lt;/h2&gt;
+
+&lt;p&gt;When evaluating a solution’s API, you have to look beyond the API itself and especially how much it would cost to use them.
+That’s probably the most difficult information to find when dealing with corporate software vendors: it’s almost never shown publicly.&lt;/p&gt;
+
+&lt;p&gt;Be aware that most of the time, especially for SAAS solutions but also for on premise (totally crazy!), using the API is not included in the pricing proposal (because the request sent for the CFP usually don’t include the API perspective).
+Using the hypothetical needs, you should be able to get an idea of what could cost using the solution’s API.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-are-the-terms-of-use&quot;&gt;What are the terms of use?&lt;/h2&gt;
+
+&lt;p&gt;Another thing that is really important to check is the terms of use.
+I check what is the API evolution policy (how are handled breaking changes, the delay to update).
+There can be too strict limitations regarding the number of API calls, making the solution to your hypothetical needs highly complex to build because you would need to add some cache systems for instance.
+But my concerns are not only technical.
+For instance a software solution may grant you access to some data that you can’t resell without a huge bump on the bill.&lt;/p&gt;
+
+&lt;h2 id=&quot;does-the-company-shows-an-api-mindset&quot;&gt;Does the company shows an API Mindset?&lt;/h2&gt;
+
+&lt;p&gt;And finally I evaluate the company’s API mindset.
+I prefer a company publicly showing it’s work-in-progress-well-designed API than a company hiding its mess hoping customers will not notice it before it’s too late (and that actually exist, I put them to the bottom of the list).
+I love when a company actually communicates about its API strategy or its roadmap, it’s not mandatory to actually talk about APIs you just need to show that you want to be part of an ecosystem, that your products can easily be connected to others.&lt;/p&gt;
+
+&lt;h1 id=&quot;analyze-this&quot;&gt;Analyze this&lt;/h1&gt;
+
+&lt;p&gt;For those who have to choose solutions, I hope you found that interesting and that it will help you to choose the right solutions from an API perspective.
+For solution vendors, now you know what puts you to the bottom of the list when you see me on a CFP (and so, how to avoid that).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I regularly participate to CFP (Call For Proposals) aiming to choose a software solution. My role is to analyze solutions from an API perspective. And I do that even if there’s no specific API concern regarding the context in which the CFP is made. Why doing so and what to look at? This should be of interest for people having to choose a solution but also to people proposing them. Indeed, some (corporate) software solution vendors should take this seriously … Unless they want to finish at the bottom of the list.</summary></entry><entry><title type="html">An Api Design Review Is Based On Facts Not Opinions</title><link href="https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions/" rel="alternate" type="text/html" title="An Api Design Review Is Based On Facts Not Opinions" /><published>2021-09-08T00:00:00-05:00</published><updated>2021-09-08T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions</id><content type="html" xml:base="https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions/">&lt;p&gt;If you’re an API design reviewer and, like the Who, you got a feeling inside that you can’t explain during an API design review, maybe you’re falling in love with the API designer… or more probably: you’re on the verge of giving an opinion.
 And that is a problem.
 What is the role of an API design reviewer?
 Distort API designs to their liking or objectively analyze them based on facts?&lt;/p&gt;
@@ -1402,109 +1531,4 @@ The other team coding on the gateway may not care as much as the original team, 
 Remember them?
 Those bloated too smart pipes that ruined many information systems because they were so complicated to manage.
 So don’t do that, keep API gateways dumb.
-Well, not so dumb; as long as an API gateway do smart “API exposition related stuff” and stays dumb from a business perspective, that’s totally ok.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">An API gateway is a proxy that sits between API providers and their consumers. Its main role is to ensure that only authorized consumers consume some APIs. But API gateways usually come also with features such as request/response transformation and some of them even allow to code complex orchestration. Such transformation features can be very useful if used wisely. But they also can give terrible ideas with terrible consequences.</summary></entry><entry><title type="html">An API Gateway alone will not secure your API</title><link href="https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api/" rel="alternate" type="text/html" title="An API Gateway alone will not secure your API" /><published>2021-07-21T00:00:00-05:00</published><updated>2021-07-21T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api</id><content type="html" xml:base="https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api/">&lt;p&gt;How many times people realized that an API was not so secured despite being exposed on an API gateway?
-Too many times.
-While being a must have to securely expose APIs, an API gateway will not do all the security work for you.
-Security in general, and API security in particular, is a matter for everyone.
-Let’s see what is the job of an API gateway and what you still have to do to actually securely expose APIs.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;whats-an-api-gateways-job&quot;&gt;What’s an API gateway’s job?&lt;/h1&gt;
-
-&lt;p&gt;In its most usual form, an API gateway is a proxy that sits between server applications exposing APIs and their consumer applications (they could be other server applications, mobile applications, web applications or whatever).
-An API gateway may bring features such as logging, monitoring, rate limiting, simple connection to API catalogue or API developer portal (sometimes bundled with it), request/response transformations (we’ll talk more about that terrible idea in a later post) and more.
-But these are only &lt;em&gt;additional&lt;/em&gt; features, an API gateway’s core job is security.&lt;/p&gt;
-
-&lt;h2 id=&quot;a-guard-at-the-gate&quot;&gt;A guard at the gate&lt;/h2&gt;
-
-&lt;p&gt;An API gateway’s fundamental role is to ensure that:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Only registered consumer applications can consume the exposed APIs&lt;/li&gt;
-  &lt;li&gt;Each registered consumer application only consumes the API(s) it is allowed to&lt;/li&gt;
-  &lt;li&gt;And each registered consumer application only use an API’s operations it is allowed to&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For instance, if an API gateway exposes a CRM (Customer Relationship Management) and a Contract APIs:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Unregistered consumers won’t be able to consume any of those APIs&lt;/li&gt;
-  &lt;li&gt;A registered consumer may be allowed to consume only the CRM API and not the Contract one.&lt;/li&gt;
-  &lt;li&gt;This registered consumer allowed to consume the CRM API may be allowed to only call “Search customers” and “Read customer” operations but not the “Create customer” one.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;a-security-languages-interpret&quot;&gt;A “security languages” interpret&lt;/h2&gt;
-
-&lt;p&gt;In order to make API calls, a consumer must provide a valid access token along with its requests.&lt;/p&gt;
-
-&lt;blockquote class=&quot;blockquote&quot;&gt;
-    &lt;p class=&quot;mb-0&quot;&gt;You must return here with a shrubbery... or else you will never pass through this wood... &lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
-        &lt;cite title=&quot;Source Title&quot;&gt;Knight of Ni, Monty Python's and The Holy Grail&lt;/cite&gt;
-    &lt;/footer&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;A registered consumer request an access token using its credentials, if end users are involved the API gateway will talk to an identity provider to authenticate them.
-The obtained access token is a proof that this consumer is allowed to consume some APIs exposed on the gateway in the name of someone.
-On every call, the consumer sends this access token along with its request.
-A call will only be transmitted to the implementation if the token is still valid (it may have expired) and linked to a consumer being allowed to use the API’s operation mentioned in the request.&lt;/p&gt;
-
-&lt;p&gt;To achieve that, an API gateway may have to speak “Oauth 1.0”, “Oauth 2.0”, “Oauth 2.1”, “SAML”, “OpenID Connect”, etc… with consumer applications and/or identity providers.
-It handles that complexity on the behalf of the server application exposing the API.
-This server application, the API’s implementation, will receive only authorized calls without having to care about which “security languages” are involved.&lt;/p&gt;
-
-&lt;h1 id=&quot;whats-your-job&quot;&gt;What’s your job?&lt;/h1&gt;
-
-&lt;p&gt;An API gateway simplifies heavily the work for teams building the server applications exposing APIs as they don’t have to code to manage complex security protocols or frameworks.
-But it does not mean at all that an API gateway handles ALL security aspects.
-Yes, I’m deeply sorry, but even when using an API gateway, you still have to work on security.&lt;/p&gt;
-
-&lt;h2 id=&quot;configure-and-administrate-consumers&quot;&gt;Configure and administrate consumers&lt;/h2&gt;
-
-&lt;p&gt;It’s still up to you to actually configure and administrate consumers.
-Indeed, you must ensure that:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Adapted granularity is used when declaring consumers. For a “customer mobile application” will you declare a single consumer (terrible idea), or one for each mobile OS (less terrible but still terrible) or one for each OS and application version (better) or …&lt;/li&gt;
-  &lt;li&gt;Only the API owners can actually let consumers use their APIs. It’s not unusual to forget that when building more or less centralized API gateway platform.&lt;/li&gt;
-  &lt;li&gt;Consumers access rights are revoked when they should. When an old version of a mobile application becomes unsupported for instance.&lt;/li&gt;
-  &lt;li&gt;Adapted security mode are used. Letting people use the Oauth 2.0 Customer Credentials flow in a mobile application or single page web application is a terrible idea that is too often seen.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;But even doing that is not enough, there is still work to do beyond the API gateway.&lt;/p&gt;
-
-&lt;h2 id=&quot;build-secured-implementations&quot;&gt;Build secured implementations&lt;/h2&gt;
-
-&lt;p&gt;When the API’s implementation receives a call from the API gateway that means the API gateway considers it’s a valid one.
-But that does not means it’s actually valid from the implementation’s perspective.
-Basically, at implementation level you have to check every single piece of data to ensure that it is coherent with what you know about the consumer and end user.&lt;/p&gt;
-
-&lt;p&gt;If a consumer sends a &lt;code&gt;GET /crm/customers/12345&lt;/code&gt;, the gateway checks the access token is linked to a consumer that is allowed to call the CRM API and more precisely the “Read customer” operation, hence &lt;code&gt;GET /crm/customers/{customerId}&lt;/code&gt;.
-But the API gateway will not check that the consumer or the end user (if any) are actually allowed to get information about that specific &lt;code&gt;12345&lt;/code&gt; customer.
-It’s up to the implementation to check that.
-This can be done as long as the API gateway provides information about the consumer and end user along the transmitted request.
-And just in case: no, replacing &lt;code&gt;12345&lt;/code&gt; by a more complex id such as &lt;code&gt;7a31bfa6-463e-47e0-bf20-193086d5a29d&lt;/code&gt;, does not allow to not do this check.&lt;/p&gt;
-
-&lt;p&gt;And the same goes for a &lt;code&gt;POST /contract/contracts&lt;/code&gt; request which is supposed to create a 1 billion Euros life insurance contract.
-It’s up to the implementation to check that consumer or end user are allowed to create a contract with such amount and not the API gateway.&lt;/p&gt;
-
-&lt;p&gt;By the way, do we actually need to expose those two features?&lt;/p&gt;
-
-&lt;h2 id=&quot;design-secured-apis&quot;&gt;Design secured APIs&lt;/h2&gt;
-
-&lt;p&gt;Before API implementation and API gateway, security must be dealt with during the design of APIs.&lt;/p&gt;
-
-&lt;p&gt;It’s up to you to choose if you’ll create an API or not and which feature you’ll put in it or not.
-You’re under no obligation to create APIs for everything and expose every feature of any system.&lt;/p&gt;
-
-&lt;p&gt;And once you’re sure about what you want to expose, be sure sure to choose secured design and representation.
-For instance avoid putting sensitive data such as personal data in path or query parameters, indeed a &lt;code&gt;GET /customers/{socialSecurityNumber}&lt;/code&gt; will be logged by any equipment between consumer and provider.&lt;/p&gt;
-
-&lt;p&gt;And last but not least, it is also up to you to choose how the access to the API will be partitioned.
-You have to design the scopes that grants access to all of or a subset of the API’s operations.
-These scopes will be used by the gateway to decide if a consumer is allowed to use an operation or not.
-For instance, you can put all of the read operations of the CRM API under the “crm:read_only” scope, the “Create customer” operation under the “crm:partner” and the “Create customer”, “Update customer” and “Delete customer” under the “crm:admin” scope.
-A consumer which has been granted the “crm:partner” scope can only do “Create customer” and not do “Search customers” or “Delete customer”.&lt;/p&gt;
-
-&lt;h1 id=&quot;an-api-gateway-is-not-the-api-security-panacea&quot;&gt;An API gateway is not the API security panacea&lt;/h1&gt;
-
-&lt;p&gt;So, putting an API gateway in front of your API’s implementation may makes your life easier but don’t be fooled, you’ll still have to actively work on security yourself.
-API security concerns the API gateway configuration (consumers, security mode, lifecycle), the implementation (application/fine grained security) and the design (what you expose and how you expose it).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">How many times people realized that an API was not so secured despite being exposed on an API gateway? Too many times. While being a must have to securely expose APIs, an API gateway will not do all the security work for you. Security in general, and API security in particular, is a matter for everyone. Let’s see what is the job of an API gateway and what you still have to do to actually securely expose APIs.</summary></entry></feed>
+Well, not so dumb; as long as an API gateway do smart “API exposition related stuff” and stays dumb from a business perspective, that’s totally ok.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">An API gateway is a proxy that sits between API providers and their consumers. Its main role is to ensure that only authorized consumers consume some APIs. But API gateways usually come also with features such as request/response transformation and some of them even allow to code complex orchestration. Such transformation features can be very useful if used wisely. But they also can give terrible ideas with terrible consequences.</summary></entry></feed>
