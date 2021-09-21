@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-15T07:12:05-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Analyzing a software solution from an API perspective</title><link href="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/" rel="alternate" type="text/html" title="Analyzing a software solution from an API perspective" /><published>2021-09-15T00:00:00-05:00</published><updated>2021-09-15T00:00:00-05:00</updated><id>https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective</id><content type="html" xml:base="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/">&lt;p&gt;I regularly participate to CFP (Call For Proposals) aiming to choose a software solution.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-21T11:45:34-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Analyzing a software solution from an API perspective</title><link href="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/" rel="alternate" type="text/html" title="Analyzing a software solution from an API perspective" /><published>2021-09-15T00:00:00-05:00</published><updated>2021-09-15T00:00:00-05:00</updated><id>https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective</id><content type="html" xml:base="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/">&lt;p&gt;I regularly participate to CFP (Call For Proposals) aiming to choose a software solution.
 My role is to analyze solutions from an API perspective.
 And I do that even if there’s no specific API concern regarding the context in which the CFP is made.
 Why doing so and what to look at?
@@ -332,7 +332,7 @@ The “Go to step” is quite convenient but unfortunately the step list is hard
 
 &lt;h1 id=&quot;removing-stuff-was-a-pain&quot;&gt;Removing stuff was a pain&lt;/h1&gt;
 
-&lt;p&gt;As I was able to work on each step, I could easily train myself on each steap and evaluate the best possible time for each step.
+&lt;p&gt;As I was able to work on each step, I could easily train myself on each step and evaluate the best possible time for each step.
 And so I came to the conclusion that I was still not fitting into the time frame, though I had an extra 5 minutes granted by conference organizers, saperlipopette! (french polite curse word).
 Thanks to my list of steps and their timing, I had a better vision of what I should modify and so I:&lt;/p&gt;
 
@@ -660,7 +660,7 @@ By taking advantage of both OBS and VS Code features.&lt;/p&gt;
         &lt;img src=&quot;/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/magic.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
 &lt;/div&gt;
 
-&lt;p&gt;In OBS, you can add various sources in a scene, I already had 3 in my Macbook scene:&lt;/p&gt;
+&lt;p&gt;In OBS, you can add various sources in a scene, I already had 3 in my MacBook scene:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;An &lt;em&gt;Image&lt;/em&gt; source: the foreground Manning provided to me&lt;/li&gt;
@@ -670,7 +670,7 @@ By taking advantage of both OBS and VS Code features.&lt;/p&gt;
 
 &lt;p&gt;But there are other types of sources, as you can see in the screen capture above, the one that caught my eye when trying to find a solution for my idea was the &lt;em&gt;Browser&lt;/em&gt; source.
 I created a simple &lt;code&gt;index.html&lt;/code&gt; file containing a “WTF it works!” level 1 header in the body (yes, I tend to curse in my code when testing) then started a &lt;a href=&quot;https://www.npmjs.com/package/http-server&quot;&gt;simple web server&lt;/a&gt; in the folder containing that file. 
-In OBS, I added a &lt;em&gt;Browser&lt;/em&gt; source to my Macbook scene.
+In OBS, I added a &lt;em&gt;Browser&lt;/em&gt; source to my MacBook scene.
 In the configuration window, I set up the URL to target &lt;code&gt;http://localhost:8080/index.html&lt;/code&gt;, and set width to 1980 (pixels) and height to 100.
 There’s some custom CSS that comes by default, I didn’t modify it and hit OK.
 Once added, I moved the new source in the scene on top of the zone for my screen and resized it to fit in the reserved space.
@@ -960,7 +960,7 @@ That way when I was using the “Next step” task, not only it was copying the 
 Having a browser showing &lt;code&gt;http://localhost:5500/todo.html&lt;/code&gt; allowed to me have speaker’s notes updated at each step just like titles.&lt;/p&gt;
 
 &lt;p&gt;In order to keep those notes out of the way but still allowing me to look at them without loosing eye contact with my main screen and its web cam, I used the “sidecar” feature of my iPad.
-All that is needed is to plug the iPad to the Macbook with a USB cable then go to display preferences, choose the iPad as an Airplay display.
+All that is needed is to plug the iPad to the MacBook with a USB cable then go to display preferences, choose the iPad as an Airplay display.
 Don’t forget to position it relatively to other screens as it is in reality in order to keep moving mouse to it simple.
 And you’re done you have a third (or second) display screen.
 Note that sidecar can be used over wifi but I never had satisfying result with it (maybe my wifi is not fast enough).&lt;/p&gt;
@@ -1233,7 +1233,7 @@ It is the one that I actually used during the session.&lt;/p&gt;
 
 &lt;p&gt;Manning recommended using &lt;a href=&quot;https://obsproject.com/&quot;&gt;OBS Studio&lt;/a&gt; to record the session.
 It is a &lt;em&gt;free and open source software for video recording and live streaming&lt;/em&gt;.
-It comes out of the box with many features that will be enough to start but it can be easily extended with &lt;a href=&quot;OBS can be extended with [plugins](https://obsproject.com/forum/resources/categories/obs-studio-plugins.6/)&quot;&gt;plugins&lt;/a&gt; for powerusers.
+It comes out of the box with many features that will be enough to start but it can be easily extended with &lt;a href=&quot;OBS can be extended with [plugins](https://obsproject.com/forum/resources/categories/obs-studio-plugins.6/)&quot;&gt;plugins&lt;/a&gt; for power users.
 Besides being used to stream or record a video, OBS can also be used as a virtual camera in tools such as Zoom ou Teams for instance.
 Note that a company called Streamlabs does a fork of OBS, called &lt;a href=&quot;https://streamlabs.com/streamlabs-obs-live-streaming-software&quot;&gt;Streamlabs OBS&lt;/a&gt;, adding some features but apparently also adding some CPU usage (I did not verify it myself though).&lt;/p&gt;
 
@@ -1252,7 +1252,7 @@ You can place and size each item as you wish.
 In a matter of seconds I was able to create a few scenes mixing display capture cropped on specific windows, image, text and my webcam.&lt;/p&gt;
 
 &lt;p&gt;For this session, Manning provided me a PNG image with 3 black (transparent) zones, my cam going on the top right zone and what I want to show on the big left one as you can see in the capture above.
-The image, “Manning front” in sources, is above the “Camera” (MBP webcam) and “MacbookDisplay” sources, that way nothing overflows outside of the reserved spaces.&lt;/p&gt;
+The image, “Manning front” in sources, is above the “Camera” (MBP webcam) and “MacBookDisplay” sources, that way nothing overflows outside of the reserved spaces.&lt;/p&gt;
 
 &lt;h2 id=&quot;automatic-advanced-scene-switching&quot;&gt;&lt;del&gt;Automatic&lt;/del&gt; Advanced scene switching&lt;/h2&gt;
 
@@ -1330,12 +1330,12 @@ My audio can still probably be improved as I didn’t took much time to tweak it
 &lt;h1 id=&quot;looking-good-enough&quot;&gt;Looking good enough&lt;/h1&gt;
 
 &lt;p&gt;That’s not a secret, the MBP webcam is not the best one to say the least.
-It’s probably the same hardware on all Macbooks since more than 10 years&lt;/p&gt;
+It’s probably the same hardware on all MacBooks since more than 10 years&lt;/p&gt;
 
 &lt;h2 id=&quot;iphone-as-webcam--or-not&quot;&gt;IPhone as webcam … or not&lt;/h2&gt;
 
 &lt;p&gt;I did a few tests using my iPhone as a webcam using the &lt;a href=&quot;https://apps.apple.com/us/app/epoccam-webcam-for-mac-and-pc/id449133483&quot;&gt;EpocCam application&lt;/a&gt;.
-It was not working well over wifi, there we some random deconnections.
+It was not working well over wifi, there we some random disconnections.
 But when plugged on my MBP with a lightning to USB cable it worked perfectly.
 The image was far better than with the webcam BUT positioning the iPhone on my desk was complicated.
 I put it on top of a stack of books behind my MBP but I was not satisfied.&lt;/p&gt;

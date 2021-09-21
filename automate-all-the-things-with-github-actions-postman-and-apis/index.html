@@ -1345,7 +1345,7 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#setting-up-a-jekyll-github-action-worflow">Setting up a Jekyll Github <del>Action</del> Worflow</a>
+          <a class="nav-link toc-level-1" href="#setting-up-a-jekyll-github-action-workflow">Setting up a Jekyll Github <del>Action</del> Workflow</a>
           
       
       
@@ -1736,7 +1736,7 @@ This has been announced for quite a long time… but I managed to totally forgot
     <div class="card-page-section page-section-not-title">
       <div class="card-body">
       
-        <h1 id="setting-up-a-jekyll-github-action-worflow">Setting up a Jekyll Github <del>Action</del> Worflow</h1>
+        <h1 id="setting-up-a-jekyll-github-action-workflow">Setting up a Jekyll Github <del>Action</del> Workflow</h1>
 
 <p>Migrating from travis-ci.org to Github actions was done at the speed of light.
 I will not go through all details, Github Actions, format, UI and <a href="https://docs.github.com/en/actions">documentation</a> are quite clear, but I will show you a few tips I discovered while setting up my first Github Workflow (yes, naming is hard, it’s called Github Actions but you create … Workflows, actually “actions” seems to be the reusable components that you can use in workflows).</p>
@@ -1814,7 +1814,7 @@ It contains a single job (in <code>jobs</code>) named <code>build</code> which i
 
 <ul>
   <li>To <code>schedule</code> build every Wednesday at noon using cron syntax (<a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events">Schedule Events documentation</a>)</li>
-  <li>And I also activated “on demand” execution with the empty <code>workflow_dispath</code> (<a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events">Manual Events documentation</a>)</li>
+  <li>And I also activated “on demand” execution with the empty <code>workflow_dispatch</code> (<a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events">Manual Events documentation</a>)</li>
 </ul>
 
 <div class="card card-code text-white bg-dark border-dark">
