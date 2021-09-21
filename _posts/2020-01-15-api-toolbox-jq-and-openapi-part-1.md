@@ -45,7 +45,7 @@ If you want to play with JQ and OpenAPI as you read this post, you'll need to in
 
 JQ is a portable command line tool that's very easy to install. Its website states that _jq is written in portable C, and it has zero runtime dependencies. You can download a single binary, `scp` it to a far away machine of the same type, and expect it to work_ (`scp` is a file transfer tool). This is actually true, I have tested it on Linux servers, Windows CMD terminal, Windows Gitbash (standalone and inside VS Code) and MacOS terminal: never had a problem with it.
 
-To install JQ on my personnal Macbook, I used `brew install jq`. On my professional Windows laptop, I simply downloaded the binary and added it to my PATH environment variable. Check {%include link.md link=site.data.jq.links.installation target=site.data.jq.link_target%} to see all available versions and ways to install it.
+To install JQ on my personnal MacBook, I used `brew install jq`. On my professional Windows laptop, I simply downloaded the binary and added it to my PATH environment variable. Check {%include link.md link=site.data.jq.links.installation target=site.data.jq.link_target%} to see all available versions and ways to install it.
 
 Once installed, open a terminal and run `jq --help` to check if everything is OK.
 

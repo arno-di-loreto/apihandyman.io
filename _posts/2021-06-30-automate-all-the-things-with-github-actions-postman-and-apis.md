@@ -23,7 +23,7 @@ This has been announced for quite a long time... but I managed to totally forgot
 
 As changing the build system was faster than expected, I decided to tinker a bit more and solve a problem I had with my system: to ensure publication, I had to go to Cloudflare dashboard and manually clear the cache. If by chance Cloudflare propose an API, I thought I could include clearing cache after the build with a curl command, but as always I did a little bit more than that.
 
-# Setting up a Jekyll Github ~~Action~~ Worflow
+# Setting up a Jekyll Github ~~Action~~ Workflow
 
 Migrating from travis-ci.org to Github actions was done at the speed of light.
 I will not go through all details, Github Actions, format, UI and [documentation](https://docs.github.com/en/actions) are quite clear, but I will show you a few tips I discovered while setting up my first Github Workflow (yes, naming is hard, it's called Github Actions but you create ... Workflows, actually "actions" seems to be the reusable components that you can use in workflows).
@@ -78,7 +78,7 @@ My publication [workflow](https://github.com/arno-di-loreto/apihandyman.io/blob/
 So I started by customizing the `on` section:
 
 - To `schedule` build every Wednesday at noon using cron syntax ([Schedule Events documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events))
-- And I also activated "on demand" execution with the empty `workflow_dispath` ([Manual Events documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events))
+- And I also activated "on demand" execution with the empty `workflow_dispatch` ([Manual Events documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events))
 
 {% code language:yaml title:"Customized Jekyll workflow" %}
 name: Publish

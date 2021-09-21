@@ -62,7 +62,7 @@ The "Go to step" is quite convenient but unfortunately the step list is hardcode
 
 # Removing stuff was a pain
 
-As I was able to work on each step, I could easily train myself on each steap and evaluate the best possible time for each step.
+As I was able to work on each step, I could easily train myself on each step and evaluate the best possible time for each step.
 And so I came to the conclusion that I was still not fitting into the time frame, though I had an extra 5 minutes granted by conference organizers, saperlipopette! (french polite curse word).
 Thanks to my list of steps and their timing, I had a better vision of what I should modify and so I:
 

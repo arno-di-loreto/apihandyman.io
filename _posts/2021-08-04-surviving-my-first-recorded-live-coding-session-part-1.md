@@ -23,7 +23,7 @@ In this first post, I'll talk about how "it started well": setting up OBS, mic, 
 
 Manning recommended using [OBS Studio](https://obsproject.com/) to record the session.
 It is a _free and open source software for video recording and live streaming_.
-It comes out of the box with many features that will be enough to start but it can be easily extended with [plugins](OBS can be extended with [plugins](https://obsproject.com/forum/resources/categories/obs-studio-plugins.6/)) for powerusers.
+It comes out of the box with many features that will be enough to start but it can be easily extended with [plugins](OBS can be extended with [plugins](https://obsproject.com/forum/resources/categories/obs-studio-plugins.6/)) for power users.
 Besides being used to stream or record a video, OBS can also be used as a virtual camera in tools such as Zoom ou Teams for instance.
 Note that a company called Streamlabs does a fork of OBS, called [Streamlabs OBS](https://streamlabs.com/streamlabs-obs-live-streaming-software), adding some features but apparently also adding some CPU usage (I did not verify it myself though).
 
@@ -39,7 +39,7 @@ You can place and size each item as you wish.
 In a matter of seconds I was able to create a few scenes mixing display capture cropped on specific windows, image, text and my webcam.
 
 For this session, Manning provided me a PNG image with 3 black (transparent) zones, my cam going on the top right zone and what I want to show on the big left one as you can see in the capture above.
-The image, "Manning front" in sources, is above the "Camera" (MBP webcam) and "MacbookDisplay" sources, that way nothing overflows outside of the reserved spaces.
+The image, "Manning front" in sources, is above the "Camera" (MBP webcam) and "MacBookDisplay" sources, that way nothing overflows outside of the reserved spaces.
 
 ## ~~Automatic~~ Advanced scene switching
 
@@ -109,12 +109,12 @@ My audio can still probably be improved as I didn't took much time to tweak it b
 # Looking good enough
 
 That's not a secret, the MBP webcam is not the best one to say the least.
-It's probably the same hardware on all Macbooks since more than 10 years
+It's probably the same hardware on all MacBooks since more than 10 years
 
 ## IPhone as webcam ... or not
 
 I did a few tests using my iPhone as a webcam using the [EpocCam application](https://apps.apple.com/us/app/epoccam-webcam-for-mac-and-pc/id449133483).
-It was not working well over wifi, there we some random deconnections.
+It was not working well over wifi, there we some random disconnections.
 But when plugged on my MBP with a lightning to USB cable it worked perfectly.
 The image was far better than with the webcam BUT positioning the iPhone on my desk was complicated.
 I put it on top of a stack of books behind my MBP but I was not satisfied.

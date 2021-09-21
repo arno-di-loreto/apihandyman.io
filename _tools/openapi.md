@@ -15,5 +15,5 @@ related_links:
   - type: series
     name: JQ and OpenAPI
 ---
-Without the OpenAPI Specification (fka. Swagger Specification), my job would be a total nightmare. It is a machine readable API description format that I use when I design APIs, when reviewing API designs, documentating APIs, checking that implementation conforms to design and build implementation.
+Without the OpenAPI Specification (fka. Swagger Specification), my job would be a total nightmare. It is a machine readable API description format that I use when I design APIs, when reviewing API designs, documenting APIs, checking that implementation conforms to design and build implementation.
 <!--more-->
