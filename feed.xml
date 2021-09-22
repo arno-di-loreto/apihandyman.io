@@ -1,4 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-21T11:45:34-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Analyzing a software solution from an API perspective</title><link href="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/" rel="alternate" type="text/html" title="Analyzing a software solution from an API perspective" /><published>2021-09-15T00:00:00-05:00</published><updated>2021-09-15T00:00:00-05:00</updated><id>https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective</id><content type="html" xml:base="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/">&lt;p&gt;I regularly participate to CFP (Call For Proposals) aiming to choose a software solution.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-22T07:11:36-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">3 common APIfication problems: complexity, security, capacity</title><link href="https://apihandyman.io/3-common-apification-problems-complexity-security-capacity/" rel="alternate" type="text/html" title="3 common APIfication problems: complexity, security, capacity" /><published>2021-09-22T00:00:00-05:00</published><updated>2021-09-22T00:00:00-05:00</updated><id>https://apihandyman.io/3-common-apification-problems-complexity-security-capacity</id><content type="html" xml:base="https://apihandyman.io/3-common-apification-problems-complexity-security-capacity/">&lt;p&gt;API all the things! 
+Whatever the reason, IT optimization or digital transformation, it’s nowadays fairly common to APIfy an existing system, making it available through APIs.
+What is also very common is to not totally grasp the implications of doing so and especially overlooking complexity, security and capacity concerns.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;context&quot;&gt;Context&lt;/h1&gt;
+
+&lt;p&gt;Though (Web) APIs have been there for quite a long time, though the API economy is in the air for almost as long, there are still some companies that take the API train today.
+It could be because they want to refresh their IT systems, to replace old JSP web sites by brand new JS/HTML SPAs (Single Page Applications) for instance.
+They could also want to participate to the API economy, by providing their services through APIs.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, not all companies can rebuild themselves from scratch to provides those APIs, they have to deal with existing systems that sometimes cannot be replaced easily.
+And so they have to keep them.
+Hopefully, that does not mean they can’t do new stuff with it, that means they will have to compose with them, maybe to build around them.
+(Actually it is sometimes more interesting from an architecture perspective to work on such system than just to build brand new stuff, you can learn a lot doing so.)
+But APIfying existing system must be done having 3 concerns in mind: complexity, security and capacity.&lt;/p&gt;
+
+&lt;h1 id=&quot;complexity&quot;&gt;Complexity&lt;/h1&gt;
+
+&lt;p&gt;Building APIs to provide access to an existing system is unfortunately prone to actually create APIs that just give access to an existing system.
+That means the APIs will just be technical connectors brutally exposing underlying complexity.&lt;/p&gt;
+
+&lt;p&gt;If the system that needs to be exposed is a good old corporate software solution, some may be tempted to give a direct access to its APIs (hoping it has some).
+Unfortunately, corporate software usually provide terrible APIs that are awfully complex and require to be an expert of both the related business domain and the software solution itself to use them.
+And that’s definitely not how modern APIs should be.&lt;/p&gt;
+
+&lt;p&gt;Old systems can be the result of years if not decades of IT, business and organization evolutions, they may simply not make any sense at all for people outside of the team owning them or outside the organization.
+I have seen places where 2 different software solutions would handle the same business domain because of historical and organizational constraints.
+Years of evolutions in a close environments may have lead to creating a local business dialect only understood inside the organization.
+That must not be shown to the outside&lt;/p&gt;
+
+&lt;p&gt;And these are only a few examples of the complexity that could be exposed to the outside, if care is not taken.
+Always try to look at what you want to expose with a fresh eye, focusing on an outside-in business perspective approach.
+Then find the means to plug this new perspective to the existing system whatever the means: API redesign, adding new layers, adapting architecture or organization, …&lt;/p&gt;
+
+&lt;h1 id=&quot;security&quot;&gt;Security&lt;/h1&gt;
+
+&lt;p&gt;An other major problem too often neglected when exposing existing systems is security.&lt;/p&gt;
+
+&lt;p&gt;A typical example would be to bluntly reuse existing purely internal (SOAP) web service, restify them and use them in a JS/HTMl SPA … 
+Totally forgetting that the replaced good old web applications was actually handling all of the security like “is this user allowed to make a wire transfer from this bank account?” or “is this user allowed to make a 1 million euros wire transfer?”.
+You can’t delegate such controls outside of your walls.
+(Note that I never have actually seen this specific use case. It’s purely hypothetical. Really. Please, no questions.).&lt;/p&gt;
+
+&lt;p&gt;Exposing an existing system requires to rethink security to ensure that the consumers won’t be able to harm it.
+And by security I mean regular access controls but also business controls.&lt;/p&gt;
+
+&lt;h1 id=&quot;capacity&quot;&gt;Capacity&lt;/h1&gt;
+
+&lt;p&gt;And last but not least problem: capacity.
+You must ensure that the existing system is actually able to handle the new solicitations coming through the new APIs.&lt;/p&gt;
+
+&lt;p&gt;It’s not that rare to see old systems that were made to only run at office hours.
+But exposing them through APIs may requires to do some modifications to make them available 24/7.
+In last resort you may include those constraints in your SLA but in 2021 that may seem awkward depending on your business domain and who the consumers of your APIs are.&lt;/p&gt;
+
+&lt;p&gt;And more tricky: the infrastructure.
+Exposing an existing system requires to know its capacity and its current charge.
+How many of this new solicitations through APIs can it handle?
+Aren’t you putting the other usages of the system at risk by opening the new API channel?
+Can you easily add more horse power?
+Systems that have been creating prior the cloud era are probably still hosted on not easily extensible infrastructure or worse may have an architecture that makes them not extensible to handle more requests.&lt;/p&gt;
+
+&lt;h1 id=&quot;only-solutions&quot;&gt;Only solutions&lt;/h1&gt;
+
+&lt;p&gt;All that looks very pessimistic.
+But you must be aware of it in order to avoid screwing your API initiative and find the solutions to solves those problems.
+And don’t be afraid, based on my experience, there are always solutions.
+I have worked on systems that ended mixing non extensible mainframe, not easily extensible unix servers and unlimited horse power cloud infrastructure. 
+Oh, it’s a little bit more complicated than just building from scratch, but that’s how you can actually have fun as an architecture-problem-solver.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">API all the things! Whatever the reason, IT optimization or digital transformation, it’s nowadays fairly common to APIfy an existing system, making it available through APIs. What is also very common is to not totally grasp the implications of doing so and especially overlooking complexity, security and capacity concerns.</summary></entry><entry><title type="html">Analyzing a software solution from an API perspective</title><link href="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/" rel="alternate" type="text/html" title="Analyzing a software solution from an API perspective" /><published>2021-09-15T00:00:00-05:00</published><updated>2021-09-15T00:00:00-05:00</updated><id>https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective</id><content type="html" xml:base="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/">&lt;p&gt;I regularly participate to CFP (Call For Proposals) aiming to choose a software solution.
 My role is to analyze solutions from an API perspective.
 And I do that even if there’s no specific API concern regarding the context in which the CFP is made.
 Why doing so and what to look at?
@@ -1481,54 +1550,4 @@ I share all what I’ve learned preparing it: how I prepared the content, the to
         &lt;iframe class=&quot;iframe-responsive&quot; data-src=&quot;https://www.youtube-nocookie.com/embed/-ZhrJzGjJQE?color=white&amp;amp;theme=light&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
         &lt;/iframe&gt;
     &lt;/div&gt;
-&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talk" /><summary type="html">If you want to discover the OpenAPI Specification format, this video is for you! In my first ever (recorded) live coding session, given at the 2021 Manning API Conference, I demonstrate basic, advanced, and even hidden features that will help you to efficiently create complete, accurate, and maintainable API descriptions when designing documenting APIs.</summary></entry><entry><title type="html">An API gateway must be a dumb pipe</title><link href="https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe/" rel="alternate" type="text/html" title="An API gateway must be a dumb pipe" /><published>2021-07-28T00:00:00-05:00</published><updated>2021-07-28T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe</id><content type="html" xml:base="https://apihandyman.io/an-api-gateway-must-be-a-dumb-pipe/">&lt;p&gt;An API gateway is a proxy that sits between API providers and their consumers.
-Its main role is to ensure that only authorized consumers consume some APIs.
-But API gateways usually come also with features such as request/response transformation and some of them even allow to code complex orchestration.
-Such transformation features can be very useful if used wisely.
-But they also can give terrible ideas with terrible consequences.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;good-transformation-and-orchestration&quot;&gt;Good transformation and orchestration&lt;/h1&gt;
-
-&lt;p&gt;The most basic API gateway will allow to expose an API on &lt;code&gt;https://api.motu.com/v1&lt;/code&gt; while it’s implementation is exposed on &lt;code&gt;https/under.lying.server.prod/whatever/path&lt;/code&gt;.
-Before transmitting the request to the underlying server &lt;code&gt;https/under.lying.server.prod&lt;/code&gt;, it will modify the path, replacing &lt;code&gt;v1&lt;/code&gt; by &lt;code&gt;/whatever/path&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;As security is probably not handled the same way before and after the gateway, it may remove the original Authorization header containing a meaningless access token and replace by another one containing a JWT token holding information such as which consumer app made this call and in the name of who.&lt;/p&gt;
-
-&lt;p&gt;If it takes advantage of an API description format such as the OpenAPI Specification, it may strip the a &lt;code&gt;GET https://api.motu.com/v1/characters?unknownFilter=skeletor&lt;/code&gt; request from the &lt;code&gt;unknownFilter&lt;/code&gt; query parameter which is not declared in the interface contract.
-It may does the same on the response and strip any undeclared headers.&lt;/p&gt;
-
-&lt;p&gt;Possibly, it may seamlessly handle a &lt;code&gt;POST /whatever&lt;/code&gt; request coming with a &lt;code&gt;X-HTTP-Method-Override: PUT&lt;/code&gt; header and turn it into a &lt;code&gt;PUT /whatever&lt;/code&gt;. (See &lt;a class=&quot;post-link&quot; href=&quot;/api-design-tips-and-tricks-what-if-consumers-cant-do-patch-put-or-delete/&quot;&gt;API Design Tips And Tricks - What if consumers can’t do PATCH, PUT or DELETE?&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;Beyond simple transformation, an API gateway may do some orchestration like sending request and response logs somewhere for instance.&lt;/p&gt;
-
-&lt;h1 id=&quot;bad-transformation-and-orchestration&quot;&gt;Bad transformation and orchestration&lt;/h1&gt;
-
-&lt;p&gt;All that basically means an API gateway allows to “write code”, real code using JavaScript, Java, Groovy or whatever language and/or pseudo-code using box and arrow based GUIs.
-And seeing that, some may have terrible ideas.&lt;/p&gt;
-
-&lt;p&gt;When returning the response of &lt;code&gt;GET /characters/he-man&lt;/code&gt; why not transforming &lt;code&gt;&quot;type&quot;: &quot;H&quot;&lt;/code&gt; to &lt;code&gt;&quot;side&quot;: &quot;hero&quot;&lt;/code&gt;?
-Why not taking the USD &lt;code&gt;price&lt;/code&gt; in &lt;code&gt;GET /toys/he-man&lt;/code&gt; response and convert it into EUR calling a third party API?
-Why not returning a subset of &lt;code&gt;GET /characters/he-man&lt;/code&gt; and &lt;code&gt;GET /toys/he-man&lt;/code&gt; when responding to &lt;code&gt;GET /action-figures/he-man&lt;/code&gt;?&lt;/p&gt;
-
-&lt;p&gt;Why not indeed?&lt;/p&gt;
-
-&lt;p&gt;If you do that, you put business logic outside of its original domain, its original implementation.
-It’s not uncommon to have business logic split across various components but putting it in an API gateway can be a problem.&lt;/p&gt;
-
-&lt;p&gt;It may simply introduce complexity in the development workflow.
-Coding on this component may be easy … but coding with all the CI/CD, quality checks, … stuff may not be that simple.&lt;/p&gt;
-
-&lt;p&gt;Also, coding in that component may require special skills that the team owning the business logic, the team actually implementing the original underlying APIs may not have.
-So this team may have to delegate that code to someone else.
-And that may lead to organizational issue and a lack of ownership.
-The original team may think they don’t own that code and not really care about it.
-The other team coding on the gateway may not care as much as the original team, and even if it’s not the case, as they may not know the underlying business rules that can cause some bugs.&lt;/p&gt;
-
-&lt;h1 id=&quot;an-api-gateway-is-a-smart-dumb-pipe&quot;&gt;An API gateway is a smart-dumb pipe&lt;/h1&gt;
-
-&lt;p&gt;Introducing business logic in an API gateway basically transforms it into a good (or very bad I should say) old ESB.
-Remember them?
-Those bloated too smart pipes that ruined many information systems because they were so complicated to manage.
-So don’t do that, keep API gateways dumb.
-Well, not so dumb; as long as an API gateway do smart “API exposition related stuff” and stays dumb from a business perspective, that’s totally ok.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">An API gateway is a proxy that sits between API providers and their consumers. Its main role is to ensure that only authorized consumers consume some APIs. But API gateways usually come also with features such as request/response transformation and some of them even allow to code complex orchestration. Such transformation features can be very useful if used wisely. But they also can give terrible ideas with terrible consequences.</summary></entry></feed>
+&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talk" /><summary type="html">If you want to discover the OpenAPI Specification format, this video is for you! In my first ever (recorded) live coding session, given at the 2021 Manning API Conference, I demonstrate basic, advanced, and even hidden features that will help you to efficiently create complete, accurate, and maintainable API descriptions when designing documenting APIs.</summary></entry></feed>
