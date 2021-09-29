@@ -1,4 +1,121 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-29T07:11:28-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">3 common APIfication problems: complexity, security, capacity</title><link href="https://apihandyman.io/3-common-apification-problems-complexity-security-capacity/" rel="alternate" type="text/html" title="3 common APIfication problems: complexity, security, capacity" /><published>2021-09-22T00:00:00-05:00</published><updated>2021-09-22T00:00:00-05:00</updated><id>https://apihandyman.io/3-common-apification-problems-complexity-security-capacity</id><content type="html" xml:base="https://apihandyman.io/3-common-apification-problems-complexity-security-capacity/">&lt;p&gt;API all the things! 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-09-29T13:03:05-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Barely surviving my first live (non recorded) demo session</title><link href="https://apihandyman.io/barely-surviving-my-first-live-non-recorded-demo-session/" rel="alternate" type="text/html" title="Barely surviving my first live (non recorded) demo session" /><published>2021-09-29T00:00:00-05:00</published><updated>2021-09-29T00:00:00-05:00</updated><id>https://apihandyman.io/barely-surviving-my-first-live-non-recorded-demo-session</id><content type="html" xml:base="https://apihandyman.io/barely-surviving-my-first-live-non-recorded-demo-session/">&lt;p&gt;Yesterday, I live demoed how I take advantage of the OpenAPI Specification during an API Design review at the API Specification Conference.
+This session was really live, not recorded like my previous one, and that didn’t totally went well.
+Though I was quite happy to discover new tricks, I had problems preparing this session and worse I also had problems giving it.
+Nothing that terrible hopefully, but still terribly annoying and stressful.
+I need a cathartic post to talk about all that.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;facing-obs-browser-cache-issues&quot;&gt;Facing OBS browser cache issues&lt;/h1&gt;
+
+&lt;p&gt;During my previous (and first) live demo session I started to use &lt;a href=&quot;https://obsproject.com/&quot;&gt;OBS&lt;/a&gt;, you can read the whole story &lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/#discovering-obs-studio&quot;&gt;here&lt;/a&gt;).
+I decided to reuse what I had done, especially my &lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;pseudo-slide-deck system&lt;/a&gt; in order to have section titles and speaker notes.
+To explain this shortly:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;There’s a &lt;code&gt;steps&lt;/code&gt; folder containing &lt;code&gt;step-1&lt;/code&gt; to &lt;code&gt;step-X&lt;/code&gt; folders&lt;/li&gt;
+  &lt;li&gt;Each &lt;code&gt;step-X&lt;/code&gt; folder contains at least an index.html (the sections title) and todo.html (my speaker’s notes) HTML files (plus some other files if needed)&lt;/li&gt;
+  &lt;li&gt;A next.sh shell script copy the content of the next &lt;code&gt;step-X&lt;/code&gt; folder to &lt;code&gt;steps&lt;/code&gt;, I run it when needed with a shortcut in VS Code&lt;/li&gt;
+  &lt;li&gt;Both “current” HTML files can be loaded and live-reloaded automatically thanks to the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer&quot;&gt;Live Server&lt;/a&gt; VS Code extension&lt;/li&gt;
+  &lt;li&gt;The &lt;code&gt;index.html&lt;/code&gt; file is visible in OBS via a browser source&lt;/li&gt;
+  &lt;li&gt;The &lt;code&gt;todo.html&lt;/code&gt; is just opened in a browser (on my iPad in sidecar mode)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/barely-surviving-my-first-live-non-recorded-demo-session/tweet.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This time the &lt;code&gt;index.html&lt;/code&gt;was not containing text but a PNG image with a transparent background (top right corner in the screenshot above).
+At my first attempt, I simply gave the same name to all the different images &lt;code&gt;steps/step-X/title.png&lt;/code&gt;, the HTML containing &lt;code&gt;&amp;lt;img src=&quot;title.png&quot;&amp;gt;&lt;/code&gt;.
+The problem was that the browser inside OBS was not reloading the image because it was cached.
+To solve this problem I simply stored all images in &lt;code&gt;steps/images&lt;/code&gt; with different names and targeted &lt;code&gt;steps/images/specific-name.png&lt;/code&gt; in the &lt;code&gt;img&lt;/code&gt; tag.&lt;/p&gt;
+
+&lt;h1 id=&quot;adding-scene-switching-to-my-system&quot;&gt;Adding scene switching to my system&lt;/h1&gt;
+
+&lt;p&gt;In my previous live session, I didn’t needed to use scene switching but this time I wanted to be able to switch between a scene showing my Macbook display and another one with only my webcam when needed while still being able to use my “next slide” script.
+I did that by configuring the “Title” tab of the Advanced Scene Switcher as follow:&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/barely-surviving-my-first-live-non-recorded-demo-session/scene-switch-title-regex.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The first line targets a terminal window whose title may change, so I used a regex (the &lt;code&gt;.*&lt;/code&gt; part of the title).
+The second line targets my VS Code window.
+That configuration means: if I click on my terminal, OBS shows the Camera scene and if click on VS Code, the VSCode scene is shown.
+While having the focus on the terminal I was able to launch the &lt;code&gt;next.sh&lt;/code&gt; command to go to next step if needed.&lt;/p&gt;
+
+&lt;p&gt;Then a few hours before the conference, I wanted to add a third scene for the introduction.&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/barely-surviving-my-first-live-non-recorded-demo-session/tweet-intro-scene.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I was able to handle that by simply adding a &lt;code&gt;scene.txt&lt;/code&gt; in all of my &lt;code&gt;steps/step-X&lt;/code&gt; folders and then configure the “File” tab of the advanced scene switcher plugin to change the scene based on the content of &lt;code&gt;steps/scene.txt&lt;/code&gt;.
+Depending on the scene, the file may contain “Intro” or “Camera” (the scene’s name) or be empty.
+In this last case, the scene switcher fallback to “title” mode.&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/barely-surviving-my-first-live-non-recorded-demo-session/scene-switch-file.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;noticing-epoccam-lag-in-obs&quot;&gt;Noticing EpocCam lag in OBS&lt;/h1&gt;
+
+&lt;p&gt;I my previous &lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/#looking-good-enough&quot;&gt;“live” series&lt;/a&gt;, I explained how an iPhone could be used as a webcam with EpocCam.
+I actually did not used it that time, but I did use my iPhone as Webcam several times for video calls and podcast recordings (yes, video is recorded sometimes for podcasts).
+I had absolutely no problem at all.
+But this time, I don’t know yet why, I faced some lag issue: the video not sync with my audio when using OBS.
+I realized that 2 hours before the conference 🤦🏻‍♂️.
+So, as I had not much time to figure what the problem was and how to solve it, I decided to use my terrible Macbook webcam … and plan to buy a descent camera.&lt;/p&gt;
+
+&lt;h1 id=&quot;chaotic-sessions-content-preparation&quot;&gt;Chaotic session’s content preparation&lt;/h1&gt;
+
+&lt;p&gt;Maybe having 3 totally different conference talk for this year was too much, it take me an awfully long time and dedication to prepare one. 
+I had too much work to do these last weeks and not enough time to prepare … and was not in the mood for it.
+That happens sometimes, not being in the mood, but it was not a blog post I could postpone, people were expecting to see this session.&lt;/p&gt;
+
+&lt;p&gt;The idea was to design an API having a few design issues that would allow me to showcase how I review a design and my tools. 
+I really struggled to prepare this API and was not totally satisfied in the end.
+The resulting API looked too much artificial.&lt;/p&gt;
+
+&lt;p&gt;I hadn’t much time to prepare my speech and do the rehearsal.
+Hopefully, lastly I was able to practice quite often “presenting without any notes” while doing API design training sessions.
+So though I was not totally confident, I felt I could let go my “word for word” preparation and be more spontaneous.
+Once the sections of my talk were defined I did a few tests and was quickly able to evaluate the time for each one, added the timing to my speakers notes and was “ready” for the show.&lt;/p&gt;
+
+&lt;h1 id=&quot;facing-technical-issue-during-the-session&quot;&gt;Facing technical issue during the session&lt;/h1&gt;
+
+&lt;p&gt;And the show didn’t go so well but not because of my lack of preparation…&lt;/p&gt;
+
+&lt;p&gt;I did an audio/video test 30 minutes before my session and there was something wrong.
+The person I did the test with told me there was a small random delay with my video (I was sharing my 27 inches display screen showing a fullscreen OBS projector and not using my webcam directly).
+I took time to do some tests and I noticed a few things (the platform used was Hopin in Chrome):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sharing a just a window instead of the screen was terrible. Huge video lag&lt;/li&gt;
+  &lt;li&gt;Reducing the resolution of my screen apparently allowed to remove the lag&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So here I was ready for the show and I started to talk: “Hello, everyone…” …
+But some friends in the chat told me my audio was “scratching” or doing static sound.
+Not knowing what to do, I switched to the MacBook audio instead of my super cool Shure SM7B then switched back to the Shure.
+Problem solved … 30 seconds.
+I switched back again to MacBook audio, it was working, “Don’t touch anything” someone told me 😅.
+I lost 2 to 3 minutes I think, but I started the session.&lt;/p&gt;
+
+&lt;p&gt;Everything was working well, though I noticed some lag in VS Code scrolling.
+Slowly but surely my MacBook was becoming less responsive.
+It seems that both OBS and Chrome were using much CPU, but I suspect there were some other process slowing my Machine (I was telling to myself “it’s a f&lt;strong&gt;**&lt;/strong&gt; gazillion cores MacBook Pro 16, how can it be so slowed down!”).
+I think the mic problem was caused by high CPU usage.
+Whatever, I was unable to fully demoed my final tool (in Excel, yes, Excel) but was able to explain the spirit.&lt;/p&gt;
+
+&lt;p&gt;So, it didn’t went so well BUT, I don’t know how, I succeeded to keep my calm and people were happy with the session’s content, so I can live with that.
+I’ll need to figure what was the problem in order to avoid having it again.
+And I’ll need to prepare a plan B just in case, because Murphy’s law.
+Oh, and I must not forget to buy a f&lt;strong&gt;**&lt;/strong&gt; camera.
+But for now, I’ll take some rest.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Yesterday, I live demoed how I take advantage of the OpenAPI Specification during an API Design review at the API Specification Conference. This session was really live, not recorded like my previous one, and that didn’t totally went well. Though I was quite happy to discover new tricks, I had problems preparing this session and worse I also had problems giving it. Nothing that terrible hopefully, but still terribly annoying and stressful. I need a cathartic post to talk about all that.</summary></entry><entry><title type="html">3 common APIfication problems: complexity, security, capacity</title><link href="https://apihandyman.io/3-common-apification-problems-complexity-security-capacity/" rel="alternate" type="text/html" title="3 common APIfication problems: complexity, security, capacity" /><published>2021-09-22T00:00:00-05:00</published><updated>2021-09-22T00:00:00-05:00</updated><id>https://apihandyman.io/3-common-apification-problems-complexity-security-capacity</id><content type="html" xml:base="https://apihandyman.io/3-common-apification-problems-complexity-security-capacity/">&lt;p&gt;API all the things! 
 Whatever the reason, IT optimization or digital transformation, it’s nowadays fairly common to APIfy an existing system, making it available through APIs.
 What is also very common is to not totally grasp the implications of doing so and especially overlooking complexity, security and capacity concerns.
 &lt;!--more--&gt;&lt;/p&gt;
@@ -1509,45 +1626,4 @@ So making it static solves the problem.&lt;/p&gt;
 &lt;p&gt;Besides the mic and cam “problems”, which were not a real problems, it was starting well.
 I was ready to record myself coding and talking.
 So I started to actually work on the content for the recording and realized it was more than just coding and talking.
-But it’s a story that will be told in &lt;a href=&quot;/it-was-more-complicated-than-just-coding-and-talking/&quot;&gt;next post&lt;/a&gt;.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I did my first ever (recorded) live coding session at the Manning API conference. During 30 minutes I talked and coded … without any slides; that was totally new to me. While it started well, preparing and recording this session turned out to be quite complicated. At some moment, I was totally desperate and I thought I wasn’t going to make it. But I did it and learned a lot of stuff that deserves to be shared. In this first post, I’ll talk about how “it started well”: setting up OBS, mic, cam and VS Code to record myself speaking and coding.</summary></entry><entry><title type="html">Supercharge OpenAPI to efficiently describe APIs</title><link href="https://apihandyman.io/supercharge-openapi-to-efficiently-describe-apis/" rel="alternate" type="text/html" title="Supercharge OpenAPI to efficiently describe APIs" /><published>2021-08-03T00:00:00-05:00</published><updated>2021-08-03T00:00:00-05:00</updated><id>https://apihandyman.io/supercharge-openapi-to-efficiently-describe-apis</id><content type="html" xml:base="https://apihandyman.io/supercharge-openapi-to-efficiently-describe-apis/">&lt;p&gt;If you want to discover the OpenAPI Specification format, this video is for you!
-In my first ever (recorded) live coding session, given at the 2021 Manning API Conference,
-I demonstrate basic, advanced, and even hidden features that will help you to efficiently create complete, accurate, and maintainable API descriptions when designing documenting APIs.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;div class=&quot;alert alert-info&quot;&gt;&lt;h4 class=&quot;alert-heading&quot;&gt;Making Of&lt;/h4&gt;&lt;hr /&gt;
-&lt;p&gt;If you want to learn how I did that session, you can read my &lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/&quot;&gt;Surviving my first (recorded) live code session post series&lt;/a&gt;.
-I share all what I’ve learned preparing it: how I prepared the content, the tools I used, and the struggles and doubts I had.&lt;/p&gt;
-
-&lt;/div&gt;
-
-&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
-
-&lt;p&gt;The OpenAPI Specification has become an industry standard to describe Web APIs during design phase or to create API documentation. During this session, Arnaud Lauret will demonstrate how to take advantage of OpenAPI specification’s basic to advanced features to efficiently create complete, accurate, maintainable and user friendly API descriptions.&lt;/p&gt;
-
-&lt;h1 id=&quot;video&quot;&gt;Video&lt;/h1&gt;
-
-&lt;div id=&quot;-ZhrJzGjJQE&quot; class=&quot;third-party-content third-party-content-youtube&quot;&gt;
-    &lt;div class=&quot;card third-party-content-warning&quot;&gt;
-        &lt;img class=&quot;card-img&quot; src=&quot;/images/thirdpartycontents/supercharge-openapi-manning-api-conference.jpg&quot; alt=&quot;Card image&quot; /&gt;
-        &lt;div class=&quot;card-img-overlay d-flex&quot;&gt;
-            &lt;div class=&quot;my-auto mx-auto text-center&quot;&gt;
-                &lt;p&gt;This content is hosted on youtube.com.&lt;/p&gt;
-                &lt;p&gt;By showing this third party content you accept YouTube (Google)'s 
-                    &lt;a class=&quot;privacy-policy&quot; href=&quot;https://policies.google.com/privacy&quot; target=&quot;_blank&quot;&gt;privacy policy&lt;/a&gt;.
-                &lt;/p&gt;
-                &lt;form&gt;
-                    &lt;a href=&quot;javascript:thirdPartyConsent('-ZhrJzGjJQE', 'youtube')&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Show third party content&lt;/a&gt;
-                    &lt;div class=&quot;form-check&quot;&gt;
-                        &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input third-party-content-remember&quot; /&gt;
-                        &lt;label class=&quot;form-check-label&quot; for=&quot;exampleCheck1&quot;&gt;Remember my choice&lt;/label&gt;
-                        &lt;p&gt;(can be changed in &lt;a class=&quot;privacy-policy&quot; href=&quot;/privacy/&quot;&gt;privacy settings&lt;/a&gt;)&lt;/p&gt;
-                      &lt;/div&gt;
-                &lt;/form&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;iframe-container third-party-content-iframe third-party-content-iframe-disabled&quot;&gt;
-        &lt;iframe class=&quot;iframe-responsive&quot; data-src=&quot;https://www.youtube-nocookie.com/embed/-ZhrJzGjJQE?color=white&amp;amp;theme=light&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
-        &lt;/iframe&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</content><author><name>Arnaud Lauret</name></author><category term="talk" /><summary type="html">If you want to discover the OpenAPI Specification format, this video is for you! In my first ever (recorded) live coding session, given at the 2021 Manning API Conference, I demonstrate basic, advanced, and even hidden features that will help you to efficiently create complete, accurate, and maintainable API descriptions when designing documenting APIs.</summary></entry></feed>
+But it’s a story that will be told in &lt;a href=&quot;/it-was-more-complicated-than-just-coding-and-talking/&quot;&gt;next post&lt;/a&gt;.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I did my first ever (recorded) live coding session at the Manning API conference. During 30 minutes I talked and coded … without any slides; that was totally new to me. While it started well, preparing and recording this session turned out to be quite complicated. At some moment, I was totally desperate and I thought I wasn’t going to make it. But I did it and learned a lot of stuff that deserves to be shared. In this first post, I’ll talk about how “it started well”: setting up OBS, mic, cam and VS Code to record myself speaking and coding.</summary></entry></feed>
