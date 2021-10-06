@@ -1,0 +1,3056 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <title>API Handyman | We need specialized tools for API design reviews</title>
+  <meta name="description" content="Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract. Use the wrong tools to do so, and reviews will become a terrible, never-ending burden. Use the right tools, and you’ll become a formidable machine, doing reviews at light speed, never missing the tiniest problem or question. But, after dozens of reviews, you may realize that, despite using the “right” existing tools, the API space actually lacks API design reviews specialized tools.">
+<meta name="keywords" content="API,Web API,Web Service">
+<meta name="author" content="Arnaud Lauret">
+<meta name="description" content="Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract. Use the wrong tools to do so, and reviews will become a terrible, never-ending burden. Use the right tools, and you’ll become a formidable machine, doing reviews at light speed, never missing the tiniest problem or question. But, after dozens of reviews, you may realize that, despite using the “right” existing tools, the API space actually lacks API design reviews specialized tools.">
+
+<!-- Facebook & LinkedIn -->
+<meta property="og:title"         content="We need specialized tools for API design reviews"/>
+<meta property="og:type"          content="article"/>
+<meta property="og:description"   content="Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract. Use the wrong tools to do so, and reviews will become a terrible, never-ending burden. Use the right tools, and you’ll become a formidable machine, doing reviews at light speed, never missing the tiniest problem or question. But, after dozens of reviews, you may realize that, despite using the “right” existing tools, the API space actually lacks API design reviews specialized tools."/>
+<meta property="og:url"           content="https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews/"/>
+<meta property="og:image"         content="https://apihandyman.io/images/we-need-specialized-tools-for-api-design-reviews/banner.jpg"/>
+
+<!-- Twitter -->
+<meta name="twitter:card"         content="summary">
+<meta name="twitter:site"         content="@apihandyman">
+<meta name="twitter:creator"      content="@apihandyman" />
+<meta name="twitter:title"        content="We need specialized tools for API design reviews">
+<meta name="twitter:url"          content="https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews/">
+<meta name="twitter:description"  content="Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract. Use the wrong tools to do so, and reviews will become a terrible, never-ending burden. Use the right tools, and you’ll become a formidable machine, doing reviews at light speed, never missing the tiniest problem or question. But, after dozens of reviews, you may realize that, despite using the “right” existing tools, the API space actually lacks API design reviews specialized tools.">
+<meta name="twitter:image:src"    content="https://apihandyman.io/images/we-need-specialized-tools-for-api-design-reviews/banner.jpg">
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/anchors.css">
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/prism.css">
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/asciinema-player.css">
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/code.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bash.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+</head>
+  <body  data-spy="scroll" data-target="#toc">
+    
+<div class="main-navbar fixed-top  scrolled">
+  <div class="container-lg">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">API Handyman</a>
+      
+      <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="btn-icon" src="/images/commons/icons/menu.svg" >
+      </button>
+      <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
+        <div class="navbar-nav">
+          <li class="nav-item dropdown dropdown-blog d-desktop-only">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Blog
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="/blog/">All content</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/posts/">Posts</a>
+              <a class="dropdown-item" href="/talks/">Talks & Podcasts</a>
+            </div>
+          </li>
+          <a class="nav-item nav-link d-mobile-only" href="/blog/">Blog</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/posts/">Posts</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/talks/">Talks & Podcasts</a>
+          <a class="nav-item nav-link" href="/toolbox/">Toolbox</a>
+          <a class="nav-item nav-link" href="/about/">About</a>
+          <div class="form-search">
+    <input class="input-search" type="search" name="q" placeholder="Search" aria-label="Search">
+    <button class="btn-search"><?xml version="1.0" encoding="UTF-8"?>
+<svg width="26" height="26" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+ <path d="m85.207 79.375l-21.664-21.668c3.332-4.375 5.207-10 5.207-16.043 0-15-12.082-27.082-27.082-27.082s-27.086 12.086-27.086 27.086 12.082 27.082 27.082 27.082c6.043 0 11.457-1.875 16.043-5.207l21.668 21.668c0.83203 0.83203 1.875 1.25 2.918 1.25s2.082-0.41797 2.918-1.25c1.6641-1.668 1.6641-4.168-0.003907-5.8359zm-43.539-18.957c-10.418 0-18.75-8.332-18.75-18.75s8.332-18.75 18.75-18.75 18.75 8.332 18.75 18.75c0 10.414-8.3359 18.75-18.75 18.75z"/>
+</svg>
+</button>
+</div>
+          <a class="nav-item-book left-column-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
+        </div>
+      </div>
+      
+    </nav> <!-- class="navbar navbar-expand-md" -->
+  </div> <!--  class="container" -->
+</div> <!-- class="main-navbar fixed-top  scrolled" -->
+    <div class="page-content-container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="row row-banner-small row-banner-small-">
+    <div class="banner-small-container">
+      <div class="banner-small-column-main">
+        <img src="https://apihandyman.io/images/we-need-specialized-tools-for-api-design-reviews/banner.jpg" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+
+<div class="row row-page-content">
+  <div class="container-fluid container-lg">
+    <div class="fade modal left-menu-hider left-menu-modal d-mobile-only"></div>
+    <div class="row">
+      
+      <div class="page-column-left left-menu left-menu-hider">
+        <div class="page-column-left-container">
+          
+
+
+
+<div class="left-book-ad left-book-ad-border d-desktop-only">
+  <img src="/images/commons/book/book-left-menu-cropped.png" class="card-img" alt="The Design of Web APIs book cover">
+  <div class="card-img-overlay message-cropped">
+    <a class="stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >
+      <p class="card-text">Special offer on my book</p>
+    </a>
+  </div>
+</div>
+<a class="left-book-ad-small left-menu-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button">
+  Special offer on my book
+  <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
+</a>
+
+  
+  <div class="nav-item dropdown dropright">
+    <a class="nav-link dropdown-toggle series-title text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Series
+    </a>
+    
+<div class="dropdown-menu dropdown-menu-series rounded-0" aria-labelledby="navbarSerieDropdown">
+  <div class="dropdown-header">API Design Reviews</div>
+  <div class="dropdown-divider"></div>
+  
+  
+    
+   <a class="dropdown-item selectable text-wrap" href="/3-good-reasons-to-do-api-design-reviews/">1 - 3 good reasons to do API Design Reviews</a>
+  
+
+    
+   <a class="dropdown-item selectable text-wrap" href="/an-api-design-review-is-based-on-facts-not-opinions/">2 - An API design review is based on facts, not opinions</a>
+  
+
+    
+    <a class="dropdown-item active disabled text-wrap">3 - We need specialized tools for API design reviews</a>
+  
+
+
+</div>
+  </div>
+  
+  <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
+    
+
+
+
+
+
+  <nav class="nav flex-column" id="toc">
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#reviewing-api-designs-helping-people"><del>Reviewing API designs</del> Helping people</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#analyzing-an-interface-contract">Analyzing an interface contract</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#reading-openapi-files-is-a-terrible-idea">Reading OpenAPI files is a terrible idea</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#not-all-documentation-tools-are-equals">Not all documentation tools are equals</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#beyond-linting">Beyond linting</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#looking-for-new-perspectives">Looking for new perspectives</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#and-thats-just-for-analyzing-the-contract">And that’s just for analyzing the contract</a>
+        
+      
+      
+    
+  
+  </nav>
+  </div>
+
+        </div>
+      </div>
+        
+      
+      <div class="page-column-main page-column-main-with-left">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="page-content-text anchors">
+  
+  
+  
+  
+  
+    
+    
+    <!-- First card with page title -->
+    <div class="card-page-section page-section-title">
+      <div class="body">
+        
+        <h5 class="surtitle">
+API Design Reviews Series - Part 3
+</h5>
+        
+        
+        <h1 class="title">We need specialized tools for API design reviews</h1>
+        
+        
+        <h6 class="subtitle">By Arnaud Lauret, October 6, 2021</h6>
+        <hr/>
+        
+        <p>Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract.
+Use the wrong tools to do so, and reviews will become a terrible, never-ending burden.
+Use the right tools, and you’ll become a formidable machine, doing reviews at light speed, never missing the tiniest problem or question.
+But, after dozens of reviews, you may realize that, despite using the “right” existing tools, the API space actually lacks API design reviews specialized tools.
+<!--more-->
+This post is a slightly write up of my “Taking advantage of OpenAPI for API design reviews” talk I gave at the 2021 API Specification Conference.</p>
+
+
+        
+      </div>
+    </div><!-- First card with page title END -->
+      
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="reviewing-api-designs-helping-people"><del>Reviewing API designs</del> Helping people</h1>
+
+<p>I work with many different teams helping them create and evolve many different APIs.
+I can do around 150 API design reviews per year on average.</p>
+
+<p>When I do an API design review, I’m not being the API police.
+I’m here to help people create the best possible API in their context.
+I’m here to provide guidance and help people grow their design skills so that one day I won’t be needed anymore.</p>
+
+<p>Though I’m not a API policeman, the closer to our API design guidelines the design is, the better.
+Because having consistent APIs make them easier to use.
+But that’s not the only thing to look at, an API must be reviewed beyond the guidelines.
+It’s important to investigate what it is made for, what needs this API is supposed to fulfil.
+And then to check if the design is actually responding to all that.
+But not just “responding to all” that but doing it in the best possible fashion.
+So, I also check if the design is easy to understand, easy to use and easy to evolve.</p>
+
+<p>And how do I do all that?
+Well, by investigating business domain and IT concerns, asking stupid questions (tons of them), making people talk together, listening, showing empathy, challenging beliefs and ideas … and obviously analyzing interface contracts.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="analyzing-an-interface-contract">Analyzing an interface contract</h1>
+
+<p>Depending on the size and number of APIs you review, the task of reviewing API designs will be more or less complicated.
+But if analyzing a single interface contract can be quite complicated by itself, it can be even more complicated if it’s described in a non standard format such as a wiki page or a spreadsheet.
+Hopefully most people I’m working with use the OpenAPI specification to describe their APIs.</p>
+
+<h2 id="reading-openapi-files-is-a-terrible-idea">Reading OpenAPI files is a terrible idea</h2>
+
+<p>I’ve seen people making API design reviews by directly reading OpenAPI files such as the one below.
+That’s not something I actually do, you can give it a try, read this file and tell me what you think.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Let's read this OpenAPI file</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-design-reviews/motu-openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy"><code class="code-block">openapi: 3.0.0
+info:
+  title: MOTU
+  version: 1.0.3_build156
+  description: The Masters of the Universe Web Site API
+paths:
+  /v1/charsBySide:
+    get:
+      summary: charBySide
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sides'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-charById
+      tags:
+        - searchController
+      parameters: []
+      description: For "all characters" screen
+    parameters: []
+  /v1/charaters-with-name:
+    get:
+      summary: Search characters by name
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Char'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-characters-by-name
+      description: For "search by name" screen
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: name
+          required: true
+    parameters: []
+  '/v1/tpyt/{year}/{type}':
+    parameters:
+      - schema:
+          type: string
+        name: year
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: type
+        in: path
+        required: true
+    get:
+      summary: Toys per year and type
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/toysPerYearAndTypeDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-toys-per-year-year-type
+      tags:
+        - searchController
+      description: ''
+  /v1/search/flying/vehicles/with/filters:
+    post:
+      summary: List flying toys
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlyingToysResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Flying Toys Found
+        '500':
+          description: Internal Server Error
+      operationId: post-flying-vehicles-byId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlyingFilters'
+    parameters: []
+  '/v1/sidekick/{name}':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+    get:
+      summary: Get character's sidekick
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sidekick'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-characters-sidekick-name
+  /v1/buildings/all:
+    get:
+      summary: Building toys
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildingListDto'
+      operationId: get-buildings
+    parameters: []
+  '/v2/episode/{num}/{year}/{producer}':
+    parameters:
+      - schema:
+          type: string
+        name: num
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: year
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: producer
+        in: path
+        required: true
+    get:
+      summary: get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Episode_Single'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-ep-num-year-producer
+      tags:
+        - tvShowController
+      description: ''
+  /v2/episodes:
+    get:
+      summary: List episodes
+      tags:
+        - tvShowController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producers'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-eps
+      description: ''
+    parameters: []
+    post:
+      summary: Insert episode in database
+      operationId: post-v2-episodes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/episode-added'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/add-epsode'
+      tags:
+        - tvShowController
+  /v1/search/ground/vehicles/with/filters:
+    post:
+      summary: Search ground vehicle toys
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroundToyResponseDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: post-v1-ground-vehicles-with-filters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroundFilter'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+    parameters: []
+  /v1/buildings/filters:
+    get:
+      summary: Search buildings
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildingListDto'
+      operationId: get-v1-buildings-filters
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: name
+components:
+  schemas:
+    Char:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        toys:
+          $ref: '#/components/schemas/toy'
+        creation_dte:
+          type: string
+          format: date-time
+        evil:
+          type: boolean
+        good:
+          type: boolean
+    toy:
+      title: ''
+      type: object
+      properties:
+        ToyId:
+          type: string
+        ToyType:
+          type: number
+          enum:
+            - '1'
+            - '2'
+            - '3'
+        ToyReference:
+          type: string
+        ToyOriginalPrice:
+          type: string
+        ToyManufacturer:
+          type: string
+        ToyName:
+          type: string
+    prd:
+      title: ''
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        years:
+          type: array
+          items:
+            $ref: '#/components/schemas/Years'
+    Epsd:
+      title: ''
+      type: object
+      properties:
+        number:
+          type: string
+        title:
+          type: string
+        firstAir:
+          type: number
+    Years:
+      title: ''
+      type: object
+      properties:
+        year:
+          type: string
+        episodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Epsd'
+    Episode_Single:
+      type: object
+      properties:
+        name:
+          type: string
+        first_air_date:
+          type: string
+        alternate_name_1:
+          type: string
+        alternate_name_2:
+          type: string
+    add-epsode:
+      title: ''
+      type: object
+      properties:
+        name:
+          type: string
+        firstArDate:
+          type: string
+        producerId:
+          type: string
+        year:
+          type: integer
+    SearchResponse:
+      title: ''
+      type: array
+      items:
+        $ref: '#/components/schemas/Char'
+    Sides:
+      title: ''
+      type: object
+      properties:
+        good:
+          type: array
+          items:
+            $ref: '#/components/schemas/SideChar'
+        evil:
+          type: array
+          items:
+            $ref: '#/components/schemas/SideChar'
+    SideChar:
+      title: ''
+      type: object
+      properties:
+        id:
+          type: string
+        nom:
+          type: string
+        icon:
+          type: string
+    Sidekick:
+      title: ''
+      type: object
+      properties:
+        name:
+          type: string
+    FlyingFilters:
+      title: Filters
+      type: object
+      properties:
+        year:
+          type: string
+        brand:
+          type: string
+        name:
+          type: string
+        evil:
+          type: boolean
+        good:
+          type: boolean
+        id:
+          type: string
+    FlyingToysResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/FlyingToy'
+    FlyingToy:
+      type: object
+      properties:
+        flyingToyName:
+          type: string
+        flyingToyBox:
+          type: string
+    toysPerYearAndTypeDto:
+      title: toysPerYearAndTypeDto
+      type: array
+      items:
+        $ref: '#/components/schemas/toy'
+    GroundToyResponseDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/GroundToy'
+    GroundToy:
+      type: object
+      properties:
+        name:
+          type: string
+        boxArt:
+          type: string
+    GroundFilter:
+      title: GroundFilter
+      type: object
+      properties:
+        id:
+          type: string
+        manufacturer:
+          type: string
+    building:
+      title: building
+      type: object
+      properties:
+        name:
+          type: string
+        art:
+          type: string
+        width:
+          type: number
+        height:
+          type: number
+        depth:
+          type: number
+    BuildingListDto:
+      title: BuildingListDto
+      type: object
+      properties:
+        buildings:
+          type: array
+          items:
+            $ref: '#/components/schemas/building'
+    episode-added:
+      title: episode-added
+      type: string
+    Producers:
+      title: ''
+      type: object
+      properties:
+        producers:
+          $ref: '#/components/schemas/prd'
+servers:
+  - description: base path
+    url: /api
+</code></pre>
+  </div>
+</div>
+
+<p>I don’t know how you feel, but reading this raw OpenAPI file do not really help me to make a complete review of the design.
+Oh, I can still spot useful but disturbing pieces of information based on the <code>info</code> section:</p>
+
+<ol>
+  <li>Because of version number <code>1.0.3_build156</code>, I can guess this file has been generated from code, which is usually not a good sign. Maybe the team has coded everything and just want a green light to deploy their API on the API gateway (Sorry, that’s not my job, and too bad, it’s probably too late to fix something as everything has already been coded)</li>
+  <li>The “The Masters of the Universe Web Site API” <code>description</code> let me think that this API could be been design solely to be the backend of this specific website and thus may not be reusable in other contexts</li>
+</ol>
+
+<p>That’s interesting, but when I do an API design review my first move is trying to guess what the API is made for by looking at all of its operations, all GET /this and POST /that and their summaries.
+And that is not easy to do just reading the raw OpenAPI file.
+Using a code editor, I could close a few sections but even doing so I can’t have this overview totally.</p>
+
+<p>I also like to have an overview of the data models in operations’ responses, evaluate their complexity, their depth.
+But reading a raw OpenAPI file all I have is a flat perspective of each model.
+I have to jump from one <code>$ref</code> to another to “see” a full schemas … 
+And so ,I actually don’t see anything here.
+Or worse, just like in the parable of the 3 blind men the elephant, I could see a snake or a wall instead of an elephant.</p>
+
+<p>So, reading a raw OpenAPI file is definitely not for me.
+And I highly doubt that anyone could actually do an efficient API design review doing so.</p>
+
+<h2 id="not-all-documentation-tools-are-equals">Not all documentation tools are equals</h2>
+
+<p>As far as I remember, I always took advantage of documentation tools to do API design reviews.
+I especially use the good old SwaggerUI.
+I don’t use it only because it was the only one available when I started being an API design reviewer and I don’t want to change my habits.
+No, I use it because it’s the one that fulfils my needs for this specific task.</p>
+
+<p>I actually don’t like SwaggerUI API documentation when I learn to use an API, I prefer ReDoc or Stoplight Elements renderings. But reading API documentation is different from reviewing an interface contract.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/we-need-specialized-tools-for-api-design-reviews/swaggerui-overview.jpg" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>SwaggerUI allows me to easily get the overview of operations, I can see all GET /this and POST /that and their summaries in a quick glance.
+That helps me to confirm the intent of the API, if it was explained to me before, or guess it if not.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/we-need-specialized-tools-for-api-design-reviews/swaggerui-operation.jpg" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>Using SwaggerUI I can also check that the returned schema name actually match the resource path.
+In ReDoc the name of the returned schema is not shown and when doing a review, that’s quite annoying.</p>
+
+<p>Once I’ve made this first pass, I analyze in depth each operation.
+Checking parameters, responses and their schemas.
+Regarding the analysis of schemas, I would prefer ReDoc of Stoplight Elements.
+Whatever the tool, I can easily spot data models where everything if optional (typical on generated interface contracts).
+I can also check schema depth.</p>
+
+<p>When I started doing reviews I had to carefully analyze every bit of the contract in one of those documentation tools.
+Especially to ensure that the design was conforming to our API design guidelines.
+Checking every single property is in lowerCamelCase, path structure is valid, no HTTP status code is missing, etc, etc, etc, …</p>
+
+<p>Doing those repetitive (mostly dumb) checks, review after review, hundreds of times, I nearly lost sanity.
+And there are not only dumb checks that need to be done.
+Checking consistency between schemas for instance is extremely hard to do with regular documentation tools.</p>
+
+<h2 id="beyond-linting">Beyond linting</h2>
+
+<p>Hopefully, Stoplight Spectral just came out at that time.
+I will not go in all the details here (You can watch my <a href="/the-augmented-api-design-reviewer/">“Augmented API Design Reviewer” talk</a> for that), but to make it short, Spectral is a JSON/YAML linter.
+You can define rules that Spectral will run against a document to spot if some elements are breaking them.
+You can check path structure, property names case, if all expected HTTP status codes are defined on all operations, or if all 4xx and 5xx error response return a data model matching your standard error schema.</p>
+
+<p>For instance the following ruleset contains a single that scans all properties to detect if some of them have a name containing a number:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Spectral Demo Ruleset</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-design-reviews/demo-ruleset.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy"><code class="code-block">rules:
+  property-name-no-number:
+    given: $..properties
+    severity: warn
+    description: Property name must not contain number (maybe you can use an array)
+    message: "{{description}} {{path}}"
+    then:
+      - field: "@key"
+        function: pattern
+        functionOptions:
+          notMatch: "/[0-9]+/i"</code></pre>
+  </div>
+</div>
+
+<p>You can run the following command after installing Spectral to see it in action:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">Spectral lint -r https://apihandyman.io/code/api-design-reviews/demo-ruleset.yaml https://apihandyman.io/code/api-design-reviews/motu-openapi.yaml
+
+</pre>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Using escape variable</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io] $ Spectral lint -r https://apihandyman.io/code/api-design-reviews/demo-ruleset.yaml https://apihandyman.io/code/api-design-reviews/motu-openapi.yaml
+OpenAPI 3.x detected
+
+https://apihandyman.io/code/api-design-reviews/motu-openapi.yaml
+ 358:26  warning  property-name-no-number  Property name must not contain number (maybe you can use an array) #/components/schemas/Episode_Single/properties/alternate_name_1
+ 360:26  warning  property-name-no-number  Property name must not contain number (maybe you can use an array) #/components/schemas/Episode_Single/properties/alternate_name_2
+
+✖ 2 problems (0 errors, 2 warnings, 0 infos, 0 hints)</code></pre>
+  </div>
+</div>
+
+<p>What’s the problem with property names containing numbers?
+What’s the problem with <code>alternate_name_1</code> and <code>alternate_name_2</code> properties in the <code>Episode_Single schema</code> for instance?
+If there’s a 1 and 2, why not a 3? And a 4?
+So better put those alternate names in a list, that way no problem, there can be 1 to 4 … or 5.
+But that’s if those alternate names 1 and 2 actually are just “alternate names” and not “production name” and “some other name”. 
+If so, I would rename them accordingly.</p>
+
+<p>As you can see linting an OpenAPI file is not only about doing dumb checks (even if only just that actually changed my life), you can use Spectral to spot possible design patterns and business domain concerns.</p>
+
+<p>The problem with linting an OpenAPI file is that you can end with hundreds of problems detected.
+Actually, running my usual ruleset (working on open sourcing it) on this post’s demo OpenAPI file would return almost 200 problems.
+A raw list of 200 problems is not really usable.
+And Spectral can’t handle all of my checks, I still need to analyze the contract with my very eyes.</p>
+
+<p>And so I realized that I needed to render OpenAPI files and Spectral results in a new way.</p>
+
+<h2 id="looking-for-new-perspectives">Looking for new perspectives</h2>
+
+<p>This research of new perspectives actually started with a command line like this one:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">Spectral lint -q -f json -r https://apihandyman.io/code/api-design-reviews/demo-ruleset.yaml https://apihandyman.io/code/api-design-reviews/motu-openapi.yaml | jq .
+
+</pre>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Using escape variable</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io] $  Spectral lint -q -f json -r https://apihandyman.io/code/api-design-reviews/demo-ruleset.yaml https://apihandyman.io/code/api-design-reviews/motu-openapi.yaml | jq .</code></pre>
+  </div>
+</div>
+
+<p>You can tell Spectral to return its results as JSON and pipe it to <a href="https://apihandyman.io/toolbox/jq/">jq</a> and do whatever you want with them. Just don’t forget the <code>-q</code> flag, if not there are some non JSON data screwing everything.</p>
+
+<p>So I tinkered with JQ, extracting data from Spectral results and turning them into csv.
+Then I did the same with OpenAPI files (see my series about <a href="/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">OpenAPI + JQ</a>), I extracted operations and schemas into csv.</p>
+
+<p>Then all these csv files are imported into … an Excel file (Google Sheet or Apple Number are no match, and don’t even dare to talk about OpenOffice/Libroffice alternatives).</p>
+
+<p>For the Spectral problems, I can easily filter problems by type or level, I can do text search.
+And I can easily get stats using a pivot table.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/we-need-specialized-tools-for-api-design-reviews/linter.jpg" class="figure-img img-fluid" /></figure>
+</div>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/we-need-specialized-tools-for-api-design-reviews/linter-stats.jpg" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>For the operations, I can at last have “my overview” as I need it, I can see all operations in a quick glance.
+I can see all parameters, response data model or used HTTP status code.
+I can easily compare paths (and spot typos).</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/we-need-specialized-tools-for-api-design-reviews/operations.jpg" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>Having the schemas put flat in Excel is a very powerful tool.
+I can see all schema names easily.
+By sorting the data by property names, I can easily spot inconsistencies.
+I can check number/integer properties and check if they are not-easy-to-interpret codes, more easily spotted when there’s an enum (line 68 in the above capture).</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/we-need-specialized-tools-for-api-design-reviews/schemas.jpg" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>The possibilities are endless.
+Well I exaggerate a bit, but you can do crazy stuff with just csv files and an Excel file.</p>
+
+<p>Obviously, though I added some shell scripts and VS Code action around that to quickly analyze an OpenAPI file and open my Excel report, this is not really industrial.
+My JQ stuff works only a basic files, I would need to replace that by more robust code.
+Same for Excel, I hope to replace it by something else one day…</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="and-thats-just-for-analyzing-the-contract">And that’s just for analyzing the contract</h1>
+
+<p>I hope that what was shown here will give you some ideas about how analyze OpenAPI files but more important, I hope you’ll understand that we, API designer reviewers, need specialized tools to do our job.
+We cannot just rely on raw OpenAPI files or documentation tools.
+We need tools that take advantage of this machine readable format, tools such as Spectral, but we need new way of rendering OpenAPI files and linter results.</p>
+
+<p>And I didn’t talked about how to formalize the result of such analysis … we need specialized tools for that too. But that’s another story I’ll tell another time.</p>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+  
+</div><!-- class="page-content-text"-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-page-bottom-nav nav-fixed-bottom">
+  <div class="container-fluid container-lg">
+    <nav class="nav-page " aria-label="Page navigation">
+      <a class="nav-page-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top"><svg height='100px' width='100px' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><polygon points="4.1,10 5.5,11.4 9,7.8 9,20 11,20 11,7.8 14.5,11.4 16,10 10,4  "></polygon><rect x="0" width="20" height="2"></rect></g></svg></a>
+      
+      <a class="nav-page-btn left-menu-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><rect x="0" y="2" width="4" height="4"></rect><rect x="0" y="8" width="4" height="4"></rect><rect x="0" y="14" width="4" height="4"></rect><rect x="6" y="3" width="14" height="2"></rect><rect x="6" y="9" width="14" height="2"></rect><rect x="6" y="15" width="14" height="2"></rect></g></svg></a>
+      
+    </nav>
+  </div>
+</div>
+
+
+      <div class="row row-footer-margin">
+
+</div>
+<div class="row row-footer">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container footer-content">
+        <div class="row align-items-end row-cols-1 row-cols-md-2">
+          <div class="col d-flex justify-content-center mb-1 mb-md-4">
+            <div class="icon"><a href="https://twitter.com/apihandyman" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a></div>
+            <div class="icon"><a href="https://www.linkedin.com/in/arnaudlauret" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></div>
+            <div class="icon"><a href="https://github.com/arno-di-loreto" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a></div>
+            <div class="icon"><a href="/feed.xml" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg></a></div>
+          </div>
+          <div class="col text-center">
+            <a class="btn border-0 rounded-0 p-0" data-toggle="modal" data-target="#bookModal" role="button" ><img class="img-footer-book" src="/images/commons/book/book-footer.png"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-footer-second">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col col-footer-privacy mb-3 mb-md-0">
+            <div class="icon privacy-link"><a href="/privacy"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg><span class="privacy-link-text">Privacy Policy & Settings<span></span></a></div>
+          </div>
+          <div class="col col-footer-copyright">
+            &copy; 2015-2021 Arnaud Lauret
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            <!-- Modal -->
+      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-book" role="document">
+          <div class="modal-content border-0">
+            <div class="modal-body p-0">
+              <div class="container-fluid p-0">
+                <button type="button" class="close pr-2 pt-1" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row modal-book-cover-center"></div>
+                <div class="row mb-3 mb-lg-0 ml-0 mr-0 pt-3 pt-md-0">
+                  <div class="col col-lg-4 d-none d-md-block p-0">
+                    <img class="img-fluid" src="/images/commons/book/book-modal.png"/>
+                  </div>
+                  <div class="col col-12 col-lg-8 pt-2 pt-lg-4 text-justify">
+                    <p>Want to learn how to design simple, user friendly, secure and implementable APIs that do everything they should?</p>
+                    <p>Use code <code class="book-discount-code text-copy" aria-label="copy discount code" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to copy">fcclauret</code> to get 37% off my book The Design of Web APIs (works also on any other Manning product!).</p>
+                    <p class="text-center"><a href="http://bit.ly/designwebapis" target="_blank" class="btn btn-primary">Buy on manning.com</a></p>
+                    <p class="text-muted pt-3 mb-0">Disclosure: the link above is an affiliated link, meaning, at no additional cost to you, I will earn a commission if you click through and make a purchase.</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+<div class="privacy-message d-none fixed-bottom container-fluid bg-dark text-white p-3">
+  <div class="container">
+    <div class="row text-center pt-2 pb-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+      <div class="col text-justify">
+        By continuing to use this web site you agree with the API Handyman website privacy policy (effective date , June 28, 2020).
+      </div>
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+          <a class="btn btn-primary" href="/privacy/">Read privacy policy</a>
+          <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+    <div class="row text-center pt-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <a class="btn btn-primary" href="/privacy/">Read privacy policy</a>
+        <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/jquery-3.4.1.slim.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/popper.min.js" ></script>
+<script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script type="text/javascript" src="/js/anchors.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/main.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/prism.js" ></script>
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/asciinema-player.js" ></script>
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/code.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<div id="device-size-detector">
+  <div id="xs" class="d-xs-only"></div>
+  <div id="sm" class="d-sm-only"></div>
+  <div id="md" class="d-md-only"></div>
+  <div id="lg" class="d-lg-only"></div>
+  <div id="xl" class="d-xl-only"></div>
+</div>
+<script type="text/javascript" src="/js/size.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/bash.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/toc.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/fingerprint2.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/google-analytics.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/search-bar.js" ></script>
+
+
+
+    
+  
+
+  
+
+
+  </body>
+</html>

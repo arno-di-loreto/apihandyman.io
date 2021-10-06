@@ -1,0 +1,491 @@
+openapi: 3.0.0
+info:
+  title: MOTU
+  version: 1.0.3_build156
+  description: The Masters of the Universe Web Site API
+paths:
+  /v1/charsBySide:
+    get:
+      summary: charBySide
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sides'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-charById
+      tags:
+        - searchController
+      parameters: []
+      description: For "all characters" screen
+    parameters: []
+  /v1/charaters-with-name:
+    get:
+      summary: Search characters by name
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Char'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-characters-by-name
+      description: For "search by name" screen
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: name
+          required: true
+    parameters: []
+  '/v1/tpyt/{year}/{type}':
+    parameters:
+      - schema:
+          type: string
+        name: year
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: type
+        in: path
+        required: true
+    get:
+      summary: Toys per year and type
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/toysPerYearAndTypeDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-toys-per-year-year-type
+      tags:
+        - searchController
+      description: ''
+  /v1/search/flying/vehicles/with/filters:
+    post:
+      summary: List flying toys
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlyingToysResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Flying Toys Found
+        '500':
+          description: Internal Server Error
+      operationId: post-flying-vehicles-byId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlyingFilters'
+    parameters: []
+  '/v1/sidekick/{name}':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+    get:
+      summary: Get character's sidekick
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sidekick'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-characters-sidekick-name
+  /v1/buildings/all:
+    get:
+      summary: Building toys
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildingListDto'
+      operationId: get-buildings
+    parameters: []
+  '/v2/episode/{num}/{year}/{producer}':
+    parameters:
+      - schema:
+          type: string
+        name: num
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: year
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: producer
+        in: path
+        required: true
+    get:
+      summary: get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Episode_Single'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-ep-num-year-producer
+      tags:
+        - tvShowController
+      description: ''
+  /v2/episodes:
+    get:
+      summary: List episodes
+      tags:
+        - tvShowController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producers'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-eps
+      description: ''
+    parameters: []
+    post:
+      summary: Insert episode in database
+      operationId: post-v2-episodes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/episode-added'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/add-epsode'
+      tags:
+        - tvShowController
+  /v1/search/ground/vehicles/with/filters:
+    post:
+      summary: Search ground vehicle toys
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroundToyResponseDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: post-v1-ground-vehicles-with-filters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroundFilter'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+    parameters: []
+  /v1/buildings/filters:
+    get:
+      summary: Search buildings
+      tags:
+        - searchController
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildingListDto'
+      operationId: get-v1-buildings-filters
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: name
+components:
+  schemas:
+    Char:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        toys:
+          $ref: '#/components/schemas/toy'
+        creation_dte:
+          type: string
+          format: date-time
+        evil:
+          type: boolean
+        good:
+          type: boolean
+    toy:
+      title: ''
+      type: object
+      properties:
+        ToyId:
+          type: string
+        ToyType:
+          type: number
+          enum:
+            - '1'
+            - '2'
+            - '3'
+        ToyReference:
+          type: string
+        ToyOriginalPrice:
+          type: string
+        ToyManufacturer:
+          type: string
+        ToyName:
+          type: string
+    prd:
+      title: ''
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        years:
+          type: array
+          items:
+            $ref: '#/components/schemas/Years'
+    Epsd:
+      title: ''
+      type: object
+      properties:
+        number:
+          type: string
+        title:
+          type: string
+        firstAir:
+          type: number
+    Years:
+      title: ''
+      type: object
+      properties:
+        year:
+          type: string
+        episodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Epsd'
+    Episode_Single:
+      type: object
+      properties:
+        name:
+          type: string
+        first_air_date:
+          type: string
+        alternate_name_1:
+          type: string
+        alternate_name_2:
+          type: string
+    add-epsode:
+      title: ''
+      type: object
+      properties:
+        name:
+          type: string
+        firstArDate:
+          type: string
+        producerId:
+          type: string
+        year:
+          type: integer
+    SearchResponse:
+      title: ''
+      type: array
+      items:
+        $ref: '#/components/schemas/Char'
+    Sides:
+      title: ''
+      type: object
+      properties:
+        good:
+          type: array
+          items:
+            $ref: '#/components/schemas/SideChar'
+        evil:
+          type: array
+          items:
+            $ref: '#/components/schemas/SideChar'
+    SideChar:
+      title: ''
+      type: object
+      properties:
+        id:
+          type: string
+        nom:
+          type: string
+        icon:
+          type: string
+    Sidekick:
+      title: ''
+      type: object
+      properties:
+        name:
+          type: string
+    FlyingFilters:
+      title: Filters
+      type: object
+      properties:
+        year:
+          type: string
+        brand:
+          type: string
+        name:
+          type: string
+        evil:
+          type: boolean
+        good:
+          type: boolean
+        id:
+          type: string
+    FlyingToysResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/FlyingToy'
+    FlyingToy:
+      type: object
+      properties:
+        flyingToyName:
+          type: string
+        flyingToyBox:
+          type: string
+    toysPerYearAndTypeDto:
+      title: toysPerYearAndTypeDto
+      type: array
+      items:
+        $ref: '#/components/schemas/toy'
+    GroundToyResponseDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/GroundToy'
+    GroundToy:
+      type: object
+      properties:
+        name:
+          type: string
+        boxArt:
+          type: string
+    GroundFilter:
+      title: GroundFilter
+      type: object
+      properties:
+        id:
+          type: string
+        manufacturer:
+          type: string
+    building:
+      title: building
+      type: object
+      properties:
+        name:
+          type: string
+        art:
+          type: string
+        width:
+          type: number
+        height:
+          type: number
+        depth:
+          type: number
+    BuildingListDto:
+      title: BuildingListDto
+      type: object
+      properties:
+        buildings:
+          type: array
+          items:
+            $ref: '#/components/schemas/building'
+    episode-added:
+      title: episode-added
+      type: string
+    Producers:
+      title: ''
+      type: object
+      properties:
+        producers:
+          $ref: '#/components/schemas/prd'
+servers:
+  - description: base path
+    url: /api
