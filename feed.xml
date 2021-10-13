@@ -1,4 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-10-13T07:11:38-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">We Need Specialized Tools For Api Design Reviews</title><link href="https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews/" rel="alternate" type="text/html" title="We Need Specialized Tools For Api Design Reviews" /><published>2021-10-06T00:00:00-05:00</published><updated>2021-10-06T00:00:00-05:00</updated><id>https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews</id><content type="html" xml:base="https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews/">&lt;p&gt;Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-10-13T15:33:34-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Excuse my French API, or being an English as a second language API designer</title><link href="https://apihandyman.io/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer/" rel="alternate" type="text/html" title="Excuse my French API, or being an English as a second language API designer" /><published>2021-10-13T00:00:00-05:00</published><updated>2021-10-13T00:00:00-05:00</updated><id>https://apihandyman.io/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer</id><content type="html" xml:base="https://apihandyman.io/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer/">&lt;p&gt;This post is dedicated to all English as a Second, or Foreign, Language (ESL, EFL) API designers. 
+Et tout spécialement mes compatriotes français!
+Designing APIs is already not that easy when you design them using your native language.
+But, it’s even more difficult when using a second one.
+So let’s see how to avoid design frenglish, itaglish or whateverglish APIs.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;why-should-i-care-about-english&quot;&gt;Why should I care about english&lt;/h1&gt;
+
+&lt;p&gt;Your API is public, well unless your a government that MUST use local language because of some law, use english.
+Why?
+English is the lingua franca of software.
+Using it will make your API easily understandable by most people using APIs on earth.
+That’s quite a huge market you don’t want to miss.&lt;/p&gt;
+
+&lt;p&gt;Your API is private?
+My very first post was about &lt;a href=&quot;https://apihandyman.io/why-you-must-design-your-private-api-in-english/&quot;&gt;why (private) APIs should be designed in English&lt;/a&gt;.
+To make it short: your private API will not be private forever, so better use english just like for public APIs.&lt;/p&gt;
+
+&lt;p&gt;Ok, APIs MUST be design in english, but why should we really care about translations?
+Well, it would be a pity to ruin the success of your API just because people actually don’t understand what it is talking about.
+And once your API is consumed … it will be hard to fix its awkward whateverglish design.
+So you better take care about english translation.&lt;/p&gt;
+
+&lt;h1 id=&quot;when-should-i-use-english-during-design-process&quot;&gt;When should I use english during design process&lt;/h1&gt;
+
+&lt;p&gt;In order to avoid loosing time when designing an API, I use the following path:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Analyse needs and decompose them to identify a list of goals/jobs to be done, the function that will compose the API using natural language and native language&lt;/li&gt;
+  &lt;li&gt;Identify business concepts (resource) and action that apply to them (still using natural language and native language)&lt;/li&gt;
+  &lt;li&gt;Translate the business concepts and action in english&lt;/li&gt;
+  &lt;li&gt;Design resource paths (in english) and choose HTTP methods corresponding to actions&lt;/li&gt;
+  &lt;li&gt;Model data in native language&lt;/li&gt;
+  &lt;li&gt;Translate data in English&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;It’s the actual method I describe in my book that allows to avoid HTTP heated discussion while investigating needs, I just added extra steps for translation.
+The idea is the same, keeping the translation complexity AFTER the actual need investigation and design in order to avoid being polluted during that very important steps.
+It’s easier to think and discuss using a language you master than English.&lt;/p&gt;
+
+&lt;h1 id=&quot;api-design-translation-tips--tricks&quot;&gt;API Design translation tips &amp;amp; tricks&lt;/h1&gt;
+
+&lt;p&gt;Here are a few tips and tricks that should help you avoid terrible translation mistakes.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-us-english&quot;&gt;Use US english&lt;/h2&gt;
+
+&lt;p&gt;The lingua franca of software is not just “English”, but US English, don’t forget that during translation.&lt;/p&gt;
+
+&lt;h2 id=&quot;hire-professional-translators&quot;&gt;Hire professional translators&lt;/h2&gt;
+
+&lt;p&gt;For public APIs, if you’re not sure about your english, don’t think to much: hire professional translators.
+For private APIs, that could be overkill but remember that sooner or later &lt;a href=&quot;https://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/&quot;&gt;your private APIs mays become public&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;take-advantage-of-more-or-less-official-translations&quot;&gt;Take advantage of more or less official translations&lt;/h2&gt;
+
+&lt;p&gt;If you’re lucky enough you can find official translations for your domain.
+You could take advantage of glossary but also be inspired by existing APIs or standard.
+For instance, if you work in banking/finance, you should take a look at the ISO20022 standard.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-online-dictionary-wisely&quot;&gt;Use online dictionary wisely&lt;/h2&gt;
+
+&lt;p&gt;Unfortunately, you won’t always find the ready to use translation and you’ll have to use one of the many online your language to english dictionaries.
+But depending on the one you use and how you use it, the result may not be as good as expected.
+Here’s how I proceed:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;I translate full sentences giving more context about the words I want to translate, using either https://www.linguee.fr/ (beware of the translations examples coming from non-english websites shown in Linguee’s results) and https://www.deepl.com/ (from the Linguee creator, pretty good one).&lt;/li&gt;
+  &lt;li&gt;I check the definition of the english word found using a US English dictionary such as https://www.lexico.com/. If you don’t do that, you may have some really bad surprises&lt;/li&gt;
+  &lt;li&gt;I do a final check by looking for the word I found using Google. Reading documents using the found word can help to choose between various options&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;As you can see, the idea is to never, ever just rely on word for word translation.&lt;/p&gt;
+
+&lt;h2 id=&quot;translate-or-not-acronyms&quot;&gt;Translate (or not) acronyms&lt;/h2&gt;
+
+&lt;p&gt;There are two types of acronyms, the ones that can be translated and the ones that can’t.
+For instance, in french we use TVA for “Taxe sur la Valeur Ajoutée”, which can easily be translated into “Value Added Tax”, giving the VAT acronym.
+VAT is being a well know acronym, across many countries, you can actually use it in your API design instead of TVA.&lt;/p&gt;
+
+&lt;p&gt;But what about more specific concepts that only exists in your country?
+I’w working with teams creating APIs in the employee savings domain.
+This domain deals with highly specific concept; the PERCO, “Plan d’Epargne pour la Retraite COllectif”, for instance.
+If I translate this literally, I get “Group Retirement Savings Plan” or GRSP … which means nothing for people outside of France AND for french people.
+In that case, it would be better to keep the french acronym in the design, adding a description might help non french people to understand what this means.&lt;/p&gt;
+
+&lt;p&gt;But just think about this last option: not using this highly specific acronym?
+Could it be replaced by a more generic word like “saving plan”?
+This is not something that will always work, but it’s worth the try because keeping acronym that are specific to your country could be a burden for your design and annoy many users.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">This post is dedicated to all English as a Second, or Foreign, Language (ESL, EFL) API designers. Et tout spécialement mes compatriotes français! Designing APIs is already not that easy when you design them using your native language. But, it’s even more difficult when using a second one. So let’s see how to avoid design frenglish, itaglish or whateverglish APIs.</summary></entry><entry><title type="html">We Need Specialized Tools For Api Design Reviews</title><link href="https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews/" rel="alternate" type="text/html" title="We Need Specialized Tools For Api Design Reviews" /><published>2021-10-06T00:00:00-05:00</published><updated>2021-10-06T00:00:00-05:00</updated><id>https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews</id><content type="html" xml:base="https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews/">&lt;p&gt;Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract.
 Use the wrong tools to do so, and reviews will become a terrible, never-ending burden.
 Use the right tools, and you’ll become a formidable machine, doing reviews at light speed, never missing the tiniest problem or question.
 But, after dozens of reviews, you may realize that, despite using the “right” existing tools, the API space actually lacks API design reviews specialized tools.
@@ -1940,178 +2028,4 @@ I also used various emojis to “type” the actions to do:&lt;/p&gt;
 &lt;h1 id=&quot;heading-to-next-problem&quot;&gt;Heading to next problem&lt;/h1&gt;
 
 &lt;p&gt;With all that I was totally satisfied with the style of the session and I was as comfortable as delivering a regular slide deck session thanks to my speaker’s note.
-In next post, I’ll show you how I was able to code at light speed.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Third post about my first ever (recorded) live coding session given at the Manning API conference. In previous post, I encountered various problems. Two of them were related to not delivering the session like one of my regular slide deck presentation. I wanted to add titles and have speaker’s notes. In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic.</summary></entry><entry><title type="html">Surviving My First Recorded Live Coding Session Part 2</title><link href="https://apihandyman.io/preparing-session-content-and-realizing-its-not-working-well/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 2" /><published>2021-08-11T00:00:00-05:00</published><updated>2021-08-11T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-2</id><content type="html" xml:base="https://apihandyman.io/preparing-session-content-and-realizing-its-not-working-well/">&lt;p&gt;Second post about my first ever (recorded) live coding session.
-So, here I was in my &lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/&quot;&gt;previous post&lt;/a&gt;: ready to record myself coding and talking without any slides…
-But I didn’t told the whole story, I actually struggled a lot before actually being able to record myself coding and talking.
-In the beginning, I had planned to do far more stuff and differently than what people had seen.
-In this post, I’ll talk about how I prepared content and realized that it was not working well.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;div class=&quot;card series-toc&quot;&gt;
-  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
-    &lt;h5 id=&quot;series&quot;&gt;Surviving my first (recorded) live coding session Series&lt;/h5&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;row series-toc_content&quot;&gt;
-    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
-      &lt;div class=&quot;card-body&quot;&gt;
-        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API conference: &lt;a href=&quot;/supercharge-openapi-to-efficiently-describe-apis/&quot;&gt;Supercharge OpenAPI to efficiently describe APIs (click to what it!)&lt;/a&gt;.
-It was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
-The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
-This post series aim to share all what I’ve learned preparing this session.&lt;/p&gt;
-
-&lt;div class=&quot;alert alert-info&quot;&gt;&lt;h4 class=&quot;alert-heading&quot;&gt;Spoiler alert!&lt;/h4&gt;&lt;hr /&gt;
-&lt;p&gt;You can get all VS Code stuff explained in this series in my &lt;a href=&quot;https://github.com/arno-di-loreto/supercharged-openapi&quot;&gt;supercharged-openapi&lt;/a&gt; github repository.
-It is the one that I actually used during the session.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
-      
-      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/&quot;&gt;1 - Setting up everything to record myself coding and talking&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item active&quot;&gt;2 - Preparing session content and realizing it's not working well&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/live-coding-at-light-speed-with-vs-code/&quot;&gt;4 - Live coding at light speed with VS Code&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code&lt;/a&gt;&lt;/li&gt;
-          
-        
-        
-          
-          
-          
-        
-          
-          
-          
-        
-          
-          
-          
-        
-          
-          
-          
-        
-      &lt;/ul&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;preparing-content-almost-as-usual&quot;&gt;Preparing content almost as usual&lt;/h1&gt;
-
-&lt;p&gt;I actually worked on the content before tinkering with OBS, VS Code and all other stuff.
-I treated this session’s content almost like I usually do for my regular slides-based talks.&lt;/p&gt;
-
-&lt;p&gt;Usually, I list the topics I want to talk about and then sort them in order to tell a story with a beginning and an end.
-I go deeper into the story by writing a detailed table of content.
-Then I write my full speech exactly as I will say it.
-It need to be precise because (Fr)English is a second language for me and I want to avoid stumble on words.
-After that, I do the slides using a (pop culture) theme that usually had popped in my mind while working on topics, toc or speech.&lt;/p&gt;
-
-&lt;p&gt;Here, the topics were the OpenAPI Specification features and tools I wanted to show.
-Building the story was made first by organizing the features in two categories: interface contract features and documentation features.
-Then in each category, I sorted the features from simple/beginner to complex/advanced.
-I added some extra entries in both categories to showcase various tools. 
-With that, I had my table of content.&lt;/p&gt;
-
-&lt;p&gt;Then instead of writing my speech, I wrote an OpenAPI file adding each feature one by one.
-I had to think about an example. 
-I wanted to keep things simple in order to have a simple CRUD API, but as always I added some pop culture reference … and ended with the Masters of the Universe API, an API providing information about characters and toys from the franchise.&lt;/p&gt;
-
-&lt;p&gt;The OpenAPI file did not came right at first try, I had to rework it several times.
-I improved it while working the “how to show that”, but it was more complicated than expected.
-Indeed, my original plan for “how to show that” had not worked well.&lt;/p&gt;
-
-&lt;h1 id=&quot;too-much-too-complicated-a-bit-off-topic&quot;&gt;Too much, too complicated, a bit off topic&lt;/h1&gt;
-
-&lt;p&gt;The plan was to write the OpenAPI document using &lt;a href=&quot;https://stoplight.io/studio/&quot;&gt;Stoplight Studio&lt;/a&gt;, not for its GUI feature that allows to NOT write OpenAPI code (and that I use everyday).&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/preparing-session-content-and-realizing-its-not-working-well/stoplight-studio.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;But because it provides a cool renderer that updates itself smartly as you write code.
-Indeed when using renderers such as &lt;a href=&quot;https://github.com/Redocly/redoc&quot;&gt;Redoc&lt;/a&gt; or &lt;a href=&quot;https://github.com/swagger-api/swagger-ui&quot;&gt;Swagger UI&lt;/a&gt;, even embedded in VS Code (using the really good &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi&quot;&gt;42 Crunch OpenAPI Editor extension&lt;/a&gt;), the experience is not so good.
-For instance in Swagger UI, if you had opened an operation and selected the schema panel, modify something and the page is reloaded, still on the operation but you’ll have to re-switch to schema panel yourself.
-There’s no such problem in Studio.&lt;/p&gt;
-
-&lt;p&gt;I also wanted to show how the API I was designing would work.&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/preparing-session-content-and-realizing-its-not-working-well/postman.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Studio comes with an embedded mock server powered by &lt;a href=&quot;https://stoplight.io/open-source/prism/&quot;&gt;Stoplight Prism&lt;/a&gt;.
-Prism is quite cool, feed it an OpenAPI file and it will magically generate a (basic) API mock server simulating the API described in the OpenAPI file.
-The idea was to call this mocked API in &lt;a href=&quot;https://www.postman.com/&quot;&gt;Postman&lt;/a&gt; one of the best API GUI playground out there.&lt;/p&gt;
-
-&lt;p&gt;I made a few test, writing code in Studio, importing the created OpenAPI file in Postman so it generated a ready to use collection targeting the Prism mock.
-Mostly to showcase various ways of using an OpenAPI document.&lt;/p&gt;
-
-&lt;p&gt;While all those tools are great and all this actually worked … it was too long, too complicated to switch between tools.
-And on top of that, my research for the best zoom level to use in order to keep code readable ended with being unable to have both code and rendering visible in Studio.
-All that actually helped me realized that I was probably also going a bit off topic in the way of presenting things.&lt;/p&gt;
-
-&lt;h1 id=&quot;focusing-on-the-real-topic&quot;&gt;Focusing on the real topic&lt;/h1&gt;
-
-&lt;p&gt;What I wanted to show was more the OpenAPI Specification itself and its inner possibilities rather than showing tools using it just to show them using it.
-I needed to focus on the real topic of the session and do that efficiently using tools only to showcase the features I was using.&lt;/p&gt;
-
-&lt;p&gt;So, that’s why I chose to&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Use only &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;VS Code&lt;/a&gt;, showing only OpenAPI code most of the time without anything else&lt;/li&gt;
-  &lt;li&gt;Show rendering with &lt;a href=&quot;https://github.com/Redocly/redoc&quot;&gt;Redoc&lt;/a&gt; or &lt;a href=&quot;https://github.com/swagger-api/swagger-ui&quot;&gt;Swagger UI&lt;/a&gt; only when actually needed (using &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi&quot;&gt;42 Crunch OpenAPI Editor extension&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Use &lt;a href=&quot;https://stoplight.io/open-source/prism/&quot;&gt;Stoplight Prism&lt;/a&gt; and &lt;a href=&quot;https://httpie.io/&quot;&gt;httpie&lt;/a&gt; in VS Code embedded terminal only to illustrate OpenAPI features I was actually using with dummy API calls&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;That way I was able to do everything inside VS Code with a clean (but stylish, see &lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/&quot;&gt;previous post&lt;/a&gt;) interface focusing on code.&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/preparing-session-content-and-realizing-its-not-working-well/code-only.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Being able to open two terminals side by side revealed to be convenient when comparing API calls result to talk about inconsistencies.&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/preparing-session-content-and-realizing-its-not-working-well/two-terminals.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;still-not-working-well-and-terrible-new-idea&quot;&gt;Still not working well and terrible new idea&lt;/h1&gt;
-
-&lt;p&gt;But even taking those decisions, it was still hard to deliver the session smoothly and in the given time frame.
-There was still probably too much content.
-Also, it was taking me an awfully long time to type everything or do copy/paste and fix indentation.
-I was struggling to switch between writing code and going to the terminal.&lt;/p&gt;
-
-&lt;p&gt;I realized that I was often forgetting things to do or not doing them the right way.
-During a rehearsal that was starting very well, I lost all my means because I forget to do a modification and so was totally puzzled, not understanding at all why it was not working suddenly.&lt;/p&gt;
-
-&lt;p&gt;It was not going well and as it was difficult to work on specific sections of the sessions to train myself or improve the content, I was starting to loose my temper and my confidence.&lt;/p&gt;
-
-&lt;p&gt;And as if I didn’t have enough problems, I had a terrible new idea.
-I was really missing having titles like on my slides.
-I feared attendees would be lost without visual indication about what was happening.
-I decided to do something about that.&lt;/p&gt;
-
-&lt;p&gt;In the next posts, I’ll explain how I solved all those problems.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Second post about my first ever (recorded) live coding session. So, here I was in my previous post: ready to record myself coding and talking without any slides… But I didn’t told the whole story, I actually struggled a lot before actually being able to record myself coding and talking. In the beginning, I had planned to do far more stuff and differently than what people had seen. In this post, I’ll talk about how I prepared content and realized that it was not working well.</summary></entry></feed>
+In next post, I’ll show you how I was able to code at light speed.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Third post about my first ever (recorded) live coding session given at the Manning API conference. In previous post, I encountered various problems. Two of them were related to not delivering the session like one of my regular slide deck presentation. I wanted to add titles and have speaker’s notes. In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic.</summary></entry></feed>
