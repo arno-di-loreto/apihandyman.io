@@ -1,4 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-10-20T07:11:58-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Excuse my French API, or being an English as a second language API designer</title><link href="https://apihandyman.io/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer/" rel="alternate" type="text/html" title="Excuse my French API, or being an English as a second language API designer" /><published>2021-10-13T00:00:00-05:00</published><updated>2021-10-13T00:00:00-05:00</updated><id>https://apihandyman.io/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer</id><content type="html" xml:base="https://apihandyman.io/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer/">&lt;p&gt;This post is dedicated to all English as a Second, or Foreign, Language (ESL, EFL) API designers. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-10-20T12:55:49-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Anarchy in the resource path</title><link href="https://apihandyman.io/anarchy-in-the-resource-path/" rel="alternate" type="text/html" title="Anarchy in the resource path" /><published>2021-10-20T00:00:00-05:00</published><updated>2021-10-20T00:00:00-05:00</updated><id>https://apihandyman.io/anarchy-in-the-resource-path</id><content type="html" xml:base="https://apihandyman.io/anarchy-in-the-resource-path/">&lt;p&gt;While doing API design reviews and API design training sessions, I often see resource paths designed in an anarchic way.
+By anarchic, I mean their various levels seem to have been chosen randomly or some of them seem at awkward places. 
+But why should such paths should be considered wrong?
+Let’s see a few examples of how to not design resource paths to talk about it.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-a-resource-and-a-path&quot;&gt;What is a resource and a path&lt;/h1&gt;
+
+&lt;p&gt;In a REST API, a path like &lt;code&gt;/this/is/a/path&lt;/code&gt; identifies a unique resource and this resource will be manipulated thought standard HTTP methods.
+A &lt;code&gt;GET /this/is/a/path&lt;/code&gt; means “read that resource” and &lt;code&gt;DELETE /this/is/a/path&lt;/code&gt; means delete that resource.
+But beyond that HTTP-esque description, a resource is supposed to represent a business concept.&lt;/p&gt;
+
+&lt;p&gt;A business concept could be an easily identifiable object or list of objects such as “user’s accounts”, or “an account”, or “an account’s transactions” in a banking API.
+But sometimes, they’re not such obviously identifiable business objects, they could be processes like “user verification” or “loan simulation”.
+Whatever their nature, these business concepts must be represented by a meaningful and easy to interpret path.
+That seems an obvious platitude right?&lt;/p&gt;
+
+&lt;h1 id=&quot;anarchic-paths&quot;&gt;Anarchic paths&lt;/h1&gt;
+
+&lt;p&gt;Well, not quite.
+Sometimes, during my API design reviews or training sessions,  I encounter paths that are not meaningful or not easy to interpret at all.
+Here’s a selection of what I’ve seen.&lt;/p&gt;
+
+&lt;h2 id=&quot;rpc-path&quot;&gt;RPC path&lt;/h2&gt;
+
+&lt;p&gt;During my API Design 101 training session, the attendees work on a very simple but deadly use case: a product catalog.
+An exercise consists in designing a path for the “catalog” and the “product” business concepts (or resources).
+The only requirement is ensuring that each path allows to identify each resource in a unique way, some examples such as &lt;code&gt;/path&lt;/code&gt;, &lt;code&gt;/another/path&lt;/code&gt;, &lt;code&gt;/with/a/{variable}&lt;/code&gt; or &lt;code&gt;/{variable}/in/path&lt;/code&gt; are provided to help attendees understand the vast possibilities.&lt;/p&gt;
+
+&lt;p&gt;And more often than not, one of the attendee designs an “RPC path” such as &lt;code&gt;/read/product/{productId}&lt;/code&gt;; I actually wait for that eagerly.
+That allows me to stress and remind the fact that in a REST API, path are not there to literally represent the “functions” identified to fulfil a use case.
+In a REST API, a “function” is represented by an HTTP method + a resource path, and that is not totally intuitive for beginner API designers.&lt;/p&gt;
+
+&lt;p&gt;Fixing that is usually quite simple, just remove the “function part” of the path, but ensure that what is left is an actual business concept and the path is actually a good representation of it.&lt;/p&gt;
+
+&lt;h2 id=&quot;stacked-path-parameters&quot;&gt;Stacked path parameters&lt;/h2&gt;
+
+&lt;p&gt;Often but not always linked to RPC path, I often encounter path containing a stack of path parameters, &lt;code&gt;/getTransactions/{from}/{to}/{accountId}&lt;/code&gt; or &lt;code&gt;/transactions/{from}/{to}/{accountId}&lt;/code&gt; for instance.
+In the first case, it is just a variation of previous case, but fixing it (hence removing the “get”) just leads to the second one.
+This paths seems to represent the transactions of an account identified by its id (&lt;code&gt;accountId)&lt;/code&gt; between two dates (&lt;code&gt;from&lt;/code&gt; and &lt;code&gt;to&lt;/code&gt;).
+Note that I can guess that because &lt;code&gt;from&lt;/code&gt; and &lt;code&gt;to&lt;/code&gt; are fairly common names in such case and probably does not mean “from something to something that is not a date”.
+I could be wrong, but the risk is low.
+So what’s the problem?&lt;/p&gt;
+
+&lt;p&gt;If we take for granted that filters on collections (lists) are mostly done using query parameters, this current form is the usual sign of “I don’t know there’s something called query parameters” (and maybe also a sign of “I generated my spec from code” by the way).
+The most common representations used in such a case would be just &lt;code&gt;/transactions&lt;/code&gt; (the list of transactions) and would be used like this &lt;code&gt;/transactions?accountId={accountId}&amp;amp;from={from}&amp;amp;to={to}&lt;/code&gt; to filter that list on a subset of elements.&lt;/p&gt;
+
+&lt;p&gt;If you consider that’s is totally normal to use path parameters to filter lists, you have another problem: all of them are mandatory.
+That makes such a path highly specific.
+What if you need to represent “all transactions” or “transactions between two dates”?
+Well, you can add a &lt;code&gt;/transactions&lt;/code&gt; and a &lt;code&gt;/transactions/{from}/{to}&lt;/code&gt;.
+But what if you want all transaction since the beginning of time to a given date?
+What if you need to filter transactions on their type?
+You’ll have to add new paths, many of them if you want to handle all possible combinations.
+And all that to just represent various subsets of “transactions”.
+Doing that will only make you API complex; better just say there are &lt;code&gt;/transactions&lt;/code&gt; and manage all possible filters as query params, that will help you and your consumers keep sanity.&lt;/p&gt;
+
+&lt;p&gt;And if you want to make &lt;code&gt;accountId&lt;/code&gt; a required filter, read &lt;a href=&quot;/what-s-the-problem-with-required-query-parameters/&quot;&gt;What’s the problem with required query parameters?&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;reverse-hierarchical-organization&quot;&gt;Reverse hierarchical organization&lt;/h2&gt;
+
+&lt;p&gt;The previous example can also be a sign of “I don’t know that a path represents a hierarchy”.
+You’ll see it more clearly with this example: &lt;code&gt;/transactions/accounts/{accountId}&lt;/code&gt;.
+I often see this, it is supposed to represent “an account’s transactions”.
+But this path literally describes “a list of transactions containing a list of accounts, each account being identified by accountId”. 
+The correct path is &lt;code&gt;/accounts/{accountId}/transactions&lt;/code&gt;, a path is read from left to right (in english), the last element (&lt;code&gt;/transactions&lt;/code&gt;) describing the actual resource (a list of transactions).&lt;/p&gt;
+
+&lt;h2 id=&quot;unclear-relationships&quot;&gt;Unclear relationships&lt;/h2&gt;
+
+&lt;p&gt;Another example I often get during my API design 101 training session: &lt;code&gt;/catalog&lt;/code&gt; vs /product/{productId}&lt;code&gt;.
+If we take for granted that a &quot;catalog&quot; is just a list of &quot;product&quot;, we don't really see the connection between those two.
+I would prefer a more consistent representation relying on hierarchy and represent them as &lt;/code&gt;/products&lt;code&gt; and &lt;/code&gt;/products/{productId}`.
+You get the single element by just adding it’s id to the path representing its parent list.&lt;/p&gt;
+
+&lt;h2 id=&quot;inconsistency-between-list-and-single-elements&quot;&gt;Inconsistency between list and single elements&lt;/h2&gt;
+
+&lt;p&gt;And if you think that the solution is &lt;code&gt;/products&lt;/code&gt; vs /product/{productId}`, read &lt;a href=&quot;/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/&quot;&gt;/resources rules and /resource sucks … or is it the other way around?&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;my-rule-of-thumb&quot;&gt;My rule of thumb&lt;/h1&gt;
+
+&lt;p&gt;A good path represents a business concept, such as “resource”, and not an action, such as “read resource”.&lt;/p&gt;
+
+&lt;p&gt;A good path not only relies on semantic, choosing the right words, but also on organization.
+A good path must represent a hierarchy, last elements describing the actual resource: &lt;code&gt;/resources/{resourceId}/sub-resources&lt;/code&gt; is a “sub resources” and not a “resources”.&lt;/p&gt;
+
+&lt;p&gt;A list’s good path represents all possible subsets, taking advantage of query params to get only specif elements.
+If &lt;code&gt;/resources&lt;/code&gt; represents “all resources”, it can also represent “resources of type X” with &lt;code&gt;/resources?type=X&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Good paths help together to understand how they are related and are guessable.
+They must take advantage of hierarchy: &lt;code&gt;/resources&lt;/code&gt; contains &lt;code&gt;/resources/{resourceId}&lt;/code&gt; which contains &lt;code&gt;/resources/{resourceId}/sub-resources&lt;/code&gt;.
+You can easily guess how to address parent from child and reverse.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">While doing API design reviews and API design training sessions, I often see resource paths designed in an anarchic way. By anarchic, I mean their various levels seem to have been chosen randomly or some of them seem at awkward places. But why should such paths should be considered wrong? Let’s see a few examples of how to not design resource paths to talk about it.</summary></entry><entry><title type="html">Excuse my French API, or being an English as a second language API designer</title><link href="https://apihandyman.io/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer/" rel="alternate" type="text/html" title="Excuse my French API, or being an English as a second language API designer" /><published>2021-10-13T00:00:00-05:00</published><updated>2021-10-13T00:00:00-05:00</updated><id>https://apihandyman.io/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer</id><content type="html" xml:base="https://apihandyman.io/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer/">&lt;p&gt;This post is dedicated to all English as a Second, or Foreign, Language (ESL, EFL) API designers. 
 Et tout spécialement mes compatriotes français!
 Designing APIs is already not that easy when you design them using your native language.
 But, it’s even more difficult when using a second one.
@@ -1618,414 +1708,4 @@ But that’s a story you’ll see in next and final post of this Surviving my fi
 On y parle de lavabo, de mon livre (The Design of Web APIs, en anglais lui) mais aussi et surtout de design d’API, de sécurité, cycle de vie et gestion des erreurs.
 Toutes ces choses auxquelles il faut penser pour faire de bonnes API Web.&lt;/p&gt;
 
-&lt;!--more--&gt;</content><author><name>Stéphane Beuret &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">C’est avec un grand plaisir que j’ai répondu à l’invitation de Stéphane Beuret pour parler d’API (en français pour une fois) dans son podcast Electro Monkeys. On y parle de lavabo, de mon livre (The Design of Web APIs, en anglais lui) mais aussi et surtout de design d’API, de sécurité, cycle de vie et gestion des erreurs. Toutes ces choses auxquelles il faut penser pour faire de bonnes API Web.</summary></entry><entry><title type="html">Surviving My First Recorded Live Coding Session Part 3</title><link href="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/" rel="alternate" type="text/html" title="Surviving My First Recorded Live Coding Session Part 3" /><published>2021-08-18T00:00:00-05:00</published><updated>2021-08-18T00:00:00-05:00</updated><id>https://apihandyman.io/surviving-my-first-recorded-live-coding-session-part-3</id><content type="html" xml:base="https://apihandyman.io/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/">&lt;p&gt;Third post about my first ever (recorded) live coding session given at the Manning API conference.
-In &lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;previous post&lt;/a&gt;, I encountered various problems.
-Two of them were related to not delivering the session like one of my regular slide deck presentation.
-I wanted to add titles and have speaker’s notes.
-In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;div class=&quot;card series-toc&quot;&gt;
-  &lt;div class=&quot;card-header series-toc-title&quot;&gt;
-    &lt;h5 id=&quot;series&quot;&gt;Surviving my first (recorded) live coding session Series&lt;/h5&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;row series-toc_content&quot;&gt;
-    &lt;div class=&quot;col-md-7 series-toc-summary&quot;&gt;
-      &lt;div class=&quot;card-body&quot;&gt;
-        &lt;p class=&quot;card-text&quot;&gt;&lt;p&gt;I did my first ever (recorded) live coding session at the Manning API conference: &lt;a href=&quot;/supercharge-openapi-to-efficiently-describe-apis/&quot;&gt;Supercharge OpenAPI to efficiently describe APIs (click to what it!)&lt;/a&gt;.
-It was about the OpenAPI Specification, how to use it efficiently when designing and documenting API.
-The idea was to write an OpenAPI Specification document and show the spec basic to advanced features, tips and tricks and use a few tools around all that.
-This post series aim to share all what I’ve learned preparing this session.&lt;/p&gt;
-
-&lt;div class=&quot;alert alert-info&quot;&gt;&lt;h4 class=&quot;alert-heading&quot;&gt;Spoiler alert!&lt;/h4&gt;&lt;hr /&gt;
-&lt;p&gt;You can get all VS Code stuff explained in this series in my &lt;a href=&quot;https://github.com/arno-di-loreto/supercharged-openapi&quot;&gt;supercharged-openapi&lt;/a&gt; github repository.
-It is the one that I actually used during the session.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-md-5 series-toc-list&quot;&gt;
-      
-      &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/&quot;&gt;1 - Setting up everything to record myself coding and talking&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/preparing-session-content-and-realizing-its-not-working-well/&quot;&gt;2 - Preparing session content and realizing it's not working well&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item active&quot;&gt;3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/live-coding-at-light-speed-with-vs-code/&quot;&gt;4 - Live coding at light speed with VS Code&lt;/a&gt;&lt;/li&gt;
-          
-        
-          
-          &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/&quot;&gt;5 - Improving live coding session tuning and rehearsing with VS Code&lt;/a&gt;&lt;/li&gt;
-          
-        
-        
-          
-          
-          
-        
-          
-          
-          
-        
-          
-          
-          
-        
-          
-          
-          
-        
-      &lt;/ul&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;adding-titles-to-avoid-loosing-attendees&quot;&gt;Adding titles to avoid loosing attendees&lt;/h1&gt;
-
-&lt;p&gt;OK, that was not the most important problem, but I care a lot about how my presentations look like: how they can be beautiful but also readable. 
-So though this was a no slides session, I wanted to provide some indications about what was happening.
-I needed to show some title, like “Describe once (EXPERT): Read/Write with same schema”, as I have on my regular slide.
-But this time, I was not showing pre-made slides using Google Slides but coding in VS Code.
-How to add good looking titles in that context?
-By taking advantage of both OBS and VS Code features.&lt;/p&gt;
-
-&lt;h2 id=&quot;showing-titles-above-vs-code&quot;&gt;Showing titles above VS Code&lt;/h2&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/magic.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;In OBS, you can add various sources in a scene, I already had 3 in my MacBook scene:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;An &lt;em&gt;Image&lt;/em&gt; source: the foreground Manning provided to me&lt;/li&gt;
-  &lt;li&gt;A &lt;em&gt;Video Capture Device&lt;/em&gt; source: my webcam (or my IPhone)&lt;/li&gt;
-  &lt;li&gt;A &lt;em&gt;Display Capture&lt;/em&gt; source: my MacBook display cropped on VS Code window titled “Supercharged OpenAPI” (By the way, regarding capturing VS Code, during my tests I also tried the &lt;em&gt;Window Capture&lt;/em&gt; source and was not really satisfied with it. There was a huge lag, especially when I was scrolling.)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;But there are other types of sources, as you can see in the screen capture above, the one that caught my eye when trying to find a solution for my idea was the &lt;em&gt;Browser&lt;/em&gt; source.
-I created a simple &lt;code&gt;index.html&lt;/code&gt; file containing a “WTF it works!” level 1 header in the body (yes, I tend to curse in my code when testing) then started a &lt;a href=&quot;https://www.npmjs.com/package/http-server&quot;&gt;simple web server&lt;/a&gt; in the folder containing that file. 
-In OBS, I added a &lt;em&gt;Browser&lt;/em&gt; source to my MacBook scene.
-In the configuration window, I set up the URL to target &lt;code&gt;http://localhost:8080/index.html&lt;/code&gt;, and set width to 1980 (pixels) and height to 100.
-There’s some custom CSS that comes by default, I didn’t modify it and hit OK.
-Once added, I moved the new source in the scene on top of the zone for my screen and resized it to fit in the reserved space.
-Finally in the “Sources” panel, I renamed the new source to “Title” (by right clicking on it and choosing rename).
-And I reordered the sources to put “Title” in the “Template” folder, putting above the Display Capture Source (the new source hiding the VS Code window title) but below the Image source.&lt;/p&gt;
-
-&lt;p&gt;So I had my title, but it was a static one.&lt;/p&gt;
-
-&lt;h2 id=&quot;updating-titles-poc&quot;&gt;Updating titles POC&lt;/h2&gt;
-
-&lt;p&gt;I thought I could find a configuration to trigger a refresh at regular interval in OBS, but there’s actually no such configuration.
-Hopefully, I remembered that while I was reading some post about useful VS Code extensions, the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer&quot;&gt;Live Server&lt;/a&gt; extension caught my eye.
-This extension allows to start a web server in your workspace and it includes a live refresh out of the box.
-That means a webpage loaded through this web server will be updated automatically in the browser when something change in the workspace.
-So once the extension installed and started, I modified the Browser source configuration in OBS to target this web server, and I was still able to see the “WTF it works!” title.
-Then I modified the HTML file by replacing the title with “WTF it has been updated!”, hit save …
-And the title has been updated in OBS seamlessly!&lt;/p&gt;
-
-&lt;p&gt;Now that my proof of concept (POC) worked, I needed to show the real titles and switch to the next one when needed but without the attendees noticing anything.&lt;/p&gt;
-
-&lt;h2 id=&quot;updating-titles-magically-during-the-session&quot;&gt;Updating titles magically during the session&lt;/h2&gt;
-
-&lt;p&gt;What I did is quite ugly, it’s a very first solution that would deserve to be improved (it will be improved!).
-But it works.
-The solution is based on static files, an ugly shell script, VS Code custom tasks and custom key bindings.&lt;/p&gt;
-
-&lt;h3 id=&quot;first-write-some-ugly-shell&quot;&gt;First, write some ugly shell&lt;/h3&gt;
-
-&lt;p&gt;In a &lt;code&gt;steps&lt;/code&gt; folder, I created sub-folders named &lt;code&gt;step-1&lt;/code&gt; to &lt;code&gt;step-19&lt;/code&gt; (because there were 19 steps in my TOC … at that time) and then put an &lt;code&gt;index.html&lt;/code&gt; file in each one.
-Obviously, each file contained the title to be shown at each step (title coming from my TOC).&lt;/p&gt;
-
-&lt;p&gt;Then I wrote the ugliest possible bash script named &lt;code&gt;next.sh&lt;/code&gt; (in &lt;code&gt;steps&lt;/code&gt;).
-In its most basic version, this script did the following:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Checking if a &lt;code&gt;current.txt&lt;/code&gt; file exists, if not creating it and putting &lt;code&gt;0&lt;/code&gt; in it&lt;/li&gt;
-  &lt;li&gt;Reading the &lt;code&gt;current.txt&lt;/code&gt; file, adding &lt;code&gt;1&lt;/code&gt; to its value and updating it&lt;/li&gt;
-  &lt;li&gt;Copying the content of &lt;code&gt;step-{new value}&lt;/code&gt; to workspace root&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Afterward, I added some controls to do nothing and output some warning when the next step actually doesn’t exist in the &lt;code&gt;steps&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;The ugly next.sh script&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0 code-expandcollapse-btn&quot; aria-label=&quot;expand or shrink&quot; onclick=&quot;expandCollapseCode(this)&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Expand/Shrink&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/maximize.svg&quot; /&gt;&lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-bash line-numbers code-collapsed code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;# That&amp;#39;s a trick I use in all my shell script
-# To get the script actual folder
-SCRIPT_DIR=&amp;quot;$( cd &amp;quot;$( dirname &amp;quot;${BASH_SOURCE[0]}&amp;quot; )&amp;quot; &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;&amp;amp; pwd )&amp;quot;
-
-# Setting root dir and current.txt variables
-ROOT_DIR=$SCRIPT_DIR/..
-CURRENT_FILE=$SCRIPT_DIR/current.txt
-
-# If current.txt doesn&amp;#39;t exist, creating it
-if [[ -f $CURRENT_FILE ]]
-then
-    echo &amp;quot;not first step&amp;quot;
-else
-    echo &amp;quot;first step&amp;quot;
-    echo &amp;quot;0&amp;quot; &amp;gt; $CURRENT_FILE
-fi
-
-# Adding 1 to current.txt value
-CURRENT_STEP=`cat $CURRENT_FILE`
-CURRENT_STEP=$((CURRENT_STEP+1))
-CURRENT_DIR=&amp;quot;$SCRIPT_DIR/step-$CURRENT_STEP&amp;quot;
-echo $CURRENT_STEP &amp;gt; $CURRENT_FILE
-echo &amp;quot;step $CURRENT_STEP, DIR $CURRENT_DIR&amp;quot;
-
-# Checking the next step actually exists
-if [[ -d &amp;quot;$CURRENT_DIR&amp;quot; ]]
-then
-    # Copying everything in step-X folder to root folder
-    echo &amp;quot;step exists&amp;quot;
-    cp &amp;quot;$CURRENT_DIR&amp;quot;/* &amp;quot;$ROOT_DIR&amp;quot;
-else
-    echo &amp;quot;no more steps&amp;quot;
-fi&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;So, running the &lt;code&gt;steps/next.sh&lt;/code&gt; script (don’t forget to &lt;code&gt;chmod u+x&lt;/code&gt; it, like I always do) I could change title from step X to step X+1.&lt;br /&gt;
-But how to run this script while doing the session?
-I couldn’t open a terminal and run it when needed, that wouldn’t be very convenient.&lt;/p&gt;
-
-&lt;h3 id=&quot;second-automate-with-vs-code-task&quot;&gt;Second, automate with VS Code task&lt;/h3&gt;
-
-&lt;p&gt;Hopefully, I already partially knew how to solve that because in order to optimize my Jekyll workspace for the apihandyman.io blog I use &lt;a href=&quot;https://code.visualstudio.com/docs/editor/tasks#_custom-tasks&quot;&gt;VS Code Custom tasks&lt;/a&gt; to run bach scripts.
-So I created a &lt;code&gt;.vscode&lt;/code&gt; folder (its the standard folder holding VS Code stuff) and added the following &lt;code&gt;tasks.json&lt;/code&gt; file. 
-This file define the custom tasks that will be available when this workspace/folder is opened in VS Code.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;.vscode/tasks.json&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-json line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;{
-  &amp;quot;version&amp;quot;: &amp;quot;2.0.0&amp;quot;,
-  &amp;quot;tasks&amp;quot;: [
-    {
-      &amp;quot;label&amp;quot;: &amp;quot;Next step&amp;quot;,
-      &amp;quot;type&amp;quot;: &amp;quot;shell&amp;quot;,
-      &amp;quot;command&amp;quot;: &amp;quot;steps/next.sh&amp;quot;,
-      &amp;quot;presentation&amp;quot;: {
-        &amp;quot;reveal&amp;quot;: &amp;quot;never&amp;quot;,
-        &amp;quot;panel&amp;quot;: &amp;quot;shared&amp;quot;
-      },
-      &amp;quot;problemMatcher&amp;quot;: []
-    }
-  ]
-}&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Now instead of opening a terminal and typing a command line to run the script, I could open VS Code command palette (&lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;P&lt;/kbd&gt; on MacOs or &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;P&lt;/kbd&gt; on Windows) and choose &lt;code&gt;Tasks: Run task&lt;/code&gt;, then choose the “Next step” one.
-That actually runs the shell command &lt;code&gt;steps/next.sh&lt;/code&gt; and that is done silently thanks to the &lt;code&gt;presentation.reveal: never&lt;/code&gt;.
-In the beginning, I actually set &lt;code&gt;presentation.reveal: always&lt;/code&gt; to be sure that something was actually happening.
-That’s better but still cumbersome, I didn’t want people watching me do that even if that’s really quick.&lt;/p&gt;
-
-&lt;h3 id=&quot;third-add-a-little-bit-of-shortcut-magic&quot;&gt;Third, add a little bit of shortcut magic&lt;/h3&gt;
-
-&lt;p&gt;VS Code allows to customize keyboard shortcuts and even define ones to trigger tasks (check &lt;a href=&quot;https://code.visualstudio.com/docs/editor/tasks#_binding-keyboard-shortcuts-to-tasks&quot;&gt;documentation here&lt;/a&gt;).
-Note that unlike tasks that can be configured locally inside a workspace/folder, key bindings are only defined globally.&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/shortcuts.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;To show shortcuts configuration use &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;K&lt;/kbd&gt;&lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;S&lt;/kbd&gt; on MacOs or &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;K&lt;/kbd&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;S&lt;/kbd&gt; on Windows.
-Then click on the file icon on top right corner to see the json content of your custom configuration (&lt;code&gt;keybindings.json&lt;/code&gt; file).&lt;/p&gt;
-
-&lt;p&gt;In order to trigger my “Next step” task when typing &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;m&lt;/kbd&gt;, I modified my configuration as follow:&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;keybindings.json&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-json line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;// Place your key bindings in this file to override the defaults
-[
-    {
-        &amp;quot;key&amp;quot;: &amp;quot;ctrl+m&amp;quot;,
-        &amp;quot;command&amp;quot;: &amp;quot;workbench.action.tasks.runTask&amp;quot;,
-        &amp;quot;args&amp;quot;: &amp;quot;Next step&amp;quot;
-    }
-]&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Note that before choosing &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;m&lt;/kbd&gt;, I actually tested a few other shortcuts before finding one that was not already used.
-To check if a key binding already exists, type it in the text field above the lists as shown in the screenshot above.&lt;/p&gt;
-
-&lt;p&gt;That way, I could be like “blah blah blah, and now &lt;em&gt;next topic&lt;/em&gt;” … while magically changing the title with &lt;kbd&gt;ctrl&lt;/kbd&gt;&lt;kbd&gt;m&lt;/kbd&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;styling-titles&quot;&gt;Styling titles&lt;/h2&gt;
-
-&lt;p&gt;I could change my title but it was simple black text on white background, I wanted something with more style and if possible matching VS Code Style.
-Hopefully, while configuring VS Code to use the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=webrender.synthwave-x-fluoromachine&quot;&gt;Synthwave x Fluoromachine theme&lt;/a&gt;, I discovered that VS Code theming relies on good old CSS and that this theme CSS was located in &lt;code&gt;$HOME/.vscode/extensions/webrender.synthwave-x-fluoromachine-0.0.12/synthwave-x-fluoromachine.css&lt;/code&gt;.
-I copy/pasted the file’s content into a &lt;code&gt;index.css&lt;/code&gt; file in my workspace and added it to my index.html files then used some css classes defined for this theme: &lt;code&gt;monaco-editor&lt;/code&gt; on body then &lt;code&gt;mtk6&lt;/code&gt;, &lt;code&gt;mtk7&lt;/code&gt; and &lt;code&gt;mtk8&lt;/code&gt; on the various elements in my title, et voilà!
-I now had shiny neon styled titles.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Styling index.html&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-html line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;&amp;lt;html&amp;gt;
-    &amp;lt;head&amp;gt;
-        &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;index.css&amp;quot;&amp;gt;
-    &amp;lt;/head&amp;gt;
-    &amp;lt;body class=&amp;quot;monaco-editor&amp;quot;&amp;gt;
-        &amp;lt;h1&amp;gt;
-            &amp;lt;span class=&amp;quot;mtk7&amp;quot;&amp;gt;@apihandyman&amp;lt;/span&amp;gt;
-            &amp;lt;span class=&amp;quot;mtk6&amp;quot;&amp;gt; Supercharged OpenAPI&amp;lt;/span&amp;gt;
-            &amp;lt;span id=&amp;quot;section&amp;quot; class=&amp;quot;mtk8&amp;quot;&amp;gt;A basic OpenAPI File&amp;lt;/span&amp;gt;
-        &amp;lt;/h1&amp;gt;
-    &amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I was quite satisfied until I realized that the blue text (&lt;code&gt;mtk6&lt;/code&gt;) had not the neon effect (attention to details is both my super power and my curse).
-I’m definitely not a CSS expert, but I’m damn good at copy/pasting.
-So, I compared its definition with the two other &lt;code&gt;mtk&lt;/code&gt;, and notice a difference: the &lt;code&gt;text-shadow&lt;/code&gt; of the blue class had less parameters.
-The neon effect is actually achieved by adding shadows of different colors. 
-So I added the missing values, struggle a bit to choose the various colors but I ended with the following &lt;code&gt;text-shadow&lt;/code&gt; that looked great!&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Styling index.html&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-html line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;text-shadow: 0 0 2px #100c0f, 0 0 3px #61e2ff, 0 0 5px #61e2ff, 0 0 10px #03edf933;&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;adding-speakers-note-to-avoid-forgetting-something&quot;&gt;Adding speaker’s note to avoid forgetting something&lt;/h1&gt;
-
-&lt;p&gt;When I do a “regular” presentation, you may not notice it when seeing me on stage or watching me on a video, but I heavily rely on my speaker’s notes.
-There’s my full speech there on each slide with some other information such as timing or “CLICK” when there is an animation or a transition to trigger at a specific moment in a sentence.
-The more I practice a talk, the less I need them but I’m relieved to just know they are there if needed.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, there are no “speaker’s notes” in VS Code and I was struggling to not forget something to say or to do.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-todo-attempt&quot;&gt;The Todo+ attempt&lt;/h2&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/todo-v1.png&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;My first attempt in order to avoid forgetting something was to use the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus&quot;&gt;Todo+&lt;/a&gt; extension.
-I created a steps.todo file basically containing my TOC.
-The idea was to have the Todo+ panel opened while coding the OpenAPI file.
-But that was not really convenient because it was visible to attendees and occupying space that I desperately needed.
-I though to hide it by cropping the VS Code window in OBS but that would have possible hidden a space where I could have wanted to show something.
-It was also not really convenient as, in order to keep the todo list usable for me, I had to open/close tasks folders.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-todohtml--ipad-solution&quot;&gt;The todo.html + iPad solution&lt;/h2&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/todo-v2.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;My second idea was to use almost the same trick as for the titles.
-I added a &lt;code&gt;todo.html&lt;/code&gt; file in each &lt;code&gt;steps/step-x&lt;/code&gt; folder.
-That way when I was using the “Next step” task, not only it was copying the &lt;code&gt;index.html&lt;/code&gt; file of the step to the root folder, it was also copying the &lt;code&gt;todo.html&lt;/code&gt; file too.
-Having a browser showing &lt;code&gt;http://localhost:5500/todo.html&lt;/code&gt; allowed to me have speaker’s notes updated at each step just like titles.&lt;/p&gt;
-
-&lt;p&gt;In order to keep those notes out of the way but still allowing me to look at them without loosing eye contact with my main screen and its web cam, I used the “sidecar” feature of my iPad.
-All that is needed is to plug the iPad to the MacBook with a USB cable then go to display preferences, choose the iPad as an Airplay display.
-Don’t forget to position it relatively to other screens as it is in reality in order to keep moving mouse to it simple.
-And you’re done you have a third (or second) display screen.
-Note that sidecar can be used over wifi but I never had satisfying result with it (maybe my wifi is not fast enough).&lt;/p&gt;
-
-&lt;p&gt;Note that as OBS is able to crop on a specific window, I probably could had both VS Code and todo on my MacBook display.
-But I wanted to test the side car, and it was working, so I moved on to next problem to solve.&lt;/p&gt;
-
-&lt;p&gt;I choose to use the same style as for the titles though is was only visible to my eyes.
-I also used various emojis to “type” the actions to do:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;✏️ (pen) to write code&lt;/li&gt;
-  &lt;li&gt;⌨️ (keyboard) to use the terminal&lt;/li&gt;
-  &lt;li&gt;📺 (old TV) to show a rendering og the file (with Redoc or SwaggerUI)&lt;/li&gt;
-  &lt;li&gt;💬 (Speech bubble) to say something&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;heading-to-next-problem&quot;&gt;Heading to next problem&lt;/h1&gt;
-
-&lt;p&gt;With all that I was totally satisfied with the style of the session and I was as comfortable as delivering a regular slide deck session thanks to my speaker’s note.
-In next post, I’ll show you how I was able to code at light speed.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Third post about my first ever (recorded) live coding session given at the Manning API conference. In previous post, I encountered various problems. Two of them were related to not delivering the session like one of my regular slide deck presentation. I wanted to add titles and have speaker’s notes. In this post, I’ll show you how I solved those two problems with OBS, VS Code and a little bit of magic.</summary></entry></feed>
+&lt;!--more--&gt;</content><author><name>Stéphane Beuret &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">C’est avec un grand plaisir que j’ai répondu à l’invitation de Stéphane Beuret pour parler d’API (en français pour une fois) dans son podcast Electro Monkeys. On y parle de lavabo, de mon livre (The Design of Web APIs, en anglais lui) mais aussi et surtout de design d’API, de sécurité, cycle de vie et gestion des erreurs. Toutes ces choses auxquelles il faut penser pour faire de bonnes API Web.</summary></entry></feed>
