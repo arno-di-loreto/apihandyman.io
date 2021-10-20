@@ -76,14 +76,14 @@ The correct path is `/accounts/{accountId}/transactions`, a path is read from le
 
 ## Unclear relationships
 
-Another example I often get during my API design 101 training session: `/catalog` vs /product/{productId}`.
+Another example I often get during my API design 101 training session: `/catalog` vs `/product/{productId}`.
 If we take for granted that a "catalog" is just a list of "product", we don't really see the connection between those two.
 I would prefer a more consistent representation relying on hierarchy and represent them as `/products` and `/products/{productId}`.
 You get the single element by just adding it's id to the path representing its parent list.
 
 ## Inconsistency between list and single elements
 
-And if you think that the solution is `/products` vs /product/{productId}`, read [/resources rules and /resource sucks ... or is it the other way around?](/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/)
+And if you think that the solution is `/products` vs `/product/{productId}`, read [/resources rules and /resource sucks ... or is it the other way around?](/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/)
 
 # My rule of thumb
 
