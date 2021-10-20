@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-10-20T12:55:49-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Anarchy in the resource path</title><link href="https://apihandyman.io/anarchy-in-the-resource-path/" rel="alternate" type="text/html" title="Anarchy in the resource path" /><published>2021-10-20T00:00:00-05:00</published><updated>2021-10-20T00:00:00-05:00</updated><id>https://apihandyman.io/anarchy-in-the-resource-path</id><content type="html" xml:base="https://apihandyman.io/anarchy-in-the-resource-path/">&lt;p&gt;While doing API design reviews and API design training sessions, I often see resource paths designed in an anarchic way.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-10-20T13:02:32-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Anarchy in the resource path</title><link href="https://apihandyman.io/anarchy-in-the-resource-path/" rel="alternate" type="text/html" title="Anarchy in the resource path" /><published>2021-10-20T00:00:00-05:00</published><updated>2021-10-20T00:00:00-05:00</updated><id>https://apihandyman.io/anarchy-in-the-resource-path</id><content type="html" xml:base="https://apihandyman.io/anarchy-in-the-resource-path/">&lt;p&gt;While doing API design reviews and API design training sessions, I often see resource paths designed in an anarchic way.
 By anarchic, I mean their various levels seem to have been chosen randomly or some of them seem at awkward places. 
 But why should such paths should be considered wrong?
 Let’s see a few examples of how to not design resource paths to talk about it.
@@ -67,14 +67,14 @@ The correct path is &lt;code&gt;/accounts/{accountId}/transactions&lt;/code&gt;,
 
 &lt;h2 id=&quot;unclear-relationships&quot;&gt;Unclear relationships&lt;/h2&gt;
 
-&lt;p&gt;Another example I often get during my API design 101 training session: &lt;code&gt;/catalog&lt;/code&gt; vs /product/{productId}&lt;code&gt;.
-If we take for granted that a &quot;catalog&quot; is just a list of &quot;product&quot;, we don't really see the connection between those two.
-I would prefer a more consistent representation relying on hierarchy and represent them as &lt;/code&gt;/products&lt;code&gt; and &lt;/code&gt;/products/{productId}`.
+&lt;p&gt;Another example I often get during my API design 101 training session: &lt;code&gt;/catalog&lt;/code&gt; vs &lt;code&gt;/product/{productId}&lt;/code&gt;.
+If we take for granted that a “catalog” is just a list of “product”, we don’t really see the connection between those two.
+I would prefer a more consistent representation relying on hierarchy and represent them as &lt;code&gt;/products&lt;/code&gt; and &lt;code&gt;/products/{productId}&lt;/code&gt;.
 You get the single element by just adding it’s id to the path representing its parent list.&lt;/p&gt;
 
 &lt;h2 id=&quot;inconsistency-between-list-and-single-elements&quot;&gt;Inconsistency between list and single elements&lt;/h2&gt;
 
-&lt;p&gt;And if you think that the solution is &lt;code&gt;/products&lt;/code&gt; vs /product/{productId}`, read &lt;a href=&quot;/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/&quot;&gt;/resources rules and /resource sucks … or is it the other way around?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;And if you think that the solution is &lt;code&gt;/products&lt;/code&gt; vs &lt;code&gt;/product/{productId}&lt;/code&gt;, read &lt;a href=&quot;/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/&quot;&gt;/resources rules and /resource sucks … or is it the other way around?&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;my-rule-of-thumb&quot;&gt;My rule of thumb&lt;/h1&gt;
 

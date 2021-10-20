@@ -1608,14 +1608,14 @@ The correct path is <code>/accounts/{accountId}/transactions</code>, a path is r
 
 <h2 id="unclear-relationships">Unclear relationships</h2>
 
-<p>Another example I often get during my API design 101 training session: <code>/catalog</code> vs /product/{productId}<code>.
-If we take for granted that a "catalog" is just a list of "product", we don't really see the connection between those two.
-I would prefer a more consistent representation relying on hierarchy and represent them as </code>/products<code> and </code>/products/{productId}`.
+<p>Another example I often get during my API design 101 training session: <code>/catalog</code> vs <code>/product/{productId}</code>.
+If we take for granted that a “catalog” is just a list of “product”, we don’t really see the connection between those two.
+I would prefer a more consistent representation relying on hierarchy and represent them as <code>/products</code> and <code>/products/{productId}</code>.
 You get the single element by just adding it’s id to the path representing its parent list.</p>
 
 <h2 id="inconsistency-between-list-and-single-elements">Inconsistency between list and single elements</h2>
 
-<p>And if you think that the solution is <code>/products</code> vs /product/{productId}`, read <a href="/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">/resources rules and /resource sucks … or is it the other way around?</a></p>
+<p>And if you think that the solution is <code>/products</code> vs <code>/product/{productId}</code>, read <a href="/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">/resources rules and /resource sucks … or is it the other way around?</a></p>
 
 
       </div>
