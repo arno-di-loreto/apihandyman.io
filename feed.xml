@@ -1,4 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-10-27T07:12:25-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Anarchy in the resource path</title><link href="https://apihandyman.io/anarchy-in-the-resource-path/" rel="alternate" type="text/html" title="Anarchy in the resource path" /><published>2021-10-20T00:00:00-05:00</published><updated>2021-10-20T00:00:00-05:00</updated><id>https://apihandyman.io/anarchy-in-the-resource-path</id><content type="html" xml:base="https://apihandyman.io/anarchy-in-the-resource-path/">&lt;p&gt;While doing API design reviews and API design training sessions, I often see resource paths designed in an anarchic way.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-10-27T12:19:58-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">We are not Amazon or Github, but maybe we should … or not</title><link href="https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not/" rel="alternate" type="text/html" title="We are not Amazon or Github, but maybe we should … or not" /><published>2021-10-27T00:00:00-05:00</published><updated>2021-10-27T00:00:00-05:00</updated><id>https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not</id><content type="html" xml:base="https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not/">&lt;p&gt;One day I can say “Amazon did that, we should do it too” and may be quite displeased to hear “but, we’re not Amazon”.
+And the next one, I can be quite displeased to hear “Github did that, we should do it too” and respond  “it’s not because Github did it, that we should do it too”. 
+Why such inconsistency?
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;why-we-should-be-like-amazon&quot;&gt;Why we should be like Amazon&lt;/h1&gt;
+
+&lt;p&gt;Almost 20 years ago (😱), in 2002, Jeff Bezos, now former CEO of Amazon, sent a mandate to all Amazon employees.
+This mandate is one of the centerpiece of my API conference bingo with Conway’s law.
+In substance, it was saying 2 things:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;All teams MUST communicate through “service interfaces” (they were not called API at that time)&lt;/li&gt;
+  &lt;li&gt;All those “service interfaces” MUST be design from the ground with externalization in mind. Each one could be put in customers hands at any moment after its creation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;While there’s not much debate about “APIfying all the things” in 2021, the second item is the one that usually triggers the “but we’re not Amazon” remark.
+It actually means you make no difference between internal and external API.
+Why should you do that and not keep creating highly specific/ugly/terrible internal APIs or use different look and feel for internal vs external APIs, and only work hard on public APIs?&lt;/p&gt;
+
+&lt;p&gt;There are many reasons, here are a few of them:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sooner or later, you’ll provide APIs to “others”: some external contractors, the team next to you, another business unit, a partner, or a customer. It’s not a possibility, it’s a fact.&lt;/li&gt;
+  &lt;li&gt;That’ll improve your internal API quality: Thinking that someone outside of your organization will consume your API can help people to actually focus on its design and really make it usable by anyone.&lt;/li&gt;
+  &lt;li&gt;That’ll reduce the risk of public API failure: You’ll learn by working hard on private APIs, if you wait to go public to learn, you’ll regret it; nobody will want to use your terrible APIs.&lt;/li&gt;
+  &lt;li&gt;That’ll reduce your time to market: It’ll take a few seconds to go public with a clean private API while it may take weeks if not months to rethink/clean/hide the mess before exposing it to the outside. And that could impact not only the design of your API but also its architecture.&lt;/li&gt;
+  &lt;li&gt;That’ll ease maintenance: It’s not that easy to make a single API and its implementation evolve but imagine the same implementation exposed 2 times. That multiply problems by 2.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So, that’s why I say “we should do like Amazon”, we should treat private APIs like public APIs and actually only create one and use it in both contexts.&lt;/p&gt;
+
+&lt;p&gt;Note that this famous mandate ends by “those who don’t do that will be fired”, that’s level 0 of management. 
+Threatening people like this is totally stupid and MUST never be done.
+In this case, it’s even more stupid because this idea is just brilliant.&lt;/p&gt;
+
+&lt;p&gt;To read more about the memo and how it went public, you should read this &lt;a href=&quot;https://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/&quot;&gt;post of my good friend Kin Lane, the API Evangelist&lt;/a&gt;.
+I suggest you read also Jeff Lawson’s “Ask Your Developer” book, the first chapters do a great job in explaining this “API all the things” spirit and the origin of the mandate (and though I didn’t finished it yet, that’s a great book).&lt;/p&gt;
+
+&lt;h1 id=&quot;why-we-shouldnt-be-like-github&quot;&gt;Why we shouldn’t be like Github&lt;/h1&gt;
+
+&lt;p&gt;Ok, we “should do like Amazon”, but why be not be like Github and do GraphQL APIs?
+In 2016, Github announced their &lt;a href=&quot;https://github.blog/2016-09-14-the-github-graphql-api/&quot;&gt;GraphQL API&lt;/a&gt;.
+That obviously triggered many “Github is doing GraphQL API, let’s do it too”.&lt;/p&gt;
+
+&lt;p&gt;In such context, I ask “what problem are you trying to solve?”.
+Do you have ten of thousands consumers doing gazillions of API call combinations?
+Do you have a product that people basically need to address like a database?
+No?
+And do you understand the implication of providing a GraphQL API regarding security, performance and scalability?
+No?&lt;/p&gt;
+
+&lt;p&gt;Then, maybe you should stick to a good old REST API.
+I’m not against GraphQL, it’s there in my toolbox, but I will only use it if that’s a relevant solution to a clearly identified problem.
+That’s why I say “We’re not Github”.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-42-answer-of-architects-it-depends&quot;&gt;The 42 answer of architects: it depends&lt;/h1&gt;
+
+&lt;p&gt;As you can see, I’m not just saying we should or shouldn’t do like Amazon or Github.
+We can’t just decide to do something because some company has done it.
+We can’t just decide to not do something because (we think) we’re completely different from some company who has done it.
+The question is not “should we do like X” but “should we use the same solution as X to solve a problem in our context”.
+Behind any choice, there must be a context, a problem, a reasoning, not just blind and thoughtless hype.&lt;/p&gt;
+
+&lt;p&gt;PS: If you wonder what’s this strange Stackoverflow keyboard on this post’s banner read &lt;a href=&quot;https://stackoverflow.blog/2021/09/28/become-a-better-coder-with-this-one-weird-click/&quot;&gt;this&lt;/a&gt;&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">One day I can say “Amazon did that, we should do it too” and may be quite displeased to hear “but, we’re not Amazon”. And the next one, I can be quite displeased to hear “Github did that, we should do it too” and respond “it’s not because Github did it, that we should do it too”. Why such inconsistency?</summary></entry><entry><title type="html">Anarchy in the resource path</title><link href="https://apihandyman.io/anarchy-in-the-resource-path/" rel="alternate" type="text/html" title="Anarchy in the resource path" /><published>2021-10-20T00:00:00-05:00</published><updated>2021-10-20T00:00:00-05:00</updated><id>https://apihandyman.io/anarchy-in-the-resource-path</id><content type="html" xml:base="https://apihandyman.io/anarchy-in-the-resource-path/">&lt;p&gt;While doing API design reviews and API design training sessions, I often see resource paths designed in an anarchic way.
 By anarchic, I mean their various levels seem to have been chosen randomly or some of them seem at awkward places. 
 But why should such paths should be considered wrong?
 Let’s see a few examples of how to not design resource paths to talk about it.
@@ -1704,8 +1768,4 @@ Just don’t forget to look at the one that is chosen to add the right snippet t
 I remember that I was totally skeptical at the beginning but as I was using Atom which was not totally meeting my expectations and had huge problem when VS Code showed up (it was 5 years ago I think), I decided to gave it a try and never left it since. 
 With all of the extensions, tasks, snippets that’s not only a coding tool but a huge problem solver as you can see in this post series.
 And VS Code actually helped me to solve my last problem: rehearsing and fine tuning the presentation before recording.
-But that’s a story you’ll see in next and final post of this Surviving my first (recorded) live session series.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">This is the fourth post about my first ever (recorded) live coding session given at the Manning API conference. In this series second post, I listed some problems I encountered and started to solve them in previous post. But there are other problems to solve, one of them was that I was not coding and using VS Code fast enough. In this post, I’ll show you how I solved that using a few VS Code tricks, the most important one being: the absolutely rad custom code snippet feature.</summary></entry><entry><title type="html">Electro Monkeys Podcast - Le Design des APIs Web</title><link href="https://apihandyman.io/electro-monkeys-podcast-le-design-des-apis-web/" rel="alternate" type="text/html" title="Electro Monkeys Podcast - Le Design des APIs Web" /><published>2021-08-25T00:00:00-05:00</published><updated>2021-08-25T00:00:00-05:00</updated><id>https://apihandyman.io/electro-monkeys-podcast--le-design-des-apis-web</id><content type="html" xml:base="https://apihandyman.io/electro-monkeys-podcast-le-design-des-apis-web/">&lt;p&gt;C’est avec un grand plaisir que j’ai répondu à l’invitation de Stéphane Beuret pour parler d’API (en français pour une fois) dans son podcast Electro Monkeys.
-On y parle de lavabo, de mon livre (The Design of Web APIs, en anglais lui) mais aussi et surtout de design d’API, de sécurité, cycle de vie et gestion des erreurs.
-Toutes ces choses auxquelles il faut penser pour faire de bonnes API Web.&lt;/p&gt;
-
-&lt;!--more--&gt;</content><author><name>Stéphane Beuret &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">C’est avec un grand plaisir que j’ai répondu à l’invitation de Stéphane Beuret pour parler d’API (en français pour une fois) dans son podcast Electro Monkeys. On y parle de lavabo, de mon livre (The Design of Web APIs, en anglais lui) mais aussi et surtout de design d’API, de sécurité, cycle de vie et gestion des erreurs. Toutes ces choses auxquelles il faut penser pour faire de bonnes API Web.</summary></entry></feed>
+But that’s a story you’ll see in next and final post of this Surviving my first (recorded) live session series.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">This is the fourth post about my first ever (recorded) live coding session given at the Manning API conference. In this series second post, I listed some problems I encountered and started to solve them in previous post. But there are other problems to solve, one of them was that I was not coding and using VS Code fast enough. In this post, I’ll show you how I solved that using a few VS Code tricks, the most important one being: the absolutely rad custom code snippet feature.</summary></entry></feed>
