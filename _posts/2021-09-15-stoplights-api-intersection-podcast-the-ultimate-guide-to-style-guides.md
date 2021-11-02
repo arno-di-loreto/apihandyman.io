@@ -5,7 +5,7 @@ author: Jason Harmon & Adam Duvander & Arnaud Lauret
 layout: post
 permalink: /stoplights-api-intersection-podcast-the-ultimate-guide-to-style-guides/
 category: talk
-external_url: https://www.youtube.com/watch?v=Unq0ZJmRHCc&t=137s&ab_channel=Stoplight
+external_url: https://youtu.be/Unq0ZJmRHCc
 ---
 
 I was invited to Stoplight's API Intersection podcast hosted by my two good friends Jason Harmon and Adam Duvander.
