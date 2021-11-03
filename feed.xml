@@ -1,4 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-11-02T04:07:54-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">We are not Amazon or Github, but maybe we should … or not</title><link href="https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not/" rel="alternate" type="text/html" title="We are not Amazon or Github, but maybe we should … or not" /><published>2021-10-27T00:00:00-05:00</published><updated>2021-10-27T00:00:00-05:00</updated><id>https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not</id><content type="html" xml:base="https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not/">&lt;p&gt;One day I can say “Amazon did that, we should do it too” and may be quite displeased to hear “but, we’re not Amazon”.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-11-03T07:12:00-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Choosing between birthDate and dateOfBirth has important implications for your API</title><link href="https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/" rel="alternate" type="text/html" title="Choosing between birthDate and dateOfBirth has important implications for your API" /><published>2021-11-03T00:00:00-05:00</published><updated>2021-11-03T00:00:00-05:00</updated><id>https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api</id><content type="html" xml:base="https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/">&lt;p&gt;On LinkedIn, someone asked me what to choose between &lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt;.
+That looks like a very simple question, but it’s absolutely not.
+Choosing between two names is the tree that hides the forest.
+Besides having impacts on understandability, choosing a name can have impacts on naming patterns, data, or privacy which are quite important topics for APIs. 
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Banner photography: &lt;a href=&quot;https://commons.wikimedia.org/wiki/File:Contrasting_Tree_Types_Coexist_in_a_Forest.jpg&quot;&gt;Contrasting Tree Types Coexist in a Forest&lt;/a&gt; by &lt;a href=&quot;https://commons.wikimedia.org/wiki/User:Wingchi&quot;&gt;Wingchi&lt;/a&gt;. &lt;a href=&quot;https://creativecommons.org/licenses/by-sa/2.5/deed.en&quot;&gt;Creative Commons Attribution-Share Alike 2.5 Generic&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;is-that-us-english&quot;&gt;Is that US english?&lt;/h1&gt;
+
+&lt;p&gt;As the &lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt; question followed my Excuse my French API post, and as it is a debate I often have with other ESL API designers, I wanted to check what is said in US english: “birth date” (&lt;code&gt;birthDate&lt;/code&gt;), “birthdate” (&lt;code&gt;birthdate&lt;/code&gt;) or “date of birth” (&lt;code&gt;dateOfBirth&lt;/code&gt;).
+While “birth date” does not seem that common (compared to “birthdate”), they are all acceptable terms to represent “the date on which a person was born” (Oxford US english dictionary).
+OK, but which one is the “good” one?
+Well, assuming that “date of birth” seems to be used on official documents, it could make sense to use this option.
+But is it as simple as that?&lt;/p&gt;
+
+&lt;h1 id=&quot;type-as-prefix-or-suffix&quot;&gt;Type as prefix or suffix&lt;/h1&gt;
+
+&lt;p&gt;The initial “&lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt;” question leads to another question: when explicitly typing a property, by adding its type to its name, should it be a prefix or a suffix?
+As I’m a bit obsessed with consistency, once I’ve seen a &lt;code&gt;dateOfBirth&lt;/code&gt; property, I expect to see all other date properties using the &lt;code&gt;dateOf&lt;/code&gt; pattern, &lt;code&gt;dateOfSubcription&lt;/code&gt; for instance.
+And if it’s &lt;code&gt;birthDate&lt;/code&gt;, I’ll expect to see &lt;code&gt;subscriptionDate&lt;/code&gt;.
+But more than that, as I am a consistency extremist, I may expect all “typed” properties to use the same pattern, for instance &lt;code&gt;subscriptionNumber&lt;/code&gt; or &lt;code&gt;numberOfsubscription&lt;/code&gt;.
+In such a case choosing one form or another can have major impacts on your API (or APIs) look and feel.
+OK, but which one is the “good” one?&lt;/p&gt;
+
+&lt;p&gt;Using a suffix, is actually the most common pattern: I’ve seen much &lt;code&gt;userId&lt;/code&gt; and not a single &lt;code&gt;idOfUser&lt;/code&gt;.
+But that’s not the only reason why I would recommend to use the suffixed version.
+Using a suffix put the generic part of a name at the end of it and the specific one at the beginning.
+Using suffixes, I get the most important information first when reading names.
+But more important, when properties are sorted by name, it’s easier to see functionally related properties because they are close to each others, while properties get sorted by type when using prefixes&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Prefix:
+    &lt;ul&gt;
+      &lt;li&gt;dateOfSubscription&lt;/li&gt;
+      &lt;li&gt;idOfBankAdvisor&lt;/li&gt;
+      &lt;li&gt;idOfUser&lt;/li&gt;
+      &lt;li&gt;numberOfSubscription&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Suffix:
+    &lt;ul&gt;
+      &lt;li&gt;bankAdvisorId&lt;/li&gt;
+      &lt;li&gt;subscriptionDate&lt;/li&gt;
+      &lt;li&gt;subscriptionNumber&lt;/li&gt;
+      &lt;li&gt;userId&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The suffix pattern also leads to shorter and less complex names: what if I want to represent a “user’s date of birth”?
+With the suffix option, that’s a &lt;code&gt;userBirthDate&lt;/code&gt; (or &lt;code&gt;userBirthdate&lt;/code&gt;), with the suffix that’s a &lt;code&gt;dateOfBirthOfUser&lt;/code&gt; which is a bit pompous, or possibly a &lt;code&gt;userDateOfBirth&lt;/code&gt; which screws the prefix idea and kills the hierarchy of information in the name.&lt;/p&gt;
+
+&lt;h1 id=&quot;data-format-andor-value&quot;&gt;Data format and/or value&lt;/h1&gt;
+
+&lt;p&gt;As an API designer or an API design reviewer, I always double check what is the format and value of a property.
+In that case, if it’s the first time a &lt;code&gt;whateverDate&lt;/code&gt; or &lt;code&gt;dateOfWhatever&lt;/code&gt; is added into an API, it’s time to choose a date format that will be applied to all other dates.
+Will you use a Unix timestamp (number of seconds since 1st January of 1970) or an ISO8601 string.
+And in the ISO case, will you use the time precision with timezone or not?
+If that format already has been defined, you’ll obviously have to use it.&lt;/p&gt;
+
+&lt;p&gt;And that’s not only for dates but for any data.
+If we’re talking about a &lt;code&gt;userId&lt;/code&gt;, what is the actual value of a user’s id?
+Is this the id column in the &lt;code&gt;USER&lt;/code&gt; table or something else?
+Maybe a more well known value, shared by various systems using the API.
+For a &lt;code&gt;currency&lt;/code&gt;, is this a internal currency code? a label? (in which language?) An ISO code?&lt;/p&gt;
+
+&lt;p&gt;I will not answer all those questions here, I’ll keep that for other post, the one thing to remember here is that a property is more than just a name.
+And speaking of that, thinking beyond just names, we didn’t talk about “why date of birth”?&lt;/p&gt;
+
+&lt;h1 id=&quot;back-to-needs-what-about-privacy&quot;&gt;Back to needs: what about privacy?&lt;/h1&gt;
+
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+    &lt;p class=&quot;mb-0&quot;&gt;The tree hides the forest&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
+        &lt;cite title=&quot;Source Title&quot;&gt;French saying&lt;/cite&gt;
+    &lt;/footer&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Indeed, all the above and especially the naming discussion is only the tree that hides the forest, it lured us away from a real and important problem.
+As an API designer or API design reviewer, seeing such “personal data” (as europeans say in GDPR data privacy regulation) or “personal identifiable information” (PII in the US), I always wonder if we actually need it in the API before discussing its name.
+Maybe “date of birth” can be replaced by a fuzzier “birthday” (month and day but without year) or just an “age”.
+Maybe it can be removed if it is not absolutely needed.&lt;/p&gt;
+
+&lt;h1 id=&quot;choosing-a-name-is-sometimes-more-than-what-it-seems&quot;&gt;Choosing a name is sometimes more than what it seems&lt;/h1&gt;
+
+&lt;p&gt;So, in that case I may simply not have to choose between &lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt; because the property would not be needed.
+Designing APIs, delivering API design training sessions or doing API design reviews taught me that such seemingly simple question can have important implications for an API.
+As you have seen, choosing a name is sometimes more than just choosing a name.
+Always expand the discussion, never get stuck at a too narrow “just name” level, evaluate the local but also global implications of your choice to include or not a data, to define its value/format, and how to name it using a pattern and/or hierarchy.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">On LinkedIn, someone asked me what to choose between birthDate or dateOfBirth. That looks like a very simple question, but it’s absolutely not. Choosing between two names is the tree that hides the forest. Besides having impacts on understandability, choosing a name can have impacts on naming patterns, data, or privacy which are quite important topics for APIs.</summary></entry><entry><title type="html">We are not Amazon or Github, but maybe we should … or not</title><link href="https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not/" rel="alternate" type="text/html" title="We are not Amazon or Github, but maybe we should … or not" /><published>2021-10-27T00:00:00-05:00</published><updated>2021-10-27T00:00:00-05:00</updated><id>https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not</id><content type="html" xml:base="https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not/">&lt;p&gt;One day I can say “Amazon did that, we should do it too” and may be quite displeased to hear “but, we’re not Amazon”.
 And the next one, I can be quite displeased to hear “Github did that, we should do it too” and respond  “it’s not because Github did it, that we should do it too”. 
 Why such inconsistency?
 &lt;!--more--&gt;&lt;/p&gt;
@@ -1331,56 +1418,4 @@ I love when a company actually communicates about its API strategy or its roadma
 &lt;h1 id=&quot;analyze-this&quot;&gt;Analyze this&lt;/h1&gt;
 
 &lt;p&gt;For those who have to choose solutions, I hope you found that interesting and that it will help you to choose the right solutions from an API perspective.
-For solution vendors, now you know what puts you to the bottom of the list when you see me on a CFP (and so, how to avoid that).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I regularly participate to CFP (Call For Proposals) aiming to choose a software solution. My role is to analyze solutions from an API perspective. And I do that even if there’s no specific API concern regarding the context in which the CFP is made. Why doing so and what to look at? This should be of interest for people having to choose a solution but also to people proposing them. Indeed, some (corporate) software solution vendors should take this seriously … Unless they want to finish at the bottom of the list.</summary></entry><entry><title type="html">An Api Design Review Is Based On Facts Not Opinions</title><link href="https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions/" rel="alternate" type="text/html" title="An Api Design Review Is Based On Facts Not Opinions" /><published>2021-09-08T00:00:00-05:00</published><updated>2021-09-08T00:00:00-05:00</updated><id>https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions</id><content type="html" xml:base="https://apihandyman.io/an-api-design-review-is-based-on-facts-not-opinions/">&lt;p&gt;If you’re an API design reviewer and, like the Who, you got a feeling inside that you can’t explain during an API design review, maybe you’re falling in love with the API designer… or more probably: you’re on the verge of giving an opinion.
-And that is a problem.
-What is the role of an API design reviewer?
-Distort API designs to their liking or objectively analyze them based on facts?&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h1 id=&quot;that-annoying-feeling&quot;&gt;That annoying feeling&lt;/h1&gt;
-
-&lt;p&gt;As an API design reviewer, I analyze, more often than, not designs that must be fixed because of wrong needs, some blatant violation of our guidelines, use of totally cryptic vocabulary, unnecessary steps in an API call flow or missing operations, use of non extensible array of string, or a simple typo.
-But sometimes, they’re just “not good” and I can’t really explain it unless by saying I would have done it differently.
-Sometimes, it’s so different from what I would have done it becomes a really annoying feeling.&lt;/p&gt;
-
-&lt;p&gt;If I try to keep a professional stance, I could say It becomes annoying because I feel in my guts that the designers are heading the wrong way and I want to help them avoid falling into some terrible trap… 
-But, to be honest, it’s just because I want to scream “it’s different from my idea, I hate it, that sucks!”.&lt;/p&gt;
-
-&lt;p&gt;Engaging the discussion on such a feeling and with such a state of mind can lead to a sterile argument, because the designers feel that their design is “good”.
-And they probably are right to think so, because there’s no problem, no trap.
-Hopefully, I’ve learned to avoid such arguments and overcome that really annoying feeling.&lt;/p&gt;
-
-&lt;h1 id=&quot;how-to-live-with-it&quot;&gt;How to live with it&lt;/h1&gt;
-
-&lt;p&gt;I do not remember fondly of the time I was a manager, I’m not made for that, but I learned a few things that are still useful in my daily expert/coach job.
-I’ve learned that when you give a task to someone, you don’t tell them how to do it, you describe the expected outcomes.
-I have also learned that all people do not think/work the same way and so how the task is done can be different from how you would have done it.
-The solution could also be different because you don’t have all the context when giving the task.
-All you have to do is actually evaluate if the expected outcome are there to judge the quality of what has been done.&lt;/p&gt;
-
-&lt;p&gt;So, when I have that annoying feeling, just because an API is different from what I would have done, I rethink to what are the expected outcomes of an API design.
-An API design is supposed to&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Fulfill the right needs&lt;/li&gt;
-  &lt;li&gt;Be easy to understand&lt;/li&gt;
-  &lt;li&gt;Be easy to use&lt;/li&gt;
-  &lt;li&gt;Be easily evolvable&lt;/li&gt;
-  &lt;li&gt;Conforms to guidelines and common practices&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If the design currently reviewed objectively checks all those items, there’s no need to argue.
-But you can still propose your alternative design just to propose another perspective, but don’t forget to precise that the provided is design is actually correct.
-Sometimes designer will says “oh yes, I prefer your version”, or maybe make a counter proposition mixing the 2 options and sometimes they’ll keep their design.
-In that case, don’t take that as an insult, be a grown up person, it’s actually their API, not yours (and it’s normal if that still stings a little, you’ll be less an less annoyed as you practice).&lt;/p&gt;
-
-&lt;p&gt;Reviewing that checklist may help you to factually figure the real problem you were feeling in your guts.
-If something is factually not checked, then you can dig into that based on facts not just an opinion.
-And that is the real job of an API design reviewer.&lt;/p&gt;
-
-&lt;h1 id=&quot;help-people--dont-do-their-job&quot;&gt;Help people , don’t do their job&lt;/h1&gt;
-
-&lt;p&gt;So as an API designer reviewer, you may have feelings and opinions like other humans.
-But learn to overcome them by factually thinking about what makes an API design objectively good.
-Indeed, you’re not here to design an API but to help people design it.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">If you’re an API design reviewer and, like the Who, you got a feeling inside that you can’t explain during an API design review, maybe you’re falling in love with the API designer… or more probably: you’re on the verge of giving an opinion. And that is a problem. What is the role of an API design reviewer? Distort API designs to their liking or objectively analyze them based on facts?</summary></entry></feed>
+For solution vendors, now you know what puts you to the bottom of the list when you see me on a CFP (and so, how to avoid that).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I regularly participate to CFP (Call For Proposals) aiming to choose a software solution. My role is to analyze solutions from an API perspective. And I do that even if there’s no specific API concern regarding the context in which the CFP is made. Why doing so and what to look at? This should be of interest for people having to choose a solution but also to people proposing them. Indeed, some (corporate) software solution vendors should take this seriously … Unless they want to finish at the bottom of the list.</summary></entry></feed>
