@@ -50,7 +50,7 @@ But more important, when properties are sorted by name, it's easier to see funct
     - userId
 
 The suffix pattern also leads to shorter and less complex names: what if I want to represent a "user's date of birth"?
-With the suffix option, that's a `userBirthDate` (or `userBirthdate`), with the suffix that's a `dateOfBirthOfUser` which is a bit pompous, or possibly a `userDateOfBirth` which screws the prefix idea and kills the hierarchy of information in the name.
+With the suffix option, that's a `userBirthDate` (or `userBirthdate`), with the prefix that's a `dateOfBirthOfUser` which is a bit pompous, or possibly a `userDateOfBirth` which screws the prefix idea and kills the hierarchy of information in the name.
 
 # Data format and/or value
 
