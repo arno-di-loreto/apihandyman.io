@@ -18,11 +18,10 @@ But why the 4 years old OpenAPI 3 is still struggling to surpass the good old Sw
 The Swagger Specification and the OpenAPI Specification are not actual competitors, the latter is the most recent version of the former.
 It is (or they are) a machine readable format allowing to describe REST(ish) HTTP based APIs.
 The Swagger Specification was incidentally created in 2011 during the development of [Wordnik](https://www.wordnik.com/), an online dictionary, because of the need for automation of API documentation and client SDK generation.
-At that time, the tip of the Swagger iceberg was Swagger UI, a Web UI for API documentation powered by a JSON file containing a description of an API.
-This description being generated thanks to some annotations in the implementation.
+At that time, the tip of the Swagger iceberg was Swagger UI, a Web UI for API documentation powered by a JSON file containing a machine readable description of an API; this description being generated thanks to some annotations in the implementation.
 
 But at that time, most people, myself included, were not aware of the underlying API description format until Swagger 2 was released in 2014.
-A new tool, Swagger Editor, and the possibility of using human friendly YAML in addition to JSON make this API description format a thing.
+A new tool, Swagger Editor, and the possibility of using human friendly YAML in addition to JSON mae this API description format a thing.
 It could be written instead of generated and so be used in a design first approach.
 But this format has a wide range of use from documentation generation or gateway configuration to design rules enforcement, and that expands regularly.
 That format actually changed my life, API Handyman and my current self would probably not be there without this milestone, but that's another story.
@@ -31,58 +30,96 @@ By the end of 2015, SmartBear who now owns the [Swagger brand and tools](https:/
 In January 2016, the Swagger Specification was "renamed" the OpenAPI Specification.
 Basically, it was still the exact same format with its version indicated with a `swagger: "2.0"` line.
 
-The first true version the OpenAPI Specification the version 3.0, was released in 2017, a year and a half after the creation of the OpenAPI Initiative.
+The first true version the OpenAPI Specification, the version 3.0, was released in 2017, a year and a half after the creation of the OpenAPI Initiative.
 This evolution came with some welcomed breaking changes, the  most visible one being the version indicator which became `openapi: "3.0"`.
 This single modification was officially marking the beginning of a new era, goodbye Swagger Spec, hello OpenAPI Spec.
 
-But the transition was (and is) not that simple. 
+But the transition was (and is still) not that simple. 
 
 # Why Swagger still surpasses OpenAPI
 
 Swagger already had a lot of traction in 2017 when OpenAPI 3 was released, the Swagger tools themselves were (and are still) quite popular.
-And more and more tools were created around the Swagger specification and more tools were supporting it.
+Many tools were created around the Swagger specification and many tools were supporting it.
 This strength actually became a weakness for the transition.
 
 ## Tools are slow to evolve
 
+While there were breaking changes brought by OpenAPI 3, there were just a clarification and enhancement of Swagger 2, quite simple to get.
+Even converting a Swagger 2 file to OpenAPI 3 is quite simple.
+But if that's simple a the spec level itself, it's less simple at tools level.
 It actually took time for Open Source and Vendor tools to support the new OpenAPI 3 version.
 It also took, and still takes, time for users to upgrade too. 
-Some were quick, some were slow.
+Some were quick, some were slow, some are still stuck.
 
-For instance, the API gateway I currently use in my company, which was supporting the use of Swagger 2, added OpenAPI 3 (partial) support only in 2019, I think.
-But after that it took us some time to make evolve the tooling we had built around our gateway solution, and so OpenAPI 3 was actually only available in 2020... virtually.
+For instance, the API gateway I currently use in my company, which was supporting the use of Swagger 2, got OpenAPI 3 (partial) support only in 2019.
+But after that, it took us some time to make evolve the tooling we had built around our gateway solution, and so OpenAPI 3 was actually only available in 2020... virtually.
 Indeed, if the OpenAPI 3 compliant gateway was in our software catalog and our tools were up to date, our internal customers could only get access OpenAPI 3 features after upgrading their gateways.
 It took several months to update them.
 And I know places where bumping to the "latest" version of a solution takes even more time and so they are still stuck with Swagger 2 (and they will have to make all their tools compatible with the new OpenAPI 3 version).
 
-And it's not because we propose tools supporting OpenAPI 3 that it will be actually used.
+And it's not because we propose tools supporting OpenAPI 3 that it will be actually used (they actually still support Swagger 2).
 Some teams were ahead of time, already using OpenAPI 3 during design and downgrading their contract to Swagger 2 for deployment, eagerly waiting for the gateway update.
 But I work with teams who didn't wanted to do that and were waiting the upgrade of the platform.
-I work also with team having a code first approach (and if you read this blog regularly, [you know what I think about it](/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/)), upgrading their code to generate OpenAPI 3 instead of Swagger 2 was not a priority.
-Some can work on it in 2021, some are still stuck on Swagger 2.
+I work also with teams having a code first approach (and if you read this blog regularly, [you know what I think about it](/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/)), upgrading their code to generate OpenAPI 3 instead of Swagger 2 was not a priority.
+Some could work on it in 2021, some are still stuck on Swagger 2.
 
-Switching to OpenAPI 3 requires efforts to everyone on the chain, that's the first reason why Swagger 2 is till predominant.
-But there's another reason.
+Switching to OpenAPI 3 requires efforts to everyone on the chain, that's why Swagger 2 is till predominant.
+But that's not the only reason.
 
 ## Confusion and habits
 
-OpenAPI does not only brings breaking change it revealed existing confusion and brought a new name, adding to the confusion.
+OpenAPI does not only brings breaking changes, it revealed existing confusion and brought a new name.
 
-Most people were (and some are still not) aware that inside "Swagger" you had the tools (library and UI) AND the specification, two separate concepts.
-For most people "Swagger" is actually "Swagger UI".
+Most people were (and some are still) not aware that inside "Swagger" you had the tools (library and UI) AND the specification, two separate concepts.
+To make it even more short, for most people "Swagger" is just "Swagger UI".
 Do all the people who responded to Postman's question "Do you use Swagger" know the subtile difference?
-I hope so as it was under a "API specification question" but I have no clue.
-What I'm sure of, is that I still have to explain the OpenAPI/Swagger stuff and not only to business analyst but also developers.
+I hope so as it was under a "API specification" question, but I have no clue.
+What I'm sure of, is that in 2021 I still have to explain the OpenAPI/Swagger stuff and not only to business analysts but also developers (and yes I'm working with business analyst on API design).
 
 If naming thing is hard, changing something's name is just a nightmare.
-Let's sweep under the rug the "OpenAPI Specification" vs the "Open API Initiative", or was it the other way round?
-Hopefully that's settle now everything is "OpenAPI".
-But WTF is OpenAPI?
-Even some VENDORS, are still talking about "Swagger".
-And in organization who initiated API initiative in the Swagger era (that actually lasted until long after OpenAPI 3 release due to what is said above about tools), everyone talks about "Swagger".
+Let's sweep under the rug the "*OpenAPI* Specification" vs the "*Open API* Initiative", or was it the other way round?
+Hopefully that's settle now everything is "*OpenAPI*".
+
+"But WTF is OpenAPI?".
+In organization who launched their API initiative in the Swagger era (that actually lasted long after OpenAPI 3 release due to what is said above about tools), everyone talks about "Swagger".
 They're not designing APIs, they're not defining API contracts, they're writing or generating Swaggers.
+They's deploying Swaggers ...
+Not OpenAPI.
+Even some VENDORS, are still talking about "Swagger", I'm always the annoying customer telling them "That's OpenAPI now, do you support OpenAPI 3 by the way?".
 
+People are used to Swagger and habits die hard.
 
-# What could be done?
+# Do we need pitchforks and Swagger jars?
 
-What about a Swagger jar?
+So the OpenAPI community has a problem.
+Thanks for noticing.
+But what can be done about it?
+While tempting, I don't think it will be solved with pitchforks and Swagger jars.
+So, What can be done about it?
+Track how vendor/open source solution upgrades?
+Talk more about the OpenAPI Spec?
+
+Solutions to unknown, or maybe nonexisting, or dying problems are usually useless solutions.
+Indeed, before finding solutions, we need to study the trends and most importantly know what is the actual problem (or the actual problems).
+
+Let's see what were the responses to the "Which API specification do you use? (multiple possible answers)" question in Postman's [2020 (page 31)](https://www.postman.com/state-of-api-report-2020.pdf) and [2021 (page 44)](https://www.postman.com/assets/api-survey-2021/postman-state-of-api-2021.pdf) reports:
+
+| Year | Swagger | OpenAPI | Delta |
+|------|---------|---------|-------|
+| 2020 |  43%    |   28%   |  15%  |
+| 2021 |  54%    |   40%   |  14%  |
+
+The number of people using Swagger has increased by 11% while OpenAPI has increased by 12%, the delta between OpenAPI and Swagger is relatively stable around 15%.
+_Note that I had to guess 2020 numbers from the graphics, as they are not explicitly written in this report._
+
+In my opinion these numbers could mean:
+
+- The number of respondents could have increased giving a more realistic idea of the situation
+- People may start their API Spec journey using outdated tools (for good or bad reasons)
+- People may need to use both versions while transitioning because updating tools takes time
+- More people may actually use the OpenAPI Specification
+- People don't know what Swagger/OpenAPI Spec really is
+
+Based on my experience, I know that all those hypothesis are actually "true", but to what extent?
+My experience does not make this an actual scientific fact.
+So a first step could be to ask the question: why are you still using Swagger 2 instead of OpenAPI 3?
