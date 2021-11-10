@@ -1,4 +1,142 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-11-04T10:07:11-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Choosing between birthDate and dateOfBirth has important implications for your API</title><link href="https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/" rel="alternate" type="text/html" title="Choosing between birthDate and dateOfBirth has important implications for your API" /><published>2021-11-03T00:00:00-05:00</published><updated>2021-11-03T00:00:00-05:00</updated><id>https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api</id><content type="html" xml:base="https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/">&lt;p&gt;On LinkedIn, someone asked me what to choose between &lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt;.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-11-10T06:12:07-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">We need to talk: OpenAPI 3 is 4 years old, but Swagger 2 is still predominant</title><link href="https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/" rel="alternate" type="text/html" title="We need to talk: OpenAPI 3 is 4 years old, but Swagger 2 is still predominant" /><published>2021-11-10T00:00:00-06:00</published><updated>2021-11-10T00:00:00-06:00</updated><id>https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant</id><content type="html" xml:base="https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/">&lt;p&gt;While quickly doing a first scan of latest Postman State of the API Report , I did my Spock face, raising an eyebrow.
+Indeed, I read that after JSON Schema, “The next most popular specifications were Swagger 2.0 (54%) and OpenAPI 3.0 (40%)”.
+To be honest and based on my own experience, it’s not totally surprising, I’m still hearing/reading “can you check that Swagger” everyday.
+But why the 4 years old OpenAPI 3 is still struggling to surpass the good old Swagger 2?
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;swagger-vs-openapi-started-in-2017&quot;&gt;Swagger vs OpenAPI started in 2017&lt;/h1&gt;
+
+&lt;p&gt;The Swagger Specification and the OpenAPI Specification are not actual competitors, the latter is the most recent version of the former.
+It is (or they are) a machine readable format allowing to describe REST(ish) HTTP based APIs.
+The Swagger Specification was incidentally created in 2011 during the development of &lt;a href=&quot;https://www.wordnik.com/&quot;&gt;Wordnik&lt;/a&gt;, an online dictionary, because of the need for automation of API documentation and client SDK generation.
+At that time, the tip of the Swagger iceberg was Swagger UI, a Web UI for API documentation powered by a JSON file containing a machine readable description of an API; this description being generated thanks to some annotations in the implementation.&lt;/p&gt;
+
+&lt;p&gt;But at that time, most people, myself included, were not aware of the underlying API description format until Swagger 2 was released in 2014.
+A new tool, Swagger Editor, and the possibility of using human friendly YAML in addition to JSON mae this API description format a thing.
+It could be written instead of generated and so be used in a design first approach.
+But this format has a wide range of use from documentation generation or gateway configuration to design rules enforcement, and that expands regularly.
+That format actually changed my life, API Handyman and my current self would probably not be there without this milestone, but that’s another story.&lt;/p&gt;
+
+&lt;p&gt;By the end of 2015, SmartBear who now owns the &lt;a href=&quot;https://swagger.io/&quot;&gt;Swagger brand and tools&lt;/a&gt;, donated the Swagger Specification to the &lt;a href=&quot;https://www.openapis.org/&quot;&gt;OpenAPI Initiative&lt;/a&gt;, “a consortium of forward-looking industry experts who recognize the immense value of standardizing on how APIs are described”. Besides SmartBear, this organization has founding members such as Google, IBM and Microsoft.
+In January 2016, the Swagger Specification was “renamed” the OpenAPI Specification.
+Basically, it was still the exact same format with its version indicated with a &lt;code&gt;swagger: &quot;2.0&quot;&lt;/code&gt; line.&lt;/p&gt;
+
+&lt;p&gt;The first true version the OpenAPI Specification, the version 3.0, was released in 2017, a year and a half after the creation of the OpenAPI Initiative.
+This evolution came with some welcomed breaking changes, the  most visible one being the version indicator which became &lt;code&gt;openapi: &quot;3.0&quot;&lt;/code&gt;.
+This single modification was officially marking the beginning of a new era, goodbye Swagger Spec, hello OpenAPI Spec.&lt;/p&gt;
+
+&lt;p&gt;But the transition was (and is still) not that simple.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-is-it-going-in-2021&quot;&gt;How is it going in 2021?&lt;/h1&gt;
+
+&lt;p&gt;4 years later, Postman State of API 2021 report states that after JSON Schema, “The next most popular specifications were Swagger 2.0 (54%) and OpenAPI 3.0 (40%)”.
+Let’s be honest, that’s not good, but maybe OpenAPI number is slowly but surely growing?
+If we compare the responses to the “Which API specification do you use? (multiple possible answers)” question in Postman’s &lt;a href=&quot;https://www.postman.com/state-of-api-report-2020.pdf&quot;&gt;2020 (page 31)&lt;/a&gt; and &lt;a href=&quot;https://www.postman.com/assets/api-survey-2021/postman-state-of-api-2021.pdf&quot;&gt;2021 (page 44)&lt;/a&gt; reports, we have the following numbers:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Year&lt;/th&gt;
+      &lt;th&gt;Swagger&lt;/th&gt;
+      &lt;th&gt;OpenAPI&lt;/th&gt;
+      &lt;th&gt;Delta&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2020&lt;/td&gt;
+      &lt;td&gt;43%&lt;/td&gt;
+      &lt;td&gt;28%&lt;/td&gt;
+      &lt;td&gt;15%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2021&lt;/td&gt;
+      &lt;td&gt;54%&lt;/td&gt;
+      &lt;td&gt;40%&lt;/td&gt;
+      &lt;td&gt;14%&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The number of people using Swagger has &lt;em&gt;increased&lt;/em&gt; (what the??) by 11% while OpenAPI has increased by 12%, the delta between OpenAPI and Swagger is relatively stable around 15%.
+&lt;em&gt;Note that I had to guess 2020 numbers from the graphics, as they are not explicitly written in this report.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;So the OpenAPI community has a problem, there are more people using Swagger in 2021 than in 2020.
+Maybe there’s no real increase, it may be due to the fact there are more respondent in 2021 than in 2020, giving a more realistic view on reality…
+But that would mean the number of OpenAPI users are stagnating.&lt;/p&gt;
+
+&lt;p&gt;However I look at the numbers and the hypothesis I could do, I can be sure of one thing: there are more people using Swagger Spec than using OpenAPI Spec and, without more information, it does not seem to want to change.
+What can be done about it?
+While tempting, I don’t think it will be solved with pitchforks and Swagger jars.
+So, What can be done about it?
+Talk more about the OpenAPI Spec (formerly known as Swagger Spec)?&lt;/p&gt;
+
+&lt;p&gt;Solutions to unknown, or maybe nonexisting problems are usually useless solutions.
+Indeed, before finding solutions, we need to know what is the actual problem (or the actual problems).&lt;/p&gt;
+
+&lt;p&gt;So a first step could be to ask the question: why are you still using Swagger 2 instead of OpenAPI 3?
+While I don’t have everyone’s answer, I can share what I’ve seen.&lt;/p&gt;
+
+&lt;h1 id=&quot;why-swagger-still-surpasses-openapi&quot;&gt;Why Swagger still surpasses OpenAPI&lt;/h1&gt;
+
+&lt;p&gt;Swagger already had a lot of traction in 2017 when OpenAPI 3 was released, the Swagger tools themselves were (and are still) quite popular.
+Many tools were created around the Swagger specification and many tools were supporting it.
+This strength actually became a weakness for the transition.&lt;/p&gt;
+
+&lt;h2 id=&quot;tools-are-slow-to-evolve&quot;&gt;Tools are slow to evolve&lt;/h2&gt;
+
+&lt;p&gt;While there were breaking changes brought by OpenAPI 3, there were just a clarification and enhancement of Swagger 2, quite simple to get.
+Even converting a Swagger 2 file to OpenAPI 3 is quite simple.
+But if that’s simple at the spec level itself, it’s less simple at tools level.
+It actually took time for Open Source and Vendor tools to support the new OpenAPI 3 version.
+It also took, and still takes, time for users to upgrade too. 
+Some were quick, some were slow, some are still stuck.&lt;/p&gt;
+
+&lt;p&gt;For instance, the API gateway I currently use in my company, which was supporting the use of Swagger 2, got OpenAPI 3 (partial) support only in 2019.
+But after that, it took us some time to make evolve the tooling we had built around our gateway solution, and so OpenAPI 3 was actually only available in 2020… virtually.
+Indeed, if the OpenAPI 3 compliant gateway was in our software catalog and our tools were up to date, our internal customers could only get access OpenAPI 3 features after upgrading their gateways.
+It took several months to update them.
+And I know places where bumping to the “latest” version of a solution takes even more time and so they are still stuck with Swagger 2 (and they will have to make all their tools compatible with the new OpenAPI 3 version).&lt;/p&gt;
+
+&lt;p&gt;Though a few teams were ahead of time, already using OpenAPI 3 during design and downgrading their contract to Swagger 2 for deployment, eagerly waiting for the gateway update, it’s not because we propose tools supporting OpenAPI 3 that they will be actually used as soon as they are available (they actually still support Swagger 2).
+I work with teams who were waiting the upgrade of the platform… but didn’t have the time to make the transition yet.
+I work also with teams having a code first approach (and if you read this blog regularly, &lt;a href=&quot;/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/&quot;&gt;you know what I think about it&lt;/a&gt;), upgrading their code to generate OpenAPI 3 instead of Swagger 2 was not a priority at all.
+I even have seen teams willing to pass to OpenAPI 3 but blocked by existing frameworks using outdated libraries.
+So, in 2021 some teams were at last happily transitioning to OpenAPI 3, some are still waiting and some are totally stuck with Swagger 2.&lt;/p&gt;
+
+&lt;p&gt;Switching to OpenAPI 3 requires efforts to everyone on the chain, that’s why Swagger 2 is till predominant.
+But that’s not the only reason.&lt;/p&gt;
+
+&lt;h2 id=&quot;confusion-and-habits&quot;&gt;Confusion and habits&lt;/h2&gt;
+
+&lt;p&gt;OpenAPI does not only brings breaking changes, it revealed existing confusion and brought a new name.&lt;/p&gt;
+
+&lt;p&gt;Most people were (and some are still) not aware that inside “Swagger” you had the tools (library and UI) AND the specification, two separate concepts.
+To make it even more short, for most people “Swagger” is just “Swagger UI”.
+Do all the people who responded to Postman’s question “Do you use Swagger” know the subtile difference?
+I hope so as it was under a “API specification” question, but I have no clue.
+What I’m sure of, is that in 2021 I still have to explain the OpenAPI/Swagger stuff and not only to business analysts but also developers (and yes I’m working with business analyst on API design).&lt;/p&gt;
+
+&lt;p&gt;If naming thing is hard, changing something’s name is just a nightmare.
+Let’s sweep under the rug the “&lt;em&gt;OpenAPI&lt;/em&gt; Specification” vs the “&lt;em&gt;Open API&lt;/em&gt; Initiative”, or was it the other way round?
+Hopefully that’s settle now everything is “&lt;em&gt;OpenAPI&lt;/em&gt;”.&lt;/p&gt;
+
+&lt;p&gt;“But WTF is OpenAPI?”.
+In organization who launched their API initiative in the Swagger era (that actually lasted long after OpenAPI 3 release due to what is said above about tools), everyone talks about “Swagger”.
+They’re not designing APIs, they’re not defining API contracts, they’re writing or generating Swaggers.
+They’s deploying Swaggers …
+Not OpenAPI.
+Even some VENDORS, are still talking about “Swagger”, I’m always the annoying customer telling them “That’s OpenAPI now, do you support OpenAPI 3 by the way?”.&lt;/p&gt;
+
+&lt;p&gt;People are used to Swagger and habits die hard.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-about-you&quot;&gt;What about you?&lt;/h1&gt;
+
+&lt;p&gt;All this is based on my experience, but how much is this universally “true”?
+My experience does not make this an actual scientific fact.
+So now it’s your turn, why are you still using Swagger 2 instead of OpenAPI 3?&lt;/p&gt;
+
+&lt;p&gt;PS: I still keep the idea of pitchforks and Swagger jars, we never know, they could be useful once we’ll know more about the actual problems.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">While quickly doing a first scan of latest Postman State of the API Report , I did my Spock face, raising an eyebrow. Indeed, I read that after JSON Schema, “The next most popular specifications were Swagger 2.0 (54%) and OpenAPI 3.0 (40%)”. To be honest and based on my own experience, it’s not totally surprising, I’m still hearing/reading “can you check that Swagger” everyday. But why the 4 years old OpenAPI 3 is still struggling to surpass the good old Swagger 2?</summary></entry><entry><title type="html">Choosing between birthDate and dateOfBirth has important implications for your API</title><link href="https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/" rel="alternate" type="text/html" title="Choosing between birthDate and dateOfBirth has important implications for your API" /><published>2021-11-03T00:00:00-05:00</published><updated>2021-11-03T00:00:00-05:00</updated><id>https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api</id><content type="html" xml:base="https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/">&lt;p&gt;On LinkedIn, someone asked me what to choose between &lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt;.
 That looks like a very simple question, but it’s absolutely not.
 Choosing between two names is the tree that hides the forest.
 Besides having impacts on understandability, choosing a name can have impacts on naming patterns, data, or privacy which are quite important topics for APIs. 
@@ -1289,133 +1427,4 @@ I have worked on systems that ended mixing non extensible mainframe, not easily 
 Oh, it’s a little bit more complicated than just building from scratch, but that’s how you can actually have fun as an architecture-problem-solver.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">API all the things! Whatever the reason, IT optimization or digital transformation, it’s nowadays fairly common to APIfy an existing system, making it available through APIs. What is also very common is to not totally grasp the implications of doing so and especially overlooking complexity, security and capacity concerns.</summary></entry><entry><title type="html">Toro Cloud’s Coding Over Cocktails Podcast: The Design of Web APIs</title><link href="https://apihandyman.io/toro-clouds-coding-over-cocktails-podcast-the-design-of-web-apis/" rel="alternate" type="text/html" title="Toro Cloud’s Coding Over Cocktails Podcast: The Design of Web APIs" /><published>2021-09-16T00:00:00-05:00</published><updated>2021-09-16T00:00:00-05:00</updated><id>https://apihandyman.io/toro-clouds-coding-over-cocktails-podcast-the-design-of-web-apis</id><content type="html" xml:base="https://apihandyman.io/toro-clouds-coding-over-cocktails-podcast-the-design-of-web-apis/">&lt;p&gt;I was invited by David Brown and Kevin Montalbo for Toro Cloud’s Coding Over Cocktail podcast. We discussed API consistency, how to make your APIs more discoverable, defining and setting the boundaries between an API gateway and API implementation, and choosing the right API architecture and technology for the right problem.
 &lt;!--more--&gt;&lt;/p&gt;</content><author><name>David Brown &amp; Kevin Montalbo &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">I was invited by David Brown and Kevin Montalbo for Toro Cloud’s Coding Over Cocktail podcast. We discussed API consistency, how to make your APIs more discoverable, defining and setting the boundaries between an API gateway and API implementation, and choosing the right API architecture and technology for the right problem.</summary></entry><entry><title type="html">Stoplight’s API Intersection Podcast: The Ultimate Guide to Style Guides</title><link href="https://apihandyman.io/stoplights-api-intersection-podcast-the-ultimate-guide-to-style-guides/" rel="alternate" type="text/html" title="Stoplight’s API Intersection Podcast: The Ultimate Guide to Style Guides" /><published>2021-09-15T00:00:00-05:00</published><updated>2021-09-15T00:00:00-05:00</updated><id>https://apihandyman.io/stoplights-api-intersection-podcast-the-ultimate-guide-to-style-guides</id><content type="html" xml:base="https://apihandyman.io/stoplights-api-intersection-podcast-the-ultimate-guide-to-style-guides/">&lt;p&gt;I was invited to Stoplight’s API Intersection podcast hosted by my two good friends Jason Harmon and Adam Duvander.
 As it was Stoplight’s “Style Guide September”, we discussed one of my favorite topics, covered quickly in my book The Design of Web APIs, and that I practice everyday helping people to create APIs: API design style guides.
-&lt;!--more--&gt;&lt;/p&gt;</content><author><name>Jason Harmon &amp; Adam Duvander &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">I was invited to Stoplight’s API Intersection podcast hosted by my two good friends Jason Harmon and Adam Duvander. As it was Stoplight’s “Style Guide September”, we discussed one of my favorite topics, covered quickly in my book The Design of Web APIs, and that I practice everyday helping people to create APIs: API design style guides.</summary></entry><entry><title type="html">Analyzing a software solution from an API perspective</title><link href="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/" rel="alternate" type="text/html" title="Analyzing a software solution from an API perspective" /><published>2021-09-15T00:00:00-05:00</published><updated>2021-09-15T00:00:00-05:00</updated><id>https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective</id><content type="html" xml:base="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/">&lt;p&gt;I regularly participate to CFP (Call For Proposals) aiming to choose a software solution.
-My role is to analyze solutions from an API perspective.
-And I do that even if there’s no specific API concern regarding the context in which the CFP is made.
-Why doing so and what to look at?
-This should be of interest for people having to choose a solution but also to people proposing them.
-Indeed, some (corporate) software solution vendors should take this seriously …
-Unless they want to finish at the bottom of the list. 
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;why-systematically-include-the-api-perspective&quot;&gt;Why systematically include the API perspective&lt;/h1&gt;
-
-&lt;p&gt;Before explaining what to look at when analyzing a software solution from an API perspective, maybe we should talk about why doing so even when there is no obvious and/or specific API concern.&lt;/p&gt;
-
-&lt;p&gt;Most companies having IT systems couldn’t build those IT systems without APIs.
-Indeed, most IT systems are composed or more than one brick, more than one software solution.
-Some of them being built, some other being bought and deployed on premise or used as a service (SAAS).
-But either built or bought, installed or used as a service, a company will have to connect all these pieces of software together.
-And what can be used to connect all these pieces across a local network or the internet?
-APIs.&lt;/p&gt;
-
-&lt;p&gt;Oh, some may think that this new piece of software, especially a SAAS one which magically solves some needs, will be used totally independently from any other of the IT system’s bricks.
-And that may actually be the case … in the beginning.
-But in the end, for one reason or another it WILL need to be connected to other pieces of software. 
-It’s not a risk, it’s a certainty.&lt;/p&gt;
-
-&lt;p&gt;And if that solutions does not provide APIs …
-That may hinder severely an important project, critical for the company.
-A pity as one of the competing solutions seen during the CFP 2 years ago actually provided APIs …&lt;/p&gt;
-
-&lt;h1 id=&quot;what-to-look-at&quot;&gt;What to look at&lt;/h1&gt;
-
-&lt;p&gt;Note that this post is based on my “corporate solutions” evaluation experience, you may find totally unexpected elements that would be total science fiction for true API companies like Twilio or Stripe.
-So, here are the various topics I look at when analyzing a software solution from an API perspective:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Are there APIs?&lt;/li&gt;
-  &lt;li&gt;What is the quality of documentation?&lt;/li&gt;
-  &lt;li&gt;What is the quality of the design?&lt;/li&gt;
-  &lt;li&gt;How the API is secured?&lt;/li&gt;
-  &lt;li&gt;Do the APIs cover 100% of features?&lt;/li&gt;
-  &lt;li&gt;Can the APIs fulfill hypothetical needs?&lt;/li&gt;
-  &lt;li&gt;What is the overall developer experience?&lt;/li&gt;
-  &lt;li&gt;What is the pricing model?&lt;/li&gt;
-  &lt;li&gt;What are the terms of use?&lt;/li&gt;
-  &lt;li&gt;Does the company shows an API Mindset?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;are-there-apis&quot;&gt;Are there APIs?&lt;/h2&gt;
-
-&lt;p&gt;Very first and obvious verification: is there one or more APIs coming with the solution?
-That looks like a dead simple question, but you can’t imagine how it is difficult sometimes to verify this.
-Sometimes, it’s because the information is deeply hidden somewhere on the company’s website.
-That’s why my first move is simple to google “company name API”.&lt;/p&gt;
-
-&lt;p&gt;But it’s not that rare to look at (or google) the company’s website or product’s webpage and find absolutely no information about APIs.
-And there are 2 reasons.
-First one, there’s absolutely no API at all.
-That puts the company to the bottom of the list.
-Second one, there are APIs, but you can’t see them unless you ask the sales people.
-That’s really annoying, and will make the company loose points in the rankings.&lt;/p&gt;
-
-&lt;h2 id=&quot;what-is-the-quality-of-documentation&quot;&gt;What is the quality of documentation?&lt;/h2&gt;
-
-&lt;p&gt;A good API documentation is not only a documentation that explains what you can do with the API (use case documentation), what are all the available operations (reference documentation), or how to get an access token.
-A good API documentation starts by being at least visible publicly!
-That sounds crazy right?
-Unfortunately what we’re used too with most API companies is not yet that obvious for many companies providing corporate solutions.
-Having to contact sales to get an access to documentation is really annoying (and that makes you loose points in the rankings).&lt;/p&gt;
-
-&lt;p&gt;And beyond access and content, the form is important too.
-I prefer to get a bare Swagger 2.0 (OpenAPI 2.0) JSON file sent by email than an indigestible PDF accessible on the website.
-Actually, a documentation that does not comes with a standard OpenAPI (or Swagger) file is quite annoying for me because I need it to make some automatic controls on the design.&lt;/p&gt;
-
-&lt;h2 id=&quot;what-is-the-quality-of-the-design&quot;&gt;What is the quality of the design?&lt;/h2&gt;
-
-&lt;p&gt;Having access to the documentation I can evaluate the quality of the design.
-Does it respect common practices, it is easy to use, easy to understand.
-I practically do an API design review, I’m not looking for perfection but just a good looking API.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-the-api-is-secured&quot;&gt;How the API is secured?&lt;/h2&gt;
-
-&lt;p&gt;What I want is APIs using state of the art security mechanism.
-Unfortunately, some companies don’t seem to care about security, providing good old basic authentication for instance.
-And that puts the company to the bottom of the list.&lt;/p&gt;
-
-&lt;h2 id=&quot;do-the-apis-cover-100-of-features&quot;&gt;Do the APIs cover 100% of features?&lt;/h2&gt;
-
-&lt;p&gt;Once I know what the API is capable of, I can check if it actually cover 100% of the product features.
-It’s not that rare to see solutions that propose APIs only covering a subset of all of their features.
-That could be a real problem unless the company shows a roadmap to achieve the 100% (but beware of promises…).&lt;/p&gt;
-
-&lt;h2 id=&quot;can-the-apis-fulfill-hypothetical-needs&quot;&gt;Can the APIs fulfill hypothetical needs?&lt;/h2&gt;
-
-&lt;p&gt;Once I know what the API does (thanks to the documentation), I can imagine some hypothetical but realistic needs that would require to connect the solution to others.
-I speak with the business people involved in the CFP to get some ideas.
-Then I evaluate if it’s possible and the complexity of such project (if the product lacks of useful APIs/operations you may have to do a lot of work for a simple project).&lt;/p&gt;
-
-&lt;h2 id=&quot;what-is-the-overall-developer-experience&quot;&gt;What is the overall developer experience?&lt;/h2&gt;
-
-&lt;p&gt;Doing all that (checking documentation, analyzing design and imagining hypothetical needs), I’m able to start evaluating the developer experience.
-If doing all that was simple, the experience is good, if not, the experience is terrible.
-When I see a company providing a state of the art self-service developer portal, that’s a total nirvana (that doesn’t happen often unfortunately)
-Being able to actually test the API at this stage is a plus (even if there’s no true dev portal).&lt;/p&gt;
-
-&lt;h2 id=&quot;what-is-the-pricing-model&quot;&gt;What is the pricing model?&lt;/h2&gt;
-
-&lt;p&gt;When evaluating a solution’s API, you have to look beyond the API itself and especially how much it would cost to use them.
-That’s probably the most difficult information to find when dealing with corporate software vendors: it’s almost never shown publicly.&lt;/p&gt;
-
-&lt;p&gt;Be aware that most of the time, especially for SAAS solutions but also for on premise (totally crazy!), using the API is not included in the pricing proposal (because the request sent for the CFP usually don’t include the API perspective).
-Using the hypothetical needs, you should be able to get an idea of what could cost using the solution’s API.&lt;/p&gt;
-
-&lt;h2 id=&quot;what-are-the-terms-of-use&quot;&gt;What are the terms of use?&lt;/h2&gt;
-
-&lt;p&gt;Another thing that is really important to check is the terms of use.
-I check what is the API evolution policy (how are handled breaking changes, the delay to update).
-There can be too strict limitations regarding the number of API calls, making the solution to your hypothetical needs highly complex to build because you would need to add some cache systems for instance.
-But my concerns are not only technical.
-For instance a software solution may grant you access to some data that you can’t resell without a huge bump on the bill.&lt;/p&gt;
-
-&lt;h2 id=&quot;does-the-company-shows-an-api-mindset&quot;&gt;Does the company shows an API Mindset?&lt;/h2&gt;
-
-&lt;p&gt;And finally I evaluate the company’s API mindset.
-I prefer a company publicly showing it’s work-in-progress-well-designed API than a company hiding its mess hoping customers will not notice it before it’s too late (and that actually exist, I put them to the bottom of the list).
-I love when a company actually communicates about its API strategy or its roadmap, it’s not mandatory to actually talk about APIs you just need to show that you want to be part of an ecosystem, that your products can easily be connected to others.&lt;/p&gt;
-
-&lt;h1 id=&quot;analyze-this&quot;&gt;Analyze this&lt;/h1&gt;
-
-&lt;p&gt;For those who have to choose solutions, I hope you found that interesting and that it will help you to choose the right solutions from an API perspective.
-For solution vendors, now you know what puts you to the bottom of the list when you see me on a CFP (and so, how to avoid that).&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I regularly participate to CFP (Call For Proposals) aiming to choose a software solution. My role is to analyze solutions from an API perspective. And I do that even if there’s no specific API concern regarding the context in which the CFP is made. Why doing so and what to look at? This should be of interest for people having to choose a solution but also to people proposing them. Indeed, some (corporate) software solution vendors should take this seriously … Unless they want to finish at the bottom of the list.</summary></entry></feed>
+&lt;!--more--&gt;&lt;/p&gt;</content><author><name>Jason Harmon &amp; Adam Duvander &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">I was invited to Stoplight’s API Intersection podcast hosted by my two good friends Jason Harmon and Adam Duvander. As it was Stoplight’s “Style Guide September”, we discussed one of my favorite topics, covered quickly in my book The Design of Web APIs, and that I practice everyday helping people to create APIs: API design style guides.</summary></entry></feed>
