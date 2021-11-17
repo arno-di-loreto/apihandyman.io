@@ -1,4 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-11-10T06:12:07-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">We need to talk: OpenAPI 3 is 4 years old, but Swagger 2 is still predominant</title><link href="https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/" rel="alternate" type="text/html" title="We need to talk: OpenAPI 3 is 4 years old, but Swagger 2 is still predominant" /><published>2021-11-10T00:00:00-06:00</published><updated>2021-11-10T00:00:00-06:00</updated><id>https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant</id><content type="html" xml:base="https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/">&lt;p&gt;While quickly doing a first scan of latest Postman State of the API Report , I did my Spock face, raising an eyebrow.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-11-17T06:12:05-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Full Life Cycle API Management is not enough, let’s try 8K API Management</title><link href="https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management/" rel="alternate" type="text/html" title="Full Life Cycle API Management is not enough, let’s try 8K API Management" /><published>2021-11-17T00:00:00-06:00</published><updated>2021-11-17T00:00:00-06:00</updated><id>https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management</id><content type="html" xml:base="https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management/">&lt;p&gt;You didn’t knew that API Management was old and you needed a “Full Life Cycle” API management solution to help you achieve your API strategy?
+Well, I didn’t.
+To be honest, though the term is quite old, I didn’t realized until recently that “Full Life Cycle API Management” started to replace simple “API Management”, at least in software vendor communications.
+But what if I tell you that this “Full Life Cycle” version is already dead?
+What if I tell you that you need 8K API Management?
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-full-life-cycle-api-management&quot;&gt;What is (Full Life Cycle) API Management?&lt;/h1&gt;
+
+&lt;p&gt;When someone says “API Management”, that often means “exposing APIs on an API Gateway and possibly put them on a developer portal”.
+It’s very rare that it actually means “the process of creating and publishing web application programming interfaces, enforcing their usage policies, controlling access, nurturing the subscriber community, collecting and analyzing usage statistics, and reporting on performance.” (&lt;a href=&quot;https://en.wikipedia.org/wiki/API_management&quot;&gt;Wikipedia&lt;/a&gt;).
+That definition is wider, it’s about process, how you create and publish web APIs, and not only tools.
+It’s more precise, APIs are exposed on a gateway in order to enable access control.
+And It also includes concerns that goes beyond exposition itself, like taking care of the consumer (subscriber) community.&lt;/p&gt;
+
+&lt;p&gt;Full Life Cycle API Management goes a little bit further but not that much, as show in the various definitions below:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Source&lt;/th&gt;
+      &lt;th&gt;Definition&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://www.gartner.com/reviews/market/full-life-cycle-api-management&quot;&gt;Gartner&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Full life cycle application programming interface (API) management is about the planning, design, implementation, testing, publication, operation, consumption, maintenance, versioning and retirement of APIs.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://www.axway.com/en/products/api-management/full-lifecycle-api-management&quot;&gt;Axway&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Full lifecycle API management is the entire lifespan of an API that begins at the planning stage and ends when an API is retired. It provides the platform for digital strategy, building ecosystems, and running an effective API program.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://www.mulesoft.com/resources/api/what-is-full-lifecycle-api-management&quot;&gt;MuleSoft&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Full API lifecycle management is the process of overseeing an API from its creation to retirement across its full life span. This includes everything from designing, publishing, documenting, securing, and analyzing APIs.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://wso2.com/what-is-full-lifecycle-api-management/&quot;&gt;WSO2&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;An APIs goes through different stages in its lifespan until it is retired. Full lifecycle API management solutions provide the means to manage these stages as well as the transition from one stage to another.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;With Full Life Cycle API Management, we get a more complete definition of the “process of creating and publishing” APIs, it’s about their “planning, design, implementation, testing, publication, operation, consumption, maintenance, versioning and retirement”. 
+The process is about managing APIs from their conception to their death.&lt;/p&gt;
+
+&lt;p&gt;The latest Gartner Magic Quadrant for Full Life Cycle API Management mostly lists vendors providing an “API Management” solution, hence an API Gateway and possibly a develop portal.
+Such vendors are for instance Axway, Google (Apigee) or Microsoft.
+But there are 2 vendors that are not API gateway vendors: SmartBear and Postman, they both provide API design, documentation, mocking and testing solutions.
+That’s the first crack in the Full Life Cycle API Management building we’ve known for years.
+These 2 providers show that Full Life Cycle API Management is more than just the basic solution of API Management (All in one API Management solution) we have seen these last years.
+And it’s even more than that.
+Indeed, Full Life Cycle API Management is dead, long live 8K API Management.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-8k-api-management&quot;&gt;What is 8K API Management?&lt;/h1&gt;
+
+&lt;p&gt;Why the term 8K?
+It’s a reference to the TV domain: once there was Full HD, then 4K then 8K.
+More and more pixels, allowing crisper image with higher definition but also larger ones, showing us more than we could seen before.&lt;/p&gt;
+
+&lt;p&gt;Full Life Cycle API Management has been monopolized by all in one API Gateway based tools, narrowing our vision.
+But none of them is actually able to cover efficiently the full life cycle, the presence of SmartBear and Postman in the Gartner Magic Quadrant is the visible part of the iceberg.
+Tools such as &lt;a href=&quot;https://stoplight.io/studio/&quot;&gt;Stoplight Studio&lt;/a&gt; (a GUI to design API) or &lt;a href=&quot;https://microcks.io/&quot;&gt;Microcks&lt;/a&gt; (API mocking) are a few among many others that you could take advantage to fully cover the Full Life Cycle API Management.&lt;/p&gt;
+
+&lt;p&gt;The “Full life cycle” term is also narrowing our vision to the life and death of APIs, forgetting what is needed around all that.
+The whole API governance space definitely lacks tools.
+As I stated in an earlier post, &lt;a href=&quot;/we-need-specialized-tools-for-api-design-reviews/&quot;&gt;we need tools for API design reviews&lt;/a&gt;, and that’s only an example.&lt;/p&gt;
+
+&lt;p&gt;And more than tools, don’t forget that “however you call it API management” is not only about tools but also people.
+How do you make them realize how API can help their company, how do you teach/train/coach people to plan, design, … the right APIs the right way?&lt;/p&gt;
+
+&lt;p&gt;This is 8K API Management.
+API Management with higher definition and wider scope.
+API Management with more specialized tools, covering more concerns. 
+API Management not only focusing on tools but also people.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">You didn’t knew that API Management was old and you needed a “Full Life Cycle” API management solution to help you achieve your API strategy? Well, I didn’t. To be honest, though the term is quite old, I didn’t realized until recently that “Full Life Cycle API Management” started to replace simple “API Management”, at least in software vendor communications. But what if I tell you that this “Full Life Cycle” version is already dead? What if I tell you that you need 8K API Management?</summary></entry><entry><title type="html">We need to talk: OpenAPI 3 is 4 years old, but Swagger 2 is still predominant</title><link href="https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/" rel="alternate" type="text/html" title="We need to talk: OpenAPI 3 is 4 years old, but Swagger 2 is still predominant" /><published>2021-11-10T00:00:00-06:00</published><updated>2021-11-10T00:00:00-06:00</updated><id>https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant</id><content type="html" xml:base="https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/">&lt;p&gt;While quickly doing a first scan of latest Postman State of the API Report , I did my Spock face, raising an eyebrow.
 Indeed, I read that after JSON Schema, “The next most popular specifications were Swagger 2.0 (54%) and OpenAPI 3.0 (40%)”.
 To be honest and based on my own experience, it’s not totally surprising, I’m still hearing/reading “can you check that Swagger” everyday.
 But why the 4 years old OpenAPI 3 is still struggling to surpass the good old Swagger 2?
@@ -1425,6 +1500,4 @@ But you must be aware of it in order to avoid screwing your API initiative and f
 And don’t be afraid, based on my experience, there are always solutions.
 I have worked on systems that ended mixing non extensible mainframe, not easily extensible unix servers and unlimited horse power cloud infrastructure. 
 Oh, it’s a little bit more complicated than just building from scratch, but that’s how you can actually have fun as an architecture-problem-solver.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">API all the things! Whatever the reason, IT optimization or digital transformation, it’s nowadays fairly common to APIfy an existing system, making it available through APIs. What is also very common is to not totally grasp the implications of doing so and especially overlooking complexity, security and capacity concerns.</summary></entry><entry><title type="html">Toro Cloud’s Coding Over Cocktails Podcast: The Design of Web APIs</title><link href="https://apihandyman.io/toro-clouds-coding-over-cocktails-podcast-the-design-of-web-apis/" rel="alternate" type="text/html" title="Toro Cloud’s Coding Over Cocktails Podcast: The Design of Web APIs" /><published>2021-09-16T00:00:00-05:00</published><updated>2021-09-16T00:00:00-05:00</updated><id>https://apihandyman.io/toro-clouds-coding-over-cocktails-podcast-the-design-of-web-apis</id><content type="html" xml:base="https://apihandyman.io/toro-clouds-coding-over-cocktails-podcast-the-design-of-web-apis/">&lt;p&gt;I was invited by David Brown and Kevin Montalbo for Toro Cloud’s Coding Over Cocktail podcast. We discussed API consistency, how to make your APIs more discoverable, defining and setting the boundaries between an API gateway and API implementation, and choosing the right API architecture and technology for the right problem.
-&lt;!--more--&gt;&lt;/p&gt;</content><author><name>David Brown &amp; Kevin Montalbo &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">I was invited by David Brown and Kevin Montalbo for Toro Cloud’s Coding Over Cocktail podcast. We discussed API consistency, how to make your APIs more discoverable, defining and setting the boundaries between an API gateway and API implementation, and choosing the right API architecture and technology for the right problem.</summary></entry><entry><title type="html">Stoplight’s API Intersection Podcast: The Ultimate Guide to Style Guides</title><link href="https://apihandyman.io/stoplights-api-intersection-podcast-the-ultimate-guide-to-style-guides/" rel="alternate" type="text/html" title="Stoplight’s API Intersection Podcast: The Ultimate Guide to Style Guides" /><published>2021-09-15T00:00:00-05:00</published><updated>2021-09-15T00:00:00-05:00</updated><id>https://apihandyman.io/stoplights-api-intersection-podcast-the-ultimate-guide-to-style-guides</id><content type="html" xml:base="https://apihandyman.io/stoplights-api-intersection-podcast-the-ultimate-guide-to-style-guides/">&lt;p&gt;I was invited to Stoplight’s API Intersection podcast hosted by my two good friends Jason Harmon and Adam Duvander.
-As it was Stoplight’s “Style Guide September”, we discussed one of my favorite topics, covered quickly in my book The Design of Web APIs, and that I practice everyday helping people to create APIs: API design style guides.
-&lt;!--more--&gt;&lt;/p&gt;</content><author><name>Jason Harmon &amp; Adam Duvander &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">I was invited to Stoplight’s API Intersection podcast hosted by my two good friends Jason Harmon and Adam Duvander. As it was Stoplight’s “Style Guide September”, we discussed one of my favorite topics, covered quickly in my book The Design of Web APIs, and that I practice everyday helping people to create APIs: API design style guides.</summary></entry></feed>
+&lt;!--more--&gt;&lt;/p&gt;</content><author><name>David Brown &amp; Kevin Montalbo &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">I was invited by David Brown and Kevin Montalbo for Toro Cloud’s Coding Over Cocktail podcast. We discussed API consistency, how to make your APIs more discoverable, defining and setting the boundaries between an API gateway and API implementation, and choosing the right API architecture and technology for the right problem.</summary></entry></feed>
