@@ -1,4 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-11-24T09:04:17-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">5 ways to update a boolean status with a REST API</title><link href="https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api/" rel="alternate" type="text/html" title="5 ways to update a boolean status with a REST API" /><published>2021-11-24T00:00:00-06:00</published><updated>2021-11-24T00:00:00-06:00</updated><id>https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api</id><content type="html" xml:base="https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api/">&lt;p&gt;Last week, someone sent me a direct message on Twitter asking the following question:
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-12-01T06:12:56-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">5 reasons why you should treat private APIs like public ones</title><link href="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/" rel="alternate" type="text/html" title="5 reasons why you should treat private APIs like public ones" /><published>2021-12-01T00:00:00-06:00</published><updated>2021-12-01T00:00:00-06:00</updated><id>https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones</id><content type="html" xml:base="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/">&lt;p&gt;“Why should we care about our privates APIs?
+They’re only consumed by us, so let’s do minimal work on them.
+We’ll keep our effort only for the public ones we sell to the outside world.”
+Such stance will have terrible consequences for an organization, even more if it will never create public APIs.
+Let’s see 5 reasons why you should treat privates APIs like public ones.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;what-are-private-and-public-apis&quot;&gt;What are private and public APIs?&lt;/h1&gt;
+
+&lt;p&gt;It’s not where an API is exposed or if its use is free or paid that define its nature, but by who it is consumed.
+Either it is exposed on some intranet or the internet, a private API is an API that is consumed only by the organization that created it.
+For instance, a mobile application’s backend API is a private API though it is exposed on the internet.
+Either free or paid, a public API is an API that has been created to be consumed by others.
+It is usually advertized on the organization’s website and can be used by almost anyone willing to accept its usage conditions.
+Note that a variant of public APIs often called partner APIs are usually less visible and requires more paper work to use them.&lt;/p&gt;
+
+&lt;h1 id=&quot;why-treat-private-like-public&quot;&gt;Why treat private like public&lt;/h1&gt;
+
+&lt;p&gt;As private APIs are only consumed by the organization creating them, they’re often treated as second class APIs.
+From a business perspective, they are often seen as just IT department concerns.
+From an IT perspective, they are often just seen as technical interfaces.
+The result is often quick and dirty terrible APIs, but there’s more than that.
+Let’s see that by exploring 5 reasons why you should treat private APIs like public ones.&lt;/p&gt;
+
+&lt;h2 id=&quot;nurturing-peoples-api-mindset&quot;&gt;Nurturing people’s API mindset&lt;/h2&gt;
+
+&lt;p&gt;When treating private APIs like public APIs, you care about their design.
+You care about why you create them, what problems they will solve.
+You care about their look and feel.
+Designing best in class APIs that will be easy to understand and easy to use is not something that you do easily at first try, you need to do it again and again.
+So, slowly but surely, treating private APIs like public ones instills the API mindset and grow the API skills you’ll need for your public APIs.
+Also, all people working on APIs will be happy because they learn valuable skills, because they do great things.&lt;/p&gt;
+
+&lt;p&gt;If you don’t treat private like public APIs, you’ll have to learn by creating public ones.
+How will you feel failing miserably publicly?
+What will be the cost of such failure?
+And beyond that, how people will feel?
+You’ll lose skilled people, you’ll lose people who want to learn.&lt;/p&gt;
+
+&lt;h2 id=&quot;simplifying-architecture&quot;&gt;Simplifying architecture&lt;/h2&gt;
+
+&lt;p&gt;When you don’t think about a private API as a public one, you may do short sighted design and architecture decisions often leading to tightly coupled complex systems, systems that can’t be used independently, and so systems that can’t be reused easily in other contexts.&lt;/p&gt;
+
+&lt;p&gt;I remember some team wanting to build a system exposing its features through 3 different technologies: HTTP based API, Kafka Messaging, and shared folders.
+And it’s not a “pick the one you like” menu, in order to actually interact with the system you had to use all 3.
+Why?
+Simply because the team they were working for the first integration could use those technologies.
+Unfortunately that way of working couldn’t be easily replicated with other teams inside the organization… and even less with the outside world.&lt;/p&gt;
+
+&lt;p&gt;Thinking to expose the system to an outside third party adds constraints that guides you to create simpler systems.
+In that case HTTP based APIs would have been totally sufficient.&lt;/p&gt;
+
+&lt;h2 id=&quot;ensuring-a-good-level-of-security&quot;&gt;Ensuring a good level of security&lt;/h2&gt;
+
+&lt;p&gt;Working “with the family”, usually leads to a certain lack of concerns about security: “We know the other team, we can trust them”.
+Yes, but they still can do mistakes.
+Considering any consumer as possibly hostile will avoid bad surprise.
+It’s not because you trust an other team that you should provide them an API that could arm your systems or leak data that shouldn’t leave your system.
+And what if the API goes from intranet to internet or have to go public?
+Will you remember those small arrangements with security?&lt;/p&gt;
+
+&lt;p&gt;So, better wonder if you would “do that” when exposing this feature as a public API?
+If the answer is no, then don’t do it for a private one.&lt;/p&gt;
+
+&lt;h2 id=&quot;reducing-costs&quot;&gt;Reducing costs&lt;/h2&gt;
+
+&lt;p&gt;If your private APIs are treated like public ones, they are designed to be easy to understand, easy to use and reusable in various contexts.
+That means when a new need arise, you may not need to rebuild everything from scratch because you already have one or more APIs that can be reused to fullfil it.
+As those APIs are easy to understand and easy to use, the new teams willing to use them will be able to do it quickly without even asking support to the team providing them.
+Less time spent on those evolutions, means less money spend for the organization.&lt;/p&gt;
+
+&lt;h2 id=&quot;achieving-faster-time-to-market&quot;&gt;Achieving faster time to market&lt;/h2&gt;
+
+&lt;p&gt;And last but not least, treating your private APIs like public ones will help you achieving faster time to market for all of your projects.
+Indeed, having highly reusable APIs that can be integrated in a few minutes will make short deadlines totally achievable.
+Icing on the cake, if the project is to provide one of your organization service as an API, the private API delivering it could probably be exposed as it is.&lt;/p&gt;
+
+&lt;h1 id=&quot;target-the-ideal-private--public&quot;&gt;Target the ideal private === public&lt;/h1&gt;
+
+&lt;p&gt;Even if you don’t plan to provide public APIs, considering private APIs as first class APIs like public APIs has many benefits that far outweigh the investment.
+The ideal target would be to say that &lt;a href=&quot;https://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/&quot;&gt;any API can be a public API&lt;/a&gt;, but sometimes you can’t without investing too much.
+That’s especially true when you start building event oriented architecture on top of Kafka.
+No problem, keep the spirit and evaluate what will need to be done in case of public exposure, so you’ll make the right decision and the additional work will not be a surprise.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">“Why should we care about our privates APIs? They’re only consumed by us, so let’s do minimal work on them. We’ll keep our effort only for the public ones we sell to the outside world.” Such stance will have terrible consequences for an organization, even more if it will never create public APIs. Let’s see 5 reasons why you should treat privates APIs like public ones.</summary></entry><entry><title type="html">5 ways to update a boolean status with a REST API</title><link href="https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api/" rel="alternate" type="text/html" title="5 ways to update a boolean status with a REST API" /><published>2021-11-24T00:00:00-06:00</published><updated>2021-11-24T00:00:00-06:00</updated><id>https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api</id><content type="html" xml:base="https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api/">&lt;p&gt;Last week, someone sent me a direct message on Twitter asking the following question:
 Let’s say you have a resource with an activated boolean property, how would you design the operation(s) allowing to activate or deactivate it? 
 As this is a use case I often encounter during API design reviews or API design workshops, I thought it would be interesting to share my usual answer(s) with everyone.
 &lt;!--more--&gt;&lt;/p&gt;
@@ -1542,73 +1624,4 @@ Whatever, I was unable to fully demoed my final tool (in Excel, yes, Excel) but 
 I’ll need to figure what was the problem in order to avoid having it again.
 And I’ll need to prepare a plan B just in case, because Murphy’s law.
 Oh, and I must not forget to buy a f&lt;strong&gt;**&lt;/strong&gt; camera.
-But for now, I’ll take some rest.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Yesterday, I live demoed how I take advantage of the OpenAPI Specification during an API Design review at the API Specification Conference. This session was really live, not recorded like my previous one, and that didn’t totally went well. Though I was quite happy to discover new tricks, I had problems preparing this session and worse I also had problems giving it. Nothing that terrible hopefully, but still terribly annoying and stressful. I need a cathartic post to talk about all that.</summary></entry><entry><title type="html">3 common APIfication problems: complexity, security, capacity</title><link href="https://apihandyman.io/3-common-apification-problems-complexity-security-capacity/" rel="alternate" type="text/html" title="3 common APIfication problems: complexity, security, capacity" /><published>2021-09-22T00:00:00-05:00</published><updated>2021-09-22T00:00:00-05:00</updated><id>https://apihandyman.io/3-common-apification-problems-complexity-security-capacity</id><content type="html" xml:base="https://apihandyman.io/3-common-apification-problems-complexity-security-capacity/">&lt;p&gt;API all the things! 
-Whatever the reason, IT optimization or digital transformation, it’s nowadays fairly common to APIfy an existing system, making it available through APIs.
-What is also very common is to not totally grasp the implications of doing so and especially overlooking complexity, security and capacity concerns.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;context&quot;&gt;Context&lt;/h1&gt;
-
-&lt;p&gt;Though (Web) APIs have been there for quite a long time, though the API economy is in the air for almost as long, there are still some companies that take the API train today.
-It could be because they want to refresh their IT systems, to replace old JSP web sites by brand new JS/HTML SPAs (Single Page Applications) for instance.
-They could also want to participate to the API economy, by providing their services through APIs.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, not all companies can rebuild themselves from scratch to provides those APIs, they have to deal with existing systems that sometimes cannot be replaced easily.
-And so they have to keep them.
-Hopefully, that does not mean they can’t do new stuff with it, that means they will have to compose with them, maybe to build around them.
-(Actually it is sometimes more interesting from an architecture perspective to work on such system than just to build brand new stuff, you can learn a lot doing so.)
-But APIfying existing system must be done having 3 concerns in mind: complexity, security and capacity.&lt;/p&gt;
-
-&lt;h1 id=&quot;complexity&quot;&gt;Complexity&lt;/h1&gt;
-
-&lt;p&gt;Building APIs to provide access to an existing system is unfortunately prone to actually create APIs that just give access to an existing system.
-That means the APIs will just be technical connectors brutally exposing underlying complexity.&lt;/p&gt;
-
-&lt;p&gt;If the system that needs to be exposed is a good old corporate software solution, some may be tempted to give a direct access to its APIs (hoping it has some).
-Unfortunately, corporate software usually provide terrible APIs that are awfully complex and require to be an expert of both the related business domain and the software solution itself to use them.
-And that’s definitely not how modern APIs should be.&lt;/p&gt;
-
-&lt;p&gt;Old systems can be the result of years if not decades of IT, business and organization evolutions, they may simply not make any sense at all for people outside of the team owning them or outside the organization.
-I have seen places where 2 different software solutions would handle the same business domain because of historical and organizational constraints.
-Years of evolutions in a close environments may have lead to creating a local business dialect only understood inside the organization.
-That must not be shown to the outside&lt;/p&gt;
-
-&lt;p&gt;And these are only a few examples of the complexity that could be exposed to the outside, if care is not taken.
-Always try to look at what you want to expose with a fresh eye, focusing on an outside-in business perspective approach.
-Then find the means to plug this new perspective to the existing system whatever the means: API redesign, adding new layers, adapting architecture or organization, …&lt;/p&gt;
-
-&lt;h1 id=&quot;security&quot;&gt;Security&lt;/h1&gt;
-
-&lt;p&gt;An other major problem too often neglected when exposing existing systems is security.&lt;/p&gt;
-
-&lt;p&gt;A typical example would be to bluntly reuse existing purely internal (SOAP) web service, restify them and use them in a JS/HTMl SPA … 
-Totally forgetting that the replaced good old web applications was actually handling all of the security like “is this user allowed to make a wire transfer from this bank account?” or “is this user allowed to make a 1 million euros wire transfer?”.
-You can’t delegate such controls outside of your walls.
-(Note that I never have actually seen this specific use case. It’s purely hypothetical. Really. Please, no questions.).&lt;/p&gt;
-
-&lt;p&gt;Exposing an existing system requires to rethink security to ensure that the consumers won’t be able to harm it.
-And by security I mean regular access controls but also business controls.&lt;/p&gt;
-
-&lt;h1 id=&quot;capacity&quot;&gt;Capacity&lt;/h1&gt;
-
-&lt;p&gt;And last but not least problem: capacity.
-You must ensure that the existing system is actually able to handle the new solicitations coming through the new APIs.&lt;/p&gt;
-
-&lt;p&gt;It’s not that rare to see old systems that were made to only run at office hours.
-But exposing them through APIs may requires to do some modifications to make them available 24/7.
-In last resort you may include those constraints in your SLA but in 2021 that may seem awkward depending on your business domain and who the consumers of your APIs are.&lt;/p&gt;
-
-&lt;p&gt;And more tricky: the infrastructure.
-Exposing an existing system requires to know its capacity and its current charge.
-How many of this new solicitations through APIs can it handle?
-Aren’t you putting the other usages of the system at risk by opening the new API channel?
-Can you easily add more horse power?
-Systems that have been creating prior the cloud era are probably still hosted on not easily extensible infrastructure or worse may have an architecture that makes them not extensible to handle more requests.&lt;/p&gt;
-
-&lt;h1 id=&quot;only-solutions&quot;&gt;Only solutions&lt;/h1&gt;
-
-&lt;p&gt;All that looks very pessimistic.
-But you must be aware of it in order to avoid screwing your API initiative and find the solutions to solves those problems.
-And don’t be afraid, based on my experience, there are always solutions.
-I have worked on systems that ended mixing non extensible mainframe, not easily extensible unix servers and unlimited horse power cloud infrastructure. 
-Oh, it’s a little bit more complicated than just building from scratch, but that’s how you can actually have fun as an architecture-problem-solver.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">API all the things! Whatever the reason, IT optimization or digital transformation, it’s nowadays fairly common to APIfy an existing system, making it available through APIs. What is also very common is to not totally grasp the implications of doing so and especially overlooking complexity, security and capacity concerns.</summary></entry></feed>
+But for now, I’ll take some rest.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Yesterday, I live demoed how I take advantage of the OpenAPI Specification during an API Design review at the API Specification Conference. This session was really live, not recorded like my previous one, and that didn’t totally went well. Though I was quite happy to discover new tricks, I had problems preparing this session and worse I also had problems giving it. Nothing that terrible hopefully, but still terribly annoying and stressful. I need a cathartic post to talk about all that.</summary></entry></feed>
