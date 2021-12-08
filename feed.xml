@@ -1,4 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-12-08T06:12:57-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">5 reasons why you should treat private APIs like public ones</title><link href="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/" rel="alternate" type="text/html" title="5 reasons why you should treat private APIs like public ones" /><published>2021-12-01T00:00:00-06:00</published><updated>2021-12-01T00:00:00-06:00</updated><id>https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones</id><content type="html" xml:base="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/">&lt;p&gt;“Why should we care about our privates APIs?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-12-08T08:35:48-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">And what if I’m wrong? Overcoming fears and doubts while designing APIs</title><link href="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/" rel="alternate" type="text/html" title="And what if I’m wrong? Overcoming fears and doubts while designing APIs" /><published>2021-12-08T00:00:00-06:00</published><updated>2021-12-08T00:00:00-06:00</updated><id>https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis</id><content type="html" xml:base="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/">&lt;p&gt;F&lt;strong&gt;**&lt;/strong&gt;* impostor syndrome, it’s not easy to say that I’m an API design expert, but I am.
+Along my path to expertise, I failed, I did mistakes; that helped me to learn a lot.
+I also have been afraid, I had doubts.
+And you know what?
+Though I’m now an expert, that’s still the case when I help people to design their APIs.
+But, I learned to live with that.
+I learned to live with the “what if I’m wrong” question. 
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;designing-is-doubting&quot;&gt;Designing is doubting&lt;/h1&gt;
+
+&lt;p&gt;So yes, even after all these years, despite being an expert, I still can fear to be wrong, I still can doubt while designing APIs.
+And that feeling is even stronger when I help others to design APIs, my mistakes could impact others.&lt;/p&gt;
+
+&lt;p&gt;What can be wrong in API Design?
+What would an expert or anyone else doubt when designing an API?
+Everything.
+Needs, business rule, API granularity, operation granularity, operation goal, behavior, data structures, names, types, enumerations …
+All those problems can be categorized in the following categories:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Needs and subject matter: Everything related to the business side of the API. What problem are we trying to solve, what the API is supposed to do, is it a “this” or a “that, what becomes “this” after we’ve done “that” …&lt;/li&gt;
+  &lt;li&gt;Architecture and modeling: Everything related to the representation of the business intent as a programming interface. One or 2 APIs, list or tree, sync or async, do we need a different representation of “this” in those different contexts, …&lt;/li&gt;
+  &lt;li&gt;Look and feel: Cousin to previous topic, everything related to consistency. Path structure, when using header parameters, is it “/resource” or /resources, is it birthDate or dateOfBirth …&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With experience, training, reading, there are less and less fears and doubts, but they’re will always be there.
+The best way to deal with doubts is actually to get rid of them.&lt;/p&gt;
+
+&lt;h1 id=&quot;ensuring-that-im-not-wrong&quot;&gt;Ensuring that I’m not wrong&lt;/h1&gt;
+
+&lt;p&gt;Look and feel concerns are the easier to deal with … if you have API design guidelines.
+Indeed, having rules defining the look and feel of your APIs will help you deal with most doubts.
+But beware, look and feel concerns can sometimes &lt;a href=&quot;/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/&quot;&gt;hide in details&lt;/a&gt;, so always wonder if the decision you make have greater impacts.
+If so, and if there’s no actual solution in your guidelines, it will be time to add it so the next time you won’t doubt.&lt;/p&gt;
+
+&lt;p&gt;Guidelines can also be of great help for architecture and modeling.
+Indeed, guidelines are not just made to say with HTTP method or HTTP status code use.
+They can define more complex design patterns and tell when to use them, like “when should we use an async pattern”.
+But guidelines can’t contain all responses to all business specific problems.
+For those problems, you can take advantage of existing APIs or existing API in your domain, you can also refer to standards, common practices or well known API to validate your choices.&lt;/p&gt;
+
+&lt;p&gt;Regarding needs, the only way to deal with doubt is talking to SMEs (Subject Matter Experts).
+I can’t count how many times doubts were solved by talking to an SME or better making 2 SMEs talk together, the designer asking a few question to “heat up” the discussion.
+Actually, don’t ever design API without working closely with SME.&lt;/p&gt;
+
+&lt;p&gt;But in the end, there still can be some uncertainty because of some unknowns (known unkowns or unknown unknowns), the “what if I’m wrong question” still stands.&lt;/p&gt;
+
+&lt;h1 id=&quot;evaluating-the-consequences-if-im-wrong&quot;&gt;Evaluating the consequences if I’m wrong&lt;/h1&gt;
+
+&lt;p&gt;In that case, in order to be comfortable, I evaluate the consequences of being wrong.
+If I had to make a choice between solution A and solution B and chose B, I evaluate what would be the path from A to B.
+Will this introduce a breaking change?
+If the answer is no, that’s perfect, no more doubts.
+If it’s yes, I wonder what is the &lt;a href=&quot;/apidays-interface-doing-apis-right-and-doing-right-apis/#tip-2-cost-of-change-varies&quot;&gt;cost of this change&lt;/a&gt;?
+Sometimes it’s fairly minimal, like when it’s a private API consume by a single consumer managed by the same team providing the API.&lt;/p&gt;
+
+&lt;p&gt;Evaluating consequences doesn’t always take away all my doubts, but knowing them and sharing them with the team so that everyone accepts them greatly reduces the worries.
+Yes, but that mean I still can be wrong … so what if I’m wrong?&lt;/p&gt;
+
+&lt;h1 id=&quot;failing&quot;&gt;Failing&lt;/h1&gt;
+
+&lt;p&gt;“You’ll fail, you’ll do mistakes”: that’s what I say when I start teaching API Design to someone. 
+Absolutely not to put them off, but to explain that failure will happen, that it is part of the job.
+Though you can drastically reduce them by doubting, removing your doubts and evaluating the consequences of being wrong, some mistakes will happen.
+Just knowing that will make your life easier.
+And practicing doubting will help you solve your mistakes more easily.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">F*** impostor syndrome, it’s not easy to say that I’m an API design expert, but I am. Along my path to expertise, I failed, I did mistakes; that helped me to learn a lot. I also have been afraid, I had doubts. And you know what? Though I’m now an expert, that’s still the case when I help people to design their APIs. But, I learned to live with that. I learned to live with the “what if I’m wrong” question.</summary></entry><entry><title type="html">5 reasons why you should treat private APIs like public ones</title><link href="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/" rel="alternate" type="text/html" title="5 reasons why you should treat private APIs like public ones" /><published>2021-12-01T00:00:00-06:00</published><updated>2021-12-01T00:00:00-06:00</updated><id>https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones</id><content type="html" xml:base="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/">&lt;p&gt;“Why should we care about our privates APIs?
 They’re only consumed by us, so let’s do minimal work on them.
 We’ll keep our effort only for the public ones we sell to the outside world.”
 Such stance will have terrible consequences for an organization, even more if it will never create public APIs.
@@ -1507,121 +1573,4 @@ Same for Excel, I hope to replace it by something else one day…&lt;/p&gt;
 We cannot just rely on raw OpenAPI files or documentation tools.
 We need tools that take advantage of this machine readable format, tools such as Spectral, but we need new way of rendering OpenAPI files and linter results.&lt;/p&gt;
 
-&lt;p&gt;And I didn’t talked about how to formalize the result of such analysis … we need specialized tools for that too. But that’s another story I’ll tell another time.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract. Use the wrong tools to do so, and reviews will become a terrible, never-ending burden. Use the right tools, and you’ll become a formidable machine, doing reviews at light speed, never missing the tiniest problem or question. But, after dozens of reviews, you may realize that, despite using the “right” existing tools, the API space actually lacks API design reviews specialized tools.</summary></entry><entry><title type="html">Barely surviving my first live (non recorded) demo session</title><link href="https://apihandyman.io/barely-surviving-my-first-live-non-recorded-demo-session/" rel="alternate" type="text/html" title="Barely surviving my first live (non recorded) demo session" /><published>2021-09-29T00:00:00-05:00</published><updated>2021-09-29T00:00:00-05:00</updated><id>https://apihandyman.io/barely-surviving-my-first-live-non-recorded-demo-session</id><content type="html" xml:base="https://apihandyman.io/barely-surviving-my-first-live-non-recorded-demo-session/">&lt;p&gt;Yesterday, I live demoed how I take advantage of the OpenAPI Specification during an API Design review at the API Specification Conference.
-This session was really live, not recorded like my previous one, and that didn’t totally went well.
-Though I was quite happy to discover new tricks, I had problems preparing this session and worse I also had problems giving it.
-Nothing that terrible hopefully, but still terribly annoying and stressful.
-I need a cathartic post to talk about all that.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;facing-obs-browser-cache-issues&quot;&gt;Facing OBS browser cache issues&lt;/h1&gt;
-
-&lt;p&gt;During my previous (and first) live demo session I started to use &lt;a href=&quot;https://obsproject.com/&quot;&gt;OBS&lt;/a&gt;, you can read the whole story &lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/#discovering-obs-studio&quot;&gt;here&lt;/a&gt;).
-I decided to reuse what I had done, especially my &lt;a href=&quot;/slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/&quot;&gt;pseudo-slide-deck system&lt;/a&gt; in order to have section titles and speaker notes.
-To explain this shortly:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;There’s a &lt;code&gt;steps&lt;/code&gt; folder containing &lt;code&gt;step-1&lt;/code&gt; to &lt;code&gt;step-X&lt;/code&gt; folders&lt;/li&gt;
-  &lt;li&gt;Each &lt;code&gt;step-X&lt;/code&gt; folder contains at least an index.html (the sections title) and todo.html (my speaker’s notes) HTML files (plus some other files if needed)&lt;/li&gt;
-  &lt;li&gt;A next.sh shell script copy the content of the next &lt;code&gt;step-X&lt;/code&gt; folder to &lt;code&gt;steps&lt;/code&gt;, I run it when needed with a shortcut in VS Code&lt;/li&gt;
-  &lt;li&gt;Both “current” HTML files can be loaded and live-reloaded automatically thanks to the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer&quot;&gt;Live Server&lt;/a&gt; VS Code extension&lt;/li&gt;
-  &lt;li&gt;The &lt;code&gt;index.html&lt;/code&gt; file is visible in OBS via a browser source&lt;/li&gt;
-  &lt;li&gt;The &lt;code&gt;todo.html&lt;/code&gt; is just opened in a browser (on my iPad in sidecar mode)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/barely-surviving-my-first-live-non-recorded-demo-session/tweet.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This time the &lt;code&gt;index.html&lt;/code&gt;was not containing text but a PNG image with a transparent background (top right corner in the screenshot above).
-At my first attempt, I simply gave the same name to all the different images &lt;code&gt;steps/step-X/title.png&lt;/code&gt;, the HTML containing &lt;code&gt;&amp;lt;img src=&quot;title.png&quot;&amp;gt;&lt;/code&gt;.
-The problem was that the browser inside OBS was not reloading the image because it was cached.
-To solve this problem I simply stored all images in &lt;code&gt;steps/images&lt;/code&gt; with different names and targeted &lt;code&gt;steps/images/specific-name.png&lt;/code&gt; in the &lt;code&gt;img&lt;/code&gt; tag.&lt;/p&gt;
-
-&lt;h1 id=&quot;adding-scene-switching-to-my-system&quot;&gt;Adding scene switching to my system&lt;/h1&gt;
-
-&lt;p&gt;In my previous live session, I didn’t needed to use scene switching but this time I wanted to be able to switch between a scene showing my Macbook display and another one with only my webcam when needed while still being able to use my “next slide” script.
-I did that by configuring the “Title” tab of the Advanced Scene Switcher as follow:&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/barely-surviving-my-first-live-non-recorded-demo-session/scene-switch-title-regex.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The first line targets a terminal window whose title may change, so I used a regex (the &lt;code&gt;.*&lt;/code&gt; part of the title).
-The second line targets my VS Code window.
-That configuration means: if I click on my terminal, OBS shows the Camera scene and if click on VS Code, the VSCode scene is shown.
-While having the focus on the terminal I was able to launch the &lt;code&gt;next.sh&lt;/code&gt; command to go to next step if needed.&lt;/p&gt;
-
-&lt;p&gt;Then a few hours before the conference, I wanted to add a third scene for the introduction.&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/barely-surviving-my-first-live-non-recorded-demo-session/tweet-intro-scene.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I was able to handle that by simply adding a &lt;code&gt;scene.txt&lt;/code&gt; in all of my &lt;code&gt;steps/step-X&lt;/code&gt; folders and then configure the “File” tab of the advanced scene switcher plugin to change the scene based on the content of &lt;code&gt;steps/scene.txt&lt;/code&gt;.
-Depending on the scene, the file may contain “Intro” or “Camera” (the scene’s name) or be empty.
-In this last case, the scene switcher fallback to “title” mode.&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/barely-surviving-my-first-live-non-recorded-demo-session/scene-switch-file.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;noticing-epoccam-lag-in-obs&quot;&gt;Noticing EpocCam lag in OBS&lt;/h1&gt;
-
-&lt;p&gt;I my previous &lt;a href=&quot;/setting-up-everything-to-record-myself-coding-and-talking/#looking-good-enough&quot;&gt;“live” series&lt;/a&gt;, I explained how an iPhone could be used as a webcam with EpocCam.
-I actually did not used it that time, but I did use my iPhone as Webcam several times for video calls and podcast recordings (yes, video is recorded sometimes for podcasts).
-I had absolutely no problem at all.
-But this time, I don’t know yet why, I faced some lag issue: the video not sync with my audio when using OBS.
-I realized that 2 hours before the conference 🤦🏻‍♂️.
-So, as I had not much time to figure what the problem was and how to solve it, I decided to use my terrible Macbook webcam … and plan to buy a descent camera.&lt;/p&gt;
-
-&lt;h1 id=&quot;chaotic-sessions-content-preparation&quot;&gt;Chaotic session’s content preparation&lt;/h1&gt;
-
-&lt;p&gt;Maybe having 3 totally different conference talk for this year was too much, it take me an awfully long time and dedication to prepare one. 
-I had too much work to do these last weeks and not enough time to prepare … and was not in the mood for it.
-That happens sometimes, not being in the mood, but it was not a blog post I could postpone, people were expecting to see this session.&lt;/p&gt;
-
-&lt;p&gt;The idea was to design an API having a few design issues that would allow me to showcase how I review a design and my tools. 
-I really struggled to prepare this API and was not totally satisfied in the end.
-The resulting API looked too much artificial.&lt;/p&gt;
-
-&lt;p&gt;I hadn’t much time to prepare my speech and do the rehearsal.
-Hopefully, lastly I was able to practice quite often “presenting without any notes” while doing API design training sessions.
-So though I was not totally confident, I felt I could let go my “word for word” preparation and be more spontaneous.
-Once the sections of my talk were defined I did a few tests and was quickly able to evaluate the time for each one, added the timing to my speakers notes and was “ready” for the show.&lt;/p&gt;
-
-&lt;h1 id=&quot;facing-technical-issue-during-the-session&quot;&gt;Facing technical issue during the session&lt;/h1&gt;
-
-&lt;p&gt;And the show didn’t go so well but not because of my lack of preparation…&lt;/p&gt;
-
-&lt;p&gt;I did an audio/video test 30 minutes before my session and there was something wrong.
-The person I did the test with told me there was a small random delay with my video (I was sharing my 27 inches display screen showing a fullscreen OBS projector and not using my webcam directly).
-I took time to do some tests and I noticed a few things (the platform used was Hopin in Chrome):&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Sharing a just a window instead of the screen was terrible. Huge video lag&lt;/li&gt;
-  &lt;li&gt;Reducing the resolution of my screen apparently allowed to remove the lag&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So here I was ready for the show and I started to talk: “Hello, everyone…” …
-But some friends in the chat told me my audio was “scratching” or doing static sound.
-Not knowing what to do, I switched to the MacBook audio instead of my super cool Shure SM7B then switched back to the Shure.
-Problem solved … 30 seconds.
-I switched back again to MacBook audio, it was working, “Don’t touch anything” someone told me 😅.
-I lost 2 to 3 minutes I think, but I started the session.&lt;/p&gt;
-
-&lt;p&gt;Everything was working well, though I noticed some lag in VS Code scrolling.
-Slowly but surely my MacBook was becoming less responsive.
-It seems that both OBS and Chrome were using much CPU, but I suspect there were some other process slowing my Machine (I was telling to myself “it’s a f&lt;strong&gt;**&lt;/strong&gt; gazillion cores MacBook Pro 16, how can it be so slowed down!”).
-I think the mic problem was caused by high CPU usage.
-Whatever, I was unable to fully demoed my final tool (in Excel, yes, Excel) but was able to explain the spirit.&lt;/p&gt;
-
-&lt;p&gt;So, it didn’t went so well BUT, I don’t know how, I succeeded to keep my calm and people were happy with the session’s content, so I can live with that.
-I’ll need to figure what was the problem in order to avoid having it again.
-And I’ll need to prepare a plan B just in case, because Murphy’s law.
-Oh, and I must not forget to buy a f&lt;strong&gt;**&lt;/strong&gt; camera.
-But for now, I’ll take some rest.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Yesterday, I live demoed how I take advantage of the OpenAPI Specification during an API Design review at the API Specification Conference. This session was really live, not recorded like my previous one, and that didn’t totally went well. Though I was quite happy to discover new tricks, I had problems preparing this session and worse I also had problems giving it. Nothing that terrible hopefully, but still terribly annoying and stressful. I need a cathartic post to talk about all that.</summary></entry></feed>
+&lt;p&gt;And I didn’t talked about how to formalize the result of such analysis … we need specialized tools for that too. But that’s another story I’ll tell another time.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract. Use the wrong tools to do so, and reviews will become a terrible, never-ending burden. Use the right tools, and you’ll become a formidable machine, doing reviews at light speed, never missing the tiniest problem or question. But, after dozens of reviews, you may realize that, despite using the “right” existing tools, the API space actually lacks API design reviews specialized tools.</summary></entry></feed>
