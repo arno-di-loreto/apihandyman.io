@@ -1,4 +1,3 @@
 <div class="alert alert-{{include.level}}">
-    {%- if include.title -%}<h4 class="alert-heading">{{include.title}}</h4><hr>{%- endif-%}
-{{include.content | markdownify}}
+    {%- if include.title -%}<h4 class="alert-heading">{{include.title}}</h4><hr>{%- endif-%}{{include.content | markdownify}}
 </div>
