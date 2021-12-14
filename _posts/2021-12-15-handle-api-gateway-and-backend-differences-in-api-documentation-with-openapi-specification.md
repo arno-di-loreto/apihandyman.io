@@ -1,12 +1,9 @@
 ---
-title: Take advantage of OpenAPI specification to handle API gateway and backend differences
-old-tle: How to manage the documentation of an API that is modified by an API gateway
-new-tle: Take advantage of OpenAPI specification to handle API gateway and backend differences
-date: 2021-12-16
+title: Handle API gateway and backend differences in API documentation with OpenAPI Specification
+date: 2021-12-15
 author: Arnaud Lauret
 layout: post
-permalink: /take-advantage-of-openapi-specification-to-handle-api-gateway-and-backend-differences/
-old-plink: /take-advantage-of-openapi-specification-to-handle-api-gateway-and-backend-differences/
+permalink: /handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/
 category: post
 ---
 I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API's implementation's developer and documentation targeting API's consumers?
@@ -30,7 +27,7 @@ Note that for this post [we'll consider the gateway as as "smart-dump pipe"](/an
 
 An API gateway is a proxy that sits between backends providing APIs and their consumers.
 Such proxy is useful to avoid reinventing the security wheel.
-With an API gateway, dealing with the Oauth dance and ensuring that only registered consumers can use some API is just a piece of cake (though that does not mean it does ALL security job as shown in [my previous "An API Gateway alone will not secure your API" post](/an-api-gateway-alone-will-not-secure-your-api/))
+With an API gateway, dealing with the Oauth dance and ensuring that only registered consumers can use some API is just a piece of cake (though that does not mean it does ALL security job as shown in [my previous "An API Gateway alone will not secure your API" post](/an-api-gateway-alone-will-not-secure-your-api/)).
 Other less known feature, gateways also provide throttling to ensure that a given consumer doesn't do more than X call per second on a API or to ensure that a backend does not take more than Y call per second to protect non scalable infrastructure.
 
 ## Errors and more
@@ -89,7 +86,16 @@ paths:
 # The answer
 
 So how to deal with that regarding an OpenAPI file used as specification and documentation?
-First, what is 100% sure is that the consumer must get access to a documentation, and hence an OpenAPI file, describing the API from their perspective, that is the API gateway version.
+
+## Consumer's perspective first
+
+First, what is 100% sure is that the consumers (well, their developers) must get access to a documentation describing the API from their perspective, that is the API gateway version.
+
+If the difference between backend and gateway contract is only about getting a few errors like 401 or 429, you could possibly provide the backend reference documentation and have a dedicated pages to explain how some specific errors are handled.
+But that means when consumers read the API reference documentation, these errors are not explicitly described.
+And that is a problem in my humble opinion: as a developer using an API, I want to know exactly what happens reading the documentation of an operation.
+
+That means, the reference documentation and hence the underlying OpenAPI file, must include those information. 
 So how to achieve that?
 
 ## In case of backend specific operations
@@ -110,7 +116,7 @@ First option, create an OpenAPI file describing the API at the gateway level and
 - Add backend specific operations if you don't want to separate them (see [In case of backend specific operations](/#in-case-of-backend-specific-operations))
 
 Don't do that manually, do it programmatically to ensure exhaustivity and consistentcy.
-You can use [JQ](/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/) or an OpenAPI parser.
+You can use [JQ](/toolbox/jq/) or an OpenAPI parser.
 
 ## From implementation to gateway
 
@@ -121,7 +127,7 @@ If you're coding in Java, it's dead simple to do all the modifications programma
 
 In both code first and spec first approaches, you can also do the transformations on an implementation version spec before or during deployment.
 If you're very lucky, your API gateway manages that transformation magically (but I doubt that actually exists).
-If not, proceed like in "gateway to implementation" scenario using JQ or an OpenAPI parser to modify the file.
+If not, proceed like in "gateway to implementation" scenario using [JQ](/toolbox/jq/) or an OpenAPI parser to modify the file.
 
 Whatever the way of doing the modifications, they would be:
 
@@ -147,5 +153,5 @@ Note that using a linter such as [Spectral](/toolbox/spectral/) can ensure that 
 
 Two important things to remember after reading this post:
 
-- The consumers MUST have a documentation that matches the API they see without bothering them with internal concerns.
+- The consumers MUST get a documentation, hence an OpenAPI file, that matches the API they see without bothering them with internal concerns (for instance that "the" API is actually build upon 2 components).
 - And whenever you need to tweak the documentation/description of an API, better take advantage of a machine readable format such as the OpenAPI and do the modifications programmatically not manually
