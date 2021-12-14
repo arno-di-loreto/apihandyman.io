@@ -1,10 +1,12 @@
 ---
 title: Take advantage of OpenAPI specification to handle API gateway and backend differences
-zurg: How to manage the documentation of an API that is modified by an API gateway
+old-tle: How to manage the documentation of an API that is modified by an API gateway
+new-tle: Take advantage of OpenAPI specification to handle API gateway and backend differences
 date: 2021-12-16
 author: Arnaud Lauret
 layout: post
-permalink: /how-to-manage-the-documentation-of-an-api-that-is-modified-by-an-api-gateway/
+permalink: /take-advantage-of-openapi-specification-to-handle-api-gateway-and-backend-differences/
+old-plink: /take-advantage-of-openapi-specification-to-handle-api-gateway-and-backend-differences/
 category: post
 ---
 I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API's implementation's developer and documentation targeting API's consumers?
