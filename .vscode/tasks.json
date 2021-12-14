@@ -45,12 +45,12 @@
             }
         },
         {
-            "label": "Update post title",
+            "label": "Update post title and/or date",
             "type": "shell",
             "command": "scripts/post-update.sh ${file}",
             "problemMatcher": [],
             "presentation": {
-                "reveal": "silent"
+                "reveal": "always"
             }
         },
         {
