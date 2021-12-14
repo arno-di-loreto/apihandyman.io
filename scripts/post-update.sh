@@ -12,7 +12,6 @@ get_fm_value () {
 
 
 FILE=$1
-UPDATED_TITLE=$2
 
 if [ -z "$FILE" ]
 then
@@ -20,21 +19,24 @@ then
   exit 1
 fi
 
-if [ -z "$UPDATED_TITLE" ]
+if [[ "$FILE" == *"_posts/"* ]]
 then
-    get_fm_value $FILE "title"
-    UPDATED_TITLE=$FM_VALUE
+  echo "Post file provided $FILE"
+else
+  echo "No post file provided"
+  exit 1
 fi
 
+
 get_fm_value $FILE "title"
-TITLE=$FM_VALUE
-echo TITLE:$TITLE
+UPDATED_TITLE=$FM_VALUE
+echo UPDATED_TITLE:[$UPDATED_TITLE]
 
 get_fm_value $FILE "date"
-DATE=$FM_VALUE
-echo DATE:$DATE
+UPDATED_DATE=$FM_VALUE
+echo UPDATED_DATE:$UPDATED_DATE
 
-----getfmvalue-file-title
+get_fm_value $FILE "permalink"
 PERMALINK=`echo "$FM_VALUE" | tr -d '/'`
 echo PERMALINK:[$PERMALINK]
 
@@ -43,12 +45,14 @@ echo UPDATED_PERMALINK:[$UPDATED_PERMALINK]
 
 POST_IMAGES=$IMAGES/$PERMALINK
 UPDATED_POST_IMAGES=$IMAGES/$UPDATED_PERMALINK
+echo UPDATED_POST_IMAGES:[$UPDATED_POST_IMAGES]
 
-UPDATED_FILE=$POSTS/$DATE-$UPDATED_PERMALINK.md
+UPDATED_FILE=$POSTS/$UPDATED_DATE-$UPDATED_PERMALINK.md
+echo UPDATED_FILE:[$UPDATED_FILE]
 
 echo "updating permalink"
 sed -e "s/$PERMALINK/$UPDATED_PERMALINK/" -i "" $FILE
-echo "updating images folder"
+echo "renaming images folder"
 mv $POST_IMAGES $UPDATED_POST_IMAGES
 echo "renaming-file"
 mv $FILE $UPDATED_FILE
