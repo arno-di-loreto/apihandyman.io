@@ -1,4 +1,171 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-12-08T08:35:48-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">And what if I’m wrong? Overcoming fears and doubts while designing APIs</title><link href="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/" rel="alternate" type="text/html" title="And what if I’m wrong? Overcoming fears and doubts while designing APIs" /><published>2021-12-08T00:00:00-06:00</published><updated>2021-12-08T00:00:00-06:00</updated><id>https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis</id><content type="html" xml:base="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/">&lt;p&gt;F&lt;strong&gt;**&lt;/strong&gt;* impostor syndrome, it’s not easy to say that I’m an API design expert, but I am.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-12-15T06:12:43-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Handle API gateway and backend differences in API documentation with OpenAPI Specification</title><link href="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/" rel="alternate" type="text/html" title="Handle API gateway and backend differences in API documentation with OpenAPI Specification" /><published>2021-12-15T00:00:00-06:00</published><updated>2021-12-15T00:00:00-06:00</updated><id>https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification</id><content type="html" xml:base="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/">&lt;p&gt;I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers?
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;the-question&quot;&gt;The question&lt;/h1&gt;
+
+&lt;p&gt;The original question was this one: “I’m trying to work out how to use OpenAPI both as a service spec (with code generation) but also as documentation when the service will be deployed behind a gateway that will return some HTTP responses (401/403). Do I write in the OpenAPI spec what the end user sees (that an endpoint might return 401 say) even though the underlying service isn’t implementing that call? It makes the code generation ‘wrong’ but equally the developers need to know that the gateway configuration should protect it. Or do I make the OpenAPI reflect the service, in which case how do I tell the end users that they may see additional errors?”&lt;/p&gt;
+
+&lt;p&gt;So the question is how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers&lt;/p&gt;
+
+&lt;p&gt;To answer that question, we need to talk about API gateways and how they can expose an API contract that is slightly different from the implementation’s one.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-contract-can-differ-between-gateway-and-implementation&quot;&gt;How contract can differ between gateway and implementation&lt;/h1&gt;
+
+&lt;div class=&quot;alert alert-info&quot;&gt;
+&lt;p&gt;Note that for this post &lt;a href=&quot;/an-api-gateway-must-be-a-dumb-pipe/&quot;&gt;we’ll consider the gateway as as “smart-dump pipe”&lt;/a&gt;, and so set aside the “heavy transformation” use cases that are not relevant here.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;An API gateway is a proxy that sits between backends providing APIs and their consumers.
+Such proxy is useful to avoid reinventing the security wheel.
+With an API gateway, dealing with the Oauth dance and ensuring that only registered consumers can use some API is just a piece of cake (though that does not mean it does ALL security job as shown in &lt;a href=&quot;/an-api-gateway-alone-will-not-secure-your-api/&quot;&gt;my previous “An API Gateway alone will not secure your API” post&lt;/a&gt;).
+Other less known feature, gateways also provide throttling to ensure that a given consumer doesn’t do more than X call per second on a API or to ensure that a backend does not take more than Y call per second to protect non scalable infrastructure.&lt;/p&gt;
+
+&lt;h2 id=&quot;errors-and-more&quot;&gt;Errors and more&lt;/h2&gt;
+
+&lt;p&gt;Doing such stuff independently from the API implementation, an API gateway actually modifies exposed API contract.
+Indeed, if a consumer makes an API call without an access token, they will get a &lt;code&gt;401 Unauthorized&lt;/code&gt; response coming from the gateway, their API call having not reach the backend.
+Same goes if a consumer goes beyond the X call per second, they may get a &lt;code&gt;429 Too Many Requests&lt;/code&gt; coming from the gateway.
+Those errors are not part of the original contract exposed by the backend.&lt;/p&gt;
+
+&lt;div class=&quot;alert alert-warning&quot;&gt;
+&lt;p&gt;Important notice regarding errors: ensure that errors returned by your API gateway actually follow your API design guidelines.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;But the API gateway may modify the contract beyond adding some errors.
+As the gateway is a proxy, the server host is not the same at the gateway level (&lt;code&gt;https://cool-domain.com&lt;/code&gt;) and the backend level (&lt;code&gt;https://obscure-server-name&lt;/code&gt;).
+It may change the base path, the backend exposing its API on &lt;code&gt;/api&lt;/code&gt; and the gateway exposing on &lt;code&gt;/meaningful-name&lt;/code&gt;.
+A gateway may also add some HTTP headers in responses.&lt;/p&gt;
+
+&lt;p&gt;More tricky, the gateway may change security settings.
+It’s fairly common to have various security modes available at the gateway level (Oauth, OpenID connect) but between the gateway and the backend a more generic, often JWT based security mode is used.&lt;/p&gt;
+
+&lt;p&gt;And even more tricky, you may have some endpoints at backend level that are only used internally and must not be exposed at gateway level.&lt;/p&gt;
+
+&lt;h2 id=&quot;impacts-on-openapi-file&quot;&gt;Impacts on OpenAPI file&lt;/h2&gt;
+
+&lt;p&gt;All that means the modifications can take place in the following places in an OpenAPI file:&lt;/p&gt;
+
+&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+  
+  &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;row m-0&quot;&gt;
+      &lt;div class=&quot;col align-self-center&quot;&gt;
+        &lt;p class=&quot;m-0 title&quot;&gt;Modified OpenAPI file&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
+        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
+          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0 code-expandcollapse-btn&quot; aria-label=&quot;expand or shrink&quot; onclick=&quot;expandCollapseCode(this)&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Expand/Shrink&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/maximize.svg&quot; /&gt;&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;pre class=&quot;language-yaml line-numbers code-collapsed code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;openapi: 3.0
+
+servers:
+    - url: # Gateway and backend won&amp;#39;t have
+           # same URLs (scheme, host, base path)
+
+components:
+    securityDefinitions:
+        # Definitions of gateway specific security
+        # modes different from backend
+
+paths:
+    /any-path: # Some paths may not be exposed on the gateway
+        any-operation: # Some operations may not be exposed on the gateway
+            security:
+                # Usage of gateway specific security
+                # modes different from backend
+            responses:
+                429: # Gateway will add or override HTTP
+                     # status codes for all operations
+                    headers:
+                        # Gateway may add specific headers&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;the-answer&quot;&gt;The answer&lt;/h1&gt;
+
+&lt;p&gt;So how to deal with that regarding an OpenAPI file used as specification and documentation?&lt;/p&gt;
+
+&lt;h2 id=&quot;consumers-perspective-first&quot;&gt;Consumer’s perspective first&lt;/h2&gt;
+
+&lt;p&gt;First, what is 100% sure is that the consumers (well, their developers) must get access to a documentation describing the API from their perspective, that is the API gateway version.&lt;/p&gt;
+
+&lt;p&gt;If the difference between backend and gateway contract is only about getting a few errors like 401 or 429, you could possibly provide the backend reference documentation and have a dedicated pages to explain how some specific errors are handled.
+But that means when consumers read the API reference documentation, these errors are not explicitly described.
+And that is a problem in my humble opinion: as a developer using an API, I want to know exactly what happens reading the documentation of an operation.&lt;/p&gt;
+
+&lt;p&gt;That means, the reference documentation and hence the underlying OpenAPI file, must include those information. 
+So how to achieve that?&lt;/p&gt;
+
+&lt;h2 id=&quot;in-case-of-backend-specific-operations&quot;&gt;In case of backend specific operations&lt;/h2&gt;
+
+&lt;p&gt;If your backend exposes specific operations that must not be exposed at gateway level, I would suggest to put them in a separate API.
+Yes, a single backend can expose 2 different APIs on two different root path.
+That will avoid the risk of unintentionally expose purely internal admin operations to the outside world.&lt;/p&gt;
+
+&lt;h2 id=&quot;from-gateway-to-implementation&quot;&gt;From gateway to implementation&lt;/h2&gt;
+
+&lt;p&gt;First option, create an OpenAPI file describing the API at the gateway level and tweak it, if needed, to use it at backend level:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Replace gateway &lt;code&gt;servers&lt;/code&gt; by backend one(s)&lt;/li&gt;
+  &lt;li&gt;Replace gateway &lt;code&gt;securityDefinitions&lt;/code&gt; by backend one&lt;/li&gt;
+  &lt;li&gt;Replace gateway operation &lt;code&gt;security&lt;/code&gt; by backend one&lt;/li&gt;
+  &lt;li&gt;Remove or replace gateway specific &lt;code&gt;responses&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Remove gateway &lt;code&gt;specific&lt;/code&gt; headers in &lt;code&gt;responses&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Add backend specific operations if you don’t want to separate them (see &lt;a href=&quot;/#in-case-of-backend-specific-operations&quot;&gt;In case of backend specific operations&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Don’t do that manually, do it programmatically to ensure exhaustivity and consistentcy.
+You can use &lt;a href=&quot;/toolbox/jq/&quot;&gt;JQ&lt;/a&gt; or an OpenAPI parser.&lt;/p&gt;
+
+&lt;h2 id=&quot;from-implementation-to-gateway&quot;&gt;From implementation to gateway&lt;/h2&gt;
+
+&lt;p&gt;The second way of dealing with that problem would be to transform the OpenAPI file describing the implementation’s contract into the gateway one.&lt;/p&gt;
+
+&lt;p&gt;In a code first approach, you could use the implementation’s documentation (OpenAPI) generator to do the transformation.
+If you’re coding in Java, it’s dead simple to do all the modifications programmatically with SpringFox.&lt;/p&gt;
+
+&lt;p&gt;In both code first and spec first approaches, you can also do the transformations on an implementation version spec before or during deployment.
+If you’re very lucky, your API gateway manages that transformation magically (but I doubt that actually exists).
+If not, proceed like in “gateway to implementation” scenario using &lt;a href=&quot;/toolbox/jq/&quot;&gt;JQ&lt;/a&gt; or an OpenAPI parser to modify the file.&lt;/p&gt;
+
+&lt;p&gt;Whatever the way of doing the modifications, they would be:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Replace backend &lt;code&gt;servers&lt;/code&gt; by gateway one&lt;/li&gt;
+  &lt;li&gt;Replace backend &lt;code&gt;securityDefinitions&lt;/code&gt; by gateway one&lt;/li&gt;
+  &lt;li&gt;Replace backend operation &lt;code&gt;security&lt;/code&gt;by gateway one&lt;/li&gt;
+  &lt;li&gt;Add gateway specific &lt;code&gt;responses&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Add gateway &lt;code&gt;specific&lt;/code&gt; headers in &lt;code&gt;responses&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Remove backend specific operations if needed (see &lt;a href=&quot;/#in-case-of-backend-specific-operations&quot;&gt;In case of backend specific operations&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;gateway-and-implementation&quot;&gt;Gateway and implementation&lt;/h2&gt;
+
+&lt;p&gt;And last but not least: doing both.
+You can create an OpenAPI file describing the two versions and then strip it of unwanted elements before using it as gateway or backend level.
+In my humble opinion that seems to be the best solution.
+Indeed, you actually define explicitly what happens at both level and especially at gateway level (it’s up to provider to decide how to use scope for instance).
+And when it comes to modify the OpenAPI file, it’s quite simple to remove elements.
+A middle-ground even better option could be to use templates or script to handle the addition of gateway errors or headers (which are always the same).&lt;/p&gt;
+
+&lt;p&gt;Note that using a linter such as &lt;a href=&quot;/toolbox/spectral/&quot;&gt;Spectral&lt;/a&gt; can ensure that your OpenAPI file(s) are actually valid ones (defining all errors for instance).&lt;/p&gt;
+
+&lt;h1 id=&quot;consumer-first-and-machine-readability&quot;&gt;Consumer first and machine readability&lt;/h1&gt;
+
+&lt;p&gt;Two important things to remember after reading this post:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The consumers MUST get a documentation, hence an OpenAPI file, that matches the API they see without bothering them with internal concerns (for instance that “the” API is actually build upon 2 components).&lt;/li&gt;
+  &lt;li&gt;And whenever you need to tweak the documentation/description of an API, better take advantage of a machine readable format such as the OpenAPI and do the modifications programmatically not manually&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers?</summary></entry><entry><title type="html">And what if I’m wrong? Overcoming fears and doubts while designing APIs</title><link href="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/" rel="alternate" type="text/html" title="And what if I’m wrong? Overcoming fears and doubts while designing APIs" /><published>2021-12-08T00:00:00-06:00</published><updated>2021-12-08T00:00:00-06:00</updated><id>https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis</id><content type="html" xml:base="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/">&lt;p&gt;F&lt;strong&gt;**&lt;/strong&gt;* impostor syndrome, it’s not easy to say that I’m an API design expert, but I am.
 Along my path to expertise, I failed, I did mistakes; that helped me to learn a lot.
 I also have been afraid, I had doubts.
 And you know what?
@@ -800,777 +967,4 @@ In that case, it would be better to keep the french acronym in the design, addin
 
 &lt;p&gt;But just think about this last option: not using this highly specific acronym?
 Could it be replaced by a more generic word like “saving plan”?
-This is not something that will always work, but it’s worth the try because keeping acronym that are specific to your country could be a burden for your design and annoy many users.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">This post is dedicated to all English as a Second, or Foreign, Language (ESL, EFL) API designers. Et tout spécialement mes compatriotes français! Designing APIs is already not that easy when you design them using your native language. But, it’s even more difficult when using a second one. So let’s see how to avoid design frenglish, itaglish or whateverglish APIs.</summary></entry><entry><title type="html">We Need Specialized Tools For Api Design Reviews</title><link href="https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews/" rel="alternate" type="text/html" title="We Need Specialized Tools For Api Design Reviews" /><published>2021-10-06T00:00:00-05:00</published><updated>2021-10-06T00:00:00-05:00</updated><id>https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews</id><content type="html" xml:base="https://apihandyman.io/we-need-specialized-tools-for-api-design-reviews/">&lt;p&gt;Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract.
-Use the wrong tools to do so, and reviews will become a terrible, never-ending burden.
-Use the right tools, and you’ll become a formidable machine, doing reviews at light speed, never missing the tiniest problem or question.
-But, after dozens of reviews, you may realize that, despite using the “right” existing tools, the API space actually lacks API design reviews specialized tools.
-&lt;!--more--&gt;
-This post is a slightly write up of my “Taking advantage of OpenAPI for API design reviews” talk I gave at the 2021 API Specification Conference.&lt;/p&gt;
-
-&lt;h1 id=&quot;reviewing-api-designs-helping-people&quot;&gt;&lt;del&gt;Reviewing API designs&lt;/del&gt; Helping people&lt;/h1&gt;
-
-&lt;p&gt;I work with many different teams helping them create and evolve many different APIs.
-I can do around 150 API design reviews per year on average.&lt;/p&gt;
-
-&lt;p&gt;When I do an API design review, I’m not being the API police.
-I’m here to help people create the best possible API in their context.
-I’m here to provide guidance and help people grow their design skills so that one day I won’t be needed anymore.&lt;/p&gt;
-
-&lt;p&gt;Though I’m not a API policeman, the closer to our API design guidelines the design is, the better.
-Because having consistent APIs make them easier to use.
-But that’s not the only thing to look at, an API must be reviewed beyond the guidelines.
-It’s important to investigate what it is made for, what needs this API is supposed to fulfil.
-And then to check if the design is actually responding to all that.
-But not just “responding to all” that but doing it in the best possible fashion.
-So, I also check if the design is easy to understand, easy to use and easy to evolve.&lt;/p&gt;
-
-&lt;p&gt;And how do I do all that?
-Well, by investigating business domain and IT concerns, asking stupid questions (tons of them), making people talk together, listening, showing empathy, challenging beliefs and ideas … and obviously analyzing interface contracts.&lt;/p&gt;
-
-&lt;h1 id=&quot;analyzing-an-interface-contract&quot;&gt;Analyzing an interface contract&lt;/h1&gt;
-
-&lt;p&gt;Depending on the size and number of APIs you review, the task of reviewing API designs will be more or less complicated.
-But if analyzing a single interface contract can be quite complicated by itself, it can be even more complicated if it’s described in a non standard format such as a wiki page or a spreadsheet.
-Hopefully most people I’m working with use the OpenAPI specification to describe their APIs.&lt;/p&gt;
-
-&lt;h2 id=&quot;reading-openapi-files-is-a-terrible-idea&quot;&gt;Reading OpenAPI files is a terrible idea&lt;/h2&gt;
-
-&lt;p&gt;I’ve seen people making API design reviews by directly reading OpenAPI files such as the one below.
-That’s not something I actually do, you can give it a try, read this file and tell me what you think.&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Let's read this OpenAPI file&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0&quot; aria-label=&quot;download file&quot; target=&quot;_blank&quot; href=&quot;/code/api-design-reviews/motu-openapi.yaml&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Download&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/download.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0 code-expandcollapse-btn&quot; aria-label=&quot;expand or shrink&quot; onclick=&quot;expandCollapseCode(this)&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Expand/Shrink&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/maximize.svg&quot; /&gt;&lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-yaml line-numbers code-collapsed code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;openapi: 3.0.0
-info:
-  title: MOTU
-  version: 1.0.3_build156
-  description: The Masters of the Universe Web Site API
-paths:
-  /v1/charsBySide:
-    get:
-      summary: charBySide
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Sides'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: get-charById
-      tags:
-        - searchController
-      parameters: []
-      description: For &quot;all characters&quot; screen
-    parameters: []
-  /v1/charaters-with-name:
-    get:
-      summary: Search characters by name
-      tags:
-        - searchController
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Char'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: get-characters-by-name
-      description: For &quot;search by name&quot; screen
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: name
-          required: true
-    parameters: []
-  '/v1/tpyt/{year}/{type}':
-    parameters:
-      - schema:
-          type: string
-        name: year
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: type
-        in: path
-        required: true
-    get:
-      summary: Toys per year and type
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/toysPerYearAndTypeDto'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: get-toys-per-year-year-type
-      tags:
-        - searchController
-      description: ''
-  /v1/search/flying/vehicles/with/filters:
-    post:
-      summary: List flying toys
-      tags:
-        - searchController
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FlyingToysResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Flying Toys Found
-        '500':
-          description: Internal Server Error
-      operationId: post-flying-vehicles-byId
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FlyingFilters'
-    parameters: []
-  '/v1/sidekick/{name}':
-    parameters:
-      - schema:
-          type: string
-        name: name
-        in: path
-        required: true
-    get:
-      summary: Get character's sidekick
-      tags:
-        - searchController
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Sidekick'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: get-characters-sidekick-name
-  /v1/buildings/all:
-    get:
-      summary: Building toys
-      tags:
-        - searchController
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BuildingListDto'
-      operationId: get-buildings
-    parameters: []
-  '/v2/episode/{num}/{year}/{producer}':
-    parameters:
-      - schema:
-          type: string
-        name: num
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: year
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: producer
-        in: path
-        required: true
-    get:
-      summary: get
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Episode_Single'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: get-ep-num-year-producer
-      tags:
-        - tvShowController
-      description: ''
-  /v2/episodes:
-    get:
-      summary: List episodes
-      tags:
-        - tvShowController
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Producers'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: get-eps
-      description: ''
-    parameters: []
-    post:
-      summary: Insert episode in database
-      operationId: post-v2-episodes
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/episode-added'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/add-epsode'
-      tags:
-        - tvShowController
-  /v1/search/ground/vehicles/with/filters:
-    post:
-      summary: Search ground vehicle toys
-      tags:
-        - searchController
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GroundToyResponseDto'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: post-v1-ground-vehicles-with-filters
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GroundFilter'
-          application/xml:
-            schema:
-              type: object
-              properties: {}
-          multipart/form-data:
-            schema:
-              type: object
-              properties: {}
-        description: ''
-    parameters: []
-  /v1/buildings/filters:
-    get:
-      summary: Search buildings
-      tags:
-        - searchController
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BuildingListDto'
-      operationId: get-v1-buildings-filters
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: name
-components:
-  schemas:
-    Char:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        toys:
-          $ref: '#/components/schemas/toy'
-        creation_dte:
-          type: string
-          format: date-time
-        evil:
-          type: boolean
-        good:
-          type: boolean
-    toy:
-      title: ''
-      type: object
-      properties:
-        ToyId:
-          type: string
-        ToyType:
-          type: number
-          enum:
-            - '1'
-            - '2'
-            - '3'
-        ToyReference:
-          type: string
-        ToyOriginalPrice:
-          type: string
-        ToyManufacturer:
-          type: string
-        ToyName:
-          type: string
-    prd:
-      title: ''
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        years:
-          type: array
-          items:
-            $ref: '#/components/schemas/Years'
-    Epsd:
-      title: ''
-      type: object
-      properties:
-        number:
-          type: string
-        title:
-          type: string
-        firstAir:
-          type: number
-    Years:
-      title: ''
-      type: object
-      properties:
-        year:
-          type: string
-        episodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Epsd'
-    Episode_Single:
-      type: object
-      properties:
-        name:
-          type: string
-        first_air_date:
-          type: string
-        alternate_name_1:
-          type: string
-        alternate_name_2:
-          type: string
-    add-epsode:
-      title: ''
-      type: object
-      properties:
-        name:
-          type: string
-        firstArDate:
-          type: string
-        producerId:
-          type: string
-        year:
-          type: integer
-    SearchResponse:
-      title: ''
-      type: array
-      items:
-        $ref: '#/components/schemas/Char'
-    Sides:
-      title: ''
-      type: object
-      properties:
-        good:
-          type: array
-          items:
-            $ref: '#/components/schemas/SideChar'
-        evil:
-          type: array
-          items:
-            $ref: '#/components/schemas/SideChar'
-    SideChar:
-      title: ''
-      type: object
-      properties:
-        id:
-          type: string
-        nom:
-          type: string
-        icon:
-          type: string
-    Sidekick:
-      title: ''
-      type: object
-      properties:
-        name:
-          type: string
-    FlyingFilters:
-      title: Filters
-      type: object
-      properties:
-        year:
-          type: string
-        brand:
-          type: string
-        name:
-          type: string
-        evil:
-          type: boolean
-        good:
-          type: boolean
-        id:
-          type: string
-    FlyingToysResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/FlyingToy'
-    FlyingToy:
-      type: object
-      properties:
-        flyingToyName:
-          type: string
-        flyingToyBox:
-          type: string
-    toysPerYearAndTypeDto:
-      title: toysPerYearAndTypeDto
-      type: array
-      items:
-        $ref: '#/components/schemas/toy'
-    GroundToyResponseDto:
-      type: array
-      items:
-        $ref: '#/components/schemas/GroundToy'
-    GroundToy:
-      type: object
-      properties:
-        name:
-          type: string
-        boxArt:
-          type: string
-    GroundFilter:
-      title: GroundFilter
-      type: object
-      properties:
-        id:
-          type: string
-        manufacturer:
-          type: string
-    building:
-      title: building
-      type: object
-      properties:
-        name:
-          type: string
-        art:
-          type: string
-        width:
-          type: number
-        height:
-          type: number
-        depth:
-          type: number
-    BuildingListDto:
-      title: BuildingListDto
-      type: object
-      properties:
-        buildings:
-          type: array
-          items:
-            $ref: '#/components/schemas/building'
-    episode-added:
-      title: episode-added
-      type: string
-    Producers:
-      title: ''
-      type: object
-      properties:
-        producers:
-          $ref: '#/components/schemas/prd'
-servers:
-  - description: base path
-    url: /api
-&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I don’t know how you feel, but reading this raw OpenAPI file do not really help me to make a complete review of the design.
-Oh, I can still spot useful but disturbing pieces of information based on the &lt;code&gt;info&lt;/code&gt; section:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Because of version number &lt;code&gt;1.0.3_build156&lt;/code&gt;, I can guess this file has been generated from code, which is usually not a good sign. Maybe the team has coded everything and just want a green light to deploy their API on the API gateway (Sorry, that’s not my job, and too bad, it’s probably too late to fix something as everything has already been coded)&lt;/li&gt;
-  &lt;li&gt;The “The Masters of the Universe Web Site API” &lt;code&gt;description&lt;/code&gt; let me think that this API could be been design solely to be the backend of this specific website and thus may not be reusable in other contexts&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;That’s interesting, but when I do an API design review my first move is trying to guess what the API is made for by looking at all of its operations, all GET /this and POST /that and their summaries.
-And that is not easy to do just reading the raw OpenAPI file.
-Using a code editor, I could close a few sections but even doing so I can’t have this overview totally.&lt;/p&gt;
-
-&lt;p&gt;I also like to have an overview of the data models in operations’ responses, evaluate their complexity, their depth.
-But reading a raw OpenAPI file all I have is a flat perspective of each model.
-I have to jump from one &lt;code&gt;$ref&lt;/code&gt; to another to “see” a full schemas … 
-And so ,I actually don’t see anything here.
-Or worse, just like in the parable of the 3 blind men the elephant, I could see a snake or a wall instead of an elephant.&lt;/p&gt;
-
-&lt;p&gt;So, reading a raw OpenAPI file is definitely not for me.
-And I highly doubt that anyone could actually do an efficient API design review doing so.&lt;/p&gt;
-
-&lt;h2 id=&quot;not-all-documentation-tools-are-equals&quot;&gt;Not all documentation tools are equals&lt;/h2&gt;
-
-&lt;p&gt;As far as I remember, I always took advantage of documentation tools to do API design reviews.
-I especially use the good old SwaggerUI.
-I don’t use it only because it was the only one available when I started being an API design reviewer and I don’t want to change my habits.
-No, I use it because it’s the one that fulfils my needs for this specific task.&lt;/p&gt;
-
-&lt;p&gt;I actually don’t like SwaggerUI API documentation when I learn to use an API, I prefer ReDoc or Stoplight Elements renderings. But reading API documentation is different from reviewing an interface contract.&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/we-need-specialized-tools-for-api-design-reviews/swaggerui-overview.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;SwaggerUI allows me to easily get the overview of operations, I can see all GET /this and POST /that and their summaries in a quick glance.
-That helps me to confirm the intent of the API, if it was explained to me before, or guess it if not.&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/we-need-specialized-tools-for-api-design-reviews/swaggerui-operation.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Using SwaggerUI I can also check that the returned schema name actually match the resource path.
-In ReDoc the name of the returned schema is not shown and when doing a review, that’s quite annoying.&lt;/p&gt;
-
-&lt;p&gt;Once I’ve made this first pass, I analyze in depth each operation.
-Checking parameters, responses and their schemas.
-Regarding the analysis of schemas, I would prefer ReDoc of Stoplight Elements.
-Whatever the tool, I can easily spot data models where everything if optional (typical on generated interface contracts).
-I can also check schema depth.&lt;/p&gt;
-
-&lt;p&gt;When I started doing reviews I had to carefully analyze every bit of the contract in one of those documentation tools.
-Especially to ensure that the design was conforming to our API design guidelines.
-Checking every single property is in lowerCamelCase, path structure is valid, no HTTP status code is missing, etc, etc, etc, …&lt;/p&gt;
-
-&lt;p&gt;Doing those repetitive (mostly dumb) checks, review after review, hundreds of times, I nearly lost sanity.
-And there are not only dumb checks that need to be done.
-Checking consistency between schemas for instance is extremely hard to do with regular documentation tools.&lt;/p&gt;
-
-&lt;h2 id=&quot;beyond-linting&quot;&gt;Beyond linting&lt;/h2&gt;
-
-&lt;p&gt;Hopefully, Stoplight Spectral just came out at that time.
-I will not go in all the details here (You can watch my &lt;a href=&quot;/the-augmented-api-design-reviewer/&quot;&gt;“Augmented API Design Reviewer” talk&lt;/a&gt; for that), but to make it short, Spectral is a JSON/YAML linter.
-You can define rules that Spectral will run against a document to spot if some elements are breaking them.
-You can check path structure, property names case, if all expected HTTP status codes are defined on all operations, or if all 4xx and 5xx error response return a data model matching your standard error schema.&lt;/p&gt;
-
-&lt;p&gt;For instance the following ruleset contains a single that scans all properties to detect if some of them have a name containing a number:&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Spectral Demo Ruleset&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code file controls&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0&quot; aria-label=&quot;download file&quot; target=&quot;_blank&quot; href=&quot;/code/api-design-reviews/demo-ruleset.yaml&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Download&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/download.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-yaml line-numbers code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;rules:
-  property-name-no-number:
-    given: $..properties
-    severity: warn
-    description: Property name must not contain number (maybe you can use an array)
-    message: &quot;{{description}} {{path}}&quot;
-    then:
-      - field: &quot;@key&quot;
-        function: pattern
-        functionOptions:
-          notMatch: &quot;/[0-9]+/i&quot;&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;You can run the following command after installing Spectral to see it in action:&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;pre class=&quot;copy-hidden code-copy&quot;&gt;Spectral lint -r https://apihandyman.io/code/api-design-reviews/demo-ruleset.yaml https://apihandyman.io/code/api-design-reviews/motu-openapi.yaml
-
-&lt;/pre&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Using escape variable&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;[apihandyman.io] $ Spectral lint -r https://apihandyman.io/code/api-design-reviews/demo-ruleset.yaml https://apihandyman.io/code/api-design-reviews/motu-openapi.yaml
-OpenAPI 3.x detected
-
-https://apihandyman.io/code/api-design-reviews/motu-openapi.yaml
- 358:26  warning  property-name-no-number  Property name must not contain number (maybe you can use an array) #/components/schemas/Episode_Single/properties/alternate_name_1
- 360:26  warning  property-name-no-number  Property name must not contain number (maybe you can use an array) #/components/schemas/Episode_Single/properties/alternate_name_2
-
-✖ 2 problems (0 errors, 2 warnings, 0 infos, 0 hints)&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;What’s the problem with property names containing numbers?
-What’s the problem with &lt;code&gt;alternate_name_1&lt;/code&gt; and &lt;code&gt;alternate_name_2&lt;/code&gt; properties in the &lt;code&gt;Episode_Single schema&lt;/code&gt; for instance?
-If there’s a 1 and 2, why not a 3? And a 4?
-So better put those alternate names in a list, that way no problem, there can be 1 to 4 … or 5.
-But that’s if those alternate names 1 and 2 actually are just “alternate names” and not “production name” and “some other name”. 
-If so, I would rename them accordingly.&lt;/p&gt;
-
-&lt;p&gt;As you can see linting an OpenAPI file is not only about doing dumb checks (even if only just that actually changed my life), you can use Spectral to spot possible design patterns and business domain concerns.&lt;/p&gt;
-
-&lt;p&gt;The problem with linting an OpenAPI file is that you can end with hundreds of problems detected.
-Actually, running my usual ruleset (working on open sourcing it) on this post’s demo OpenAPI file would return almost 200 problems.
-A raw list of 200 problems is not really usable.
-And Spectral can’t handle all of my checks, I still need to analyze the contract with my very eyes.&lt;/p&gt;
-
-&lt;p&gt;And so I realized that I needed to render OpenAPI files and Spectral results in a new way.&lt;/p&gt;
-
-&lt;h2 id=&quot;looking-for-new-perspectives&quot;&gt;Looking for new perspectives&lt;/h2&gt;
-
-&lt;p&gt;This research of new perspectives actually started with a command line like this one:&lt;/p&gt;
-
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
-  &lt;pre class=&quot;copy-hidden code-copy&quot;&gt;Spectral lint -q -f json -r https://apihandyman.io/code/api-design-reviews/demo-ruleset.yaml https://apihandyman.io/code/api-design-reviews/motu-openapi.yaml | jq .
-
-&lt;/pre&gt;
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Using escape variable&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-bash line-numbers&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;[apihandyman.io] $  Spectral lint -q -f json -r https://apihandyman.io/code/api-design-reviews/demo-ruleset.yaml https://apihandyman.io/code/api-design-reviews/motu-openapi.yaml | jq .&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;You can tell Spectral to return its results as JSON and pipe it to &lt;a href=&quot;https://apihandyman.io/toolbox/jq/&quot;&gt;jq&lt;/a&gt; and do whatever you want with them. Just don’t forget the &lt;code&gt;-q&lt;/code&gt; flag, if not there are some non JSON data screwing everything.&lt;/p&gt;
-
-&lt;p&gt;So I tinkered with JQ, extracting data from Spectral results and turning them into csv.
-Then I did the same with OpenAPI files (see my series about &lt;a href=&quot;/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/&quot;&gt;OpenAPI + JQ&lt;/a&gt;), I extracted operations and schemas into csv.&lt;/p&gt;
-
-&lt;p&gt;Then all these csv files are imported into … an Excel file (Google Sheet or Apple Number are no match, and don’t even dare to talk about OpenOffice/Libroffice alternatives).&lt;/p&gt;
-
-&lt;p&gt;For the Spectral problems, I can easily filter problems by type or level, I can do text search.
-And I can easily get stats using a pivot table.&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/we-need-specialized-tools-for-api-design-reviews/linter.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/we-need-specialized-tools-for-api-design-reviews/linter-stats.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;For the operations, I can at last have “my overview” as I need it, I can see all operations in a quick glance.
-I can see all parameters, response data model or used HTTP status code.
-I can easily compare paths (and spot typos).&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/we-need-specialized-tools-for-api-design-reviews/operations.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Having the schemas put flat in Excel is a very powerful tool.
-I can see all schema names easily.
-By sorting the data by property names, I can easily spot inconsistencies.
-I can check number/integer properties and check if they are not-easy-to-interpret codes, more easily spotted when there’s an enum (line 68 in the above capture).&lt;/p&gt;
-
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/we-need-specialized-tools-for-api-design-reviews/schemas.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The possibilities are endless.
-Well I exaggerate a bit, but you can do crazy stuff with just csv files and an Excel file.&lt;/p&gt;
-
-&lt;p&gt;Obviously, though I added some shell scripts and VS Code action around that to quickly analyze an OpenAPI file and open my Excel report, this is not really industrial.
-My JQ stuff works only a basic files, I would need to replace that by more robust code.
-Same for Excel, I hope to replace it by something else one day…&lt;/p&gt;
-
-&lt;h1 id=&quot;and-thats-just-for-analyzing-the-contract&quot;&gt;And that’s just for analyzing the contract&lt;/h1&gt;
-
-&lt;p&gt;I hope that what was shown here will give you some ideas about how analyze OpenAPI files but more important, I hope you’ll understand that we, API designer reviewers, need specialized tools to do our job.
-We cannot just rely on raw OpenAPI files or documentation tools.
-We need tools that take advantage of this machine readable format, tools such as Spectral, but we need new way of rendering OpenAPI files and linter results.&lt;/p&gt;
-
-&lt;p&gt;And I didn’t talked about how to formalize the result of such analysis … we need specialized tools for that too. But that’s another story I’ll tell another time.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Doing an API design review is not only about that, but it will require, sooner or later, to analyze an interface contract. Use the wrong tools to do so, and reviews will become a terrible, never-ending burden. Use the right tools, and you’ll become a formidable machine, doing reviews at light speed, never missing the tiniest problem or question. But, after dozens of reviews, you may realize that, despite using the “right” existing tools, the API space actually lacks API design reviews specialized tools.</summary></entry></feed>
+This is not something that will always work, but it’s worth the try because keeping acronym that are specific to your country could be a burden for your design and annoy many users.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">This post is dedicated to all English as a Second, or Foreign, Language (ESL, EFL) API designers. Et tout spécialement mes compatriotes français! Designing APIs is already not that easy when you design them using your native language. But, it’s even more difficult when using a second one. So let’s see how to avoid design frenglish, itaglish or whateverglish APIs.</summary></entry></feed>
