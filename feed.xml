@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-12-16T12:14:21-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Handle API gateway and backend differences in API documentation with OpenAPI Specification</title><link href="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/" rel="alternate" type="text/html" title="Handle API gateway and backend differences in API documentation with OpenAPI Specification" /><published>2021-12-15T00:00:00-06:00</published><updated>2021-12-15T00:00:00-06:00</updated><id>https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification</id><content type="html" xml:base="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/">&lt;p&gt;I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-12-22T06:13:02-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What should come first when designing an API?</title><link href="https://apihandyman.io/what-should-come-first-when-designing-an-api/" rel="alternate" type="text/html" title="What should come first when designing an API?" /><published>2021-12-22T00:00:00-06:00</published><updated>2021-12-22T00:00:00-06:00</updated><id>https://apihandyman.io/what-should-come-first-when-designing-an-api</id><content type="html" xml:base="https://apihandyman.io/what-should-come-first-when-designing-an-api/">&lt;p&gt;Either you provide public or private APIs, you must have a design first approach.
+But what does actually mean “design first”?
+Does it mean religiously writing all your &lt;code&gt;GET /this&lt;/code&gt; and &lt;code&gt;POST /that&lt;/code&gt; in an OpenAPI file?
+But if that so, how is this so different from the code first approach where you write actual code to generate an OpenAPI file?
+Maybe it’s time to clarify what should come first when designing API.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;definitions&quot;&gt;Definitions&lt;/h1&gt;
+
+&lt;p&gt;The “design first” and “code first” approach are very often opposed to each other.&lt;/p&gt;
+
+&lt;p&gt;The “code first” approach consists in coding the implementation and generating from it a formal description afterwards, usually an OpenAPI Specification file.
+If you’ve read this blog you know what I think about generating OpenAPI from code in such a case (if not, you should read &lt;a href=&quot;/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/&quot;&gt;6 reasons why generating OpenAPI from code when designing and documenting APIs sucks&lt;/a&gt;).
+This approach has some serious drawbacks but I work with teams who are happy with it.
+Either you like it or not, either it can have some drawbacks (but also some advantages), should this approach be opposed to “design first”?&lt;/p&gt;
+
+&lt;p&gt;Nope, that’s a wrong debate.
+The “design first” approach is unfortunately more often than not used to describe something else.
+Indeed, it is often used to describe the “spec first” approach, an approach in which you describe formally an API using an API specification format such as the OpenAPI Specification before writing any line of code of the implementation.&lt;/p&gt;
+
+&lt;p&gt;So, what means “design first”?
+The “design first” approach simply means you actually “design” your API before doing anything else.
+And that could actually be done in both “spec first” and “code first” approaches.
+Indeed, if I know my API needs a &lt;code&gt;GET /this&lt;/code&gt;, and even if &lt;a href=&quot;(/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/)&quot;&gt;generating OpenAPI Spec from code sucks&lt;/a&gt;, there’s no big difference between writing OpenAPI Spec code and your favorite language code.&lt;/p&gt;
+
+&lt;p&gt;There’s no big difference … as long as you actually &lt;em&gt;design&lt;/em&gt; your API first.&lt;/p&gt;
+
+&lt;h1 id=&quot;natural-language-almost-first&quot;&gt;Natural language almost first&lt;/h1&gt;
+
+&lt;p&gt;So what truly is this “design first” approach that you MUST actually use to create APIs?
+When designing an API, what should come first is not thinking about &lt;code&gt;GET /this&lt;/code&gt; and &lt;code&gt;POST /that&lt;/code&gt;.
+What comes first is the needs your API should fulfill.
+And those needs are not &lt;code&gt;GET /this&lt;/code&gt; and &lt;code&gt;POST /that&lt;/code&gt;, those needs are more like “Search products” or “Place an order.&lt;/p&gt;
+
+&lt;p&gt;Before thinking about HTTP methods and resource paths, you must have a clear understanding of the needs.
+And you must describe them using crystal clear natural language.
+You usually start with high level needs like “buying some products” and decompose them in flows, each step being an actual operation of your API, like “Search products”, “Add product to basket” and “Place an order” (read more about all that in my book &lt;a href=&quot;https://www.manning.com/books/the-design-of-web-apis&quot;&gt;The Design of Web APIs&lt;/a&gt;).
+Working using natural language allows to include everyone in the conversation and to focus on the business perspective while keeping REST &amp;amp; HTTP heated discussions for later.
+Actually having a clear description of what the API should do in natural language facilitate those later discussions.&lt;/p&gt;
+
+&lt;p&gt;By the way, if &lt;a href=&quot;/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer/#when-should-i-use-english-during-design-process&quot;&gt;you’re an ESL API Designer I recommend to do that in your native language&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, whatever works in your context, spec or code first, design your API by working first on the needs using natural language.
+That’s the heart of design first.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Either you provide public or private APIs, you must have a design first approach. But what does actually mean “design first”? Does it mean religiously writing all your GET /this and POST /that in an OpenAPI file? But if that so, how is this so different from the code first approach where you write actual code to generate an OpenAPI file? Maybe it’s time to clarify what should come first when designing API.</summary></entry><entry><title type="html">Handle API gateway and backend differences in API documentation with OpenAPI Specification</title><link href="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/" rel="alternate" type="text/html" title="Handle API gateway and backend differences in API documentation with OpenAPI Specification" /><published>2021-12-15T00:00:00-06:00</published><updated>2021-12-15T00:00:00-06:00</updated><id>https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification</id><content type="html" xml:base="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/">&lt;p&gt;I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers?
 &lt;!--more--&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;the-question&quot;&gt;The question&lt;/h1&gt;
@@ -769,68 +812,4 @@ Maybe it can be removed if it is not absolutely needed.&lt;/p&gt;
 &lt;p&gt;So, in that case I may simply not have to choose between &lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt; because the property would not be needed.
 Designing APIs, delivering API design training sessions or doing API design reviews taught me that such seemingly simple question can have important implications for an API.
 As you have seen, choosing a name is sometimes more than just choosing a name.
-Always expand the discussion, never get stuck at a too narrow “just name” level, evaluate the local but also global implications of your choice to include or not a data, to define its value/format, and how to name it using a pattern and/or hierarchy.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">On LinkedIn, someone asked me what to choose between birthDate or dateOfBirth. That looks like a very simple question, but it’s absolutely not. Choosing between two names is the tree that hides the forest. Besides having impacts on understandability, choosing a name can have impacts on naming patterns, data, or privacy which are quite important topics for APIs.</summary></entry><entry><title type="html">We are not Amazon or Github, but maybe we should … or not</title><link href="https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not/" rel="alternate" type="text/html" title="We are not Amazon or Github, but maybe we should … or not" /><published>2021-10-27T00:00:00-05:00</published><updated>2021-10-27T00:00:00-05:00</updated><id>https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not</id><content type="html" xml:base="https://apihandyman.io/we-are-not-amazon-or-github-but-maybe-we-should--or-not/">&lt;p&gt;One day I can say “Amazon did that, we should do it too” and may be quite displeased to hear “but, we’re not Amazon”.
-And the next one, I can be quite displeased to hear “Github did that, we should do it too” and respond  “it’s not because Github did it, that we should do it too”. 
-Why such inconsistency?
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;why-we-should-be-like-amazon&quot;&gt;Why we should be like Amazon&lt;/h1&gt;
-
-&lt;p&gt;Almost 20 years ago (😱), in 2002, Jeff Bezos, now former CEO of Amazon, sent a mandate to all Amazon employees.
-This mandate is one of the centerpiece of my API conference bingo with Conway’s law.
-In substance, it was saying 2 things:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;All teams MUST communicate through “service interfaces” (they were not called API at that time)&lt;/li&gt;
-  &lt;li&gt;All those “service interfaces” MUST be design from the ground with externalization in mind. Each one could be put in customers hands at any moment after its creation.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;While there’s not much debate about “APIfying all the things” in 2021, the second item is the one that usually triggers the “but we’re not Amazon” remark.
-It actually means you make no difference between internal and external API.
-Why should you do that and not keep creating highly specific/ugly/terrible internal APIs or use different look and feel for internal vs external APIs, and only work hard on public APIs?&lt;/p&gt;
-
-&lt;p&gt;There are many reasons, here are a few of them:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Sooner or later, you’ll provide APIs to “others”: some external contractors, the team next to you, another business unit, a partner, or a customer. It’s not a possibility, it’s a fact.&lt;/li&gt;
-  &lt;li&gt;That’ll improve your internal API quality: Thinking that someone outside of your organization will consume your API can help people to actually focus on its design and really make it usable by anyone.&lt;/li&gt;
-  &lt;li&gt;That’ll reduce the risk of public API failure: You’ll learn by working hard on private APIs, if you wait to go public to learn, you’ll regret it; nobody will want to use your terrible APIs.&lt;/li&gt;
-  &lt;li&gt;That’ll reduce your time to market: It’ll take a few seconds to go public with a clean private API while it may take weeks if not months to rethink/clean/hide the mess before exposing it to the outside. And that could impact not only the design of your API but also its architecture.&lt;/li&gt;
-  &lt;li&gt;That’ll ease maintenance: It’s not that easy to make a single API and its implementation evolve but imagine the same implementation exposed 2 times. That multiply problems by 2.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So, that’s why I say “we should do like Amazon”, we should treat private APIs like public APIs and actually only create one and use it in both contexts.&lt;/p&gt;
-
-&lt;p&gt;Note that this famous mandate ends by “those who don’t do that will be fired”, that’s level 0 of management. 
-Threatening people like this is totally stupid and MUST never be done.
-In this case, it’s even more stupid because this idea is just brilliant.&lt;/p&gt;
-
-&lt;p&gt;To read more about the memo and how it went public, you should read this &lt;a href=&quot;https://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/&quot;&gt;post of my good friend Kin Lane, the API Evangelist&lt;/a&gt;.
-I suggest you read also Jeff Lawson’s “Ask Your Developer” book, the first chapters do a great job in explaining this “API all the things” spirit and the origin of the mandate (and though I didn’t finished it yet, that’s a great book).&lt;/p&gt;
-
-&lt;h1 id=&quot;why-we-shouldnt-be-like-github&quot;&gt;Why we shouldn’t be like Github&lt;/h1&gt;
-
-&lt;p&gt;Ok, we “should do like Amazon”, but why be not be like Github and do GraphQL APIs?
-In 2016, Github announced their &lt;a href=&quot;https://github.blog/2016-09-14-the-github-graphql-api/&quot;&gt;GraphQL API&lt;/a&gt;.
-That obviously triggered many “Github is doing GraphQL API, let’s do it too”.&lt;/p&gt;
-
-&lt;p&gt;In such context, I ask “what problem are you trying to solve?”.
-Do you have ten of thousands consumers doing gazillions of API call combinations?
-Do you have a product that people basically need to address like a database?
-No?
-And do you understand the implication of providing a GraphQL API regarding security, performance and scalability?
-No?&lt;/p&gt;
-
-&lt;p&gt;Then, maybe you should stick to a good old REST API.
-I’m not against GraphQL, it’s there in my toolbox, but I will only use it if that’s a relevant solution to a clearly identified problem.
-That’s why I say “We’re not Github”.&lt;/p&gt;
-
-&lt;h1 id=&quot;the-42-answer-of-architects-it-depends&quot;&gt;The 42 answer of architects: it depends&lt;/h1&gt;
-
-&lt;p&gt;As you can see, I’m not just saying we should or shouldn’t do like Amazon or Github.
-We can’t just decide to do something because some company has done it.
-We can’t just decide to not do something because (we think) we’re completely different from some company who has done it.
-The question is not “should we do like X” but “should we use the same solution as X to solve a problem in our context”.
-Behind any choice, there must be a context, a problem, a reasoning, not just blind and thoughtless hype.&lt;/p&gt;
-
-&lt;p&gt;PS: If you wonder what’s this strange Stackoverflow keyboard on this post’s banner read &lt;a href=&quot;https://stackoverflow.blog/2021/09/28/become-a-better-coder-with-this-one-weird-click/&quot;&gt;this&lt;/a&gt;&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">One day I can say “Amazon did that, we should do it too” and may be quite displeased to hear “but, we’re not Amazon”. And the next one, I can be quite displeased to hear “Github did that, we should do it too” and respond “it’s not because Github did it, that we should do it too”. Why such inconsistency?</summary></entry></feed>
+Always expand the discussion, never get stuck at a too narrow “just name” level, evaluate the local but also global implications of your choice to include or not a data, to define its value/format, and how to name it using a pattern and/or hierarchy.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">On LinkedIn, someone asked me what to choose between birthDate or dateOfBirth. That looks like a very simple question, but it’s absolutely not. Choosing between two names is the tree that hides the forest. Besides having impacts on understandability, choosing a name can have impacts on naming patterns, data, or privacy which are quite important topics for APIs.</summary></entry></feed>
