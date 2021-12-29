@@ -1,4 +1,117 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-12-22T06:13:02-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What should come first when designing an API?</title><link href="https://apihandyman.io/what-should-come-first-when-designing-an-api/" rel="alternate" type="text/html" title="What should come first when designing an API?" /><published>2021-12-22T00:00:00-06:00</published><updated>2021-12-22T00:00:00-06:00</updated><id>https://apihandyman.io/what-should-come-first-when-designing-an-api</id><content type="html" xml:base="https://apihandyman.io/what-should-come-first-when-designing-an-api/">&lt;p&gt;Either you provide public or private APIs, you must have a design first approach.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-12-29T04:14:58-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">How to choose ids and codes to build user-friendly and interoperable APIs</title><link href="https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/" rel="alternate" type="text/html" title="How to choose ids and codes to build user-friendly and interoperable APIs" /><published>2021-12-29T00:00:00-06:00</published><updated>2021-12-29T00:00:00-06:00</updated><id>https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis</id><content type="html" xml:base="https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/">&lt;p&gt;As an API designer, why should you care about the value of a &lt;code&gt;productId&lt;/code&gt;, a &lt;code&gt;countryCode&lt;/code&gt;, or an error &lt;code&gt;code&lt;/code&gt;?
+Because wisely choosing the value of such (in a broad sense) “identifiers” greatly participates in the making of a user friendly API; but most importantly an interoperable one.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;The following “Scientific quadrant” (inspired by &lt;a href=&quot;https://www.gartner.com/en/research/methodologies/magic-quadrants-research&quot;&gt;Gartner’s Magic Quadrant&lt;/a&gt;), shows a few examples of those identifiers sorted along 2 axes, interoperability and human-readability.
+Let’s analyse those 2 dimensions and those examples more closely to see how to choose “identifiers”.&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/scientific-quadrant-for-identifiers.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;interoperability&quot;&gt;Interoperability&lt;/h1&gt;
+
+&lt;p&gt;Interoperability is the ability of software to exchange and make use of information.
+For instance, switching from file exchange to exposing web APIs is a first (great) step in improving the interoperability of a system.
+That actually improves how other systems can exchange information with yours.&lt;/p&gt;
+
+&lt;p&gt;But does exposing APIs magically makes using information easier for consumers?
+It highly depends on the actual data exposed (output) or expected (input) through it, and especially its ids and codes.&lt;/p&gt;
+
+&lt;h2 id=&quot;internal-vs-standard&quot;&gt;Internal vs standard&lt;/h2&gt;
+
+&lt;p&gt;For instance, using a &lt;code&gt;123&lt;/code&gt; purely internal code to represent a country such as “France” is far less interoperable than using &lt;code&gt;FRA&lt;/code&gt;, the widely adopted ISO3166 country alpha-3 code standard.
+If &lt;code&gt;GET /authors&lt;/code&gt; returns a list of authors with their name and country for instance, it will be fairly easy for any system to interpret a standard &lt;code&gt;FRA&lt;/code&gt; country code than an obscure &lt;code&gt;123&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Indeed, enabling the interpretation by consumers of such a purely internal identifier may require:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Providing extra documentation, like a (terrible) table of custom country codes and names (seriously don’t do that)&lt;/li&gt;
+  &lt;li&gt;Or adding an extra operation to the API, like a &lt;code&gt;GET /countries&lt;/code&gt; returning all country codes and names or a more specific &lt;code&gt;GET /countries/{countryId}&lt;/code&gt;  (that’s less terrible)&lt;/li&gt;
+  &lt;li&gt;Or adding extra data, like returning author’s country name along with the code (that make the author’s data self sufficient but less usable for other purpose than just showing them to end users)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But even using one of those “solutions”, if no actual ISO3166 code is ever used, consumer programs will have hard time to actually interpret such specific way of representing countries.
+Maybe they’ll have to work on country names to match what they know of country on their side (probably ISO3166 based)… hoping country names are actually returned in english and without typos.
+It can be more a guess than an actual matching.
+Maybe consumers developers will painfully build a mapping table based on the data they get…
+But it will need to be updated if new countries are added.
+I don’t mean actual new countries, that’s a possibility but that don’t happen much, but new authors from countries that were not already represented in the authors list.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, using a standard ISO3166 code will makes both consumer and provider jobs easier because they naturally share common identifiers.
+Ideally, when I see a &lt;code&gt;GET /authors&lt;/code&gt; and as I know authors countries are returned, I can guess that &lt;code&gt;GET /authors?country=FRA&lt;/code&gt; will return french authors.
+It’s a no brainer, impossible to achieve with a custom country code.
+If I use ISO3166 codes on my side, matching my data with the one coming from &lt;code&gt;GET /authors&lt;/code&gt; based on countries is dead simple.
+And I don’t care if new countries appear in authors data as I rely on the same ISO3166 referential: my consumer is always be up to date.&lt;/p&gt;
+
+&lt;h2 id=&quot;well-known-identifiers&quot;&gt;Well known identifiers&lt;/h2&gt;
+
+&lt;p&gt;But sometimes it’s not possible to use a “standard” identifier known by everyone in the outside world.
+It’s actually fairly common to use custom identifiers, but if that’s the case always favor the “well known” ones.
+For instance, if you need a product identifier (for &lt;code&gt;GET /products/{productId}&lt;/code&gt;), better use an id shared by a few APIs across a domain or an id shared across the whole organization than using an API specific product id.
+A well known product id could be used across various APIs such as “product catalog”, “order”, “shipping”, “supplier”, “storage”, …
+The more systems will share the same ids, the better.
+It’s basically about using or defining local standards.
+Doing so, any system knowing such well known ids can use them with any API inside a domain or the organization.&lt;/p&gt;
+
+&lt;p&gt;And note that it’s always good to double check if by chance there’s a standard identifier that you can use.
+If the “product” we were talking about reveals to be a “book”, prefer the use of an ISBN standard book identifier than your custom one, even if it is known across your organization (and change your resource name, &lt;code&gt;GET /books/{isbn}&lt;/code&gt;).
+Indeed, your well known ids are still custom ones and so unknown by the outside world.&lt;/p&gt;
+
+&lt;p&gt;Choosing interoperable data that other systems will interpret easily, data that is known by as much systems as possible, is a must do to create successful APIs.
+But when creating APIs, you do not only deal with programs.
+There are humans in the loop: the developers who write the programs using those APIs.&lt;/p&gt;
+
+&lt;h1 id=&quot;human-readability&quot;&gt;Human-readability&lt;/h1&gt;
+
+&lt;p&gt;Though choosing interoperable data actually makes API more human-friendly, because “common language” and “shared identifiers”, only focusing on machine to machine interoperability without taking care of human-readability could cripple your APIs success.&lt;/p&gt;
+
+&lt;h2 id=&quot;obvious&quot;&gt;Obvious&lt;/h2&gt;
+
+&lt;p&gt;The more obvious values are the better.
+A &lt;code&gt;REQUIRED_TITLE&lt;/code&gt; error code returned with a &lt;code&gt;400 BAD REQUEST&lt;/code&gt; on a &lt;code&gt;POST /books&lt;/code&gt; to add a book is easily understandable.
+It’s understandable but quite specific; probably defined at a single API level.
+Maybe using a more generic code defined for the whole organization in your guidelines, reusable in many contexts, could be better.
+A generic &lt;code&gt;REQUIRED_PROPERTY&lt;/code&gt; error code returned with a &lt;code&gt;&quot;property&quot;: &quot;title&quot;&lt;/code&gt; is more interoperable.&lt;/p&gt;
+
+&lt;h2 id=&quot;guessable&quot;&gt;Guessable&lt;/h2&gt;
+
+&lt;p&gt;A &lt;code&gt;FRA&lt;/code&gt; alpha-3 ISO3166 code is better than it’s numeric counter part &lt;code&gt;250&lt;/code&gt;, a human being can guess what it means.
+It’s also quite simple to guess other alpha-3 ISO3166 code, for instance, what is the one for Italy?&lt;/p&gt;
+
+&lt;p&gt;But that does not mean numeric values are always evil.
+Take HTTP status codes, such as &lt;code&gt;400&lt;/code&gt; or &lt;code&gt;418&lt;/code&gt; for instance.
+They require some basic HTTP knowledge to understand what they mean; any &lt;code&gt;4XX&lt;/code&gt; is an error caused by consumer.
+But once you have that knowledge you can guess what means any HTTP status code.
+Never heard about &lt;code&gt;418&lt;/code&gt;, no problem, you can guess that’s consumer fault.
+By the way, being guessable, or interpretable should I say, like this is also interesting for the consumer program, it actually makes data more interoperable.&lt;/p&gt;
+
+&lt;h2 id=&quot;human-friendly&quot;&gt;Human friendly&lt;/h2&gt;
+
+&lt;p&gt;Note that creating obvious or guessable values is not always possible, especially when there are countless of them.
+Many times, you’ll have to rely on opaque ids, but that does not mean they should be hard to remember or type for us, poor human beings.
+An ISBN book identifier such as &lt;code&gt;9781617295102&lt;/code&gt; is far more human friendly than a UUID &lt;code&gt;3ba5d648-8cce-433a-8013-aa760468c153&lt;/code&gt; but less than a short id like &lt;code&gt;g2ma67&lt;/code&gt;.
+And I think that &lt;code&gt;123456&lt;/code&gt; is more human friendly than all the others.&lt;/p&gt;
+
+&lt;p&gt;But don’t forget that interoperability always prevail over human-readability.
+In that case, even though &lt;code&gt;123456&lt;/code&gt; is more human-friendly, it’s still an internal id known only by the system which has created it, while &lt;code&gt;9781617295102&lt;/code&gt; is a standard ISBN known widely outside of the organization.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-to-choose-identifiers&quot;&gt;How to choose identifiers&lt;/h1&gt;
+
+&lt;p&gt;So how to choose identifiers, ids and codes?
+First, try to find the most interoperable ones, and second, try to keep them as much human readable as possible.&lt;/p&gt;
+
+&lt;div class=&quot;image &quot;&gt;
+    &lt;figure class=&quot;figure&quot;&gt;
+        &lt;img src=&quot;/images/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/scientific-quadrant-for-identifiers-how.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The level of interoperability of an API depends on the level of “standardization” of its data.
+A standard identifier will be easily understood by many systems while an internal one will be understood only by the system creating it.
+But “standardization” does not always mean “standard” (like ISO country codes), sometimes using well known shared identifier inside an organization or a domain will be sufficient.&lt;/p&gt;
+
+&lt;p&gt;The developer experience will also be enhanced when using human readable identifiers; easy to understand, easy to type, easy to remember, easy to guess.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">As an API designer, why should you care about the value of a productId, a countryCode, or an error code? Because wisely choosing the value of such (in a broad sense) “identifiers” greatly participates in the making of a user friendly API; but most importantly an interoperable one.</summary></entry><entry><title type="html">What should come first when designing an API?</title><link href="https://apihandyman.io/what-should-come-first-when-designing-an-api/" rel="alternate" type="text/html" title="What should come first when designing an API?" /><published>2021-12-22T00:00:00-06:00</published><updated>2021-12-22T00:00:00-06:00</updated><id>https://apihandyman.io/what-should-come-first-when-designing-an-api</id><content type="html" xml:base="https://apihandyman.io/what-should-come-first-when-designing-an-api/">&lt;p&gt;Either you provide public or private APIs, you must have a design first approach.
 But what does actually mean “design first”?
 Does it mean religiously writing all your &lt;code&gt;GET /this&lt;/code&gt; and &lt;code&gt;POST /that&lt;/code&gt; in an OpenAPI file?
 But if that so, how is this so different from the code first approach where you write actual code to generate an OpenAPI file?
@@ -725,91 +838,4 @@ Even some VENDORS, are still talking about “Swagger”, I’m always the annoy
 My experience does not make this an actual scientific fact.
 So now it’s your turn, why are you still using Swagger 2 instead of OpenAPI 3?&lt;/p&gt;
 
-&lt;p&gt;PS: I still keep the idea of pitchforks and Swagger jars, we never know, they could be useful once we’ll know more about the actual problems.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">While quickly doing a first scan of latest Postman State of the API Report , I did my Spock face, raising an eyebrow. Indeed, I read that after JSON Schema, “The next most popular specifications were Swagger 2.0 (54%) and OpenAPI 3.0 (40%)”. To be honest and based on my own experience, it’s not totally surprising, I’m still hearing/reading “can you check that Swagger” everyday. But why the 4 years old OpenAPI 3 is still struggling to surpass the good old Swagger 2?</summary></entry><entry><title type="html">Choosing between birthDate and dateOfBirth has important implications for your API</title><link href="https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/" rel="alternate" type="text/html" title="Choosing between birthDate and dateOfBirth has important implications for your API" /><published>2021-11-03T00:00:00-05:00</published><updated>2021-11-03T00:00:00-05:00</updated><id>https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api</id><content type="html" xml:base="https://apihandyman.io/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/">&lt;p&gt;On LinkedIn, someone asked me what to choose between &lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt;.
-That looks like a very simple question, but it’s absolutely not.
-Choosing between two names is the tree that hides the forest.
-Besides having impacts on understandability, choosing a name can have impacts on naming patterns, data, or privacy which are quite important topics for APIs. 
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Banner photography: &lt;a href=&quot;https://commons.wikimedia.org/wiki/File:Contrasting_Tree_Types_Coexist_in_a_Forest.jpg&quot;&gt;Contrasting Tree Types Coexist in a Forest&lt;/a&gt; by &lt;a href=&quot;https://commons.wikimedia.org/wiki/User:Wingchi&quot;&gt;Wingchi&lt;/a&gt;. &lt;a href=&quot;https://creativecommons.org/licenses/by-sa/2.5/deed.en&quot;&gt;Creative Commons Attribution-Share Alike 2.5 Generic&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;is-that-us-english&quot;&gt;Is that US english?&lt;/h1&gt;
-
-&lt;p&gt;As the &lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt; question followed my Excuse my French API post, and as it is a debate I often have with other ESL API designers, I wanted to check what is said in US english: “birth date” (&lt;code&gt;birthDate&lt;/code&gt;), “birthdate” (&lt;code&gt;birthdate&lt;/code&gt;) or “date of birth” (&lt;code&gt;dateOfBirth&lt;/code&gt;).
-While “birth date” does not seem that common (compared to “birthdate”), they are all acceptable terms to represent “the date on which a person was born” (Oxford US english dictionary).
-OK, but which one is the “good” one?
-Well, assuming that “date of birth” seems to be used on official documents, it could make sense to use this option.
-But is it as simple as that?&lt;/p&gt;
-
-&lt;h1 id=&quot;type-as-prefix-or-suffix&quot;&gt;Type as prefix or suffix&lt;/h1&gt;
-
-&lt;p&gt;The initial “&lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt;” question leads to another question: when explicitly typing a property, by adding its type to its name, should it be a prefix or a suffix?
-As I’m a bit obsessed with consistency, once I’ve seen a &lt;code&gt;dateOfBirth&lt;/code&gt; property, I expect to see all other date properties using the &lt;code&gt;dateOf&lt;/code&gt; pattern, &lt;code&gt;dateOfSubcription&lt;/code&gt; for instance.
-And if it’s &lt;code&gt;birthDate&lt;/code&gt;, I’ll expect to see &lt;code&gt;subscriptionDate&lt;/code&gt;.
-But more than that, as I am a consistency extremist, I may expect all “typed” properties to use the same pattern, for instance &lt;code&gt;subscriptionNumber&lt;/code&gt; or &lt;code&gt;numberOfsubscription&lt;/code&gt;.
-In such a case choosing one form or another can have major impacts on your API (or APIs) look and feel.
-OK, but which one is the “good” one?&lt;/p&gt;
-
-&lt;p&gt;Using a suffix, is actually the most common pattern: I’ve seen much &lt;code&gt;userId&lt;/code&gt; and not a single &lt;code&gt;idOfUser&lt;/code&gt;.
-But that’s not the only reason why I would recommend to use the suffixed version.
-Using a suffix put the generic part of a name at the end of it and the specific one at the beginning.
-Using suffixes, I get the most important information first when reading names.
-But more important, when properties are sorted by name, it’s easier to see functionally related properties because they are close to each others, while properties get sorted by type when using prefixes&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Prefix:
-    &lt;ul&gt;
-      &lt;li&gt;dateOfSubscription&lt;/li&gt;
-      &lt;li&gt;idOfBankAdvisor&lt;/li&gt;
-      &lt;li&gt;idOfUser&lt;/li&gt;
-      &lt;li&gt;numberOfSubscription&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Suffix:
-    &lt;ul&gt;
-      &lt;li&gt;bankAdvisorId&lt;/li&gt;
-      &lt;li&gt;subscriptionDate&lt;/li&gt;
-      &lt;li&gt;subscriptionNumber&lt;/li&gt;
-      &lt;li&gt;userId&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The suffix pattern also leads to shorter and less complex names: what if I want to represent a “user’s date of birth”?
-With the suffix option, that’s a &lt;code&gt;userBirthDate&lt;/code&gt; (or &lt;code&gt;userBirthdate&lt;/code&gt;), with the prefix that’s a &lt;code&gt;dateOfBirthOfUser&lt;/code&gt; which is a bit pompous, or possibly a &lt;code&gt;userDateOfBirth&lt;/code&gt; which screws the prefix idea and kills the hierarchy of information in the name.&lt;/p&gt;
-
-&lt;h1 id=&quot;data-format-andor-value&quot;&gt;Data format and/or value&lt;/h1&gt;
-
-&lt;p&gt;As an API designer or an API design reviewer, I always double check what is the format and value of a property.
-In that case, if it’s the first time a &lt;code&gt;whateverDate&lt;/code&gt; or &lt;code&gt;dateOfWhatever&lt;/code&gt; is added into an API, it’s time to choose a date format that will be applied to all other dates.
-Will you use a Unix timestamp (number of seconds since 1st January of 1970) or an ISO8601 string.
-And in the ISO case, will you use the time precision with timezone or not?
-If that format already has been defined, you’ll obviously have to use it.&lt;/p&gt;
-
-&lt;p&gt;And that’s not only for dates but for any data.
-If we’re talking about a &lt;code&gt;userId&lt;/code&gt;, what is the actual value of a user’s id?
-Is this the id column in the &lt;code&gt;USER&lt;/code&gt; table or something else?
-Maybe a more well known value, shared by various systems using the API.
-For a &lt;code&gt;currency&lt;/code&gt;, is this a internal currency code? a label? (in which language?) An ISO code?&lt;/p&gt;
-
-&lt;p&gt;I will not answer all those questions here, I’ll keep that for other post, the one thing to remember here is that a property is more than just a name.
-And speaking of that, thinking beyond just names, we didn’t talk about “why date of birth”?&lt;/p&gt;
-
-&lt;h1 id=&quot;back-to-needs-what-about-privacy&quot;&gt;Back to needs: what about privacy?&lt;/h1&gt;
-
-&lt;blockquote class=&quot;blockquote&quot;&gt;
-    &lt;p class=&quot;mb-0&quot;&gt;The tree hides the forest&lt;/p&gt;&lt;footer class=&quot;blockquote-footer&quot;&gt;
-        &lt;cite title=&quot;Source Title&quot;&gt;French saying&lt;/cite&gt;
-    &lt;/footer&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;Indeed, all the above and especially the naming discussion is only the tree that hides the forest, it lured us away from a real and important problem.
-As an API designer or API design reviewer, seeing such “personal data” (as europeans say in GDPR data privacy regulation) or “personal identifiable information” (PII in the US), I always wonder if we actually need it in the API before discussing its name.
-Maybe “date of birth” can be replaced by a fuzzier “birthday” (month and day but without year) or just an “age”.
-Maybe it can be removed if it is not absolutely needed.&lt;/p&gt;
-
-&lt;h1 id=&quot;choosing-a-name-is-sometimes-more-than-what-it-seems&quot;&gt;Choosing a name is sometimes more than what it seems&lt;/h1&gt;
-
-&lt;p&gt;So, in that case I may simply not have to choose between &lt;code&gt;birthDate&lt;/code&gt; or &lt;code&gt;dateOfBirth&lt;/code&gt; because the property would not be needed.
-Designing APIs, delivering API design training sessions or doing API design reviews taught me that such seemingly simple question can have important implications for an API.
-As you have seen, choosing a name is sometimes more than just choosing a name.
-Always expand the discussion, never get stuck at a too narrow “just name” level, evaluate the local but also global implications of your choice to include or not a data, to define its value/format, and how to name it using a pattern and/or hierarchy.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">On LinkedIn, someone asked me what to choose between birthDate or dateOfBirth. That looks like a very simple question, but it’s absolutely not. Choosing between two names is the tree that hides the forest. Besides having impacts on understandability, choosing a name can have impacts on naming patterns, data, or privacy which are quite important topics for APIs.</summary></entry></feed>
+&lt;p&gt;PS: I still keep the idea of pitchforks and Swagger jars, we never know, they could be useful once we’ll know more about the actual problems.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">While quickly doing a first scan of latest Postman State of the API Report , I did my Spock face, raising an eyebrow. Indeed, I read that after JSON Schema, “The next most popular specifications were Swagger 2.0 (54%) and OpenAPI 3.0 (40%)”. To be honest and based on my own experience, it’s not totally surprising, I’m still hearing/reading “can you check that Swagger” everyday. But why the 4 years old OpenAPI 3 is still struggling to surpass the good old Swagger 2?</summary></entry></feed>
