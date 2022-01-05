@@ -1,228 +1,279 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2021-12-29T06:13:35-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">How to choose ids and codes to build user-friendly and interoperable APIs</title><link href="https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/" rel="alternate" type="text/html" title="How to choose ids and codes to build user-friendly and interoperable APIs" /><published>2021-12-29T00:00:00-06:00</published><updated>2021-12-29T00:00:00-06:00</updated><id>https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis</id><content type="html" xml:base="https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/">&lt;p&gt;As an API designer, why should you care about the value of a &lt;code&gt;productId&lt;/code&gt;, a &lt;code&gt;countryCode&lt;/code&gt;, or an error &lt;code&gt;code&lt;/code&gt;?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-01-05T06:13:48-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">API design and architecture lessons from a frying pan</title><link href="https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan/" rel="alternate" type="text/html" title="API design and architecture lessons from a frying pan" /><published>2022-01-05T00:00:00-06:00</published><updated>2022-01-05T00:00:00-06:00</updated><id>https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan</id><content type="html" xml:base="https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan/"><![CDATA[<p>In the kitchen, I’m the dishwasher.
+And lately, washing our new frying pans has got me thinking about design and API architecture issues.
+This post is dedicated to the person who complained that my book contained too many analogies.
+Sorry, but no matter what I do, read, look at, listen to, I’m always trying to see if I can make connections to APIs.
+And housework is no exception.
+<!--more--></p>
+
+<p>Washing dishes is a household task that I actually enjoy.
+It allows me to satisfy my compulsive urge to sort things, in this case cutlery, glasses, plates or dishes.
+This may be one of the characteristics of my mind that make me rather good at doing API design reviews.
+It also allows me to listen to music.
+But also and most importantly, it allows me to cogitate.</p>
+
+<h1 id="pans">Pans</h1>
+
+<p>For some time now, we have had new frying pans.
+They have everything that makes a good pan, a thick bottom, a body covered with enamel (a nice change from Teflon), and a solid handle with a good grip. They are even oven safe.
+In use, nothing to complain about.
+When washing, it’s a different story.
+If cleaning the enamelled steel is not a problem, cleaning the outside edge is a pain.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/api-design-and-architecture-lessons-from-a-frying-pan/pan.jpg" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>And yes, when you use a frying pan, you also dirty the outside edge, there are often splashes or drips, especially on the handle.
+And on these pans, cleaning the 2 millimeter gap between the handle and the edge of the pan is quite complicated with a sponge.
+In the end, we manage to do it with a small brush, but we could do without this difficulty (relative, of course).
+A handle placed a little lower or stuck to the edge of the pan, or simply no edge would have avoided this inconvenience.
+The fact that an object, kitchen utensil or other, is an eyesore to clean is unfortunately quite common.
+It seems that the designers of these products forget that in addition to using them for what they were designed for, they need to be cleaned.</p>
+
+<h1 id="apis">APIs</h1>
+
+<p>“But what does this have to do with APIs?” you might ask.
+There is not one but (at least) two analogies here.</p>
+
+<p>The first one is that when you design an API, you have to think about all the profiles (or users) that will use it, otherwise you might forget to include important features.
+If we stop at uses, we will think about “cooking” but not necessarily “washing the dishes”.
+Going through the prism of users reduces the risk of forgetting features.
+Here, the first users of a frying pan that we think of are necessarily the cooks.
+But, in a kitchen, there are also pearl divers (the persons who wash dishes) who will also “use” the pans but in very different ways.</p>
+
+<p>The other way to look at it would be to think of the users of the API vs. the maintainers of the system exposing the API.
+Cooks can be thought of as the users of a pan and pearl divers as the maintainers of the system.
+While it is now pretty much accepted that the user experience of APIs is important (although there is still a way to go for private APIs), I have too often seen convoluted and complex implementations that make the life of maintainers impossible.
+Too many modules, too many different technologies, unnecessarily sharp technologies, non mastered technologies, maintenance procedures not completely automated, …
+In short, we forget the experience of the system maintainers.
+Icing on the cake, in addition to bothering them, such systems are more complex to evolve and more fragile.</p>
+
+<p>So the next time you design an API and its underlying architecture, think about washing frying pans and think about all the users.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[In the kitchen, I’m the dishwasher. And lately, washing our new frying pans has got me thinking about design and API architecture issues. This post is dedicated to the person who complained that my book contained too many analogies. Sorry, but no matter what I do, read, look at, listen to, I’m always trying to see if I can make connections to APIs. And housework is no exception.]]></summary></entry><entry><title type="html">How to choose ids and codes to build user-friendly and interoperable APIs</title><link href="https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/" rel="alternate" type="text/html" title="How to choose ids and codes to build user-friendly and interoperable APIs" /><published>2021-12-29T00:00:00-06:00</published><updated>2021-12-29T00:00:00-06:00</updated><id>https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis</id><content type="html" xml:base="https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/"><![CDATA[<p>As an API designer, why should you care about the value of a <code>productId</code>, a <code>countryCode</code>, or an error <code>code</code>?
 Because wisely choosing the value of such (in a broad sense) “identifiers” greatly participates in the making of a user friendly API; but most importantly an interoperable one.
-&lt;!--more--&gt;&lt;/p&gt;
+<!--more--></p>
 
-&lt;p&gt;The following “Scientific quadrant” (inspired by &lt;a href=&quot;https://www.gartner.com/en/research/methodologies/magic-quadrants-research&quot;&gt;Gartner’s Magic Quadrant&lt;/a&gt;), shows a few examples of those identifiers sorted along 2 axes, interoperability and human-readability.
-Let’s analyse those 2 dimensions and those examples more closely to see how to choose “identifiers”.&lt;/p&gt;
+<p>The following “Scientific quadrant” (inspired by <a href="https://www.gartner.com/en/research/methodologies/magic-quadrants-research">Gartner’s Magic Quadrant</a>), shows a few examples of those identifiers sorted along 2 axes, interoperability and human-readability.
+Let’s analyse those 2 dimensions and those examples more closely to see how to choose “identifiers”.</p>
 
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/scientific-quadrant-for-identifiers.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/scientific-quadrant-for-identifiers.jpg" class="figure-img img-fluid" /></figure>
+</div>
 
-&lt;h1 id=&quot;interoperability&quot;&gt;Interoperability&lt;/h1&gt;
+<h1 id="interoperability">Interoperability</h1>
 
-&lt;p&gt;Interoperability is the ability of software to exchange and make use of information.
+<p>Interoperability is the ability of software to exchange and make use of information.
 For instance, switching from file exchange to exposing web APIs is a first (great) step in improving the interoperability of a system.
-That actually improves how other systems can exchange information with yours.&lt;/p&gt;
+That actually improves how other systems can exchange information with yours.</p>
 
-&lt;p&gt;But does exposing APIs magically makes using information easier for consumers?
-It highly depends on the actual data exposed (output) or expected (input) through it, and especially its ids and codes.&lt;/p&gt;
+<p>But does exposing APIs magically makes using information easier for consumers?
+It highly depends on the actual data exposed (output) or expected (input) through it, and especially its ids and codes.</p>
 
-&lt;h2 id=&quot;internal-vs-standard&quot;&gt;Internal vs standard&lt;/h2&gt;
+<h2 id="internal-vs-standard">Internal vs standard</h2>
 
-&lt;p&gt;For instance, using a &lt;code&gt;123&lt;/code&gt; purely internal code to represent a country such as “France” is far less interoperable than using &lt;code&gt;FRA&lt;/code&gt;, the widely adopted ISO3166 country alpha-3 code standard.
-If &lt;code&gt;GET /authors&lt;/code&gt; returns a list of authors with their name and country for instance, it will be fairly easy for any system to interpret a standard &lt;code&gt;FRA&lt;/code&gt; country code than an obscure &lt;code&gt;123&lt;/code&gt;.&lt;/p&gt;
+<p>For instance, using a <code>123</code> purely internal code to represent a country such as “France” is far less interoperable than using <code>FRA</code>, the widely adopted ISO3166 country alpha-3 code standard.
+If <code>GET /authors</code> returns a list of authors with their name and country for instance, it will be fairly easy for any system to interpret a standard <code>FRA</code> country code than an obscure <code>123</code>.</p>
 
-&lt;p&gt;Indeed, enabling the interpretation by consumers of such a purely internal identifier may require:&lt;/p&gt;
+<p>Indeed, enabling the interpretation by consumers of such a purely internal identifier may require:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Providing extra documentation, like a (terrible) table of custom country codes and names (seriously don’t do that)&lt;/li&gt;
-  &lt;li&gt;Or adding an extra operation to the API, like a &lt;code&gt;GET /countries&lt;/code&gt; returning all country codes and names or a more specific &lt;code&gt;GET /countries/{countryId}&lt;/code&gt;  (that’s less terrible)&lt;/li&gt;
-  &lt;li&gt;Or adding extra data, like returning author’s country name along with the code (that make the author’s data self sufficient but less usable for other purpose than just showing them to end users)&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>Providing extra documentation, like a (terrible) table of custom country codes and names (seriously don’t do that)</li>
+  <li>Or adding an extra operation to the API, like a <code>GET /countries</code> returning all country codes and names or a more specific <code>GET /countries/{countryId}</code>  (that’s less terrible)</li>
+  <li>Or adding extra data, like returning author’s country name along with the code (that make the author’s data self sufficient but less usable for other purpose than just showing them to end users)</li>
+</ul>
 
-&lt;p&gt;But even using one of those “solutions”, if no actual ISO3166 code is ever used, consumer programs will have hard time to actually interpret such specific way of representing countries.
+<p>But even using one of those “solutions”, if no actual ISO3166 code is ever used, consumer programs will have hard time to actually interpret such specific way of representing countries.
 Maybe they’ll have to work on country names to match what they know of country on their side (probably ISO3166 based)… hoping country names are actually returned in english and without typos.
 It can be more a guess than an actual matching.
 Maybe consumers developers will painfully build a mapping table based on the data they get…
 But it will need to be updated if new countries are added.
-I don’t mean actual new countries, that’s a possibility but that don’t happen much, but new authors from countries that were not already represented in the authors list.&lt;/p&gt;
+I don’t mean actual new countries, that’s a possibility but that don’t happen much, but new authors from countries that were not already represented in the authors list.</p>
 
-&lt;p&gt;On the other hand, using a standard ISO3166 code will makes both consumer and provider jobs easier because they naturally share common identifiers.
-Ideally, when I see a &lt;code&gt;GET /authors&lt;/code&gt; and as I know authors countries are returned, I can guess that &lt;code&gt;GET /authors?country=FRA&lt;/code&gt; will return french authors.
+<p>On the other hand, using a standard ISO3166 code will makes both consumer and provider jobs easier because they naturally share common identifiers.
+Ideally, when I see a <code>GET /authors</code> and as I know authors countries are returned, I can guess that <code>GET /authors?country=FRA</code> will return french authors.
 It’s a no brainer, impossible to achieve with a custom country code.
-If I use ISO3166 codes on my side, matching my data with the one coming from &lt;code&gt;GET /authors&lt;/code&gt; based on countries is dead simple.
-And I don’t care if new countries appear in authors data as I rely on the same ISO3166 referential: my consumer is always be up to date.&lt;/p&gt;
+If I use ISO3166 codes on my side, matching my data with the one coming from <code>GET /authors</code> based on countries is dead simple.
+And I don’t care if new countries appear in authors data as I rely on the same ISO3166 referential: my consumer is always be up to date.</p>
 
-&lt;h2 id=&quot;well-known-identifiers&quot;&gt;Well known identifiers&lt;/h2&gt;
+<h2 id="well-known-identifiers">Well known identifiers</h2>
 
-&lt;p&gt;But sometimes it’s not possible to use a “standard” identifier known by everyone in the outside world.
+<p>But sometimes it’s not possible to use a “standard” identifier known by everyone in the outside world.
 It’s actually fairly common to use custom identifiers, but if that’s the case always favor the “well known” ones.
-For instance, if you need a product identifier (for &lt;code&gt;GET /products/{productId}&lt;/code&gt;), better use an id shared by a few APIs across a domain or an id shared across the whole organization than using an API specific product id.
+For instance, if you need a product identifier (for <code>GET /products/{productId}</code>), better use an id shared by a few APIs across a domain or an id shared across the whole organization than using an API specific product id.
 A well known product id could be used across various APIs such as “product catalog”, “order”, “shipping”, “supplier”, “storage”, …
 The more systems will share the same ids, the better.
 It’s basically about using or defining local standards.
-Doing so, any system knowing such well known ids can use them with any API inside a domain or the organization.&lt;/p&gt;
+Doing so, any system knowing such well known ids can use them with any API inside a domain or the organization.</p>
 
-&lt;p&gt;And note that it’s always good to double check if by chance there’s a standard identifier that you can use.
-If the “product” we were talking about reveals to be a “book”, prefer the use of an ISBN standard book identifier than your custom one, even if it is known across your organization (and change your resource name, &lt;code&gt;GET /books/{isbn}&lt;/code&gt;).
-Indeed, your well known ids are still custom ones and so unknown by the outside world.&lt;/p&gt;
+<p>And note that it’s always good to double check if by chance there’s a standard identifier that you can use.
+If the “product” we were talking about reveals to be a “book”, prefer the use of an ISBN standard book identifier than your custom one, even if it is known across your organization (and change your resource name, <code>GET /books/{isbn}</code>).
+Indeed, your well known ids are still custom ones and so unknown by the outside world.</p>
 
-&lt;p&gt;Choosing interoperable data that other systems will interpret easily, data that is known by as much systems as possible, is a must do to create successful APIs.
+<p>Choosing interoperable data that other systems will interpret easily, data that is known by as much systems as possible, is a must do to create successful APIs.
 But when creating APIs, you do not only deal with programs.
-There are humans in the loop: the developers who write the programs using those APIs.&lt;/p&gt;
+There are humans in the loop: the developers who write the programs using those APIs.</p>
 
-&lt;h1 id=&quot;human-readability&quot;&gt;Human-readability&lt;/h1&gt;
+<h1 id="human-readability">Human-readability</h1>
 
-&lt;p&gt;Though choosing interoperable data actually makes API more human-friendly, because “common language” and “shared identifiers”, only focusing on machine to machine interoperability without taking care of human-readability could cripple your APIs success.&lt;/p&gt;
+<p>Though choosing interoperable data actually makes API more human-friendly, because “common language” and “shared identifiers”, only focusing on machine to machine interoperability without taking care of human-readability could cripple your APIs success.</p>
 
-&lt;h2 id=&quot;obvious&quot;&gt;Obvious&lt;/h2&gt;
+<h2 id="obvious">Obvious</h2>
 
-&lt;p&gt;The more obvious values are the better.
-A &lt;code&gt;REQUIRED_TITLE&lt;/code&gt; error code returned with a &lt;code&gt;400 BAD REQUEST&lt;/code&gt; on a &lt;code&gt;POST /books&lt;/code&gt; to add a book is easily understandable.
+<p>The more obvious values are the better.
+A <code>REQUIRED_TITLE</code> error code returned with a <code>400 BAD REQUEST</code> on a <code>POST /books</code> to add a book is easily understandable.
 It’s understandable but quite specific; probably defined at a single API level.
 Maybe using a more generic code defined for the whole organization in your guidelines, reusable in many contexts, could be better.
-A generic &lt;code&gt;REQUIRED_PROPERTY&lt;/code&gt; error code returned with a &lt;code&gt;&quot;property&quot;: &quot;title&quot;&lt;/code&gt; is more interoperable.&lt;/p&gt;
+A generic <code>REQUIRED_PROPERTY</code> error code returned with a <code>"property": "title"</code> is more interoperable.</p>
 
-&lt;h2 id=&quot;guessable&quot;&gt;Guessable&lt;/h2&gt;
+<h2 id="guessable">Guessable</h2>
 
-&lt;p&gt;A &lt;code&gt;FRA&lt;/code&gt; alpha-3 ISO3166 code is better than it’s numeric counter part &lt;code&gt;250&lt;/code&gt;, a human being can guess what it means.
-It’s also quite simple to guess other alpha-3 ISO3166 code, for instance, what is the one for Italy?&lt;/p&gt;
+<p>A <code>FRA</code> alpha-3 ISO3166 code is better than it’s numeric counter part <code>250</code>, a human being can guess what it means.
+It’s also quite simple to guess other alpha-3 ISO3166 code, for instance, what is the one for Italy?</p>
 
-&lt;p&gt;But that does not mean numeric values are always evil.
-Take HTTP status codes, such as &lt;code&gt;400&lt;/code&gt; or &lt;code&gt;418&lt;/code&gt; for instance.
-They require some basic HTTP knowledge to understand what they mean; any &lt;code&gt;4XX&lt;/code&gt; is an error caused by consumer.
+<p>But that does not mean numeric values are always evil.
+Take HTTP status codes, such as <code>400</code> or <code>418</code> for instance.
+They require some basic HTTP knowledge to understand what they mean; any <code>4XX</code> is an error caused by consumer.
 But once you have that knowledge you can guess what means any HTTP status code.
-Never heard about &lt;code&gt;418&lt;/code&gt;, no problem, you can guess that’s consumer fault.
-By the way, being guessable, or interpretable should I say, like this is also interesting for the consumer program, it actually makes data more interoperable.&lt;/p&gt;
+Never heard about <code>418</code>, no problem, you can guess that’s consumer fault.
+By the way, being guessable, or interpretable should I say, like this is also interesting for the consumer program, it actually makes data more interoperable.</p>
 
-&lt;h2 id=&quot;human-friendly&quot;&gt;Human friendly&lt;/h2&gt;
+<h2 id="human-friendly">Human friendly</h2>
 
-&lt;p&gt;Note that creating obvious or guessable values is not always possible, especially when there are countless of them.
+<p>Note that creating obvious or guessable values is not always possible, especially when there are countless of them.
 Many times, you’ll have to rely on opaque ids, but that does not mean they should be hard to remember or type for us, poor human beings.
-An ISBN book identifier such as &lt;code&gt;9781617295102&lt;/code&gt; is far more human friendly than a UUID &lt;code&gt;3ba5d648-8cce-433a-8013-aa760468c153&lt;/code&gt; but less than a short id like &lt;code&gt;g2ma67&lt;/code&gt;.
-And I think that &lt;code&gt;123456&lt;/code&gt; is more human friendly than all the others.&lt;/p&gt;
+An ISBN book identifier such as <code>9781617295102</code> is far more human friendly than a UUID <code>3ba5d648-8cce-433a-8013-aa760468c153</code> but less than a short id like <code>g2ma67</code>.
+And I think that <code>123456</code> is more human friendly than all the others.</p>
 
-&lt;p&gt;But don’t forget that interoperability always prevail over human-readability.
-In that case, even though &lt;code&gt;123456&lt;/code&gt; is more human-friendly, it’s still an internal id known only by the system which has created it, while &lt;code&gt;9781617295102&lt;/code&gt; is a standard ISBN known widely outside of the organization.&lt;/p&gt;
+<p>But don’t forget that interoperability always prevail over human-readability.
+In that case, even though <code>123456</code> is more human-friendly, it’s still an internal id known only by the system which has created it, while <code>9781617295102</code> is a standard ISBN known widely outside of the organization.</p>
 
-&lt;h1 id=&quot;how-to-choose-identifiers&quot;&gt;How to choose identifiers&lt;/h1&gt;
+<h1 id="how-to-choose-identifiers">How to choose identifiers</h1>
 
-&lt;p&gt;So how to choose identifiers, ids and codes?
-First, try to find the most interoperable ones, and second, try to keep them as much human readable as possible.&lt;/p&gt;
+<p>So how to choose identifiers, ids and codes?
+First, try to find the most interoperable ones, and second, try to keep them as much human readable as possible.</p>
 
-&lt;div class=&quot;image &quot;&gt;
-    &lt;figure class=&quot;figure&quot;&gt;
-        &lt;img src=&quot;/images/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/scientific-quadrant-for-identifiers-how.jpg&quot; class=&quot;figure-img img-fluid&quot; /&gt;&lt;/figure&gt;
-&lt;/div&gt;
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/scientific-quadrant-for-identifiers-how.jpg" class="figure-img img-fluid" /></figure>
+</div>
 
-&lt;p&gt;The level of interoperability of an API depends on the level of “standardization” of its data.
+<p>The level of interoperability of an API depends on the level of “standardization” of its data.
 A standard identifier will be easily understood by many systems while an internal one will be understood only by the system creating it.
-But “standardization” does not always mean “standard” (like ISO country codes), sometimes using well known shared identifier inside an organization or a domain will be sufficient.&lt;/p&gt;
+But “standardization” does not always mean “standard” (like ISO country codes), sometimes using well known shared identifier inside an organization or a domain will be sufficient.</p>
 
-&lt;p&gt;The developer experience will also be enhanced when using human readable identifiers; easy to understand, easy to type, easy to remember, easy to guess.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">As an API designer, why should you care about the value of a productId, a countryCode, or an error code? Because wisely choosing the value of such (in a broad sense) “identifiers” greatly participates in the making of a user friendly API; but most importantly an interoperable one.</summary></entry><entry><title type="html">What should come first when designing an API?</title><link href="https://apihandyman.io/what-should-come-first-when-designing-an-api/" rel="alternate" type="text/html" title="What should come first when designing an API?" /><published>2021-12-22T00:00:00-06:00</published><updated>2021-12-22T00:00:00-06:00</updated><id>https://apihandyman.io/what-should-come-first-when-designing-an-api</id><content type="html" xml:base="https://apihandyman.io/what-should-come-first-when-designing-an-api/">&lt;p&gt;Either you provide public or private APIs, you must have a design first approach.
+<p>The developer experience will also be enhanced when using human readable identifiers; easy to understand, easy to type, easy to remember, easy to guess.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[As an API designer, why should you care about the value of a productId, a countryCode, or an error code? Because wisely choosing the value of such (in a broad sense) “identifiers” greatly participates in the making of a user friendly API; but most importantly an interoperable one.]]></summary></entry><entry><title type="html">What should come first when designing an API?</title><link href="https://apihandyman.io/what-should-come-first-when-designing-an-api/" rel="alternate" type="text/html" title="What should come first when designing an API?" /><published>2021-12-22T00:00:00-06:00</published><updated>2021-12-22T00:00:00-06:00</updated><id>https://apihandyman.io/what-should-come-first-when-designing-an-api</id><content type="html" xml:base="https://apihandyman.io/what-should-come-first-when-designing-an-api/"><![CDATA[<p>Either you provide public or private APIs, you must have a design first approach.
 But what does actually mean “design first”?
-Does it mean religiously writing all your &lt;code&gt;GET /this&lt;/code&gt; and &lt;code&gt;POST /that&lt;/code&gt; in an OpenAPI file?
+Does it mean religiously writing all your <code>GET /this</code> and <code>POST /that</code> in an OpenAPI file?
 But if that so, how is this so different from the code first approach where you write actual code to generate an OpenAPI file?
 Maybe it’s time to clarify what should come first when designing API.
-&lt;!--more--&gt;&lt;/p&gt;
+<!--more--></p>
 
-&lt;h1 id=&quot;definitions&quot;&gt;Definitions&lt;/h1&gt;
+<h1 id="definitions">Definitions</h1>
 
-&lt;p&gt;The “design first” and “code first” approach are very often opposed to each other.&lt;/p&gt;
+<p>The “design first” and “code first” approach are very often opposed to each other.</p>
 
-&lt;p&gt;The “code first” approach consists in coding the implementation and generating from it a formal description afterwards, usually an OpenAPI Specification file.
-If you’ve read this blog you know what I think about generating OpenAPI from code in such a case (if not, you should read &lt;a href=&quot;/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/&quot;&gt;6 reasons why generating OpenAPI from code when designing and documenting APIs sucks&lt;/a&gt;).
+<p>The “code first” approach consists in coding the implementation and generating from it a formal description afterwards, usually an OpenAPI Specification file.
+If you’ve read this blog you know what I think about generating OpenAPI from code in such a case (if not, you should read <a href="/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/">6 reasons why generating OpenAPI from code when designing and documenting APIs sucks</a>).
 This approach has some serious drawbacks but I work with teams who are happy with it.
-Either you like it or not, either it can have some drawbacks (but also some advantages), should this approach be opposed to “design first”?&lt;/p&gt;
+Either you like it or not, either it can have some drawbacks (but also some advantages), should this approach be opposed to “design first”?</p>
 
-&lt;p&gt;Nope, that’s a wrong debate.
+<p>Nope, that’s a wrong debate.
 The “design first” approach is unfortunately more often than not used to describe something else.
-Indeed, it is often used to describe the “spec first” approach, an approach in which you describe formally an API using an API specification format such as the OpenAPI Specification before writing any line of code of the implementation.&lt;/p&gt;
+Indeed, it is often used to describe the “spec first” approach, an approach in which you describe formally an API using an API specification format such as the OpenAPI Specification before writing any line of code of the implementation.</p>
 
-&lt;p&gt;So, what means “design first”?
+<p>So, what means “design first”?
 The “design first” approach simply means you actually “design” your API before doing anything else.
 And that could actually be done in both “spec first” and “code first” approaches.
-Indeed, if I know my API needs a &lt;code&gt;GET /this&lt;/code&gt;, and even if &lt;a href=&quot;(/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/)&quot;&gt;generating OpenAPI Spec from code sucks&lt;/a&gt;, there’s no big difference between writing OpenAPI Spec code and your favorite language code.&lt;/p&gt;
+Indeed, if I know my API needs a <code>GET /this</code>, and even if <a href="(/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/)">generating OpenAPI Spec from code sucks</a>, there’s no big difference between writing OpenAPI Spec code and your favorite language code.</p>
 
-&lt;p&gt;There’s no big difference … as long as you actually &lt;em&gt;design&lt;/em&gt; your API first.&lt;/p&gt;
+<p>There’s no big difference … as long as you actually <em>design</em> your API first.</p>
 
-&lt;h1 id=&quot;natural-language-almost-first&quot;&gt;Natural language almost first&lt;/h1&gt;
+<h1 id="natural-language-almost-first">Natural language almost first</h1>
 
-&lt;p&gt;So what truly is this “design first” approach that you MUST actually use to create APIs?
-When designing an API, what should come first is not thinking about &lt;code&gt;GET /this&lt;/code&gt; and &lt;code&gt;POST /that&lt;/code&gt;.
+<p>So what truly is this “design first” approach that you MUST actually use to create APIs?
+When designing an API, what should come first is not thinking about <code>GET /this</code> and <code>POST /that</code>.
 What comes first is the needs your API should fulfill.
-And those needs are not &lt;code&gt;GET /this&lt;/code&gt; and &lt;code&gt;POST /that&lt;/code&gt;, those needs are more like “Search products” or “Place an order.&lt;/p&gt;
+And those needs are not <code>GET /this</code> and <code>POST /that</code>, those needs are more like “Search products” or “Place an order.</p>
 
-&lt;p&gt;Before thinking about HTTP methods and resource paths, you must have a clear understanding of the needs.
+<p>Before thinking about HTTP methods and resource paths, you must have a clear understanding of the needs.
 And you must describe them using crystal clear natural language.
-You usually start with high level needs like “buying some products” and decompose them in flows, each step being an actual operation of your API, like “Search products”, “Add product to basket” and “Place an order” (read more about all that in my book &lt;a href=&quot;https://www.manning.com/books/the-design-of-web-apis&quot;&gt;The Design of Web APIs&lt;/a&gt;).
-Working using natural language allows to include everyone in the conversation and to focus on the business perspective while keeping REST &amp;amp; HTTP heated discussions for later.
-Actually having a clear description of what the API should do in natural language facilitate those later discussions.&lt;/p&gt;
+You usually start with high level needs like “buying some products” and decompose them in flows, each step being an actual operation of your API, like “Search products”, “Add product to basket” and “Place an order” (read more about all that in my book <a href="https://www.manning.com/books/the-design-of-web-apis">The Design of Web APIs</a>).
+Working using natural language allows to include everyone in the conversation and to focus on the business perspective while keeping REST &amp; HTTP heated discussions for later.
+Actually having a clear description of what the API should do in natural language facilitate those later discussions.</p>
 
-&lt;p&gt;By the way, if &lt;a href=&quot;/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer/#when-should-i-use-english-during-design-process&quot;&gt;you’re an ESL API Designer I recommend to do that in your native language&lt;/a&gt;.&lt;/p&gt;
+<p>By the way, if <a href="/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer/#when-should-i-use-english-during-design-process">you’re an ESL API Designer I recommend to do that in your native language</a>.</p>
 
-&lt;p&gt;So, whatever works in your context, spec or code first, design your API by working first on the needs using natural language.
-That’s the heart of design first.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Either you provide public or private APIs, you must have a design first approach. But what does actually mean “design first”? Does it mean religiously writing all your GET /this and POST /that in an OpenAPI file? But if that so, how is this so different from the code first approach where you write actual code to generate an OpenAPI file? Maybe it’s time to clarify what should come first when designing API.</summary></entry><entry><title type="html">Handle API gateway and backend differences in API documentation with OpenAPI Specification</title><link href="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/" rel="alternate" type="text/html" title="Handle API gateway and backend differences in API documentation with OpenAPI Specification" /><published>2021-12-15T00:00:00-06:00</published><updated>2021-12-15T00:00:00-06:00</updated><id>https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification</id><content type="html" xml:base="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/">&lt;p&gt;I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers?
-&lt;!--more--&gt;&lt;/p&gt;
+<p>So, whatever works in your context, spec or code first, design your API by working first on the needs using natural language.
+That’s the heart of design first.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Either you provide public or private APIs, you must have a design first approach. But what does actually mean “design first”? Does it mean religiously writing all your GET /this and POST /that in an OpenAPI file? But if that so, how is this so different from the code first approach where you write actual code to generate an OpenAPI file? Maybe it’s time to clarify what should come first when designing API.]]></summary></entry><entry><title type="html">Handle API gateway and backend differences in API documentation with OpenAPI Specification</title><link href="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/" rel="alternate" type="text/html" title="Handle API gateway and backend differences in API documentation with OpenAPI Specification" /><published>2021-12-15T00:00:00-06:00</published><updated>2021-12-15T00:00:00-06:00</updated><id>https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification</id><content type="html" xml:base="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/"><![CDATA[<p>I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers?
+<!--more--></p>
 
-&lt;h1 id=&quot;the-question&quot;&gt;The question&lt;/h1&gt;
+<h1 id="the-question">The question</h1>
 
-&lt;p&gt;The original question was this one: “I’m trying to work out how to use OpenAPI both as a service spec (with code generation) but also as documentation when the service will be deployed behind a gateway that will return some HTTP responses (401/403). Do I write in the OpenAPI spec what the end user sees (that an endpoint might return 401 say) even though the underlying service isn’t implementing that call? It makes the code generation ‘wrong’ but equally the developers need to know that the gateway configuration should protect it. Or do I make the OpenAPI reflect the service, in which case how do I tell the end users that they may see additional errors?”&lt;/p&gt;
+<p>The original question was this one: “I’m trying to work out how to use OpenAPI both as a service spec (with code generation) but also as documentation when the service will be deployed behind a gateway that will return some HTTP responses (401/403). Do I write in the OpenAPI spec what the end user sees (that an endpoint might return 401 say) even though the underlying service isn’t implementing that call? It makes the code generation ‘wrong’ but equally the developers need to know that the gateway configuration should protect it. Or do I make the OpenAPI reflect the service, in which case how do I tell the end users that they may see additional errors?”</p>
 
-&lt;p&gt;So the question is how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers&lt;/p&gt;
+<p>So the question is how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers</p>
 
-&lt;p&gt;To answer that question, we need to talk about API gateways and how they can expose an API contract that is slightly different from the implementation’s one.&lt;/p&gt;
+<p>To answer that question, we need to talk about API gateways and how they can expose an API contract that is slightly different from the implementation’s one.</p>
 
-&lt;h1 id=&quot;how-contract-can-differ-between-gateway-and-implementation&quot;&gt;How contract can differ between gateway and implementation&lt;/h1&gt;
+<h1 id="how-contract-can-differ-between-gateway-and-implementation">How contract can differ between gateway and implementation</h1>
 
-&lt;div class=&quot;alert alert-info&quot;&gt;
-&lt;p&gt;Note that for this post &lt;a href=&quot;/an-api-gateway-must-be-a-dumb-pipe/&quot;&gt;we’ll consider the gateway as as “smart-dump pipe”&lt;/a&gt;, and so set aside the “heavy transformation” use cases that are not relevant here.&lt;/p&gt;
+<div class="alert alert-info">
+<p>Note that for this post <a href="/an-api-gateway-must-be-a-dumb-pipe/">we’ll consider the gateway as as “smart-dump pipe”</a>, and so set aside the “heavy transformation” use cases that are not relevant here.</p>
 
-&lt;/div&gt;
+</div>
 
-&lt;p&gt;An API gateway is a proxy that sits between backends providing APIs and their consumers.
+<p>An API gateway is a proxy that sits between backends providing APIs and their consumers.
 Such proxy is useful to avoid reinventing the security wheel.
-With an API gateway, dealing with the Oauth dance and ensuring that only registered consumers can use some API is just a piece of cake (though that does not mean it does ALL security job as shown in &lt;a href=&quot;/an-api-gateway-alone-will-not-secure-your-api/&quot;&gt;my previous “An API Gateway alone will not secure your API” post&lt;/a&gt;).
-Other less known feature, gateways also provide throttling to ensure that a given consumer doesn’t do more than X call per second on a API or to ensure that a backend does not take more than Y call per second to protect non scalable infrastructure.&lt;/p&gt;
+With an API gateway, dealing with the Oauth dance and ensuring that only registered consumers can use some API is just a piece of cake (though that does not mean it does ALL security job as shown in <a href="/an-api-gateway-alone-will-not-secure-your-api/">my previous “An API Gateway alone will not secure your API” post</a>).
+Other less known feature, gateways also provide throttling to ensure that a given consumer doesn’t do more than X call per second on a API or to ensure that a backend does not take more than Y call per second to protect non scalable infrastructure.</p>
 
-&lt;h2 id=&quot;errors-and-more&quot;&gt;Errors and more&lt;/h2&gt;
+<h2 id="errors-and-more">Errors and more</h2>
 
-&lt;p&gt;Doing such stuff independently from the API implementation, an API gateway actually modifies exposed API contract.
-Indeed, if a consumer makes an API call without an access token, they will get a &lt;code&gt;401 Unauthorized&lt;/code&gt; response coming from the gateway, their API call having not reach the backend.
-Same goes if a consumer goes beyond the X call per second, they may get a &lt;code&gt;429 Too Many Requests&lt;/code&gt; coming from the gateway.
-Those errors are not part of the original contract exposed by the backend.&lt;/p&gt;
+<p>Doing such stuff independently from the API implementation, an API gateway actually modifies exposed API contract.
+Indeed, if a consumer makes an API call without an access token, they will get a <code>401 Unauthorized</code> response coming from the gateway, their API call having not reach the backend.
+Same goes if a consumer goes beyond the X call per second, they may get a <code>429 Too Many Requests</code> coming from the gateway.
+Those errors are not part of the original contract exposed by the backend.</p>
 
-&lt;div class=&quot;alert alert-warning&quot;&gt;
-&lt;p&gt;Important notice regarding errors: ensure that errors returned by your API gateway actually follow your API design guidelines.&lt;/p&gt;
+<div class="alert alert-warning">
+<p>Important notice regarding errors: ensure that errors returned by your API gateway actually follow your API design guidelines.</p>
 
-&lt;/div&gt;
+</div>
 
-&lt;p&gt;But the API gateway may modify the contract beyond adding some errors.
-As the gateway is a proxy, the server host is not the same at the gateway level (&lt;code&gt;https://cool-domain.com&lt;/code&gt;) and the backend level (&lt;code&gt;https://obscure-server-name&lt;/code&gt;).
-It may change the base path, the backend exposing its API on &lt;code&gt;/api&lt;/code&gt; and the gateway exposing on &lt;code&gt;/meaningful-name&lt;/code&gt;.
-A gateway may also add some HTTP headers in responses.&lt;/p&gt;
+<p>But the API gateway may modify the contract beyond adding some errors.
+As the gateway is a proxy, the server host is not the same at the gateway level (<code>https://cool-domain.com</code>) and the backend level (<code>https://obscure-server-name</code>).
+It may change the base path, the backend exposing its API on <code>/api</code> and the gateway exposing on <code>/meaningful-name</code>.
+A gateway may also add some HTTP headers in responses.</p>
 
-&lt;p&gt;More tricky, the gateway may change security settings.
-It’s fairly common to have various security modes available at the gateway level (Oauth, OpenID connect) but between the gateway and the backend a more generic, often JWT based security mode is used.&lt;/p&gt;
+<p>More tricky, the gateway may change security settings.
+It’s fairly common to have various security modes available at the gateway level (Oauth, OpenID connect) but between the gateway and the backend a more generic, often JWT based security mode is used.</p>
 
-&lt;p&gt;And even more tricky, you may have some endpoints at backend level that are only used internally and must not be exposed at gateway level.&lt;/p&gt;
+<p>And even more tricky, you may have some endpoints at backend level that are only used internally and must not be exposed at gateway level.</p>
 
-&lt;h2 id=&quot;impacts-on-openapi-file&quot;&gt;Impacts on OpenAPI file&lt;/h2&gt;
+<h2 id="impacts-on-openapi-file">Impacts on OpenAPI file</h2>
 
-&lt;p&gt;All that means the modifications can take place in the following places in an OpenAPI file:&lt;/p&gt;
+<p>All that means the modifications can take place in the following places in an OpenAPI file:</p>
 
-&lt;div class=&quot;card card-code text-white bg-dark border-dark&quot;&gt;
+<div class="card card-code text-white bg-dark border-dark">
   
-  &lt;div class=&quot;card-header&quot;&gt;
-    &lt;div class=&quot;row m-0&quot;&gt;
-      &lt;div class=&quot;col align-self-center&quot;&gt;
-        &lt;p class=&quot;m-0 title&quot;&gt;Modified OpenAPI file&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;col col-auto pr-0&quot;&gt;
-        &lt;div class=&quot;btn-group&quot; role=&quot;group&quot; aria-label=&quot;code snippet control&quot;&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary code-copy-btn border-0 rounded-0&quot; aria-label=&quot;copy&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Copy&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/copy.svg&quot; /&gt;&lt;/a&gt;
-          &lt;a role=&quot;button&quot; class=&quot;btn btn-secondary border-0 rounded-0 code-expandcollapse-btn&quot; aria-label=&quot;expand or shrink&quot; onclick=&quot;expandCollapseCode(this)&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Expand/Shrink&quot;&gt;&lt;img class=&quot;btn-icon&quot; src=&quot;/images/commons/icons/maximize.svg&quot; /&gt;&lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;pre class=&quot;language-yaml line-numbers code-collapsed code-copy&quot;&gt;&lt;code class=&quot;code-block&quot;&gt;openapi: 3.0
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Modified OpenAPI file</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy"><code class="code-block">openapi: 3.0
 
 servers:
-    - url: # Gateway and backend won&amp;#39;t have
+    - url: # Gateway and backend won&#39;t have
            # same URLs (scheme, host, base path)
 
 components:
@@ -240,602 +291,464 @@ paths:
                 429: # Gateway will add or override HTTP
                      # status codes for all operations
                     headers:
-                        # Gateway may add specific headers&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+                        # Gateway may add specific headers</code></pre>
+  </div>
+</div>
 
-&lt;h1 id=&quot;the-answer&quot;&gt;The answer&lt;/h1&gt;
+<h1 id="the-answer">The answer</h1>
 
-&lt;p&gt;So how to deal with that regarding an OpenAPI file used as specification and documentation?&lt;/p&gt;
+<p>So how to deal with that regarding an OpenAPI file used as specification and documentation?</p>
 
-&lt;h2 id=&quot;consumers-perspective-first&quot;&gt;Consumer’s perspective first&lt;/h2&gt;
+<h2 id="consumers-perspective-first">Consumer’s perspective first</h2>
 
-&lt;p&gt;First, what is 100% sure is that the consumers (well, their developers) must get access to a documentation describing the API from their perspective, that is the API gateway version.&lt;/p&gt;
+<p>First, what is 100% sure is that the consumers (well, their developers) must get access to a documentation describing the API from their perspective, that is the API gateway version.</p>
 
-&lt;p&gt;If the difference between backend and gateway contract is only about getting a few errors like 401 or 429, you could possibly provide the backend reference documentation and have a dedicated pages to explain how some specific errors are handled.
+<p>If the difference between backend and gateway contract is only about getting a few errors like 401 or 429, you could possibly provide the backend reference documentation and have a dedicated pages to explain how some specific errors are handled.
 But that means when consumers read the API reference documentation, these errors are not explicitly described.
-And that is a problem in my humble opinion: as a developer using an API, I want to know exactly what happens reading the documentation of an operation.&lt;/p&gt;
+And that is a problem in my humble opinion: as a developer using an API, I want to know exactly what happens reading the documentation of an operation.</p>
 
-&lt;p&gt;That means, the reference documentation and hence the underlying OpenAPI file, must include those information. 
-So how to achieve that?&lt;/p&gt;
+<p>That means, the reference documentation and hence the underlying OpenAPI file, must include those information. 
+So how to achieve that?</p>
 
-&lt;h2 id=&quot;in-case-of-backend-specific-operations&quot;&gt;In case of backend specific operations&lt;/h2&gt;
+<h2 id="in-case-of-backend-specific-operations">In case of backend specific operations</h2>
 
-&lt;p&gt;If your backend exposes specific operations that must not be exposed at gateway level, I would suggest to put them in a separate API.
+<p>If your backend exposes specific operations that must not be exposed at gateway level, I would suggest to put them in a separate API.
 Yes, a single backend can expose 2 different APIs on two different root path.
-That will avoid the risk of unintentionally expose purely internal admin operations to the outside world.&lt;/p&gt;
+That will avoid the risk of unintentionally expose purely internal admin operations to the outside world.</p>
 
-&lt;h2 id=&quot;from-gateway-to-implementation&quot;&gt;From gateway to implementation&lt;/h2&gt;
+<h2 id="from-gateway-to-implementation">From gateway to implementation</h2>
 
-&lt;p&gt;First option, create an OpenAPI file describing the API at the gateway level and tweak it, if needed, to use it at backend level:&lt;/p&gt;
+<p>First option, create an OpenAPI file describing the API at the gateway level and tweak it, if needed, to use it at backend level:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Replace gateway &lt;code&gt;servers&lt;/code&gt; by backend one(s)&lt;/li&gt;
-  &lt;li&gt;Replace gateway &lt;code&gt;securityDefinitions&lt;/code&gt; by backend one&lt;/li&gt;
-  &lt;li&gt;Replace gateway operation &lt;code&gt;security&lt;/code&gt; by backend one&lt;/li&gt;
-  &lt;li&gt;Remove or replace gateway specific &lt;code&gt;responses&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Remove gateway &lt;code&gt;specific&lt;/code&gt; headers in &lt;code&gt;responses&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Add backend specific operations if you don’t want to separate them (see &lt;a href=&quot;/#in-case-of-backend-specific-operations&quot;&gt;In case of backend specific operations&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>Replace gateway <code>servers</code> by backend one(s)</li>
+  <li>Replace gateway <code>securityDefinitions</code> by backend one</li>
+  <li>Replace gateway operation <code>security</code> by backend one</li>
+  <li>Remove or replace gateway specific <code>responses</code></li>
+  <li>Remove gateway <code>specific</code> headers in <code>responses</code></li>
+  <li>Add backend specific operations if you don’t want to separate them (see <a href="/#in-case-of-backend-specific-operations">In case of backend specific operations</a>)</li>
+</ul>
 
-&lt;p&gt;Don’t do that manually, do it programmatically to ensure exhaustivity and consistentcy.
-You can use &lt;a href=&quot;/toolbox/jq/&quot;&gt;JQ&lt;/a&gt; or an OpenAPI parser.&lt;/p&gt;
+<p>Don’t do that manually, do it programmatically to ensure exhaustivity and consistentcy.
+You can use <a href="/toolbox/jq/">JQ</a> or an OpenAPI parser.</p>
 
-&lt;h2 id=&quot;from-implementation-to-gateway&quot;&gt;From implementation to gateway&lt;/h2&gt;
+<h2 id="from-implementation-to-gateway">From implementation to gateway</h2>
 
-&lt;p&gt;The second way of dealing with that problem would be to transform the OpenAPI file describing the implementation’s contract into the gateway one.&lt;/p&gt;
+<p>The second way of dealing with that problem would be to transform the OpenAPI file describing the implementation’s contract into the gateway one.</p>
 
-&lt;p&gt;In a code first approach, you could use the implementation’s documentation (OpenAPI) generator to do the transformation.
-If you’re coding in Java, it’s dead simple to do all the modifications programmatically with SpringFox.&lt;/p&gt;
+<p>In a code first approach, you could use the implementation’s documentation (OpenAPI) generator to do the transformation.
+If you’re coding in Java, it’s dead simple to do all the modifications programmatically with SpringFox.</p>
 
-&lt;p&gt;In both code first and spec first approaches, you can also do the transformations on an implementation version spec before or during deployment.
+<p>In both code first and spec first approaches, you can also do the transformations on an implementation version spec before or during deployment.
 If you’re very lucky, your API gateway manages that transformation magically (but I doubt that actually exists).
-If not, proceed like in “gateway to implementation” scenario using &lt;a href=&quot;/toolbox/jq/&quot;&gt;JQ&lt;/a&gt; or an OpenAPI parser to modify the file.&lt;/p&gt;
+If not, proceed like in “gateway to implementation” scenario using <a href="/toolbox/jq/">JQ</a> or an OpenAPI parser to modify the file.</p>
 
-&lt;p&gt;Whatever the way of doing the modifications, they would be:&lt;/p&gt;
+<p>Whatever the way of doing the modifications, they would be:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Replace backend &lt;code&gt;servers&lt;/code&gt; by gateway one&lt;/li&gt;
-  &lt;li&gt;Replace backend &lt;code&gt;securityDefinitions&lt;/code&gt; by gateway one&lt;/li&gt;
-  &lt;li&gt;Replace backend operation &lt;code&gt;security&lt;/code&gt;by gateway one&lt;/li&gt;
-  &lt;li&gt;Add gateway specific &lt;code&gt;responses&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Add gateway &lt;code&gt;specific&lt;/code&gt; headers in &lt;code&gt;responses&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Remove backend specific operations if needed (see &lt;a href=&quot;/#in-case-of-backend-specific-operations&quot;&gt;In case of backend specific operations&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>Replace backend <code>servers</code> by gateway one</li>
+  <li>Replace backend <code>securityDefinitions</code> by gateway one</li>
+  <li>Replace backend operation <code>security</code>by gateway one</li>
+  <li>Add gateway specific <code>responses</code></li>
+  <li>Add gateway <code>specific</code> headers in <code>responses</code></li>
+  <li>Remove backend specific operations if needed (see <a href="/#in-case-of-backend-specific-operations">In case of backend specific operations</a>)</li>
+</ul>
 
-&lt;h2 id=&quot;gateway-and-implementation&quot;&gt;Gateway and implementation&lt;/h2&gt;
+<h2 id="gateway-and-implementation">Gateway and implementation</h2>
 
-&lt;p&gt;And last but not least: doing both.
+<p>And last but not least: doing both.
 You can create an OpenAPI file describing the two versions and then strip it of unwanted elements before using it as gateway or backend level.
 In my humble opinion that seems to be the best solution.
 Indeed, you actually define explicitly what happens at both level and especially at gateway level (it’s up to provider to decide how to use scope for instance).
 And when it comes to modify the OpenAPI file, it’s quite simple to remove elements.
-A middle-ground even better option could be to use templates or script to handle the addition of gateway errors or headers (which are always the same).&lt;/p&gt;
+A middle-ground even better option could be to use templates or script to handle the addition of gateway errors or headers (which are always the same).</p>
 
-&lt;p&gt;Note that using a linter such as &lt;a href=&quot;/toolbox/spectral/&quot;&gt;Spectral&lt;/a&gt; can ensure that your OpenAPI file(s) are actually valid ones (defining all errors for instance).&lt;/p&gt;
+<p>Note that using a linter such as <a href="/toolbox/spectral/">Spectral</a> can ensure that your OpenAPI file(s) are actually valid ones (defining all errors for instance).</p>
 
-&lt;h1 id=&quot;consumer-first-and-machine-readability&quot;&gt;Consumer first and machine readability&lt;/h1&gt;
+<h1 id="consumer-first-and-machine-readability">Consumer first and machine readability</h1>
 
-&lt;p&gt;Two important things to remember after reading this post:&lt;/p&gt;
+<p>Two important things to remember after reading this post:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;The consumers MUST get a documentation, hence an OpenAPI file, that matches the API they see without bothering them with internal concerns (for instance that “the” API is actually build upon 2 components).&lt;/li&gt;
-  &lt;li&gt;And whenever you need to tweak the documentation/description of an API, better take advantage of a machine readable format such as the OpenAPI and do the modifications programmatically not manually&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers?</summary></entry><entry><title type="html">Le Clash REST vs GraphQL</title><link href="https://apihandyman.io/le-clash-rest-vs-graphql/" rel="alternate" type="text/html" title="Le Clash REST vs GraphQL" /><published>2021-12-09T00:00:00-06:00</published><updated>2021-12-09T00:00:00-06:00</updated><id>https://apihandyman.io/le-clash-rest-vs-graphql</id><content type="html" xml:base="https://apihandyman.io/le-clash-rest-vs-graphql/">&lt;p&gt;L’idée folle de l’équipe &lt;a href=&quot;https://www.youtube.com/channel/UCIuBHEwIFRjwRMm9--Ga1vg&quot;&gt;Microsoft User Group France&lt;/a&gt; pour API Days Paris 2021: un clash REST (représenté par votre serviteur) vs GraphQL (représenté par &lt;a href=&quot;https://twitter.com/CaptainJojo42&quot;&gt;Jonathan Jalouzot&lt;/a&gt;, tenancier du Meetup GraphQL Paris) arbitré par &lt;a href=&quot;https://twitter.com/nbarrasson&quot;&gt;Nicolas Barrasson&lt;/a&gt;.
-&lt;!--more--&gt;
+<ul>
+  <li>The consumers MUST get a documentation, hence an OpenAPI file, that matches the API they see without bothering them with internal concerns (for instance that “the” API is actually build upon 2 components).</li>
+  <li>And whenever you need to tweak the documentation/description of an API, better take advantage of a machine readable format such as the OpenAPI and do the modifications programmatically not manually</li>
+</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers?]]></summary></entry><entry><title type="html">Le Clash REST vs GraphQL</title><link href="https://apihandyman.io/le-clash-rest-vs-graphql/" rel="alternate" type="text/html" title="Le Clash REST vs GraphQL" /><published>2021-12-09T00:00:00-06:00</published><updated>2021-12-09T00:00:00-06:00</updated><id>https://apihandyman.io/le-clash-rest-vs-graphql</id><content type="html" xml:base="https://apihandyman.io/le-clash-rest-vs-graphql/"><![CDATA[<p>L’idée folle de l’équipe <a href="https://www.youtube.com/channel/UCIuBHEwIFRjwRMm9--Ga1vg">Microsoft User Group France</a> pour API Days Paris 2021: un clash REST (représenté par votre serviteur) vs GraphQL (représenté par <a href="https://twitter.com/CaptainJojo42">Jonathan Jalouzot</a>, tenancier du Meetup GraphQL Paris) arbitré par <a href="https://twitter.com/nbarrasson">Nicolas Barrasson</a>.
+<!--more-->
 J’avoue avoir été un peu dubitatif au début car je ne suis pas fan de l’idée du clash, mais le concept est bien rôdé et il ne s’agit pas de se friter bêtement.
 C’est un moyen sympa de découvrir deux technos et de comparer les avantages et inconvénients avec une dose d’humour.
 Et puis je m’en suis pas trop mal sorti: meilleur troll, meilleur uppercut et meilleur clasheur.
-Mais REST a-t-il vraiment gagné sur GraphQL?&lt;/p&gt;
+Mais REST a-t-il vraiment gagné sur GraphQL?</p>
 
-&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+<h1 id="abstract">Abstract</h1>
 
-&lt;p&gt;Les APIs web font tourner le monde. Nos SI ne seraient rien sans elles; pas de site web, pas d’applications mobiles, pas de microservices, pas de cloud. Mais ce n’est pas qu’un sujet IT, le business ne serait rien sans elles non plus; pas de paiements instantanés avec Stripe, pas de colis Amazon déposé en 24h dans votre boite aux lettres, et au-delà, toutes les entreprises, quel que soit leur domaine, doivent envisager de proposer des APIs.
+<p>Les APIs web font tourner le monde. Nos SI ne seraient rien sans elles; pas de site web, pas d’applications mobiles, pas de microservices, pas de cloud. Mais ce n’est pas qu’un sujet IT, le business ne serait rien sans elles non plus; pas de paiements instantanés avec Stripe, pas de colis Amazon déposé en 24h dans votre boite aux lettres, et au-delà, toutes les entreprises, quel que soit leur domaine, doivent envisager de proposer des APIs.
 Le problème c’est qu’il n’y a pas un seul type d’API Web, et ces derniers temps, il y en a 2 qu’on oppose très souvent: le vénérable REST et le challenger GraphQL.
 Comment choisir objectivement l’un ou l’autre?
 Sont-ils aussi forts, aussi parfaits que leurs aficionados respectifs le disent?
 L’un des deux va-t-il être sacré empereur éternel des APIs Web?
-Vous saurez vous faire un avis grâce à ce clash d’anthologie.&lt;/p&gt;
+Vous saurez vous faire un avis grâce à ce clash d’anthologie.</p>
 
-&lt;h1 id=&quot;video&quot;&gt;Video&lt;/h1&gt;
+<h1 id="video">Video</h1>
 
-&lt;div id=&quot;JjSUePBTLj4&quot; class=&quot;third-party-content third-party-content-youtube&quot;&gt;
-    &lt;div class=&quot;card third-party-content-warning&quot;&gt;
-        &lt;img class=&quot;card-img&quot; src=&quot;/images/thirdpartycontents/le-clash-rest-vs-graphql.jpg&quot; alt=&quot;Card image&quot; /&gt;
-        &lt;div class=&quot;card-img-overlay d-flex&quot;&gt;
-            &lt;div class=&quot;my-auto mx-auto text-center&quot;&gt;
-                &lt;p&gt;This content is hosted on youtube.com.&lt;/p&gt;
-                &lt;p&gt;By showing this third party content you accept YouTube (Google)'s 
-                    &lt;a class=&quot;privacy-policy&quot; href=&quot;https://policies.google.com/privacy&quot; target=&quot;_blank&quot;&gt;privacy policy&lt;/a&gt;.
-                &lt;/p&gt;
-                &lt;form&gt;
-                    &lt;a href=&quot;javascript:thirdPartyConsent('JjSUePBTLj4', 'youtube')&quot; class=&quot;btn btn-primary&quot; role=&quot;button&quot;&gt;Show third party content&lt;/a&gt;
-                    &lt;div class=&quot;form-check&quot;&gt;
-                        &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input third-party-content-remember&quot; /&gt;
-                        &lt;label class=&quot;form-check-label&quot; for=&quot;exampleCheck1&quot;&gt;Remember my choice&lt;/label&gt;
-                        &lt;p&gt;(can be changed in &lt;a class=&quot;privacy-policy&quot; href=&quot;/privacy/&quot;&gt;privacy settings&lt;/a&gt;)&lt;/p&gt;
-                      &lt;/div&gt;
-                &lt;/form&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;iframe-container third-party-content-iframe third-party-content-iframe-disabled&quot;&gt;
-        &lt;iframe class=&quot;iframe-responsive&quot; data-src=&quot;https://www.youtube-nocookie.com/embed/JjSUePBTLj4?color=white&amp;amp;theme=light&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
-        &lt;/iframe&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</content><author><name>Nicolas Barrasson &amp; Jonathan Jalouzot &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">L’idée folle de l’équipe Microsoft User Group France pour API Days Paris 2021: un clash REST (représenté par votre serviteur) vs GraphQL (représenté par Jonathan Jalouzot, tenancier du Meetup GraphQL Paris) arbitré par Nicolas Barrasson.</summary></entry><entry><title type="html">And what if I’m wrong? Overcoming fears and doubts while designing APIs</title><link href="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/" rel="alternate" type="text/html" title="And what if I’m wrong? Overcoming fears and doubts while designing APIs" /><published>2021-12-08T00:00:00-06:00</published><updated>2021-12-08T00:00:00-06:00</updated><id>https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis</id><content type="html" xml:base="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/">&lt;p&gt;F&lt;strong&gt;**&lt;/strong&gt;* impostor syndrome, it’s not easy to say that I’m an API design expert, but I am.
+<div id="JjSUePBTLj4" class="third-party-content third-party-content-youtube">
+    <div class="card third-party-content-warning">
+        <img class="card-img" src="/images/thirdpartycontents/le-clash-rest-vs-graphql.jpg" alt="Card image" />
+        <div class="card-img-overlay d-flex">
+            <div class="my-auto mx-auto text-center">
+                <p>This content is hosted on youtube.com.</p>
+                <p>By showing this third party content you accept YouTube (Google)'s 
+                    <a class="privacy-policy" href="https://policies.google.com/privacy" target="_blank">privacy policy</a>.
+                </p>
+                <form>
+                    <a href="javascript:thirdPartyConsent('JjSUePBTLj4', 'youtube')" class="btn btn-primary" role="button">Show third party content</a>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input third-party-content-remember" />
+                        <label class="form-check-label" for="exampleCheck1">Remember my choice</label>
+                        <p>(can be changed in <a class="privacy-policy" href="/privacy/">privacy settings</a>)</p>
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="iframe-container third-party-content-iframe third-party-content-iframe-disabled">
+        <iframe class="iframe-responsive" data-src="https://www.youtube-nocookie.com/embed/JjSUePBTLj4?color=white&amp;theme=light" frameborder="0" allowfullscreen="">
+        </iframe>
+    </div>
+</div>]]></content><author><name>Nicolas Barrasson &amp; Jonathan Jalouzot &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html"><![CDATA[L’idée folle de l’équipe Microsoft User Group France pour API Days Paris 2021: un clash REST (représenté par votre serviteur) vs GraphQL (représenté par Jonathan Jalouzot, tenancier du Meetup GraphQL Paris) arbitré par Nicolas Barrasson.]]></summary></entry><entry><title type="html">And what if I’m wrong? Overcoming fears and doubts while designing APIs</title><link href="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/" rel="alternate" type="text/html" title="And what if I’m wrong? Overcoming fears and doubts while designing APIs" /><published>2021-12-08T00:00:00-06:00</published><updated>2021-12-08T00:00:00-06:00</updated><id>https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis</id><content type="html" xml:base="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/"><![CDATA[<p>F<strong>**</strong>* impostor syndrome, it’s not easy to say that I’m an API design expert, but I am.
 Along my path to expertise, I failed, I did mistakes; that helped me to learn a lot.
 I also have been afraid, I had doubts.
 And you know what?
 Though I’m now an expert, that’s still the case when I help people to design their APIs.
 But, I learned to live with that.
 I learned to live with the “what if I’m wrong” question. 
-&lt;!--more--&gt;&lt;/p&gt;
+<!--more--></p>
 
-&lt;h1 id=&quot;designing-is-doubting&quot;&gt;Designing is doubting&lt;/h1&gt;
+<h1 id="designing-is-doubting">Designing is doubting</h1>
 
-&lt;p&gt;So yes, even after all these years, despite being an expert, I still can fear to be wrong, I still can doubt while designing APIs.
-And that feeling is even stronger when I help others to design APIs, my mistakes could impact others.&lt;/p&gt;
+<p>So yes, even after all these years, despite being an expert, I still can fear to be wrong, I still can doubt while designing APIs.
+And that feeling is even stronger when I help others to design APIs, my mistakes could impact others.</p>
 
-&lt;p&gt;What can be wrong in API Design?
+<p>What can be wrong in API Design?
 What would an expert or anyone else doubt when designing an API?
 Everything.
 Needs, business rule, API granularity, operation granularity, operation goal, behavior, data structures, names, types, enumerations …
-All those problems can be categorized in the following categories:&lt;/p&gt;
+All those problems can be categorized in the following categories:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Needs and subject matter: Everything related to the business side of the API. What problem are we trying to solve, what the API is supposed to do, is it a “this” or a “that, what becomes “this” after we’ve done “that” …&lt;/li&gt;
-  &lt;li&gt;Architecture and modeling: Everything related to the representation of the business intent as a programming interface. One or 2 APIs, list or tree, sync or async, do we need a different representation of “this” in those different contexts, …&lt;/li&gt;
-  &lt;li&gt;Look and feel: Cousin to previous topic, everything related to consistency. Path structure, when using header parameters, is it “/resource” or /resources, is it birthDate or dateOfBirth …&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>Needs and subject matter: Everything related to the business side of the API. What problem are we trying to solve, what the API is supposed to do, is it a “this” or a “that, what becomes “this” after we’ve done “that” …</li>
+  <li>Architecture and modeling: Everything related to the representation of the business intent as a programming interface. One or 2 APIs, list or tree, sync or async, do we need a different representation of “this” in those different contexts, …</li>
+  <li>Look and feel: Cousin to previous topic, everything related to consistency. Path structure, when using header parameters, is it “/resource” or /resources, is it birthDate or dateOfBirth …</li>
+</ul>
 
-&lt;p&gt;With experience, training, reading, there are less and less fears and doubts, but they’re will always be there.
-The best way to deal with doubts is actually to get rid of them.&lt;/p&gt;
+<p>With experience, training, reading, there are less and less fears and doubts, but they’re will always be there.
+The best way to deal with doubts is actually to get rid of them.</p>
 
-&lt;h1 id=&quot;ensuring-that-im-not-wrong&quot;&gt;Ensuring that I’m not wrong&lt;/h1&gt;
+<h1 id="ensuring-that-im-not-wrong">Ensuring that I’m not wrong</h1>
 
-&lt;p&gt;Look and feel concerns are the easier to deal with … if you have API design guidelines.
+<p>Look and feel concerns are the easier to deal with … if you have API design guidelines.
 Indeed, having rules defining the look and feel of your APIs will help you deal with most doubts.
-But beware, look and feel concerns can sometimes &lt;a href=&quot;/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/&quot;&gt;hide in details&lt;/a&gt;, so always wonder if the decision you make have greater impacts.
-If so, and if there’s no actual solution in your guidelines, it will be time to add it so the next time you won’t doubt.&lt;/p&gt;
+But beware, look and feel concerns can sometimes <a href="/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/">hide in details</a>, so always wonder if the decision you make have greater impacts.
+If so, and if there’s no actual solution in your guidelines, it will be time to add it so the next time you won’t doubt.</p>
 
-&lt;p&gt;Guidelines can also be of great help for architecture and modeling.
+<p>Guidelines can also be of great help for architecture and modeling.
 Indeed, guidelines are not just made to say with HTTP method or HTTP status code use.
 They can define more complex design patterns and tell when to use them, like “when should we use an async pattern”.
 But guidelines can’t contain all responses to all business specific problems.
-For those problems, you can take advantage of existing APIs or existing API in your domain, you can also refer to standards, common practices or well known API to validate your choices.&lt;/p&gt;
+For those problems, you can take advantage of existing APIs or existing API in your domain, you can also refer to standards, common practices or well known API to validate your choices.</p>
 
-&lt;p&gt;Regarding needs, the only way to deal with doubt is talking to SMEs (Subject Matter Experts).
+<p>Regarding needs, the only way to deal with doubt is talking to SMEs (Subject Matter Experts).
 I can’t count how many times doubts were solved by talking to an SME or better making 2 SMEs talk together, the designer asking a few question to “heat up” the discussion.
-Actually, don’t ever design API without working closely with SME.&lt;/p&gt;
+Actually, don’t ever design API without working closely with SME.</p>
 
-&lt;p&gt;But in the end, there still can be some uncertainty because of some unknowns (known unkowns or unknown unknowns), the “what if I’m wrong question” still stands.&lt;/p&gt;
+<p>But in the end, there still can be some uncertainty because of some unknowns (known unkowns or unknown unknowns), the “what if I’m wrong question” still stands.</p>
 
-&lt;h1 id=&quot;evaluating-the-consequences-if-im-wrong&quot;&gt;Evaluating the consequences if I’m wrong&lt;/h1&gt;
+<h1 id="evaluating-the-consequences-if-im-wrong">Evaluating the consequences if I’m wrong</h1>
 
-&lt;p&gt;In that case, in order to be comfortable, I evaluate the consequences of being wrong.
+<p>In that case, in order to be comfortable, I evaluate the consequences of being wrong.
 If I had to make a choice between solution A and solution B and chose B, I evaluate what would be the path from A to B.
 Will this introduce a breaking change?
 If the answer is no, that’s perfect, no more doubts.
-If it’s yes, I wonder what is the &lt;a href=&quot;/apidays-interface-doing-apis-right-and-doing-right-apis/#tip-2-cost-of-change-varies&quot;&gt;cost of this change&lt;/a&gt;?
-Sometimes it’s fairly minimal, like when it’s a private API consume by a single consumer managed by the same team providing the API.&lt;/p&gt;
+If it’s yes, I wonder what is the <a href="/apidays-interface-doing-apis-right-and-doing-right-apis/#tip-2-cost-of-change-varies">cost of this change</a>?
+Sometimes it’s fairly minimal, like when it’s a private API consume by a single consumer managed by the same team providing the API.</p>
 
-&lt;p&gt;Evaluating consequences doesn’t always take away all my doubts, but knowing them and sharing them with the team so that everyone accepts them greatly reduces the worries.
-Yes, but that mean I still can be wrong … so what if I’m wrong?&lt;/p&gt;
+<p>Evaluating consequences doesn’t always take away all my doubts, but knowing them and sharing them with the team so that everyone accepts them greatly reduces the worries.
+Yes, but that mean I still can be wrong … so what if I’m wrong?</p>
 
-&lt;h1 id=&quot;failing&quot;&gt;Failing&lt;/h1&gt;
+<h1 id="failing">Failing</h1>
 
-&lt;p&gt;“You’ll fail, you’ll do mistakes”: that’s what I say when I start teaching API Design to someone. 
+<p>“You’ll fail, you’ll do mistakes”: that’s what I say when I start teaching API Design to someone. 
 Absolutely not to put them off, but to explain that failure will happen, that it is part of the job.
 Though you can drastically reduce them by doubting, removing your doubts and evaluating the consequences of being wrong, some mistakes will happen.
 Just knowing that will make your life easier.
-And practicing doubting will help you solve your mistakes more easily.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">F*** impostor syndrome, it’s not easy to say that I’m an API design expert, but I am. Along my path to expertise, I failed, I did mistakes; that helped me to learn a lot. I also have been afraid, I had doubts. And you know what? Though I’m now an expert, that’s still the case when I help people to design their APIs. But, I learned to live with that. I learned to live with the “what if I’m wrong” question.</summary></entry><entry><title type="html">5 reasons why you should treat private APIs like public ones</title><link href="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/" rel="alternate" type="text/html" title="5 reasons why you should treat private APIs like public ones" /><published>2021-12-01T00:00:00-06:00</published><updated>2021-12-01T00:00:00-06:00</updated><id>https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones</id><content type="html" xml:base="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/">&lt;p&gt;“Why should we care about our privates APIs?
+And practicing doubting will help you solve your mistakes more easily.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[F*** impostor syndrome, it’s not easy to say that I’m an API design expert, but I am. Along my path to expertise, I failed, I did mistakes; that helped me to learn a lot. I also have been afraid, I had doubts. And you know what? Though I’m now an expert, that’s still the case when I help people to design their APIs. But, I learned to live with that. I learned to live with the “what if I’m wrong” question.]]></summary></entry><entry><title type="html">5 reasons why you should treat private APIs like public ones</title><link href="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/" rel="alternate" type="text/html" title="5 reasons why you should treat private APIs like public ones" /><published>2021-12-01T00:00:00-06:00</published><updated>2021-12-01T00:00:00-06:00</updated><id>https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones</id><content type="html" xml:base="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/"><![CDATA[<p>“Why should we care about our privates APIs?
 They’re only consumed by us, so let’s do minimal work on them.
 We’ll keep our effort only for the public ones we sell to the outside world.”
 Such stance will have terrible consequences for an organization, even more if it will never create public APIs.
 Let’s see 5 reasons why you should treat privates APIs like public ones.
-&lt;!--more--&gt;&lt;/p&gt;
+<!--more--></p>
 
-&lt;h1 id=&quot;what-are-private-and-public-apis&quot;&gt;What are private and public APIs?&lt;/h1&gt;
+<h1 id="what-are-private-and-public-apis">What are private and public APIs?</h1>
 
-&lt;p&gt;It’s not where an API is exposed or if its use is free or paid that define its nature, but by who it is consumed.
+<p>It’s not where an API is exposed or if its use is free or paid that define its nature, but by who it is consumed.
 Either it is exposed on some intranet or the internet, a private API is an API that is consumed only by the organization that created it.
 For instance, a mobile application’s backend API is a private API though it is exposed on the internet.
 Either free or paid, a public API is an API that has been created to be consumed by others.
 It is usually advertized on the organization’s website and can be used by almost anyone willing to accept its usage conditions.
-Note that a variant of public APIs often called partner APIs are usually less visible and requires more paper work to use them.&lt;/p&gt;
+Note that a variant of public APIs often called partner APIs are usually less visible and requires more paper work to use them.</p>
 
-&lt;h1 id=&quot;why-treat-private-like-public&quot;&gt;Why treat private like public&lt;/h1&gt;
+<h1 id="why-treat-private-like-public">Why treat private like public</h1>
 
-&lt;p&gt;As private APIs are only consumed by the organization creating them, they’re often treated as second class APIs.
+<p>As private APIs are only consumed by the organization creating them, they’re often treated as second class APIs.
 From a business perspective, they are often seen as just IT department concerns.
 From an IT perspective, they are often just seen as technical interfaces.
 The result is often quick and dirty terrible APIs, but there’s more than that.
-Let’s see that by exploring 5 reasons why you should treat private APIs like public ones.&lt;/p&gt;
+Let’s see that by exploring 5 reasons why you should treat private APIs like public ones.</p>
 
-&lt;h2 id=&quot;nurturing-peoples-api-mindset&quot;&gt;Nurturing people’s API mindset&lt;/h2&gt;
+<h2 id="nurturing-peoples-api-mindset">Nurturing people’s API mindset</h2>
 
-&lt;p&gt;When treating private APIs like public APIs, you care about their design.
+<p>When treating private APIs like public APIs, you care about their design.
 You care about why you create them, what problems they will solve.
 You care about their look and feel.
 Designing best in class APIs that will be easy to understand and easy to use is not something that you do easily at first try, you need to do it again and again.
 So, slowly but surely, treating private APIs like public ones instills the API mindset and grow the API skills you’ll need for your public APIs.
-Also, all people working on APIs will be happy because they learn valuable skills, because they do great things.&lt;/p&gt;
+Also, all people working on APIs will be happy because they learn valuable skills, because they do great things.</p>
 
-&lt;p&gt;If you don’t treat private like public APIs, you’ll have to learn by creating public ones.
+<p>If you don’t treat private like public APIs, you’ll have to learn by creating public ones.
 How will you feel failing miserably publicly?
 What will be the cost of such failure?
 And beyond that, how people will feel?
-You’ll lose skilled people, you’ll lose people who want to learn.&lt;/p&gt;
+You’ll lose skilled people, you’ll lose people who want to learn.</p>
 
-&lt;h2 id=&quot;simplifying-architecture&quot;&gt;Simplifying architecture&lt;/h2&gt;
+<h2 id="simplifying-architecture">Simplifying architecture</h2>
 
-&lt;p&gt;When you don’t think about a private API as a public one, you may do short sighted design and architecture decisions often leading to tightly coupled complex systems, systems that can’t be used independently, and so systems that can’t be reused easily in other contexts.&lt;/p&gt;
+<p>When you don’t think about a private API as a public one, you may do short sighted design and architecture decisions often leading to tightly coupled complex systems, systems that can’t be used independently, and so systems that can’t be reused easily in other contexts.</p>
 
-&lt;p&gt;I remember some team wanting to build a system exposing its features through 3 different technologies: HTTP based API, Kafka Messaging, and shared folders.
+<p>I remember some team wanting to build a system exposing its features through 3 different technologies: HTTP based API, Kafka Messaging, and shared folders.
 And it’s not a “pick the one you like” menu, in order to actually interact with the system you had to use all 3.
 Why?
 Simply because the team they were working for the first integration could use those technologies.
-Unfortunately that way of working couldn’t be easily replicated with other teams inside the organization… and even less with the outside world.&lt;/p&gt;
+Unfortunately that way of working couldn’t be easily replicated with other teams inside the organization… and even less with the outside world.</p>
 
-&lt;p&gt;Thinking to expose the system to an outside third party adds constraints that guides you to create simpler systems.
-In that case HTTP based APIs would have been totally sufficient.&lt;/p&gt;
+<p>Thinking to expose the system to an outside third party adds constraints that guides you to create simpler systems.
+In that case HTTP based APIs would have been totally sufficient.</p>
 
-&lt;h2 id=&quot;ensuring-a-good-level-of-security&quot;&gt;Ensuring a good level of security&lt;/h2&gt;
+<h2 id="ensuring-a-good-level-of-security">Ensuring a good level of security</h2>
 
-&lt;p&gt;Working “with the family”, usually leads to a certain lack of concerns about security: “We know the other team, we can trust them”.
+<p>Working “with the family”, usually leads to a certain lack of concerns about security: “We know the other team, we can trust them”.
 Yes, but they still can do mistakes.
 Considering any consumer as possibly hostile will avoid bad surprise.
 It’s not because you trust an other team that you should provide them an API that could arm your systems or leak data that shouldn’t leave your system.
 And what if the API goes from intranet to internet or have to go public?
-Will you remember those small arrangements with security?&lt;/p&gt;
+Will you remember those small arrangements with security?</p>
 
-&lt;p&gt;So, better wonder if you would “do that” when exposing this feature as a public API?
-If the answer is no, then don’t do it for a private one.&lt;/p&gt;
+<p>So, better wonder if you would “do that” when exposing this feature as a public API?
+If the answer is no, then don’t do it for a private one.</p>
 
-&lt;h2 id=&quot;reducing-costs&quot;&gt;Reducing costs&lt;/h2&gt;
+<h2 id="reducing-costs">Reducing costs</h2>
 
-&lt;p&gt;If your private APIs are treated like public ones, they are designed to be easy to understand, easy to use and reusable in various contexts.
+<p>If your private APIs are treated like public ones, they are designed to be easy to understand, easy to use and reusable in various contexts.
 That means when a new need arise, you may not need to rebuild everything from scratch because you already have one or more APIs that can be reused to fullfil it.
 As those APIs are easy to understand and easy to use, the new teams willing to use them will be able to do it quickly without even asking support to the team providing them.
-Less time spent on those evolutions, means less money spend for the organization.&lt;/p&gt;
+Less time spent on those evolutions, means less money spend for the organization.</p>
 
-&lt;h2 id=&quot;achieving-faster-time-to-market&quot;&gt;Achieving faster time to market&lt;/h2&gt;
+<h2 id="achieving-faster-time-to-market">Achieving faster time to market</h2>
 
-&lt;p&gt;And last but not least, treating your private APIs like public ones will help you achieving faster time to market for all of your projects.
+<p>And last but not least, treating your private APIs like public ones will help you achieving faster time to market for all of your projects.
 Indeed, having highly reusable APIs that can be integrated in a few minutes will make short deadlines totally achievable.
-Icing on the cake, if the project is to provide one of your organization service as an API, the private API delivering it could probably be exposed as it is.&lt;/p&gt;
+Icing on the cake, if the project is to provide one of your organization service as an API, the private API delivering it could probably be exposed as it is.</p>
 
-&lt;h1 id=&quot;target-the-ideal-private--public&quot;&gt;Target the ideal private === public&lt;/h1&gt;
+<h1 id="target-the-ideal-private--public">Target the ideal private === public</h1>
 
-&lt;p&gt;Even if you don’t plan to provide public APIs, considering private APIs as first class APIs like public APIs has many benefits that far outweigh the investment.
-The ideal target would be to say that &lt;a href=&quot;https://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/&quot;&gt;any API can be a public API&lt;/a&gt;, but sometimes you can’t without investing too much.
+<p>Even if you don’t plan to provide public APIs, considering private APIs as first class APIs like public APIs has many benefits that far outweigh the investment.
+The ideal target would be to say that <a href="https://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/">any API can be a public API</a>, but sometimes you can’t without investing too much.
 That’s especially true when you start building event oriented architecture on top of Kafka.
-No problem, keep the spirit and evaluate what will need to be done in case of public exposure, so you’ll make the right decision and the additional work will not be a surprise.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">“Why should we care about our privates APIs? They’re only consumed by us, so let’s do minimal work on them. We’ll keep our effort only for the public ones we sell to the outside world.” Such stance will have terrible consequences for an organization, even more if it will never create public APIs. Let’s see 5 reasons why you should treat privates APIs like public ones.</summary></entry><entry><title type="html">Talking about The Design of Web APIs with Erik Wilde</title><link href="https://apihandyman.io/talking-about-the-design-of-web-apis-with-erik-wilde/" rel="alternate" type="text/html" title="Talking about The Design of Web APIs with Erik Wilde" /><published>2021-11-30T00:00:00-06:00</published><updated>2021-11-30T00:00:00-06:00</updated><id>https://apihandyman.io/talking-about-the-design-of-web-apis-with-erik-wilde</id><content type="html" xml:base="https://apihandyman.io/talking-about-the-design-of-web-apis-with-erik-wilde/">&lt;p&gt;Had a great time chatting with &lt;a href=&quot;https://twitter.com/dret&quot;&gt;Erik Wilde&lt;/a&gt; about the motivation for writing The Design of Web APIs book, and why it specifically focuses on the design aspect of the API lifecycle (and also why it is not titled The Implementation of Web APIs).
-&lt;!--more--&gt;
-Watch on &lt;a href=&quot;https://youtu.be/XuSEFFZzktE&quot;&gt;Erik Wilde’s Youtube Channel&lt;/a&gt;&lt;/p&gt;</content><author><name>Erik Wilde &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html">Had a great time chatting with Erik Wilde about the motivation for writing The Design of Web APIs book, and why it specifically focuses on the design aspect of the API lifecycle (and also why it is not titled The Implementation of Web APIs).</summary></entry><entry><title type="html">5 ways to update a boolean status with a REST API</title><link href="https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api/" rel="alternate" type="text/html" title="5 ways to update a boolean status with a REST API" /><published>2021-11-24T00:00:00-06:00</published><updated>2021-11-24T00:00:00-06:00</updated><id>https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api</id><content type="html" xml:base="https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api/">&lt;p&gt;Last week, someone sent me a direct message on Twitter asking the following question:
+No problem, keep the spirit and evaluate what will need to be done in case of public exposure, so you’ll make the right decision and the additional work will not be a surprise.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“Why should we care about our privates APIs? They’re only consumed by us, so let’s do minimal work on them. We’ll keep our effort only for the public ones we sell to the outside world.” Such stance will have terrible consequences for an organization, even more if it will never create public APIs. Let’s see 5 reasons why you should treat privates APIs like public ones.]]></summary></entry><entry><title type="html">Talking about The Design of Web APIs with Erik Wilde</title><link href="https://apihandyman.io/talking-about-the-design-of-web-apis-with-erik-wilde/" rel="alternate" type="text/html" title="Talking about The Design of Web APIs with Erik Wilde" /><published>2021-11-30T00:00:00-06:00</published><updated>2021-11-30T00:00:00-06:00</updated><id>https://apihandyman.io/talking-about-the-design-of-web-apis-with-erik-wilde</id><content type="html" xml:base="https://apihandyman.io/talking-about-the-design-of-web-apis-with-erik-wilde/"><![CDATA[<p>Had a great time chatting with <a href="https://twitter.com/dret">Erik Wilde</a> about the motivation for writing The Design of Web APIs book, and why it specifically focuses on the design aspect of the API lifecycle (and also why it is not titled The Implementation of Web APIs).
+<!--more-->
+Watch on <a href="https://youtu.be/XuSEFFZzktE">Erik Wilde’s Youtube Channel</a></p>]]></content><author><name>Erik Wilde &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html"><![CDATA[Had a great time chatting with Erik Wilde about the motivation for writing The Design of Web APIs book, and why it specifically focuses on the design aspect of the API lifecycle (and also why it is not titled The Implementation of Web APIs).]]></summary></entry><entry><title type="html">5 ways to update a boolean status with a REST API</title><link href="https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api/" rel="alternate" type="text/html" title="5 ways to update a boolean status with a REST API" /><published>2021-11-24T00:00:00-06:00</published><updated>2021-11-24T00:00:00-06:00</updated><id>https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api</id><content type="html" xml:base="https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api/"><![CDATA[<p>Last week, someone sent me a direct message on Twitter asking the following question:
 Let’s say you have a resource with an activated boolean property, how would you design the operation(s) allowing to activate or deactivate it? 
 As this is a use case I often encounter during API design reviews or API design workshops, I thought it would be interesting to share my usual answer(s) with everyone.
-&lt;!--more--&gt;&lt;/p&gt;
+<!--more--></p>
 
-&lt;h1 id=&quot;always-go-beyond-the-question&quot;&gt;Always go beyond the question&lt;/h1&gt;
+<h1 id="always-go-beyond-the-question">Always go beyond the question</h1>
 
-&lt;p&gt;Before diving into the formal design of a whole API or a single operation, I discuss the actual need(s) in order to be sure about the problem we’re trying to solve.
+<p>Before diving into the formal design of a whole API or a single operation, I discuss the actual need(s) in order to be sure about the problem we’re trying to solve.
 Providing guidance focusing only on the form is the best way to end with a terrible design even if its form is theoretically correct.
 In such a case, “a resource that needs to be activated or deactivated”, I would search why it needs to be activated/deactivated, are these the actual terms everyone involved use, what is the flow of actions around this specific step.
-That could lead to a new vision of the need that could be something else than “activating/deactivating a whatever”.&lt;/p&gt;
+That could lead to a new vision of the need that could be something else than “activating/deactivating a whatever”.</p>
 
-&lt;p&gt;And more prosaically, as boolean are not extensible, I would also search to know if there are there really only 2 states (activated/deactivated).
-If that’s not the case or if there may be other states in the future, I would recommend to replace the &lt;code&gt;activated&lt;/code&gt; boolean property by a &lt;code&gt;status&lt;/code&gt; string (having activated or deactivated values) for instance.&lt;/p&gt;
+<p>And more prosaically, as boolean are not extensible, I would also search to know if there are there really only 2 states (activated/deactivated).
+If that’s not the case or if there may be other states in the future, I would recommend to replace the <code>activated</code> boolean property by a <code>status</code> string (having activated or deactivated values) for instance.</p>
 
-&lt;p&gt;For this post, let’s say we work on a User API allowing to “manage” (whatever it means) users and that we need to add a “user activation/deactivation” or “modify user’s status” feature.&lt;/p&gt;
+<p>For this post, let’s say we work on a User API allowing to “manage” (whatever it means) users and that we need to add a “user activation/deactivation” or “modify user’s status” feature.</p>
 
-&lt;h1 id=&quot;solution-1-updating-the-whole-resource&quot;&gt;Solution 1: Updating the whole resource&lt;/h1&gt;
+<h1 id="solution-1-updating-the-whole-resource">Solution 1: Updating the whole resource</h1>
 
-&lt;p&gt;Either you say that a user being active (or activated? That’s not the exact same meaning …) depends on a boolean &lt;code&gt;activated&lt;/code&gt; property or a &lt;code&gt;status&lt;/code&gt; string property, you could change its value to activate or deactivate the user by:&lt;/p&gt;
+<p>Either you say that a user being active (or activated? That’s not the exact same meaning …) depends on a boolean <code>activated</code> property or a <code>status</code> string property, you could change its value to activate or deactivate the user by:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Replacing the whole resource with a &lt;code&gt;PUT /users/{userId}&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Partially update it with &lt;code&gt;PATCH /users/{userId}&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>Replacing the whole resource with a <code>PUT /users/{userId}</code></li>
+  <li>Partially update it with <code>PATCH /users/{userId}</code>.</li>
+</ul>
 
-&lt;p&gt;I will not go into all of PUT/PATCH subtleties, I keep that for future posts, but be aware that between choosing the body format, and the fact that &lt;a href=&quot;/api-design-tips-and-tricks-what-if-consumers-cant-do-patch-put-or-delete/&quot;&gt;there are some places where PATCH cannot be used&lt;/a&gt;, using PATCH HTTP method can be tricky.&lt;/p&gt;
+<p>I will not go into all of PUT/PATCH subtleties, I keep that for future posts, but be aware that between choosing the body format, and the fact that <a href="/api-design-tips-and-tricks-what-if-consumers-cant-do-patch-put-or-delete/">there are some places where PATCH cannot be used</a>, using PATCH HTTP method can be tricky.</p>
 
-&lt;p&gt;While being (apparently) straightforward and quite simple to put in place, this “update whole resource” approach as several cons depending on the importance of this “user activation/deactivation” feature:&lt;/p&gt;
+<p>While being (apparently) straightforward and quite simple to put in place, this “update whole resource” approach as several cons depending on the importance of this “user activation/deactivation” feature:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;It hides a possibly important feature of the API behind a “simple” resource’s replace/update. While I always try to avoid having too much operations inside an API, that strategy could make the API too coarse grained, less simple to understand, and less simple to use.&lt;/li&gt;
-  &lt;li&gt;Hiding a possibly critical feature (activating/deactivating the user) among less critical ones (like maybe changing their &lt;code&gt;mood&lt;/code&gt;) could lead to security concerns. The security controls of the critical part of this “do-it-all” operation can become more complex to handle, complex to understand for consumers, or even worse: they can be neglected.&lt;/li&gt;
-  &lt;li&gt;Introducing an “apparently wide scoped resource replace” could be a bit deceptive if it’s only aim is to activate/deactivate the user.&lt;/li&gt;
-  &lt;li&gt;Later, if the first intent was only to activate/deactivate the user, managing other properties’ updates can become tricky because of higher security level implemented from the beginning&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>It hides a possibly important feature of the API behind a “simple” resource’s replace/update. While I always try to avoid having too much operations inside an API, that strategy could make the API too coarse grained, less simple to understand, and less simple to use.</li>
+  <li>Hiding a possibly critical feature (activating/deactivating the user) among less critical ones (like maybe changing their <code>mood</code>) could lead to security concerns. The security controls of the critical part of this “do-it-all” operation can become more complex to handle, complex to understand for consumers, or even worse: they can be neglected.</li>
+  <li>Introducing an “apparently wide scoped resource replace” could be a bit deceptive if it’s only aim is to activate/deactivate the user.</li>
+  <li>Later, if the first intent was only to activate/deactivate the user, managing other properties’ updates can become tricky because of higher security level implemented from the beginning</li>
+</ul>
 
-&lt;p&gt;So if, updating the whole resource may not be a good idea, let’s try to make this “user activation/deactivation” feature more visible in the API.&lt;/p&gt;
+<p>So if, updating the whole resource may not be a good idea, let’s try to make this “user activation/deactivation” feature more visible in the API.</p>
 
-&lt;h1 id=&quot;solution-2-using-dedicated-action-resources&quot;&gt;Solution 2: Using dedicated action resources&lt;/h1&gt;
+<h1 id="solution-2-using-dedicated-action-resources">Solution 2: Using dedicated action resources</h1>
 
-&lt;p&gt;Who has never been tempted to add some “action resources” in a REST API, fearing the API inquisition …
+<p>Who has never been tempted to add some “action resources” in a REST API, fearing the API inquisition …
 Well, a resource can actually be anything so if your API design guidelines indicates that’s a possibility, why not using that design pattern.
-So the user could be activated with &lt;code&gt;POST /users/{resourceId}/activate&lt;/code&gt; and deactivated with &lt;code&gt;POST /resources/{resourceId}/deactivate&lt;/code&gt;, both having nothing in their requests bodies.&lt;/p&gt;
+So the user could be activated with <code>POST /users/{resourceId}/activate</code> and deactivated with <code>POST /resources/{resourceId}/deactivate</code>, both having nothing in their requests bodies.</p>
 
-&lt;p&gt;That’s make the API pretty simple to understand, but I see 2 cons:&lt;/p&gt;
+<p>That’s make the API pretty simple to understand, but I see 2 cons:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Personally, I often fear that introducing actions resources could lead to some dreaded terrible RPC where HTTP protocol semantic is set aside with operations like &lt;code&gt;POST /users/{userId}/delete&lt;/code&gt; or worse &lt;code&gt;GET /users/{userId}/delete&lt;/code&gt;. I’ll probably write one post about that later.&lt;/li&gt;
-  &lt;li&gt;If there are multiple status, you could end with as many operations as statuses, in such a case, maybe an “IMHO too much RPCesque” &lt;code&gt;POST /users/{userId}/updateStatus&lt;/code&gt; taking the new value in the body would avoid that.&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>Personally, I often fear that introducing actions resources could lead to some dreaded terrible RPC where HTTP protocol semantic is set aside with operations like <code>POST /users/{userId}/delete</code> or worse <code>GET /users/{userId}/delete</code>. I’ll probably write one post about that later.</li>
+  <li>If there are multiple status, you could end with as many operations as statuses, in such a case, maybe an “IMHO too much RPCesque” <code>POST /users/{userId}/updateStatus</code> taking the new value in the body would avoid that.</li>
+</ul>
 
-&lt;p&gt;So, if we’re not fan of action resources, how could we make this “user activation/deactivation” visible using “standard” resources, representing business entities and not actions.&lt;/p&gt;
+<p>So, if we’re not fan of action resources, how could we make this “user activation/deactivation” visible using “standard” resources, representing business entities and not actions.</p>
 
-&lt;h1 id=&quot;solution-3-using-a-fine-grain-update-à-la-odata&quot;&gt;Solution 3: Using a fine grain update à la OData&lt;/h1&gt;
+<h1 id="solution-3-using-a-fine-grain-update-à-la-odata">Solution 3: Using a fine grain update à la OData</h1>
 
-&lt;p&gt;Why not handle this à la &lt;a href=&quot;https://www.odata.org/&quot;&gt;OData&lt;/a&gt;?
-With OData, it is possible to update a single property of a resource, here &lt;code&gt;activated&lt;/code&gt; for a user, with something like &lt;code&gt;PUT /User('userId')/activated&lt;/code&gt;.
-As our API is not an OData one, we could adapt the idea to &lt;code&gt;PUT /users/{userId}/activated&lt;/code&gt; (or &lt;code&gt;PUT /users/{userId}/status&lt;/code&gt; if we work with a multiple value status).&lt;/p&gt;
+<p>Why not handle this à la <a href="https://www.odata.org/">OData</a>?
+With OData, it is possible to update a single property of a resource, here <code>activated</code> for a user, with something like <code>PUT /User('userId')/activated</code>.
+As our API is not an OData one, we could adapt the idea to <code>PUT /users/{userId}/activated</code> (or <code>PUT /users/{userId}/status</code> if we work with a multiple value status).</p>
 
-&lt;p&gt;This strategy:&lt;/p&gt;
+<p>This strategy:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Makes the operation visible&lt;/li&gt;
-  &lt;li&gt;Makes the operation quite simple to secure&lt;/li&gt;
-  &lt;li&gt;Keeps HTTP semantic&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>Makes the operation visible</li>
+  <li>Makes the operation quite simple to secure</li>
+  <li>Keeps HTTP semantic</li>
+</ul>
 
-&lt;p&gt;To reduce the risk of having too fine grained APIs, holding too many operations, I would only use it for specific properties updates that represents features needing high visibility and/or more dedicated security checks and I would keep the whole resource PUT/PATCH for more regular/less critical/less interesting properties updates.&lt;/p&gt;
+<p>To reduce the risk of having too fine grained APIs, holding too many operations, I would only use it for specific properties updates that represents features needing high visibility and/or more dedicated security checks and I would keep the whole resource PUT/PATCH for more regular/less critical/less interesting properties updates.</p>
 
-&lt;p&gt;But, what if I want to track the activated/deactivated status?&lt;/p&gt;
+<p>But, what if I want to track the activated/deactivated status?</p>
 
-&lt;h1 id=&quot;solution-4-adding-to-a-sub-collection-resource&quot;&gt;Solution 4: Adding to a sub collection resource&lt;/h1&gt;
+<h1 id="solution-4-adding-to-a-sub-collection-resource">Solution 4: Adding to a sub collection resource</h1>
 
-&lt;p&gt;Sometimes the evolution/change log of the value of a resource’s property, hence the &lt;code&gt;activated&lt;/code&gt; or &lt;code&gt;status&lt;/code&gt; property of a user in our case, is as important as the value itself. In such a case, we could add a &lt;code&gt;POST /users/{userId}/statuses&lt;/code&gt; operation, that literally adds a status (activated or deactivated or whatever) to the user.&lt;/p&gt;
+<p>Sometimes the evolution/change log of the value of a resource’s property, hence the <code>activated</code> or <code>status</code> property of a user in our case, is as important as the value itself. In such a case, we could add a <code>POST /users/{userId}/statuses</code> operation, that literally adds a status (activated or deactivated or whatever) to the user.</p>
 
-&lt;p&gt;Note that it works better with the &lt;code&gt;status&lt;/code&gt; option than with the &lt;code&gt;activated&lt;/code&gt; one.
-Indeed &lt;code&gt;POST /users/{userId}/activateds&lt;/code&gt; looks awkward and I even doubt it’s actual english.
-An alternative could be &lt;code&gt;POST /users/{userId}/activations&lt;/code&gt; but it feels awkward to add a “false” activation.&lt;/p&gt;
+<p>Note that it works better with the <code>status</code> option than with the <code>activated</code> one.
+Indeed <code>POST /users/{userId}/activateds</code> looks awkward and I even doubt it’s actual english.
+An alternative could be <code>POST /users/{userId}/activations</code> but it feels awkward to add a “false” activation.</p>
 
-&lt;p&gt;A &lt;code&gt;GET /users/{userId}/statuses&lt;/code&gt; could return the change log of a user’s status as a list of objects containg a value and a date, while &lt;code&gt;GET /users/{userId}&lt;/code&gt; would still contain the &lt;code&gt;status&lt;/code&gt; property holding the current (latest) status of the user.&lt;/p&gt;
+<p>A <code>GET /users/{userId}/statuses</code> could return the change log of a user’s status as a list of objects containg a value and a date, while <code>GET /users/{userId}</code> would still contain the <code>status</code> property holding the current (latest) status of the user.</p>
 
-&lt;p&gt;This solution has the same advantage as solution 3 plus it allows to track evolutions of the value.
+<p>This solution has the same advantage as solution 3 plus it allows to track evolutions of the value.
 But what if you choose solution 3 but realize later that you need 4?
-Well, you could keep the original &lt;code&gt;PUT /users/{userId}/status&lt;/code&gt;, modify it’s implementation to actually add a new status, and add the &lt;code&gt;GET /users/{userId}/statuses&lt;/code&gt;.
-You could also tag the original PUT as deprecated and add the 2 new operations (add + list).&lt;/p&gt;
+Well, you could keep the original <code>PUT /users/{userId}/status</code>, modify it’s implementation to actually add a new status, and add the <code>GET /users/{userId}/statuses</code>.
+You could also tag the original PUT as deprecated and add the 2 new operations (add + list).</p>
 
-&lt;p&gt;Both solution 3 and 4 are the one that I probably use most, but there’s a last option that could be interesting to investigate.&lt;/p&gt;
+<p>Both solution 3 and 4 are the one that I probably use most, but there’s a last option that could be interesting to investigate.</p>
 
-&lt;h1 id=&quot;solution-5-adding-to-an-independent-collection-resource&quot;&gt;Solution 5: Adding to an independent collection resource&lt;/h1&gt;
+<h1 id="solution-5-adding-to-an-independent-collection-resource">Solution 5: Adding to an independent collection resource</h1>
 
-&lt;p&gt;If, for whatever actually relevant business domain reason, it is interesting to totally decorrelate user status management from user, this feature could be managed with an independent collection (list) resource.
-A &lt;code&gt;PUT /activated-users/{userId}&lt;/code&gt; could be used to “put” the user in the “activated list”.
-Deactivating a user could be done by removing a user from this list with a &lt;code&gt;DELETE /activated-users/{userId}&lt;/code&gt;.
-And a &lt;code&gt;GET /activated-users&lt;/code&gt; could give you a list of activated users, maybe providing a representation that is slightly different from what &lt;code&gt;GET /users&lt;/code&gt; would return.&lt;/p&gt;
+<p>If, for whatever actually relevant business domain reason, it is interesting to totally decorrelate user status management from user, this feature could be managed with an independent collection (list) resource.
+A <code>PUT /activated-users/{userId}</code> could be used to “put” the user in the “activated list”.
+Deactivating a user could be done by removing a user from this list with a <code>DELETE /activated-users/{userId}</code>.
+And a <code>GET /activated-users</code> could give you a list of activated users, maybe providing a representation that is slightly different from what <code>GET /users</code> would return.</p>
 
-&lt;p&gt;In this use case it doesn’t work very well:&lt;/p&gt;
+<p>In this use case it doesn’t work very well:</p>
 
-&lt;ul&gt;
-  &lt;li&gt;Listing active users would be easily done by adding query filters to &lt;code&gt;GET /users&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;We lose a bit the “visible relation” between users and their statuses that was more obvious with &lt;code&gt;/users/{userId}/statuses&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;It’s not possible to handle more statuses (without ending with too many operations)&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+  <li>Listing active users would be easily done by adding query filters to <code>GET /users</code>.</li>
+  <li>We lose a bit the “visible relation” between users and their statuses that was more obvious with <code>/users/{userId}/statuses</code></li>
+  <li>It’s not possible to handle more statuses (without ending with too many operations)</li>
+</ul>
 
-&lt;p&gt;But it’s still interesting to have this pattern in mind as it may work in some other contexts.&lt;/p&gt;
+<p>But it’s still interesting to have this pattern in mind as it may work in some other contexts.</p>
 
-&lt;h1 id=&quot;do-not-hesitate-to-ask-questions&quot;&gt;Do not hesitate to ask questions&lt;/h1&gt;
+<h1 id="do-not-hesitate-to-ask-questions">Do not hesitate to ask questions</h1>
 
-&lt;p&gt;Now you know 5 different ways to handle operations such as “update a whatever’s kind of status”, it’s up to you to choose the solution that work for your use case in your context (and try to be consistent inside your API and across your APIs).&lt;/p&gt;
+<p>Now you know 5 different ways to handle operations such as “update a whatever’s kind of status”, it’s up to you to choose the solution that work for your use case in your context (and try to be consistent inside your API and across your APIs).</p>
 
-&lt;p&gt;That’s the second post I write thanks to someone’s question.
+<p>That’s the second post I write thanks to someone’s question.
 To be honest, I find it quite interesting to answer those questions in a blog post, so do not hesitate to send yours!
-I cannot guarantee, I will respond to all them but it’s worth the try.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">Last week, someone sent me a direct message on Twitter asking the following question: Let’s say you have a resource with an activated boolean property, how would you design the operation(s) allowing to activate or deactivate it? As this is a use case I often encounter during API design reviews or API design workshops, I thought it would be interesting to share my usual answer(s) with everyone.</summary></entry><entry><title type="html">Full Life Cycle API Management is not enough, let’s try 8K API Management</title><link href="https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management/" rel="alternate" type="text/html" title="Full Life Cycle API Management is not enough, let’s try 8K API Management" /><published>2021-11-17T00:00:00-06:00</published><updated>2021-11-17T00:00:00-06:00</updated><id>https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management</id><content type="html" xml:base="https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management/">&lt;p&gt;You didn’t knew that API Management was old and you needed a “Full Life Cycle” API management solution to help you achieve your API strategy?
+I cannot guarantee, I will respond to all them but it’s worth the try.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Last week, someone sent me a direct message on Twitter asking the following question: Let’s say you have a resource with an activated boolean property, how would you design the operation(s) allowing to activate or deactivate it? As this is a use case I often encounter during API design reviews or API design workshops, I thought it would be interesting to share my usual answer(s) with everyone.]]></summary></entry><entry><title type="html">Full Life Cycle API Management is not enough, let’s try 8K API Management</title><link href="https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management/" rel="alternate" type="text/html" title="Full Life Cycle API Management is not enough, let’s try 8K API Management" /><published>2021-11-17T00:00:00-06:00</published><updated>2021-11-17T00:00:00-06:00</updated><id>https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management</id><content type="html" xml:base="https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management/"><![CDATA[<p>You didn’t knew that API Management was old and you needed a “Full Life Cycle” API management solution to help you achieve your API strategy?
 Well, I didn’t.
 To be honest, though the term is quite old, I didn’t realized until recently that “Full Life Cycle API Management” started to replace simple “API Management”, at least in software vendor communications.
 But what if I tell you that this “Full Life Cycle” version is already dead?
 What if I tell you that you need 8K API Management?
-&lt;!--more--&gt;&lt;/p&gt;
+<!--more--></p>
 
-&lt;h1 id=&quot;what-is-full-life-cycle-api-management&quot;&gt;What is (Full Life Cycle) API Management?&lt;/h1&gt;
+<h1 id="what-is-full-life-cycle-api-management">What is (Full Life Cycle) API Management?</h1>
 
-&lt;p&gt;When someone says “API Management”, that often means “exposing APIs on an API Gateway and possibly put them on a developer portal”.
-It’s very rare that it actually means “the process of creating and publishing web application programming interfaces, enforcing their usage policies, controlling access, nurturing the subscriber community, collecting and analyzing usage statistics, and reporting on performance.” (&lt;a href=&quot;https://en.wikipedia.org/wiki/API_management&quot;&gt;Wikipedia&lt;/a&gt;).
+<p>When someone says “API Management”, that often means “exposing APIs on an API Gateway and possibly put them on a developer portal”.
+It’s very rare that it actually means “the process of creating and publishing web application programming interfaces, enforcing their usage policies, controlling access, nurturing the subscriber community, collecting and analyzing usage statistics, and reporting on performance.” (<a href="https://en.wikipedia.org/wiki/API_management">Wikipedia</a>).
 That definition is wider, it’s about process, how you create and publish web APIs, and not only tools.
 It’s more precise, APIs are exposed on a gateway in order to enable access control.
-And It also includes concerns that goes beyond exposition itself, like taking care of the consumer (subscriber) community.&lt;/p&gt;
+And It also includes concerns that goes beyond exposition itself, like taking care of the consumer (subscriber) community.</p>
 
-&lt;p&gt;Full Life Cycle API Management goes a little bit further but not that much, as show in the various definitions below:&lt;/p&gt;
+<p>Full Life Cycle API Management goes a little bit further but not that much, as show in the various definitions below:</p>
 
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Source&lt;/th&gt;
-      &lt;th&gt;Definition&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;a href=&quot;https://www.gartner.com/reviews/market/full-life-cycle-api-management&quot;&gt;Gartner&lt;/a&gt;&lt;/td&gt;
-      &lt;td&gt;Full life cycle application programming interface (API) management is about the planning, design, implementation, testing, publication, operation, consumption, maintenance, versioning and retirement of APIs.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;a href=&quot;https://www.axway.com/en/products/api-management/full-lifecycle-api-management&quot;&gt;Axway&lt;/a&gt;&lt;/td&gt;
-      &lt;td&gt;Full lifecycle API management is the entire lifespan of an API that begins at the planning stage and ends when an API is retired. It provides the platform for digital strategy, building ecosystems, and running an effective API program.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;a href=&quot;https://www.mulesoft.com/resources/api/what-is-full-lifecycle-api-management&quot;&gt;MuleSoft&lt;/a&gt;&lt;/td&gt;
-      &lt;td&gt;Full API lifecycle management is the process of overseeing an API from its creation to retirement across its full life span. This includes everything from designing, publishing, documenting, securing, and analyzing APIs.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;a href=&quot;https://wso2.com/what-is-full-lifecycle-api-management/&quot;&gt;WSO2&lt;/a&gt;&lt;/td&gt;
-      &lt;td&gt;An APIs goes through different stages in its lifespan until it is retired. Full lifecycle API management solutions provide the means to manage these stages as well as the transition from one stage to another.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://www.gartner.com/reviews/market/full-life-cycle-api-management">Gartner</a></td>
+      <td>Full life cycle application programming interface (API) management is about the planning, design, implementation, testing, publication, operation, consumption, maintenance, versioning and retirement of APIs.</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.axway.com/en/products/api-management/full-lifecycle-api-management">Axway</a></td>
+      <td>Full lifecycle API management is the entire lifespan of an API that begins at the planning stage and ends when an API is retired. It provides the platform for digital strategy, building ecosystems, and running an effective API program.</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.mulesoft.com/resources/api/what-is-full-lifecycle-api-management">MuleSoft</a></td>
+      <td>Full API lifecycle management is the process of overseeing an API from its creation to retirement across its full life span. This includes everything from designing, publishing, documenting, securing, and analyzing APIs.</td>
+    </tr>
+    <tr>
+      <td><a href="https://wso2.com/what-is-full-lifecycle-api-management/">WSO2</a></td>
+      <td>An APIs goes through different stages in its lifespan until it is retired. Full lifecycle API management solutions provide the means to manage these stages as well as the transition from one stage to another.</td>
+    </tr>
+  </tbody>
+</table>
 
-&lt;p&gt;With Full Life Cycle API Management, we get a more complete definition of the “process of creating and publishing” APIs, it’s about their “planning, design, implementation, testing, publication, operation, consumption, maintenance, versioning and retirement”. 
-The process is about managing APIs from their conception to their death.&lt;/p&gt;
+<p>With Full Life Cycle API Management, we get a more complete definition of the “process of creating and publishing” APIs, it’s about their “planning, design, implementation, testing, publication, operation, consumption, maintenance, versioning and retirement”. 
+The process is about managing APIs from their conception to their death.</p>
 
-&lt;p&gt;The latest Gartner Magic Quadrant for Full Life Cycle API Management mostly lists vendors providing an “API Management” solution, hence an API Gateway and possibly a develop portal.
+<p>The latest Gartner Magic Quadrant for Full Life Cycle API Management mostly lists vendors providing an “API Management” solution, hence an API Gateway and possibly a develop portal.
 Such vendors are for instance Axway, Google (Apigee) or Microsoft.
 But there are 2 vendors that are not API gateway vendors: SmartBear and Postman, they both provide API design, documentation, mocking and testing solutions.
 That’s the first crack in the Full Life Cycle API Management building we’ve known for years.
 These 2 providers show that Full Life Cycle API Management is more than just the basic solution of API Management (All in one API Management solution) we have seen these last years.
 And it’s even more than that.
-Indeed, Full Life Cycle API Management is dead, long live 8K API Management.&lt;/p&gt;
+Indeed, Full Life Cycle API Management is dead, long live 8K API Management.</p>
 
-&lt;h1 id=&quot;what-is-8k-api-management&quot;&gt;What is 8K API Management?&lt;/h1&gt;
+<h1 id="what-is-8k-api-management">What is 8K API Management?</h1>
 
-&lt;p&gt;Why the term 8K?
+<p>Why the term 8K?
 It’s a reference to the TV domain: once there was Full HD, then 4K then 8K.
-More and more pixels, allowing crisper image with higher definition but also larger ones, showing us more than we could seen before.&lt;/p&gt;
+More and more pixels, allowing crisper image with higher definition but also larger ones, showing us more than we could seen before.</p>
 
-&lt;p&gt;Full Life Cycle API Management has been monopolized by all in one API Gateway based tools, narrowing our vision.
+<p>Full Life Cycle API Management has been monopolized by all in one API Gateway based tools, narrowing our vision.
 But none of them is actually able to cover efficiently the full life cycle, the presence of SmartBear and Postman in the Gartner Magic Quadrant is the visible part of the iceberg.
-Tools such as &lt;a href=&quot;https://stoplight.io/studio/&quot;&gt;Stoplight Studio&lt;/a&gt; (a GUI to design API) or &lt;a href=&quot;https://microcks.io/&quot;&gt;Microcks&lt;/a&gt; (API mocking) are a few among many others that you could take advantage to fully cover the Full Life Cycle API Management.&lt;/p&gt;
+Tools such as <a href="https://stoplight.io/studio/">Stoplight Studio</a> (a GUI to design API) or <a href="https://microcks.io/">Microcks</a> (API mocking) are a few among many others that you could take advantage to fully cover the Full Life Cycle API Management.</p>
 
-&lt;p&gt;The “Full life cycle” term is also narrowing our vision to the life and death of APIs, forgetting what is needed around all that.
+<p>The “Full life cycle” term is also narrowing our vision to the life and death of APIs, forgetting what is needed around all that.
 The whole API governance space definitely lacks tools.
-As I stated in an earlier post, &lt;a href=&quot;/we-need-specialized-tools-for-api-design-reviews/&quot;&gt;we need tools for API design reviews&lt;/a&gt;, and that’s only an example.&lt;/p&gt;
+As I stated in an earlier post, <a href="/we-need-specialized-tools-for-api-design-reviews/">we need tools for API design reviews</a>, and that’s only an example.</p>
 
-&lt;p&gt;And more than tools, don’t forget that “however you call it API management” is not only about tools but also people.
-How do you make them realize how API can help their company, how do you teach/train/coach people to plan, design, … the right APIs the right way?&lt;/p&gt;
+<p>And more than tools, don’t forget that “however you call it API management” is not only about tools but also people.
+How do you make them realize how API can help their company, how do you teach/train/coach people to plan, design, … the right APIs the right way?</p>
 
-&lt;p&gt;This is 8K API Management.
+<p>This is 8K API Management.
 API Management with higher definition and wider scope.
 API Management with more specialized tools, covering more concerns. 
-API Management not only focusing on tools but also people.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">You didn’t knew that API Management was old and you needed a “Full Life Cycle” API management solution to help you achieve your API strategy? Well, I didn’t. To be honest, though the term is quite old, I didn’t realized until recently that “Full Life Cycle API Management” started to replace simple “API Management”, at least in software vendor communications. But what if I tell you that this “Full Life Cycle” version is already dead? What if I tell you that you need 8K API Management?</summary></entry><entry><title type="html">We need to talk: OpenAPI 3 is 4 years old, but Swagger 2 is still predominant</title><link href="https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/" rel="alternate" type="text/html" title="We need to talk: OpenAPI 3 is 4 years old, but Swagger 2 is still predominant" /><published>2021-11-10T00:00:00-06:00</published><updated>2021-11-10T00:00:00-06:00</updated><id>https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant</id><content type="html" xml:base="https://apihandyman.io/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/">&lt;p&gt;While quickly doing a first scan of latest Postman State of the API Report , I did my Spock face, raising an eyebrow.
-Indeed, I read that after JSON Schema, “The next most popular specifications were Swagger 2.0 (54%) and OpenAPI 3.0 (40%)”.
-To be honest and based on my own experience, it’s not totally surprising, I’m still hearing/reading “can you check that Swagger” everyday.
-But why the 4 years old OpenAPI 3 is still struggling to surpass the good old Swagger 2?
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;swagger-vs-openapi-started-in-2017&quot;&gt;Swagger vs OpenAPI started in 2017&lt;/h1&gt;
-
-&lt;p&gt;The Swagger Specification and the OpenAPI Specification are not actual competitors, the latter is the most recent version of the former.
-It is (or they are) a machine readable format allowing to describe REST(ish) HTTP based APIs.
-The Swagger Specification was incidentally created in 2011 during the development of &lt;a href=&quot;https://www.wordnik.com/&quot;&gt;Wordnik&lt;/a&gt;, an online dictionary, because of the need for automation of API documentation and client SDK generation.
-At that time, the tip of the Swagger iceberg was Swagger UI, a Web UI for API documentation powered by a JSON file containing a machine readable description of an API; this description being generated thanks to some annotations in the implementation.&lt;/p&gt;
-
-&lt;p&gt;But at that time, most people, myself included, were not aware of the underlying API description format until Swagger 2 was released in 2014.
-A new tool, Swagger Editor, and the possibility of using human friendly YAML in addition to JSON made this API description format a thing.
-It could be written instead of generated and so be used in a design first approach.
-But this format has a wide range of use from documentation generation or gateway configuration to design rules enforcement, and that expands regularly.
-That format actually changed my life, API Handyman and my current self would probably not be there without this milestone, but that’s another story.&lt;/p&gt;
-
-&lt;p&gt;By the end of 2015, SmartBear who now owns the &lt;a href=&quot;https://swagger.io/&quot;&gt;Swagger brand and tools&lt;/a&gt;, donated the Swagger Specification to the &lt;a href=&quot;https://www.openapis.org/&quot;&gt;OpenAPI Initiative&lt;/a&gt;, “a consortium of forward-looking industry experts who recognize the immense value of standardizing on how APIs are described”. Besides SmartBear, this organization has founding members such as Google, IBM and Microsoft.
-In January 2016, the Swagger Specification was “renamed” the OpenAPI Specification.
-Basically, it was still the exact same format with its version indicated with a &lt;code&gt;swagger: &quot;2.0&quot;&lt;/code&gt; line.&lt;/p&gt;
-
-&lt;p&gt;The first true version the OpenAPI Specification, the version 3.0, was released in 2017, a year and a half after the creation of the OpenAPI Initiative.
-This evolution came with some welcomed breaking changes, the  most visible one being the version indicator which became &lt;code&gt;openapi: &quot;3.0&quot;&lt;/code&gt;.
-This single modification was officially marking the beginning of a new era, goodbye Swagger Spec, hello OpenAPI Spec.&lt;/p&gt;
-
-&lt;p&gt;But the transition was (and is still) not that simple.&lt;/p&gt;
-
-&lt;h1 id=&quot;how-is-it-going-in-2021&quot;&gt;How is it going in 2021?&lt;/h1&gt;
-
-&lt;p&gt;4 years later, Postman State of API 2021 report states that after JSON Schema, “The next most popular specifications were Swagger 2.0 (54%) and OpenAPI 3.0 (40%)”.
-Let’s be honest, that’s not good, but maybe OpenAPI number is slowly but surely growing?
-If we compare the responses to the “Which API specification do you use? (multiple possible answers)” question in Postman’s &lt;a href=&quot;https://www.postman.com/state-of-api-report-2020.pdf&quot;&gt;2020 (page 31)&lt;/a&gt; and &lt;a href=&quot;https://www.postman.com/assets/api-survey-2021/postman-state-of-api-2021.pdf&quot;&gt;2021 (page 44)&lt;/a&gt; reports, we have the following numbers:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Year&lt;/th&gt;
-      &lt;th&gt;Swagger&lt;/th&gt;
-      &lt;th&gt;OpenAPI&lt;/th&gt;
-      &lt;th&gt;Delta&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2020&lt;/td&gt;
-      &lt;td&gt;43%&lt;/td&gt;
-      &lt;td&gt;28%&lt;/td&gt;
-      &lt;td&gt;15%&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2021&lt;/td&gt;
-      &lt;td&gt;54%&lt;/td&gt;
-      &lt;td&gt;40%&lt;/td&gt;
-      &lt;td&gt;14%&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;The number of people using Swagger has &lt;em&gt;increased&lt;/em&gt; (what the??) by 11% while OpenAPI has increased by 12%, the delta between OpenAPI and Swagger is relatively stable around 15%.
-&lt;em&gt;Note that I had to guess 2020 numbers from the graphics, as they are not explicitly written in this report.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;So the OpenAPI community has a problem, there are more people using Swagger in 2021 than in 2020.
-Maybe there’s no real increase, it may be due to the fact there are more respondent in 2021 than in 2020, giving a more realistic view on reality…
-But that would mean the number of OpenAPI users are stagnating.&lt;/p&gt;
-
-&lt;p&gt;However I look at the numbers and the hypothesis I could do, I can be sure of one thing: there are more people using Swagger Spec than using OpenAPI Spec and, without more information, it does not seem to want to change.
-What can be done about it?
-While tempting, I don’t think it will be solved with pitchforks and Swagger jars.
-So, What can be done about it?
-Talk more about the OpenAPI Spec (formerly known as Swagger Spec)?&lt;/p&gt;
-
-&lt;p&gt;Solutions to unknown, or maybe nonexisting problems are usually useless solutions.
-Indeed, before finding solutions, we need to know what is the actual problem (or the actual problems).&lt;/p&gt;
-
-&lt;p&gt;So a first step could be to ask the question: why are you still using Swagger 2 instead of OpenAPI 3?
-While I don’t have everyone’s answer, I can share what I’ve seen.&lt;/p&gt;
-
-&lt;h1 id=&quot;why-swagger-still-surpasses-openapi&quot;&gt;Why Swagger still surpasses OpenAPI&lt;/h1&gt;
-
-&lt;p&gt;Swagger already had a lot of traction in 2017 when OpenAPI 3 was released, the Swagger tools themselves were (and are still) quite popular.
-Many tools were created around the Swagger specification and many tools were supporting it.
-This strength actually became a weakness for the transition.&lt;/p&gt;
-
-&lt;h2 id=&quot;tools-are-slow-to-evolve&quot;&gt;Tools are slow to evolve&lt;/h2&gt;
-
-&lt;p&gt;While there were breaking changes brought by OpenAPI 3, there were just a clarification and enhancement of Swagger 2, quite simple to get.
-Even converting a Swagger 2 file to OpenAPI 3 is quite simple.
-But if that’s simple at the spec level itself, it’s less simple at tools level.
-It actually took time for Open Source and Vendor tools to support the new OpenAPI 3 version.
-It also took, and still takes, time for users to upgrade too. 
-Some were quick, some were slow, some are still stuck.&lt;/p&gt;
-
-&lt;p&gt;For instance, the API gateway I currently use in my company, which was supporting the use of Swagger 2, got OpenAPI 3 (partial) support only in 2019.
-But after that, it took us some time to make evolve the tooling we had built around our gateway solution, and so OpenAPI 3 was actually only available in 2020… virtually.
-Indeed, if the OpenAPI 3 compliant gateway was in our software catalog and our tools were up to date, our internal customers could only get access OpenAPI 3 features after upgrading their gateways.
-It took several months to update them.
-And I know places where bumping to the “latest” version of a solution takes even more time and so they are still stuck with Swagger 2 (and they will have to make all their tools compatible with the new OpenAPI 3 version).&lt;/p&gt;
-
-&lt;p&gt;Though a few teams were ahead of time, already using OpenAPI 3 during design and downgrading their contract to Swagger 2 for deployment, eagerly waiting for the gateway update, it’s not because we propose tools supporting OpenAPI 3 that they will be actually used as soon as they are available (they actually still support Swagger 2).
-I work with teams who were waiting the upgrade of the platform… but didn’t have the time to make the transition yet.
-I work also with teams having a code first approach (and if you read this blog regularly, &lt;a href=&quot;/6-reasons-why-generating-openapi-from-code-when-designing-and-documenting-apis-sucks/&quot;&gt;you know what I think about it&lt;/a&gt;), upgrading their code to generate OpenAPI 3 instead of Swagger 2 was not a priority at all.
-I even have seen teams willing to pass to OpenAPI 3 but blocked by existing frameworks using outdated libraries.
-So, in 2021 some teams were at last happily transitioning to OpenAPI 3, some are still waiting and some are totally stuck with Swagger 2.&lt;/p&gt;
-
-&lt;p&gt;Switching to OpenAPI 3 requires efforts to everyone on the chain, that’s why Swagger 2 is till predominant.
-But that’s not the only reason.&lt;/p&gt;
-
-&lt;h2 id=&quot;confusion-and-habits&quot;&gt;Confusion and habits&lt;/h2&gt;
-
-&lt;p&gt;OpenAPI does not only brings breaking changes, it revealed existing confusion and brought a new name.&lt;/p&gt;
-
-&lt;p&gt;Most people were (and some are still) not aware that inside “Swagger” you had the tools (library and UI) AND the specification, two separate concepts.
-To make it even more short, for most people “Swagger” is just “Swagger UI”.
-Do all the people who responded to Postman’s question “Do you use Swagger” know the subtile difference?
-I hope so as it was under a “API specification” question, but I have no clue.
-What I’m sure of, is that in 2021 I still have to explain the OpenAPI/Swagger stuff and not only to business analysts but also developers (and yes I’m working with business analyst on API design).&lt;/p&gt;
-
-&lt;p&gt;If naming thing is hard, changing something’s name is just a nightmare.
-Let’s sweep under the rug the “&lt;em&gt;OpenAPI&lt;/em&gt; Specification” vs the “&lt;em&gt;Open API&lt;/em&gt; Initiative”, or was it the other way round?
-Hopefully that’s settle now everything is “&lt;em&gt;OpenAPI&lt;/em&gt;”.&lt;/p&gt;
-
-&lt;p&gt;“But WTF is OpenAPI?”.
-In organization who launched their API initiative in the Swagger era (that actually lasted long after OpenAPI 3 release due to what is said above about tools), everyone talks about “Swagger”.
-They’re not designing APIs, they’re not defining API contracts, they’re writing or generating Swaggers.
-They’s deploying Swaggers …
-Not OpenAPI.
-Even some VENDORS, are still talking about “Swagger”, I’m always the annoying customer telling them “That’s OpenAPI now, do you support OpenAPI 3 by the way?”.&lt;/p&gt;
-
-&lt;p&gt;People are used to Swagger and habits die hard.&lt;/p&gt;
-
-&lt;h1 id=&quot;what-about-you&quot;&gt;What about you?&lt;/h1&gt;
-
-&lt;p&gt;All this is based on my experience, but how much is this universally “true”?
-My experience does not make this an actual scientific fact.
-So now it’s your turn, why are you still using Swagger 2 instead of OpenAPI 3?&lt;/p&gt;
-
-&lt;p&gt;PS: I still keep the idea of pitchforks and Swagger jars, we never know, they could be useful once we’ll know more about the actual problems.&lt;/p&gt;</content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html">While quickly doing a first scan of latest Postman State of the API Report , I did my Spock face, raising an eyebrow. Indeed, I read that after JSON Schema, “The next most popular specifications were Swagger 2.0 (54%) and OpenAPI 3.0 (40%)”. To be honest and based on my own experience, it’s not totally surprising, I’m still hearing/reading “can you check that Swagger” everyday. But why the 4 years old OpenAPI 3 is still struggling to surpass the good old Swagger 2?</summary></entry></feed>
+API Management not only focusing on tools but also people.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[You didn’t knew that API Management was old and you needed a “Full Life Cycle” API management solution to help you achieve your API strategy? Well, I didn’t. To be honest, though the term is quite old, I didn’t realized until recently that “Full Life Cycle API Management” started to replace simple “API Management”, at least in software vendor communications. But what if I tell you that this “Full Life Cycle” version is already dead? What if I tell you that you need 8K API Management?]]></summary></entry></feed>
