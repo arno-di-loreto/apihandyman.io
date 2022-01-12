@@ -1,4 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-01-05T06:13:48-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">API design and architecture lessons from a frying pan</title><link href="https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan/" rel="alternate" type="text/html" title="API design and architecture lessons from a frying pan" /><published>2022-01-05T00:00:00-06:00</published><updated>2022-01-05T00:00:00-06:00</updated><id>https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan</id><content type="html" xml:base="https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan/"><![CDATA[<p>In the kitchen, I’m the dishwasher.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-01-12T06:13:50-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Nobody cares about API design guidelines</title><link href="https://apihandyman.io/nobody-cares-about-api-design-guidelines/" rel="alternate" type="text/html" title="Nobody cares about API design guidelines" /><published>2022-01-12T00:00:00-06:00</published><updated>2022-01-12T00:00:00-06:00</updated><id>https://apihandyman.io/nobody-cares-about-api-design-guidelines</id><content type="html" xml:base="https://apihandyman.io/nobody-cares-about-api-design-guidelines/"><![CDATA[<p>“Did you read our API design guidelines? Yes we did! … Sorry, but I don’t think so”.
+Let’s be honest, besides those who write them, nobody cares about API design guidelines.
+Some don’t read them, some don’t agree with them.
+Should we punish the offenders?
+Though it is sometimes tempting, no.
+Should we get rid of API design guidelines?
+No, we can’t.
+But how can we make people care about it?
+<!--more--></p>
+
+<h1 id="why-not-getting-rid-of-guidelines">Why not getting rid of guidelines?</h1>
+
+<p>No, we can’t get rid of our API design guidelines because “nobody” reads them.
+Actually, they’re useful and a few people read them.</p>
+
+<p>As an API design reviewer, I constantly have to refer to them during API design review.
+I refer to them to support what I say and avoid endless discussions.
+Guidelines are our tables of the law and we must follow them.
+I don’t want to lose my time discussing for the 100th time how should be named the property holding the list in the response of <code>get /customers</code>.
+I also use them to find solutions to some design questions and to refresh my memories.
+Guidelines makes reviewer more comfortable; with them, they don’t just give an opinion, they’re backed by written rules.</p>
+
+<p>Also, without guidelines, I could slightly change a design pattern without noticing it.
+And I’m not the only reviewer, a single written source of truth ensures that multiple reviewers are consistent (at least for what concerns the stylistic perspective).
+Guidelines are there to ensure consistency, that’s their primary objective.
+It’s a major concern when you want to provide the best possible developer experience.
+This can’t be achieve without them.</p>
+
+<p>So we can’t get rid of them, maybe they need to be tweaked?</p>
+
+<h1 id="simplify-and-enhance-guidelines">Simplify and enhance guidelines</h1>
+
+<p>“Be honest, you didn’t read our company API design guidelines.
+Why denying it, I’m reviewing your API and I can see you didn’t read them seriously.
+Indeed, rule #245 about over-resilient resource has not been applied.”</p>
+
+<p>Sometimes people will try to read guidelines but they can be too complex for mere mortals.
+It could be because they are written in some “too smart and complex expert that shows off” style.
+If people need 3 PhDs in computer science to understand them, those guidelines are totally wrong, change them to make them understandable by anyone (like you’re supposed to do when you design APIs).
+It could also be because they go against common practices, what everybody does in the outside world.
+If that is so, those guidelines are totally wrong, change them to be consistent with the rest of the world (like you’re supposed to do when designing APIs).</p>
+
+<p>Sometimes, guidelines are good but not easily actionable.
+Indeed, guidelines composed of hundreds of rules are a nightmare to use, even when those rules are perfectly understandable by anyone.
+Providing actionable recipes like “how to search something”, “how to manage sensitive data”, or “how to deal with long operations” is a must have.
+Each recipe included everything, every single rule that must be apply explain in a user friendly way: when and why using this recipe, HTTP method to use, path design, inputs, outputs, how to handle errors.
+That actually helps to ensure that guidelines are realistic, if any simple recipe is a nightmare to describe, maybe your rules are too complex.</p>
+
+<h1 id="foster-agreement">Foster agreement</h1>
+
+<p>Some people don’t agree with guidelines.
+Sometimes they’re just assholes, sometimes they just need explanation about why rule #245 is that way, and sometimes they’re actual good people caring about API design.</p>
+
+<p>For real stubborn/toxic/full of themselves assholes, unfortunately, I don’t know if anything can be done.
+Fortunately, I don’t have met much of them and I always was in a position where I could say “ok, let’s not work together then, there are plenty of other people who want to work with me, but if you change your mind, the door is still open”.</p>
+
+<p>But sometimes, people you could consider as “assholes” because they don’t agree with you are people who just don’t get it; they need some explanations.
+Once they get it, they’re convinced.
+That’s why it’s really important to explain why each rule exists in your guidelines, if there’s no reason … maybe it shouldn’t exist.</p>
+
+<p>And last but not least there are a few people who are really good at designing APIs and care about it.
+If they don’t agree with you, maybe you should listen to them.
+Don’t be an asshole yourself.
+You probably should include them in the loop of your guidelines creation/evolution.
+Actually, include more people in the loop brings various sensibility, various experience and this is good for your guidelines.</p>
+
+<h1 id="provide-more-than-guidelines">Provide more than guidelines</h1>
+
+<p>The “guidelines” (wiki, website) are never enough.
+Even the best ones.
+You’ll need to make them available in other more actionable forms.</p>
+
+<h2 id="openapi-specification-templates-and-fragments">OpenAPI Specification templates and fragments</h2>
+
+<p>You can provide ready to use specification templates and reusable fragments.
+Nothing better than a complete OpenAPI file containing everything you need to “search something”, you can take advantage of descriptions to explain your guidelines and point to them.
+Designers just have to adapt that template to their use cases.
+It’s also fairly common to have data structures, parameters, headers that are always the same.
+Why not define them once and for all in reusable OpenAPI spec fragments that can be referenced.</p>
+
+<h2 id="linter">Linter</h2>
+
+<p>Even with templates, people can make mistakes.
+You’ll need to provide a way to lint API descriptions in order to help designers fix most stylistic problems themselves (and learn how your guidelines work in the making).
+You can use <a href="/toolbox/spectral/">Stoplight Spectral</a> to do so.
+Warning: having a linter will never, ever, replace API design reviews.
+A linter won’t tell you if an API is the good ones, if a name is the good one, if using this design patterns was a good idea.</p>
+
+<h1 id="make-everybody-love-your-guidelines">Make everybody love your guidelines</h1>
+
+<p>So, if you want people to care about API design guidelines:</p>
+
+<ul>
+  <li>Keep them simple to understand and to use</li>
+  <li>Explain and listen to foster agreement</li>
+  <li>Make their use seamless by providing helpers and tools</li>
+</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“Did you read our API design guidelines? Yes we did! … Sorry, but I don’t think so”. Let’s be honest, besides those who write them, nobody cares about API design guidelines. Some don’t read them, some don’t agree with them. Should we punish the offenders? Though it is sometimes tempting, no. Should we get rid of API design guidelines? No, we can’t. But how can we make people care about it?]]></summary></entry><entry><title type="html">API design and architecture lessons from a frying pan</title><link href="https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan/" rel="alternate" type="text/html" title="API design and architecture lessons from a frying pan" /><published>2022-01-05T00:00:00-06:00</published><updated>2022-01-05T00:00:00-06:00</updated><id>https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan</id><content type="html" xml:base="https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan/"><![CDATA[<p>In the kitchen, I’m the dishwasher.
 And lately, washing our new frying pans has got me thinking about design and API architecture issues.
 This post is dedicated to the person who complained that my book contained too many analogies.
 Sorry, but no matter what I do, read, look at, listen to, I’m always trying to see if I can make connections to APIs.
@@ -676,79 +772,4 @@ And a <code>GET /activated-users</code> could give you a list of activated users
 
 <p>That’s the second post I write thanks to someone’s question.
 To be honest, I find it quite interesting to answer those questions in a blog post, so do not hesitate to send yours!
-I cannot guarantee, I will respond to all them but it’s worth the try.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Last week, someone sent me a direct message on Twitter asking the following question: Let’s say you have a resource with an activated boolean property, how would you design the operation(s) allowing to activate or deactivate it? As this is a use case I often encounter during API design reviews or API design workshops, I thought it would be interesting to share my usual answer(s) with everyone.]]></summary></entry><entry><title type="html">Full Life Cycle API Management is not enough, let’s try 8K API Management</title><link href="https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management/" rel="alternate" type="text/html" title="Full Life Cycle API Management is not enough, let’s try 8K API Management" /><published>2021-11-17T00:00:00-06:00</published><updated>2021-11-17T00:00:00-06:00</updated><id>https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management</id><content type="html" xml:base="https://apihandyman.io/full-life-cycle-api-management-is-not-enough-lets-try-8k-api-management/"><![CDATA[<p>You didn’t knew that API Management was old and you needed a “Full Life Cycle” API management solution to help you achieve your API strategy?
-Well, I didn’t.
-To be honest, though the term is quite old, I didn’t realized until recently that “Full Life Cycle API Management” started to replace simple “API Management”, at least in software vendor communications.
-But what if I tell you that this “Full Life Cycle” version is already dead?
-What if I tell you that you need 8K API Management?
-<!--more--></p>
-
-<h1 id="what-is-full-life-cycle-api-management">What is (Full Life Cycle) API Management?</h1>
-
-<p>When someone says “API Management”, that often means “exposing APIs on an API Gateway and possibly put them on a developer portal”.
-It’s very rare that it actually means “the process of creating and publishing web application programming interfaces, enforcing their usage policies, controlling access, nurturing the subscriber community, collecting and analyzing usage statistics, and reporting on performance.” (<a href="https://en.wikipedia.org/wiki/API_management">Wikipedia</a>).
-That definition is wider, it’s about process, how you create and publish web APIs, and not only tools.
-It’s more precise, APIs are exposed on a gateway in order to enable access control.
-And It also includes concerns that goes beyond exposition itself, like taking care of the consumer (subscriber) community.</p>
-
-<p>Full Life Cycle API Management goes a little bit further but not that much, as show in the various definitions below:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Source</th>
-      <th>Definition</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://www.gartner.com/reviews/market/full-life-cycle-api-management">Gartner</a></td>
-      <td>Full life cycle application programming interface (API) management is about the planning, design, implementation, testing, publication, operation, consumption, maintenance, versioning and retirement of APIs.</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.axway.com/en/products/api-management/full-lifecycle-api-management">Axway</a></td>
-      <td>Full lifecycle API management is the entire lifespan of an API that begins at the planning stage and ends when an API is retired. It provides the platform for digital strategy, building ecosystems, and running an effective API program.</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.mulesoft.com/resources/api/what-is-full-lifecycle-api-management">MuleSoft</a></td>
-      <td>Full API lifecycle management is the process of overseeing an API from its creation to retirement across its full life span. This includes everything from designing, publishing, documenting, securing, and analyzing APIs.</td>
-    </tr>
-    <tr>
-      <td><a href="https://wso2.com/what-is-full-lifecycle-api-management/">WSO2</a></td>
-      <td>An APIs goes through different stages in its lifespan until it is retired. Full lifecycle API management solutions provide the means to manage these stages as well as the transition from one stage to another.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>With Full Life Cycle API Management, we get a more complete definition of the “process of creating and publishing” APIs, it’s about their “planning, design, implementation, testing, publication, operation, consumption, maintenance, versioning and retirement”. 
-The process is about managing APIs from their conception to their death.</p>
-
-<p>The latest Gartner Magic Quadrant for Full Life Cycle API Management mostly lists vendors providing an “API Management” solution, hence an API Gateway and possibly a develop portal.
-Such vendors are for instance Axway, Google (Apigee) or Microsoft.
-But there are 2 vendors that are not API gateway vendors: SmartBear and Postman, they both provide API design, documentation, mocking and testing solutions.
-That’s the first crack in the Full Life Cycle API Management building we’ve known for years.
-These 2 providers show that Full Life Cycle API Management is more than just the basic solution of API Management (All in one API Management solution) we have seen these last years.
-And it’s even more than that.
-Indeed, Full Life Cycle API Management is dead, long live 8K API Management.</p>
-
-<h1 id="what-is-8k-api-management">What is 8K API Management?</h1>
-
-<p>Why the term 8K?
-It’s a reference to the TV domain: once there was Full HD, then 4K then 8K.
-More and more pixels, allowing crisper image with higher definition but also larger ones, showing us more than we could seen before.</p>
-
-<p>Full Life Cycle API Management has been monopolized by all in one API Gateway based tools, narrowing our vision.
-But none of them is actually able to cover efficiently the full life cycle, the presence of SmartBear and Postman in the Gartner Magic Quadrant is the visible part of the iceberg.
-Tools such as <a href="https://stoplight.io/studio/">Stoplight Studio</a> (a GUI to design API) or <a href="https://microcks.io/">Microcks</a> (API mocking) are a few among many others that you could take advantage to fully cover the Full Life Cycle API Management.</p>
-
-<p>The “Full life cycle” term is also narrowing our vision to the life and death of APIs, forgetting what is needed around all that.
-The whole API governance space definitely lacks tools.
-As I stated in an earlier post, <a href="/we-need-specialized-tools-for-api-design-reviews/">we need tools for API design reviews</a>, and that’s only an example.</p>
-
-<p>And more than tools, don’t forget that “however you call it API management” is not only about tools but also people.
-How do you make them realize how API can help their company, how do you teach/train/coach people to plan, design, … the right APIs the right way?</p>
-
-<p>This is 8K API Management.
-API Management with higher definition and wider scope.
-API Management with more specialized tools, covering more concerns. 
-API Management not only focusing on tools but also people.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[You didn’t knew that API Management was old and you needed a “Full Life Cycle” API management solution to help you achieve your API strategy? Well, I didn’t. To be honest, though the term is quite old, I didn’t realized until recently that “Full Life Cycle API Management” started to replace simple “API Management”, at least in software vendor communications. But what if I tell you that this “Full Life Cycle” version is already dead? What if I tell you that you need 8K API Management?]]></summary></entry></feed>
+I cannot guarantee, I will respond to all them but it’s worth the try.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Last week, someone sent me a direct message on Twitter asking the following question: Let’s say you have a resource with an activated boolean property, how would you design the operation(s) allowing to activate or deactivate it? As this is a use case I often encounter during API design reviews or API design workshops, I thought it would be interesting to share my usual answer(s) with everyone.]]></summary></entry></feed>
