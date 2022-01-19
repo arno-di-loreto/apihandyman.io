@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-01-12T06:13:50-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Nobody cares about API design guidelines</title><link href="https://apihandyman.io/nobody-cares-about-api-design-guidelines/" rel="alternate" type="text/html" title="Nobody cares about API design guidelines" /><published>2022-01-12T00:00:00-06:00</published><updated>2022-01-12T00:00:00-06:00</updated><id>https://apihandyman.io/nobody-cares-about-api-design-guidelines</id><content type="html" xml:base="https://apihandyman.io/nobody-cares-about-api-design-guidelines/"><![CDATA[<p>“Did you read our API design guidelines? Yes we did! … Sorry, but I don’t think so”.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-01-19T06:12:17-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">A few concerns to be aware of when adding try it feature to API documentation</title><link href="https://apihandyman.io/a-few-concerns-to-be-aware-of-when-adding-try-it-feature-to-api-documentation/" rel="alternate" type="text/html" title="A few concerns to be aware of when adding try it feature to API documentation" /><published>2022-01-19T00:00:00-06:00</published><updated>2022-01-19T00:00:00-06:00</updated><id>https://apihandyman.io/a-few-concerns-to-be-aware-of-when-adding-try-it-feature-to-api-documentation</id><content type="html" xml:base="https://apihandyman.io/a-few-concerns-to-be-aware-of-when-adding-try-it-feature-to-api-documentation/"><![CDATA[<p>“That’s neat!
+The developer portal/api documentation solution we chose comes with a try it feature.
+Everything is out of the box, we’ll have absolutely nothing to do to allow people test our APIs.”
+… If only that was true.
+Unfortunately, there are a few concerns to be aware of to actually propose a try it feature.<br />
+<!--more--></p>
+
+<h1 id="what-is-a-try-it">What is a “try it”</h1>
+
+<p>When browsing an API documentation, most usually when looking at the reference documentation (the one describing all <code>GET /this</code> and <code>POST /that</code>), you’ll see a “try it” or “send request” button.
+Clicking on it, you’ll get a form allowing to provide data (query parameters or request body) and then send an API request.
+That’s pretty useful to learn how an API works without having to write a single line of code.
+That greatly contributes in creating a good user experience, either users are developers who will create applications consuming your APIs, but also decision makers who are evaluating them.</p>
+
+<h1 id="choosing-an-api-to-call">Choosing an API to call</h1>
+
+<p>The first question you must explore when working on adding a try it feature to your API documentation is “who you gonna call?”.
+Not Ghostbusters obviously.
+The try it feature can trigger more or less real API call.</p>
+
+<p>Indeed, There could be no actual API call, the website just showing fake data.
+It can also make actual API call but not to the real API.
+A try it may call a sandbox environment that reproduces or simulates the production environment.
+And last but not least, it could trigger a call to the real production API.</p>
+
+<p>You’re under no obligation to apply only one of those solutions, the API that will be called may depend on the user profile.
+For instance, if the user is not connected maybe they can only get the local fake data and if they are connected gain access to the sandbox environment.
+You may also let user choose themselves, once connected, they could choose between sandbox and production environment.</p>
+
+<h1 id="managing-security">Managing security</h1>
+
+<p>It’s rare to provide unsecured APIs, even sandboxed ones.
+So, when providing a try it feature, you’ll have to find a way to provide a relevant access token before triggering the API call.
+Obviously, letting end user manage that all by hand would be a terrible idea.
+Better find a way to make that as seamless as possible, if possible without any user’s help.</p>
+
+<h1 id="providing-samples">Providing samples</h1>
+
+<p>In order to provide an even better end user experience, it would be interesting to provide ready to use data.
+For instance, if I can try <code>GET /accounts/{accountNumber}</code>, I would be very happy having a drop list with accounts in various situations.
+If can try a <code>POST /accounts</code>, a pre-filled body could be great, and a list of pre-filled body even more great. 
+Also when dealing with security, providing a way to choose some different user profiles, like “user with a single bank account” or “user with joint bank account and 2 savings” can be quite interesting.
+The chosen profile conditioning all requests done through the try it.
+Note that I must also be able to send my own request without using sample data.</p>
+
+<h1 id="embedding-try-it">Embedding try it</h1>
+
+<p>I said in the beginning of this post that the try it feature is often seen in the reference documentation, but it can be elsewhere.
+It’s especially interesting to put some try it forms in the “recipe documentation”, the tutorials explaining how API operations can be used together to achieve some use cases.
+Being able to put a try it form anywhere, a little bit à la jupyter notebook, will allow to easily create awesome documentation that users will love.
+And being able to do an API call from the home page would be terrific!</p>
+
+<h1 id="try-it-and-beyond">Try it and beyond</h1>
+
+<p>I hope you’ll find this post useful when you’ll think about adding a “try it” to your API documentation.
+Note that people may need to try your API outside of its documentation, that’s why a working on a good sandbox is important.
+But we’ll talk more about that in another post.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“That’s neat! The developer portal/api documentation solution we chose comes with a try it feature. Everything is out of the box, we’ll have absolutely nothing to do to allow people test our APIs.” … If only that was true. Unfortunately, there are a few concerns to be aware of to actually propose a try it feature.]]></summary></entry><entry><title type="html">Nobody cares about API design guidelines</title><link href="https://apihandyman.io/nobody-cares-about-api-design-guidelines/" rel="alternate" type="text/html" title="Nobody cares about API design guidelines" /><published>2022-01-12T00:00:00-06:00</published><updated>2022-01-12T00:00:00-06:00</updated><id>https://apihandyman.io/nobody-cares-about-api-design-guidelines</id><content type="html" xml:base="https://apihandyman.io/nobody-cares-about-api-design-guidelines/"><![CDATA[<p>“Did you read our API design guidelines? Yes we did! … Sorry, but I don’t think so”.
 Let’s be honest, besides those who write them, nobody cares about API design guidelines.
 Some don’t read them, some don’t agree with them.
 Should we punish the offenders?
@@ -660,116 +716,4 @@ The ideal target would be to say that <a href="https://apievangelist.com/2012/01
 That’s especially true when you start building event oriented architecture on top of Kafka.
 No problem, keep the spirit and evaluate what will need to be done in case of public exposure, so you’ll make the right decision and the additional work will not be a surprise.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“Why should we care about our privates APIs? They’re only consumed by us, so let’s do minimal work on them. We’ll keep our effort only for the public ones we sell to the outside world.” Such stance will have terrible consequences for an organization, even more if it will never create public APIs. Let’s see 5 reasons why you should treat privates APIs like public ones.]]></summary></entry><entry><title type="html">Talking about The Design of Web APIs with Erik Wilde</title><link href="https://apihandyman.io/talking-about-the-design-of-web-apis-with-erik-wilde/" rel="alternate" type="text/html" title="Talking about The Design of Web APIs with Erik Wilde" /><published>2021-11-30T00:00:00-06:00</published><updated>2021-11-30T00:00:00-06:00</updated><id>https://apihandyman.io/talking-about-the-design-of-web-apis-with-erik-wilde</id><content type="html" xml:base="https://apihandyman.io/talking-about-the-design-of-web-apis-with-erik-wilde/"><![CDATA[<p>Had a great time chatting with <a href="https://twitter.com/dret">Erik Wilde</a> about the motivation for writing The Design of Web APIs book, and why it specifically focuses on the design aspect of the API lifecycle (and also why it is not titled The Implementation of Web APIs).
 <!--more-->
-Watch on <a href="https://youtu.be/XuSEFFZzktE">Erik Wilde’s Youtube Channel</a></p>]]></content><author><name>Erik Wilde &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html"><![CDATA[Had a great time chatting with Erik Wilde about the motivation for writing The Design of Web APIs book, and why it specifically focuses on the design aspect of the API lifecycle (and also why it is not titled The Implementation of Web APIs).]]></summary></entry><entry><title type="html">5 ways to update a boolean status with a REST API</title><link href="https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api/" rel="alternate" type="text/html" title="5 ways to update a boolean status with a REST API" /><published>2021-11-24T00:00:00-06:00</published><updated>2021-11-24T00:00:00-06:00</updated><id>https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api</id><content type="html" xml:base="https://apihandyman.io/5-ways-to-update-a-boolean-status-with-a-rest-api/"><![CDATA[<p>Last week, someone sent me a direct message on Twitter asking the following question:
-Let’s say you have a resource with an activated boolean property, how would you design the operation(s) allowing to activate or deactivate it? 
-As this is a use case I often encounter during API design reviews or API design workshops, I thought it would be interesting to share my usual answer(s) with everyone.
-<!--more--></p>
-
-<h1 id="always-go-beyond-the-question">Always go beyond the question</h1>
-
-<p>Before diving into the formal design of a whole API or a single operation, I discuss the actual need(s) in order to be sure about the problem we’re trying to solve.
-Providing guidance focusing only on the form is the best way to end with a terrible design even if its form is theoretically correct.
-In such a case, “a resource that needs to be activated or deactivated”, I would search why it needs to be activated/deactivated, are these the actual terms everyone involved use, what is the flow of actions around this specific step.
-That could lead to a new vision of the need that could be something else than “activating/deactivating a whatever”.</p>
-
-<p>And more prosaically, as boolean are not extensible, I would also search to know if there are there really only 2 states (activated/deactivated).
-If that’s not the case or if there may be other states in the future, I would recommend to replace the <code>activated</code> boolean property by a <code>status</code> string (having activated or deactivated values) for instance.</p>
-
-<p>For this post, let’s say we work on a User API allowing to “manage” (whatever it means) users and that we need to add a “user activation/deactivation” or “modify user’s status” feature.</p>
-
-<h1 id="solution-1-updating-the-whole-resource">Solution 1: Updating the whole resource</h1>
-
-<p>Either you say that a user being active (or activated? That’s not the exact same meaning …) depends on a boolean <code>activated</code> property or a <code>status</code> string property, you could change its value to activate or deactivate the user by:</p>
-
-<ul>
-  <li>Replacing the whole resource with a <code>PUT /users/{userId}</code></li>
-  <li>Partially update it with <code>PATCH /users/{userId}</code>.</li>
-</ul>
-
-<p>I will not go into all of PUT/PATCH subtleties, I keep that for future posts, but be aware that between choosing the body format, and the fact that <a href="/api-design-tips-and-tricks-what-if-consumers-cant-do-patch-put-or-delete/">there are some places where PATCH cannot be used</a>, using PATCH HTTP method can be tricky.</p>
-
-<p>While being (apparently) straightforward and quite simple to put in place, this “update whole resource” approach as several cons depending on the importance of this “user activation/deactivation” feature:</p>
-
-<ul>
-  <li>It hides a possibly important feature of the API behind a “simple” resource’s replace/update. While I always try to avoid having too much operations inside an API, that strategy could make the API too coarse grained, less simple to understand, and less simple to use.</li>
-  <li>Hiding a possibly critical feature (activating/deactivating the user) among less critical ones (like maybe changing their <code>mood</code>) could lead to security concerns. The security controls of the critical part of this “do-it-all” operation can become more complex to handle, complex to understand for consumers, or even worse: they can be neglected.</li>
-  <li>Introducing an “apparently wide scoped resource replace” could be a bit deceptive if it’s only aim is to activate/deactivate the user.</li>
-  <li>Later, if the first intent was only to activate/deactivate the user, managing other properties’ updates can become tricky because of higher security level implemented from the beginning</li>
-</ul>
-
-<p>So if, updating the whole resource may not be a good idea, let’s try to make this “user activation/deactivation” feature more visible in the API.</p>
-
-<h1 id="solution-2-using-dedicated-action-resources">Solution 2: Using dedicated action resources</h1>
-
-<p>Who has never been tempted to add some “action resources” in a REST API, fearing the API inquisition …
-Well, a resource can actually be anything so if your API design guidelines indicates that’s a possibility, why not using that design pattern.
-So the user could be activated with <code>POST /users/{resourceId}/activate</code> and deactivated with <code>POST /resources/{resourceId}/deactivate</code>, both having nothing in their requests bodies.</p>
-
-<p>That’s make the API pretty simple to understand, but I see 2 cons:</p>
-
-<ul>
-  <li>Personally, I often fear that introducing actions resources could lead to some dreaded terrible RPC where HTTP protocol semantic is set aside with operations like <code>POST /users/{userId}/delete</code> or worse <code>GET /users/{userId}/delete</code>. I’ll probably write one post about that later.</li>
-  <li>If there are multiple status, you could end with as many operations as statuses, in such a case, maybe an “IMHO too much RPCesque” <code>POST /users/{userId}/updateStatus</code> taking the new value in the body would avoid that.</li>
-</ul>
-
-<p>So, if we’re not fan of action resources, how could we make this “user activation/deactivation” visible using “standard” resources, representing business entities and not actions.</p>
-
-<h1 id="solution-3-using-a-fine-grain-update-à-la-odata">Solution 3: Using a fine grain update à la OData</h1>
-
-<p>Why not handle this à la <a href="https://www.odata.org/">OData</a>?
-With OData, it is possible to update a single property of a resource, here <code>activated</code> for a user, with something like <code>PUT /User('userId')/activated</code>.
-As our API is not an OData one, we could adapt the idea to <code>PUT /users/{userId}/activated</code> (or <code>PUT /users/{userId}/status</code> if we work with a multiple value status).</p>
-
-<p>This strategy:</p>
-
-<ul>
-  <li>Makes the operation visible</li>
-  <li>Makes the operation quite simple to secure</li>
-  <li>Keeps HTTP semantic</li>
-</ul>
-
-<p>To reduce the risk of having too fine grained APIs, holding too many operations, I would only use it for specific properties updates that represents features needing high visibility and/or more dedicated security checks and I would keep the whole resource PUT/PATCH for more regular/less critical/less interesting properties updates.</p>
-
-<p>But, what if I want to track the activated/deactivated status?</p>
-
-<h1 id="solution-4-adding-to-a-sub-collection-resource">Solution 4: Adding to a sub collection resource</h1>
-
-<p>Sometimes the evolution/change log of the value of a resource’s property, hence the <code>activated</code> or <code>status</code> property of a user in our case, is as important as the value itself. In such a case, we could add a <code>POST /users/{userId}/statuses</code> operation, that literally adds a status (activated or deactivated or whatever) to the user.</p>
-
-<p>Note that it works better with the <code>status</code> option than with the <code>activated</code> one.
-Indeed <code>POST /users/{userId}/activateds</code> looks awkward and I even doubt it’s actual english.
-An alternative could be <code>POST /users/{userId}/activations</code> but it feels awkward to add a “false” activation.</p>
-
-<p>A <code>GET /users/{userId}/statuses</code> could return the change log of a user’s status as a list of objects containg a value and a date, while <code>GET /users/{userId}</code> would still contain the <code>status</code> property holding the current (latest) status of the user.</p>
-
-<p>This solution has the same advantage as solution 3 plus it allows to track evolutions of the value.
-But what if you choose solution 3 but realize later that you need 4?
-Well, you could keep the original <code>PUT /users/{userId}/status</code>, modify it’s implementation to actually add a new status, and add the <code>GET /users/{userId}/statuses</code>.
-You could also tag the original PUT as deprecated and add the 2 new operations (add + list).</p>
-
-<p>Both solution 3 and 4 are the one that I probably use most, but there’s a last option that could be interesting to investigate.</p>
-
-<h1 id="solution-5-adding-to-an-independent-collection-resource">Solution 5: Adding to an independent collection resource</h1>
-
-<p>If, for whatever actually relevant business domain reason, it is interesting to totally decorrelate user status management from user, this feature could be managed with an independent collection (list) resource.
-A <code>PUT /activated-users/{userId}</code> could be used to “put” the user in the “activated list”.
-Deactivating a user could be done by removing a user from this list with a <code>DELETE /activated-users/{userId}</code>.
-And a <code>GET /activated-users</code> could give you a list of activated users, maybe providing a representation that is slightly different from what <code>GET /users</code> would return.</p>
-
-<p>In this use case it doesn’t work very well:</p>
-
-<ul>
-  <li>Listing active users would be easily done by adding query filters to <code>GET /users</code>.</li>
-  <li>We lose a bit the “visible relation” between users and their statuses that was more obvious with <code>/users/{userId}/statuses</code></li>
-  <li>It’s not possible to handle more statuses (without ending with too many operations)</li>
-</ul>
-
-<p>But it’s still interesting to have this pattern in mind as it may work in some other contexts.</p>
-
-<h1 id="do-not-hesitate-to-ask-questions">Do not hesitate to ask questions</h1>
-
-<p>Now you know 5 different ways to handle operations such as “update a whatever’s kind of status”, it’s up to you to choose the solution that work for your use case in your context (and try to be consistent inside your API and across your APIs).</p>
-
-<p>That’s the second post I write thanks to someone’s question.
-To be honest, I find it quite interesting to answer those questions in a blog post, so do not hesitate to send yours!
-I cannot guarantee, I will respond to all them but it’s worth the try.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Last week, someone sent me a direct message on Twitter asking the following question: Let’s say you have a resource with an activated boolean property, how would you design the operation(s) allowing to activate or deactivate it? As this is a use case I often encounter during API design reviews or API design workshops, I thought it would be interesting to share my usual answer(s) with everyone.]]></summary></entry></feed>
+Watch on <a href="https://youtu.be/XuSEFFZzktE">Erik Wilde’s Youtube Channel</a></p>]]></content><author><name>Erik Wilde &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html"><![CDATA[Had a great time chatting with Erik Wilde about the motivation for writing The Design of Web APIs book, and why it specifically focuses on the design aspect of the API lifecycle (and also why it is not titled The Implementation of Web APIs).]]></summary></entry></feed>
