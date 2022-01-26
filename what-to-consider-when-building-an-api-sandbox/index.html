@@ -1,0 +1,2485 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <title>API Handyman | What to consider when building an API sandbox</title>
+  <meta name="description" content="Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment. But what is an “API sandbox” actually? Is it just a mock? It can be that … or far more than that. Let’s see what could be the features of an API sandbox.">
+<meta name="keywords" content="API,Web API,Web Service">
+<meta name="author" content="Arnaud Lauret">
+<meta name="description" content="Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment. But what is an “API sandbox” actually? Is it just a mock? It can be that … or far more than that. Let’s see what could be the features of an API sandbox.">
+
+<!-- Facebook & LinkedIn -->
+<meta property="og:title"         content="What to consider when building an API sandbox"/>
+<meta property="og:type"          content="article"/>
+<meta property="og:description"   content="Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment. But what is an “API sandbox” actually? Is it just a mock? It can be that … or far more than that. Let’s see what could be the features of an API sandbox."/>
+<meta property="og:url"           content="https://apihandyman.io/what-to-consider-when-building-an-api-sandbox/"/>
+<meta property="og:image"         content="https://apihandyman.io/images/what-to-consider-when-building-an-api-sandbox/banner.jpg"/>
+
+<!-- Twitter -->
+<meta name="twitter:card"         content="summary">
+<meta name="twitter:site"         content="@apihandyman">
+<meta name="twitter:creator"      content="@apihandyman" />
+<meta name="twitter:title"        content="What to consider when building an API sandbox">
+<meta name="twitter:url"          content="https://apihandyman.io/what-to-consider-when-building-an-api-sandbox/">
+<meta name="twitter:description"  content="Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment. But what is an “API sandbox” actually? Is it just a mock? It can be that … or far more than that. Let’s see what could be the features of an API sandbox.">
+<meta name="twitter:image:src"    content="https://apihandyman.io/images/what-to-consider-when-building-an-api-sandbox/banner.jpg">
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/anchors.css">
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/prism.css">
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/asciinema-player.css">
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/code.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<link rel="stylesheet" href="/css/bash.css">
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+    
+  
+
+  
+
+
+  <link rel="alternate" type="application/rss+xml" title="API Handyman" href="/feed.xml">
+</head>
+  <body  data-spy="scroll" data-target="#toc">
+    
+<div class="main-navbar fixed-top  scrolled">
+  <div class="container-lg">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">API Handyman</a>
+      
+      <button class="navbar-toggler left-column-hider" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <img class="btn-icon" src="/images/commons/icons/menu.svg" >
+      </button>
+      <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
+        <div class="navbar-nav">
+          <li class="nav-item dropdown dropdown-blog d-desktop-only">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Blog
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="/blog/">All content</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/posts/">Posts</a>
+              <a class="dropdown-item" href="/talks/">Talks & Podcasts</a>
+            </div>
+          </li>
+          <a class="nav-item nav-link d-mobile-only" href="/blog/">Blog</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/posts/">Posts</a>
+          <a class="nav-item nav-link nav-link-sub d-mobile-only" href="/talks/">Talks & Podcasts</a>
+          <a class="nav-item nav-link" href="/toolbox/">Toolbox</a>
+          <a class="nav-item nav-link" href="/about/">About</a>
+          <div class="form-search">
+    <input class="input-search" type="search" name="q" placeholder="Search" aria-label="Search">
+    <button class="btn-search"><?xml version="1.0" encoding="UTF-8"?>
+<svg width="26" height="26" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+ <path d="m85.207 79.375l-21.664-21.668c3.332-4.375 5.207-10 5.207-16.043 0-15-12.082-27.082-27.082-27.082s-27.086 12.086-27.086 27.086 12.082 27.082 27.082 27.082c6.043 0 11.457-1.875 16.043-5.207l21.668 21.668c0.83203 0.83203 1.875 1.25 2.918 1.25s2.082-0.41797 2.918-1.25c1.6641-1.668 1.6641-4.168-0.003907-5.8359zm-43.539-18.957c-10.418 0-18.75-8.332-18.75-18.75s8.332-18.75 18.75-18.75 18.75 8.332 18.75 18.75c0 10.414-8.3359 18.75-18.75 18.75z"/>
+</svg>
+</button>
+</div>
+          <a class="nav-item-book left-column-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
+        </div>
+      </div>
+      
+    </nav> <!-- class="navbar navbar-expand-md" -->
+  </div> <!--  class="container" -->
+</div> <!-- class="main-navbar fixed-top  scrolled" -->
+    <div class="page-content-container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="row row-banner-small row-banner-small-">
+    <div class="banner-small-container">
+      <div class="banner-small-column-main">
+        <img src="https://apihandyman.io/images/what-to-consider-when-building-an-api-sandbox/banner.jpg" class="img-fluid" alt="">
+      </div>
+    </div>
+  </div>
+
+<div class="row row-page-content">
+  <div class="container-fluid container-lg">
+    <div class="fade modal left-menu-hider left-menu-modal d-mobile-only"></div>
+    <div class="row">
+      
+      <div class="page-column-left left-menu left-menu-hider">
+        <div class="page-column-left-container">
+          
+
+
+
+<div class="left-book-ad left-book-ad-border d-desktop-only">
+  <img src="/images/commons/book/book-left-menu-cropped.png" class="card-img" alt="The Design of Web APIs book cover">
+  <div class="card-img-overlay message-cropped">
+    <a class="stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >
+      <p class="card-text">Special offer on my book</p>
+    </a>
+  </div>
+</div>
+<a class="left-book-ad-small left-menu-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button">
+  Special offer on my book
+  <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
+</a>
+
+  
+  <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
+    
+
+
+
+
+
+  <nav class="nav flex-column" id="toc">
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#what-is-an-api-sandbox">What is an API sandbox</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#what-are-the-features-of-an-api-sandbox">What are the features of an API sandbox</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#expose-the-same-interface-contract-as-the-real-api">Expose the same interface contract as the real API</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#provide-useful-data">Provide useful data</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#simulate-implementation-and-dependencies-behaviors">Simulate implementation and dependencies behaviors</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#save-protect-and-restore-data">Save, protect and restore data</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#simulate-high-level-security">Simulate high level security</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#simulate-non-api-visible-dependencies">Simulate non API visible dependencies</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#be-api-first">Be API First</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#so-much-work">So much work?</a>
+        
+      
+      
+    
+  
+  </nav>
+  </div>
+
+        </div>
+      </div>
+        
+      
+      <div class="page-column-main page-column-main-with-left">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="page-content-text anchors">
+  
+  
+  
+  
+  
+    
+    
+    <!-- First card with page title -->
+    <div class="card-page-section page-section-title">
+      <div class="body">
+        
+        <h5 class="surtitle"></h5>
+        
+        
+        <h1 class="title">What to consider when building an API sandbox</h1>
+        
+        
+        <h6 class="subtitle">By Arnaud Lauret, January 26, 2022</h6>
+        <hr/>
+        
+        <p>Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment.
+But what is an “API sandbox” actually?
+Is it just a mock?
+It can be that … or far more than that.
+Let’s see what could be the features of an API sandbox.
+<!--more-->
+This post is a sequel to my previous post “<a href="/a-few-concerns-to-be-aware-of-when-adding-try-it-feature-to-api-documentation/">A few concerns to be aware of when adding try it feature to API documentation</a>”.</p>
+
+
+        
+      </div>
+    </div><!-- First card with page title END -->
+      
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="what-is-an-api-sandbox">What is an API sandbox</h1>
+
+<p>An API sandbox is an application or set of applications that simulates an actual API.
+Quite often tied to the “try it” feature, which allows to make API calls from an API’s documentation, it could also reveal to be quite useful directly called from code created by developers who subscribed to use the API.</p>
+
+<p>Regardless of how it is used, the main purpose of a sandbox is usually to be the playground that help people learn how the API works.
+In an ideal world, consumers should be able to write code against the API sandbox and then be able to switch their API calls from the sandboxed version to the real version without any modification (besides configuration).</p>
+
+<p>Usually, the first thought regarding a sandbox is that, if the real API provides a <code>GET /this</code> or a <code>POST /that</code>, its sandbox counterpart will propose them too, mimicking their behavior in a more or less accurate fashion.
+That could make think a sandbox is “just” a basic mock, which is not always the case.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="what-are-the-features-of-an-api-sandbox">What are the features of an API sandbox</h1>
+
+<p>If an API sandbox is supposed to mimic what the real API does, let’s see what happen when consumers interact with a real “task list” API:</p>
+
+<ul>
+  <li>Consumers calling the API to “search tasks” without an access token get an error.</li>
+  <li>Obtaining an access token can be done in a machine to machine way or involving an end user authentication, depending on what they want to do.</li>
+  <li>Consumers calling the API with an access token tied to wrong scopes get an error. For instance if the access token has not the scope “write access”, consumers are not allowed to “create a task”.</li>
+  <li>When calling the API (with an access token), they get an accurate response which is consistent with their request, either for a success or failure. For instance, if they “search tasks”, they get a list of tasks matching their search parameters. If they “create a task”, providing a user name and a description, in return they get the input data plus a server generated id. If they forgot to provide the username, or provide a non existing user, or provide a user for which they are not allowed to create a task, they get an error telling them so.</li>
+  <li>For a subsequent request, they get a response which is consistent with previous calls. Like seeing their created tasks in the response of “search tasks” or being able to retrieve the created task based on the returned id (with “read task”).</li>
+  <li>Depending on consumer and/or end user profile, consumers may be allowed to do or not to do specific API calls, like reading or deleting a specific task created by other consumer for instance</li>
+  <li>And finally an API call or an internal process running without consumer interaction may trigger something that impacts the consumers or the end users outside of the API. For instance, an SMS or an email could be sent to the user identified in the created task or a webhook may be called.</li>
+</ul>
+
+<p>But a sandbox shouldn’t only simulate the real API, it should also provide any “meta-feature” that will help people learn how to use it.
+And last but not least, the sandbox should be easily “integrable” in the API documentation.</p>
+
+<p>If we sum those 3 dimensions, that mean an API sandbox is supposed to propose the following features:</p>
+
+<ul>
+  <li>Expose the same interface contract as the real API</li>
+  <li>Provide useful data</li>
+  <li>Simulate implementation and dependencies behaviors</li>
+  <li>Save and restore data</li>
+  <li>Simulate high level security</li>
+  <li>Simulate non API visible dependencies</li>
+  <li>Be API first</li>
+</ul>
+
+<h2 id="expose-the-same-interface-contract-as-the-real-api">Expose the same interface contract as the real API</h2>
+
+<p>Using the API, or a fake version of it in this case, really helps to learn how an API work and what you can do with it.
+The most minimal API sandbox must expose the same interface contract as the original API.
+It must provide all of the operations described in the interface contract.
+All those operations, such as <code>GET /this</code> and <code>POST /that</code>, must respect the paths, parameters, body, data models, HTTP status codes, … described in the original interface contract.
+And the contract must be respected even in case of error (which is often neglected).
+Working at this level is usually made working with an API specification such as the OpenAPI Specification.</p>
+
+<p>But “just” simulating the interface contract is usually not enough for a sandbox.</p>
+
+<h2 id="provide-useful-data">Provide useful data</h2>
+
+<p>It’s quite simple to simulate an interface contract based on a specification document using randomly generated and inconsistent data for each call.
+But that’s not really useful to learn how the API works.
+Indeed, if I “search tasks”, I would prefer to get a meaningful <code>description</code> such as <code>write a blog post</code> instead of <code>lorem ipsum</code>, or worse <code>azljkiqjnlkjpoi</code>, for each element in the list.
+Also, once I got my list of tasks, I would be very happy to pick the <code>id</code> of one of them,  such as <code>123</code>, to do a <code>GET /tasks/123</code> (“read task”) and get data which is consistent with my previous call.</p>
+
+<p>On top of that, providing useful global data sets allowing to cover various use cases is important.
+In our “task list” case, it could be having tasks with all possible types and states or tasks created by various users.
+The more real the data, the better the experience and so the learning.
+But more important, the less risk of variations between code running against sandbox and production.</p>
+
+<p>But, as I often say, an API is not only about data, an API proposes a service; there’s added value logic inside an API.
+And just working at data level is sometimes not enough to simulate that.</p>
+
+<h2 id="simulate-implementation-and-dependencies-behaviors">Simulate implementation and dependencies behaviors</h2>
+
+<p>The implementation of an API holds 3 types of logic a sandbox must try to reproduce as closely to reality as possible:</p>
+
+<ul>
+  <li>Surface controls</li>
+  <li>Application level security</li>
+  <li>Business rules</li>
+</ul>
+
+<p>Surface controls are all the parameters/properties presence, format and value checks.
+Is the mandatory <code>username</code> present? Is the task <code>type</code> value in allowed values list?
+Most of the time, those controls can be directly tied to the interface contract description.
+But due to limitations or lack of knowledge of the specification used (do you know that you can specify a regex pattern for a string property in OpenAPI for instance), that sometimes requires more work.</p>
+
+<p>Application level security are those controls an implementation will do to ensure that consumer and possible end user don’t see or do  more than they should.
+They are based on access token information (consumer, scopes, end user, roles) and business data.
+For instance, “is this user allowed to modify this specific task?” or “what are the specific tasks this user can see?”.</p>
+
+<p>And last but not least, the business rules.
+They are the heart of the implementation: what is done to fullfil what the API is supposed to do.
+These are the controls and actions made by the implementation based on business logic and data.
+For instance, “Does this user for who I’m supposed to create a tasks exists?”, “I read the task for this id”, “the time of a tasks is the sum of time of all subtask” or “everything is OK, I insert a task in this table of the database”.</p>
+
+<p>Note that an implementation can rely on dependencies.
+Depending on your context you may or may not have to work on simulating what is happening in those dependencies.
+If our simple “task list” API use case implementation is composed of a basic whatever-language monolithic server application and a database, no dependency problem.
+But what it relies on a “user” component to check if a user exists for instance?
+Do we need to simulate that component?
+And how?
+Do we create a single sandbox or one per component?</p>
+
+<p>Also what if this component exposes a “user” API that can be used by the same consumers?
+Should the “task list” sandbox do what is necessary to propagate data to the “user” sandbox to have a consistent <code>tasksCount</code> property while calling “read user”?</p>
+
+<p>Whatever the complexity of the implementation algorithms and architecture, data needs to be saved in the end more often than not in order to provide a realistic and consistent behavior.</p>
+
+<h2 id="save-protect-and-restore-data">Save, protect and restore data</h2>
+
+<p>Being able to retrieve a previously created or modified task means that the corresponding data have been saved.
+If we go on along that line, data can be modified or deleted.
+And if the data can be created, modified, or deleted, it may mean in the end that the data will be, not corrupted (the implementation is supposed to prevent that), but seriously messed up.
+The quite useful task list containing all types and statuses combinations could not be there anymore for instance.
+So maybe some data should be protected against modification and deletion, but that could possibly make the API less realistic.
+Another option could be to provide a way to restore the sandbox into an initial clean state when needed.</p>
+
+<p>If data can be modified, in a broad sense, how long should it be kept?
+Forever or only for a given amount of time?
+Maybe data should be restored automatically to its initial state at some point.</p>
+
+<p>Also, allowing to modify sandbox data for whatever reason should be done not forgetting that, at a given moment, various consumers may work with the sandbox independently.
+They should be able to do that without being bothered by what others do (and reverse).
+Being able to actually separate who is doing what could be interesting in order to prevent problems, and working on security could help on that topic (among other things).</p>
+
+<h2 id="simulate-high-level-security">Simulate high level security</h2>
+
+<p>What I call “high level security” concerns what is usually handled by an API gateway and an identity provider.
+That means deciding which consumer can access which API (even which operation inside an API), obtaining an access token to make API calls with or without end user authentication, and control those access tokens.
+For instance, a consumer may be allowed to “read task” but not to “modify task”.
+Note that, it does not mean that this consumer may read all tasks, it will be up to the implementation to check if a specific consumer is allowed to read a specific task (see Simulate implementation and dependencies behaviors above).</p>
+
+<p>Simulating the implementation is already quite a burden, so why bother adding such complexity to a sandbox?</p>
+
+<p>Even when your API uses standard security, such as Oauth 2 or OpenId connect, don’t take for granted that everyone knows all possible “give me an API access token” dances.
+There always will be beginners who never have used them before, and even those who have encountered such way of securing APIs may need a refresh.
+So, having an API sandbox allowing to to test how to get an access token is welcomed.</p>
+
+<p>Also, in order to test various use cases, consumers may need an access token attached to specific scopes and possibly specific end user.
+Being able to get ready to use or taylor made access token would be of great help.</p>
+
+<p>And finally, just being able to differentiate which consumer makes an API call to the sandbox may help regarding the partitioning of saved/restored data.</p>
+
+<h2 id="simulate-non-api-visible-dependencies">Simulate non API visible dependencies</h2>
+
+<p>Depending on the kind of service provided, consumers may interact with the system exposing it in other ways than calling the API.
+For instance, what if the user identified in a task is notified by an email or an SMS upon its creation?
+What if, when task is closed (however it is done), the consumer which has created it is notified through a webhook call?
+Providing to consumers a kind of administration console logging what should happen outside of the API would help to show all that.</p>
+
+<p>All those features being implemented would make a terrific sandbox, but it’s not over yet, there’s one last feature to think about.</p>
+
+<h2 id="be-api-first">Be API First</h2>
+
+<p>Some of the previous features imply the consumers interact with the sandbox for doing other things than what the original API and surrounding elements are supposed to do:</p>
+
+<ul>
+  <li>Knowing which are the available use cases (useful data)</li>
+  <li>Getting a ready to use access token, which may require to know who are the predefined users (high level security)</li>
+  <li>Knowing if something happened outside of the API (non API visible dependencies)</li>
+</ul>
+
+<p>Being API first and providing one or more APIs to deal with these “meta-functions” is a must have for such an advanced sandbox.
+Such “sandbox API” could be used to build great API documentation (always in sync seamless “try it” providing everything people need, like the possible use cases for an operation).
+And why not let it be “consumed by consumers” too (or at least other apps developed by their developers), if they need to reset their sandbox state they would probably be happy to do that programmatically.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="so-much-work">So much work?</h1>
+
+<p>As you can see, providing an accurate and complete sandbox may require to care about many features.
+Hopefully, you don’t always need such level of accuracy.
+In a next post, we’ll see various tools and architecture patterns that could help you achieve the right level of API sandbox.</p>
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+  
+</div><!-- class="page-content-text"-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-page-bottom-nav nav-fixed-bottom">
+  <div class="container-fluid container-lg">
+    <nav class="nav-page " aria-label="Page navigation">
+      <a class="nav-page-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top"><svg height='100px' width='100px' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><polygon points="4.1,10 5.5,11.4 9,7.8 9,20 11,20 11,7.8 14.5,11.4 16,10 10,4  "></polygon><rect x="0" width="20" height="2"></rect></g></svg></a>
+      
+      <a class="nav-page-btn left-menu-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><rect x="0" y="2" width="4" height="4"></rect><rect x="0" y="8" width="4" height="4"></rect><rect x="0" y="14" width="4" height="4"></rect><rect x="6" y="3" width="14" height="2"></rect><rect x="6" y="9" width="14" height="2"></rect><rect x="6" y="15" width="14" height="2"></rect></g></svg></a>
+      
+    </nav>
+  </div>
+</div>
+
+
+      <div class="row row-footer-margin">
+
+</div>
+<div class="row row-footer">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container footer-content">
+        <div class="row align-items-end row-cols-1 row-cols-md-2">
+          <div class="col d-flex justify-content-center mb-1 mb-md-4">
+            <div class="icon"><a href="https://twitter.com/apihandyman" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a></div>
+            <div class="icon"><a href="https://www.linkedin.com/in/arnaudlauret" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></div>
+            <div class="icon"><a href="https://github.com/arno-di-loreto" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a></div>
+            <div class="icon"><a href="/feed.xml" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg></a></div>
+          </div>
+          <div class="col text-center">
+            <a class="btn border-0 rounded-0 p-0" data-toggle="modal" data-target="#bookModal" role="button" ><img class="img-footer-book" src="/images/commons/book/book-footer.png"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-footer-second">
+  <div class="container-fluid">
+    <div class="cols-12">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col col-footer-privacy mb-3 mb-md-0">
+            <div class="icon privacy-link"><a href="/privacy"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg><span class="privacy-link-text">Privacy Policy & Settings<span></span></a></div>
+          </div>
+          <div class="col col-footer-copyright">
+            &copy; 2015-2022 Arnaud Lauret
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            <!-- Modal -->
+      <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-book" role="document">
+          <div class="modal-content border-0">
+            <div class="modal-body p-0">
+              <div class="container-fluid p-0">
+                <button type="button" class="close pr-2 pt-1" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row modal-book-cover-center"></div>
+                <div class="row mb-3 mb-lg-0 ml-0 mr-0 pt-3 pt-md-0">
+                  <div class="col col-lg-4 d-none d-md-block p-0">
+                    <img class="img-fluid" src="/images/commons/book/book-modal.png"/>
+                  </div>
+                  <div class="col col-12 col-lg-8 pt-2 pt-lg-4 text-justify">
+                    <p>Want to learn how to design simple, user friendly, secure and implementable APIs that do everything they should?</p>
+                    <p>Use code <code class="book-discount-code text-copy" aria-label="copy discount code" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to copy">fcclauret</code> to get 37% off my book The Design of Web APIs (works also on any other Manning product!).</p>
+                    <p class="text-center"><a href="http://bit.ly/designwebapis" target="_blank" class="btn btn-primary">Buy on manning.com</a></p>
+                    <p class="text-muted pt-3 mb-0">Disclosure: the link above is an affiliated link, meaning, at no additional cost to you, I will earn a commission if you click through and make a purchase.</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+<div class="privacy-message d-none fixed-bottom container-fluid bg-dark text-white p-3">
+  <div class="container">
+    <div class="row text-center pt-2 pb-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+        <span class="icon-inline privacy-message-icon" aria-label="cookie button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path d="M50.047,99.601c-27.306,0-49.521-22.212-49.521-49.521c0-18.929,11.074-36.458,28.214-44.65  c1.217-0.58,2.64-0.569,3.849,0.04c1.206,0.608,2.065,1.741,2.324,3.066c0.415,2.139,2.085,7.112,8.58,7.112  c4.537,0,6.696-2.453,7.705-4.517c0.905-1.838,2.969-2.811,4.967-2.316c1.995,0.495,3.378,2.305,3.323,4.359  c-0.085,3.344,0.842,6.343,2.483,8.033c2.176,2.23,5.94,2.379,10.952,0.581c1.832-0.66,3.88-0.023,5.016,1.559  c1.142,1.576,1.099,3.716-0.103,5.251c-1.906,2.436-2.086,6.014-0.467,9.335c1.923,3.949,5.775,6.305,10.304,6.305  c1.951,0,3.676-0.421,5.273-1.28c1.31-0.705,2.879-0.701,4.182,0.011c1.3,0.717,2.148,2.042,2.253,3.521l0.04,0.541  c0.074,1.013,0.146,2.019,0.146,3.049C99.567,77.389,77.354,99.601,50.047,99.601z M28.271,15.665  C16.59,23.079,9.266,36.118,9.266,50.08c0,22.49,18.294,40.782,40.781,40.782c21.588,0,39.313-16.864,40.697-38.108  c-1.003,0.148-2.025,0.223-3.07,0.223c-7.831,0-14.789-4.296-18.161-11.213c-1.59-3.267-2.216-6.731-1.908-10.021  c-0.248,0.006-0.491,0.012-0.734,0.012h-0.002c-4.461,0-8.316-1.542-11.154-4.449c-1.385-1.429-2.51-3.175-3.335-5.149  c-2.568,1.457-5.583,2.23-8.886,2.23C36.768,24.387,31.232,21.099,28.271,15.665z"></path><path d="M95.928,10.027c0,2.014-1.632,3.641-3.643,3.641c-2.012,0-3.641-1.627-3.641-3.641  c0-2.008,1.629-3.641,3.641-3.641C94.296,6.386,95.928,8.019,95.928,10.027z"></path><circle cx="28.686" cy="39.356" r="6.19"></circle><circle cx="33.175" cy="63.672" r="6.19"></circle><circle cx="55.873" cy="71.444" r="6.19"></circle><circle cx="53.093" cy="46.723" r="6.19"></circle><path d="M78.326,7.604c0,3.146-2.554,5.7-5.704,5.7c-3.148,0-5.702-2.554-5.702-5.7c0-3.152,2.554-5.707,5.702-5.707  C75.772,1.896,78.326,4.452,78.326,7.604z"></path><circle cx="93.014" cy="29.325" r="4.006"></circle></svg></span>
+      </div>
+      <div class="col text-justify">
+        By continuing to use this web site you agree with the API Handyman website privacy policy (effective date , June 28, 2020).
+      </div>
+      <div class="col-auto align-self-center d-none d-sm-none d-md-block">
+          <a class="btn btn-primary" href="/privacy/">Read privacy policy</a>
+          <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+    <div class="row text-center pt-3 d-block d-sm-block d-md-none">
+      <div class="col">
+        <a class="btn btn-primary" href="/privacy/">Read privacy policy</a>
+        <a class="btn btn-primary" onclick="javascript:acceptPrivacyPolicy()">Happy with that</a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/jquery-3.4.1.slim.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/popper.min.js" ></script>
+<script type="text/javascript" src="/js/bootstrap.min.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/anchor.min.js" ></script>
+<script type="text/javascript" src="/js/anchors.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/clipboard.min.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/main.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/prism.js" ></script>
+
+
+
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/asciinema-player.js" ></script>
+
+
+
+    
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/code.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<div id="device-size-detector">
+  <div id="xs" class="d-xs-only"></div>
+  <div id="sm" class="d-sm-only"></div>
+  <div id="md" class="d-md-only"></div>
+  <div id="lg" class="d-lg-only"></div>
+  <div id="xl" class="d-xl-only"></div>
+</div>
+<script type="text/javascript" src="/js/size.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/bash.js" ></script>
+
+
+
+    
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/toc.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/fingerprint2.min.js" ></script>
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/google-analytics.js" ></script>
+
+
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+      
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script type="text/javascript" src="/js/search-bar.js" ></script>
+
+
+
+    
+  
+
+  
+
+
+  </body>
+</html>
