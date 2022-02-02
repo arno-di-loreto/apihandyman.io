@@ -1,4 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-02-02T06:12:18-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What to consider when building an API sandbox</title><link href="https://apihandyman.io/what-to-consider-when-building-an-api-sandbox/" rel="alternate" type="text/html" title="What to consider when building an API sandbox" /><published>2022-01-26T00:00:00-06:00</published><updated>2022-01-26T00:00:00-06:00</updated><id>https://apihandyman.io/what-to-consider-when-building-an-api-sandbox</id><content type="html" xml:base="https://apihandyman.io/what-to-consider-when-building-an-api-sandbox/"><![CDATA[<p>Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-02-02T13:37:35-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">7 years being the API Handyman, the age of reason?</title><link href="https://apihandyman.io/7-years-being-the-api-handyman-the-age-of-reason/" rel="alternate" type="text/html" title="7 years being the API Handyman, the age of reason?" /><published>2022-02-02T00:00:00-06:00</published><updated>2022-02-02T00:00:00-06:00</updated><id>https://apihandyman.io/7-years-being-the-api-handyman-the-age-of-reason</id><content type="html" xml:base="https://apihandyman.io/7-years-being-the-api-handyman-the-age-of-reason/"><![CDATA[<p>This time, no “API blah blah blah”, this time, it’s personal.
+February 2022 marks a major landmark, I can’t believe I launched the API Handyman blog 7 years ago!
+Being 7 years old is supposed to mark the “age of reason”.
+Did I reached it?
+I think so, but it took me more than 7 years.
+<!--more--></p>
+
+<h1 id="failing-and-healing">Failing and healing</h1>
+
+<p>The creation of the API Handyman blog was the starting point of a new path in my career after a few dark years.</p>
+
+<h2 id="before-the-blog">Before the blog</h2>
+
+<p>I started my career as a developer in 2002, then I became a software analyst (people who write specs for developers), a project manager and finally an application manager.
+I followed what was quite a usual path in France at that time, but I did it without really thinking about it.
+And that was a huge mistake (don’t do that at home), I realized that being a manager was definitely not for me.
+But I realized it almost too late.</p>
+
+<p>Indeed, after a few years, I was always exhausted, getting sick fairly often, not happy with most of what I had to do on my daily job.
+I was actually not happy at all; and this situation had a terrible impact on my family’s life.
+I didn’t realize all that consciously until that one day my body wouldn’t let me go to the office. 
+Hopefully, I was in a situation where I could change that.
+I actually did go to the office that one day, but to request a position change.
+Hopefully my manager was also managing the architecture team and I could join it.
+And so I was back to what I really liked: coding, tinkering with proof of concepts, designing systems, …
+I never have been so happy for years (I was as happy when I was a developer).
+I was happy but not totally confident in my experience.
+I was wondering if what I’ve done in the past years was valuable if I want to work somewhere else.</p>
+
+<h2 id="starting-a-blog">Starting a blog</h2>
+
+<p>Before actually moving to the architecture team, I had to lead a major API project and became interested in the topic.
+Thanks to my manager, I discovered the <a href="https://apievangelist.com">API Evangelist</a> (the guy who invented “APIs blah blah blah”) and also was able to attend my very first API conference in December 2014.
+At the API Days Paris conference, getting out of my cave, I saw all those stars on stage sharing their knowledge.
+Listening to them, I was thinking “that’s amazing stuff” but also “wait, I ran into that problem too, I solved it a bit differently”, “hey, I did that too!”…
+Suddenly I realized that many of those “stars” were normal people sharing their stories.</p>
+
+<p>All that made me realized that I actually did not lost my time but learned valuable and interesting things in the past years (sometimes by trial and errors) .
+During all my career, I have been working on connecting pieces of software together.
+I worked on distributed (and heterogenous) systems, file transfers, SOA (Service Oriented Architecture), IVR (Interactive Voice Response), web, mobile and what we call now (web) APIs.
+I realized that sharing my stories could help others.
+And as a few months earlier, I had given a hand to my wife to migrate her blog from some platform to a self hosted Wordpress, it did not take me long to think about starting my own blog to talk about APIs.</p>
+
+<p>But why did I created the “API Handyman Blog” and not “Arnaud Lauret’s Blog”?
+I was quite intimidated to publicly “speak” (actually write) about APIs, so hiding behind a nickname was convenient.
+I wanted a funny name that would make people know that this blog was about APIs.
+So I searched an “API <em>whatever</em>” name and came with “API Handyman” because it perfectly reflected my vision of what I do with software and APIs.</p>
+
+<p>It took me weeks, especially to write my very first post, but at last on the 7th February 2015 the API Handyman blog was live with my very first post “<a href="/why-you-must-design-your-private-api-in-english/">Why you must design your private API in english</a>”.
+The very first comment (yeah, there were comments at that time), came from the API Evangelist himself, I was totally crazy.</p>
+
+<p>Writing about APIs hoping helping others, actually helped me more than I would have imagined.
+I met amazing people, make new friends, talked at conferences, live tweeted dozens of conference sessions, wrote a book, got two wonderful jobs.
+But more than that, I became API Handyman.</p>
+
+<h1 id="becoming-the-api-handyman">Becoming the API Handyman</h1>
+
+<p>Slowly, but surely, I became “API Handyman” (or he became me?) because the content I create and my work feed each other, but also because I finally chose to wear my API Handyman costume everyday to become a confident API expert.</p>
+
+<h2 id="creating-content-is-hard-but-worth-the-cost">Creating content is hard but worth the cost</h2>
+
+<p>Creating content was hard in the “beginning”, it actually took me years to become more comfortable doing it.
+In the beginning writing a post could take me weeks.
+I spent more than 2 years on my book The Design of Web APIs.
+Creating my conference session was also hard, I remember finishing my first keynote preparation at 3pm, a few hours before presenting.
+But session after session it became easier.</p>
+
+<p>Was it worth the cost?
+Totally.
+All this hard work helped me getting better at explaining things, articulating ideas, and telling stories.
+It also helped me to learn more about many topics.
+Even when I want to talk about something I do everyday, I often realize that I need to think more about it or do researches in order to actually be able to explain it in an easy to understand way.
+That definitely help me getting better at doing my daily job “helping people to understand and to create APIs”.</p>
+
+<p>I made all this work easier by doing it only when I wanted to and by trying to keep it as fun as possible.
+Working on the form, using pop-culture reference, and creating high quality visuals really helps me.</p>
+
+<h2 id="becoming-a-confident-api-expert">Becoming a confident API expert</h2>
+
+<p>Speaking of pop-culture reference, I created T-shirts (actually, I asked my wife to draw them) such as the “Masters of the APIverse”, “Respect my API Style Guide” or “API Titans Go!” to wear them when going at conferences, it’s my API Handyman costume (no, I don’t wear underwear over pants like Superman).
+When I became an API architect for Natixis, I decided to wear them everyday, whatever I was doing, whoever I was suppose to meet.
+I remember being lost in a building and encountering someone I’ve never met who told me “I think we have a meeting together”.
+Those t-shirts helped me breaking the ice in some meetings.</p>
+
+<p>They helped me in being more confident, but didn’t do all the work.
+Working day after day with dozens of different teams, doing hundred of API design reviews/workshops/training while being more and more the API Handyman, I at last accepted myself as an expert (Oh, <a href="/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/">I still have the impostor syndrome, but I learned to live with it</a>).
+I hope not to be an arrogant one.
+I’m not here to yell at people, but listen to them and help them (if they want to be helped) in their context, not providing out of the blue inapplicable solutions, always willing to learn new things.
+I’m capable to say “I don’t understand”, “I don’t know” and ask “silly” questions (there’s actually no silly questions).</p>
+
+<h1 id="whats-next">What’s next</h1>
+
+<p>Being the API Handyman was quite fun and exciting so far, especially, the last 4 years at Natixis which were totally amazing.
+But my Natixis adventure is over because I couldn’t refuse an even more amazing offer.
+I just joined Postman and will go on being the API Handyman there (you’ll be able to read more about this on Postman’s blog).</p>
+
+<p>Since I started the API Handyman blog, I rationally analyzed and accepted 2 wonderful job offers, I became and accepted myself as an expert taking advantage of my past and willing to learn.
+So, yes, professionally speaking, I think I have reached the age of reason, both as API Handyman and Arnaud Lauret.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[This time, no “API blah blah blah”, this time, it’s personal. February 2022 marks a major landmark, I can’t believe I launched the API Handyman blog 7 years ago! Being 7 years old is supposed to mark the “age of reason”. Did I reached it? I think so, but it took me more than 7 years.]]></summary></entry><entry><title type="html">What to consider when building an API sandbox</title><link href="https://apihandyman.io/what-to-consider-when-building-an-api-sandbox/" rel="alternate" type="text/html" title="What to consider when building an API sandbox" /><published>2022-01-26T00:00:00-06:00</published><updated>2022-01-26T00:00:00-06:00</updated><id>https://apihandyman.io/what-to-consider-when-building-an-api-sandbox</id><content type="html" xml:base="https://apihandyman.io/what-to-consider-when-building-an-api-sandbox/"><![CDATA[<p>Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment.
 But what is an “API sandbox” actually?
 Is it just a mock?
 It can be that … or far more than that.
@@ -805,86 +902,4 @@ Yes, but that mean I still can be wrong … so what if I’m wrong?</p>
 Absolutely not to put them off, but to explain that failure will happen, that it is part of the job.
 Though you can drastically reduce them by doubting, removing your doubts and evaluating the consequences of being wrong, some mistakes will happen.
 Just knowing that will make your life easier.
-And practicing doubting will help you solve your mistakes more easily.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[F*** impostor syndrome, it’s not easy to say that I’m an API design expert, but I am. Along my path to expertise, I failed, I did mistakes; that helped me to learn a lot. I also have been afraid, I had doubts. And you know what? Though I’m now an expert, that’s still the case when I help people to design their APIs. But, I learned to live with that. I learned to live with the “what if I’m wrong” question.]]></summary></entry><entry><title type="html">5 reasons why you should treat private APIs like public ones</title><link href="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/" rel="alternate" type="text/html" title="5 reasons why you should treat private APIs like public ones" /><published>2021-12-01T00:00:00-06:00</published><updated>2021-12-01T00:00:00-06:00</updated><id>https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones</id><content type="html" xml:base="https://apihandyman.io/5-reasons-why-you-should-treat-private-apis-like-public-ones/"><![CDATA[<p>“Why should we care about our privates APIs?
-They’re only consumed by us, so let’s do minimal work on them.
-We’ll keep our effort only for the public ones we sell to the outside world.”
-Such stance will have terrible consequences for an organization, even more if it will never create public APIs.
-Let’s see 5 reasons why you should treat privates APIs like public ones.
-<!--more--></p>
-
-<h1 id="what-are-private-and-public-apis">What are private and public APIs?</h1>
-
-<p>It’s not where an API is exposed or if its use is free or paid that define its nature, but by who it is consumed.
-Either it is exposed on some intranet or the internet, a private API is an API that is consumed only by the organization that created it.
-For instance, a mobile application’s backend API is a private API though it is exposed on the internet.
-Either free or paid, a public API is an API that has been created to be consumed by others.
-It is usually advertized on the organization’s website and can be used by almost anyone willing to accept its usage conditions.
-Note that a variant of public APIs often called partner APIs are usually less visible and requires more paper work to use them.</p>
-
-<h1 id="why-treat-private-like-public">Why treat private like public</h1>
-
-<p>As private APIs are only consumed by the organization creating them, they’re often treated as second class APIs.
-From a business perspective, they are often seen as just IT department concerns.
-From an IT perspective, they are often just seen as technical interfaces.
-The result is often quick and dirty terrible APIs, but there’s more than that.
-Let’s see that by exploring 5 reasons why you should treat private APIs like public ones.</p>
-
-<h2 id="nurturing-peoples-api-mindset">Nurturing people’s API mindset</h2>
-
-<p>When treating private APIs like public APIs, you care about their design.
-You care about why you create them, what problems they will solve.
-You care about their look and feel.
-Designing best in class APIs that will be easy to understand and easy to use is not something that you do easily at first try, you need to do it again and again.
-So, slowly but surely, treating private APIs like public ones instills the API mindset and grow the API skills you’ll need for your public APIs.
-Also, all people working on APIs will be happy because they learn valuable skills, because they do great things.</p>
-
-<p>If you don’t treat private like public APIs, you’ll have to learn by creating public ones.
-How will you feel failing miserably publicly?
-What will be the cost of such failure?
-And beyond that, how people will feel?
-You’ll lose skilled people, you’ll lose people who want to learn.</p>
-
-<h2 id="simplifying-architecture">Simplifying architecture</h2>
-
-<p>When you don’t think about a private API as a public one, you may do short sighted design and architecture decisions often leading to tightly coupled complex systems, systems that can’t be used independently, and so systems that can’t be reused easily in other contexts.</p>
-
-<p>I remember some team wanting to build a system exposing its features through 3 different technologies: HTTP based API, Kafka Messaging, and shared folders.
-And it’s not a “pick the one you like” menu, in order to actually interact with the system you had to use all 3.
-Why?
-Simply because the team they were working for the first integration could use those technologies.
-Unfortunately that way of working couldn’t be easily replicated with other teams inside the organization… and even less with the outside world.</p>
-
-<p>Thinking to expose the system to an outside third party adds constraints that guides you to create simpler systems.
-In that case HTTP based APIs would have been totally sufficient.</p>
-
-<h2 id="ensuring-a-good-level-of-security">Ensuring a good level of security</h2>
-
-<p>Working “with the family”, usually leads to a certain lack of concerns about security: “We know the other team, we can trust them”.
-Yes, but they still can do mistakes.
-Considering any consumer as possibly hostile will avoid bad surprise.
-It’s not because you trust an other team that you should provide them an API that could arm your systems or leak data that shouldn’t leave your system.
-And what if the API goes from intranet to internet or have to go public?
-Will you remember those small arrangements with security?</p>
-
-<p>So, better wonder if you would “do that” when exposing this feature as a public API?
-If the answer is no, then don’t do it for a private one.</p>
-
-<h2 id="reducing-costs">Reducing costs</h2>
-
-<p>If your private APIs are treated like public ones, they are designed to be easy to understand, easy to use and reusable in various contexts.
-That means when a new need arise, you may not need to rebuild everything from scratch because you already have one or more APIs that can be reused to fullfil it.
-As those APIs are easy to understand and easy to use, the new teams willing to use them will be able to do it quickly without even asking support to the team providing them.
-Less time spent on those evolutions, means less money spend for the organization.</p>
-
-<h2 id="achieving-faster-time-to-market">Achieving faster time to market</h2>
-
-<p>And last but not least, treating your private APIs like public ones will help you achieving faster time to market for all of your projects.
-Indeed, having highly reusable APIs that can be integrated in a few minutes will make short deadlines totally achievable.
-Icing on the cake, if the project is to provide one of your organization service as an API, the private API delivering it could probably be exposed as it is.</p>
-
-<h1 id="target-the-ideal-private--public">Target the ideal private === public</h1>
-
-<p>Even if you don’t plan to provide public APIs, considering private APIs as first class APIs like public APIs has many benefits that far outweigh the investment.
-The ideal target would be to say that <a href="https://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/">any API can be a public API</a>, but sometimes you can’t without investing too much.
-That’s especially true when you start building event oriented architecture on top of Kafka.
-No problem, keep the spirit and evaluate what will need to be done in case of public exposure, so you’ll make the right decision and the additional work will not be a surprise.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“Why should we care about our privates APIs? They’re only consumed by us, so let’s do minimal work on them. We’ll keep our effort only for the public ones we sell to the outside world.” Such stance will have terrible consequences for an organization, even more if it will never create public APIs. Let’s see 5 reasons why you should treat privates APIs like public ones.]]></summary></entry></feed>
+And practicing doubting will help you solve your mistakes more easily.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[F*** impostor syndrome, it’s not easy to say that I’m an API design expert, but I am. Along my path to expertise, I failed, I did mistakes; that helped me to learn a lot. I also have been afraid, I had doubts. And you know what? Though I’m now an expert, that’s still the case when I help people to design their APIs. But, I learned to live with that. I learned to live with the “what if I’m wrong” question.]]></summary></entry></feed>
