@@ -1,4 +1,134 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-02-09T06:12:51-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">7 years being the API Handyman, the age of reason?</title><link href="https://apihandyman.io/7-years-being-the-api-handyman-the-age-of-reason/" rel="alternate" type="text/html" title="7 years being the API Handyman, the age of reason?" /><published>2022-02-02T00:00:00-06:00</published><updated>2022-02-02T00:00:00-06:00</updated><id>https://apihandyman.io/7-years-being-the-api-handyman-the-age-of-reason</id><content type="html" xml:base="https://apihandyman.io/7-years-being-the-api-handyman-the-age-of-reason/"><![CDATA[<p>This time, no “API blah blah blah”, this time, it’s personal.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-02-09T07:48:46-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Choosing between raw and processed data when designing an API</title><link href="https://apihandyman.io/choosing-between-raw-and-processed-data-when-designing-an-api/" rel="alternate" type="text/html" title="Choosing between raw and processed data when designing an API" /><published>2022-02-09T00:00:00-06:00</published><updated>2022-02-09T00:00:00-06:00</updated><id>https://apihandyman.io/choosing-between-raw-and-processed-data-when-designing-an-api</id><content type="html" xml:base="https://apihandyman.io/choosing-between-raw-and-processed-data-when-designing-an-api/"><![CDATA[<p>Look how trees are represented in Piet Mondrian’s paintings shown in this post’s banner.
+On the left they are represented in a figurative way, on the right totally abstracted.
+This is what we’ll discuss in this post, not figurative vs abstract painting, but raw vs processed data in API design.
+Choosing between raw or processed data, date of birth vs age for instance, has a direct impact on developer experience but also on provider’s.
+<!--more--></p>
+
+<div class="alert alert-info"><h4 class="alert-heading">About Piet Mondrian</h4><hr />
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/choosing-between-raw-and-processed-data-when-designing-an-api/mondrian-composition.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Composition II in Red, Blue, and Yellow, 1930</figcaption></figure>
+</div>
+<p><a href="https://en.wikipedia.org/wiki/Piet_Mondrian">Piet Mondrian</a>, is one of the pioneers of abstract art, but started with figurative painting.
+You may know him by his compositions such as the one above.
+This post banner is composed of two of his paintings.
+On the left side : <a href="https://commons.wikimedia.org/wiki/File:Mondriaan_-_grazende_kalfjes.jpg">Grazing cows in a polder</a> (oil on canvas, between 1901 and 1903), on the right side: <a href="https://commons.wikimedia.org/wiki/File:Blossoming_apple_tree,_by_Piet_Mondriaan.jpg">Blossoming apple tree</a> (oil on canvas, 1912).</p>
+
+</div>
+
+<h1 id="a-not-so-simple-question">A not so simple question</h1>
+
+<p>Here’s a question that I often ask when doing API design training sessions.
+Let’s say we are designing an API to “manage Users” (not the best crystal clear need ever, but it’s just a basic example).
+To fullfil some goal/job to be done, users’ age must be returned.
+As the underlying system stores users’ date of birth, what should we do?</p>
+
+<ul>
+  <li>Return date of birth only (hence raw data)</li>
+  <li>Return age only (hence processed data)</li>
+  <li>Return both date of birth and age (hence raw and processed data)</li>
+</ul>
+
+<div class="alert alert-warning"><h4 class="alert-heading">Be sure of the needs!</h4><hr /><p>We will not discuss that here, but in real condition, you must be sure about WHY the age is needed and HOW it will be used. Always be careful and triple check that the need that has been identified is the right one.</p>
+
+</div>
+
+<h1 id="raw-data-and-terrible-consumer-side-business-logic">Raw data and (terrible) consumer side business logic</h1>
+
+<p>We could return date of birth only.
+Indeed, calculating an age, the number of years between today and a date is not that complicated.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">How to NOT calculate age in JS</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-js line-numbers code-copy"><code class="code-block">const birthDate = Date.parse(&#39;2004-04-10&#39;);
+const today = Date.now();
+const differenceInMs = today - birthDate;
+const differenceInYears = differenceInMs / 1000 / 3600 / 24 / 365; // 17.847940055048202
+const age = Math.round(differenceInYears); // 18</code></pre>
+  </div>
+</div>
+
+<p>It’s not that complicated to calculate an age, but some people can still make errors, as shown in the JS code snippet above.
+If “users” were citizens, such error could give the right to vote to someone who is not 18 yet (we can vote at 18 in France).
+That means returning raw data may lead to consumers implementing some business logic the wrong way and so can lead to more or less terrible errors.</p>
+
+<p>Oh, you could check that consumers actually do it well …
+But, honestly don’t do that.
+It may possibly work with one or two consumers close to you, but how will you manage that with dozens of consumers that are actual customers?
+Spoiler: you won’t.</p>
+
+<p>And even if by chance all consumers could calculate the “age” well, what will happen if you, as the API provider, want to change that business logic?
+What if, in the beginning, the “age” was supposed to be the raw number of years as a float number and now you changed your mind and want it rounded without decimals (yes rounded because some business logic reason).
+It will be complicated to tell all consumers to change that in their own code.</p>
+
+<p>And even if consumers are willing to update their code, they may simply be unable to implement that business logic.
+During some recent session, one of the attendees raised a very good point: unfortunately people die.
+I never have thought of that!
+If the API manages “users” (whatever it means) who can die, deriving age from the date of birth will not work.
+And just in case it crossed your mind, don’t even dare to think returning date of death along date of birth.</p>
+
+<p>So it seems better to return processed data such as an age than raw data such as a date of birth.
+But avoiding consumers implementing business logic is not the only reason you would return processed data instead of raw data.</p>
+
+<h1 id="sensitive-raw-data-processed-data-to-the-rescue">Sensitive raw data? Processed data to the rescue!</h1>
+
+<p>Indeed, there’s another possible problem here if we return the date of birth to fulfill our “age” need.
+A date of birth could be considered a sensitive piece of data in some places, it even could help identify a user.</p>
+
+<p>Just in case you’re not aware of that: privacy matters whatever you build; and APIs are no exception.
+And if you don’t care, some regulations like <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a> will force you to care about it.</p>
+
+<p>So in such a situation, having to deal with sensitive raw data, it could be interesting to process it and make it less sensitive.
+Here, returning an age instead of the date of birth would solve the problem.
+Note that if it’s so sensitive, you may also have to rethink about why you actually store it, but that’s another story.</p>
+
+<p>So again, returning the age (processed data) instead of date of birth (raw data) seems to be a good idea.</p>
+
+<h1 id="processed--raw-data-for-more-usages">Processed + Raw data for more usages</h1>
+
+<p>But don’t forget that your API must be usable for various use cases.
+If we set aside the possible sensitivity of date of birth, maybe it could be interesting to return both values.
+Indeed, date of birth could make sense for other possible use cases.
+Refrain to return just what is needed for the first identified use cases.
+Always expand your vision to a broader context.
+How many times I’ve seen web services and APIs dealing with totally dumb subsets of business concepts, missing data that are important in general whatever you do …
+But data that were not needed for the first use case 🤦🏻‍♂️.</p>
+
+<h1 id="raw-vs-process-data-impacts-developer-and-provider-experiences">Raw vs process data impacts developer and provider experiences</h1>
+
+<p>Obviously, this raw vs processed data question is not only for age vs date of birth.
+You can apply this reasoning for any piece of data.</p>
+
+<p>Think carefully before returning raw data that will be processed on the consumer side.
+Remember that an API is supposed to be “YOUR stuff for dummies”, do not delegate YOUR business logic to consumers.
+It may make your API harder to use for consumers, they need your expertise to use it, and so that cripples developer experience.
+They can do mistakes, and even if they don’t, you won’t be able to modify that consumer side business logic easily, and so that cripple your provider experience.</p>
+
+<p>But do not do it too much either, check that how the data will be processed is actually YOUR job.
+If not careful, you could end with a very specialized API working for a specific consumer.
+And so this API will be hard to reuse in broader contexts by other consumers.
+Again that impacts both developer and provider experience.</p>
+
+<p>Also think about the sensitivity of the raw data you need to return.
+Think about it not only fearing regulators but also for your users safety and yours, the less sensitive data, the better.
+Returning processed data hiding the original raw data will avoid you many headaches, hence have a better provider experience.</p>
+
+<p>And last but not least, it’s not because processed data is returned that you must remove the original raw data.
+It could be useful for other purposes and so enhance developer experience.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Look how trees are represented in Piet Mondrian’s paintings shown in this post’s banner. On the left they are represented in a figurative way, on the right totally abstracted. This is what we’ll discuss in this post, not figurative vs abstract painting, but raw vs processed data in API design. Choosing between raw or processed data, date of birth vs age for instance, has a direct impact on developer experience but also on provider’s.]]></summary></entry><entry><title type="html">7 years being the API Handyman, the age of reason?</title><link href="https://apihandyman.io/7-years-being-the-api-handyman-the-age-of-reason/" rel="alternate" type="text/html" title="7 years being the API Handyman, the age of reason?" /><published>2022-02-02T00:00:00-06:00</published><updated>2022-02-02T00:00:00-06:00</updated><id>https://apihandyman.io/7-years-being-the-api-handyman-the-age-of-reason</id><content type="html" xml:base="https://apihandyman.io/7-years-being-the-api-handyman-the-age-of-reason/"><![CDATA[<p>This time, no “API blah blah blah”, this time, it’s personal.
 February 2022 marks a major landmark, I can’t believe I launched the API Handyman blog 7 years ago!
 Being 7 years old is supposed to mark the “age of reason”.
 Did I reached it?
@@ -836,70 +966,4 @@ Vous saurez vous faire un avis grâce à ce clash d’anthologie.</p>
         <iframe class="iframe-responsive" data-src="https://www.youtube-nocookie.com/embed/JjSUePBTLj4?color=white&amp;theme=light" frameborder="0" allowfullscreen="">
         </iframe>
     </div>
-</div>]]></content><author><name>Nicolas Barrasson &amp; Jonathan Jalouzot &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html"><![CDATA[L’idée folle de l’équipe Microsoft User Group France pour API Days Paris 2021: un clash REST (représenté par votre serviteur) vs GraphQL (représenté par Jonathan Jalouzot, tenancier du Meetup GraphQL Paris) arbitré par Nicolas Barrasson.]]></summary></entry><entry><title type="html">And what if I’m wrong? Overcoming fears and doubts while designing APIs</title><link href="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/" rel="alternate" type="text/html" title="And what if I’m wrong? Overcoming fears and doubts while designing APIs" /><published>2021-12-08T00:00:00-06:00</published><updated>2021-12-08T00:00:00-06:00</updated><id>https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis</id><content type="html" xml:base="https://apihandyman.io/and-what-if-im-wrong-overcoming-fears-and-doubts-while-designing-apis/"><![CDATA[<p>F<strong>**</strong>* impostor syndrome, it’s not easy to say that I’m an API design expert, but I am.
-Along my path to expertise, I failed, I did mistakes; that helped me to learn a lot.
-I also have been afraid, I had doubts.
-And you know what?
-Though I’m now an expert, that’s still the case when I help people to design their APIs.
-But, I learned to live with that.
-I learned to live with the “what if I’m wrong” question. 
-<!--more--></p>
-
-<h1 id="designing-is-doubting">Designing is doubting</h1>
-
-<p>So yes, even after all these years, despite being an expert, I still can fear to be wrong, I still can doubt while designing APIs.
-And that feeling is even stronger when I help others to design APIs, my mistakes could impact others.</p>
-
-<p>What can be wrong in API Design?
-What would an expert or anyone else doubt when designing an API?
-Everything.
-Needs, business rule, API granularity, operation granularity, operation goal, behavior, data structures, names, types, enumerations …
-All those problems can be categorized in the following categories:</p>
-
-<ul>
-  <li>Needs and subject matter: Everything related to the business side of the API. What problem are we trying to solve, what the API is supposed to do, is it a “this” or a “that, what becomes “this” after we’ve done “that” …</li>
-  <li>Architecture and modeling: Everything related to the representation of the business intent as a programming interface. One or 2 APIs, list or tree, sync or async, do we need a different representation of “this” in those different contexts, …</li>
-  <li>Look and feel: Cousin to previous topic, everything related to consistency. Path structure, when using header parameters, is it “/resource” or /resources, is it birthDate or dateOfBirth …</li>
-</ul>
-
-<p>With experience, training, reading, there are less and less fears and doubts, but they’re will always be there.
-The best way to deal with doubts is actually to get rid of them.</p>
-
-<h1 id="ensuring-that-im-not-wrong">Ensuring that I’m not wrong</h1>
-
-<p>Look and feel concerns are the easier to deal with … if you have API design guidelines.
-Indeed, having rules defining the look and feel of your APIs will help you deal with most doubts.
-But beware, look and feel concerns can sometimes <a href="/choosing-between-birthdate-and-dateofbirth-has-important-implications-for-your-api/">hide in details</a>, so always wonder if the decision you make have greater impacts.
-If so, and if there’s no actual solution in your guidelines, it will be time to add it so the next time you won’t doubt.</p>
-
-<p>Guidelines can also be of great help for architecture and modeling.
-Indeed, guidelines are not just made to say with HTTP method or HTTP status code use.
-They can define more complex design patterns and tell when to use them, like “when should we use an async pattern”.
-But guidelines can’t contain all responses to all business specific problems.
-For those problems, you can take advantage of existing APIs or existing API in your domain, you can also refer to standards, common practices or well known API to validate your choices.</p>
-
-<p>Regarding needs, the only way to deal with doubt is talking to SMEs (Subject Matter Experts).
-I can’t count how many times doubts were solved by talking to an SME or better making 2 SMEs talk together, the designer asking a few question to “heat up” the discussion.
-Actually, don’t ever design API without working closely with SME.</p>
-
-<p>But in the end, there still can be some uncertainty because of some unknowns (known unkowns or unknown unknowns), the “what if I’m wrong question” still stands.</p>
-
-<h1 id="evaluating-the-consequences-if-im-wrong">Evaluating the consequences if I’m wrong</h1>
-
-<p>In that case, in order to be comfortable, I evaluate the consequences of being wrong.
-If I had to make a choice between solution A and solution B and chose B, I evaluate what would be the path from A to B.
-Will this introduce a breaking change?
-If the answer is no, that’s perfect, no more doubts.
-If it’s yes, I wonder what is the <a href="/apidays-interface-doing-apis-right-and-doing-right-apis/#tip-2-cost-of-change-varies">cost of this change</a>?
-Sometimes it’s fairly minimal, like when it’s a private API consume by a single consumer managed by the same team providing the API.</p>
-
-<p>Evaluating consequences doesn’t always take away all my doubts, but knowing them and sharing them with the team so that everyone accepts them greatly reduces the worries.
-Yes, but that mean I still can be wrong … so what if I’m wrong?</p>
-
-<h1 id="failing">Failing</h1>
-
-<p>“You’ll fail, you’ll do mistakes”: that’s what I say when I start teaching API Design to someone. 
-Absolutely not to put them off, but to explain that failure will happen, that it is part of the job.
-Though you can drastically reduce them by doubting, removing your doubts and evaluating the consequences of being wrong, some mistakes will happen.
-Just knowing that will make your life easier.
-And practicing doubting will help you solve your mistakes more easily.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[F*** impostor syndrome, it’s not easy to say that I’m an API design expert, but I am. Along my path to expertise, I failed, I did mistakes; that helped me to learn a lot. I also have been afraid, I had doubts. And you know what? Though I’m now an expert, that’s still the case when I help people to design their APIs. But, I learned to live with that. I learned to live with the “what if I’m wrong” question.]]></summary></entry></feed>
+</div>]]></content><author><name>Nicolas Barrasson &amp; Jonathan Jalouzot &amp; Arnaud Lauret</name></author><category term="talk" /><summary type="html"><![CDATA[L’idée folle de l’équipe Microsoft User Group France pour API Days Paris 2021: un clash REST (représenté par votre serviteur) vs GraphQL (représenté par Jonathan Jalouzot, tenancier du Meetup GraphQL Paris) arbitré par Nicolas Barrasson.]]></summary></entry></feed>
