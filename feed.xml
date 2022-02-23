@@ -1,4 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-02-16T13:41:36-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Hacking Elgato Key Light With Postman</title><link href="https://apihandyman.io/hacking-elgato-key-light-with-postman/" rel="alternate" type="text/html" title="Hacking Elgato Key Light With Postman" /><published>2022-02-16T00:00:00-06:00</published><updated>2022-02-16T00:00:00-06:00</updated><id>https://apihandyman.io/hacking-elgato-key-light-with-postman</id><content type="html" xml:base="https://apihandyman.io/hacking-elgato-key-light-with-postman/"><![CDATA[<p>Want to learn how to hack a desktop app calling an API and learn some API design principles?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-02-23T06:14:27-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Why do we need API design guidelines?</title><link href="https://apihandyman.io/why-do-we-need-api-design-guidelines/" rel="alternate" type="text/html" title="Why do we need API design guidelines?" /><published>2022-02-23T00:00:00-06:00</published><updated>2022-02-23T00:00:00-06:00</updated><id>https://apihandyman.io/why-do-we-need-api-design-guidelines</id><content type="html" xml:base="https://apihandyman.io/why-do-we-need-api-design-guidelines/"><![CDATA[<p>Why do we need API design guidelines?
+Why do I need this boring set of constraining rules telling me how to design APIs?
+Why can’t I design APIs the way I like (which is the best one by the way).
+What would I (and my organization) gain taking advantage of API design guidelines?
+<!--more--></p>
+
+<p><em>That’s yet another interesting question coming from the Internet, if you have such API questions don’t hesitate to ping me, I may be able to respond through a blog post.</em></p>
+
+<h1 id="consistent-apis">Consistent APIs</h1>
+
+<p>The first reason why you need API design guidelines is to ensure a certain level of consistency throughout your whole API surface.</p>
+
+<p>Creating consistent APIs, APIs that share the same look and feel, is key to build a great developer experience.
+Indeed, once someone has learned to use one of your APIs, using another one that looks and behaves in the same fashion as this first API is fairly easy.
+Just like when you use any app on your smartphone, they share common behaviors of the operating system.
+Just like when you use a mobile app, desktop app or website of a given company, those different “applications” in a broad sense share a look and feel defined by the company providing those services.
+With consistency, you can speed up learning, people can guess how things work.</p>
+
+<p>If you think that achieving consistency in API design can be done without really thinking about, without defining rules, let me tell you about a simple exercise that I do when teaching the fundamentals of (REST) API design.
+I love this exercise, because it never misses to make attendees realize they definitely need API design guidelines to design consistent APIs.
+I ask the attendees to choose the paths to represent a “list of users” and “a user”, the only constraint is that those paths must be valid from a REST perspective, hence being able to represent a resource in a unique way.
+We often end with the following responses:</p>
+
+<ul>
+  <li><code>/users</code> and <code>/users/{userId}</code></li>
+  <li><code>/users</code> and <code>/user/{id}</code> (<a href="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">seriously don’t do that</a>)</li>
+  <li><code>/user</code> and <code>/user/{userId}</code></li>
+  <li><code>/user</code> and <code>/user-{reference}</code></li>
+  <li><code>/utilisateurs</code> and <code>/utilisateurs/{referenceUtilisateur}</code> (that’s french)</li>
+</ul>
+
+<p>All those path are technically valid from a pure REST perspective, each one allows to represent the list of users and a single user.
+They are technically valid but each response is different from the others, these solutions are inconsistent.
+Even people working in the same organization working on the exact same use case can achieve inconsistent designs. 
+That’s why you need API design guidelines.
+They are many possible variations when having to design API, you need to choose a single way to “style” your APIs and write it down in your guidelines.</p>
+
+<h1 id="less-discussions">Less discussions</h1>
+
+<p>But what is the “right” way to represent a “list of users”, <code>/users</code> or <code>/user</code>?
+I have an <a href="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">opinion</a> on that topic, you may have another one.
+Without having settle this debate once and for all, be prepared to face endless debates about very basic API design concerns such as this one.
+Seriously, it’s not fun to waste time on such discussions.
+I prefer <code>/users</code>, but if the guidelines created before I arrive in the company say it’s <code>/user</code>, so be it.
+What really matter is what the API does, that’s on that topic we should “waste” our time, not choosing between turquoise and cyan.</p>
+
+<p>But that does not mean you should never discuss guidelines.
+Honestly, if the guidelines if my company says <code>/users</code> and <code>/user/{userId}</code> which is a total non-sense, leading to poor DX, we’ll have to discuss that again.
+But be professional, if the existing rules are just different from what you’re used to but make sense and create consistent APIs, don’t be an asshole, accept difference.</p>
+
+<h1 id="simpler-api-design">Simpler API design</h1>
+
+<p>Not all designers are seasoned one, not all designers have been working in the organization for years.
+Without guidelines, beginner designers will, at best loose their time chasing the response to the question <code>/users</code> or <code>/user</code>, or which HTTP status code use in “that” context, and at worst, randomly choose a way of designing APIs based on today’s humor.
+<a href="https://apihandyman.io/nobody-cares-about-api-design-guidelines/">Well-structured-designer-friendly API design guidelines</a> accompanied with a touch of automation (who said <a href="https://apihandyman.io/toolbox/spectral/">Spectral</a>) will speed up their learnings of the way of designing APIs in general and in your organization.</p>
+
+<p>And guidelines are not only of interest for beginners. 
+Seasoned designers may also loose their time looking for solutions to complex problems such as “how to handle long operations” or “how to handle gateway message size limitations”, problem which could be solved once and for all and put into the guidelines.</p>
+
+<h1 id="simpler-api-design-review">Simpler API design review</h1>
+
+<p>API designer reviewers are masters in API design able to spot the tiniest “imperfection” in a design, a not so clear naming, a design pattern that could cripple evolutions, … (Actually API design reviewers a far more than that, but that’s another story).
+But just like designers, though being “API Design Jedi Masters”, reviewers can be new to the organization, they can forget some specific point.
+So having a source of truth to refer to is a great help for reviewers to comfort their reviews and also having pacified discussions with designers (because “sorry, that’s not what you’re used to, but this is how we do here”).</p>
+
+<h1 id="the-source-of-automation">The source of automation</h1>
+
+<p>And last but not least, I mentioned automation (API design linting) with <a href="https://apihandyman.io/toolbox/spectral/">Spectral</a>): API design guidelines will be the source of any automated control of API design.
+Jumping right into writing some code controlling your design conforms to your organization’s way of designing APIs is a terrible idea.
+It would be just like writing an OpenAPI document, focusing on <code>GET /this</code> and <code>POST /that</code> without being sure of what the API is supposed to do, without being able to describe in natural language the needs that the API must fulfil.
+Also, even a must have in your toolbox, tools such as Spectral, will not be able to capture all that you can put in your design guidelines (such as when choose solution A over B).</p>
+
+<h1 id="you-need-api-design-guidelines">You need API design guidelines</h1>
+
+<p>So the question it not really “do you need API design guidelines?” but “what are you waiting for to create API design guidelines?”.
+It’s never too late to do so, indeed, you can create guidelines even when you already have existing APIs.
+But that’s another story.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Why do we need API design guidelines? Why do I need this boring set of constraining rules telling me how to design APIs? Why can’t I design APIs the way I like (which is the best one by the way). What would I (and my organization) gain taking advantage of API design guidelines?]]></summary></entry><entry><title type="html">Hacking Elgato Key Light With Postman</title><link href="https://apihandyman.io/hacking-elgato-key-light-with-postman/" rel="alternate" type="text/html" title="Hacking Elgato Key Light With Postman" /><published>2022-02-16T00:00:00-06:00</published><updated>2022-02-16T00:00:00-06:00</updated><id>https://apihandyman.io/hacking-elgato-key-light-with-postman</id><content type="html" xml:base="https://apihandyman.io/hacking-elgato-key-light-with-postman/"><![CDATA[<p>Want to learn how to hack a desktop app calling an API and learn some API design principles?
 This post is made for you.
 When I got my Elgato Key Light, my first questions were: “can I control it without using the official control center using an API?” and “is the API easy to understand and use?”.
 Thanks to Postman’s proxy feature, I was able to easily hack the API.
@@ -1088,171 +1164,4 @@ Actually having a clear description of what the API should do in natural languag
 <p>By the way, if <a href="/excuse-my-french-api-or-being-an-english-as-a-second-language-api-designer/#when-should-i-use-english-during-design-process">you’re an ESL API Designer I recommend to do that in your native language</a>.</p>
 
 <p>So, whatever works in your context, spec or code first, design your API by working first on the needs using natural language.
-That’s the heart of design first.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Either you provide public or private APIs, you must have a design first approach. But what does actually mean “design first”? Does it mean religiously writing all your GET /this and POST /that in an OpenAPI file? But if that so, how is this so different from the code first approach where you write actual code to generate an OpenAPI file? Maybe it’s time to clarify what should come first when designing API.]]></summary></entry><entry><title type="html">Handle API gateway and backend differences in API documentation with OpenAPI Specification</title><link href="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/" rel="alternate" type="text/html" title="Handle API gateway and backend differences in API documentation with OpenAPI Specification" /><published>2021-12-15T00:00:00-06:00</published><updated>2021-12-15T00:00:00-06:00</updated><id>https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification</id><content type="html" xml:base="https://apihandyman.io/handle-api-gateway-and-backend-differences-in-api-documentation-with-openapi-specification/"><![CDATA[<p>I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers?
-<!--more--></p>
-
-<h1 id="the-question">The question</h1>
-
-<p>The original question was this one: “I’m trying to work out how to use OpenAPI both as a service spec (with code generation) but also as documentation when the service will be deployed behind a gateway that will return some HTTP responses (401/403). Do I write in the OpenAPI spec what the end user sees (that an endpoint might return 401 say) even though the underlying service isn’t implementing that call? It makes the code generation ‘wrong’ but equally the developers need to know that the gateway configuration should protect it. Or do I make the OpenAPI reflect the service, in which case how do I tell the end users that they may see additional errors?”</p>
-
-<p>So the question is how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers</p>
-
-<p>To answer that question, we need to talk about API gateways and how they can expose an API contract that is slightly different from the implementation’s one.</p>
-
-<h1 id="how-contract-can-differ-between-gateway-and-implementation">How contract can differ between gateway and implementation</h1>
-
-<div class="alert alert-info">
-<p>Note that for this post <a href="/an-api-gateway-must-be-a-dumb-pipe/">we’ll consider the gateway as as “smart-dump pipe”</a>, and so set aside the “heavy transformation” use cases that are not relevant here.</p>
-
-</div>
-
-<p>An API gateway is a proxy that sits between backends providing APIs and their consumers.
-Such proxy is useful to avoid reinventing the security wheel.
-With an API gateway, dealing with the Oauth dance and ensuring that only registered consumers can use some API is just a piece of cake (though that does not mean it does ALL security job as shown in <a href="/an-api-gateway-alone-will-not-secure-your-api/">my previous “An API Gateway alone will not secure your API” post</a>).
-Other less known feature, gateways also provide throttling to ensure that a given consumer doesn’t do more than X call per second on a API or to ensure that a backend does not take more than Y call per second to protect non scalable infrastructure.</p>
-
-<h2 id="errors-and-more">Errors and more</h2>
-
-<p>Doing such stuff independently from the API implementation, an API gateway actually modifies exposed API contract.
-Indeed, if a consumer makes an API call without an access token, they will get a <code>401 Unauthorized</code> response coming from the gateway, their API call having not reach the backend.
-Same goes if a consumer goes beyond the X call per second, they may get a <code>429 Too Many Requests</code> coming from the gateway.
-Those errors are not part of the original contract exposed by the backend.</p>
-
-<div class="alert alert-warning">
-<p>Important notice regarding errors: ensure that errors returned by your API gateway actually follow your API design guidelines.</p>
-
-</div>
-
-<p>But the API gateway may modify the contract beyond adding some errors.
-As the gateway is a proxy, the server host is not the same at the gateway level (<code>https://cool-domain.com</code>) and the backend level (<code>https://obscure-server-name</code>).
-It may change the base path, the backend exposing its API on <code>/api</code> and the gateway exposing on <code>/meaningful-name</code>.
-A gateway may also add some HTTP headers in responses.</p>
-
-<p>More tricky, the gateway may change security settings.
-It’s fairly common to have various security modes available at the gateway level (Oauth, OpenID connect) but between the gateway and the backend a more generic, often JWT based security mode is used.</p>
-
-<p>And even more tricky, you may have some endpoints at backend level that are only used internally and must not be exposed at gateway level.</p>
-
-<h2 id="impacts-on-openapi-file">Impacts on OpenAPI file</h2>
-
-<p>All that means the modifications can take place in the following places in an OpenAPI file:</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Modified OpenAPI file</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-yaml line-numbers code-collapsed code-copy"><code class="code-block">openapi: 3.0
-
-servers:
-    - url: # Gateway and backend won&#39;t have
-           # same URLs (scheme, host, base path)
-
-components:
-    securityDefinitions:
-        # Definitions of gateway specific security
-        # modes different from backend
-
-paths:
-    /any-path: # Some paths may not be exposed on the gateway
-        any-operation: # Some operations may not be exposed on the gateway
-            security:
-                # Usage of gateway specific security
-                # modes different from backend
-            responses:
-                429: # Gateway will add or override HTTP
-                     # status codes for all operations
-                    headers:
-                        # Gateway may add specific headers</code></pre>
-  </div>
-</div>
-
-<h1 id="the-answer">The answer</h1>
-
-<p>So how to deal with that regarding an OpenAPI file used as specification and documentation?</p>
-
-<h2 id="consumers-perspective-first">Consumer’s perspective first</h2>
-
-<p>First, what is 100% sure is that the consumers (well, their developers) must get access to a documentation describing the API from their perspective, that is the API gateway version.</p>
-
-<p>If the difference between backend and gateway contract is only about getting a few errors like 401 or 429, you could possibly provide the backend reference documentation and have a dedicated pages to explain how some specific errors are handled.
-But that means when consumers read the API reference documentation, these errors are not explicitly described.
-And that is a problem in my humble opinion: as a developer using an API, I want to know exactly what happens reading the documentation of an operation.</p>
-
-<p>That means, the reference documentation and hence the underlying OpenAPI file, must include those information. 
-So how to achieve that?</p>
-
-<h2 id="in-case-of-backend-specific-operations">In case of backend specific operations</h2>
-
-<p>If your backend exposes specific operations that must not be exposed at gateway level, I would suggest to put them in a separate API.
-Yes, a single backend can expose 2 different APIs on two different root path.
-That will avoid the risk of unintentionally expose purely internal admin operations to the outside world.</p>
-
-<h2 id="from-gateway-to-implementation">From gateway to implementation</h2>
-
-<p>First option, create an OpenAPI file describing the API at the gateway level and tweak it, if needed, to use it at backend level:</p>
-
-<ul>
-  <li>Replace gateway <code>servers</code> by backend one(s)</li>
-  <li>Replace gateway <code>securityDefinitions</code> by backend one</li>
-  <li>Replace gateway operation <code>security</code> by backend one</li>
-  <li>Remove or replace gateway specific <code>responses</code></li>
-  <li>Remove gateway <code>specific</code> headers in <code>responses</code></li>
-  <li>Add backend specific operations if you don’t want to separate them (see <a href="/#in-case-of-backend-specific-operations">In case of backend specific operations</a>)</li>
-</ul>
-
-<p>Don’t do that manually, do it programmatically to ensure exhaustivity and consistentcy.
-You can use <a href="/toolbox/jq/">JQ</a> or an OpenAPI parser.</p>
-
-<h2 id="from-implementation-to-gateway">From implementation to gateway</h2>
-
-<p>The second way of dealing with that problem would be to transform the OpenAPI file describing the implementation’s contract into the gateway one.</p>
-
-<p>In a code first approach, you could use the implementation’s documentation (OpenAPI) generator to do the transformation.
-If you’re coding in Java, it’s dead simple to do all the modifications programmatically with SpringFox.</p>
-
-<p>In both code first and spec first approaches, you can also do the transformations on an implementation version spec before or during deployment.
-If you’re very lucky, your API gateway manages that transformation magically (but I doubt that actually exists).
-If not, proceed like in “gateway to implementation” scenario using <a href="/toolbox/jq/">JQ</a> or an OpenAPI parser to modify the file.</p>
-
-<p>Whatever the way of doing the modifications, they would be:</p>
-
-<ul>
-  <li>Replace backend <code>servers</code> by gateway one</li>
-  <li>Replace backend <code>securityDefinitions</code> by gateway one</li>
-  <li>Replace backend operation <code>security</code>by gateway one</li>
-  <li>Add gateway specific <code>responses</code></li>
-  <li>Add gateway <code>specific</code> headers in <code>responses</code></li>
-  <li>Remove backend specific operations if needed (see <a href="/#in-case-of-backend-specific-operations">In case of backend specific operations</a>)</li>
-</ul>
-
-<h2 id="gateway-and-implementation">Gateway and implementation</h2>
-
-<p>And last but not least: doing both.
-You can create an OpenAPI file describing the two versions and then strip it of unwanted elements before using it as gateway or backend level.
-In my humble opinion that seems to be the best solution.
-Indeed, you actually define explicitly what happens at both level and especially at gateway level (it’s up to provider to decide how to use scope for instance).
-And when it comes to modify the OpenAPI file, it’s quite simple to remove elements.
-A middle-ground even better option could be to use templates or script to handle the addition of gateway errors or headers (which are always the same).</p>
-
-<p>Note that using a linter such as <a href="/toolbox/spectral/">Spectral</a> can ensure that your OpenAPI file(s) are actually valid ones (defining all errors for instance).</p>
-
-<h1 id="consumer-first-and-machine-readability">Consumer first and machine readability</h1>
-
-<p>Two important things to remember after reading this post:</p>
-
-<ul>
-  <li>The consumers MUST get a documentation, hence an OpenAPI file, that matches the API they see without bothering them with internal concerns (for instance that “the” API is actually build upon 2 components).</li>
-  <li>And whenever you need to tweak the documentation/description of an API, better take advantage of a machine readable format such as the OpenAPI and do the modifications programmatically not manually</li>
-</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[I got yet another interesting question from my social networks: how to deal with the fact that an API contract can be different at gateway and implementation levels, and more precisely how to manage that when describing that contract with an OpenAPI file used as specification targeting API’s implementation’s developer and documentation targeting API’s consumers?]]></summary></entry></feed>
+That’s the heart of design first.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Either you provide public or private APIs, you must have a design first approach. But what does actually mean “design first”? Does it mean religiously writing all your GET /this and POST /that in an OpenAPI file? But if that so, how is this so different from the code first approach where you write actual code to generate an OpenAPI file? Maybe it’s time to clarify what should come first when designing API.]]></summary></entry></feed>
