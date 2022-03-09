@@ -1,4 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-03-09T06:14:29-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Underestimated and unexpected IT challenges of API initiatives</title><link href="https://apihandyman.io/underestimated-and-unexpected-it-challenges-of-api-initiatives/" rel="alternate" type="text/html" title="Underestimated and unexpected IT challenges of API initiatives" /><published>2022-03-02T00:00:00-06:00</published><updated>2022-03-02T00:00:00-06:00</updated><id>https://apihandyman.io/underestimated-and-unexpected-it-challenges-of-api-initiatives</id><content type="html" xml:base="https://apihandyman.io/underestimated-and-unexpected-it-challenges-of-api-initiatives/"><![CDATA[<p>As an IT member, you convinced your boss that APIs were a thing and IT department should take them seriously.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-03-09T12:10:48-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Building a healthy and profitable relationship between tools and specifications</title><link href="https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications/" rel="alternate" type="text/html" title="Building a healthy and profitable relationship between tools and specifications" /><published>2022-03-09T00:00:00-06:00</published><updated>2022-03-09T00:00:00-06:00</updated><id>https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications</id><content type="html" xml:base="https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications/"><![CDATA[<p>We may never have a clear answer to the question “what comes first? Tools or Specifications?”. What is sure is people create tools or specifications based on their needs. Those tools and specifications, like OpenAPI, AsyncAPI, or JSON Schema, are tightly intricated. What could be done to build a healthy and profitable relationship?
+<!--more--></p>
+
+<p><em>This post’s banner is a diagram of the six possible types of symbiotic relationship, from mutual benefit to mutual harm. Symbiosis (from Greek , symbíōsis, “living together”, from , sýn, “together”, and , bíōsis, “living”) is any type of a close and long-term biological interaction between two different biological organisms, be it mutualistic, commensalistic, or parasitic. The organisms, each termed a symbiont, must be of different species.
+Source <a href="https://en.wikipedia.org/wiki/Symbiosis">Symbiosis - Wikipedia</a></em></p>
+
+<p><em>Special thanks to <a href="https://twitter.com/bpedro/status/1501192001269776389?s=20&amp;t=w9IgXoM8o6sHIrcxXg5BJQ">Bruno Pedro for raising the “who’s first” question</a> while I was tweeting on that “no tools, no standard/specification” topic.</em></p>
+
+<h1 id="why-do-specifications-need-tools--and-reverse">Why do specifications need tools  and reverse?</h1>
+
+<p>Let’s take an example. I could talk about the OpenAPI Specification but to change I’ll talk about <a href="https://json-schema.org/">JSON Schema</a> (which is actually used by OpenAPI).</p>
+
+<p>JSON Schema aims to describe formally your data formats. For instance, if I build a command-line tool that needs a configuration file. I can define its structure using a JSON Schema without writing a single line of my application code (I’m in the design first/spec first team!).</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A JSON Schema</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+    &quot;title&quot;: &quot;SuperCliConfiguration&quot;,
+    &quot;required&quot;: [
+        &quot;sourceRepository&quot;
+    ],
+    &quot;properties&quot;: {
+        &quot;sourceRepository&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;pattern&quot;: &quot;^https?://.*.git$&quot;
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+<p>The JSON Schema specification is human-readable and as an (experienced) human being, I can see that, in the “SuperCliConfiguration” schema, the property “sourceRepository” is required and it must be a URL ending with “.git”.</p>
+
+<p>But not all human beings can read such a format easily, especially when it describes complex schemas. And not all of them are happy reading JSON. So it is nicer to show them a rendering that is more accessible.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/building-a-healthy-and-profitable-relationship-between-tools-and-specifications/json-schema-rendering.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>Such documentation tool taking advantage of JSON Schema is great in itself, that enhances my tool’s documentation. But it would be a pity to confine this format to documentation.</p>
+
+<p>Such a specification document is interestingly used in code. I can use this schema with the <a href="https://ajv.js.org/">ajv</a> library to check that a configuration file is valid without writing much code.</p>
+
+<p>And that’s not all, the schema I have created is not only interesting for me. If someone else wants to build a tool that generates my tool’s configuration file based on some data they have, they can take advantage of my JSON Schema to do so.</p>
+
+<p>A specification without tools will never be used widely and will probably disappear quickly. Indeed, without tools taking advantage of it, what’s the point of a specification? It’s like writing a musical score and never playing it.</p>
+
+<p>The tools specifications relationship is not a one-way one. People creating tools can avoid losing time reinventing the wheel by taking advantage of specifications.</p>
+
+<p>And even more important, tools enhance their interoperability by using specifications. They share a kind of “standard” (not all specifications are strictly standard anointed by some standard organization) easing communication with other tools (in a broad sense, it’s not only about APIs). And, icing on the cake, those interoperable tools using specifications become part of a greater whole, enhancing their visibility, letting them participate in various ecosystems.</p>
+
+<p>So, no specifications without tools.
+And “not no tools without specifications”, but better tools with specifications.
+But what can be done on both sides to ensure a healthy relationship profitable to everyone involved?</p>
+
+<h1 id="tools-perspective">Tools perspective</h1>
+
+<p>As someone involved in the creation of a tool that could take advantage of a specification, I would expect the following when looking for information about a specification:</p>
+
+<ul>
+  <li>A clean short description of what the specification does, what problems it is trying to solve</li>
+  <li>A few use cases examples that show me how the specification could be or actually is used in the real world, accompanied by short code samples</li>
+  <li>An exhaustive list of complete use cases, explaining everything in details</li>
+  <li>An exhaustive, example-based, description of every element of the specification</li>
+  <li>Some reference implementations</li>
+  <li>Obviously the technical documentation à la RFC (for the purists)</li>
+</ul>
+
+<p>I also hope any fashion of presenting information and teaching to be used. I expect not only text but also figures, interactive diagrams, tutorials, videos, ready-to-use git repositories, … In my wildest dreams, I would love to see also training and certifications.</p>
+
+<p>If you’ve read me or seen me talking about API DX (Developer eXperience) and documentation, what is described above should sound vaguely familiar. With modern web APIs, we’ve been used to be able to understand and use an API in no time, easily. Being provided with information and helper material/tools in many forms. That should be the same for anything, and specifications are no exception.</p>
+
+<p>Not taking care of the IX, Implementer eXperience may seriously hinder a specification adoption. It may also lead to incomplete and even invalid implementation, hindering, even more, the specification adoption.</p>
+
+<h1 id="specification-perspective">Specification perspective</h1>
+
+<p>As someone who is involved in the creation of a specification or as a user of the tool taking advantage of a specification, I expect the following from implementers:</p>
+
+<ul>
+  <li>Explain from a high perspective why the spec is used in the tool</li>
+  <li>Explicitly state which version(s) of the specification is (are) supported</li>
+  <li>Explicitly state which portion/feature/part of the spec is supported and for what purpose</li>
+  <li>Explicitly state which portion/feature/part of the spec is not supported (and possibly why)</li>
+  <li>Provide a roadmap of specification support (for instance, for OpenAPI, <a href="/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/">knowing if 3.0 and 3.1 support is planned and for when is welcomed</a>)</li>
+</ul>
+
+<p>People creating specs AND tools’ users need to know how specifications are actually used.</p>
+
+<p>Regarding specification creators, some could object “why would I do extra work for them”. Well, “they” work hard on defining a specification for the community, so be nice to them, what they do is good for you remember? Your tool becomes part of a huge ecosystem thanks to their work (and yours actually). Not that means specifications creators should provide a standard way of stating what is used on how (and possibly a simple way of doing that).</p>
+
+<p>And in any case, you can’t get rid of providing that information to people who will possibly use your tools. Personally, if I had to choose, I’ll use the tool that tells me the whole story because I don’t want to discover too late that  “… oops, we said we support OpenAPI 3, well, … not totally, we don’t use the security definitions … and we do not support multi-document specifications”.</p>
+
+<h1 id="to-be-continued">To be continued</h1>
+
+<p>This post is just the first one on that topic, the relationship between specifications and tools. There will be probably more to come as I investigate more on the concepts of implementers’ experiences and specification implementation scorecard/notation/evaluation.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[We may never have a clear answer to the question “what comes first? Tools or Specifications?”. What is sure is people create tools or specifications based on their needs. Those tools and specifications, like OpenAPI, AsyncAPI, or JSON Schema, are tightly intricated. What could be done to build a healthy and profitable relationship?]]></summary></entry><entry><title type="html">Underestimated and unexpected IT challenges of API initiatives</title><link href="https://apihandyman.io/underestimated-and-unexpected-it-challenges-of-api-initiatives/" rel="alternate" type="text/html" title="Underestimated and unexpected IT challenges of API initiatives" /><published>2022-03-02T00:00:00-06:00</published><updated>2022-03-02T00:00:00-06:00</updated><id>https://apihandyman.io/underestimated-and-unexpected-it-challenges-of-api-initiatives</id><content type="html" xml:base="https://apihandyman.io/underestimated-and-unexpected-it-challenges-of-api-initiatives/"><![CDATA[<p>As an IT member, you convinced your boss that APIs were a thing and IT department should take them seriously.
 Congratulations! 
 That’s good, very good.
 Not only for you and your IT but for your whole organization.
@@ -1126,117 +1236,4 @@ Too many modules, too many different technologies, unnecessarily sharp technolog
 In short, we forget the experience of the system maintainers.
 Icing on the cake, in addition to bothering them, such systems are more complex to evolve and more fragile.</p>
 
-<p>So the next time you design an API and its underlying architecture, think about washing frying pans and think about all the users.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[In the kitchen, I’m the dishwasher. And lately, washing our new frying pans has got me thinking about design and API architecture issues. This post is dedicated to the person who complained that my book contained too many analogies. Sorry, but no matter what I do, read, look at, listen to, I’m always trying to see if I can make connections to APIs. And housework is no exception.]]></summary></entry><entry><title type="html">How to choose ids and codes to build user-friendly and interoperable APIs</title><link href="https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/" rel="alternate" type="text/html" title="How to choose ids and codes to build user-friendly and interoperable APIs" /><published>2021-12-29T00:00:00-06:00</published><updated>2021-12-29T00:00:00-06:00</updated><id>https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis</id><content type="html" xml:base="https://apihandyman.io/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/"><![CDATA[<p>As an API designer, why should you care about the value of a <code>productId</code>, a <code>countryCode</code>, or an error <code>code</code>?
-Because wisely choosing the value of such (in a broad sense) “identifiers” greatly participates in the making of a user friendly API; but most importantly an interoperable one.
-<!--more--></p>
-
-<p>The following “Scientific quadrant” (inspired by <a href="https://www.gartner.com/en/research/methodologies/magic-quadrants-research">Gartner’s Magic Quadrant</a>), shows a few examples of those identifiers sorted along 2 axes, interoperability and human-readability.
-Let’s analyse those 2 dimensions and those examples more closely to see how to choose “identifiers”.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/scientific-quadrant-for-identifiers.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<h1 id="interoperability">Interoperability</h1>
-
-<p>Interoperability is the ability of software to exchange and make use of information.
-For instance, switching from file exchange to exposing web APIs is a first (great) step in improving the interoperability of a system.
-That actually improves how other systems can exchange information with yours.</p>
-
-<p>But does exposing APIs magically makes using information easier for consumers?
-It highly depends on the actual data exposed (output) or expected (input) through it, and especially its ids and codes.</p>
-
-<h2 id="internal-vs-standard">Internal vs standard</h2>
-
-<p>For instance, using a <code>123</code> purely internal code to represent a country such as “France” is far less interoperable than using <code>FRA</code>, the widely adopted ISO3166 country alpha-3 code standard.
-If <code>GET /authors</code> returns a list of authors with their name and country for instance, it will be fairly easy for any system to interpret a standard <code>FRA</code> country code than an obscure <code>123</code>.</p>
-
-<p>Indeed, enabling the interpretation by consumers of such a purely internal identifier may require:</p>
-
-<ul>
-  <li>Providing extra documentation, like a (terrible) table of custom country codes and names (seriously don’t do that)</li>
-  <li>Or adding an extra operation to the API, like a <code>GET /countries</code> returning all country codes and names or a more specific <code>GET /countries/{countryId}</code>  (that’s less terrible)</li>
-  <li>Or adding extra data, like returning author’s country name along with the code (that make the author’s data self sufficient but less usable for other purpose than just showing them to end users)</li>
-</ul>
-
-<p>But even using one of those “solutions”, if no actual ISO3166 code is ever used, consumer programs will have hard time to actually interpret such specific way of representing countries.
-Maybe they’ll have to work on country names to match what they know of country on their side (probably ISO3166 based)… hoping country names are actually returned in english and without typos.
-It can be more a guess than an actual matching.
-Maybe consumers developers will painfully build a mapping table based on the data they get…
-But it will need to be updated if new countries are added.
-I don’t mean actual new countries, that’s a possibility but that don’t happen much, but new authors from countries that were not already represented in the authors list.</p>
-
-<p>On the other hand, using a standard ISO3166 code will makes both consumer and provider jobs easier because they naturally share common identifiers.
-Ideally, when I see a <code>GET /authors</code> and as I know authors countries are returned, I can guess that <code>GET /authors?country=FRA</code> will return french authors.
-It’s a no brainer, impossible to achieve with a custom country code.
-If I use ISO3166 codes on my side, matching my data with the one coming from <code>GET /authors</code> based on countries is dead simple.
-And I don’t care if new countries appear in authors data as I rely on the same ISO3166 referential: my consumer is always be up to date.</p>
-
-<h2 id="well-known-identifiers">Well known identifiers</h2>
-
-<p>But sometimes it’s not possible to use a “standard” identifier known by everyone in the outside world.
-It’s actually fairly common to use custom identifiers, but if that’s the case always favor the “well known” ones.
-For instance, if you need a product identifier (for <code>GET /products/{productId}</code>), better use an id shared by a few APIs across a domain or an id shared across the whole organization than using an API specific product id.
-A well known product id could be used across various APIs such as “product catalog”, “order”, “shipping”, “supplier”, “storage”, …
-The more systems will share the same ids, the better.
-It’s basically about using or defining local standards.
-Doing so, any system knowing such well known ids can use them with any API inside a domain or the organization.</p>
-
-<p>And note that it’s always good to double check if by chance there’s a standard identifier that you can use.
-If the “product” we were talking about reveals to be a “book”, prefer the use of an ISBN standard book identifier than your custom one, even if it is known across your organization (and change your resource name, <code>GET /books/{isbn}</code>).
-Indeed, your well known ids are still custom ones and so unknown by the outside world.</p>
-
-<p>Choosing interoperable data that other systems will interpret easily, data that is known by as much systems as possible, is a must do to create successful APIs.
-But when creating APIs, you do not only deal with programs.
-There are humans in the loop: the developers who write the programs using those APIs.</p>
-
-<h1 id="human-readability">Human-readability</h1>
-
-<p>Though choosing interoperable data actually makes API more human-friendly, because “common language” and “shared identifiers”, only focusing on machine to machine interoperability without taking care of human-readability could cripple your APIs success.</p>
-
-<h2 id="obvious">Obvious</h2>
-
-<p>The more obvious values are the better.
-A <code>REQUIRED_TITLE</code> error code returned with a <code>400 BAD REQUEST</code> on a <code>POST /books</code> to add a book is easily understandable.
-It’s understandable but quite specific; probably defined at a single API level.
-Maybe using a more generic code defined for the whole organization in your guidelines, reusable in many contexts, could be better.
-A generic <code>REQUIRED_PROPERTY</code> error code returned with a <code>"property": "title"</code> is more interoperable.</p>
-
-<h2 id="guessable">Guessable</h2>
-
-<p>A <code>FRA</code> alpha-3 ISO3166 code is better than it’s numeric counter part <code>250</code>, a human being can guess what it means.
-It’s also quite simple to guess other alpha-3 ISO3166 code, for instance, what is the one for Italy?</p>
-
-<p>But that does not mean numeric values are always evil.
-Take HTTP status codes, such as <code>400</code> or <code>418</code> for instance.
-They require some basic HTTP knowledge to understand what they mean; any <code>4XX</code> is an error caused by consumer.
-But once you have that knowledge you can guess what means any HTTP status code.
-Never heard about <code>418</code>, no problem, you can guess that’s consumer fault.
-By the way, being guessable, or interpretable should I say, like this is also interesting for the consumer program, it actually makes data more interoperable.</p>
-
-<h2 id="human-friendly">Human friendly</h2>
-
-<p>Note that creating obvious or guessable values is not always possible, especially when there are countless of them.
-Many times, you’ll have to rely on opaque ids, but that does not mean they should be hard to remember or type for us, poor human beings.
-An ISBN book identifier such as <code>9781617295102</code> is far more human friendly than a UUID <code>3ba5d648-8cce-433a-8013-aa760468c153</code> but less than a short id like <code>g2ma67</code>.
-And I think that <code>123456</code> is more human friendly than all the others.</p>
-
-<p>But don’t forget that interoperability always prevail over human-readability.
-In that case, even though <code>123456</code> is more human-friendly, it’s still an internal id known only by the system which has created it, while <code>9781617295102</code> is a standard ISBN known widely outside of the organization.</p>
-
-<h1 id="how-to-choose-identifiers">How to choose identifiers</h1>
-
-<p>So how to choose identifiers, ids and codes?
-First, try to find the most interoperable ones, and second, try to keep them as much human readable as possible.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/how-to-choose-ids-and-codes-to-build-userfriendly-and-interoperable-apis/scientific-quadrant-for-identifiers-how.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>The level of interoperability of an API depends on the level of “standardization” of its data.
-A standard identifier will be easily understood by many systems while an internal one will be understood only by the system creating it.
-But “standardization” does not always mean “standard” (like ISO country codes), sometimes using well known shared identifier inside an organization or a domain will be sufficient.</p>
-
-<p>The developer experience will also be enhanced when using human readable identifiers; easy to understand, easy to type, easy to remember, easy to guess.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[As an API designer, why should you care about the value of a productId, a countryCode, or an error code? Because wisely choosing the value of such (in a broad sense) “identifiers” greatly participates in the making of a user friendly API; but most importantly an interoperable one.]]></summary></entry></feed>
+<p>So the next time you design an API and its underlying architecture, think about washing frying pans and think about all the users.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[In the kitchen, I’m the dishwasher. And lately, washing our new frying pans has got me thinking about design and API architecture issues. This post is dedicated to the person who complained that my book contained too many analogies. Sorry, but no matter what I do, read, look at, listen to, I’m always trying to see if I can make connections to APIs. And housework is no exception.]]></summary></entry></feed>
