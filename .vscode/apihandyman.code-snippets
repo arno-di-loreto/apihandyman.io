@@ -1,0 +1,9 @@
+{
+    "image": {
+        "scope": "markdown",
+        "prefix": "image",
+        "body": [
+            "{% include image.html source=\"$1\" url=\"$2\" caption=\"$3\"%}"
+        ]
+    },
+}

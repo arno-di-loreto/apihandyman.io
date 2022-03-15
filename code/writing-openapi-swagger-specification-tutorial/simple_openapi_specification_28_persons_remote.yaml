@@ -1,4 +1,0 @@
-Persons:
-  type: array
-  items:
-    $ref: "http://localhost:8080/folder/person.yaml#/Person"

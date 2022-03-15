@@ -1,6 +1,0 @@
----
-layout: posts-json
-title: Lunr document index
-permalink: /js/lunr-documents.json
----
-{{content}}

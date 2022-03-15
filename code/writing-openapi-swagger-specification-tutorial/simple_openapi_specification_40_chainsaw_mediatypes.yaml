@@ -1,3 +1,0 @@
-default:
-  - application/json
-  - application/x-yaml
