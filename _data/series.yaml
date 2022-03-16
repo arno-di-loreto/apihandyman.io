@@ -12,3 +12,8 @@ Surviving my first (recorded) live coding session:
     series_title: Live coding at light speed with VS Code
   - series_number: 5
     series_title: Improving live coding session tuning and rehearsing with VS Code
+3 dimensions to consider for a successful API-First strategy:
+  - series_number: 2
+    series_title: Organize APIs around business domains and capabilities, not tools
+  - series_number: 3
+    series_title: No successful APIs without true ownership
