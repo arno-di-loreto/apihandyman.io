@@ -1,4 +1,150 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-03-09T12:10:48-06:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Building a healthy and profitable relationship between tools and specifications</title><link href="https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications/" rel="alternate" type="text/html" title="Building a healthy and profitable relationship between tools and specifications" /><published>2022-03-09T00:00:00-06:00</published><updated>2022-03-09T00:00:00-06:00</updated><id>https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications</id><content type="html" xml:base="https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications/"><![CDATA[<p>We may never have a clear answer to the question “what comes first? Tools or Specifications?”. What is sure is people create tools or specifications based on their needs. Those tools and specifications, like OpenAPI, AsyncAPI, or JSON Schema, are tightly intricated. What could be done to build a healthy and profitable relationship?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-03-16T07:14:40-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Organizing Apis In Layers System Business And Experience Apis</title><link href="https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis/" rel="alternate" type="text/html" title="Organizing Apis In Layers System Business And Experience Apis" /><published>2022-03-16T00:00:00-05:00</published><updated>2022-03-16T00:00:00-05:00</updated><id>https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis</id><content type="html" xml:base="https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis/"><![CDATA[<p>Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.
+<!--more--></p>
+
+<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">3 dimensions to consider for a successful API-First strategy Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text"><p>When talking about “organizing”, “classifying” or “categorizing” APIs, the private/partner/public classification is the one that comes first very often. But that’s not the only way of labeling APIs and this classification alone is far from sufficient to understand the implications of making APIs a first-class citizen in your organization.</p>
+
+<p>In the past years, when I was advocating APIs to business and IT people in a company engaged in an API-First journey (though it has decades-old legacy systems), I very often described APIs being organized in 3 dimensions in order to help them discover and grasp some important API-first challenges and benefits: API Layers, Business domains (or capabilities), and Ownership.</p>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item active">1 - Organizing APIs in System, Business, and Experience Layers</li>
+          
+        
+        
+          
+          
+          
+          <li class="list-group-item disabled">2 - Organize APIs around business domains and capabilities, not tools (coming soon)</li>
+          
+        
+          
+          
+          
+          <li class="list-group-item disabled">3 - No successful APIs without true ownership (coming soon)</li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p>In this first post, we’ll talk about organizing APIs in layers (system, business, experience). That allows uncovering some architecture questions such as “how can I APIfy my IT mess” while instilling the importance and benefits of “don’t make me think” APIs.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/organizing-apis-in-layers-system-business-and-experience-apis/api-layers.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<h1 id="system-apis-layer">System APIs Layer</h1>
+
+<p>The lowest or most hidden API layer is the system APIs layer. System APIs aim to simplify access to software solutions, but just from a technical perspective.</p>
+
+<p>If you have a good old mainframe system, you may build (or buy) an HTTP access layer façade to put it on top of it to facilitate access to its COBOL programs. Not-so-old Commercial-Off-The-Shelf software products (COTS) are unfortunately known to provide terrible APIs (when they provide some).  Software-As-A-Service (SAAS) solutions usually provide APIs. They usually are less terrible than COTS ones but not always, unfortunately.</p>
+
+<p>These different APIs are system APIs. They give direct access to the heart of a system, can be tainted by the provider’s technical perspective, or often require a high level of technical or business/subject matter expertise and possibly some knowledge of the underlying implementation.</p>
+
+<p>They MUST stay private and never be exposed publicly to the outside world. Exposing them to other teams inside the organization should be done cautiously. If that can be avoided, that would be much better.</p>
+
+<p>They offer a terrible DX. It takes an awfully long time to integrate them into other systems for the uninitiated consumers. Their provider will also lose time in the making as they will have to accompany closely consumers, answers to their many questions.</p>
+
+<p>Using them leads to a detrimental tight coupling because they require a high level of expertise. Such coupling must only exist with very few other systems.</p>
+
+<p>And the icing on the cake, they are prone to cause security issues. That’s less true for SAAS but almost a certainty for COTS. More often than not they do not propose standard security like OAuth 2, instead, you may have a basic auth with static login and password. Hopefully, that could possibly be solved by adding an API gateway on top of it. But that will never solve permissions/rights issues that will inevitably arise.</p>
+
+<p>So, system APIs are not what we could call “good” APIs nowadays but at least they exist! They at least allow other systems (you own) to be plugged into the system that exposes them. And no worries if they are complex and not totally secured, that’s the job of the next layer to simplify all that.</p>
+
+<h1 id="business-apis-layer">Business APIs Layer</h1>
+
+<p>Business APIs aim to propose a computerized version of an organization’s (either a company’s, a business unit’s, or a team’s) added value skills, knowledge, and expertise. (Maybe I should talk about “subject matter” APIs?)</p>
+
+<p>Note that “business” means the organization’s business in a broad sense, hence “what they do”. For instance, an insurance company may provide APIs allowing to subscribe to a home insurance contract. On the “opposite” of the spectrum, if the organization’s job is providing databases-as-a-service because it’s a cloud provider or an infrastructure team, a business API may allow creating databases.</p>
+
+<p>This API layer is the only mandatory one. Those business APIs can be private or public (or partner), consumed inside or outside the organization. They can exist on their own or be built on top of system APIs or other business APIs.</p>
+
+<p>Their main purpose is to expose the “organization stuff for dummies”. They require a low level of expertise to be used. They hide as much as possible the internal mess, especially those ugly system APIs, to make them easy to use and reduce coupling with consumers.</p>
+
+<p>They are totally secured, they especially have to fix possible holes that exist in their underlying system APIs. They can be reused in many different contexts. That’s possible because they focus on fulfilling business needs from the outside-of-the-organization-providing-them perspective.</p>
+
+<p>In an ideal world, as they are secured and easy to use, they can be used by anyone inside or outside of the organization (see Jeff Bezos mandate).</p>
+
+<p>Such vision has a nice side effect on costs of development and time-to-market. It takes a few minutes for anyone inside the organization to use a business API without the need of bothering the provider with thousands of questions (like with system APIs). Pushed to the extreme, a private API can be turned into a profitable (public or partner) product in a matter of minutes.</p>
+
+<p>But even if they are supposed to be highly reusable, sometimes, these business APIs can be not enough when used alone or need to be tweaked for specific needs.</p>
+
+<h1 id="experience-apis-layer">Experience APIs Layer</h1>
+
+<p>Experience APIs are created to adapt and orchestrate business APIs for specific technical or business needs.</p>
+
+<p>The most known examples of experience APIs are BFFs, not Best Friends Forever but Backend For Frontends. Usually, for performance concerns, some mobile application development teams create such BFFs to transform and aggregate API calls and avoid mobile applications triggering multiple calls. It’s not uncommon to have GraphQL experience APIs built on top of REST business APIs.</p>
+
+<p>Sometimes such experience APIs do not do that many modifications to their underlying APIs. They just act as a buffer of change, allowing to decouple consumers from business APIs. That could be useful when a modification made on a business APIs must not be reported on consumers outside of the organization. But that possibly leads to an API anti-pattern: not eating your own API dog food.</p>
+
+<p>Experience APIs can also be created for pure business concerns. An organization may want to create a totally new product by aggregating various business APIs. Such experience APIs are supposed to be created quickly. Someone has an idea, boom an experience API is created minutes later to test it. What may have started as a proof of concept must in the end become a new business API in case of success.</p>
+
+<p>Experience APIs must be used with caution when they are not BFFs owned by the consumers. Indeed without care, an organization could end with as many specific variations of its business APIs as it has consumers or partners. That’s a nightmare to maintain (talk to that about software vendors who customize their products for their customers).</p>
+
+<h1 id="the-api-layer-cake">The API layer cake</h1>
+
+<p>So, as you can see, not all APIs are equals, they’re not on the same level. It’s critical to understand that existing raw APIs (the system ones) are not to be accessible by many, are too complex and possibly unsecured. Building business-oriented easy-to-use API façades are a good way to put lipstick on the API pig. Those business APIs will provide a cleaner API surface, allowing anyone to build anything on top of them. In last resort, for highly specific needs, you can build experience APIs providing tailor-made features. But don’t fall into the one partner/consumer equals one experience API trap.</p>
+
+<p>Here’s a recap of the 3 API layers:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>API Layer</th>
+      <th>Purpose</th>
+      <th>Public APIs</th>
+      <th>Private APIs</th>
+      <th>Security</th>
+      <th>Usability</th>
+      <th>Reusability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>System APIs</td>
+      <td>Technically simplifies access</td>
+      <td>Never</td>
+      <td>Reduce at all cost</td>
+      <td>⭐️</td>
+      <td>⭐️</td>
+      <td>⭐️</td>
+    </tr>
+    <tr>
+      <td>Business APIs</td>
+      <td>You stuff for dummies</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>⭐️⭐️⭐️⭐️⭐️</td>
+      <td>⭐️⭐️⭐️⭐️⭐️</td>
+      <td>⭐️⭐️⭐️⭐️⭐️</td>
+    </tr>
+    <tr>
+      <td>Experience APIs</td>
+      <td>Adapt and/or aggregate</td>
+      <td>No for BFFs, Yes for Products</td>
+      <td>Yes</td>
+      <td>⭐️⭐️⭐️⭐️⭐️</td>
+      <td>⭐️ to ⭐️⭐️⭐️⭐️⭐️</td>
+      <td>⭐️ to ⭐️⭐️⭐️⭐️⭐️</td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry><entry><title type="html">Building a healthy and profitable relationship between tools and specifications</title><link href="https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications/" rel="alternate" type="text/html" title="Building a healthy and profitable relationship between tools and specifications" /><published>2022-03-09T00:00:00-06:00</published><updated>2022-03-09T00:00:00-06:00</updated><id>https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications</id><content type="html" xml:base="https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications/"><![CDATA[<p>We may never have a clear answer to the question “what comes first? Tools or Specifications?”. What is sure is people create tools or specifications based on their needs. Those tools and specifications, like OpenAPI, AsyncAPI, or JSON Schema, are tightly intricated. What could be done to build a healthy and profitable relationship?
 <!--more--></p>
 
 <p><em>This post’s banner is a diagram of the six possible types of symbiotic relationship, from mutual benefit to mutual harm. Symbiosis (from Greek , symbíōsis, “living together”, from , sýn, “together”, and , bíōsis, “living”) is any type of a close and long-term biological interaction between two different biological organisms, be it mutualistic, commensalistic, or parasitic. The organisms, each termed a symbiont, must be of different species.
@@ -1185,55 +1331,4 @@ A linter won’t tell you if an API is the good ones, if a name is the good one,
   <li>Keep them simple to understand and to use</li>
   <li>Explain and listen to foster agreement</li>
   <li>Make their use seamless by providing helpers and tools</li>
-</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“Did you read our API design guidelines? Yes we did! … Sorry, but I don’t think so”. Let’s be honest, besides those who write them, nobody cares about API design guidelines. Some don’t read them, some don’t agree with them. Should we punish the offenders? Though it is sometimes tempting, no. Should we get rid of API design guidelines? No, we can’t. But how can we make people care about it?]]></summary></entry><entry><title type="html">API design and architecture lessons from a frying pan</title><link href="https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan/" rel="alternate" type="text/html" title="API design and architecture lessons from a frying pan" /><published>2022-01-05T00:00:00-06:00</published><updated>2022-01-05T00:00:00-06:00</updated><id>https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan</id><content type="html" xml:base="https://apihandyman.io/api-design-and-architecture-lessons-from-a-frying-pan/"><![CDATA[<p>In the kitchen, I’m the dishwasher.
-And lately, washing our new frying pans has got me thinking about design and API architecture issues.
-This post is dedicated to the person who complained that my book contained too many analogies.
-Sorry, but no matter what I do, read, look at, listen to, I’m always trying to see if I can make connections to APIs.
-And housework is no exception.
-<!--more--></p>
-
-<p>Washing dishes is a household task that I actually enjoy.
-It allows me to satisfy my compulsive urge to sort things, in this case cutlery, glasses, plates or dishes.
-This may be one of the characteristics of my mind that make me rather good at doing API design reviews.
-It also allows me to listen to music.
-But also and most importantly, it allows me to cogitate.</p>
-
-<h1 id="pans">Pans</h1>
-
-<p>For some time now, we have had new frying pans.
-They have everything that makes a good pan, a thick bottom, a body covered with enamel (a nice change from Teflon), and a solid handle with a good grip. They are even oven safe.
-In use, nothing to complain about.
-When washing, it’s a different story.
-If cleaning the enamelled steel is not a problem, cleaning the outside edge is a pain.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/api-design-and-architecture-lessons-from-a-frying-pan/pan.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>And yes, when you use a frying pan, you also dirty the outside edge, there are often splashes or drips, especially on the handle.
-And on these pans, cleaning the 2 millimeter gap between the handle and the edge of the pan is quite complicated with a sponge.
-In the end, we manage to do it with a small brush, but we could do without this difficulty (relative, of course).
-A handle placed a little lower or stuck to the edge of the pan, or simply no edge would have avoided this inconvenience.
-The fact that an object, kitchen utensil or other, is an eyesore to clean is unfortunately quite common.
-It seems that the designers of these products forget that in addition to using them for what they were designed for, they need to be cleaned.</p>
-
-<h1 id="apis">APIs</h1>
-
-<p>“But what does this have to do with APIs?” you might ask.
-There is not one but (at least) two analogies here.</p>
-
-<p>The first one is that when you design an API, you have to think about all the profiles (or users) that will use it, otherwise you might forget to include important features.
-If we stop at uses, we will think about “cooking” but not necessarily “washing the dishes”.
-Going through the prism of users reduces the risk of forgetting features.
-Here, the first users of a frying pan that we think of are necessarily the cooks.
-But, in a kitchen, there are also pearl divers (the persons who wash dishes) who will also “use” the pans but in very different ways.</p>
-
-<p>The other way to look at it would be to think of the users of the API vs. the maintainers of the system exposing the API.
-Cooks can be thought of as the users of a pan and pearl divers as the maintainers of the system.
-While it is now pretty much accepted that the user experience of APIs is important (although there is still a way to go for private APIs), I have too often seen convoluted and complex implementations that make the life of maintainers impossible.
-Too many modules, too many different technologies, unnecessarily sharp technologies, non mastered technologies, maintenance procedures not completely automated, …
-In short, we forget the experience of the system maintainers.
-Icing on the cake, in addition to bothering them, such systems are more complex to evolve and more fragile.</p>
-
-<p>So the next time you design an API and its underlying architecture, think about washing frying pans and think about all the users.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[In the kitchen, I’m the dishwasher. And lately, washing our new frying pans has got me thinking about design and API architecture issues. This post is dedicated to the person who complained that my book contained too many analogies. Sorry, but no matter what I do, read, look at, listen to, I’m always trying to see if I can make connections to APIs. And housework is no exception.]]></summary></entry></feed>
+</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“Did you read our API design guidelines? Yes we did! … Sorry, but I don’t think so”. Let’s be honest, besides those who write them, nobody cares about API design guidelines. Some don’t read them, some don’t agree with them. Should we punish the offenders? Though it is sometimes tempting, no. Should we get rid of API design guidelines? No, we can’t. But how can we make people care about it?]]></summary></entry></feed>
