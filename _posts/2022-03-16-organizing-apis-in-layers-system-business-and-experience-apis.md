@@ -1,6 +1,6 @@
 ---
 series: 3 dimensions to consider for a successful API-First strategy
-series_title: "Organizing APIs in layers: System, Business, and Experience APIs"
+series_title: "Organizing APIs in System, Business, and Experience Layers"
 series_number: 1
 date: 2022-03-16
 author: Arnaud Lauret
@@ -12,9 +12,9 @@ category: post
 Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the "3 dimensions to consider for a successful API-First strategy" series.
 <!--more-->
 
-{% include _postincludes/3-dimensions.md %}
+_Banner by my partner in crime [Mister Lapin](https://linktr.ee/mrlapindesign)._
 
-# API Layers
+{% include _postincludes/3-dimensions.md %}
 
 In this first post, we'll talk about organizing APIs in layers (system, business, experience). That allows uncovering some architecture questions such as "how can I APIfy my IT mess" while instilling the importance and benefits of "don't make me think" APIs.
 
@@ -70,9 +70,9 @@ Experience APIs must be used with caution when they are not BFFs owned by the co
 
 # The API layer cake
 
-So, as you can see, not all APIs are equals, they're not on the same level. It's critical to understand that existing raw APIs (the system ones) are not to be accessible by many, too complex, possibly unsecured. Building business-oriented easy-to-use API façades are a good way to put lipstick on the API pig. Those business APIs will provide a cleaner API surface, allowing anyone to build anything on top of them. In last resort, for highly specific needs, you can build experience APIs providing tailor-made features. But don't fall into the one partner/consumer equals one API trap.
+So, as you can see, not all APIs are equals, they're not on the same level. It's critical to understand that existing raw APIs (the system ones) are not to be accessible by many, are too complex and possibly unsecured. Building business-oriented easy-to-use API façades are a good way to put lipstick on the API pig. Those business APIs will provide a cleaner API surface, allowing anyone to build anything on top of them. In last resort, for highly specific needs, you can build experience APIs providing tailor-made features. But don't fall into the one partner/consumer equals one experience API trap.
 
-Here's a recap of the 3 API layers _(Add an array to describe the 3 layers, including the public/private and security concerns, reusability, ease of use)_
+Here's a recap of the 3 API layers:
 
 
 
