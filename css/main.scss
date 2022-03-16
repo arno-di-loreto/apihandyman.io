@@ -486,6 +486,7 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
 /******************/
 
 .row-banner-small {
+  /*
   @include media-breakpoint-down(xl) {
     margin-bottom: -100px;
   }
@@ -505,11 +506,14 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
   @include media-breakpoint-down(xs) {
     margin-bottom: -40px;
   }
+  */
   
   .banner-small-container {
     @extend .container-fluid, .container-lg, .p-0;
     .banner-small-column-main {
       @extend  .col-12, .p-0;
+      z-index: 1;
+      box-shadow: $light-shadow;
     }
   }
 }
