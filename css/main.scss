@@ -567,12 +567,16 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
       @extend .text-left;
     }
 
-    h1[id]::before, h2[id]::before, h3[id]::before, h4[id]::before, h5[id]::before, h6[id]::before {
+    h1[id]::before, h2[id]::before, h3[id]::before {
       content: '';
       display: block;
       height:      80px;
       margin-top: -65px;
       visibility: hidden;
+    }
+
+    h5[id=series] {
+      margin-top: 0.5rem;
     }
 
     blockquote {
@@ -1306,6 +1310,7 @@ a.left-book-ad-small, a.left-book-ad-small:hover {
     @extend  .no-gutters;
     .series-toc-list {
       @extend  .text-left;
+      padding-top: 1.25rem;
       .list-group {
         .list-group-item {
           @extend .border-0;
