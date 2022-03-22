@@ -14,7 +14,7 @@ This post is the second of the “3 dimensions to consider for a successful API-
 
 <!--more-->
 
-_Post banner [photo](https://images.unsplash.com/photo-1426927308491-6380b6a9936f?ixid=MnwxMjUwMnwwfDF8c2VhcmNofDIzfHxvcmdhbml6YXRpb258ZW58MHx8fHwxNjQ3MDA2Mjc1&ixlib=rb-1.2.1?ixlib=rb-0.3.5&fm=jpg&crop=entropy&cs=tinysrgb&fit=max&w=800&q=70) by [Barn Images](https://unsplash.com/@barnimages?utm_source=milanote&utm_medium=referral&utm_campaign=api-credit)._
+{% include banner-author-link.md %}
 
 {% include _postincludes/3-dimensions.md %}
 
