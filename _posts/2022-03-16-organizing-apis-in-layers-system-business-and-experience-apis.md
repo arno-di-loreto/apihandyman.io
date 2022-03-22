@@ -12,7 +12,7 @@ category: post
 Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the "3 dimensions to consider for a successful API-First strategy" series.
 <!--more-->
 
-_Banner by my partner in crime [Mister Lapin](https://linktr.ee/mrlapindesign)._
+{% include banner-author-link.md %}
 
 {% include _postincludes/3-dimensions.md %}
 
