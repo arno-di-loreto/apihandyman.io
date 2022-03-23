@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-03-16T07:14:40-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Organizing Apis In Layers System Business And Experience Apis</title><link href="https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis/" rel="alternate" type="text/html" title="Organizing Apis In Layers System Business And Experience Apis" /><published>2022-03-16T00:00:00-05:00</published><updated>2022-03-16T00:00:00-05:00</updated><id>https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis</id><content type="html" xml:base="https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis/"><![CDATA[<p>Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-03-23T07:15:34-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Organize Apis Around Business Domains And Capabilities Not Tools</title><link href="https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools/" rel="alternate" type="text/html" title="Organize Apis Around Business Domains And Capabilities Not Tools" /><published>2022-03-23T00:00:00-05:00</published><updated>2022-03-23T00:00:00-05:00</updated><id>https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools</id><content type="html" xml:base="https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools/"><![CDATA[<p>People don’t want drills, they want to make holes. APIs are interfaces exposed by pieces of software, our modern tools. But it would be a terrible idea to think of APIs just as interfaces to tools. APIs must be organized around our business domains and capabilities.
+This post is the second of the “3 dimensions to consider for a successful API-First strategy” series.</p>
+
+<!--more-->
+
+<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">3 dimensions to consider for a successful API-First strategy Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text"><p>When talking about “organizing”, “classifying” or “categorizing” APIs, the private/partner/public classification is the one that comes first very often. But that’s not the only way of labeling APIs and this classification alone is far from sufficient to understand the implications of making APIs a first-class citizen in your organization.</p>
+
+<p>In the past years, when I was advocating APIs to business and IT people in a company engaged in an API-First journey (though it has decades-old legacy systems), I very often described APIs being organized in 3 dimensions in order to help them discover and grasp some important API-first challenges and benefits: API Layers, Business domains (or capabilities), and Ownership.</p>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item"><a href="/organizing-apis-in-layers-system-business-and-experience-apis/">1 - Organizing APIs in System, Business, and Experience Layers</a></li>
+          
+        
+          
+          <li class="list-group-item active">2 - Organize APIs around business domains and capabilities, not tools</li>
+          
+        
+        
+          
+          
+          
+        
+          
+          
+          
+          <li class="list-group-item disabled">3 - No successful APIs without true ownership (coming soon)</li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p>In this second post, we’ll talk about organizing APIs around business domains and capabilities and not tools. This perspective is critical in order to build APIs that will be easy-to-understand, easy-to-use, easy-to-evolve, and limit coupling.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/organize-apis-around-business-domains-and-capabilities-not-tools/organize-around-business-not-tools.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<h1 id="wrong-organization-around-tools">Wrong organization around tools</h1>
+
+<p>APIs are Application Programming Interfaces, they allow pieces of software to interact with each other. They allow tools to talk to each other, great! But let’s be honest, people don’t want to use your tools. And you don’t want to give them access to your tools. Both of you’ll regret it. What terrible things will irremediably happen when giving access to API “A” that brutally maps tool “A”?</p>
+
+<p>People may have a hard time grasping what they can do with this “A” API just because its name does not mean anything. Choosing the right name for an API is far more important than you may think, especially for internal APIs. You should Read my <a href="/pink-fluffy-unicorn-api-wtf-or-3-reasons-why-choosing-a-not-meaningful-API-name-can-be-a-problem/">Pink Fluffy Unicorn API? WTF? (or 3 reasons why choosing a not meaningful API name can be a problem)</a> to discover more about this topic.</p>
+
+<p>Even if you give a meaningful name to the API of Tool A, you’ll still have problems. Indeed, API giving direct access to tools does not usually provide a user-friendly interface. They can be quite cryptic and usually requires a high level of expertise. Most of the time they’re made to make the tool work, not let people fulfill their needs. People can also be overwhelmed by the amount of function available.</p>
+
+<p>As people have hard times using them, they will lose time. You’ll also lose time too accompanying them, answering all of their questions. It costs a lot of time and so a lot of money to use them. If people have the choice they will probably not use them.</p>
+
+<p>And if people use such “Tool API” that increases the coupling between systems, because they require a high level of expertise. What will happen when the vendor tool evolves? Everyone using it will be impacted, it will be a total nightmare to coordinate everyone.</p>
+
+<p>If you read the previous post in this series, that should sound familiar: the API of a tool is usually a terrible system API and must be hidden at all costs, only used by a handful of trusted and expert consumers.</p>
+
+<h1 id="business-domain-driven-design">Business domain driven design</h1>
+
+<p>To fulfill what it’s supposed to do, an organization takes advantage of various capabilities offered by its business domains. For a company selling products, the apparent business domains are doing the company “stuff” such as sales or R&amp;D., and there are also less obvious support business domains like HR or accounting. Each domain will rely on people and their tools to function.</p>
+
+<p>A business domain may expose one or more APIs, depending on the domain’s composition. As this matter is often related to microservices, know that size does not matter when deciding if you should put all capabilities of a domain inside a single or many APIs. What matters is that each API is a meaningful and independent set of operations. Meaningful because it offers capabilities that make sense together and are helpful to the “outside world” outside the domain. Independent because the API can be used without any other one. That does not forbid using an API in conjunction with others, but if that’s always necessary, there’s probably something wrong with how the domains are organized or split.</p>
+
+<p>A business API may rely on more than one tool’s system APIs. That’s pretty convenient to hide you have two different software solutions to do the same thing. Such architecture often happens with fusion and acquisition. It can also come from organizational constraints. Two separate teams doing the same tasks but targeting different regions or customers may use various tools (because of actual regulation constraints or lack of tooling governance).</p>
+
+<p>A business domain is under no obligation to expose all of its capabilities (and so its APIs). There are tools that people from the outside will never see; that’s absolutely fine. A business domain is also under no obligation to expose its capabilities precisely as they work inside. The less a domain shows what is happening in its black box, the better; it reduces coupling between systems.</p>
+
+<p>A business domain may rely on other domains, but a bi-directional relationship is usually problematic, especially when it concerns a specific business process. That usually leads to less reusable APIs.</p>
+
+<p>Taking advantage of methods such as <a href="https://en.wikipedia.org/wiki/Domain-driven_design">domain-driven design</a> or <a href="https://en.wikipedia.org/wiki/Event_storming">event storming</a> can be helpful to figure out how to divide an organization or a domain.</p>
+
+<h1 id="whatever-the-layer-apis-belong-to-a-domain">Whatever the layer, APIs belong to a domain</h1>
+
+<p>This second organizational perspective (the first one being the API layers), shows that system APIs and business APIs both belong to business domains. Is that also the case of experience APIs? Yes, experience APIs can belong to a consumer-oriented or provider-oriented business domain.
+A backend-for-frontend (BFF) built by a mobile application team belongs to this team’s domain (a “consumer domain”). A tailor-made product experience API may belong to its underlying domain or to an entirely independent one.
+So all types of APIs belong to a business domain, the only visible ones being business and experience APIs.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/organize-apis-around-business-domains-and-capabilities-not-tools/all-apis-belong-to-a-domain.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>In the next post, we’ll talk about the third and probably most important dimension of API organization: Ownership.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[People don’t want drills, they want to make holes. APIs are interfaces exposed by pieces of software, our modern tools. But it would be a terrible idea to think of APIs just as interfaces to tools. APIs must be organized around our business domains and capabilities. This post is the second of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry><entry><title type="html">Organizing Apis In Layers System Business And Experience Apis</title><link href="https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis/" rel="alternate" type="text/html" title="Organizing Apis In Layers System Business And Experience Apis" /><published>2022-03-16T00:00:00-05:00</published><updated>2022-03-16T00:00:00-05:00</updated><id>https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis</id><content type="html" xml:base="https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis/"><![CDATA[<p>Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.
 <!--more--></p>
 
 <p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
@@ -24,11 +118,13 @@
           <li class="list-group-item active">1 - Organizing APIs in System, Business, and Experience Layers</li>
           
         
+          
+          <li class="list-group-item"><a href="/organize-apis-around-business-domains-and-capabilities-not-tools/">2 - Organize APIs around business domains and capabilities, not tools</a></li>
+          
+        
         
           
           
-          
-          <li class="list-group-item disabled">2 - Organize APIs around business domains and capabilities, not tools (coming soon)</li>
           
         
           
@@ -1235,100 +1331,4 @@ And being able to do an API call from the home page would be terrific!</p>
 
 <p>I hope you’ll find this post useful when you’ll think about adding a “try it” to your API documentation.
 Note that people may need to try your API outside of its documentation, that’s why a working on a good sandbox is important.
-But we’ll talk more about that in another post.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“That’s neat! The developer portal/api documentation solution we chose comes with a try it feature. Everything is out of the box, we’ll have absolutely nothing to do to allow people test our APIs.” … If only that was true. Unfortunately, there are a few concerns to be aware of to actually propose a try it feature.]]></summary></entry><entry><title type="html">Nobody cares about API design guidelines</title><link href="https://apihandyman.io/nobody-cares-about-api-design-guidelines/" rel="alternate" type="text/html" title="Nobody cares about API design guidelines" /><published>2022-01-12T00:00:00-06:00</published><updated>2022-01-12T00:00:00-06:00</updated><id>https://apihandyman.io/nobody-cares-about-api-design-guidelines</id><content type="html" xml:base="https://apihandyman.io/nobody-cares-about-api-design-guidelines/"><![CDATA[<p>“Did you read our API design guidelines? Yes we did! … Sorry, but I don’t think so”.
-Let’s be honest, besides those who write them, nobody cares about API design guidelines.
-Some don’t read them, some don’t agree with them.
-Should we punish the offenders?
-Though it is sometimes tempting, no.
-Should we get rid of API design guidelines?
-No, we can’t.
-But how can we make people care about it?
-<!--more--></p>
-
-<h1 id="why-not-getting-rid-of-guidelines">Why not getting rid of guidelines?</h1>
-
-<p>No, we can’t get rid of our API design guidelines because “nobody” reads them.
-Actually, they’re useful and a few people read them.</p>
-
-<p>As an API design reviewer, I constantly have to refer to them during API design review.
-I refer to them to support what I say and avoid endless discussions.
-Guidelines are our tables of the law and we must follow them.
-I don’t want to lose my time discussing for the 100th time how should be named the property holding the list in the response of <code>get /customers</code>.
-I also use them to find solutions to some design questions and to refresh my memories.
-Guidelines makes reviewer more comfortable; with them, they don’t just give an opinion, they’re backed by written rules.</p>
-
-<p>Also, without guidelines, I could slightly change a design pattern without noticing it.
-And I’m not the only reviewer, a single written source of truth ensures that multiple reviewers are consistent (at least for what concerns the stylistic perspective).
-Guidelines are there to ensure consistency, that’s their primary objective.
-It’s a major concern when you want to provide the best possible developer experience.
-This can’t be achieve without them.</p>
-
-<p>So we can’t get rid of them, maybe they need to be tweaked?</p>
-
-<h1 id="simplify-and-enhance-guidelines">Simplify and enhance guidelines</h1>
-
-<p>“Be honest, you didn’t read our company API design guidelines.
-Why denying it, I’m reviewing your API and I can see you didn’t read them seriously.
-Indeed, rule #245 about over-resilient resource has not been applied.”</p>
-
-<p>Sometimes people will try to read guidelines but they can be too complex for mere mortals.
-It could be because they are written in some “too smart and complex expert that shows off” style.
-If people need 3 PhDs in computer science to understand them, those guidelines are totally wrong, change them to make them understandable by anyone (like you’re supposed to do when you design APIs).
-It could also be because they go against common practices, what everybody does in the outside world.
-If that is so, those guidelines are totally wrong, change them to be consistent with the rest of the world (like you’re supposed to do when designing APIs).</p>
-
-<p>Sometimes, guidelines are good but not easily actionable.
-Indeed, guidelines composed of hundreds of rules are a nightmare to use, even when those rules are perfectly understandable by anyone.
-Providing actionable recipes like “how to search something”, “how to manage sensitive data”, or “how to deal with long operations” is a must have.
-Each recipe included everything, every single rule that must be apply explain in a user friendly way: when and why using this recipe, HTTP method to use, path design, inputs, outputs, how to handle errors.
-That actually helps to ensure that guidelines are realistic, if any simple recipe is a nightmare to describe, maybe your rules are too complex.</p>
-
-<h1 id="foster-agreement">Foster agreement</h1>
-
-<p>Some people don’t agree with guidelines.
-Sometimes they’re just assholes, sometimes they just need explanation about why rule #245 is that way, and sometimes they’re actual good people caring about API design.</p>
-
-<p>For real stubborn/toxic/full of themselves assholes, unfortunately, I don’t know if anything can be done.
-Fortunately, I don’t have met much of them and I always was in a position where I could say “ok, let’s not work together then, there are plenty of other people who want to work with me, but if you change your mind, the door is still open”.</p>
-
-<p>But sometimes, people you could consider as “assholes” because they don’t agree with you are people who just don’t get it; they need some explanations.
-Once they get it, they’re convinced.
-That’s why it’s really important to explain why each rule exists in your guidelines, if there’s no reason … maybe it shouldn’t exist.</p>
-
-<p>And last but not least there are a few people who are really good at designing APIs and care about it.
-If they don’t agree with you, maybe you should listen to them.
-Don’t be an asshole yourself.
-You probably should include them in the loop of your guidelines creation/evolution.
-Actually, include more people in the loop brings various sensibility, various experience and this is good for your guidelines.</p>
-
-<h1 id="provide-more-than-guidelines">Provide more than guidelines</h1>
-
-<p>The “guidelines” (wiki, website) are never enough.
-Even the best ones.
-You’ll need to make them available in other more actionable forms.</p>
-
-<h2 id="openapi-specification-templates-and-fragments">OpenAPI Specification templates and fragments</h2>
-
-<p>You can provide ready to use specification templates and reusable fragments.
-Nothing better than a complete OpenAPI file containing everything you need to “search something”, you can take advantage of descriptions to explain your guidelines and point to them.
-Designers just have to adapt that template to their use cases.
-It’s also fairly common to have data structures, parameters, headers that are always the same.
-Why not define them once and for all in reusable OpenAPI spec fragments that can be referenced.</p>
-
-<h2 id="linter">Linter</h2>
-
-<p>Even with templates, people can make mistakes.
-You’ll need to provide a way to lint API descriptions in order to help designers fix most stylistic problems themselves (and learn how your guidelines work in the making).
-You can use <a href="/toolbox/spectral/">Stoplight Spectral</a> to do so.
-Warning: having a linter will never, ever, replace API design reviews.
-A linter won’t tell you if an API is the good ones, if a name is the good one, if using this design patterns was a good idea.</p>
-
-<h1 id="make-everybody-love-your-guidelines">Make everybody love your guidelines</h1>
-
-<p>So, if you want people to care about API design guidelines:</p>
-
-<ul>
-  <li>Keep them simple to understand and to use</li>
-  <li>Explain and listen to foster agreement</li>
-  <li>Make their use seamless by providing helpers and tools</li>
-</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“Did you read our API design guidelines? Yes we did! … Sorry, but I don’t think so”. Let’s be honest, besides those who write them, nobody cares about API design guidelines. Some don’t read them, some don’t agree with them. Should we punish the offenders? Though it is sometimes tempting, no. Should we get rid of API design guidelines? No, we can’t. But how can we make people care about it?]]></summary></entry></feed>
+But we’ll talk more about that in another post.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“That’s neat! The developer portal/api documentation solution we chose comes with a try it feature. Everything is out of the box, we’ll have absolutely nothing to do to allow people test our APIs.” … If only that was true. Unfortunately, there are a few concerns to be aware of to actually propose a try it feature.]]></summary></entry></feed>
