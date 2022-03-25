@@ -81,3 +81,5 @@ Here's a recap of the 3 API layers:
 | System APIs | Technically simplifies access | Never | Reduce at all cost | ⭐️ | ⭐️ | ⭐️ |
 | Business APIs | You stuff for dummies | Yes | Yes | ⭐️⭐️⭐️⭐️⭐️ | ⭐️⭐️⭐️⭐️⭐️ | ⭐️⭐️⭐️⭐️⭐️ |
 | Experience APIs | Adapt and/or aggregate | No for BFFs, Yes for Products | Yes | ⭐️⭐️⭐️⭐️⭐️ | ⭐️ to ⭐️⭐️⭐️⭐️⭐️ | ⭐️ to ⭐️⭐️⭐️⭐️⭐️ |
+
+In next post, we'll discuss the importance of [organizing APIs around business domains and capabilities, not tools](/organize-apis-around-business-domains-and-capabilities-not-tools/).
