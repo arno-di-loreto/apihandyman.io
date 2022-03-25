@@ -12,7 +12,7 @@ category: post
 It doesn't matter how APIs are organized, in layers, by business domain or any other dimension if you don't take care of the most important one. The one dimension that rules them all: ownership. This post is the third and last of the "3 dimensions to consider for a successful API-First strategy" series.
 <!--more-->
 
-_Banner photo by [Ryoji Iwata](https://unsplash.com/@ryoji__iwata?utm_source=milanote&utm_medium=referral&utm_campaign=api-credit)_
+{% include banner-author-link.md %}
 
 {% include _postincludes/3-dimensions.md %}
 
