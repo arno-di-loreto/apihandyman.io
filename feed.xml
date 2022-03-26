@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-03-26T11:41:10-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Organize Apis Around Business Domains And Capabilities Not Tools</title><link href="https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools/" rel="alternate" type="text/html" title="Organize Apis Around Business Domains And Capabilities Not Tools" /><published>2022-03-23T00:00:00-05:00</published><updated>2022-03-23T00:00:00-05:00</updated><id>https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools</id><content type="html" xml:base="https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools/"><![CDATA[<p>People don’t want drills, they want to make holes. APIs are interfaces exposed by pieces of software, our modern tools. But it would be a terrible idea to think of APIs just as interfaces to tools. APIs must be organized around our business domains and capabilities.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-03-26T13:12:17-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">We always forget to select a Postman environment</title><link href="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/" rel="alternate" type="text/html" title="We always forget to select a Postman environment" /><published>2022-03-26T00:00:00-05:00</published><updated>2022-03-26T00:00:00-05:00</updated><id>https://apihandyman.io/we-always-forget-to-select-a-postman-environment</id><content type="html" xml:base="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/"><![CDATA[<p>When using Postman, it’s a best practice to store API token values in environment secret variables.
+Environment variables can also be used to store other variables uses in scripts.
+But when opening a collection, we often forget to select an environment and spend a few seconds if not minutes or more trying to figure out what the problem is with a request. Just to realize in the end that we just forgot to select an environment.
+How can this be avoided?
+<!--more-->
+This post is actually my first “Postman Collection Post”, I’ll share the tips and tricks I learn while using Postman.</p>
+
+<p>The <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4">Don’t forget to select an environment</a> collection demonstrates how to take advantage of <code>pm.environment.name</code> in Pre-Scripts to prevent sending a request and have a clear error message when an environment is not selected. The use case that will be used to demonstrate all that is retrieving a tweet with Twitter v2 API. The aim of this collection being error handling, you’ll need to have an actual access to Twitter v2 API only if you want to make the request succeed.</p>
+
+<p><a href="https://god.gw.postman.com/run-collection/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4?action=collection%2Ffork&amp;collection-url=entityId%3D143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4%26entityType%3Dcollection%26workspaceId%3D028152cd-d2f2-497f-a533-72e3d50e1b48"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a></p>
+
+<p>(Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen)</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[When using Postman, it’s a best practice to store API token values in environment secret variables. Environment variables can also be used to store other variables uses in scripts. But when opening a collection, we often forget to select an environment and spend a few seconds if not minutes or more trying to figure out what the problem is with a request. Just to realize in the end that we just forgot to select an environment. How can this be avoided?]]></summary></entry><entry><title type="html">Organize Apis Around Business Domains And Capabilities Not Tools</title><link href="https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools/" rel="alternate" type="text/html" title="Organize Apis Around Business Domains And Capabilities Not Tools" /><published>2022-03-23T00:00:00-05:00</published><updated>2022-03-23T00:00:00-05:00</updated><id>https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools</id><content type="html" xml:base="https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools/"><![CDATA[<p>People don’t want drills, they want to make holes. APIs are interfaces exposed by pieces of software, our modern tools. But it would be a terrible idea to think of APIs just as interfaces to tools. APIs must be organized around our business domains and capabilities.
 This post is the second of the “3 dimensions to consider for a successful API-First strategy” series.</p>
 
 <!--more-->
@@ -1277,60 +1288,4 @@ And why not let it be “consumed by consumers” too (or at least other apps de
 
 <p>As you can see, providing an accurate and complete sandbox may require to care about many features.
 Hopefully, you don’t always need such level of accuracy.
-In a next post, we’ll see various tools and architecture patterns that could help you achieve the right level of API sandbox.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment. But what is an “API sandbox” actually? Is it just a mock? It can be that … or far more than that. Let’s see what could be the features of an API sandbox.]]></summary></entry><entry><title type="html">A few concerns to be aware of when adding try it feature to API documentation</title><link href="https://apihandyman.io/a-few-concerns-to-be-aware-of-when-adding-try-it-feature-to-api-documentation/" rel="alternate" type="text/html" title="A few concerns to be aware of when adding try it feature to API documentation" /><published>2022-01-19T00:00:00-06:00</published><updated>2022-01-19T00:00:00-06:00</updated><id>https://apihandyman.io/a-few-concerns-to-be-aware-of-when-adding-try-it-feature-to-api-documentation</id><content type="html" xml:base="https://apihandyman.io/a-few-concerns-to-be-aware-of-when-adding-try-it-feature-to-api-documentation/"><![CDATA[<p>“That’s neat!
-The developer portal/api documentation solution we chose comes with a try it feature.
-Everything is out of the box, we’ll have absolutely nothing to do to allow people test our APIs.”
-… If only that was true.
-Unfortunately, there are a few concerns to be aware of to actually propose a try it feature.<br />
-<!--more--></p>
-
-<h1 id="what-is-a-try-it">What is a “try it”</h1>
-
-<p>When browsing an API documentation, most usually when looking at the reference documentation (the one describing all <code>GET /this</code> and <code>POST /that</code>), you’ll see a “try it” or “send request” button.
-Clicking on it, you’ll get a form allowing to provide data (query parameters or request body) and then send an API request.
-That’s pretty useful to learn how an API works without having to write a single line of code.
-That greatly contributes in creating a good user experience, either users are developers who will create applications consuming your APIs, but also decision makers who are evaluating them.</p>
-
-<h1 id="choosing-an-api-to-call">Choosing an API to call</h1>
-
-<p>The first question you must explore when working on adding a try it feature to your API documentation is “who you gonna call?”.
-Not Ghostbusters obviously.
-The try it feature can trigger more or less real API call.</p>
-
-<p>Indeed, There could be no actual API call, the website just showing fake data.
-It can also make actual API call but not to the real API.
-A try it may call a sandbox environment that reproduces or simulates the production environment.
-And last but not least, it could trigger a call to the real production API.</p>
-
-<p>You’re under no obligation to apply only one of those solutions, the API that will be called may depend on the user profile.
-For instance, if the user is not connected maybe they can only get the local fake data and if they are connected gain access to the sandbox environment.
-You may also let user choose themselves, once connected, they could choose between sandbox and production environment.</p>
-
-<h1 id="managing-security">Managing security</h1>
-
-<p>It’s rare to provide unsecured APIs, even sandboxed ones.
-So, when providing a try it feature, you’ll have to find a way to provide a relevant access token before triggering the API call.
-Obviously, letting end user manage that all by hand would be a terrible idea.
-Better find a way to make that as seamless as possible, if possible without any user’s help.</p>
-
-<h1 id="providing-samples">Providing samples</h1>
-
-<p>In order to provide an even better end user experience, it would be interesting to provide ready to use data.
-For instance, if I can try <code>GET /accounts/{accountNumber}</code>, I would be very happy having a drop list with accounts in various situations.
-If can try a <code>POST /accounts</code>, a pre-filled body could be great, and a list of pre-filled body even more great. 
-Also when dealing with security, providing a way to choose some different user profiles, like “user with a single bank account” or “user with joint bank account and 2 savings” can be quite interesting.
-The chosen profile conditioning all requests done through the try it.
-Note that I must also be able to send my own request without using sample data.</p>
-
-<h1 id="embedding-try-it">Embedding try it</h1>
-
-<p>I said in the beginning of this post that the try it feature is often seen in the reference documentation, but it can be elsewhere.
-It’s especially interesting to put some try it forms in the “recipe documentation”, the tutorials explaining how API operations can be used together to achieve some use cases.
-Being able to put a try it form anywhere, a little bit à la jupyter notebook, will allow to easily create awesome documentation that users will love.
-And being able to do an API call from the home page would be terrific!</p>
-
-<h1 id="try-it-and-beyond">Try it and beyond</h1>
-
-<p>I hope you’ll find this post useful when you’ll think about adding a “try it” to your API documentation.
-Note that people may need to try your API outside of its documentation, that’s why a working on a good sandbox is important.
-But we’ll talk more about that in another post.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“That’s neat! The developer portal/api documentation solution we chose comes with a try it feature. Everything is out of the box, we’ll have absolutely nothing to do to allow people test our APIs.” … If only that was true. Unfortunately, there are a few concerns to be aware of to actually propose a try it feature.]]></summary></entry></feed>
+In a next post, we’ll see various tools and architecture patterns that could help you achieve the right level of API sandbox.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment. But what is an “API sandbox” actually? Is it just a mock? It can be that … or far more than that. Let’s see what could be the features of an API sandbox.]]></summary></entry></feed>
