@@ -1313,6 +1313,243 @@
     
     
       
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#how-it-works">How it works</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#collection-pre-request-script">Collection Pre-request Script</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#collection-tests">Collection Tests</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#collection-variables">Collection variables</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#environment-variables">Environment variables</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#test-cases">Test cases</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#no-environment-selected">No environment selected</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#empty-environment">Empty environment</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#wrong-name">Wrong name</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#default-value">Default value</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#invalid-token">Invalid token</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#valid-token">Valid token</a>
+          
+      
+      
+    
+  
   </nav>
   </div>
 
@@ -1367,19 +1604,286 @@
 Environment variables can also be used to store other variables uses in scripts.
 But when opening a collection, we often forget to select an environment and spend a few seconds if not minutes or more trying to figure out what the problem is with a request. Just to realize in the end that we just forgot to select an environment.
 How can this be avoided?
-<!--more-->
-This post is actually my first “Postman Collection Post”, I’ll share the tips and tricks I learn while using Postman.</p>
+<!--more--></p>
 
-<p>The <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4">Don’t forget to select an environment</a> collection demonstrates how to take advantage of <code>pm.environment.name</code> in Pre-Scripts to prevent sending a request and have a clear error message when an environment is not selected. The use case that will be used to demonstrate all that is retrieving a tweet with Twitter v2 API. The aim of this collection being error handling, you’ll need to have an actual access to Twitter v2 API only if you want to make the request succeed.</p>
+<div class="alert alert-info"><h4 class="alert-heading">Postman Tip And Tricks</h4><hr />
+<p>This post is a “Postman Tips And Tricks Post” in which I share the tips and tricks I learn while using Postman.
+You can either:</p>
 
-<p><a href="https://god.gw.postman.com/run-collection/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4?action=collection%2Ffork&amp;collection-url=entityId%3D143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4%26entityType%3Dcollection%26workspaceId%3D028152cd-d2f2-497f-a533-72e3d50e1b48"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a></p>
+<ul>
+  <li>Read this post</li>
+  <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4">Postman network</a></li>
+  <li>Use this <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
+  <li>Get the collection from <a href="https://github.com/apihandyman/postman-tips-and-tricks/tree/main/dont-forget-to-select-an-environment">Github</a> to import it in Postman. (Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after fork)</li>
+</ul>
 
-<p>(Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen)</p>
+</div>
+
+<p>This post demonstrates how to take advantage of <code>pm.environment.name</code> in Pre-Scripts to prevent sending a request and have a clear error message when an environment is not selected. The use case that will be used to demonstrate all that is retrieving a tweet with Twitter v2 API. The aim of this collection being error handling, you’ll need to have an actual access to Twitter v2 API only if you want to make the request succeed.</p>
+
 
         
       </div>
     </div><!-- First card with page title END -->
       
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="how-it-works">How it works</h1>
+
+<p>The magic is mostly handled in the Pre-request script regarding checking an environment is selected. But what happens there allows to have more precise error message on 401 errors in Test script.</p>
+
+<h2 id="collection-pre-request-script">Collection Pre-request Script</h2>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Pre-request Script</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-javascript line-numbers code-collapsed code-copy"><code class="code-block">/*******************************************/
+/*  Checks a valid environment containing  */
+/*  a specific variable used as bearer     */
+/*  token is selected                      */
+/*******************************************/
+
+/* The name and default value of the variable used in Authorization
+   and checked here is defined at collection level.
+   That way, this code snippet can be easily copied to other
+   collections */
+const tokenVariableName = pm.collectionVariables.get(&quot;token_variable_name&quot;);
+const tokenVariableDefaultValue = pm.collectionVariables.get(&quot;token_variable_default_value&quot;);
+// The message indicating how to solve the problem
+let message;
+// Get selected environment name (undefined if none is selected)
+const selectedEnvironment = pm.environment.name;
+// Get token environment variable value (undefined if none exists or if current value is empty) 
+const tokenVariableValue = pm.environment.get(tokenVariableName);
+
+if(selectedEnvironment === undefined) {
+    message = `No environment containing a ${tokenVariableName} variable has been selected`;
+}
+else if(tokenVariableValue === undefined) {
+    message = `Selected environment (${selectedEnvironment}) does not contain a ${tokenVariableName} variable`;
+}
+else if(tokenVariableValue.length === 0) {
+    message = `Selected environment (${selectedEnvironment}) contains a ${tokenVariableName} variable but its current value is empty`;
+}
+else if(tokenVariableValue === tokenVariableDefaultValue) {
+    message = `Selected environment (${selectedEnvironment}) contains a ${tokenVariableName} variable but its current value is the default one (${tokenVariableDefaultValue})`;
+}
+
+if(message) {
+    throw new Error(message);
+}</code></pre>
+  </div>
+</div>
+
+<p>The collection level Pre-Request script checks that an environment is selected by verifying the value of <code>pm.environment.name</code> .</p>
+
+<p>It also checks a specific variable is defined and has a correct value. The name of that variable is defined in the <code>token_variable_name</code> collection variable. The script also verifies the the variable has a value and that value is not the default one.</p>
+
+<p>If there’s anything wrong with one of the checks, the request is not sent and a red message explaining exactly what the problem is appears on screen thanks to <code>throw new Error(message)</code>.</p>
+
+<h2 id="collection-tests">Collection Tests</h2>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Test Script</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-javascript line-numbers code-copy"><code class="code-block">if(pm.response.code === 401) {
+    const selectedEnvironment = pm.environment.name;
+    const tokenVariableName = pm.collectionVariables.get(&quot;token_variable_name&quot;);
+    const tokenVariableValue = pm.environment.get(tokenVariableName);
+    const message = `Selected environment (${selectedEnvironment}) contains` +
+                    `a ${tokenVariableName} variable but its value is` +
+                    `probably not valid`;
+    pm.test(&quot;Unauthorized request (401)&quot;, function() {
+        pm.expect.fail(message);
+    });
+}</code></pre>
+  </div>
+</div>
+
+<p>The collection level Tests script take for granted that the Pre-Request script has done its job. As there was an environment selected and it contains the expected variable which is not empty or does not have a default value, the test script can guess the token sent is invalid when receiving a 401 Unauthorized response.</p>
+
+<h2 id="collection-variables">Collection variables</h2>
+
+<p>In order to make the code easily reusable across various collection, some collection variable are used:</p>
+
+<div class="table-wrapper"><table></div>
+  <thead>
+    <tr>
+      <th><strong>VARIABLE</strong></th>
+      <th><strong>VALUE</strong></th>
+      <th><strong>DESCRIPTION</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>token_variable_name</td>
+      <td>twitter_token</td>
+      <td>The name of variable used in the token field in collection Authorization configuration.</td>
+    </tr>
+    <tr>
+      <td>token_variable_default_value</td>
+      <td>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</td>
+      <td>The default value of the variable (hence, the one in INITIAL VALUE)</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h2 id="environment-variables">Environment variables</h2>
+
+<p>This collection requires the creation of an environment containing the following variables. This workspace comes with ready-to-use environment to test the various behaviors of the scripts (see Test cases below).</p>
+
+<div class="alert alert-danger">
+<p>Never store API tokens in initial value. Read <a href="https://blog.postman.com/how-to-use-api-keys/">How to use API Keys</a> to learn more.</p>
+
+</div>
+
+<div class="table-wrapper"><table></div>
+  <thead>
+    <tr>
+      <th><strong>VARIABLE</strong></th>
+      <th><strong>TYPE</strong></th>
+      <th><strong>INITIAL VALUE</strong></th>
+      <th><strong>CURRENT VALUE</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>twitter_token</td>
+      <td>secret</td>
+      <td>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</td>
+      <td>A Twitter API bearer token (Read <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens">Twitter API documentation</a> to get one)</td>
+    </tr>
+  </tbody>
+</table></div>
+
+
+      </div>
+    </div><!-- Next cards END -->
+    
+  
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="test-cases">Test cases</h1>
+
+<p>Use one of the following test cases to see the collection level Pre-Script and Tests scripts in action.</p>
+
+<div class="alert alert-info">
+<p>Note that you can make the environment drop list larger to see full environment names.</p>
+
+</div>
+
+<h2 id="no-environment-selected">No environment selected</h2>
+
+<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-0.png" alt="" /></p>
+
+<ol>
+  <li>Set environment drop list on “No Environment” (It’s the default value when opening the collection)</li>
+  <li>Send the <code>Get a tweet</code> request</li>
+</ol>
+
+<h2 id="empty-environment">Empty environment</h2>
+
+<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-1.png" alt="" /></p>
+
+<ol>
+  <li>Create an environment (don’t create any variable)</li>
+  <li>Select the environment</li>
+  <li>Send the <code>Get a tweet</code> request</li>
+</ol>
+
+<h2 id="wrong-name">Wrong name</h2>
+
+<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-2.png" alt="" /></p>
+
+<ol>
+  <li>Create an environment</li>
+  <li>Add a <code>twitter_tokenn</code> variable to your environment (yes, 2 n’s, it does not match the <code>token_variable_name</code> collection variable value)</li>
+  <li>Set INITIAL VALUE to <code>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</code> (it matches <code>token_variable_default_value</code> collection variable value)</li>
+  <li>Save the environment</li>
+  <li>Select the environment</li>
+  <li>Send the <code>Get a tweet</code> request</li>
+</ol>
+
+<h2 id="default-value">Default value</h2>
+
+<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-3.png" alt="" /></p>
+
+<ol>
+  <li>Create an environment</li>
+  <li>Add a <code>twitter_token</code> variable to your environment (it matches the <code>token_variable_name</code> collection variable value)</li>
+  <li>Set INITIAL VALUE to <code>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</code> (it matches <code>token_variable_default_value</code> collection variable value)</li>
+  <li>Save the environment</li>
+  <li>Select the environment</li>
+  <li>Send the <code>Get a tweet</code> request</li>
+</ol>
+
+<h2 id="invalid-token">Invalid token</h2>
+
+<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-4.png" alt="" /></p>
+
+<ol>
+  <li>Create an environment</li>
+  <li>Add a <code>twitter_token</code> variable to your environment (it matches the <code>token_variable_name</code> collection variable value)</li>
+  <li>Set INITIAL VALUE to <code>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</code> (it matches <code>token_variable_default_value</code> collection variable value)</li>
+  <li>Set CURRENT VALUE to <code>INVALID_TOKEN</code></li>
+  <li>Save the environment</li>
+  <li>Select the environment</li>
+  <li>Send the <code>Get a tweet</code> request</li>
+</ol>
+
+<h2 id="valid-token">Valid token</h2>
+
+<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-5.png" alt="" /></p>
+
+<ol>
+  <li>Read <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens">Twitter API documentation</a> to get a bearer token</li>
+  <li>Create an environment</li>
+  <li>Add a <code>twitter_token</code> variable to your environment (it matches the <code>token_variable_name</code> collection variable value)</li>
+  <li>Set INITIAL VALUE to <code>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</code> (it matches <code>token_variable_default_value</code> collection variable value)</li>
+  <li>Put the bearer token value in <code>twitter_token</code> variable current value (NOT the initial value!)</li>
+  <li>Save the environment</li>
+  <li>Select the environment</li>
+  <li>Send the <code>Get a tweet</code> request</li>
+</ol>
+
+      </div>
+    </div><!-- Next cards END -->
     
   
   
