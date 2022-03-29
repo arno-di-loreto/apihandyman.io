@@ -74,3 +74,4 @@ echo "renaming file"
 mv $FILE $UPDATED_FILE
 
 $SCRIPT_DIR/refresh-index.sh
+code $UPDATED_FILE
