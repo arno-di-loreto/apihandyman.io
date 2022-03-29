@@ -2,6 +2,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 ROOT_DIR=$SCRIPT_DIR/..
 IMAGES=$ROOT_DIR/images
 POSTS=$ROOT_DIR/_posts
+DRAFTS=$ROOT_DIR/_drafts
 
 get_fm_value () {
     FILE=$1
@@ -22,8 +23,13 @@ fi
 if [[ "$FILE" == *"_posts/"* ]]
 then
   echo "Post file provided $FILE"
+  FOLDER=$POSTS
+elif [[ "$FILE" == *"_drafts/"* ]]
+then
+  echo "Draft file provided $FILE"
+  FOLDER=$DRAFTS
 else
-  echo "No post file provided"
+  echo "No post or draft file provided"
   exit 1
 fi
 
@@ -43,18 +49,29 @@ echo PERMALINK:[$PERMALINK]
 UPDATED_PERMALINK=`$SCRIPT_DIR/slugify.sh "$UPDATED_TITLE"`
 echo UPDATED_PERMALINK:[$UPDATED_PERMALINK]
 
-POST_IMAGES=$IMAGES/$PERMALINK
-UPDATED_POST_IMAGES=$IMAGES/$UPDATED_PERMALINK
-echo UPDATED_POST_IMAGES:[$UPDATED_POST_IMAGES]
+IMAGES=$IMAGES/$PERMALINK
+UPDATED_IMAGES=$IMAGES/$UPDATED_PERMALINK
+echo UPDATED_IMAGES:[$UPDATED_IMAGES]
 
-UPDATED_FILE=$POSTS/$UPDATED_DATE-$UPDATED_PERMALINK.md
+# No date for draft but date for post in filename
+FILENAME=$UPDATED_PERMALINK.md
+if [[ "$FILE" == *"_posts/"* ]]
+then
+  FILENAME=$UPDATED_DATE-$FILENAME
+fi
+
+UPDATED_FILE=$FOLDER/$FILENAME
 echo UPDATED_FILE:[$UPDATED_FILE]
 
 echo "updating permalink"
 sed -e "s/$PERMALINK/$UPDATED_PERMALINK/" -i "" $FILE
-echo "renaming images folder"
-mv $POST_IMAGES $UPDATED_POST_IMAGES
-echo "renaming-file"
+if [[ -d $IMAGES ]]
+then
+  echo "renaming images folder"
+  mv $IMAGES $UPDATED_IMAGES
+fi
+echo "renaming file"
 mv $FILE $UPDATED_FILE
 
 $SCRIPT_DIR/refresh-index.sh
+code $UPDATED_FILE

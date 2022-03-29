@@ -33,7 +33,7 @@ then
     -p 35729:35729 \
     --volume="$PWD:/srv/jekyll:delegated" \
     -it $JEKYLL_DOCKER_IMAGE \
-    jekyll serve --host 0.0.0.0 --incremental --livereload --future
+    jekyll serve --host 0.0.0.0 --incremental --livereload --future --drafts
 # Attaching to running container (happen if vs code stopped without stopping container)
 else
   echo "Docker container already started, attaching to it"
