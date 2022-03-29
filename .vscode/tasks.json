@@ -45,9 +45,9 @@
             }
         },
         {
-            "label": "Update post title and/or date",
+            "label": "Update filename and permalink according to front matter",
             "type": "shell",
-            "command": "scripts/post-update.sh ${file}",
+            "command": "scripts/update.sh ${file}",
             "problemMatcher": [],
             "presentation": {
                 "reveal": "always"
