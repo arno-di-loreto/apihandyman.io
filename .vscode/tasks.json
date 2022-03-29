@@ -27,9 +27,9 @@
             "problemMatcher": []
         },
         {
-            "label": "New Post",
+            "label": "New Post Draft",
             "type": "shell",
-            "command": "scripts/post.sh \"${input:newPostTitle}\" ${input:newPostCategory} ${input:newPostDate}",
+            "command": "scripts/draft.sh \"${input:newPostTitle}\" ${input:newPostCategory}",
             "problemMatcher": [],
             "presentation": {
                 "reveal": "silent"
