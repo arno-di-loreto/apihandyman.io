@@ -62,6 +62,15 @@
                 "reveal": "always"
             }
         },
+        {
+            "label": "Draft to post",
+            "type": "shell",
+            "command": "scripts/draft-to-post.sh ${file} ${input:newPostDate}",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always"
+            }
+        },
     ],
     "inputs": [
         {
