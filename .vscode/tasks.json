@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Jekyll Serve",
+            "label": "🚀 Jekyll Serve",
             "type": "shell",
             "command": "scripts/serve.sh",
             "presentation": {
@@ -17,7 +17,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Jekyll Update Docker Image",
+            "label": "🐳 Jekyll Update Docker Image",
             "type": "shell",
             "command": "scripts/create-docker-image.sh apihandyman/jekyll 4.1.0",
             "presentation": {
@@ -27,7 +27,7 @@
             "problemMatcher": []
         },
         {
-            "label": "New Post Draft",
+            "label": "✏️ New Post Draft",
             "type": "shell",
             "command": "scripts/draft.sh \"${input:newPostTitle}\" ${input:newPostCategory}",
             "problemMatcher": [],
@@ -36,7 +36,7 @@
             }
         },
         {
-            "label": "Refresh index",
+            "label": "🔄 Refresh index",
             "type": "shell",
             "command": "scripts/refresh-index.sh",
             "problemMatcher": [],
@@ -45,7 +45,7 @@
             }
         },
         {
-            "label": "Update filename and permalink according to front matter",
+            "label": "💾 Update filename and permalink according to front matter",
             "type": "shell",
             "command": "scripts/update.sh ${file}",
             "problemMatcher": [],
@@ -54,7 +54,7 @@
             }
         },
         {
-            "label": "New slidedeck (open PDF file first!)",
+            "label": "📽 New slidedeck (open PDF file first!)",
             "type": "shell",
             "command": "scripts/slidedeck.sh \"${input:newPostTitle}\" \"${file}\"",
             "problemMatcher": [],
@@ -63,7 +63,7 @@
             }
         },
         {
-            "label": "Draft to post",
+            "label": "🖨 Draft to post",
             "type": "shell",
             "command": "scripts/draft-to-post.sh ${file} ${input:newPostDate}",
             "problemMatcher": [],
