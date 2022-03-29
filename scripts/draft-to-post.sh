@@ -45,3 +45,5 @@ POST_FILE=$POSTS/$DATE-$PERMALINK.md
 echo Moving $FILE draft to $POST_FILE
 
 mv $FILE $POST_FILE
+
+$SCRIPT_DIR/refresh-index.sh
