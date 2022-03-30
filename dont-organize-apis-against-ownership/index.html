@@ -14,27 +14,27 @@
 
 <html lang="en">
   <head>
-  <title>API Handyman | Organizing APIs in System, Business, and Experience Layers</title>
-  <meta name="description" content="Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.">
+  <title>API Handyman | Don't organize APIs against ownership</title>
+  <meta name="description" content="It doesn’t matter how APIs are organized, in layers, by business domain or any other dimension if you don’t take care of the most important one. The one dimension that rules them all: ownership. This post is the third and last of the “3 dimensions to consider for a successful API-First strategy” series.">
 <meta name="keywords" content="API,Web API,Web Service">
 <meta name="author" content="Arnaud Lauret">
-<meta name="description" content="Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.">
+<meta name="description" content="It doesn’t matter how APIs are organized, in layers, by business domain or any other dimension if you don’t take care of the most important one. The one dimension that rules them all: ownership. This post is the third and last of the “3 dimensions to consider for a successful API-First strategy” series.">
 
 <!-- Facebook & LinkedIn -->
-<meta property="og:title"         content="Organizing APIs in System, Business, and Experience Layers"/>
+<meta property="og:title"         content="Don't organize APIs against ownership"/>
 <meta property="og:type"          content="article"/>
-<meta property="og:description"   content="Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series."/>
-<meta property="og:url"           content="https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis/"/>
-<meta property="og:image"         content="https://apihandyman.io/images/organizing-apis-in-layers-system-business-and-experience-apis/banner.jpg"/>
+<meta property="og:description"   content="It doesn’t matter how APIs are organized, in layers, by business domain or any other dimension if you don’t take care of the most important one. The one dimension that rules them all: ownership. This post is the third and last of the “3 dimensions to consider for a successful API-First strategy” series."/>
+<meta property="og:url"           content="https://apihandyman.io/dont-organize-apis-against-ownership/"/>
+<meta property="og:image"         content="https://apihandyman.io/images/dont-organize-apis-against-ownership/banner.jpg"/>
 
 <!-- Twitter -->
 <meta name="twitter:card"         content="summary">
 <meta name="twitter:site"         content="@apihandyman">
 <meta name="twitter:creator"      content="@apihandyman" />
-<meta name="twitter:title"        content="Organizing APIs in System, Business, and Experience Layers">
-<meta name="twitter:url"          content="https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis/">
-<meta name="twitter:description"  content="Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.">
-<meta name="twitter:image:src"    content="https://apihandyman.io/images/organizing-apis-in-layers-system-business-and-experience-apis/banner.jpg">
+<meta name="twitter:title"        content="Don't organize APIs against ownership">
+<meta name="twitter:url"          content="https://apihandyman.io/dont-organize-apis-against-ownership/">
+<meta name="twitter:description"  content="It doesn’t matter how APIs are organized, in layers, by business domain or any other dimension if you don’t take care of the most important one. The one dimension that rules them all: ownership. This post is the third and last of the “3 dimensions to consider for a successful API-First strategy” series.">
+<meta name="twitter:image:src"    content="https://apihandyman.io/images/dont-organize-apis-against-ownership/banner.jpg">
 
   
   
@@ -1243,7 +1243,7 @@
   <div class="row row-banner-small row-banner-small-">
     <div class="banner-small-container">
       <div class="banner-small-column-main">
-        <img src="https://apihandyman.io/images/organizing-apis-in-layers-system-business-and-experience-apis/banner.jpg" class="img-fluid" alt="">
+        <img src="https://apihandyman.io/images/dont-organize-apis-against-ownership/banner.jpg" class="img-fluid" alt="">
       </div>
     </div>
   </div>
@@ -1284,7 +1284,7 @@
   
   
     
-    <a class="dropdown-item active disabled text-wrap">1 - Organizing APIs in System, Business, and Experience Layers</a>
+   <a class="dropdown-item selectable text-wrap" href="/organizing-apis-in-layers-system-business-and-experience-apis/">1 - Organizing APIs in System, Business, and Experience Layers</a>
   
 
     
@@ -1292,7 +1292,7 @@
   
 
     
-   <a class="dropdown-item selectable text-wrap" href="/dont-organize-apis-against-ownership/">3 - Don't organize APIs against ownership</a>
+    <a class="dropdown-item active disabled text-wrap">3 - Don't organize APIs against ownership</a>
   
 
 
@@ -1365,7 +1365,44 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#system-apis-layer">System APIs Layer</a>
+          <a class="nav-link toc-level-1" href="#disaster-waiting-to-happen">Disaster waiting to happen</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#an-api-project">An API project</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#no-business-decisions-possibles">No business decisions possibles</a>
           
       
       
@@ -1384,7 +1421,7 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#business-apis-layer">Business APIs Layer</a>
+          <a class="nav-link toc-level-2" href="#no-development-capacities">No development capacities</a>
           
       
       
@@ -1403,7 +1440,45 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#experience-apis-layer">Experience APIs Layer</a>
+        </nav>
+          <a class="nav-link toc-level-1" href="#no-good-apis-can-exist-without-true-ownership">No good APIs can exist without true ownership</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#defining-api-ownership">Defining API ownership</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#conways-law">Conway’s Law</a>
           
       
       
@@ -1422,8 +1497,9 @@
       
       
         
-          <a class="nav-link toc-level-1" href="#the-api-layer-cake">The API layer cake</a>
-          
+        </nav>
+          <a class="nav-link toc-level-1" href="#3-dimensions">3 dimensions</a>
+        
       
       
     
@@ -1470,17 +1546,17 @@
       <div class="body">
         
         <h5 class="surtitle">
-3 dimensions to consider for a successful API-First strategy Series - Part 1
+3 dimensions to consider for a successful API-First strategy Series - Part 3
 </h5>
         
         
-        <h1 class="title">Organizing APIs in System, Business, and Experience Layers</h1>
+        <h1 class="title">Don't organize APIs against ownership</h1>
         
         
-        <h6 class="subtitle">By Arnaud Lauret, March 16, 2022</h6>
+        <h6 class="subtitle">By Arnaud Lauret, March 30, 2022</h6>
         <hr/>
         
-        <p>Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.
+        <p>It doesn’t matter how APIs are organized, in layers, by business domain or any other dimension if you don’t take care of the most important one. The one dimension that rules them all: ownership. This post is the third and last of the “3 dimensions to consider for a successful API-First strategy” series.
 <!--more--></p>
 
 <p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
@@ -1503,7 +1579,7 @@
       <ul class="list-group list-group-flush">
         
           
-          <li class="list-group-item active">1 - Organizing APIs in System, Business, and Experience Layers</li>
+          <li class="list-group-item"><a href="/organizing-apis-in-layers-system-business-and-experience-apis/">1 - Organizing APIs in System, Business, and Experience Layers</a></li>
           
         
           
@@ -1511,7 +1587,7 @@
           
         
           
-          <li class="list-group-item"><a href="/dont-organize-apis-against-ownership/">3 - Don't organize APIs against ownership</a></li>
+          <li class="list-group-item active">3 - Don't organize APIs against ownership</li>
           
         
         
@@ -1528,12 +1604,7 @@
   </div>
 </div>
 
-<p>In this first post, we’ll talk about organizing APIs in layers (system, business, experience). That allows uncovering some architecture questions such as “how can I APIfy my IT mess” while instilling the importance and benefits of “don’t make me think” APIs.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/organizing-apis-in-layers-system-business-and-experience-apis/api-layers.png" class="figure-img img-fluid" /></figure>
-</div>
+<p>In this post, we’ll talk about the importance of ownership in the organization of APIs.</p>
 
 
         
@@ -1548,52 +1619,35 @@
     <div class="card-page-section page-section-not-title">
       <div class="card-body">
       
-        <h1 id="system-apis-layer">System APIs Layer</h1>
+        <h1 id="disaster-waiting-to-happen">Disaster waiting to happen</h1>
 
-<p>The lowest or most hidden API layer is the system APIs layer. System APIs aim to simplify access to software solutions, but just from a technical perspective.</p>
+<p>I did quite a lot of API design reviews. It went pretty well, but some were more chaotic than others. There were different reasons for that, one of them being ownership issues. Every time I encountered such problems, it ended pretty badly.</p>
 
-<p>If you have a good old mainframe system, you may build (or buy) an HTTP access layer façade to put it on top of it to facilitate access to its COBOL programs. Not-so-old Commercial-Off-The-Shelf software products (COTS) are unfortunately known to provide terrible APIs (when they provide some).  Software-As-A-Service (SAAS) solutions usually provide APIs. They usually are less terrible than COTS ones but not always, unfortunately.</p>
+<h2 id="an-api-project">An API project</h2>
 
-<p>These different APIs are system APIs. They give direct access to the heart of a system, can be tainted by the provider’s technical perspective, or often require a high level of technical or business/subject matter expertise and possibly some knowledge of the underlying implementation.</p>
+<p>The ownership issue example I use the most probably because it made me realize that an API  cannot be handled through projects (actually, it was a SOAP Web Service).</p>
 
-<p>They MUST stay private and never be exposed publicly to the outside world. Exposing them to other teams inside the organization should be done cautiously. If that can be avoided, that would be much better.</p>
+<p>The API in question was the one allowing access to contracts, and there was a “read contract” operation (something that would look like GET /contracts/{contractId}). It had been created for Project A by Project Team A (that was disbanded after the project). As Project A only needed a few properties of a contract, like its number and name, Project Team A decided that this operation would only return those data.</p>
 
-<p>They offer a terrible DX. It takes an awfully long time to integrate them into other systems for the uninitiated consumers. Their provider will also lose time in the making as they will have to accompany closely consumers, answers to their many questions.</p>
+<p>Project B came a few weeks after Project A had been released. Project B also needed to read a contract, but they needed the contract’s product category. However, being an essential piece of information, whatever the context, it was not returned. Project B had to modify the operation to add that information but only those one; that way, Project C would have some work, another project cycle would start.</p>
 
-<p>Using them leads to a detrimental tight coupling because they require a high level of expertise. Such coupling must only exist with very few other systems.</p>
+<p>Some may think that’s not a big deal, but each project took a little longer and so cost more money because “read a contract” had to be modified repeatedly. Also, the resulting APIs after a few projects are usually not the best in class.</p>
 
-<p>And the icing on the cake, they are prone to cause security issues. That’s less true for SAAS but almost a certainty for COTS. More often than not they do not propose standard security like OAuth 2, instead, you may have a basic auth with static login and password. Hopefully, that could possibly be solved by adding an API gateway on top of it. But that will never solve permissions/rights issues that will inevitably arise.</p>
+<h2 id="no-business-decisions-possibles">No business decisions possibles</h2>
 
-<p>So, system APIs are not what we could call “good” APIs nowadays but at least they exist! They at least allow other systems (you own) to be plugged into the system that exposes them. And no worries if they are complex and not totally secured, that’s the job of the next layer to simplify all that.</p>
+<p>Another one that I have seen often in the past years is when there are silos that feel like there are 3 meters thick reinforced concrete walls between business and IT.</p>
 
+<p>When I do an API design review, I ask many business/subject matter questions, and I often challenge the needs that led to the API’s creation or modification. Not that I know everything about all subject matters, it’s even the contrary. But I’m must ensure that people in charge have identified the proper needs. And if I can’t understand what the API does and why, how are its future users expecting a “something for dummies” API will? Sometimes these discussions lead the team to actually question the needs. But if the “business” won’t change their mind and consider the team building the API just executors, that only leads to terrible APIs.</p>
 
-      </div>
-    </div><!-- Next cards END -->
-    
-  
-    
-    
-    <!-- Next cards -->
-    <div class="card-page-section page-section-not-title">
-      <div class="card-body">
-      
-        <h1 id="business-apis-layer">Business APIs Layer</h1>
+<h2 id="no-development-capacities">No development capacities</h2>
 
-<p>Business APIs aim to propose a computerized version of an organization’s (either a company’s, a business unit’s, or a team’s) added value skills, knowledge, and expertise. (Maybe I should talk about “subject matter” APIs?)</p>
+<p>Another example that I met only once but marked my mind. I remember a review that went very well. The conversation with the designer was smooth. The first version of the design was not as good as it could have been regarding needs that needed to be represented and guidelines conformity, but everything was easily and quickly fixed. The designer understood all feedback and learned in the making. That was a great review, but problems started after.</p>
 
-<p>Note that “business” means the organization’s business in a broad sense, hence “what they do”. For instance, an insurance company may provide APIs allowing to subscribe to a home insurance contract. On the “opposite” of the spectrum, if the organization’s job is providing databases-as-a-service because it’s a cloud provider or an infrastructure team, a business API may allow creating databases.</p>
+<p>Working in Team A, the designer was also supposed to be the API owner. Because of some security and architecture constraints, it had been decided the API would be developed using different technology and infrastructure that team A was used to. The development was delegated to Team B, with which they happen to work with sometimes. Team B frequently built UI on top of the system managed by team A (mainly directly using their database). Also, Team B was supposed to be the first consumer of the API.</p>
 
-<p>This API layer is the only mandatory one. Those business APIs can be private or public (or partner), consumed inside or outside the organization. They can exist on their own or be built on top of system APIs or other business APIs.</p>
+<p>What happened? Team B started to build the API precisely like they wanted, absolutely not taking care of the design made by the API owner. They did not care about the API design guidelines and common practices, but worst: usability and reusability were not a concern.</p>
 
-<p>Their main purpose is to expose the “organization stuff for dummies”. They require a low level of expertise to be used. They hide as much as possible the internal mess, especially those ugly system APIs, to make them easy to use and reduce coupling with consumers.</p>
-
-<p>They are totally secured, they especially have to fix possible holes that exist in their underlying system APIs. They can be reused in many different contexts. That’s possible because they focus on fulfilling business needs from the outside-of-the-organization-providing-them perspective.</p>
-
-<p>In an ideal world, as they are secured and easy to use, they can be used by anyone inside or outside of the organization (see Jeff Bezos mandate).</p>
-
-<p>Such vision has a nice side effect on costs of development and time-to-market. It takes a few minutes for anyone inside the organization to use a business API without the need of bothering the provider with thousands of questions (like with system APIs). Pushed to the extreme, a private API can be turned into a profitable (public or partner) product in a matter of minutes.</p>
-
-<p>But even if they are supposed to be highly reusable, sometimes, these business APIs can be not enough when used alone or need to be tweaked for specific needs.</p>
+<p>Hopefully, it didn’t last long; the API owner stopped everything and made the necessary to be able to expose the API they wanted to create on their side.</p>
 
 
       </div>
@@ -1606,17 +1660,38 @@
     <div class="card-page-section page-section-not-title">
       <div class="card-body">
       
-        <h1 id="experience-apis-layer">Experience APIs Layer</h1>
+        <h1 id="no-good-apis-can-exist-without-true-ownership">No good APIs can exist without true ownership</h1>
 
-<p>Experience APIs are created to adapt and orchestrate business APIs for specific technical or business needs.</p>
+<p>So based on my experience, I can say that no good APIs can exist without true ownership. But what does it means?</p>
 
-<p>The most known examples of experience APIs are BFFs, not Best Friends Forever but Backend For Frontends. Usually, for performance concerns, some mobile application development teams create such BFFs to transform and aggregate API calls and avoid mobile applications triggering multiple calls. It’s not uncommon to have GraphQL experience APIs built on top of REST business APIs.</p>
+<h2 id="defining-api-ownership">Defining API ownership</h2>
 
-<p>Sometimes such experience APIs do not do that many modifications to their underlying APIs. They just act as a buffer of change, allowing to decouple consumers from business APIs. That could be useful when a modification made on a business APIs must not be reported on consumers outside of the organization. But that possibly leads to an API anti-pattern: not eating your own API dog food.</p>
+<p>An API must be a product, not a project. It is something that fulfills greater needs than projects ones. It is thought on long-term.</p>
 
-<p>Experience APIs can also be created for pure business concerns. An organization may want to create a totally new product by aggregating various business APIs. Such experience APIs are supposed to be created quickly. Someone has an idea, boom an experience API is created minutes later to test it. What may have started as a proof of concept must in the end become a new business API in case of success.</p>
+<p>Corollary to the API being a product, an API must belong to a single team.  A single team owning the API ensures a long term vision that will fulfill all the needs of all current and future consumers and ensure consistent evolutions</p>
 
-<p>Experience APIs must be used with caution when they are not BFFs owned by the consumers. Indeed without care, an organization could end with as many specific variations of its business APIs as it has consumers or partners. That’s a nightmare to maintain (talk to that about software vendors who customize their products for their customers).</p>
+<p>This team can make business decisions. Some business owners/stakeholders must be integrated into the team or they must listen to the team in order to build the best possible product.</p>
+
+<p>And last but not least, this team has full control over API developments. Either because the team has the full capacity to develop them or because it has full control other the hired contractors/third party (who will do exactly what is expected).</p>
+
+<p>The combination of all these elements defines API ownership.</p>
+
+<h2 id="conways-law">Conway’s Law</h2>
+
+<p>Such organization around ownership will irremediably be driven by <a href="https://en.wikipedia.org/wiki/Conway%27s_law">Conway’s law</a>. An adage that states our systems organizations mirror their own communication structure. It applies at 2 levels: human organization and technology organization.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/dont-organize-apis-against-ownership/ownership.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>A company will be divided into various sub-organizations, it affects people and tools.</p>
+
+<p>Inside those sub-organizations, in some ideal contexts, a single team may be able to handle a whole business domain (see Business Domain 1 or 4 in the figure), including all of its APIs, even the most hidden one. But that’s not always the case.</p>
+
+<p>If a business domain is too big (see Business Domain 2 in the figure), its APIs will have to be distributed among several teams. But that will require some synchronization between the teams in order to keep a certain level of consistency between the various APIs of the domain, especially the ones that are exposed outside of the domain.</p>
+
+<p>It is not that rare to have various technology used inside a domain (see Business Domain 3). Imagine having a good old commercial off the shelf vendor solution, requiring very specific knowledge), it would be wise to let it be in the hand of experts that will just concentrate on making it run and expose system APIs and have another team dedicated to the creation of business APIs using a more common technology (like NodeJS, .Net or Java for instance).</p>
 
 
       </div>
@@ -1629,56 +1704,15 @@
     <div class="card-page-section page-section-not-title">
       <div class="card-body">
       
-        <h1 id="the-api-layer-cake">The API layer cake</h1>
+        <h1 id="3-dimensions">3 dimensions</h1>
 
-<p>So, as you can see, not all APIs are equals, they’re not on the same level. It’s critical to understand that existing raw APIs (the system ones) are not to be accessible by many, are too complex and possibly unsecured. Building business-oriented easy-to-use API façades are a good way to put lipstick on the API pig. Those business APIs will provide a cleaner API surface, allowing anyone to build anything on top of them. In last resort, for highly specific needs, you can build experience APIs providing tailor-made features. But don’t fall into the one partner/consumer equals one experience API trap.</p>
+<p>That concludes this series describing 3 dimensions of API organization:</p>
 
-<p>Here’s a recap of the 3 API layers:</p>
-
-<div class="table-wrapper"><table></div>
-  <thead>
-    <tr>
-      <th>API Layer</th>
-      <th>Purpose</th>
-      <th>Public APIs</th>
-      <th>Private APIs</th>
-      <th>Security</th>
-      <th>Usability</th>
-      <th>Reusability</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>System APIs</td>
-      <td>Technically simplifies access</td>
-      <td>Never</td>
-      <td>Reduce at all cost</td>
-      <td>⭐️</td>
-      <td>⭐️</td>
-      <td>⭐️</td>
-    </tr>
-    <tr>
-      <td>Business APIs</td>
-      <td>You stuff for dummies</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>⭐️⭐️⭐️⭐️⭐️</td>
-      <td>⭐️⭐️⭐️⭐️⭐️</td>
-      <td>⭐️⭐️⭐️⭐️⭐️</td>
-    </tr>
-    <tr>
-      <td>Experience APIs</td>
-      <td>Adapt and/or aggregate</td>
-      <td>No for BFFs, Yes for Products</td>
-      <td>Yes</td>
-      <td>⭐️⭐️⭐️⭐️⭐️</td>
-      <td>⭐️ to ⭐️⭐️⭐️⭐️⭐️</td>
-      <td>⭐️ to ⭐️⭐️⭐️⭐️⭐️</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<p>In next post, we’ll discuss the importance of <a href="/organize-apis-around-business-domains-and-capabilities-not-tools/">organizing APIs around business domains and capabilities, not tools</a>.</p>
+<ul>
+  <li>API Layers: 3 different types of APIs with different purposes (system, business experience). Only the business layer is required.</li>
+  <li>Business domains and capabilities: Organize around business domains and not tools to create independent and reusable APIs fulfilling business needs without exposing all domain features (and so its complexity). An API is a domain or a sub-domain for dummies.</li>
+  <li>Ownership: Each API must have a single owner with full power from decisions to implementation. Take Conway’s law into account when defining the teams managing the APIs.</li>
+</ul>
 
       </div>
     </div><!-- Next cards END -->

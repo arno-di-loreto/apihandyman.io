@@ -1,4 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-03-29T06:46:23-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">We always forget to select a Postman environment</title><link href="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/" rel="alternate" type="text/html" title="We always forget to select a Postman environment" /><published>2022-03-26T00:00:00-05:00</published><updated>2022-03-26T00:00:00-05:00</updated><id>https://apihandyman.io/we-always-forget-to-select-a-postman-environment</id><content type="html" xml:base="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/"><![CDATA[<p>When using Postman, it’s a best practice to store API token values in environment secret variables.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-03-30T07:15:04-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Dont Organize Apis Against Ownership</title><link href="https://apihandyman.io/dont-organize-apis-against-ownership/" rel="alternate" type="text/html" title="Dont Organize Apis Against Ownership" /><published>2022-03-30T00:00:00-05:00</published><updated>2022-03-30T00:00:00-05:00</updated><id>https://apihandyman.io/dont-organize-apis-against-ownership</id><content type="html" xml:base="https://apihandyman.io/dont-organize-apis-against-ownership/"><![CDATA[<p>It doesn’t matter how APIs are organized, in layers, by business domain or any other dimension if you don’t take care of the most important one. The one dimension that rules them all: ownership. This post is the third and last of the “3 dimensions to consider for a successful API-First strategy” series.
+<!--more--></p>
+
+<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">3 dimensions to consider for a successful API-First strategy Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text"><p>When talking about “organizing”, “classifying” or “categorizing” APIs, the private/partner/public classification is the one that comes first very often. But that’s not the only way of labeling APIs and this classification alone is far from sufficient to understand the implications of making APIs a first-class citizen in your organization.</p>
+
+<p>In the past years, when I was advocating APIs to business and IT people in a company engaged in an API-First journey (though it has decades-old legacy systems), I very often described APIs being organized in 3 dimensions in order to help them discover and grasp some important API-first challenges and benefits: API Layers, Business domains (or capabilities), and Ownership.</p>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          <li class="list-group-item"><a href="/organizing-apis-in-layers-system-business-and-experience-apis/">1 - Organizing APIs in System, Business, and Experience Layers</a></li>
+          
+        
+          
+          <li class="list-group-item"><a href="/organize-apis-around-business-domains-and-capabilities-not-tools/">2 - Organize APIs around business domains and capabilities, not tools</a></li>
+          
+        
+          
+          <li class="list-group-item active">3 - Don't organize APIs against ownership</li>
+          
+        
+        
+          
+          
+          
+        
+          
+          
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p>In this post, we’ll talk about the importance of ownership in the organization of APIs.</p>
+
+<h1 id="disaster-waiting-to-happen">Disaster waiting to happen</h1>
+
+<p>I did quite a lot of API design reviews. It went pretty well, but some were more chaotic than others. There were different reasons for that, one of them being ownership issues. Every time I encountered such problems, it ended pretty badly.</p>
+
+<h2 id="an-api-project">An API project</h2>
+
+<p>The ownership issue example I use the most probably because it made me realize that an API  cannot be handled through projects (actually, it was a SOAP Web Service).</p>
+
+<p>The API in question was the one allowing access to contracts, and there was a “read contract” operation (something that would look like GET /contracts/{contractId}). It had been created for Project A by Project Team A (that was disbanded after the project). As Project A only needed a few properties of a contract, like its number and name, Project Team A decided that this operation would only return those data.</p>
+
+<p>Project B came a few weeks after Project A had been released. Project B also needed to read a contract, but they needed the contract’s product category. However, being an essential piece of information, whatever the context, it was not returned. Project B had to modify the operation to add that information but only those one; that way, Project C would have some work, another project cycle would start.</p>
+
+<p>Some may think that’s not a big deal, but each project took a little longer and so cost more money because “read a contract” had to be modified repeatedly. Also, the resulting APIs after a few projects are usually not the best in class.</p>
+
+<h2 id="no-business-decisions-possibles">No business decisions possibles</h2>
+
+<p>Another one that I have seen often in the past years is when there are silos that feel like there are 3 meters thick reinforced concrete walls between business and IT.</p>
+
+<p>When I do an API design review, I ask many business/subject matter questions, and I often challenge the needs that led to the API’s creation or modification. Not that I know everything about all subject matters, it’s even the contrary. But I’m must ensure that people in charge have identified the proper needs. And if I can’t understand what the API does and why, how are its future users expecting a “something for dummies” API will? Sometimes these discussions lead the team to actually question the needs. But if the “business” won’t change their mind and consider the team building the API just executors, that only leads to terrible APIs.</p>
+
+<h2 id="no-development-capacities">No development capacities</h2>
+
+<p>Another example that I met only once but marked my mind. I remember a review that went very well. The conversation with the designer was smooth. The first version of the design was not as good as it could have been regarding needs that needed to be represented and guidelines conformity, but everything was easily and quickly fixed. The designer understood all feedback and learned in the making. That was a great review, but problems started after.</p>
+
+<p>Working in Team A, the designer was also supposed to be the API owner. Because of some security and architecture constraints, it had been decided the API would be developed using different technology and infrastructure that team A was used to. The development was delegated to Team B, with which they happen to work with sometimes. Team B frequently built UI on top of the system managed by team A (mainly directly using their database). Also, Team B was supposed to be the first consumer of the API.</p>
+
+<p>What happened? Team B started to build the API precisely like they wanted, absolutely not taking care of the design made by the API owner. They did not care about the API design guidelines and common practices, but worst: usability and reusability were not a concern.</p>
+
+<p>Hopefully, it didn’t last long; the API owner stopped everything and made the necessary to be able to expose the API they wanted to create on their side.</p>
+
+<h1 id="no-good-apis-can-exist-without-true-ownership">No good APIs can exist without true ownership</h1>
+
+<p>So based on my experience, I can say that no good APIs can exist without true ownership. But what does it means?</p>
+
+<h2 id="defining-api-ownership">Defining API ownership</h2>
+
+<p>An API must be a product, not a project. It is something that fulfills greater needs than projects ones. It is thought on long-term.</p>
+
+<p>Corollary to the API being a product, an API must belong to a single team.  A single team owning the API ensures a long term vision that will fulfill all the needs of all current and future consumers and ensure consistent evolutions</p>
+
+<p>This team can make business decisions. Some business owners/stakeholders must be integrated into the team or they must listen to the team in order to build the best possible product.</p>
+
+<p>And last but not least, this team has full control over API developments. Either because the team has the full capacity to develop them or because it has full control other the hired contractors/third party (who will do exactly what is expected).</p>
+
+<p>The combination of all these elements defines API ownership.</p>
+
+<h2 id="conways-law">Conway’s Law</h2>
+
+<p>Such organization around ownership will irremediably be driven by <a href="https://en.wikipedia.org/wiki/Conway%27s_law">Conway’s law</a>. An adage that states our systems organizations mirror their own communication structure. It applies at 2 levels: human organization and technology organization.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/dont-organize-apis-against-ownership/ownership.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>A company will be divided into various sub-organizations, it affects people and tools.</p>
+
+<p>Inside those sub-organizations, in some ideal contexts, a single team may be able to handle a whole business domain (see Business Domain 1 or 4 in the figure), including all of its APIs, even the most hidden one. But that’s not always the case.</p>
+
+<p>If a business domain is too big (see Business Domain 2 in the figure), its APIs will have to be distributed among several teams. But that will require some synchronization between the teams in order to keep a certain level of consistency between the various APIs of the domain, especially the ones that are exposed outside of the domain.</p>
+
+<p>It is not that rare to have various technology used inside a domain (see Business Domain 3). Imagine having a good old commercial off the shelf vendor solution, requiring very specific knowledge), it would be wise to let it be in the hand of experts that will just concentrate on making it run and expose system APIs and have another team dedicated to the creation of business APIs using a more common technology (like NodeJS, .Net or Java for instance).</p>
+
+<h1 id="3-dimensions">3 dimensions</h1>
+
+<p>That concludes this series describing 3 dimensions of API organization:</p>
+
+<ul>
+  <li>API Layers: 3 different types of APIs with different purposes (system, business experience). Only the business layer is required.</li>
+  <li>Business domains and capabilities: Organize around business domains and not tools to create independent and reusable APIs fulfilling business needs without exposing all domain features (and so its complexity). An API is a domain or a sub-domain for dummies.</li>
+  <li>Ownership: Each API must have a single owner with full power from decisions to implementation. Take Conway’s law into account when defining the teams managing the APIs.</li>
+</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[It doesn’t matter how APIs are organized, in layers, by business domain or any other dimension if you don’t take care of the most important one. The one dimension that rules them all: ownership. This post is the third and last of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry><entry><title type="html">We always forget to select a Postman environment</title><link href="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/" rel="alternate" type="text/html" title="We always forget to select a Postman environment" /><published>2022-03-26T00:00:00-05:00</published><updated>2022-03-26T00:00:00-05:00</updated><id>https://apihandyman.io/we-always-forget-to-select-a-postman-environment</id><content type="html" xml:base="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/"><![CDATA[<p>When using Postman, it’s a best practice to store API token values in environment secret variables.
 Environment variables can also be used to store other variables uses in scripts.
 But when opening a collection, we often forget to select an environment and spend a few seconds if not minutes or more trying to figure out what the problem is with a request. Just to realize in the end that we just forgot to select an environment.
 How can this be avoided?
@@ -286,6 +407,10 @@ This post is the second of the “3 dimensions to consider for a successful API-
           <li class="list-group-item active">2 - Organize APIs around business domains and capabilities, not tools</li>
           
         
+          
+          <li class="list-group-item"><a href="/dont-organize-apis-against-ownership/">3 - Don't organize APIs against ownership</a></li>
+          
+        
         
           
           
@@ -293,8 +418,6 @@ This post is the second of the “3 dimensions to consider for a successful API-
         
           
           
-          
-          <li class="list-group-item disabled">3 - No successful APIs without true ownership (coming soon)</li>
           
         
       </ul>
@@ -378,6 +501,10 @@ So all types of APIs belong to a business domain, the only visible ones being bu
           <li class="list-group-item"><a href="/organize-apis-around-business-domains-and-capabilities-not-tools/">2 - Organize APIs around business domains and capabilities, not tools</a></li>
           
         
+          
+          <li class="list-group-item"><a href="/dont-organize-apis-against-ownership/">3 - Don't organize APIs against ownership</a></li>
+          
+        
         
           
           
@@ -385,8 +512,6 @@ So all types of APIs belong to a business domain, the only visible ones being bu
         
           
           
-          
-          <li class="list-group-item disabled">3 - No successful APIs without true ownership (coming soon)</li>
           
         
       </ul>
@@ -1360,177 +1485,4 @@ But my Natixis adventure is over because I couldn’t refuse an even more amazin
 I just joined Postman and will go on being the API Handyman there (you’ll be able to read more about this on Postman’s blog).</p>
 
 <p>Since I started the API Handyman blog, I rationally analyzed and accepted 2 wonderful job offers, I became and accepted myself as an expert taking advantage of my past and willing to learn.
-So, yes, professionally speaking, I think I have reached the age of reason, both as API Handyman and Arnaud Lauret.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[This time, no “API blah blah blah”, this time, it’s personal. February 2022 marks a major landmark, I can’t believe I launched the API Handyman blog 7 years ago! Being 7 years old is supposed to mark the “age of reason”. Did I reached it? I think so, but it took me more than 7 years.]]></summary></entry><entry><title type="html">What to consider when building an API sandbox</title><link href="https://apihandyman.io/what-to-consider-when-building-an-api-sandbox/" rel="alternate" type="text/html" title="What to consider when building an API sandbox" /><published>2022-01-26T00:00:00-06:00</published><updated>2022-01-26T00:00:00-06:00</updated><id>https://apihandyman.io/what-to-consider-when-building-an-api-sandbox</id><content type="html" xml:base="https://apihandyman.io/what-to-consider-when-building-an-api-sandbox/"><![CDATA[<p>Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment.
-But what is an “API sandbox” actually?
-Is it just a mock?
-It can be that … or far more than that.
-Let’s see what could be the features of an API sandbox.
-<!--more-->
-This post is a sequel to my previous post “<a href="/a-few-concerns-to-be-aware-of-when-adding-try-it-feature-to-api-documentation/">A few concerns to be aware of when adding try it feature to API documentation</a>”.</p>
-
-<h1 id="what-is-an-api-sandbox">What is an API sandbox</h1>
-
-<p>An API sandbox is an application or set of applications that simulates an actual API.
-Quite often tied to the “try it” feature, which allows to make API calls from an API’s documentation, it could also reveal to be quite useful directly called from code created by developers who subscribed to use the API.</p>
-
-<p>Regardless of how it is used, the main purpose of a sandbox is usually to be the playground that help people learn how the API works.
-In an ideal world, consumers should be able to write code against the API sandbox and then be able to switch their API calls from the sandboxed version to the real version without any modification (besides configuration).</p>
-
-<p>Usually, the first thought regarding a sandbox is that, if the real API provides a <code>GET /this</code> or a <code>POST /that</code>, its sandbox counterpart will propose them too, mimicking their behavior in a more or less accurate fashion.
-That could make think a sandbox is “just” a basic mock, which is not always the case.</p>
-
-<h1 id="what-are-the-features-of-an-api-sandbox">What are the features of an API sandbox</h1>
-
-<p>If an API sandbox is supposed to mimic what the real API does, let’s see what happen when consumers interact with a real “task list” API:</p>
-
-<ul>
-  <li>Consumers calling the API to “search tasks” without an access token get an error.</li>
-  <li>Obtaining an access token can be done in a machine to machine way or involving an end user authentication, depending on what they want to do.</li>
-  <li>Consumers calling the API with an access token tied to wrong scopes get an error. For instance if the access token has not the scope “write access”, consumers are not allowed to “create a task”.</li>
-  <li>When calling the API (with an access token), they get an accurate response which is consistent with their request, either for a success or failure. For instance, if they “search tasks”, they get a list of tasks matching their search parameters. If they “create a task”, providing a user name and a description, in return they get the input data plus a server generated id. If they forgot to provide the username, or provide a non existing user, or provide a user for which they are not allowed to create a task, they get an error telling them so.</li>
-  <li>For a subsequent request, they get a response which is consistent with previous calls. Like seeing their created tasks in the response of “search tasks” or being able to retrieve the created task based on the returned id (with “read task”).</li>
-  <li>Depending on consumer and/or end user profile, consumers may be allowed to do or not to do specific API calls, like reading or deleting a specific task created by other consumer for instance</li>
-  <li>And finally an API call or an internal process running without consumer interaction may trigger something that impacts the consumers or the end users outside of the API. For instance, an SMS or an email could be sent to the user identified in the created task or a webhook may be called.</li>
-</ul>
-
-<p>But a sandbox shouldn’t only simulate the real API, it should also provide any “meta-feature” that will help people learn how to use it.
-And last but not least, the sandbox should be easily “integrable” in the API documentation.</p>
-
-<p>If we sum those 3 dimensions, that mean an API sandbox is supposed to propose the following features:</p>
-
-<ul>
-  <li>Expose the same interface contract as the real API</li>
-  <li>Provide useful data</li>
-  <li>Simulate implementation and dependencies behaviors</li>
-  <li>Save and restore data</li>
-  <li>Simulate high level security</li>
-  <li>Simulate non API visible dependencies</li>
-  <li>Be API first</li>
-</ul>
-
-<h2 id="expose-the-same-interface-contract-as-the-real-api">Expose the same interface contract as the real API</h2>
-
-<p>Using the API, or a fake version of it in this case, really helps to learn how an API work and what you can do with it.
-The most minimal API sandbox must expose the same interface contract as the original API.
-It must provide all of the operations described in the interface contract.
-All those operations, such as <code>GET /this</code> and <code>POST /that</code>, must respect the paths, parameters, body, data models, HTTP status codes, … described in the original interface contract.
-And the contract must be respected even in case of error (which is often neglected).
-Working at this level is usually made working with an API specification such as the OpenAPI Specification.</p>
-
-<p>But “just” simulating the interface contract is usually not enough for a sandbox.</p>
-
-<h2 id="provide-useful-data">Provide useful data</h2>
-
-<p>It’s quite simple to simulate an interface contract based on a specification document using randomly generated and inconsistent data for each call.
-But that’s not really useful to learn how the API works.
-Indeed, if I “search tasks”, I would prefer to get a meaningful <code>description</code> such as <code>write a blog post</code> instead of <code>lorem ipsum</code>, or worse <code>azljkiqjnlkjpoi</code>, for each element in the list.
-Also, once I got my list of tasks, I would be very happy to pick the <code>id</code> of one of them,  such as <code>123</code>, to do a <code>GET /tasks/123</code> (“read task”) and get data which is consistent with my previous call.</p>
-
-<p>On top of that, providing useful global data sets allowing to cover various use cases is important.
-In our “task list” case, it could be having tasks with all possible types and states or tasks created by various users.
-The more real the data, the better the experience and so the learning.
-But more important, the less risk of variations between code running against sandbox and production.</p>
-
-<p>But, as I often say, an API is not only about data, an API proposes a service; there’s added value logic inside an API.
-And just working at data level is sometimes not enough to simulate that.</p>
-
-<h2 id="simulate-implementation-and-dependencies-behaviors">Simulate implementation and dependencies behaviors</h2>
-
-<p>The implementation of an API holds 3 types of logic a sandbox must try to reproduce as closely to reality as possible:</p>
-
-<ul>
-  <li>Surface controls</li>
-  <li>Application level security</li>
-  <li>Business rules</li>
-</ul>
-
-<p>Surface controls are all the parameters/properties presence, format and value checks.
-Is the mandatory <code>username</code> present? Is the task <code>type</code> value in allowed values list?
-Most of the time, those controls can be directly tied to the interface contract description.
-But due to limitations or lack of knowledge of the specification used (do you know that you can specify a regex pattern for a string property in OpenAPI for instance), that sometimes requires more work.</p>
-
-<p>Application level security are those controls an implementation will do to ensure that consumer and possible end user don’t see or do  more than they should.
-They are based on access token information (consumer, scopes, end user, roles) and business data.
-For instance, “is this user allowed to modify this specific task?” or “what are the specific tasks this user can see?”.</p>
-
-<p>And last but not least, the business rules.
-They are the heart of the implementation: what is done to fullfil what the API is supposed to do.
-These are the controls and actions made by the implementation based on business logic and data.
-For instance, “Does this user for who I’m supposed to create a tasks exists?”, “I read the task for this id”, “the time of a tasks is the sum of time of all subtask” or “everything is OK, I insert a task in this table of the database”.</p>
-
-<p>Note that an implementation can rely on dependencies.
-Depending on your context you may or may not have to work on simulating what is happening in those dependencies.
-If our simple “task list” API use case implementation is composed of a basic whatever-language monolithic server application and a database, no dependency problem.
-But what it relies on a “user” component to check if a user exists for instance?
-Do we need to simulate that component?
-And how?
-Do we create a single sandbox or one per component?</p>
-
-<p>Also what if this component exposes a “user” API that can be used by the same consumers?
-Should the “task list” sandbox do what is necessary to propagate data to the “user” sandbox to have a consistent <code>tasksCount</code> property while calling “read user”?</p>
-
-<p>Whatever the complexity of the implementation algorithms and architecture, data needs to be saved in the end more often than not in order to provide a realistic and consistent behavior.</p>
-
-<h2 id="save-protect-and-restore-data">Save, protect and restore data</h2>
-
-<p>Being able to retrieve a previously created or modified task means that the corresponding data have been saved.
-If we go on along that line, data can be modified or deleted.
-And if the data can be created, modified, or deleted, it may mean in the end that the data will be, not corrupted (the implementation is supposed to prevent that), but seriously messed up.
-The quite useful task list containing all types and statuses combinations could not be there anymore for instance.
-So maybe some data should be protected against modification and deletion, but that could possibly make the API less realistic.
-Another option could be to provide a way to restore the sandbox into an initial clean state when needed.</p>
-
-<p>If data can be modified, in a broad sense, how long should it be kept?
-Forever or only for a given amount of time?
-Maybe data should be restored automatically to its initial state at some point.</p>
-
-<p>Also, allowing to modify sandbox data for whatever reason should be done not forgetting that, at a given moment, various consumers may work with the sandbox independently.
-They should be able to do that without being bothered by what others do (and reverse).
-Being able to actually separate who is doing what could be interesting in order to prevent problems, and working on security could help on that topic (among other things).</p>
-
-<h2 id="simulate-high-level-security">Simulate high level security</h2>
-
-<p>What I call “high level security” concerns what is usually handled by an API gateway and an identity provider.
-That means deciding which consumer can access which API (even which operation inside an API), obtaining an access token to make API calls with or without end user authentication, and control those access tokens.
-For instance, a consumer may be allowed to “read task” but not to “modify task”.
-Note that, it does not mean that this consumer may read all tasks, it will be up to the implementation to check if a specific consumer is allowed to read a specific task (see Simulate implementation and dependencies behaviors above).</p>
-
-<p>Simulating the implementation is already quite a burden, so why bother adding such complexity to a sandbox?</p>
-
-<p>Even when your API uses standard security, such as Oauth 2 or OpenId connect, don’t take for granted that everyone knows all possible “give me an API access token” dances.
-There always will be beginners who never have used them before, and even those who have encountered such way of securing APIs may need a refresh.
-So, having an API sandbox allowing to to test how to get an access token is welcomed.</p>
-
-<p>Also, in order to test various use cases, consumers may need an access token attached to specific scopes and possibly specific end user.
-Being able to get ready to use or taylor made access token would be of great help.</p>
-
-<p>And finally, just being able to differentiate which consumer makes an API call to the sandbox may help regarding the partitioning of saved/restored data.</p>
-
-<h2 id="simulate-non-api-visible-dependencies">Simulate non API visible dependencies</h2>
-
-<p>Depending on the kind of service provided, consumers may interact with the system exposing it in other ways than calling the API.
-For instance, what if the user identified in a task is notified by an email or an SMS upon its creation?
-What if, when task is closed (however it is done), the consumer which has created it is notified through a webhook call?
-Providing to consumers a kind of administration console logging what should happen outside of the API would help to show all that.</p>
-
-<p>All those features being implemented would make a terrific sandbox, but it’s not over yet, there’s one last feature to think about.</p>
-
-<h2 id="be-api-first">Be API First</h2>
-
-<p>Some of the previous features imply the consumers interact with the sandbox for doing other things than what the original API and surrounding elements are supposed to do:</p>
-
-<ul>
-  <li>Knowing which are the available use cases (useful data)</li>
-  <li>Getting a ready to use access token, which may require to know who are the predefined users (high level security)</li>
-  <li>Knowing if something happened outside of the API (non API visible dependencies)</li>
-</ul>
-
-<p>Being API first and providing one or more APIs to deal with these “meta-functions” is a must have for such an advanced sandbox.
-Such “sandbox API” could be used to build great API documentation (always in sync seamless “try it” providing everything people need, like the possible use cases for an operation).
-And why not let it be “consumed by consumers” too (or at least other apps developed by their developers), if they need to reset their sandbox state they would probably be happy to do that programmatically.</p>
-
-<h1 id="so-much-work">So much work?</h1>
-
-<p>As you can see, providing an accurate and complete sandbox may require to care about many features.
-Hopefully, you don’t always need such level of accuracy.
-In a next post, we’ll see various tools and architecture patterns that could help you achieve the right level of API sandbox.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Used through the “try it” feature of an API’s documentation or directly called by a consumer application, an API sandbox is a great way to let developers play with an API and learn how it works without giving them access to the actual production environment. But what is an “API sandbox” actually? Is it just a mock? It can be that … or far more than that. Let’s see what could be the features of an API sandbox.]]></summary></entry></feed>
+So, yes, professionally speaking, I think I have reached the age of reason, both as API Handyman and Arnaud Lauret.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[This time, no “API blah blah blah”, this time, it’s personal. February 2022 marks a major landmark, I can’t believe I launched the API Handyman blog 7 years ago! Being 7 years old is supposed to mark the “age of reason”. Did I reached it? I think so, but it took me more than 7 years.]]></summary></entry></feed>
