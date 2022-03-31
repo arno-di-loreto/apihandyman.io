@@ -1,5 +1,7 @@
 ---
-title: "API Toolbox - JQ and OpenAPI - Part 4 - Bonus: Coloring JQ's raw output"
+title: "Bonus: Coloring JQ's raw output"
+series: JQ and OpenAPI
+series_number: 4
 date: 2020-07-06
 author: Arnaud Lauret
 layout: post
@@ -7,10 +9,6 @@ category: post
 permalink: /api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/
 codefiles: api-toolbox-jq-and-openapi/part-4
 category: post
-series: JQ and OpenAPI
-series_title: "Bonus: Coloring JQ's raw output"
-series_number: 4
-#published: false
 tags:
   - API Toolbox
 tools:

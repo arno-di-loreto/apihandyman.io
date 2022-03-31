@@ -1,6 +1,6 @@
 {%- assign post = site.posts | find: "alias",include.alias -%}
 {%- if post.series-%}
-{%- assign post_title = post.series | append: " Part " | append: post.series_number | append: " - " | append: post.series_title -%}
+{%- assign post_title = post.series | append: " Part " | append: post.series_number | append: " - " | append: post.title -%}
 {%- else -%}
 {%- assign post_title = post.title -%}
 {%- endif -%}

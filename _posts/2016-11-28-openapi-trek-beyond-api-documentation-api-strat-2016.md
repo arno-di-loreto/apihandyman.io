@@ -1,6 +1,7 @@
 ---
-id: 1306
 title: OpenAPI Trek Beyond API Documentation (API Strat 2016)
+series: OpenAPI Trek
+series_number: 3
 date: 2016-11-28
 author: Arnaud Lauret
 layout: post
@@ -18,9 +19,6 @@ tags:
   - Series
 tools:
   - OpenAPI Specification
-series: OpenAPI Trek
-series_title: OpenAPI Trek Beyond API Documentation
-series_number: 3
 catchphrase: OpenAPI offers many possibilities that span the full API lifecycle, yet it is seen purely as a solution for generating API documentation. This session will tell the story of AXA Banque's evolution from .doc and .pdf API documentation to the extensive use of OpenAPI Specification (formerly Swagger). Throughout the journey, we will identify the many advantages of API definition languages beyond simply generating API documentation, including design, testing, documentation continuous delivery, code generation, mocking, and prototyping new ideas.
 catchphrase_as_excerpt: true
 ---

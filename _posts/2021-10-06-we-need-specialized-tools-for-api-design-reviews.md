@@ -1,6 +1,6 @@
 ---
+title: We need specialized tools for API design reviews
 series: API Design Reviews
-series_title: We need specialized tools for API design reviews
 series_number: 3
 date: 2021-10-06
 author: Arnaud Lauret

@@ -1,11 +1,11 @@
 ---
+title: 3 good reasons to do API Design Reviews
+series: API Design Reviews
+series_number: 1
 date: 2021-06-23
 author: Arnaud Lauret
 layout: post
 permalink: /3-good-reasons-to-do-api-design-reviews/
-series: API Design Reviews
-series_title: 3 good reasons to do API Design Reviews
-series_number: 1
 category: post
 ---
 

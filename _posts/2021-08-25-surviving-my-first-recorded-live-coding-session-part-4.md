@@ -1,6 +1,6 @@
 ---
+title: Live coding at light speed with VS Code
 series: Surviving my first (recorded) live coding session
-series_title: Live coding at light speed with VS Code
 series_number: 4
 date: 2021-08-25
 author: Arnaud Lauret

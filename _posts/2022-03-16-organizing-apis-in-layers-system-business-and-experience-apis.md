@@ -1,6 +1,6 @@
 ---
+title: "Organizing APIs in System, Business, and Experience Layers"
 series: 3 dimensions to consider for a successful API-First strategy
-series_title: "Organizing APIs in System, Business, and Experience Layers"
 series_number: 1
 date: 2022-03-16
 author: Arnaud Lauret

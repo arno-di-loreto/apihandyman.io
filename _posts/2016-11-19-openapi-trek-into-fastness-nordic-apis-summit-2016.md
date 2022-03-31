@@ -1,13 +1,11 @@
 ---
-id: 1273
 title: OpenAPI Trek Into Fastness (Nordic APIs Summit 2016)
+series: OpenAPI Trek
+series_number: 2
 date: 2016-11-19
 author: Arnaud Lauret
 layout: post
-guid: http://apihandyman.io/?p=1273
 permalink: /openapi-trek-into-fastness-nordic-apis-summit-2016/
-dsq_thread_id:
-  - 5316119264
 category: talk
 tags:
   - OpenAPI
@@ -18,9 +16,6 @@ tags:
   - NordicAPIs Summit Stockholm
 tools:
   - OpenAPI Specification
-series: OpenAPI Trek
-series_title: OpenAPI Trek Into Fastness
-series_number: 2
 catchphrase: Often reduced to Swagger UI and seen purely as a solution for generating API documentation, the OpenAPI (fka. Swagger) Specification format offers many possibilities that span the full API lifecycle. In this session we will identify some of the many advantages of this API definition from design to production, including topics such as design, mock, development, test, documentation continuous delivery, securely evolve an existing API. All this contributing in accelerating and securing API's lifecycle.
 catchphrase_as_excerpt: true
 ---

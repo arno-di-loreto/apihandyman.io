@@ -1,13 +1,11 @@
 ---
-id: 1025
-title: 'Writing OpenAPI (Swagger) Specification Tutorial - Part 5 - Advanced Input And Output Modeling'
-date: 2016-05-06T20:26:57+00:00
+title: Advanced Input And Output Modeling
+series: Writing OpenAPI (Swagger) Specification Tutorial
+series_number: 5
+date: 2016-05-06
 author: Arnaud Lauret
 layout: post
-guid: http://apihandyman.io/?p=1025
 permalink: /writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/
-dsq_thread_id:
-  - 4866765287
 category: post
 tags:
   - OpenAPI
@@ -17,9 +15,6 @@ tags:
   - API First
 tools:
   - OpenAPI Specification
-series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Advanced Input And Output Modeling
-series_number: 5
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After learning how to [create an accurate data model](/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/), we continue to delve into the [OpenAPI specification's](https://openapis.org/) and discover how to describe tailor made API's inputs and outputs.<!--more-->

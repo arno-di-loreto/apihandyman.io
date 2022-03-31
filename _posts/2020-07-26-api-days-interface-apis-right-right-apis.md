@@ -1,14 +1,13 @@
 ---
 title: Doing APIs right and doing right APIs
+series: API Days Interface 2020
+series_number: 2
 date: 2020-07-26
 author: Arnaud Lauret
 layout: post
 category: post
 permalink: /apidays-interface-doing-apis-right-and-doing-right-apis/
 category: post
-series: API Days Interface 2020
-series_title: Doing APIs right and doing right APIs
-series_number: 2
 ---
 
 API Days Interface being online made the experience a bit different but after 3 days, I felt almost as usual; exhausted and my brain boiling. In previous post, I shared my feelings about my first online conference. Now let's talk about the content; Sam Newman doing a facepalm, API design, architecture, governance and my new favorite quote "Doing APIs right, doing right APIs".

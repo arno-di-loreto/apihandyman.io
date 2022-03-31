@@ -1,13 +1,11 @@
 ---
-id: 698
-title: 'Writing OpenAPI (Swagger) Specification Tutorial - Part 1 - Introduction'
-date: 2016-03-02T21:06:48+00:00
+title: Introduction
+series: Writing OpenAPI (Swagger) Specification Tutorial
+series_number: 1
+date: 2016-03-02
 author: Arnaud Lauret
 layout: post
-guid: http://apihandyman.io/?p=698
 permalink: /writing-openapi-swagger-specification-tutorial-part-1-introduction/
-dsq_thread_id:
-  - 4866811857
 category: post
 tags:
   - OpenAPI
@@ -17,9 +15,6 @@ tags:
   - API First
 tools:
   - OpenAPI Specification
-series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Introduction
-series_number: 1
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 Previously in the APIverse...  

@@ -1,6 +1,7 @@
 ---
-id: 1254
 title: OpenAPI Trek (API Days London 2016)
+series: OpenAPI Trek
+series_number: 1
 date: 2016-11-10
 author: Arnaud Lauret
 layout: post
@@ -18,9 +19,6 @@ tags:
   - Slides
 tools:
   - OpenAPI Specification
-series: OpenAPI Trek
-series_title: OpenAPI Trek
-series_number: 1
 catchphrase: For many still known as Swagger, the OpenAPI specification is often reduce to auto-generated API documentation. But the OpenAPI specification universe is boundless. Design, mock, development, test, documentation continuous delivery, governance, deployment... there are countless possibilities that span the full API lifecycle. Let's board the starship OpenAPI to explore unexpected use cases, to seek out new usage and new ideas, to boldly go where almost no one has gone before.
 catchphrase_as_excerpt: true
 ---
