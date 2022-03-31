@@ -1,6 +1,6 @@
 ---
+title: Setting up everything to record myself coding and talking
 series: Surviving my first (recorded) live coding session
-series_title: Setting up everything to record myself coding and talking
 series_number: 1
 date: 2021-08-04
 author: Arnaud Lauret

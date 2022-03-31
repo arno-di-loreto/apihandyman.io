@@ -1,6 +1,6 @@
 ---
+title: Slide deck like live coding with titles and speaker's notes using OBS and VS Code
 series: Surviving my first (recorded) live coding session
-series_title: Slide deck like live coding with titles and speaker's notes using OBS and VS Code
 series_number: 3
 date: 2021-08-18
 author: Arnaud Lauret

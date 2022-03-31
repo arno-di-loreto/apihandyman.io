@@ -1,5 +1,7 @@
 ---
-title: Writing OpenAPI (Swagger) Specification Tutorial - Part 9 - Extending the OpenAPI specification
+title: Extending the OpenAPI specification
+series: Writing OpenAPI (Swagger) Specification Tutorial
+series_number: 9
 date: 2017-02-19
 author: Arnaud Lauret
 layout: post
@@ -13,9 +15,6 @@ tags:
   - API First
 tools:
   - OpenAPI Specification
-series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Extending the OpenAPI specification
-series_number: 9
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 This is the end, my OpenAPI friends, the end. The end? Not really. This last part of the OpenAPI tutorial is a new beginning. With previous parts we have learned to master the OpenAPI specification but there's a last thing to learn to unleash its full power: extensions. This format is easily extensible, it allows to add custom data within an API description. But for what purposes? Let's have a glimpse of these extensions endless possibilities.

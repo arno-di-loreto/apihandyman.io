@@ -1,6 +1,6 @@
 ---
+title: Hacking and reviewing Elgato Key Light API with Postman
 series: Hacking an Elgato Key Light
-series_title: Hacking and reviewing Elgato Key Light API with Postman
 series_number: 1
 date: 2022-02-16
 author: Arnaud Lauret

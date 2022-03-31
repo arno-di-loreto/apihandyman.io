@@ -1,14 +1,13 @@
 ---
 title: Speaking into the void
+series: API Days Interface 2020
+series_number: 1
 date: 2020-07-08
 author: Arnaud Lauret
 layout: post
 category: post
 permalink: /apidays-interface-speaking-into-the-void/
 category: post
-series: API Days Interface 2020
-series_title: Speaking into the void
-series_number: 1
 ---
 
 I've attended and spoke at API Days Interface online conference on June 20, July 1 & 2, 2020. Being online made the experience a bit different but after almost 3 days, I felt almost as usual; exhausted and my brain boiling with all what I've heard and seen. In this first post I share my feelings about attending and speaking at an online conference.

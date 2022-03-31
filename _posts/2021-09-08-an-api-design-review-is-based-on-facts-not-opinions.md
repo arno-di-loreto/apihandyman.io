@@ -1,6 +1,6 @@
 ---
+title: An API design review is based on facts, not opinions
 series: API Design Reviews
-series_title: An API design review is based on facts, not opinions
 series_number: 2
 date: 2021-09-08
 author: Arnaud Lauret

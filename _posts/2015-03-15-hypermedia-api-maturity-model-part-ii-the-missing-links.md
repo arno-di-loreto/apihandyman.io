@@ -1,20 +1,16 @@
 ---
-id: 353
-title: Hypermedia API maturity model – Part II – The missing links
-date: 2015-03-15T22:58:35+00:00
+title: The missing links
+series: Hypermedia API maturity model
+series_number: 2
+date: 2015-03-15
 author: Arnaud Lauret
 layout: post
-guid: http://apihandyman.io/?p=353
 permalink: /hypermedia-api-maturity-model-part-ii-the-missing-links/
-dsq_thread_id:
-  - 4866765237
 category: post
 tags:
   - Design
   - Hypermedia
   - Series
-series: Hypermedia API maturity model
-series_title: Part II – The missing links
 ---
 Hypermedia is not only a conceptual and philosophical subject of interesting and animate debates among the API community, it's also a concrete solution we can use to cover concrete needs.
 In this second part of hypermedia API maturity model (HAMM) series I will talk about my own experience to expose two missing (in my humble opinon) notions in common implementations and include these *missing links* in an updated version of the HAMM.<!--more-->

@@ -1,6 +1,6 @@
 ---
+title: Improving live coding session tuning and rehearsing with VS Code
 series: Surviving my first (recorded) live coding session
-series_title: Improving live coding session tuning and rehearsing with VS Code
 series_number: 5
 date: 2021-09-01
 author: Arnaud Lauret

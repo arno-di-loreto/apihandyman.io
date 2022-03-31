@@ -1,15 +1,11 @@
 ---
-id: 752
-title: 'Writing OpenAPI (Swagger) Specification Tutorial - Part 2 - The Basics'
-date: 2016-03-02T21:07:29+00:00
+title: The basics
+series: Writing OpenAPI (Swagger) Specification Tutorial
+series_number: 2
+date: 2016-03-02
 author: Arnaud Lauret
 layout: post
-guid: http://apihandyman.io/?p=752
 permalink: /writing-openapi-swagger-specification-tutorial-part-2-the-basics/
-dsq_thread_id:
-  - 4866765277
-dsq_needs_sync:
-  - 1
 category: post
 tags:
   - OpenAPI
@@ -19,9 +15,6 @@ tags:
   - API First
 tools:
   - OpenAPI Specification
-series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: The basics
-series_number: 2
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After [discovering](/writing-openapi-swagger-specification-tutorial-part-1-introduction/) what is the OpenAPI Specification format, it's now time to write a first simple OpenAPI Specification file to learn the basics.<!--more--> 

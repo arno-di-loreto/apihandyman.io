@@ -1,13 +1,11 @@
 ---
-id: 754
-title: 'Writing OpenAPI (Swagger) Specification Tutorial - Part 3 - Simplifying specification file'
-date: 2016-03-19T17:10:20+00:00
+title: Simplifying specification file
+series: Writing OpenAPI (Swagger) Specification Tutorial
+series_number: 3
+date: 2016-03-19
 author: Arnaud Lauret
 layout: post
-guid: http://apihandyman.io/?p=754
 permalink: /writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/
-dsq_thread_id:
-  - 4866935229
 category: post
 tags:
   - OpenAPI
@@ -17,9 +15,6 @@ tags:
   - API First
 tools:
   - OpenAPI Specification
-series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Simplifying specification file
-series_number: 3
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After [learning the basics](/writing-openapi-swagger-specification-tutorial-part-2-the-basics/) and having written a *little bit huge* file for a *so simple* API, you may be concerned by what nightmare it could be to handle a bigger and more complex API. REST assured that the [OpenAPI Specification (formerly Swagger Specification)](https://openapis.org/) format offers all means to write really *small and simple* specification files whatever the described API's size and complexity.<!--more--> 

@@ -1,13 +1,11 @@
 ---
-id: 1118
-title: 'Writing OpenAPI (Swagger) Specification Tutorial - Part 7 - Documentation'
-date: 2016-06-12T21:22:15+00:00
+title: Documentation
+series: Writing OpenAPI (Swagger) Specification Tutorial
+series_number: 7
+date: 2016-06-12
 author: Arnaud Lauret
 layout: post
-guid: http://apihandyman.io/?p=1118
 permalink: /writing-openapi-swagger-specification-tutorial-part-7-documentation/
-dsq_thread_id:
-  - 4905047708
 category: post
 tags:
   - OpenAPI
@@ -17,9 +15,6 @@ tags:
   - API First
 tools:
   - OpenAPI Specification
-series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Documentation
-series_number: 7
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 Previous [posts](http://apihandyman.io/category/openapi-swagger-specification/) showed how to write a highly accurate description of an API interface contract with the [OpenAPI specification](https://openapis.org/). But an interface contract, no matter how brilliant, is nothing without some explainations. A fully documented OpenAPI specification file can provide some useful information and be used as a part of an API's documentation.<!--more-->

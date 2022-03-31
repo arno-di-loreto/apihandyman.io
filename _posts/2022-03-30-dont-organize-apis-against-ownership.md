@@ -1,6 +1,6 @@
 ---
+title: Don't organize APIs against ownership
 series: 3 dimensions to consider for a successful API-First strategy
-series_title: Don't organize APIs against ownership
 series_number: 3
 date: 2022-03-30
 author: Arnaud Lauret

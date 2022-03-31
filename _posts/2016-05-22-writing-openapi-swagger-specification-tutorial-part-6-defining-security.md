@@ -1,13 +1,11 @@
 ---
-id: 1079
-title: 'Writing OpenAPI (Swagger) Specification Tutorial - Part 6 - Defining Security'
-date: 2016-05-22T18:26:38+00:00
+title: Defining Security
+series: Writing OpenAPI (Swagger) Specification Tutorial
+series_number: 6
+date: 2016-05-22
 author: Arnaud Lauret
 layout: post
-guid: http://apihandyman.io/?p=1079
 permalink: /writing-openapi-swagger-specification-tutorial-part-6-defining-security/
-dsq_thread_id:
-  - 4866893028
 category: post
 tags:
   - OpenAPI
@@ -17,9 +15,6 @@ tags:
   - API First
 tools:
   - OpenAPI Specification
-series: Writing OpenAPI (Swagger) Specification Tutorial
-series_title: Defining Security
-series_number: 6
 codefiles: writing-openapi-swagger-specification-tutorial
 ---
 After mastering [input and output modeling](/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/) like a Jedi, let's see how we can describe API's security with the [OpenAPI specification's](https://openapis.org/).<!--more-->

@@ -1,6 +1,6 @@
 ---
+title: Organize APIs around business domains and capabilities, not tools
 series: 3 dimensions to consider for a successful API-First strategy
-series_title: Organize APIs around business domains and capabilities, not tools
 series_number: 2
 date: 2022-03-23
 author: Arnaud Lauret

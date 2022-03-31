@@ -1,15 +1,12 @@
 ---
-title: API Toolbox - JQ and OpenAPI - Part 2 - Using JQ command line arguments, functions and modules
+title: Using JQ command line arguments, functions and modules
+series: JQ and OpenAPI
+series_number: 2
 date: 2020-02-03
 author: Arnaud Lauret
 layout: post
 permalink: /api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/
 codefiles: api-toolbox-jq-and-openapi/part-2
-category: post
-series: JQ and OpenAPI
-series_title: Using JQ command line arguments, functions and modules
-series_number: 2
-published: true
 category: post
 tags:
   - API Toolbox

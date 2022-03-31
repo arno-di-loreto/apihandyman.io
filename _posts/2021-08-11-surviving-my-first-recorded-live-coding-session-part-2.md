@@ -1,6 +1,6 @@
 ---
+title: Preparing session content and realizing it's not working well
 series: Surviving my first (recorded) live coding session
-series_title: Preparing session content and realizing it's not working well
 series_number: 2
 date: 2021-08-11
 author: Arnaud Lauret
