@@ -2,8 +2,8 @@
 title: "The story behind The Design of Web APIs book"
 date: 2018-02-10
 author: Arnaud Lauret
-layout: post
 permalink: /the-story-behind-the-design-of-everyday-apis-book/
+layout: post
 category: post
 ---
 

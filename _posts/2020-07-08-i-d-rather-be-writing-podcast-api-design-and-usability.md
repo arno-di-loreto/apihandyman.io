@@ -5,7 +5,6 @@ author: Tom Johnson & Arnaud Lauret
 category: talk
 layout: post
 permalink: /i-d-rather-be-writing-podcast-api-design-and-usability/
-#published: false
 external_url: https://idratherbewriting.com/blog/api-design-usability-arnaud-lauret-podcast/
 ---
 

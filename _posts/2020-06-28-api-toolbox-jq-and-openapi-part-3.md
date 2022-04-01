@@ -9,8 +9,6 @@ category: post
 permalink: /api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/
 codefiles: api-toolbox-jq-and-openapi/part-3
 category: post
-tags:
-  - API Toolbox
 tools:
   - JQ
   - OpenAPI Specification

@@ -2,11 +2,9 @@
 title: API Design Tips And Tricks - Getting, creating, updating or deleting multiple resources in one API call
 date: 2017-04-22
 author: Arnaud Lauret
-layout: post
 permalink: /api-design-tips-and-tricks-getting-creating-updating-or-deleting-multiple-resources-in-one-api-call/
+layout: post
 category: post
-tags:
-  - API Design Tips And Tricks
 ---
 
 Getting, creating, updating or deleting multiple resources in a single API call is a common need in REST APIs. But how to achieve that in a consistent way accomodating how we work with a single resource and REST principles? This is what we'll see in this post.<!--more-->

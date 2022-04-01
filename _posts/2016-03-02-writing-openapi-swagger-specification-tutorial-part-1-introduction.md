@@ -7,12 +7,6 @@ author: Arnaud Lauret
 layout: post
 permalink: /writing-openapi-swagger-specification-tutorial-part-1-introduction/
 category: post
-tags:
-  - OpenAPI
-  - Swagger
-  - API Specification
-  - Documentation
-  - API First
 tools:
   - OpenAPI Specification
 codefiles: writing-openapi-swagger-specification-tutorial

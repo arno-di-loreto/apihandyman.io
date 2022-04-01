@@ -5,13 +5,6 @@ author: Arnaud Lauret
 layout: post
 permalink: /read-evolving-a-companys-is-in-the-lego-computing-age-on-nordic-apis-blog/
 category: post
-type: link
-tags:
-  - Governance
-  - Strategy
-  - Implementation
-  - Architecture
-full: true
-comments: false
+external_url: http://nordicapis.com/evolving-companys-lego-computing-age-choose-brick-product/
 ---
 If you wonder how to evolve a company's IS in the lego computing age, read [my post on Nordic APIs blog](http://nordicapis.com/evolving-companys-lego-computing-age-choose-brick-product/).

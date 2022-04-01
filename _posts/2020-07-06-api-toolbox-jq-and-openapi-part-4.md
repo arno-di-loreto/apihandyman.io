@@ -9,8 +9,6 @@ category: post
 permalink: /api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/
 codefiles: api-toolbox-jq-and-openapi/part-4
 category: post
-tags:
-  - API Toolbox
 tools:
   - JQ
   - OpenAPI Specification

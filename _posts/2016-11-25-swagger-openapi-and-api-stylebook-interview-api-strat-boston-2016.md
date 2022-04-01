@@ -1,22 +1,10 @@
 ---
-id: 1302
 title: Swagger, OpenAPI and API Stylebook interview (API Strat Boston 2016)
-date: 2016-11-25T18:54:00+00:00
+date: 2016-11-25
 author: Arnaud Lauret
-layout: post
-guid: http://apihandyman.io/?p=1302
 permalink: /swagger-openapi-and-api-stylebook-interview-api-strat-boston-2016/
-dsq_thread_id:
-  - 5332131647
+layout: post
 category: talk
-tags:
-  - API Strat
-  - API Strat Boston
-  - Conference
-  - Design
-  - API Stylebook
-  - Interview
-  - Video
 tools:
   - API Stylebook
   - OpenAPI Specification

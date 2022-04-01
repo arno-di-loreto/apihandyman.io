@@ -6,8 +6,6 @@ author: Arnaud Lauret
 layout: post
 permalink: /api-design-tips-and-tricks-what-if-consumers-cant-do-patch-put-or-delete/
 category: post
-tags:
-  - API Design Tips And Tricks
 ---
 
 There are quite many APIs out there taking advantage of all standard HTTP methods (`GET`, `POST`, `PATCH`, `PUT` and `DELETE`). Unfortunately, there are still some cases where consumers can't use them all. As far as I know, `GET` and `POST` do not cause any problem at all. But as an API provider, do not take for granted that `DELETE`, `PUT` and the more dreaded `PATCH` HTTP methods can always be used by your consumers. I encountered this problem several times throughout the years and no later than a few weeks ago. Let's see why and how to solve this problem.

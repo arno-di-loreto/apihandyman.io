@@ -1,13 +1,9 @@
 ---
-id: 471
 title: The API crash test project
-date: 2015-04-05T23:43:28+00:00
+date: 2015-04-05
 author: Arnaud Lauret
-layout: post
-guid: http://apihandyman.io/?p=471
 permalink: /the-api-crash-test-project/
-dsq_thread_id:
-  - 4866870392
+layout: post
 category: post
 ---
 As I was writing my HAMM and ways of API smartness posts, I wanted more.

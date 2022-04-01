@@ -1,19 +1,10 @@
 ---
-id: 545
 title: Starting a Swagger journey beyond generated Swagger UI
-date: 2015-10-07T21:56:37+00:00
+date: 2015-10-07
 author: Arnaud Lauret
-layout: post
-guid: http://apihandyman.io/?p=545
 permalink: /starting-a-swagger-journey-beyond-generated-swagger-ui/
-dsq_thread_id:
-  - 4866807412
+layout: post
 category: post
-tags:
-  - Design
-  - Swagger
-  - OpenAPI
-  - Documentation
 tools:
   - OpenAPI Specification
 ---

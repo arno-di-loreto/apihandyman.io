@@ -2,8 +2,8 @@
 title: How public web APIs raise software bar
 date: 2018-02-26
 author: Arnaud Lauret
-layout: post
 permalink: /how-public-web-apis-raise-software-bar/
+layout: post
 category: post
 ---
 

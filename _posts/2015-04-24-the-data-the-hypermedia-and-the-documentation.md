@@ -1,19 +1,10 @@
 ---
-id: 501
 title: The data, the hypermedia and the documentation
-date: 2015-04-24T01:18:46+00:00
+date: 2015-04-24
 author: Arnaud Lauret
-layout: post
-guid: http://apihandyman.io/?p=501
 permalink: /the-data-the-hypermedia-and-the-documentation/
-dsq_thread_id:
-  - 4866765240
+layout: post
 category: post
-tags:
-  - Design
-  - Hypermedia
-  - Documentation
-  - DX
 ---
 When I look at hypermedia media-types and API definition languages I feel that the frontier between data and documentation is becoming thinner as my knowledge of the API world grows and as the API world evolves.<!--more-->
 

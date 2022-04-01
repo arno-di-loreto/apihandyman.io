@@ -7,7 +7,6 @@ layout: post
 permalink: /api-design-reviewers-starter-set/
 catchphrase: Explore subterranean needs! Plunder hoards of inconsistency! Battle legendary design flaws! The API Design Reviewer’s Starter Set is your gateway to exhaustive and constructive API design reviews. It contains the essential rules of design reviews plus a few tips and trick that will be of great help on your perilous adventures in the API world.
 catchphrase_as_excerpt: true
-#published: false
 ---
 
 My 2019 talk, The API Design Reviewer's Starter Set, is about API design reviews and Dungeons and Dragons.

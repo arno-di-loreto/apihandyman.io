@@ -1,25 +1,17 @@
 ---
-id: 516
 title: Do you really know why you prefer REST over RPC?
-date: 2015-05-10T15:42:20+00:00
+date: 2015-05-10
 author: Arnaud Lauret
-layout: post
-guid: http://apihandyman.io/?p=516
 permalink: /do-you-really-know-why-you-prefer-rest-over-rpc/
-dsq_thread_id:
-  - 4866783411
+layout: post
 category: post
-tags:
-  - Design
-  - API Style
-  - RPC
-  - REST
 ---
 A few weeks ago I've seen an interesting flock of tweets initiated by this question:
 
 {% include twitter.html url="https://twitter.com/skamille/status/588713316358475776" %}
 
-This question and the tweets that followed put my brain on quite an animated discussion...<!--more-->
+This question and the tweets that followed put my brain on quite an animated discussion...
+<!--more-->
 
 {% img file:"voices-inside-my-head.png" %}
 

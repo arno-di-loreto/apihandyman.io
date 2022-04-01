@@ -5,7 +5,6 @@ author: Phil Sturgeon, Matt Trask & Arnaud Lauret
 category: talk
 layout: post
 permalink: /apis-you-wont-hate-podcast-the-api-handyman-cometh/
-#published: false
 external_url: https://dev.to/apisyouwonthatepodcast/episode-6-the-api-handyman-cometh
 ---
 
