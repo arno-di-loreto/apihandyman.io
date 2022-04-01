@@ -1,21 +1,10 @@
 ---
-id: 412
 title: The ways of the API smartness
-date: 2015-03-28T20:32:18+00:00
+date: 2015-03-28
 author: Arnaud Lauret
-layout: post
-guid: http://apihandyman.io/?p=412
 permalink: /the-ways-of-the-api-smartness/
-dsq_thread_id:
-  - 4867152374
+layout: post
 category: post
-tags:
-  - Design
-  - Implementation
-  - Lifecycle
-  - Documentation
-  - DX
-  - Hypermedia
 ---
 An API must be smart to ensure that consumers will want to use it and remain dumb when they consume it.<!--more-->
 

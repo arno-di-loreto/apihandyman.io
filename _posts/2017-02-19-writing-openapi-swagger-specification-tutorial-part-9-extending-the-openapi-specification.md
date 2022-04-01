@@ -4,15 +4,9 @@ series: Writing OpenAPI (Swagger) Specification Tutorial
 series_number: 9
 date: 2017-02-19
 author: Arnaud Lauret
-layout: post
 permalink: /writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/
+layout: post
 category: post
-tags:
-  - OpenAPI
-  - Swagger
-  - API Specification
-  - Documentation
-  - API First
 tools:
   - OpenAPI Specification
 codefiles: writing-openapi-swagger-specification-tutorial

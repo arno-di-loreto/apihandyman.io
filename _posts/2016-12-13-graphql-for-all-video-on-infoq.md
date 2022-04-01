@@ -1,12 +1,10 @@
 ---
-title: ...And GraphQL for all?
+title: ...And GraphQL for all? (API Days Paris 2016)
 date: 2016-12-13
 author: Arnaud Lauret
-layout: post
 permalink: /graphql-for-all-talk-video-on-infoq/
+layout: post
 category: talk
-tags:
-  - Design
 catchphrase: GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too! Well, why not. GraphQL could be a great tool, but like any tool, you don't choose it "just because".You choose it because it solves a problem in a given context. You choose it knowing its strengths and weaknesses. During this session, while discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it
 catchphrase_as_excerpt: true
 ---

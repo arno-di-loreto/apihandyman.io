@@ -6,8 +6,6 @@ author: Arnaud Lauret
 layout: post
 category: post
 permalink: /batch-github-api-call-with-csv-and-postman-runner-and-visualizer/
-tags:
-  - API Toolbox
 tools:
     - Postman
     - Newman

@@ -8,8 +8,6 @@ category: post
 layout: post
 permalink: /api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/
 codefiles: api-toolbox-jq-and-openapi/part-1
-tags:
-  - API Toolbox
 tools:
   - JQ
   - OpenAPI Specification

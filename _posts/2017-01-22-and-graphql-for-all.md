@@ -1,19 +1,16 @@
 ---
 title: ...And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL
-alternate_title: ...And GraphQL for all?
-subtitle: A few things to think about before blindly dumping REST for GraphQL
 date: 2017-01-22
 author: Arnaud Lauret
-layout: post
 permalink: /and-graphql-for-all-a-few-things-to-think-about-before-blindly-dumping-rest-for-graphql/
+layout: post
 category: post
-full: false
-comments: true
 ---
 GraphQL is new. GraphQL is cool. Look! Github dumped REST for it! We MUST do it too!  
-Well, why not. GraphQL could be a great tool, but like any tool, you don't choose it *just because*. You choose it because it solves a problem in a given context. You choose it knowing its strengths and weaknesses.  
+Well, why not. GraphQL could be a great tool, but like any tool, you don't choose it *just because*. You choose it because it solves a problem in a given context. You choose it knowing its strengths and weaknesses.<!--more-->  
   
-While discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it. From design and implementation to pricing model and analytics down to developers experience and implementations, choosing an API design style will have impact on the whole API lifecycle. Therefore, this choice must be an enligthned one and not based on simple beliefs.<!--more-->
+While discovering what is GraphQL we will see what REST API providers should think about before blindly dumping REST for it. From design and implementation to pricing model and analytics down to developers experience and implementations, choosing an API design style will have impact on the whole API lifecycle. Therefore, this choice must be an enligthned one and not based on simple beliefs.
+
 
 # Informed choice
 Before talking about GraphQL, I would like to ask you two really important questions.

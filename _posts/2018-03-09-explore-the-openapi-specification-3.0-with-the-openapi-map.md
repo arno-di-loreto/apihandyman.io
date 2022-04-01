@@ -2,8 +2,8 @@
 title: Explore the OpenAPI Specification 3.0 with the OpenAPI Map
 date: 2018-03-09
 author: Arnaud Lauret
-layout: post
 permalink: /explore-the-openapi-specification-3.0-with-the-openapi-map/
+layout: post
 category: post
 tools:
   - OpenAPI Specification

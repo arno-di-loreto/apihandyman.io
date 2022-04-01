@@ -5,8 +5,6 @@ author: Arnaud Lauret
 layout: post
 permalink: /lessons-learned-while-demoing-api-to-non-developers/
 category: post
-tags:
-  - Avocado
 ---
 
 What would you do if you had to demo API to non-developers in a highly-constrained context? How would you do without curl, Postman or any other API tool usually used? How would you do without your usual fun API examples? I had to do that a few weeks ago and was quite happy by the questions that arose and the solutions found. The whole story definitely deserves a post in order to share what I've learned!<!--more-->

@@ -1,16 +1,10 @@
 ---
-id: 196
 title: Why you must design your private API in english
-date: 2015-02-07T20:21:47+00:00
+date: 2015-02-07
 author: Arnaud Lauret
-layout: post
-guid: http://apihandyman.io/?p=196
 permalink: /why-you-must-design-your-private-api-in-english/
-dsq_thread_id:
-  - 4866765229
+layout: post
 category: post
-tags:
-  - Design
 ---
 > Why you must design your private API in english.  
 > Pourquoi vous devez concevoir votre API privée en anglais.  

@@ -7,7 +7,6 @@ layout: post
 permalink: /the-design-of-everyday-apis/
 catchphrase: Well-designed APIs are a joy to use; poorly-designed APIs are cumbersome, confusing and frustrating, just like everyday things. During this session, I make a parallel between everyday things design and API design to expose simple but fundamentals design principles.
 catchphrase_as_excerpt: true
-#published: false
 ---
 
 I totally forgot to put my 2018 talk on the blog. It's called The Design of Everyday APIs which was the working title of my book before it was renamed The Design of Web APIs. It's about fundamental design principles and use famous swedish furniture instruction manual theme. The principles discussed in this session are deeply covered (with more others) in my book {% include book.html %}.

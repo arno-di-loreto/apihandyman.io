@@ -1,20 +1,10 @@
 ---
-id: 655
 title: A quest for simplicity (API Days London 2015)
 date: 2015-09-23
 author: Arnaud Lauret
-layout: post
-guid: http://apihandyman.io/?p=655
 permalink: /a-quest-for-simplicity-api-days-london-2015/
-dsq_thread_id:
-  - 4866765276
+layout: post
 category: talk
-tags:
-  - API Days
-  - API Days London
-  - Conference
-  - Design
-  - DX
 ---
 > A ROAST API is a SOAP API made by people who have vaguely heard of REST API
 

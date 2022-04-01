@@ -8,8 +8,6 @@ layout: post
 permalink: /api-toolbox-jq-and-openapi-part-2-using-jq-command-line-arguments-functions-and-modules/
 codefiles: api-toolbox-jq-and-openapi/part-2
 category: post
-tags:
-  - API Toolbox
 tools:
   - JQ
   - OpenAPI Specification
