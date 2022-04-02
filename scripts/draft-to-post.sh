@@ -34,6 +34,8 @@ then
     DATE=`date +%Y-%m-%d`
 fi
 
+YEAR=${DATE:0:4}
+
 sed -e "3i\\
 date: $DATE
 " -i "" $FILE
@@ -41,7 +43,7 @@ date: $DATE
 get_fm_value $FILE "permalink"
 PERMALINK=`echo "$FM_VALUE" | tr -d '/'`
 
-POST_FILE=$POSTS/$DATE-$PERMALINK.md
+POST_FILE=$POSTS/$YEAR/$DATE-$PERMALINK.md
 echo Moving $FILE draft to $POST_FILE
 
 mv $FILE $POST_FILE
