@@ -55,12 +55,14 @@ echo UPDATED_IMAGES:[$UPDATED_IMAGES]
 
 # No date for draft but date for post in filename
 FILENAME=$UPDATED_PERMALINK.md
+UPDATED_FILE=$FOLDER/$FILENAME
 if [[ "$FILE" == *"_posts/"* ]]
 then
   FILENAME=$UPDATED_DATE-$FILENAME
+  YEAR=${UPDATED_DATE:0:4}
+  UPDATED_FILE=$FOLDER/$YEAR/$FILENAME
 fi
 
-UPDATED_FILE=$FOLDER/$FILENAME
 echo UPDATED_FILE:[$UPDATED_FILE]
 
 echo "updating permalink"
