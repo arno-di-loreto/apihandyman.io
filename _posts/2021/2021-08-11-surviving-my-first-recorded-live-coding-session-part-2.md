@@ -7,6 +7,12 @@ author: Arnaud Lauret
 layout: post
 permalink: /preparing-session-content-and-realizing-its-not-working-well/
 category: post
+tools:
+  - Visual Studio Code
+  - Postman
+  - Studio
+  - Prism
+  - HTTPie
 ---
 
 Second post about my first ever (recorded) live coding session.

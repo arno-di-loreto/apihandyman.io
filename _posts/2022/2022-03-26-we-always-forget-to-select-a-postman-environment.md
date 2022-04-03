@@ -8,6 +8,8 @@ category: post
 postman_collection_documentation: https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4
 postman_collection_run: https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4
 postman_collection_github: https://github.com/apihandyman/postman-tips-and-tricks/tree/main/dont-forget-to-select-an-environment
+tools:
+  - Postman
 ---
 
 When using Postman, it's a best practice to store API token values in environment secret variables.

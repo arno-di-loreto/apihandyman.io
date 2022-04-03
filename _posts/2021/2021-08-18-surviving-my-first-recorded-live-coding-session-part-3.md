@@ -7,6 +7,9 @@ author: Arnaud Lauret
 layout: post
 permalink: /slide-deck-like-live-coding-with-titles-and-speaker-s-notes-using-obs-and-vs-code/
 category: post
+tools:
+    - Visual Studio Code
+    - OBS Studio
 ---
 
 Third post about my first ever (recorded) live coding session given at the Manning API conference.

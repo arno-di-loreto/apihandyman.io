@@ -5,6 +5,8 @@ author: Arnaud Lauret
 layout: post
 permalink: /we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/
 category: post
+tools:
+  - OpenAPI Specification
 ---
 
 While quickly doing a first scan of latest Postman State of the API Report , I did my Spock face, raising an eyebrow.

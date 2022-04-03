@@ -7,6 +7,8 @@ author: Arnaud Lauret
 layout: post
 permalink: /hacking-elgato-key-light-with-postman/
 category: post
+tools:
+    - Postman
 ---
 
 Want to learn how to hack a desktop app calling an API and learn some API design principles?

@@ -7,6 +7,10 @@ permalink: /supercharge-openapi-to-efficiently-describe-apis/
 category: talk
 tools:
     - OpenAPI Specification
+    - Visual Studio Code
+    - Prism
+    - HTTPie
+    - OBS Studio
 ---
 
 If you want to discover the OpenAPI Specification format, this video is for you!
