@@ -5,6 +5,9 @@ author: Arnaud Lauret
 layout: post
 permalink: /barely-surviving-my-first-live-non-recorded-demo-session/
 category: post
+tools:
+  - OBS Studio
+  - Visual Studio Code
 ---
 
 Yesterday, I live demoed how I take advantage of the OpenAPI Specification during an API Design review at the API Specification Conference.

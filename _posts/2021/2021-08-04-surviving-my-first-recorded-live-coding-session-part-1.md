@@ -7,6 +7,9 @@ author: Arnaud Lauret
 layout: post
 permalink: /setting-up-everything-to-record-myself-coding-and-talking/
 category: post
+tools:
+    - OBS Studio
+    - Visual Studio Code
 ---
 
 I did my first ever (recorded) live coding session at the Manning API conference.

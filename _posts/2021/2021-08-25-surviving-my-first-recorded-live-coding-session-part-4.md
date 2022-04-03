@@ -7,6 +7,8 @@ author: Arnaud Lauret
 layout: post
 permalink: /live-coding-at-light-speed-with-vs-code/
 category: post
+tools:
+    - Visual Studio Code
 ---
 
 This is the fourth post about my first ever (recorded) live coding session given at the Manning API conference.

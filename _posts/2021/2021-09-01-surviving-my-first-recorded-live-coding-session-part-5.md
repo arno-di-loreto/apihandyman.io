@@ -7,6 +7,8 @@ author: Arnaud Lauret
 layout: post
 permalink: /improving-live-coding-session-tuning-and-rehearsing-with-vs-code/
 category: post
+tools:
+  - Visual Studio Code
 ---
 
 Fifth and last post about my first ever (recorded) live coding session given at the Manning API Conference.

@@ -5,6 +5,10 @@ author: Arnaud Lauret
 layout: post
 permalink: /taking-advantage-of-openapi-for-api-design-reviews/
 category: talk
+tools:
+  - OpenAPI Specification
+  - JQ
+  - Spectral
 ---
 
 After my first recorded live demo session, here comes my first non recorded actually live session in which I show how I take advantage of the OpenAPI Specification during API design reviews.
