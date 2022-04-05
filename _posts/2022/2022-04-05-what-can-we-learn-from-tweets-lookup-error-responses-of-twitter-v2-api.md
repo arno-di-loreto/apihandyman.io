@@ -1,5 +1,6 @@
 ---
 title: What can we learn from tweets lookup error responses of Twitter v2 API?
+date: 2022-04-05
 author: Arnaud Lauret
 layout: post
 permalink: /what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api/
@@ -8,12 +9,17 @@ postman_collection_documentation: https://www.postman.com/apihandyman/workspace/
 postman_collection_run: https://god.gw.postman.com/run-collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=collection%2Ffork&collection-url=entityId%3D143378-8f12c1ed-f930-4e0d-8baf-c8a949910229%26entityType%3Dcollection%26workspaceId%3D16b83fae-c500-4387-b79c-0c72565d1d0f#?env%5BGuess%20how%20Tweets%20lookup%20parameters%20works%5D=W3sia2V5IjoidHdpdHRlcl90b2tlbiIsInZhbHVlIjoiUFVUIFlPVVIgVE9LRU4gSU4gQ1VSUkVOVCBWQUxVRSBPRiBUV0lUVEVSIFRPS0VOIEVOVklST05NRU5UIFZBUklBQkxFIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6InNlY3JldCJ9XQ==
 postman_collection_github: https://github.com/apihandyman/twitter-tips-and-tricks/tree/main/guess-how-tweets-lookup-parameters-work
 tools:
-  - Postman
+    - Twitter API
+    - Postman
 ---
 
-This collection is a companion to the [What can we learn from tweets lookup error responses of Twitter v2 API?](https://apihandyman.io/what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api/) API Handyman blog post. It aims to demonstrate how you can learn to use the Twitter v2 API Tweets lookup functions parameters without reading much of the documentation. It comes with 2 additional bonuses. First, you can reuse that technique with many APIs. Second, you may also learn a few API design, implementation, and documentation principles.
-
+What can we learn from tweets lookup error responses of Twitter v2 API?
+We can learn how to use the tweets lookup operations parameters without reading much of the documentation.
+We may also learn a few API design, implementation, and documentation principles in the making.
+And icing on the cake, the technique shown in this post can be applied on any API.
 <!--more-->
+
+{% include _postincludes/twitter-tips-and-tricks.md %}
 
 # Twitter v2 API Tweets Lookup
 

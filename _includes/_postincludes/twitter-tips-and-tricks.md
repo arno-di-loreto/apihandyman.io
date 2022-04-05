@@ -1,5 +1,5 @@
 {% capture content %}
-This post is a "Twitter v2 API Tips And Tricks Post" in which I share the tips and tricks I learn while using Twitter v2 API.
+This post is a "Twitter v2 API Tips And Tricks Post" in which I share with Postman collections the tips and tricks I learn while using Twitter v2 API.
 You can either:
 
 - Read this post
