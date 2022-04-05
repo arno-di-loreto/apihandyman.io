@@ -4,6 +4,11 @@ author: Arnaud Lauret
 layout: post
 permalink: /what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api/
 category: post
+postman_collection_documentation: https://www.postman.com/apihandyman/workspace/twitter-v2-api-tips-and-tricks/documentation/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229
+postman_collection_run: https://god.gw.postman.com/run-collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=collection%2Ffork&collection-url=entityId%3D143378-8f12c1ed-f930-4e0d-8baf-c8a949910229%26entityType%3Dcollection%26workspaceId%3D16b83fae-c500-4387-b79c-0c72565d1d0f#?env%5BGuess%20how%20Tweets%20lookup%20parameters%20works%5D=W3sia2V5IjoidHdpdHRlcl90b2tlbiIsInZhbHVlIjoiUFVUIFlPVVIgVE9LRU4gSU4gQ1VSUkVOVCBWQUxVRSBPRiBUV0lUVEVSIFRPS0VOIEVOVklST05NRU5UIFZBUklBQkxFIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6InNlY3JldCJ9XQ==
+postman_collection_github: https://github.com/apihandyman/twitter-tips-and-tricks/tree/main/guess-how-tweets-lookup-parameters-work
+tools:
+  - Postman
 ---
 
 This collection is a companion to the [What can we learn from tweets lookup error responses of Twitter v2 API?](https://apihandyman.io/what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api/) API Handyman blog post. It aims to demonstrate how you can learn to use the Twitter v2 API Tweets lookup functions parameters without reading much of the documentation. It comes with 2 additional bonuses. First, you can reuse that technique with many APIs. Second, you may also learn a few API design, implementation, and documentation principles.
@@ -22,7 +27,8 @@ The [collection](https://apihandyman.postman.co/workspace/Twitter-v2-API-Tips-an
 
 The collection requires the creation of an environment containing the following variables. (Try to send a request without an environment or the following variables and [you'll get a surprise error message](https://apihandyman.io/we-always-forget-to-select-a-postman-environment/)).
 
-> ⛔️ Never store API tokens in initial value. Read [How to use API Keys](https://blog.postman.com/how-to-use-api-keys/) to learn more.
+{% include alert.html content="Never store API tokens in initial value. Read [How to use API Keys](https://blog.postman.com/how-to-use-api-keys/) to learn more.
+" level="danger" %}
 
 | **VARIABLE** | **DESCRIPTION** |
 | --- | --- |
@@ -44,6 +50,7 @@ The collection uses the following collection variables:
 | user_fields_default_value | A variable holding all possible values of `user.fields` parameter. Used in [Get always dame data folder](https://apihandyman.postman.co/workspace/Twitter-v2-API-Tips-and-Tricks~16b83fae-c500-4387-b79c-0c72565d1d0f/documentation/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?entity=folder-c5fde22c-0ee1-4e2b-955d-b33ecd5aedb1). |
 | token_variable_name | Used by some [pre-script magic that checks an environment is selected](https://apihandyman.io/we-always-forget-to-select-a-postman-environment/). No need to modify this value. |
 | token_variable_default_value | Used by some [pre-script magic that checks an environment is selected](https://apihandyman.io/we-always-forget-to-select-a-postman-environment/). No need to modify this value. |
+
 # Retrieve a single tweet
 Let's start by retrieving a single tweet, it is done with the `GET /2/tweets/:tweetId request`.
 
@@ -59,7 +66,7 @@ By providing only the tweet id (as a path parameter), we'll only get the tweet's
 When providing only the id path parameter without any other parameters, we get the default data.
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets/1387820661742112771
+https://api.twitter.com/2/tweets/{{tweet_id}}
 {% endcode %}
 
 {% code title:Response language:json %}
@@ -76,7 +83,7 @@ https://api.twitter.com/2/tweets/1387820661742112771
 More data can be retrieved using some query parameters. You can either read the [documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id), or be lazy and try to guess them by providing a wrong `dummy` query parameter. The error response returned will tell us that parameter is wrong and list the accepted parameters.
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets/1387820661742112771?dummy=value
+https://api.twitter.com/2/tweets/{{tweet_id}}?dummy=value
 {% endcode %}
 
 {% code title:Response language:json %}
@@ -103,7 +110,7 @@ Thanks to previous error, we know the possible query parameters. We can add them
 
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets/1387820661742112771?id=dummy
+https://api.twitter.com/2/tweets/{{tweet_id}}?id=dummy
 &expansions=dummy
 &tweet.fields=dummy
 &media.fields=dummy
@@ -196,7 +203,7 @@ This little problem sets aside, we had very valuable information for the other p
 
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets/1387820661742112771?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
+https://api.twitter.com/2/tweets/{{tweet_id}}?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,non_public_metrics,organic_metrics,possibly_sensitive,promoted_metrics,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
 &poll.fields=duration_minutes,end_datetime,id,options,voting_status
@@ -386,7 +393,7 @@ At least, the error message is quite clear, we request fields that we're not all
 
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets/1387820661742112771?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
+https://api.twitter.com/2/tweets/{{tweet_id}}?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
 &poll.fields=duration_minutes,end_datetime,id,options,voting_status
@@ -646,8 +653,6 @@ https://api.twitter.com/2/tweets/1387820661742112771?expansions=author_id,refere
 {% endcode %}
 
 # Retrieve multiple tweets
-# GET /2/tweets
-
 Now we could directly send a `GET /tweets?ids=xxx` with the parameters we have discovered when retrieving a single tweet and it would work. But just for the sake of science, let's try the same method again and check there are not more parameters than we have discovered.
 
 What Twitter [Reference Documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets) says:
@@ -798,7 +803,7 @@ Providing all possible values we should get the same error as when retrieving a 
 
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets?ids=1387820661742112771
+https://api.twitter.com/2/tweets?ids={{tweet_id}}
 &expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,non_public_metrics,organic_metrics,possibly_sensitive,promoted_metrics,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
@@ -985,7 +990,7 @@ So both operations share the same parameters with the same value and the same be
 
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets?ids=1387820661742112771
+https://api.twitter.com/2/tweets?ids={{tweet_id}}
 &expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
@@ -1261,7 +1266,7 @@ I didn't get all what I expect, I both add less and more.
 The behavior of this operation goes against Twitter API documentation and more important, against HTTP: don't do that at home, return `404 Not Found` and not `200 OK` with an error. It sounds more like a bug than actual intended behavior. At least the body contains an `error` explaining the problem, but if consumers concentrate on HTTP status code, such error may stay invisible.
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets/1508806917874978822
+https://api.twitter.com/2/tweets/{{unknown_tweet_id}}
 {% endcode %}
 
 {% code title:Response language:json %}
@@ -1286,7 +1291,7 @@ The behavior is the expected one, we have an empty `data` list. But we also get 
 
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets?ids=1508806917874978822
+https://api.twitter.com/2/tweets?ids={{unknown_tweet_id}}
 &expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
@@ -1317,7 +1322,7 @@ We have here the same behavior as in previous request. This really demonstrate h
 
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets?ids=1508806917874978822,1387820661742112771
+https://api.twitter.com/2/tweets?ids={{unknown_tweet_id}},{{tweet_id}}
 &expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
@@ -1598,7 +1603,7 @@ When deactivating `expansions` query parameter, we get some data but not all dat
 
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets/1387820661742112771?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
+https://api.twitter.com/2/tweets/{{tweet_id}}?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
 &poll.fields=duration_minutes,end_datetime,id,options,voting_status
@@ -1904,7 +1909,7 @@ pm.request.url.query.all().forEach((param) => {
 {% endcode %}
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets/1387820661742112771?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
+https://api.twitter.com/2/tweets/{{tweet_id}}?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
 &poll.fields=duration_minutes,end_datetime,id,options,voting_status
@@ -2171,12 +2176,12 @@ So both operations share the same parameters with the same value and the same be
 
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets/1387820661742112771?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
-&tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
-&media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
-&poll.fields=duration_minutes,end_datetime,id,options,voting_status
-&place.fields=contained_within,country,country_code,full_name,geo,id,name,place_type
-&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld
+https://api.twitter.com/2/tweets/{{tweet_id}}?expansions={{expansions_default_value}}
+&tweet.fields={{tweet_fields_default_value}}
+&media.fields={{media_fields_default_value}}
+&poll.fields={{poll_fields_default_value}}
+&place.fields={{place_fields_default_value}}
+&user.fields={{user_fields_default_value}}
 {% endcode %}
 
 {% code title:Response language:json %}
@@ -2436,13 +2441,13 @@ So both operations share the same parameters with the same value and the same be
 
 ### Request and response
 {% code title:Request language:http %}
-https://api.twitter.com/2/tweets?ids=1387820661742112771
-&expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
-&tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
-&media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
-&poll.fields=duration_minutes,end_datetime,id,options,voting_status
-&place.fields=contained_within,country,country_code,full_name,geo,id,name,place_type
-&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld
+https://api.twitter.com/2/tweets?ids={{tweet_id}}
+&expansions={{expansions_default_value}}
+&tweet.fields={{tweet_fields_default_value}}
+&media.fields={{media_fields_default_value}}
+&poll.fields={{poll_fields_default_value}}
+&place.fields={{place_fields_default_value}}
+&user.fields={{user_fields_default_value}}
 {% endcode %}
 
 {% code title:Response language:json %}
