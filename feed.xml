@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-05T10:11:31-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What can we learn from tweets lookup error responses of Twitter v2 API?</title><link href="https://apihandyman.io/what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api/" rel="alternate" type="text/html" title="What can we learn from tweets lookup error responses of Twitter v2 API?" /><published>2022-04-05T00:00:00-05:00</published><updated>2022-04-05T00:00:00-05:00</updated><id>https://apihandyman.io/what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api</id><content type="html" xml:base="https://apihandyman.io/what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api/"><![CDATA[<p>What can we learn from tweets lookup error responses of Twitter v2 API?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-06T07:16:48-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Choosing a public API style when a private API style already exists</title><link href="https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists/" rel="alternate" type="text/html" title="Choosing a public API style when a private API style already exists" /><published>2022-04-06T00:00:00-05:00</published><updated>2022-04-06T00:00:00-05:00</updated><id>https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists</id><content type="html" xml:base="https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists/"><![CDATA[<p>“What will be the style of our public/partner APIs? Should we reuse our existing private APIs style? Should we restart from scratch and use a totally different style?” This discussion happens quite often in organizations starting their public API journey (and if it did not happen, it must happen.) This discussion can have important consequences that must be carefully evaluated.
+<!--more--></p>
+
+<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em>
+<em>In case you don’t get the reference: The API Handyman is represented with a 80s mullet haircut, “business up front, party in the back”.</em></p>
+
+<h1 id="from-look-and-feel-to-life-and-death">From look and feel to life and death</h1>
+
+<p>After taking private APIs more or less seriously, your organization is ready for the next step on its API journey: providing APIs to the outside world. It could be partner APIs, provided to a few selected partners or customers who have been through a good old “let’s meet and sign some papers” process. It could also be public APIs that will be consumed in a self-service fashion by almost anyone.</p>
+
+<p>In either case: the DX (developer experience) offered by those APIs will be critical to their success. An API’s DX is determined by multiple factors from its purpose to how it’s simple to make API calls and everything in between (and beyond). Among all those factors, the design of an API plays a critical role in DX. A well-designed API will be easy to understand and easy to use. Such APIs will have a higher adoption rate and requires less support. On the opposite, terribly-designed public/partner APIs will not be used, and if they are used they will require a high level of support.</p>
+
+<p>A good way to avoid miserably failing your public/partner API initiative is to ensure that your APIs share a common style, a common “look and feel”. But that’s not enough, this common style must participate in the creation of “easy-to-understand-easy-to-use” APIs. Indeed you can create terrible APIs that all look the same. And last but not least, if that style ease designers’ job that is more than welcomed. A complicated style will only lead to terrible APIs because only a few experts will be capable of applying it.</p>
+
+<p>Hence the importance of the question, of which “style” to use for public/partner APIs. The style, the “look and feel” of your APIs have a major impact on their life and death.</p>
+
+<p>Choosing the API Style of public/partner APIs is a choice that must not be done by default (without choosing) but knowingly. Because once APIs start to be consumed by third parties, it’s extremely difficult to modify anything.</p>
+
+<h1 id="usual-scenarios">Usual scenarios</h1>
+
+<p>When that question arises (and remember it MUST arise) in a context where private APIs already exist, I often present the possibilities with the 3 following scenarios.</p>
+
+<ul>
+  <li>Keeping existing style as it is</li>
+  <li>Simplify existing style to target common practices</li>
+  <li>Redefined from scratch a totally new style targeting common practices or a standard</li>
+</ul>
+
+<p>The first option is to simply stick to the existing style. That’s a totally valid option if the existing style leads to easy-to-understand and easy-to-use APIs hence is free of bizarre local specificities and close to outside world common practices. If that’s not the case, I recommend studying the second scenario. Indeed, APIs that are uniform between themselves but go against common practices will be hard-to-understand and hard-to-use.</p>
+
+<p>The second scenario consists in taking the existing style and trying to simplify it in a backward-compatible fashion if that’s possible. The idea is to limit the breaking changes to what is absolutely necessary, or at least keep a certain spirit of the original style. It could simply consist in removing certain edge cases from the guidelines. But if there are too many changes to do, maybe it would be better to restart from scratch with the third option.</p>
+
+<p>The third option consists in redefining the public/partner API style from scratch without taking care of the existing API style. It could even be interesting to see if there are no standards to take advantage of (I’ll write a dedicated post on that topic).</p>
+
+<p>The problem is that if we stop here, we only envision that question from the public/partner API perspective: “Let’s choose the style that will work the best with the outside world”. The choice cannot be made without evaluating the impacts on the whole organization and all of its APIs.</p>
+
+<h1 id="different-styles-or-same-style">Different styles or same style</h1>
+
+<p>Behind the “which style will we use for our public/partner APIs?” question lies an even more critical one: “will we have the same or a different style for public/partner vs private APIs?”.</p>
+
+<p>In my opinion, the question is definitely no in the long run. While it’s totally understandable to have a transitional period where existing private APIs may not be updated until needed. It could cost a lot of money to update all existing private APIs to the new style. I highly recommend applying the new public/partner style to private APIs as soon as possible, starting at least with any new API.</p>
+
+<p>Indeed, using different styles for private and public/partner APIs forbid applying the Jeff Bezos mandate, you can’t turn a private API into a public/partner one easily. You’ll need a bit of work to transform the private style into the public/partner one.</p>
+
+<p>That also prevents eating your own dog food at two levels. First, if your public/partner APIs are not private, you won’t use them, you won’t discover their flaws, and you won’t improve them. Second level: the style itself. It will be less used and so less improved. Only a few experts will learn to design APIs the public/partner way, they won’t have many opportunities to grow their skill and propose style improvements as there are usually that less public/partner APIs created than private ones.</p>
+
+<p>That may to an extent promote a counter-productive organizational repartition between the team creating public/partner APIs and the other creating private APIs. That would severely cripple the API-First initiative at the organization level. Indeed, why should we care about our private APIs if the public/partner team will clean the mess when necessary?</p>
+
+<p>And even if you take the strict “2 styles” path, the public/partner style will win in the long run. People of your organization will use the public/partner APIs and be fed up with how they are different (and better) than private APIs. People will be fed up with spending time and money adapting API for public-facing consumers. People building private APIs will be fed up with being considered second-class citizens (vs people building public/partner APIs). People will question the legitimacy of that “2 styles” decision.</p>
+
+<h1 id="choose-knowingly">Choose knowingly</h1>
+
+<p>So don’t take the public/partner API style question lightly. This question is critical for the success of your public/partner API initiative but it will also have a huge impact on your whole organization’s API-first initiative.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“What will be the style of our public/partner APIs? Should we reuse our existing private APIs style? Should we restart from scratch and use a totally different style?” This discussion happens quite often in organizations starting their public API journey (and if it did not happen, it must happen.) This discussion can have important consequences that must be carefully evaluated.]]></summary></entry><entry><title type="html">What can we learn from tweets lookup error responses of Twitter v2 API?</title><link href="https://apihandyman.io/what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api/" rel="alternate" type="text/html" title="What can we learn from tweets lookup error responses of Twitter v2 API?" /><published>2022-04-05T00:00:00-05:00</published><updated>2022-04-05T00:00:00-05:00</updated><id>https://apihandyman.io/what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api</id><content type="html" xml:base="https://apihandyman.io/what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api/"><![CDATA[<p>What can we learn from tweets lookup error responses of Twitter v2 API?
 We can learn how to use the tweets lookup operations parameters without reading much of the documentation.
 We may also learn a few API design, implementation, and documentation principles in the making.
 And icing on the cake, the technique shown in this post can be applied on any API.
@@ -4567,134 +4619,4 @@ With what we’ve done we can easily create requests that will do what we want b
 I’m working on a complete collection allowing to control the Elgato Key Light and doing so I used a few tricks that I’ll show in future post(s).
 In the meanwhile, you can already see what I’ve done by clicking on the button below.</p>
 
-<p><a href="https://app.getpostman.com/run-collection/143378-88ada3a6-de53-4599-93cf-cc0a5d365cd9?action=collection%2Ffork&amp;collection-url=entityId%3D143378-88ada3a6-de53-4599-93cf-cc0a5d365cd9%26entityType%3Dcollection%26workspaceId%3Df0a96dd6-c7d8-46f7-9e62-4b95f25c4e43#?env%5BElgato%20Key%20Light%5D=W3sia2V5IjoibGlnaHRfbmFtZSIsInZhbHVlIjoiRWxnYXRvIEtleSBMaWdodCAxODc2IiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiJFbGdhdG8gS2V5IExpZ2h0IDE4NzYiLCJzZXNzaW9uSW5kZXgiOjB9LHsia2V5IjoiYmFzZV91cmwiLCJ2YWx1ZSI6Imh0dHA6Ly9lbGdhdG8ta2V5LWxpZ2h0LTE4NzYubG9jYWw6OTEyMy9lbGdhdG8iLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6Imh0dHA6Ly9lbGdhdG8ta2V5LWxpZ2h0LTE4NzYubG9jYWw6OTEyMy9lbGdhdG8iLCJzZXNzaW9uSW5kZXgiOjF9LHsia2V5IjoiYmFzZV91cmxfdGVtcGxhdGUiLCJ2YWx1ZSI6Imh0dHA6Ly9OQU1FLmxvY2FsOjkxMjMvZWxnYXRvIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiJodHRwOi8vTkFNRS5sb2NhbDo5MTIzL2VsZ2F0byIsInNlc3Npb25JbmRleCI6Mn1d"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a></p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Want to learn how to hack a desktop app calling an API and learn some API design principles? This post is made for you. When I got my Elgato Key Light, my first questions were: “can I control it without using the official control center using an API?” and “is the API easy to understand and use?”. Thanks to Postman’s proxy feature, I was able to easily hack the API. But I was also able to review it in the making, and there’s some interesting API design learnings to share.]]></summary></entry><entry><title type="html">Choosing between raw and processed data when designing an API</title><link href="https://apihandyman.io/choosing-between-raw-and-processed-data-when-designing-an-api/" rel="alternate" type="text/html" title="Choosing between raw and processed data when designing an API" /><published>2022-02-09T00:00:00-06:00</published><updated>2022-02-09T00:00:00-06:00</updated><id>https://apihandyman.io/choosing-between-raw-and-processed-data-when-designing-an-api</id><content type="html" xml:base="https://apihandyman.io/choosing-between-raw-and-processed-data-when-designing-an-api/"><![CDATA[<p>Look how trees are represented in Piet Mondrian’s paintings shown in this post’s banner.
-On the left they are represented in a figurative way, on the right totally abstracted.
-This is what we’ll discuss in this post, not figurative vs abstract painting, but raw vs processed data in API design.
-Choosing between raw or processed data, date of birth vs age for instance, has a direct impact on developer experience but also on provider’s.
-<!--more--></p>
-
-<div class="alert alert-info"><h4 class="alert-heading">About Piet Mondrian</h4><hr />
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/choosing-between-raw-and-processed-data-when-designing-an-api/mondrian-composition.jpg" class="figure-img img-fluid" /><figcaption class="figure-caption">Composition II in Red, Blue, and Yellow, 1930</figcaption></figure>
-</div>
-<p><a href="https://en.wikipedia.org/wiki/Piet_Mondrian">Piet Mondrian</a>, is one of the pioneers of abstract art, but started with figurative painting.
-You may know him by his compositions such as the one above.
-This post banner is composed of two of his paintings.
-On the left side : <a href="https://commons.wikimedia.org/wiki/File:Mondriaan_-_grazende_kalfjes.jpg">Grazing cows in a polder</a> (oil on canvas, between 1901 and 1903), on the right side: <a href="https://commons.wikimedia.org/wiki/File:Blossoming_apple_tree,_by_Piet_Mondriaan.jpg">Blossoming apple tree</a> (oil on canvas, 1912).</p>
-
-</div>
-
-<h1 id="a-not-so-simple-question">A not so simple question</h1>
-
-<p>Here’s a question that I often ask when doing API design training sessions.
-Let’s say we are designing an API to “manage Users” (not the best crystal clear need ever, but it’s just a basic example).
-To fullfil some goal/job to be done, users’ age must be returned.
-As the underlying system stores users’ date of birth, what should we do?</p>
-
-<ul>
-  <li>Return date of birth only (hence raw data)</li>
-  <li>Return age only (hence processed data)</li>
-  <li>Return both date of birth and age (hence raw and processed data)</li>
-</ul>
-
-<div class="alert alert-warning"><h4 class="alert-heading">Be sure of the needs!</h4><hr /><p>We will not discuss that here, but in real condition, you must be sure about WHY the age is needed and HOW it will be used. Always be careful and triple check that the need that has been identified is the right one.</p>
-
-</div>
-
-<h1 id="raw-data-and-terrible-consumer-side-business-logic">Raw data and (terrible) consumer side business logic</h1>
-
-<p>We could return date of birth only.
-Indeed, calculating an age, the number of years between today and a date is not that complicated.</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">How to NOT calculate age in JS</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-js line-numbers code-copy"><code class="code-block">const birthDate = Date.parse(&#39;2004-04-10&#39;);
-const today = Date.now();
-const differenceInMs = today - birthDate;
-const differenceInYears = differenceInMs / 1000 / 3600 / 24 / 365; // 17.847940055048202
-const age = Math.round(differenceInYears); // 18</code></pre>
-  </div>
-</div>
-
-<p>It’s not that complicated to calculate an age, but some people can still make errors, as shown in the JS code snippet above.
-If “users” were citizens, such error could give the right to vote to someone who is not 18 yet (we can vote at 18 in France).
-That means returning raw data may lead to consumers implementing some business logic the wrong way and so can lead to more or less terrible errors.</p>
-
-<p>Oh, you could check that consumers actually do it well …
-But, honestly don’t do that.
-It may possibly work with one or two consumers close to you, but how will you manage that with dozens of consumers that are actual customers?
-Spoiler: you won’t.</p>
-
-<p>And even if by chance all consumers could calculate the “age” well, what will happen if you, as the API provider, want to change that business logic?
-What if, in the beginning, the “age” was supposed to be the raw number of years as a float number and now you changed your mind and want it rounded without decimals (yes rounded because some business logic reason).
-It will be complicated to tell all consumers to change that in their own code.</p>
-
-<p>And even if consumers are willing to update their code, they may simply be unable to implement that business logic.
-During some recent session, one of the attendees raised a very good point: unfortunately people die.
-I never have thought of that!
-If the API manages “users” (whatever it means) who can die, deriving age from the date of birth will not work.
-And just in case it crossed your mind, don’t even dare to think returning date of death along date of birth.</p>
-
-<p>So it seems better to return processed data such as an age than raw data such as a date of birth.
-But avoiding consumers implementing business logic is not the only reason you would return processed data instead of raw data.</p>
-
-<h1 id="sensitive-raw-data-processed-data-to-the-rescue">Sensitive raw data? Processed data to the rescue!</h1>
-
-<p>Indeed, there’s another possible problem here if we return the date of birth to fulfill our “age” need.
-A date of birth could be considered a sensitive piece of data in some places, it even could help identify a user.</p>
-
-<p>Just in case you’re not aware of that: privacy matters whatever you build; and APIs are no exception.
-And if you don’t care, some regulations like <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a> will force you to care about it.</p>
-
-<p>So in such a situation, having to deal with sensitive raw data, it could be interesting to process it and make it less sensitive.
-Here, returning an age instead of the date of birth would solve the problem.
-Note that if it’s so sensitive, you may also have to rethink about why you actually store it, but that’s another story.</p>
-
-<p>So again, returning the age (processed data) instead of date of birth (raw data) seems to be a good idea.</p>
-
-<h1 id="processed--raw-data-for-more-usages">Processed + Raw data for more usages</h1>
-
-<p>But don’t forget that your API must be usable for various use cases.
-If we set aside the possible sensitivity of date of birth, maybe it could be interesting to return both values.
-Indeed, date of birth could make sense for other possible use cases.
-Refrain to return just what is needed for the first identified use cases.
-Always expand your vision to a broader context.
-How many times I’ve seen web services and APIs dealing with totally dumb subsets of business concepts, missing data that are important in general whatever you do …
-But data that were not needed for the first use case 🤦🏻‍♂️.</p>
-
-<h1 id="raw-vs-process-data-impacts-developer-and-provider-experiences">Raw vs process data impacts developer and provider experiences</h1>
-
-<p>Obviously, this raw vs processed data question is not only for age vs date of birth.
-You can apply this reasoning for any piece of data.</p>
-
-<p>Think carefully before returning raw data that will be processed on the consumer side.
-Remember that an API is supposed to be “YOUR stuff for dummies”, do not delegate YOUR business logic to consumers.
-It may make your API harder to use for consumers, they need your expertise to use it, and so that cripples developer experience.
-They can do mistakes, and even if they don’t, you won’t be able to modify that consumer side business logic easily, and so that cripple your provider experience.</p>
-
-<p>But do not do it too much either, check that how the data will be processed is actually YOUR job.
-If not careful, you could end with a very specialized API working for a specific consumer.
-And so this API will be hard to reuse in broader contexts by other consumers.
-Again that impacts both developer and provider experience.</p>
-
-<p>Also think about the sensitivity of the raw data you need to return.
-Think about it not only fearing regulators but also for your users safety and yours, the less sensitive data, the better.
-Returning processed data hiding the original raw data will avoid you many headaches, hence have a better provider experience.</p>
-
-<p>And last but not least, it’s not because processed data is returned that you must remove the original raw data.
-It could be useful for other purposes and so enhance developer experience.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Look how trees are represented in Piet Mondrian’s paintings shown in this post’s banner. On the left they are represented in a figurative way, on the right totally abstracted. This is what we’ll discuss in this post, not figurative vs abstract painting, but raw vs processed data in API design. Choosing between raw or processed data, date of birth vs age for instance, has a direct impact on developer experience but also on provider’s.]]></summary></entry></feed>
+<p><a href="https://app.getpostman.com/run-collection/143378-88ada3a6-de53-4599-93cf-cc0a5d365cd9?action=collection%2Ffork&amp;collection-url=entityId%3D143378-88ada3a6-de53-4599-93cf-cc0a5d365cd9%26entityType%3Dcollection%26workspaceId%3Df0a96dd6-c7d8-46f7-9e62-4b95f25c4e43#?env%5BElgato%20Key%20Light%5D=W3sia2V5IjoibGlnaHRfbmFtZSIsInZhbHVlIjoiRWxnYXRvIEtleSBMaWdodCAxODc2IiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiJFbGdhdG8gS2V5IExpZ2h0IDE4NzYiLCJzZXNzaW9uSW5kZXgiOjB9LHsia2V5IjoiYmFzZV91cmwiLCJ2YWx1ZSI6Imh0dHA6Ly9lbGdhdG8ta2V5LWxpZ2h0LTE4NzYubG9jYWw6OTEyMy9lbGdhdG8iLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6Imh0dHA6Ly9lbGdhdG8ta2V5LWxpZ2h0LTE4NzYubG9jYWw6OTEyMy9lbGdhdG8iLCJzZXNzaW9uSW5kZXgiOjF9LHsia2V5IjoiYmFzZV91cmxfdGVtcGxhdGUiLCJ2YWx1ZSI6Imh0dHA6Ly9OQU1FLmxvY2FsOjkxMjMvZWxnYXRvIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiJodHRwOi8vTkFNRS5sb2NhbDo5MTIzL2VsZ2F0byIsInNlc3Npb25JbmRleCI6Mn1d"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a></p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Want to learn how to hack a desktop app calling an API and learn some API design principles? This post is made for you. When I got my Elgato Key Light, my first questions were: “can I control it without using the official control center using an API?” and “is the API easy to understand and use?”. Thanks to Postman’s proxy feature, I was able to easily hack the API. But I was also able to review it in the making, and there’s some interesting API design learnings to share.]]></summary></entry></feed>
