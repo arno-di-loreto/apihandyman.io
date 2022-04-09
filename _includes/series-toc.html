@@ -10,13 +10,14 @@
       </div>
     </div>
     <div class="col-md-5 series-toc-list">
-      {% assign sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
+      {% assign sorted = site.posts | where:"series", page.series | sort:"date"  %}
       <ul class="list-group list-group-flush">
         {% for my_page in sorted %}
+          {% include variables.html item=my_page %}
           {% if my_page.title == page.title %}
-          <li class="list-group-item active">{{ my_page.series_number }} - {{ my_page.title }}</li>
+          <li class="list-group-item active">{{ item_series_menu_title }}</li>
           {% else %}
-          <li class="list-group-item"><a href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.series_number }} - {{ my_page.title }}</a></li>
+          <li class="list-group-item"><a href="{{ my_page.url | prepend: site.baseurl }}">{{ item_series_menu_title }}</a></li>
           {% endif %}
         {% endfor %}
         {% for coming_soon in site.data.series[page.series] %}

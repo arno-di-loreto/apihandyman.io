@@ -19,7 +19,13 @@
 {%- endif -%}
 {%- comment -%}====================================================={%- endcomment -%}
 {%- if item.series -%}
-  {%- assign item_series_title = item.series | append:' Series - Part ' | append: item.series_number -%}
+  {%- if item.series_number -%}
+    {%- assign item_series_title = item.series | append:' Series - Part ' | append: item.series_number -%}
+    {%- assign item_series_menu_title = item.series_number | append: ' - ' | append: item_title -%}
+  {% else %}
+    {%- assign item_series_title = item.series | append:' Series' -%}
+    {%- assign item_series_menu_title = item_title -%}
+  {% endif %}
 {%- else -%}
   {%- assign item_series_title = nil -%}
 {%- endif -%}
