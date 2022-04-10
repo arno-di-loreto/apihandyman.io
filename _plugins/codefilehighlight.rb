@@ -126,7 +126,7 @@ class CodeFile < Liquid::Tag
     codeblocksize = lookup(context, 'site.codeblocksize')
     if code.lines.count > codeblocksize 
       collapsed_style = " code-collapsed"
-      collapsed_button = "<a role=\"button\" class=\"btn btn-secondary border-0 rounded-0 code-expandcollapse-btn\" aria-label=\"expand or shrink\" onclick=\"expandCollapseCode(this)\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Expand/Shrink\"><img class=\"btn-icon\" src=\"/images/commons/icons/maximize.svg\"></a>"
+      collapsed_button = "<a role=\"button\" class=\"btn border-0 rounded-0 code-expandcollapse-btn\" aria-label=\"expand or shrink\" onclick=\"expandCollapseCode(this)\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Expand/Shrink\"><img class=\"btn-icon\" src=\"/images/commons/icons/maximize.svg\"></a>"
     end
 
     if @title
@@ -137,7 +137,7 @@ class CodeFile < Liquid::Tag
     if @nodownload
       download_button = ""
     else
-      download_button = "<a role=\"button\" class=\"btn btn-secondary border-0 rounded-0\" aria-label=\"download file\" target=\"_blank\" href=\"#{url}\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Download\"><img class=\"btn-icon\" src=\"/images/commons/icons/download.svg\"></a>"
+      download_button = "<a role=\"button\" class=\"btn border-0 rounded-0\" aria-label=\"download file\" target=\"_blank\" href=\"#{url}\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Download\"><img class=\"btn-icon\" src=\"/images/commons/icons/download.svg\"></a>"
     end
 
     <<-HTML
@@ -151,7 +151,7 @@ class CodeFile < Liquid::Tag
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
           #{download_button}
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg"></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg"></a>
           #{collapsed_button}
         </div>
       </div>

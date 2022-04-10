@@ -20,9 +20,10 @@ code:not(.code-block) {
   }
 
   .card-header {
-    background: black;
+    // To Match Prism Synthwave Theme
+    background-color: transparent !important;
+    background-image: linear-gradient(to bottom, #2a2139 75%, #34294f);
     .btn {
-      background: black;
       box-shadow: none;
     }
     .row {
@@ -40,7 +41,6 @@ code:not(.code-block) {
 
   :not(pre) > code[class*="language-"],
   pre[class*="language-"] {
-    background: black; // Overrding okaidi color background to black
     margin-top: 0;
     margin-bottom: 0;
     border-top-left-radius: 0;
