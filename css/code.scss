@@ -47,6 +47,23 @@ code:not(.code-block) {
     border-top-right-radius: 0;
   }
 
+  pre[class*="language-"]::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5rem;
+  }
+
+  pre[class*="language-"]::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  pre[class*="language-"]::-webkit-scrollbar-thumb {
+    background-color: #67cdcc;
+  }
+
+  pre[class*="language-"]::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
   .code-collapsed {
     max-height: {{ site.codeblocksize }}em;
   }
