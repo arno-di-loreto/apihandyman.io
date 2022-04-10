@@ -9,7 +9,7 @@
         <p class="card-text">{{include.content | markdownify}}</p>
       </div>
     </div>
-    <div class="col-md-5 series-toc-list">
+    <div class="col-md-5 series-toc-list border-left">
       {% assign sorted = site.posts | where:"series", page.series | sort:"date"  %}
       <ul class="list-group list-group-flush">
         {% for my_page in sorted %}
