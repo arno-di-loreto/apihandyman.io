@@ -2,6 +2,37 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
+// Banner color palette
+$green: #2498AF;
+
+// HTTP Method
+
+.http-post {
+  color: black;
+  background-color: #ffc107;
+}
+
+.http-get {
+  color: white;
+  background-color: #28a745;
+}
+
+.http-delete {
+  color: white;
+  background-color: #dc3545;
+}
+
+.http-put {
+  color: white;
+  background-color: #007bff;
+}
+
+.http-patch {
+  color: white;
+  background-color: #17a2b8;
+}
+
+
 // Inline code
 code:not(.code-block) {
   color: grey;
@@ -57,7 +88,7 @@ code:not(.code-block) {
   }
 
   pre[class*="language-"]::-webkit-scrollbar-thumb {
-    background-color: #67cdcc;
+    background-color: $green;
   }
 
   pre[class*="language-"]::-webkit-scrollbar-corner {
@@ -71,7 +102,6 @@ code:not(.code-block) {
   .navbar {
     padding: 0;
     padding-left: 10px;
-    background-color: black;
   }
 
   .navbar-nav {
@@ -85,7 +115,6 @@ code:not(.code-block) {
 
   .card-body {
     padding: 0;
-    background-color: black;
   }
 
   .card-header {
