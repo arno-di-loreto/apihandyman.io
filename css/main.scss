@@ -959,7 +959,8 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
   }
 
   .active.disabled {
-    color: $left-navbar-active-item-font-color;
+    color: $left-navbar-hover-item-font-color;
+    background-color: $left-navbar-hover-item-background-color;
   }
 
   .selectable {
@@ -967,8 +968,8 @@ $row-banner-default-linear-gradient: linear-gradient(to right,
   }
 
   .selectable:hover {
-    background: $left-navbar-hover-item-background-color;
-    color: $left-navbar-hover-item-font-color;
+    color: $left-navbar-active-item-font-color;
+    background-color: $left-navbar-active-item-background-color;
   }
 }
 

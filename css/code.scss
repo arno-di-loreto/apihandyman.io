@@ -2,6 +2,37 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
+// Banner color palette
+$green: #2498AF;
+
+// HTTP Method
+
+.http-post {
+  color: black;
+  background-color: #ffc107;
+}
+
+.http-get {
+  color: white;
+  background-color: #28a745;
+}
+
+.http-delete {
+  color: white;
+  background-color: #dc3545;
+}
+
+.http-put {
+  color: white;
+  background-color: #007bff;
+}
+
+.http-patch {
+  color: white;
+  background-color: #17a2b8;
+}
+
+
 // Inline code
 code:not(.code-block) {
   color: grey;
@@ -20,9 +51,10 @@ code:not(.code-block) {
   }
 
   .card-header {
-    background: black;
+    // To Match Prism Synthwave Theme
+    background-color: transparent !important;
+    background-image: linear-gradient(to bottom, #2a2139 75%, #34294f);
     .btn {
-      background: black;
       box-shadow: none;
     }
     .row {
@@ -40,11 +72,27 @@ code:not(.code-block) {
 
   :not(pre) > code[class*="language-"],
   pre[class*="language-"] {
-    background: black; // Overrding okaidi color background to black
     margin-top: 0;
     margin-bottom: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+  }
+
+  pre[class*="language-"]::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5rem;
+  }
+
+  pre[class*="language-"]::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  pre[class*="language-"]::-webkit-scrollbar-thumb {
+    background-color: $green;
+  }
+
+  pre[class*="language-"]::-webkit-scrollbar-corner {
+    background-color: transparent;
   }
 
   .code-collapsed {
@@ -54,7 +102,6 @@ code:not(.code-block) {
   .navbar {
     padding: 0;
     padding-left: 10px;
-    background-color: black;
   }
 
   .navbar-nav {
@@ -68,7 +115,6 @@ code:not(.code-block) {
 
   .card-body {
     padding: 0;
-    background-color: black;
   }
 
   .card-header {

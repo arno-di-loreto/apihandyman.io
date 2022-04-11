@@ -1,0 +1,39 @@
+
+{% if include.body %}
+  {% assign bodyLines = include.body | strip | newline_to_br | split:"<br />" %}
+{% else %}
+  {% assign bodyLines = "" %}
+{% endif %} 
+{% if bodyLines.size > site.codeblocksize %}
+  {% assign collapse = true %}
+{% else %}
+  {% assign collapse = false %}
+{% endif %}
+
+<div class="card card-code text-white bg-dark border-dark">
+  {%if include.title %} 
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">{{include.title}}</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy"  data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg"></a>
+          {% if collapse %}<a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn"  aria-label="expand or shrink" onclick="expandCollapseCode(this)"  data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg"></a>{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="card-body">
+    <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-{{include.method | downcase }} mr-2" style="font-size:1em;">{{include.method | upcase}}</span><code class="language-http" style="background: transparent !important">{{include.url}}</code></div>
+    </div>
+    {%if include.body %} 
+    <div class="col col-auto pl-0 pr-0">
+      <pre class="code-copy line-numbers language-{{include.language}}{% if collapse %} code-collapsed{% endif %}" {% if include.highlight %}data-line="{{include.highlight}}"{% endif %}><code class="code-block">{{include.body | strip}}</code></pre>
+    </div>
+    {% endif %}
+  </div>
+</div>

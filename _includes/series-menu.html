@@ -6,13 +6,14 @@
 <div class="dropdown-menu dropdown-menu-series rounded-0" aria-labelledby="navbarSerieDropdown">
   <div class="dropdown-header">{{page.series}}</div>
   <div class="dropdown-divider"></div>
-  {% assign series_sorted = site.posts | where:"series", page.series | sort:"series_number"  %}
+  {% assign series_sorted = site.posts | where:"series", page.series | sort:"date"  %}
   {% for series_page in series_sorted %}
+    {% include variables.html item=series_page %}
     {% if series_page.title == page.title %}
-    <a class="dropdown-item active disabled{{wrap_class}}">{{ series_page.series_number }} - {{ series_page.title }}</a>
-  {% else %}
-   <a class="dropdown-item selectable{{wrap_class}}" href="{{ series_page.url | prepend: site.baseurl }}">{{ series_page.series_number }} - {{ series_page.title }}</a>
-  {% endif %}
+    <a class="dropdown-item active disabled{{wrap_class}}">{{ item_series_menu_title }}</a>
+    {% else %}
+    <a class="dropdown-item selectable{{wrap_class}}" href="{{ series_page.url | prepend: site.baseurl }}">{{ item_series_menu_title }}</a>
+    {% endif %}
 {% endfor %}
 {% for coming_soon in site.data.series[page.series] %}
 {% assign coming_soon_not_found = true %}
