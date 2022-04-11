@@ -1,10 +1,13 @@
 ---
 title: We always forget to select a Postman environment
+series: Postman Tips and Tricks
 date: 2022-03-26
 author: Arnaud Lauret
 layout: post
 permalink: /we-always-forget-to-select-a-postman-environment/
 category: post
+postman_workspace: Postman Tips and Tricks
+postman_workspace_url: https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/overview
 postman_collection_documentation: https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4
 postman_collection_run: https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4
 postman_collection_github: https://github.com/apihandyman/postman-tips-and-tricks/tree/main/dont-forget-to-select-an-environment
