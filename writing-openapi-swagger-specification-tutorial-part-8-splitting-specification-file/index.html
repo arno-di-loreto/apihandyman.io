@@ -12,6 +12,7 @@
 
 
 
+
 <html lang="en">
   <head>
   <title>API Handyman | Splitting specification file</title>
@@ -858,6 +859,7 @@
   
   
 <link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/css/prism-synthwave84.css">
 
 
 
@@ -1240,6 +1242,7 @@
 
 
 
+
   <div class="row row-banner-small row-banner-small-">
     <div class="banner-small-container">
       <div class="banner-small-column-main">
@@ -1284,40 +1287,49 @@
   
   
     
-   <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">1 - Introduction</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">1 - Introduction</a>
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">2 - The basics</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">2 - The basics</a>
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">3 - Simplifying specification file</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">3 - Simplifying specification file</a>
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">4 - Advanced Data</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">4 - Advanced Data</a>
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">5 - Advanced Input And Output Modeling</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">5 - Advanced Input And Output Modeling</a>
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">6 - Defining Security</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">6 - Defining Security</a>
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">7 - Documentation</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">7 - Documentation</a>
+    
 
+    
     
     <a class="dropdown-item active disabled text-wrap">8 - Splitting specification file</a>
-  
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">9 - Extending the OpenAPI specification</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">9 - Extending the OpenAPI specification</a>
+    
 
 
 </div>
@@ -1978,6 +1990,7 @@
 
 
 
+
 <div class="page-content-text anchors">
   
   
@@ -2025,42 +2038,51 @@ Writing OpenAPI (Swagger) Specification Tutorial Series - Part 8
 </p>
       </div>
     </div>
-    <div class="col-md-5 series-toc-list">
+    <div class="col-md-5 series-toc-list border-left">
       
       <ul class="list-group list-group-flush">
         
+          
           
           <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-1-introduction/">1 - Introduction</a></li>
           
         
           
+          
           <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-2-the-basics/">2 - The basics</a></li>
           
         
+          
           
           <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-3-simplifying-specification-file/">3 - Simplifying specification file</a></li>
           
         
           
+          
           <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-4-advanced-data-modeling/">4 - Advanced Data</a></li>
           
         
+          
           
           <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-5-advanced-input-and-output-modeling/">5 - Advanced Input And Output Modeling</a></li>
           
         
           
+          
           <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-6-defining-security/">6 - Defining Security</a></li>
           
         
+          
           
           <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-7-documentation/">7 - Documentation</a></li>
           
         
           
+          
           <li class="list-group-item active">8 - Splitting specification file</li>
           
         
+          
           
           <li class="list-group-item"><a href="/writing-openapi-swagger-specification-tutorial-part-9-extending-the-openapi-specification/">9 - Extending the OpenAPI specification</a></li>
           
@@ -2103,9 +2125,9 @@ Writing OpenAPI (Swagger) Specification Tutorial Series - Part 8
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -2202,8 +2224,8 @@ definitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_06_with_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2245,8 +2267,8 @@ definitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_23_person.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_23_person.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2276,9 +2298,9 @@ definitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_24_local_reference.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_24_local_reference.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -2404,14 +2426,14 @@ But when you use the <a href="http://editor.swagger.io">online editor</a> it doe
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers code-copy"><code class="code-block">npm install --global http-server</code></pre>
+    <pre class="language-bash line-numbers code-copy" data-start="1"><code class="code-block">npm install --global http-server</code></pre>
   </div>
 </div>
 
@@ -2426,14 +2448,14 @@ But when you use the <a href="http://editor.swagger.io">online editor</a> it doe
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers code-copy"><code class="code-block">http-server --cors path/to/yaml/folder</code></pre>
+    <pre class="language-bash line-numbers code-copy" data-start="1"><code class="code-block">http-server --cors path/to/yaml/folder</code></pre>
   </div>
 </div>
 
@@ -2448,14 +2470,14 @@ But when you use the <a href="http://editor.swagger.io">online editor</a> it doe
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers code-copy"><code class="code-block">cd path/to/yaml/folder
+    <pre class="language-bash line-numbers code-copy" data-start="1"><code class="code-block">cd path/to/yaml/folder
 http-server --cors .</code></pre>
   </div>
 </div>
@@ -2510,8 +2532,8 @@ http-server --cors .</code></pre>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_25_local_reference_folder.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_25_local_reference_folder.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2534,8 +2556,8 @@ http-server --cors .</code></pre>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_26_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_26_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2563,9 +2585,9 @@ http-server --cors .</code></pre>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_25_local_reference_folder.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_25_local_reference_folder.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -2652,14 +2674,14 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-yaml line-numbers code-copy"><code class="code-block">$ref: https://myserver.com/mypath/myfile.yaml#/example</code></pre>
+    <pre class="language-yaml line-numbers code-copy" data-start="1"><code class="code-block">$ref: https://myserver.com/mypath/myfile.yaml#/example</code></pre>
   </div>
 </div>
 
@@ -2675,8 +2697,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_27_remote_reference.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_27_remote_reference.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2703,8 +2725,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_27_remote_reference.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_27_remote_reference.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2732,8 +2754,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_28_persons_remote.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_28_persons_remote.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2761,8 +2783,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_29_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_29_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2799,8 +2821,8 @@ Persons:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_30_subfile_multiple.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_30_subfile_multiple.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2820,8 +2842,8 @@ Persons:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_30_subfile_multiple.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_30_subfile_multiple.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2844,8 +2866,8 @@ Persons:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_31_organized_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_31_organized_definitions.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2884,8 +2906,8 @@ OtherDefinitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_32_subfile_organized.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_32_subfile_organized.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2905,8 +2927,8 @@ OtherDefinitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_32_subfile_organized.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_32_subfile_organized.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2948,9 +2970,9 @@ OtherDefinitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_22_documentation_with_gfm.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_22_documentation_with_gfm.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -2995,9 +3017,9 @@ info:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_34_chainsaw_info.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_34_chainsaw_info.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -3038,8 +3060,8 @@ license:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -3065,8 +3087,8 @@ info:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -3097,8 +3119,8 @@ parameters:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_35_chainsaw_paths.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_35_chainsaw_paths.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -3122,8 +3144,8 @@ parameters:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_38_chainsaw_parameters.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_38_chainsaw_parameters.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -3158,9 +3180,9 @@ parameters:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_39_chainsaw_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_39_chainsaw_documentation.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -3205,8 +3227,8 @@ categories:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -3232,9 +3254,9 @@ tags:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_41_chainsaw_security.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_41_chainsaw_security.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -3277,8 +3299,8 @@ defaultSecurity:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_39_chainsaw_endpoint.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_39_chainsaw_endpoint.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -3302,8 +3324,8 @@ path: /openapi102</code></pre>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -3331,8 +3353,8 @@ basePath:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_40_chainsaw_mediatypes.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_40_chainsaw_mediatypes.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -3355,8 +3377,8 @@ basePath:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_33_chainsaw.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -3405,9 +3427,9 @@ produces:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -3564,9 +3586,9 @@ definitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_44_smarter_images.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_44_smarter_images.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -3655,9 +3677,9 @@ definitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_45_smarter_legacy.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_45_smarter_legacy.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -3736,9 +3758,9 @@ definitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -4153,9 +4175,9 @@ parameters:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -4297,8 +4319,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4321,8 +4343,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4348,8 +4370,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4374,8 +4396,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4400,8 +4422,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4427,8 +4449,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4452,8 +4474,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4482,8 +4504,8 @@ consumes:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_43_smarter_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4512,8 +4534,8 @@ consumes:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4545,8 +4567,8 @@ consumes:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_48_valid_commons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4589,8 +4611,8 @@ consumes:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4621,8 +4643,8 @@ securityDefinitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4644,8 +4666,8 @@ securityDefinitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4668,8 +4690,8 @@ securityDefinitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4697,8 +4719,8 @@ securityDefinitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4736,8 +4758,8 @@ securityDefinitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4763,8 +4785,8 @@ securityDefinitions:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_51_valid_images.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_51_valid_images.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4797,8 +4819,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_52_valid_legacy.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_52_valid_legacy.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4854,8 +4876,8 @@ paths:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4886,8 +4908,8 @@ security:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_47_valid.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_47_valid.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4919,8 +4941,8 @@ security:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4944,8 +4966,8 @@ security:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_46_smarter_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -4973,8 +4995,8 @@ security:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_49_valid_persons.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -5010,8 +5032,8 @@ security:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_42_smarter.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -5047,8 +5069,8 @@ security:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_47_valid.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/writing-openapi-swagger-specification-tutorial/simple_openapi_specification_47_valid.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>

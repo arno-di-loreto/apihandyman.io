@@ -12,6 +12,7 @@
 
 
 
+
 <html lang="en">
   <head>
   <title>API Handyman | ...And GraphQL for all? A few things to think about before blindly dumping REST for GraphQL</title>
@@ -858,6 +859,7 @@
   
   
 <link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/css/prism-synthwave84.css">
 
 
 
@@ -1225,6 +1227,7 @@
 </div> <!-- class="main-navbar fixed-top  scrolled" -->
     <div class="page-content-container">
       
+
 
 
 
@@ -1738,6 +1741,7 @@
 
 
 
+
 <div class="page-content-text anchors">
   
   
@@ -1858,14 +1862,14 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">{
   viewer {
     name
     avatarURL
@@ -1885,14 +1889,14 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-text line-numbers code-copy"><code class="code-block">POST https://api.github.com/graphql
+    <pre class="language-text line-numbers code-copy" data-start="1"><code class="code-block">POST https://api.github.com/graphql
 {
  &quot;query&quot;: &quot;{ me: viewer { name avatarURL} }&quot;
 }</code></pre>
@@ -1910,14 +1914,14 @@ GraphQL was our opportunity to rethink mobile app data-fetching from the perspec
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
   &quot;data&quot;: {
     &quot;viewer&quot;: {
       &quot;name&quot;: &quot;Arnaud Lauret&quot;,
@@ -1941,14 +1945,14 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">{
   me: viewer {
     fullname: name
     picture: avatarURL
@@ -1968,14 +1972,14 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
   &quot;data&quot;: {
     &quot;me&quot;: {
       &quot;fullname&quot;: &quot;Arnaud Lauret&quot;,
@@ -2009,14 +2013,14 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">{
   me: viewer {
     fullname: name
     picture: avatarURL
@@ -2043,14 +2047,14 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
   &quot;data&quot;: {
     &quot;me&quot;: {
       &quot;fullname&quot;: &quot;Arnaud Lauret&quot;,
@@ -2097,14 +2101,14 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">{
   me:   viewer                 { name avatarURL }
   kin:  user(login: &quot;kinlane&quot;) { name avatarURL }
   mike: user(login: &quot;mamund&quot;)  { name avatarURL }
@@ -2129,14 +2133,14 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
   &quot;data&quot;: {
     &quot;me&quot;: {
       &quot;name&quot;: &quot;Arnaud Lauret&quot;,
@@ -2185,14 +2189,14 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-sql line-numbers code-copy"><code class="code-block">SELECT * FROM A, B WHERE A.COL = B.COL</code></pre>
+    <pre class="language-sql line-numbers code-copy" data-start="1"><code class="code-block">SELECT * FROM A, B WHERE A.COL = B.COL</code></pre>
   </div>
 </div>
 
@@ -2207,14 +2211,14 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
   &quot;data&quot;: {
     &quot;me&quot;: {
       &quot;myFirstTwoRepos&quot;: {
@@ -2243,14 +2247,14 @@ Here, <code>viewer</code> becomes <code>me</code>, <code>name</code> becomes <co
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
   &quot;data&quot;: {
     &quot;me&quot;: {
       &quot;myFirstTwoRepos&quot;:
@@ -2280,14 +2284,14 @@ The schema can be queried on runtime like all of the data.</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">{
   __type(name:&quot;User&quot;) {
     fields {
       name
@@ -2391,14 +2395,14 @@ Using the HTTP protocol enforce a certain consistency and allow predictability.<
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">query {
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">query {
   user(id: &quot;{id}&quot;) {
     name
   }
@@ -2419,14 +2423,14 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">mutation {
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">mutation {
   deleteUser(id: &quot;{id}&quot;)
   removeUser(id: &quot;{id}&quot;)
   suppressPeople(id: &quot;{id}&quot;)
@@ -2448,14 +2452,14 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">{
   user(login: &quot;dummy-user-123&quot;) {name}
 }</code></pre>
   </div>
@@ -2472,14 +2476,14 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
   &quot;data&quot;: {
     &quot;user&quot;: null
   },
@@ -2512,14 +2516,14 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">{
   user { name }
 }</code></pre>
   </div>
@@ -2536,14 +2540,14 @@ You’ll have to dig in the documentation to find out. You cannot guess it becau
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
   &quot;data&quot;: null,
   &quot;errors&quot;: [
     {

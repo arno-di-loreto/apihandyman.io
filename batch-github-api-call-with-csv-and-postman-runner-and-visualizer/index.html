@@ -12,6 +12,7 @@
 
 
 
+
 <html lang="en">
   <head>
   <title>API Handyman | Batch (Github) API calls with CSV and Postman runner and visualizer</title>
@@ -858,6 +859,7 @@
   
   
 <link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/css/prism-synthwave84.css">
 
 
 
@@ -1225,6 +1227,7 @@
 </div> <!-- class="main-navbar fixed-top  scrolled" -->
     <div class="page-content-container">
       
+
 
 
 
@@ -1741,6 +1744,7 @@
 
 
 
+
 <div class="page-content-text anchors">
   
   
@@ -2099,14 +2103,14 @@ As the Github REST API follows common practices, we are supposed to do a POST re
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;message&quot;: &quot;Invalid request.\n\nFor &#39;links/0/schema&#39;, nil is not an object.&quot;,
     &quot;documentation_url&quot;: &quot;https://docs.github.com/rest/reference/issues#create-an-issue&quot;
 }</code></pre>
@@ -2146,14 +2150,14 @@ But at least, there’s a <a href="https://docs.github.com/rest/reference/issues
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;body&quot;: &quot;Body of issue created by Postman&quot;
 }</code></pre>
   </div>
@@ -2170,14 +2174,14 @@ But at least, there’s a <a href="https://docs.github.com/rest/reference/issues
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;message&quot;: &quot;Invalid request.\n\n\&quot;title\&quot; wasn&#39;t supplied.&quot;,
     &quot;documentation_url&quot;: &quot;https://docs.github.com/rest/reference/issues#create-an-issue&quot;
 }</code></pre>
@@ -2197,14 +2201,14 @@ OK, end of API design digression, let’s provide a valid request body with a <c
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;title&quot;: &quot;Issue created by Postman&quot;,
     &quot;body&quot;: &quot;Body of issue created by Postman&quot;
 }</code></pre>
@@ -2252,14 +2256,14 @@ But that would be quite cumbersome right? What about trying the lazy way?</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;title&quot;: &quot;{{title}}&quot;,
     &quot;body&quot;: &quot;{{body}}&quot;
 }</code></pre>
@@ -2280,14 +2284,14 @@ The first line contains the names of the variables (<code>title</code> and <code
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-csv line-numbers code-copy"><code class="code-block">title,body
+    <pre class="language-csv line-numbers code-copy" data-start="1"><code class="code-block">title,body
 A first issue, First issue&#39;s body
 Another issue, Second issue&#39;s body
 Third issue,Yet another issue&#39;s body
@@ -2438,14 +2442,14 @@ To find the actual URL, let’s use the “List issues” request again, it retu
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">[
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">[
     {
         &quot;url&quot;: &quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo/issues/13&quot;,
         &quot;repository_url&quot;: &quot;https://api.github.com/repos/arno-di-loreto/postman-csv-demo&quot;,
@@ -2518,14 +2522,14 @@ You can read my <a href="/and-graphql-for-all-a-few-things-to-think-about-before
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">mutation {
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">mutation {
     deleteIssue(input: { issueId: &quot;but which id put here?&quot; }) { 
         repository { 
             name
@@ -2559,14 +2563,14 @@ You’ll get this 200 OK response (sigh… HTTP is only used for transport with 
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;data&quot;: {
         &quot;deleteIssue&quot;: null
     },
@@ -2601,14 +2605,14 @@ Try again, and now you’ll get another 200 OK signifying that the issue has bee
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-graphql line-numbers code-copy"><code class="code-block">{
+    <pre class="language-graphql line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;data&quot;: {
         &quot;deleteIssue&quot;: {
             &quot;repository&quot;: {
@@ -2646,14 +2650,14 @@ That can be used to create awesome charts or more simple tables, this is what we
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-js line-numbers code-copy"><code class="code-block">// Handlebar template
+    <pre class="language-js line-numbers code-copy" data-start="1"><code class="code-block">// Handlebar template
 var templateIdsOnly = `
     &lt;table bgcolor=&quot;#FFFFFF&quot;&gt;
         &lt;tr&gt;
@@ -2702,14 +2706,14 @@ If you need to get multiple value, just add a comma and the new value in the tem
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-js line-numbers code-copy"><code class="code-block">// Handlebar template
+    <pre class="language-js line-numbers code-copy" data-start="1"><code class="code-block">// Handlebar template
 var templateCsv = `
     &lt;table bgcolor=&quot;#FFFFFF&quot;&gt;
         &lt;tr&gt;

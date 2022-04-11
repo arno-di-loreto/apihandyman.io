@@ -12,6 +12,7 @@
 
 
 
+
 <html lang="en">
   <head>
   <title>API Handyman | We always forget to select a Postman environment</title>
@@ -858,6 +859,7 @@
   
   
 <link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/css/prism-synthwave84.css">
 
 
 
@@ -1240,6 +1242,7 @@
 
 
 
+
   <div class="row row-banner-small row-banner-small-">
     <div class="banner-small-container">
       <div class="banner-small-column-main">
@@ -1273,6 +1276,30 @@
 </a>
 
   
+  <div class="nav-item dropdown dropright">
+    <a class="nav-link dropdown-toggle series-title text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Series
+    </a>
+    
+<div class="dropdown-menu dropdown-menu-series rounded-0" aria-labelledby="navbarSerieDropdown">
+  <div class="dropdown-header">Postman Tips and Tricks</div>
+  <div class="dropdown-divider"></div>
+  
+  
+    
+    
+    <a class="dropdown-item active disabled text-wrap">We always forget to select a Postman environment</a>
+    
+
+    
+    
+    <a class="dropdown-item selectable text-wrap" href="/how-to-use-bootstrap-in-postman-visualizer/">How to use Bootstrap in Postman Visualizer</a>
+    
+
+
+</div>
+  </div>
+  
   <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
     
 
@@ -1303,11 +1330,6 @@
     
     
   
-    
-    
-    
-    
-      
     
     
     
@@ -1579,6 +1601,7 @@
 
 
 
+
 <div class="page-content-text anchors">
   
   
@@ -1591,7 +1614,9 @@
     <div class="card-page-section page-section-title">
       <div class="body">
         
-        <h5 class="surtitle"></h5>
+        <h5 class="surtitle">
+Postman Tips and Tricks Series
+</h5>
         
         
         <h1 class="title">We always forget to select a Postman environment</h1>
@@ -1606,7 +1631,14 @@ But when opening a collection, we often forget to select an environment and spen
 How can this be avoided?
 <!--more--></p>
 
-<div class="alert alert-info"><h4 class="alert-heading">Postman Tip And Tricks</h4><hr />
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Postman Tips and Tricks Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
 <p>This post is a “Postman Tips And Tricks Post” in which I share the tips and tricks I learn while using Postman.
 You can either:</p>
 
@@ -1614,9 +1646,33 @@ You can either:</p>
   <li>Read this post</li>
   <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4">Postman network</a></li>
   <li>Use this <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
-  <li>Get the collection from <a href="https://github.com/apihandyman/postman-tips-and-tricks/tree/main/dont-forget-to-select-an-environment">Github</a> to import it in Postman. (Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after fork)</li>
+  <li>Get the collection from <a href="https://github.com/apihandyman/postman-tips-and-tricks/tree/main/dont-forget-to-select-an-environment">Github</a> to import it in Postman.</li>
 </ul>
 
+<p><em>(Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after import or fork)</em></p>
+
+<p>You can also see all of the collections of this series in my <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/overview">Postman Tips and Tricks</a> Postman Workspace.</p>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list border-left">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          
+          <li class="list-group-item active">We always forget to select a Postman environment</li>
+          
+        
+          
+          
+          <li class="list-group-item"><a href="/how-to-use-bootstrap-in-postman-visualizer/">How to use Bootstrap in Postman Visualizer</a></li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
 </div>
 
 <p>This post demonstrates how to take advantage of <code>pm.environment.name</code> in Pre-Scripts to prevent sending a request and have a clear error message when an environment is not selected. The use case that will be used to demonstrate all that is retrieving a tweet with Twitter v2 API. The aim of this collection being error handling, you’ll need to have an actual access to Twitter v2 API only if you want to make the request succeed.</p>
@@ -1649,14 +1705,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-javascript line-numbers code-collapsed code-copy"><code class="code-block">/*******************************************/
+    <pre class="language-javascript line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">/*******************************************/
 /*  Checks a valid environment containing  */
 /*  a specific variable used as bearer     */
 /*  token is selected                      */
@@ -1711,14 +1767,14 @@ if(message) {
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-javascript line-numbers code-copy"><code class="code-block">if(pm.response.code === 401) {
+    <pre class="language-javascript line-numbers code-copy" data-start="1"><code class="code-block">if(pm.response.code === 401) {
     const selectedEnvironment = pm.environment.name;
     const tokenVariableName = pm.collectionVariables.get(&quot;token_variable_name&quot;);
     const tokenVariableValue = pm.environment.get(tokenVariableName);

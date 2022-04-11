@@ -12,6 +12,7 @@
 
 
 
+
 <html lang="en">
   <head>
   <title>API Handyman | Choosing between raw and processed data when designing an API</title>
@@ -858,6 +859,7 @@
   
   
 <link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/css/prism-synthwave84.css">
 
 
 
@@ -1240,6 +1242,7 @@
 
 
 
+
   <div class="row row-banner-small row-banner-small-">
     <div class="banner-small-container">
       <div class="banner-small-column-main">
@@ -1457,6 +1460,7 @@
 
 
 
+
 <div class="page-content-text anchors">
   
   
@@ -1551,14 +1555,14 @@ Indeed, calculating an age, the number of years between today and a date is not 
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-js line-numbers code-copy"><code class="code-block">const birthDate = Date.parse(&#39;2004-04-10&#39;);
+    <pre class="language-js line-numbers code-copy" data-start="1"><code class="code-block">const birthDate = Date.parse(&#39;2004-04-10&#39;);
 const today = Date.now();
 const differenceInMs = today - birthDate;
 const differenceInYears = differenceInMs / 1000 / 3600 / 24 / 365; // 17.847940055048202

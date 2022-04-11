@@ -1,4 +1,511 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-08T08:59:08-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Choosing a public API style when a private API style already exists</title><link href="https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists/" rel="alternate" type="text/html" title="Choosing a public API style when a private API style already exists" /><published>2022-04-06T00:00:00-05:00</published><updated>2022-04-06T00:00:00-05:00</updated><id>https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists</id><content type="html" xml:base="https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists/"><![CDATA[<p>“What will be the style of our public/partner APIs? Should we reuse our existing private APIs style? Should we restart from scratch and use a totally different style?” This discussion happens quite often in organizations starting their public API journey (and if it did not happen, it must happen.) This discussion can have important consequences that must be carefully evaluated.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-11T12:44:03-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">How to use Bootstrap in Postman Visualizer</title><link href="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/" rel="alternate" type="text/html" title="How to use Bootstrap in Postman Visualizer" /><published>2022-04-11T00:00:00-05:00</published><updated>2022-04-11T00:00:00-05:00</updated><id>https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer</id><content type="html" xml:base="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/"><![CDATA[<p>Postman Visualizer is perfect to tinker with data returned by an API and learn how it works. I found using <a href="https://handlebarsjs.com/">HandlebarJS</a> HTML templates quite convenient. But I was mindblown when I realized I could take advantage of <a href="https://getbootstrap.com/">Bootstrap</a> to generate outstanding visualization without much effort. Let’s see that with <a href="https://www.dnd5eapi.co/">The 5th Edition Dungeons and Dragons API</a> in its <a href="https://www.dnd5eapi.co/docs/#overview--graphql">GraphQL</a> version.
+<!--more--></p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Postman Tips and Tricks Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+<p>This post is a “Postman Tips And Tricks Post” in which I share the tips and tricks I learn while using Postman.
+You can either:</p>
+
+<ul>
+  <li>Read this post</li>
+  <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-0c503013-a7a9-4374-bdc2-7307ae777740">Postman network</a></li>
+  <li>Use this <a href="https://god.gw.postman.com/run-collection/143378-0c503013-a7a9-4374-bdc2-7307ae777740?action=collection%2Ffork&amp;collection-url=entityId%3D143378-0c503013-a7a9-4374-bdc2-7307ae777740%26entityType%3Dcollection"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
+  <li>Get the collection from <a href="https://github.com/apihandyman/postman-tips-and-tricks/tree/main/use-bootstrap-in-visualizer">Github</a> to import it in Postman.</li>
+</ul>
+
+<p><em>(Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after import or fork)</em></p>
+
+<p>You can also see all of the collections of this series in my <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/overview">Postman Tips and Tricks</a> Postman Workspace.</p>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list border-left">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          
+          <li class="list-group-item"><a href="/we-always-forget-to-select-a-postman-environment/">We always forget to select a Postman environment</a></li>
+          
+        
+          
+          
+          <li class="list-group-item active">How to use Bootstrap in Postman Visualizer</li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h1 id="use-vizualiser">Use vizualiser</h1>
+
+<p>With this first request, we’ll discover the Dnd GraphQL API by retrieving a list of magic items and how to set up a “standard” visualizer to show them in a simple HTML table.</p>
+
+<h2 id="use-visualizer-with-pure-html">Use visualizer with pure HTML</h2>
+
+<p>The request body contains a GraphQL query requesting “the name, desc(ription) and rarity name of all magic items”. We’ll use the exact same query for all requests. Note that I do not recommend using abbreviations in property names (or whatever names) when designing APIs. Abbreviations make APIs harder to use. In that case, it looks really awkward because it seems there are no other abbreviations used in the entire API, all names are cristal clear full names. And yes, spotting the only “mistake” in an otherwise well-designed API is my super-power (or my curse 😅). Hopefully, as Postman loads the GraphQL schema, it proposed me “desc” when I started to type “des(cription)” in my query. (But that’s not a reason to underestimate the importance of design for GraphQL APIs.)</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+   
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Request</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-post mr-2" style="font-size:1em;">POST</span><code class="language-http" style="background: transparent !important">https://www.dnd5eapi.co/graphql</code></div>
+    </div>
+     
+    <div class="col col-auto pl-0 pr-0">
+      <pre class="code-copy line-numbers language-graphql"><code class="code-block">{
+    magicItems {
+        name
+        desc
+        rarity {
+            name
+        }
+    }
+}</code></pre>
+    </div>
+    
+  </div>
+</div>
+
+<p>Ok, this digression on design aside, according to how GraphQL works and to the <a href="https://www.dnd5eapi.co/docs/#get-/api/magic-items/-index-">documentation</a>, that means we’ll get a list of objects <code>data.magicItems</code> containing a string <code>name</code>, an array of string <code>desc</code>, and an object <code>rarity</code> containing a string <code>name</code>.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Response</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
+    &quot;data&quot;: {
+        &quot;magicItems&quot;: [
+            {
+                &quot;name&quot;: &quot;Ammunition, +1, +2, or +3&quot;,
+                &quot;desc&quot;: [
+                    &quot;Weapon (any ammunition), uncommon (+1), rare (+2), or very rare (+3)&quot;,
+                    &quot;You have a bonus to attack and damage rolls made with this piece of magic ammunition. The bonus is determined by the rarity of the ammunition. Once it hits a target, the ammunition is no longer magical.&quot;
+                ],
+                &quot;rarity&quot;: {
+                    &quot;name&quot;: &quot;Varies&quot;
+                }
+            },
+            {
+                &quot;name&quot;: &quot;Adamantine Armor&quot;,
+                &quot;desc&quot;: [
+                    &quot;Armor (medium or heavy, but not hide), uncommon&quot;,
+                    &quot;This suit of armor is reinforced with adamantine, one of the hardest substances in existence. While you&#39;re wearing it, any critical hit against you becomes a normal hit.&quot;
+                ],
+                &quot;rarity&quot;: {
+                    &quot;name&quot;: &quot;Uncommon&quot;
+                }
+            }
+        ]
+    }
+}</code></pre>
+  </div>
+</div>
+
+<p>The visualization magic stands in the Test script. It defines a basic <a href="https://handlebarsjs.com/">HandlebarJS</a> template and then passes it to the Postman visualizer along with the data to use (the list of magic items). The template contains an HTML table with an <code>{{#each}}</code> loop on its rows. On each row, we have the name, rarity name, and the first line of description of each magic item.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Test script</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-js line-numbers code-collapsed code-copy" data-line="1,3,14,26" data-start="1"><code class="code-block">const handlebarData = pm.response.json().data.magicItems;
+
+const handlebarTemplate = `
+    &lt;h1&gt;DnD Magic Items&lt;/h1&gt;
+    &lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;col&quot;&gt;Name&lt;/th&gt;
+            &lt;th scope=&quot;col&quot;&gt;Rarity&lt;/th&gt;
+            &lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        {{#each .}}
+        &lt;tr&gt;
+            &lt;th scope=&quot;row&quot;&gt;{{name}}&lt;/th&gt;
+            &lt;td&gt;{{rarity.name}}&lt;/td&gt;
+            &lt;td&gt;{{desc.[0]}}&lt;/td&gt;
+        &lt;/tr&gt;
+        {{/each}}
+    &lt;/tbody&gt;
+    &lt;/table&gt;
+`;
+
+// Set visualizer
+pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
+  </div>
+</div>
+
+<p>After sending the request, the HTML result is visible by clicking on the “Visualize” button in the response’s “Body” tab.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/how-to-use-bootstrap-in-postman-visualizer/use-bootstrap-in-visualizer-1.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<h1 id="add-bootstratp-to-template">Add Bootstratp to template</h1>
+
+<p>By default, the visualization is already easier to read than the JSON data. But let’s add Bootstrap JS and CSS to have better styling.</p>
+
+<h2 id="add-bootstrap-js-and-css">Add Bootstrap JS and CSS</h2>
+
+<p>Adding Bootstrap to the template only requires adding the link to CSS and JS (found in <a href="https://getbootstrap.com/docs/5.1/getting-started/introduction/#quick-start">Boostrap Quick Start</a>) at the beginning of our template in the Test script of our request.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Test script</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-js line-numbers code-collapsed code-copy" data-line="4-6" data-start="1"><code class="code-block">const handlebarData = pm.response.json().data.magicItems;
+
+const handlebarTemplate = `
+    &lt;!-- Bootstrap --&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;!-- Content --&gt;
+    &lt;h1&gt;DnD Magic Items&lt;/h1&gt;
+    &lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;col&quot;&gt;Name&lt;/th&gt;
+            &lt;th scope=&quot;col&quot;&gt;Rarity&lt;/th&gt;
+            &lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        {{#each .}}
+        &lt;tr&gt;
+            &lt;th scope=&quot;row&quot;&gt;{{name}}&lt;/th&gt;
+            &lt;td&gt;{{rarity.name}}&lt;/td&gt;
+            &lt;td&gt;{{desc.[0]}}&lt;/td&gt;
+        &lt;/tr&gt;
+        {{/each}}
+    &lt;/tbody&gt;
+    &lt;/table&gt;
+`;
+
+// Set visualizer
+pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
+  </div>
+</div>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/how-to-use-bootstrap-in-postman-visualizer/use-bootstrap-in-visualizer-2.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<h2 id="style-table-and-fix-font-size">Style table and fix font size</h2>
+
+<p>Unfortunately, the table is not totally styled the Boostrap way and the font is rather small. Let’s fix that by:</p>
+
+<ul>
+  <li>Adding a <code>div</code> with a <code>font-style: larger</code> style around the header and table</li>
+  <li>Adding the <code>table</code> class to the table</li>
+</ul>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Test script</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-js line-numbers code-collapsed code-copy" data-line="8,10" data-start="1"><code class="code-block">const handlebarData = pm.response.json().data.magicItems;
+
+const handlebarTemplate = `
+    &lt;!-- Bootstrap --&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;!-- Content --&gt;
+    &lt;div style=&quot;font-size: larger;&quot;&gt; &lt;!-- adding style to increase font size --&gt;
+        &lt;h1&gt;DnD Magic Items&lt;/h1&gt;
+        &lt;table class=&quot;table&quot;&gt; &lt;!-- Adding table css class to get Bootstrap styling --&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th scope=&quot;col&quot;&gt;Name&lt;/th&gt;
+                &lt;th scope=&quot;col&quot;&gt;Rarity&lt;/th&gt;
+                &lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            {{#each .}}
+            &lt;tr&gt;
+                &lt;th scope=&quot;row&quot;&gt;{{name}}&lt;/th&gt;
+                &lt;td&gt;{{rarity.name}}&lt;/td&gt;
+                &lt;td&gt;{{desc.[0]}}&lt;/td&gt;
+            &lt;/tr&gt;
+            {{/each}}
+        &lt;/tbody&gt;
+        &lt;/table&gt;
+`;
+
+// Set visualizer
+pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
+  </div>
+</div>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/how-to-use-bootstrap-in-postman-visualizer/use-bootstrap-in-visualizer-3.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<h2 id="use-more-boostrap-features-and-beyond">Use more Boostrap features (and beyond)</h2>
+
+<p>And once Boostrap is in place the only limit is your imagination. And if you added Bootstrap CSS and JS imagine what other things you could include.</p>
+
+<p>The template has been modified as follows:</p>
+
+<ul>
+  <li>The <a href="https://getbootstrap.com/docs/5.1/content/tables/#variants">table header is dark</a> and sticky (thanks to some custom CSS)</li>
+  <li>The <a href="https://getbootstrap.com/docs/5.1/content/tables/#striped-rows">table has striped rows</a></li>
+  <li>Rarity is a <a href="https://getbootstrap.com/docs/5.1/components/badge/">badge</a> whose color depends on rarity value (thanks to HandlebarJS <code>{{lookup}}</code> helper)</li>
+</ul>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Test script</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-js line-numbers code-collapsed code-copy" data-line="1-10,21-25,30,31" data-start="1"><code class="code-block">// Defining which Bootstrap color apply on rarity badge
+const rarityColors = {
+    Varies: &quot;bg-light text-danger&quot;,
+    Common: &quot;bg-secondary&quot;,
+    Uncommon: &quot;bg-primary&quot;,
+    Rare: &quot;bg-success&quot;,
+    &quot;Very Rare&quot;: &quot;bg-info&quot;,
+    Legendary: &quot;bg-warning&quot;,
+    Artifact: &quot;bg-danger&quot;, 
+}
+// Handlebar data now holds the list of magic items and rarity colors
+const handlebarData = {
+    data: pm.response.json().data.magicItems,
+    rarityColors: rarityColors
+}
+const handlebarTemplate = `
+    &lt;!-- Bootstrap --&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;!-- Why not using some custom css? --&gt;
+    &lt;style&gt;
+        .sticky{
+            position:sticky;
+            top: 0 ;
+        }
+    &lt;/style&gt;
+    &lt;!-- Content --&gt;
+    &lt;div style=&quot;font-size: larger;&quot;&gt;
+        &lt;h1&gt;DnD Magic Items&lt;/h1&gt;
+        &lt;table class=&quot;table table-striped table-hover&quot;&gt; &lt;!-- Striped table --&gt;
+        &lt;thead class=&quot;table-dark sticky&quot;&gt; &lt;!-- Sticky (custom css) Dark header (Bootstrap) --&gt;
+            &lt;tr&gt;
+                &lt;th scope=&quot;col&quot;&gt;Magic Item Name&lt;/th&gt;
+                &lt;th scope=&quot;col&quot;&gt;Rarity&lt;/th&gt;
+                &lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            {{#each data}}
+            &lt;tr&gt;
+                &lt;th scope=&quot;row&quot;&gt;{{name}}&lt;/th&gt;
+                &lt;!-- Rarity badge color changes depending on its value --&gt;
+                &lt;td&gt;&lt;span class=&quot;badge rounded-pill {{lookup ../rarityColors rarity.name}}&quot;&gt;{{rarity.name}}&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;{{desc.[0]}}&lt;/td&gt;
+            &lt;/tr&gt;
+            {{/each}}
+        &lt;/tbody&gt;
+        &lt;/table&gt;
+`;
+
+// Set visualizer
+pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
+  </div>
+</div>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/how-to-use-bootstrap-in-postman-visualizer/use-bootstrap-in-visualizer-4.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<h1 id="take-advantage-of-variables">Take advantage of variables</h1>
+
+<p>In order to avoid redefining custom, Bootstrap, or other CSS and JS for each template, you can take advantage of a collection variable to store them.</p>
+
+<h2 id="add-bootstrap-js-and-css-using-a-variable">Add Bootstrap JS and CSS using a variable</h2>
+
+<p>Here, the Bootstrap CSS and JS, and custom style tag have been put in the <code>cssjs</code> collection variable.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Collection variable <code>cssjs</code> value</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-html line-numbers code-copy" data-start="1"><code class="code-block">&lt;!-- Bootstrap --&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;!-- Why not using some custom css? --&gt;
+    &lt;style&gt;
+        .sticky{
+            position:sticky;
+            top: 0 ;
+        }
+    &lt;/style&gt;</code></pre>
+  </div>
+</div>
+
+<p>It is then loaded by <code>pm.collectionVariable("cssjs")</code> in the Test script and passed to the HandlebarJS template and used like any other data.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Test script</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-js line-numbers code-collapsed code-copy" data-line="17,20" data-start="1"><code class="code-block">// Defining which Bootstrap color apply on rarity badge
+const rarityColors = {
+    Varies: &quot;bg-light text-danger&quot;,
+    Common: &quot;bg-secondary&quot;,
+    Uncommon: &quot;bg-primary&quot;,
+    Rare: &quot;bg-success&quot;,
+    &quot;Very Rare&quot;: &quot;bg-info&quot;,
+    Legendary: &quot;bg-warning&quot;,
+    Artifact: &quot;bg-danger&quot;, 
+}
+// Handlebar data now holds the list of magic items and rarity colors
+const handlebarData = {
+    data: pm.response.json().data.magicItems,
+    rarityColors: rarityColors,
+    // Now bootstrap and custom css are store in a variable
+    // That way, they can easilty reused
+    cssjs: pm.collectionVariables.get(&quot;cssjs&quot;), 
+}
+const handlebarTemplate = `
+    {{{cssjs}}}
+    &lt;!-- Content --&gt;
+    &lt;div style=&quot;font-size: larger;&quot;&gt;
+        &lt;h1&gt;DnD Magic Items&lt;/h1&gt;
+        &lt;table class=&quot;table table-striped table-hover&quot;&gt;
+        &lt;thead class=&quot;table-dark sticky&quot;&gt;
+            &lt;tr&gt;
+                &lt;th scope=&quot;col&quot;&gt;Magic Item Name&lt;/th&gt;
+                &lt;th scope=&quot;col&quot;&gt;Rarity&lt;/th&gt;
+                &lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            {{#each data}}
+            &lt;tr&gt;
+                &lt;th scope=&quot;row&quot;&gt;{{name}}&lt;/th&gt;
+                &lt;td&gt;&lt;span class=&quot;badge rounded-pill {{lookup ../rarityColors rarity.name}}&quot;&gt;{{rarity.name}}&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;{{desc.[0]}}&lt;/td&gt;
+            &lt;/tr&gt;
+            {{/each}}
+        &lt;/tbody&gt;
+        &lt;/table&gt;
+`;
+
+// Set visualizer
+pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
+  </div>
+</div>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Postman Visualizer is perfect to tinker with data returned by an API and learn how it works. I found using HandlebarJS HTML templates quite convenient. But I was mindblown when I realized I could take advantage of Bootstrap to generate outstanding visualization without much effort. Let’s see that with The 5th Edition Dungeons and Dragons API in its GraphQL version.]]></summary></entry><entry><title type="html">Choosing a public API style when a private API style already exists</title><link href="https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists/" rel="alternate" type="text/html" title="Choosing a public API style when a private API style already exists" /><published>2022-04-06T00:00:00-05:00</published><updated>2022-04-06T00:00:00-05:00</updated><id>https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists</id><content type="html" xml:base="https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists/"><![CDATA[<p>“What will be the style of our public/partner APIs? Should we reuse our existing private APIs style? Should we restart from scratch and use a totally different style?” This discussion happens quite often in organizations starting their public API journey (and if it did not happen, it must happen.) This discussion can have important consequences that must be carefully evaluated.
 <!--more--></p>
 
 <p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em>
@@ -180,14 +687,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets/</code></pre>
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets/</code></pre>
   </div>
 </div>
 
@@ -200,14 +707,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;data&quot;: {
         &quot;id&quot;: &quot;1387820661742112771&quot;,
         &quot;text&quot;: &quot;Want to learn how to design Web APIs? You should read my book:\n\n- The Design of Web APIs https://t.co/jocUbds6ki\n- Web APIの設計 https://t.co/2Qlkqtjd5c\n- 웹 API 디자인 https://t.co/ZQP0pYSzOm\n- ПРОЕКТИРОВАНИЕ ВЕБ-API https://t.co/oH0OXxB62D\n\n#apidesign #api https://t.co/qWNBAfzaLp&quot;
@@ -229,14 +736,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets/?dummy=value</code></pre>
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets/?dummy=value</code></pre>
   </div>
 </div>
 
@@ -249,14 +756,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;errors&quot;: [
         {
             &quot;parameters&quot;: {
@@ -288,14 +795,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets/?id=dummy
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets/?id=dummy
 &amp;expansions=dummy
 &amp;tweet.fields=dummy
 &amp;media.fields=dummy
@@ -314,14 +821,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;errors&quot;: [
         {
             &quot;parameters&quot;: {
@@ -413,14 +920,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets/?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets/?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &amp;tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,non_public_metrics,organic_metrics,possibly_sensitive,promoted_metrics,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &amp;media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
 &amp;poll.fields=duration_minutes,end_datetime,id,options,voting_status
@@ -438,14 +945,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;errors&quot;: [
         {
             &quot;resource_type&quot;: &quot;tweet&quot;,
@@ -635,14 +1142,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets/?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets/?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &amp;tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &amp;media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
 &amp;poll.fields=duration_minutes,end_datetime,id,options,voting_status
@@ -660,14 +1167,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;data&quot;: {
         &quot;possibly_sensitive&quot;: false,
         &quot;id&quot;: &quot;1387820661742112771&quot;,
@@ -941,14 +1448,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets</code></pre>
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets</code></pre>
   </div>
 </div>
 
@@ -961,14 +1468,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;errors&quot;: [
         {
             &quot;parameters&quot;: {
@@ -997,14 +1504,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets?dummy=value</code></pre>
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets?dummy=value</code></pre>
   </div>
 </div>
 
@@ -1017,14 +1524,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;errors&quot;: [
         {
             &quot;parameters&quot;: {
@@ -1062,14 +1569,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets?ids=dummy
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets?ids=dummy
 &amp;expansions=dummy
 &amp;tweet.fields=dummy
 &amp;media.fields=dummy
@@ -1088,14 +1595,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;errors&quot;: [
         {
             &quot;parameters&quot;: {
@@ -1175,14 +1682,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets?ids=
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets?ids=
 &amp;expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &amp;tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,non_public_metrics,organic_metrics,possibly_sensitive,promoted_metrics,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &amp;media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
@@ -1201,14 +1708,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;errors&quot;: [
         {
             &quot;resource_type&quot;: &quot;tweet&quot;,
@@ -1394,14 +1901,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets?ids=
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets?ids=
 &amp;expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &amp;tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &amp;media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
@@ -1420,14 +1927,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;data&quot;: [
         {
             &quot;attachments&quot;: {
@@ -1703,14 +2210,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets/</code></pre>
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets/</code></pre>
   </div>
 </div>
 
@@ -1723,14 +2230,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;errors&quot;: [
         {
             &quot;value&quot;: &quot;1508806917874978822&quot;,
@@ -1760,14 +2267,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets?ids=
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets?ids=
 &amp;expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &amp;tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &amp;media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
@@ -1786,14 +2293,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;errors&quot;: [
         {
             &quot;value&quot;: &quot;1508806917874978822&quot;,
@@ -1823,14 +2330,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets?ids=,
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets?ids=,
 &amp;expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &amp;tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &amp;media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
@@ -1849,14 +2356,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;data&quot;: [
         {
             &quot;public_metrics&quot;: {
@@ -2136,14 +2643,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets/?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets/?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &amp;tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &amp;media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
 &amp;poll.fields=duration_minutes,end_datetime,id,options,voting_status
@@ -2161,14 +2668,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;data&quot;: {
         &quot;possibly_sensitive&quot;: false,
         &quot;id&quot;: &quot;1387820661742112771&quot;,
@@ -2434,14 +2941,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">// Typically the kind of code you can put in collection Pre-request Script
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">// Typically the kind of code you can put in collection Pre-request Script
 // Checks the consistency between expansions value and the presence of xxx.fields query parameters
 // That sort of control should be done at implementation level and, in the case of Twitter API,
 // some errors (warnings) should be returned along with the data 
@@ -2491,14 +2998,14 @@ pm.request.url.query.all().forEach((param) =&gt; {
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets/?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets/?expansions=author_id,referenced_tweets.id,referenced_tweets.id.author_id,entities.mentions.username,attachments.poll_ids,attachments.media_keys,in_reply_to_user_id,geo.place_id
 &amp;tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld
 &amp;media.fields=alt_text,duration_ms,height,media_key,non_public_metrics,organic_metrics,preview_image_url,promoted_metrics,public_metrics,type,url,width
 &amp;poll.fields=duration_minutes,end_datetime,id,options,voting_status
@@ -2516,14 +3023,14 @@ pm.request.url.query.all().forEach((param) =&gt; {
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;data&quot;: {
         &quot;possibly_sensitive&quot;: false,
         &quot;id&quot;: &quot;1387820661742112771&quot;,
@@ -2790,14 +3297,14 @@ pm.request.url.query.all().forEach((param) =&gt; {
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets/?expansions=
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets/?expansions=
 &amp;tweet.fields=
 &amp;media.fields=
 &amp;poll.fields=
@@ -2815,14 +3322,14 @@ pm.request.url.query.all().forEach((param) =&gt; {
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;data&quot;: {
         &quot;conversation_id&quot;: &quot;1387820661742112771&quot;,
         &quot;lang&quot;: &quot;ja&quot;,
@@ -3087,14 +3594,14 @@ pm.request.url.query.all().forEach((param) =&gt; {
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-http line-numbers code-copy"><code class="code-block">https://api.twitter.com/2/tweets?ids=
+    <pre class="language-http line-numbers code-copy" data-start="1"><code class="code-block">https://api.twitter.com/2/tweets?ids=
 &amp;expansions=
 &amp;tweet.fields=
 &amp;media.fields=
@@ -3113,14 +3620,14 @@ pm.request.url.query.all().forEach((param) =&gt; {
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
     &quot;data&quot;: [
         {
             &quot;public_metrics&quot;: {
@@ -3401,18 +3908,21 @@ pm.request.url.query.all().forEach((param) =&gt; {
 </p>
       </div>
     </div>
-    <div class="col-md-5 series-toc-list">
+    <div class="col-md-5 series-toc-list border-left">
       
       <ul class="list-group list-group-flush">
         
+          
           
           <li class="list-group-item"><a href="/organizing-apis-in-layers-system-business-and-experience-apis/">1 - Organizing APIs in System, Business, and Experience Layers</a></li>
           
         
           
+          
           <li class="list-group-item"><a href="/organize-apis-around-business-domains-and-capabilities-not-tools/">2 - Organize APIs around business domains and capabilities, not tools</a></li>
           
         
+          
           
           <li class="list-group-item active">3 - Don't organize APIs against ownership</li>
           
@@ -3502,7 +4012,14 @@ But when opening a collection, we often forget to select an environment and spen
 How can this be avoided?
 <!--more--></p>
 
-<div class="alert alert-info"><h4 class="alert-heading">Postman Tip And Tricks</h4><hr />
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Postman Tips and Tricks Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
 <p>This post is a “Postman Tips And Tricks Post” in which I share the tips and tricks I learn while using Postman.
 You can either:</p>
 
@@ -3510,9 +4027,33 @@ You can either:</p>
   <li>Read this post</li>
   <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4">Postman network</a></li>
   <li>Use this <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
-  <li>Get the collection from <a href="https://github.com/apihandyman/postman-tips-and-tricks/tree/main/dont-forget-to-select-an-environment">Github</a> to import it in Postman. (Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after fork)</li>
+  <li>Get the collection from <a href="https://github.com/apihandyman/postman-tips-and-tricks/tree/main/dont-forget-to-select-an-environment">Github</a> to import it in Postman.</li>
 </ul>
 
+<p><em>(Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after import or fork)</em></p>
+
+<p>You can also see all of the collections of this series in my <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/overview">Postman Tips and Tricks</a> Postman Workspace.</p>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list border-left">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          
+          <li class="list-group-item active">We always forget to select a Postman environment</li>
+          
+        
+          
+          
+          <li class="list-group-item"><a href="/how-to-use-bootstrap-in-postman-visualizer/">How to use Bootstrap in Postman Visualizer</a></li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
 </div>
 
 <p>This post demonstrates how to take advantage of <code>pm.environment.name</code> in Pre-Scripts to prevent sending a request and have a clear error message when an environment is not selected. The use case that will be used to demonstrate all that is retrieving a tweet with Twitter v2 API. The aim of this collection being error handling, you’ll need to have an actual access to Twitter v2 API only if you want to make the request succeed.</p>
@@ -3532,14 +4073,14 @@ You can either:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-javascript line-numbers code-collapsed code-copy"><code class="code-block">/*******************************************/
+    <pre class="language-javascript line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">/*******************************************/
 /*  Checks a valid environment containing  */
 /*  a specific variable used as bearer     */
 /*  token is selected                      */
@@ -3594,14 +4135,14 @@ if(message) {
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-javascript line-numbers code-copy"><code class="code-block">if(pm.response.code === 401) {
+    <pre class="language-javascript line-numbers code-copy" data-start="1"><code class="code-block">if(pm.response.code === 401) {
     const selectedEnvironment = pm.environment.name;
     const tokenVariableName = pm.collectionVariables.get(&quot;token_variable_name&quot;);
     const tokenVariableValue = pm.environment.get(tokenVariableName);
@@ -3772,18 +4313,21 @@ This post is the second of the “3 dimensions to consider for a successful API-
 </p>
       </div>
     </div>
-    <div class="col-md-5 series-toc-list">
+    <div class="col-md-5 series-toc-list border-left">
       
       <ul class="list-group list-group-flush">
         
+          
           
           <li class="list-group-item"><a href="/organizing-apis-in-layers-system-business-and-experience-apis/">1 - Organizing APIs in System, Business, and Experience Layers</a></li>
           
         
           
+          
           <li class="list-group-item active">2 - Organize APIs around business domains and capabilities, not tools</li>
           
         
+          
           
           <li class="list-group-item"><a href="/dont-organize-apis-against-ownership/">3 - Don't organize APIs against ownership</a></li>
           
@@ -3858,18 +4402,21 @@ So all types of APIs belong to a business domain, the only visible ones being bu
 </p>
       </div>
     </div>
-    <div class="col-md-5 series-toc-list">
+    <div class="col-md-5 series-toc-list border-left">
       
       <ul class="list-group list-group-flush">
         
+          
           
           <li class="list-group-item active">1 - Organizing APIs in System, Business, and Experience Layers</li>
           
         
           
+          
           <li class="list-group-item"><a href="/organize-apis-around-business-domains-and-capabilities-not-tools/">2 - Organize APIs around business domains and capabilities, not tools</a></li>
           
         
+          
           
           <li class="list-group-item"><a href="/dont-organize-apis-against-ownership/">3 - Don't organize APIs against ownership</a></li>
           
@@ -4007,14 +4554,14 @@ Source <a href="https://en.wikipedia.org/wiki/Symbiosis">Symbiosis - Wikipedia</
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
     &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
     &quot;title&quot;: &quot;SuperCliConfiguration&quot;,
     &quot;required&quot;: [
@@ -4288,335 +4835,4 @@ Also, even a must have in your toolbox, tools such as Spectral, will not be able
 
 <p>So the question it not really “do you need API design guidelines?” but “what are you waiting for to create API design guidelines?”.
 It’s never too late to do so, indeed, you can create guidelines even when you already have existing APIs.
-But that’s another story.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Why do we need API design guidelines? Why do I need this boring set of constraining rules telling me how to design APIs? Why can’t I design APIs the way I like (which is the best one by the way). What would I (and my organization) gain taking advantage of API design guidelines?]]></summary></entry><entry><title type="html">Hacking and reviewing Elgato Key Light API with Postman</title><link href="https://apihandyman.io/hacking-elgato-key-light-with-postman/" rel="alternate" type="text/html" title="Hacking and reviewing Elgato Key Light API with Postman" /><published>2022-02-16T00:00:00-06:00</published><updated>2022-02-16T00:00:00-06:00</updated><id>https://apihandyman.io/hacking-elgato-key-light-with-postman</id><content type="html" xml:base="https://apihandyman.io/hacking-elgato-key-light-with-postman/"><![CDATA[<p>Want to learn how to hack a desktop app calling an API and learn some API design principles?
-This post is made for you.
-When I got my Elgato Key Light, my first questions were: “can I control it without using the official control center using an API?” and “is the API easy to understand and use?”.
-Thanks to Postman’s proxy feature, I was able to easily hack the API.
-But I was also able to review it in the making, and there’s some interesting API design learnings to share.
-<!--more--></p>
-
-<h1 id="why-this-post">Why this post?</h1>
-
-<p>I recently joined Postman (the company) and while I have been using Postman (the tool) since its creation, I didn’t much used it the last 4 years as I was spending most of my time doing API design reviews and not much using APIs.
-I forgot many things, and during that time Postman has evolved a lot!
-So, I my goal is to (re)learn how to use (and hack) extensively Postman.
-Instead of keeping all that for myself, I’ll share my learnings in multiple blog posts.</p>
-
-<p>As I just received an Elgato Key Light to enhance the quality on my video calls and video recordings (that’s worth the investment!) and as this device comes with an API, I thought “Hacking my Elgato Key Light” was the perfect topic to start (re)learning how to use Postman.
-Everything explained here and in future posts should be reusable “as is” with the other variants of Elgato Lights.
-And if you have other connected devices coming with desktop control application, you should be able to do what I’ll show you with them.</p>
-
-<p>And as always, this post is not only about using a tool, we’ll talk about some API design principles in the making!</p>
-
-<h1 id="discovering-the-key-light-api">Discovering the Key Light API</h1>
-
-<p>To control the Elgato Key Light, you can install the Elgato Control Center on you computer (Mac or Windows), there are also iOS and Android apps.
-In order to hack the Elgato Key Light, I need to discover what requests can be done.
-To do so, I captured the HTTP traffic going out of the Elgato Control Center desktop application using Postman as a proxy.</p>
-
-<h2 id="setting-up-postman-proxy">Setting up Postman Proxy</h2>
-
-<p>With Postman, you can intercept HTTP traffic in 2 different ways, the Interceptor that runs in Chrome or the Proxy that can be used to capture any HTTP traffic on your machine.
-We will use the second option.</p>
-
-<p>The whole documentation is available here: <a href="https://learning.postman.com/docs/sending-requests/capturing-request-data/capturing-http-requests/">Capturing HTTP Request</a>.
-Here’s a light recap of what I did on my Mac:</p>
-
-<h3 id="configuring-postman">Configuring Postman</h3>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/hacking-elgato-key-light-with-postman/postman-proxy-configuration.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<ul>
-  <li>Start Postman</li>
-  <li>Create a “Hacking Elgato Key Light” workspace</li>
-  <li>Create a new collection “Capture Control Center - Raw”</li>
-  <li>Start proxy with “Capture requests and cookies” in status bar (bottom right)</li>
-  <li>Use “Via Proxy”</li>
-  <li>Check Save Responses for Requests</li>
-  <li>Click “Enable Proxy”
-    <ul>
-      <li>Keep 5555 port</li>
-      <li>Click on enable proxy</li>
-    </ul>
-  </li>
-  <li>Now “Proxy is enabled”</li>
-  <li>Save requests to previously created collection and choose “Capture Control Center - Raw”</li>
-  <li>Check “Domain name” and “Endpoints” in “Organize requests by”</li>
-</ul>
-
-<h3 id="configuring-os">Configuring OS</h3>
-
-<p>Note: I’m using a Mac, but it shouldn’t be that different on Windows.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/hacking-elgato-key-light-with-postman/macos-network-configuration.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<ul>
-  <li>Open “Network” in System Preferences</li>
-  <li>Select your first network interface</li>
-  <li>Click on “Advanced…”</li>
-  <li>Go to “Proxies” tab</li>
-  <li>Check “Web Proxy (HTTP)”</li>
-  <li>Set Web Proxy Server host and port to <code>localhost</code> and <code>5555</code></li>
-  <li>Remove local adresses patterns from “Bypass proxy settings for these Hosts &amp; Domains”</li>
-  <li>Click “OK”</li>
-  <li>And don’t forget to clik on “Apply”</li>
-</ul>
-
-<p>Now we’re ready to capture HTTP traffic.</p>
-
-<h2 id="capturing-too-much-http-traffic">Capturing (too much) HTTP traffic</h2>
-
-<p>Back in Postman, click on the “Start Capture” button and play with the Elgato Control Center.
-You can turn on or off the light, change brightness and temperature.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/hacking-elgato-key-light-with-postman/postman-capturing-http-traffic.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>Once done, click on Stop and you’ll find all requests in the “Capture Control Center - Raw”.
-Requests are organized by domain and endpoint, each request being materialized as an example.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/hacking-elgato-key-light-with-postman/first-capture-collapsed.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>That’s pretty neat, I have a good overview of the requests done during the capture.
-But I have 2 problems:</p>
-
-<ul>
-  <li>First, there are request coming from another application (Chrome)</li>
-  <li>Second, there are many request examples as you can see below</li>
-</ul>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/hacking-elgato-key-light-with-postman/first-capture-too-much-examples.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>While it’s not really a problem for the GET requests, it’s more annoying to understand what is done with the PUT one.</p>
-
-<h2 id="capturing-the-right-http-traffic">Capturing (the right) HTTP traffic</h2>
-
-<p>In order to avoid being poluted with too much requests, let’s try something more subtil.
-First, let’s start a new capture but with some changes in the configuration.
-To only get traffic for the Key Light, set “URL must contain” to “elgato”.
-And to keep only PUT requests, add <code>PUT</code> to “Methods”.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/hacking-elgato-key-light-with-postman/capture-filter-configuration.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>Then, when using the Elgato Control Center, let’s do one thing at a time.</p>
-
-<ul>
-  <li>For instance, turning the light on</li>
-  <li>Then go back to Postman, and stop the capture</li>
-  <li>Check the request (checkbox before Status)</li>
-  <li>And click on “+ Add to collection”</li>
-  <li>Create a new “Capture Control Center - Selected” collection</li>
-</ul>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/hacking-elgato-key-light-with-postman/capture-selected.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>Now go to the newly created collection and rename the cryptic example to “Turn on”.
-You can do that for “Turn off”, “Set temperature to maximum”, …
-Everything that comes to your mind.
-You can also capture multiple request and select a subset to add them to the collection.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/hacking-elgato-key-light-with-postman/capture-selected-collection.jpg" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>Now we have everything to play with the API, we just have to copy/paste/modify the requests.
-If you run into strange 400 errors, check if you don’t have a hard coded <code>content-length</code> (yes without caps) in your request headers.
-They come from the HTTP traffic capture and are not overrided by Postman (because “you” set them).</p>
-
-<div class="alert alert-warning"><h4 class="alert-heading">Reset OS proxy configuration</h4><hr />
-<p>Don’t forget to reset your OS proxy configuration once you’ve finished!</p>
-
-</div>
-
-<h1 id="reviewing-the-key-light-api">Reviewing the Key Light API</h1>
-
-<p>Thanks, to the capture HTTP traffic sessions, and taken for granted that the base URL of all requests is <code>http://device-name.local:9123/elgato</code>, we know that the Elgato Key Light API proposes the following operations:</p>
-
-<ul>
-  <li><code>GET /accessory-info</code></li>
-  <li><code>GET /lights/settings</code></li>
-  <li><code>GET /lights</code></li>
-  <li><code>PUT /lights</code></li>
-</ul>
-
-<p>We’ll focus this review on <code>GET /accessory-info</code> and <code>GET/PUT /ligths</code>.</p>
-
-<h2 id="the-neat-get-accessory-info-entry-point">The neat GET /accessory-info entry point</h2>
-
-<p>Looking at this operation’s response (below), we see some basic information like the product name and more technical information like some firmware information.
-What caught my eye is the <code>features</code> list, it contains a <code>lights</code> value.
-Based on other requests which paths start by <code>/lights</code>, I can guess that if one day I get another Elgato product with an API I can give a try to <code>GET /accessory-info</code>, look at the values in features, which could be “something” and then try a <code>GET /something</code>, <code>PUT /something</code> and possibly <code>GET /something/settings</code>.
-It’s not an hypermedia API, but at least it provides some hints that help you to use other Elgato APIs.</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">GET /accessory-info response</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-js line-numbers code-copy"><code class="code-block">{
-    &quot;productName&quot;: &quot;Elgato Key Light&quot;,
-    &quot;hardwareBoardType&quot;: 53,
-    &quot;firmwareBuildNumber&quot;: 200,
-    &quot;firmwareVersion&quot;: &quot;1.0.3&quot;,
-    &quot;serialNumber&quot;: &quot;BW21K1A01548&quot;,
-    &quot;displayName&quot;: &quot;&quot;,
-    &quot;features&quot;: [
-        &quot;lights&quot;
-    ]
-}</code></pre>
-  </div>
-</div>
-
-<h2 id="the-not-so-neat-get-and-put-lights">The not so neat GET and PUT /lights</h2>
-
-<p>The following body is used by the Elgato Control Center when modifying the light status.</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">/lights resource</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-js line-numbers code-copy"><code class="code-block">{
-    &quot;numberOfLights&quot;: 1,
-    &quot;lights&quot;: [
-        {
-            &quot;on&quot;: 1,
-            &quot;brightness&quot;: 50,
-            &quot;temperature&quot;: 143
-        }
-    ]
-}</code></pre>
-  </div>
-</div>
-
-<p>It is composed of 3 pieces of information:</p>
-
-<ul>
-  <li><code>on</code>: Indicates if the light is on (1) or off (0)</li>
-  <li><code>brightness</code>: The brightness level in % from 0 to 100</li>
-  <li><code>temperature</code>: A quite cryptic integer representing the light temperature which goes from 2900K (344) to 7000K (143)</li>
-</ul>
-
-<h3 id="when-non-human-readable-status-is-not-a-problem">When non human readable status is not a problem</h3>
-
-<p>While I usually prefer human readable strings for such status (like “on” and “off”), that’s still easy to understand.
-Especially in that case where there are only 2 values.
-Also, it’s fairly common to have on and off represented by 0 and 1, so Elgato follows a common practice, that’s good.
-And actually, when you have to use those values in code to turn the light on and off, that’s actually pretty convenient.
-So when designing API, think about understandability by humans, but also usability in code.</p>
-
-<h3 id="simple-consumer-side-business-rule">Simple consumer side business rule</h3>
-
-<p>Strangely (or not), the application limits the bounds of brightness to [3,100].
-But I was able to set brightness to 0 with Postman, it actually turns the light off (without changing the <code>on</code> value).
-Maybe the API should handle that and manages those boundaries if that’s important.
-Never let consumer deals with provider’s business logic, even <a href="https://apihandyman.io/choosing-between-raw-and-processed-data-when-designing-an-api/">the simplest one</a>, it will be really hard to modify it in ALL consumers and may lead to problems (hopefully I didn’t ruin my Key Light).</p>
-
-<h3 id="silent-error">Silent error</h3>
-
-<p>By the way I also tested to set brightness to 110%.
-I didn’t got a <code>400 Bad Request</code> as I expected but a <code>200 OK</code>!
-The Key Light didn’t exploded hopefully.
-Actually, the brightness was not modified, it kept its previous value.
-That’s a bad design, as a consumer/user, the API didn’t warned me that I sent a value that will never ever be accepted.
-So better return an explicit error.</p>
-
-<h3 id="terribly-complex-consumer-side-business-rule">Terribly complex consumer side business rule</h3>
-
-<p>That’s the worst part of the API, at least until I get more information about light temperature.
-To control the temperature, the Elgato Control Center App proposes a slide which goes from 7000K to 2900K (K is for <a href="https://en.wikipedia.org/wiki/Color_temperature">Kelvin</a>). 
-But when it calls the API to change the temperature, it’s not 2900, 6000 or 7000 that is sent but 344, 167 or 143.
-I check a few values to understand what was the correspondance and realized there was some voodoo-non-linear-maths-physics magic involved.
-That means consumers have to know some internal business logic that MUST be provider’s business only.
-That’s a terrible idea, it makes the API really hard to use (and again: what will happen if the business rule has to evolve?).
-Hopefully, I’m sure I’ll find a way to make that more simple with some Postman magic.</p>
-
-<h3 id="convenient-partial-modification">Convenient partial modification</h3>
-
-<p>Last but not least, you’re under no obligation to send everything in the <code>PUT</code> body.
-That may raise some HTTP-extremists’ eyebrows, but I find this really convenient.
-That way, I can just turn light on without having to know current temperature and brightness with the following body that got rid of <code>numberOfLights</code>, <code>brightness</code> and <code>temperature</code>.
-Maybe providing a PATCH would make this request more HTTP-compliant.</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Turn on</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-js line-numbers code-copy"><code class="code-block">{
-    &quot;lights&quot;: [
-        {
-            &quot;on&quot;: 1,
-        }
-    ]
-}</code></pre>
-  </div>
-</div>
-
-<h1 id="your-private-api-is-not-so-private">Your private API is not so private</h1>
-
-<p>By the way, what I’ve done here is a good reminder about “your private API is not so private”.
-So be careful about how you design it in order to, at least, block consumers doing things that could harm your providing system and, at best, to provide a simple to understand and simple to use API, even for those who are not supposed to use it.</p>
-
-<h1 id="to-be-continued">To be continued</h1>
-
-<p>As you can see “hacking” a desktop application that sends (unsecure and local) HTTP request is quite simple with a proxy (there are other tools than Postman to do so, for instance I remember using <a href="https://portswigger.net/burp/releases/professional-community-2022-1-1?requestededition=community">Burp Suite</a> a long time ago).
-With what we’ve done we can easily create requests that will do what we want by just copy/pasting/modifying the examples resulting from the HTTP traffic capture.
-I’m working on a complete collection allowing to control the Elgato Key Light and doing so I used a few tricks that I’ll show in future post(s).
-In the meanwhile, you can already see what I’ve done by clicking on the button below.</p>
-
-<p><a href="https://app.getpostman.com/run-collection/143378-88ada3a6-de53-4599-93cf-cc0a5d365cd9?action=collection%2Ffork&amp;collection-url=entityId%3D143378-88ada3a6-de53-4599-93cf-cc0a5d365cd9%26entityType%3Dcollection%26workspaceId%3Df0a96dd6-c7d8-46f7-9e62-4b95f25c4e43#?env%5BElgato%20Key%20Light%5D=W3sia2V5IjoibGlnaHRfbmFtZSIsInZhbHVlIjoiRWxnYXRvIEtleSBMaWdodCAxODc2IiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiJFbGdhdG8gS2V5IExpZ2h0IDE4NzYiLCJzZXNzaW9uSW5kZXgiOjB9LHsia2V5IjoiYmFzZV91cmwiLCJ2YWx1ZSI6Imh0dHA6Ly9lbGdhdG8ta2V5LWxpZ2h0LTE4NzYubG9jYWw6OTEyMy9lbGdhdG8iLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6Imh0dHA6Ly9lbGdhdG8ta2V5LWxpZ2h0LTE4NzYubG9jYWw6OTEyMy9lbGdhdG8iLCJzZXNzaW9uSW5kZXgiOjF9LHsia2V5IjoiYmFzZV91cmxfdGVtcGxhdGUiLCJ2YWx1ZSI6Imh0dHA6Ly9OQU1FLmxvY2FsOjkxMjMvZWxnYXRvIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiJodHRwOi8vTkFNRS5sb2NhbDo5MTIzL2VsZ2F0byIsInNlc3Npb25JbmRleCI6Mn1d"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman" /></a></p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Want to learn how to hack a desktop app calling an API and learn some API design principles? This post is made for you. When I got my Elgato Key Light, my first questions were: “can I control it without using the official control center using an API?” and “is the API easy to understand and use?”. Thanks to Postman’s proxy feature, I was able to easily hack the API. But I was also able to review it in the making, and there’s some interesting API design learnings to share.]]></summary></entry></feed>
+But that’s another story.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Why do we need API design guidelines? Why do I need this boring set of constraining rules telling me how to design APIs? Why can’t I design APIs the way I like (which is the best one by the way). What would I (and my organization) gain taking advantage of API design guidelines?]]></summary></entry></feed>

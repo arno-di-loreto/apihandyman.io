@@ -12,6 +12,7 @@
 
 
 
+
 <html lang="en">
   <head>
   <title>API Handyman | Automate all the things (like Cloudflare cache purge) with Github actions, Postman and APIs</title>
@@ -858,6 +859,7 @@
   
   
 <link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/css/prism-synthwave84.css">
 
 
 
@@ -1225,6 +1227,7 @@
 </div> <!-- class="main-navbar fixed-top  scrolled" -->
     <div class="page-content-container">
       
+
 
 
 
@@ -1680,6 +1683,7 @@
 
 
 
+
 <div class="page-content-text anchors">
   
   
@@ -1762,14 +1766,14 @@ I will not go through all details, Github Actions, format, UI and <a href="https
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-yaml line-numbers code-copy"><code class="code-block">name: Jekyll site CI
+    <pre class="language-yaml line-numbers code-copy" data-start="1"><code class="code-block">name: Jekyll site CI
 
 on:
   push:
@@ -1826,14 +1830,14 @@ It contains a single job (in <code>jobs</code>) named <code>build</code> which i
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-yaml line-numbers code-copy"><code class="code-block">name: Publish
+    <pre class="language-yaml line-numbers code-copy" data-start="1"><code class="code-block">name: Publish
 
 on:
   schedule:
@@ -1861,14 +1865,14 @@ on:
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-yaml line-numbers code-collapsed code-copy"><code class="code-block">jobs:
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">jobs:
   build_and_publish:
     env:
       PUBLISH_BRANCH: gh-pages
@@ -2124,14 +2128,14 @@ I exported my <em>Cloudflare Clear Cache</em> Postman collection as <code>cloudf
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers code-copy"><code class="code-block">Cloudflare Clear Cache
+    <pre class="language-bash line-numbers code-copy" data-start="1"><code class="code-block">Cloudflare Clear Cache
 
 → Verify Token
   GET https://api.cloudflare.com/client/v4/user/tokens/verify [400 Bad Request, 1.08KB, 1034ms]
@@ -2152,14 +2156,14 @@ This is simply fixed as follow using <code>--env-var name=value</code> for each 
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers code-copy"><code class="code-block">newman run \
+    <pre class="language-bash line-numbers code-copy" data-start="1"><code class="code-block">newman run \
     --env-var token=REDACTED_CLOUDFLARE_TOKEN \
     --env-var website=apihandyman.io \
     scripts/cloudflare-clearcache.postman_collection.json</code></pre>
@@ -2181,14 +2185,14 @@ That’s why there’s a <code>-v</code> parameter in the following command, whi
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers code-copy"><code class="code-block">docker run \
+    <pre class="language-bash line-numbers code-copy" data-start="1"><code class="code-block">docker run \
     -v /path/to/scripts:/etc/newman \
     -t postman/newman:alpine run \
     --env-var token=REDACTED_CLOUDFLARE_TOKEN \
@@ -2210,14 +2214,14 @@ That’s why there’s a <code>-v</code> parameter in the following command, whi
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-yaml line-numbers code-collapsed code-copy"><code class="code-block">jobs:
+    <pre class="language-yaml line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">jobs:
   build_and_publish:
     [...]
   clear_cdn_cache:

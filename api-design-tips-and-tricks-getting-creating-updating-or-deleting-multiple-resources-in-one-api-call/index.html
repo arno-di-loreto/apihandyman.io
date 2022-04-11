@@ -12,6 +12,7 @@
 
 
 
+
 <html lang="en">
   <head>
   <title>API Handyman | API Design Tips And Tricks - Getting, creating, updating or deleting multiple resources in one API call</title>
@@ -858,6 +859,7 @@
   
   
 <link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/css/prism-synthwave84.css">
 
 
 
@@ -1225,6 +1227,7 @@
 </div> <!-- class="main-navbar fixed-top  scrolled" -->
     <div class="page-content-container">
       
+
 
 
 
@@ -1633,6 +1636,7 @@
 
 
 
+
 <div class="page-content-text anchors">
   
   
@@ -1685,14 +1689,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-txt code-copy"><code class="code-block">POST /resources HTTP/1.1
+    <pre class="language-txt code-copy" data-start="1"><code class="code-block">POST /resources HTTP/1.1
 
 {
   &quot;some&quot;: &quot;some data&quot;,
@@ -1712,14 +1716,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-txt code-copy"><code class="code-block">HTTP/1.1 201 Created
+    <pre class="language-txt code-copy" data-start="1"><code class="code-block">HTTP/1.1 201 Created
 
 {
   &quot;id&quot;: &quot;ID&quot;,
@@ -1741,14 +1745,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-txt code-copy"><code class="code-block">HTTP/1.1 400 Bad Request
+    <pre class="language-txt code-copy" data-start="1"><code class="code-block">HTTP/1.1 400 Bad Request
 
 {
   &quot;message&quot;: &quot;missing some data&quot; 
@@ -1772,14 +1776,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-txt code-copy"><code class="code-block">PATCH /resources HTTP/1.1
+    <pre class="language-txt code-copy" data-start="1"><code class="code-block">PATCH /resources HTTP/1.1
 
 {
   &quot;other&quot;: &quot;modified data&quot;
@@ -1798,14 +1802,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-txt code-copy"><code class="code-block">HTTP/1.1 200 Accepted
+    <pre class="language-txt code-copy" data-start="1"><code class="code-block">HTTP/1.1 200 Accepted
 
 {
   &quot;id&quot;: &quot;ID&quot;,
@@ -1827,14 +1831,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-txt code-copy"><code class="code-block">HTTP/1.1 404 Not Found
+    <pre class="language-txt code-copy" data-start="1"><code class="code-block">HTTP/1.1 404 Not Found
 
 {
   &quot;message&quot;: &quot;Resource &lt;ID&gt; not found&quot; 
@@ -1855,14 +1859,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-txt code-copy"><code class="code-block">PUT /resources/ID HTTP/1.1
+    <pre class="language-txt code-copy" data-start="1"><code class="code-block">PUT /resources/ID HTTP/1.1
 
 {
   &quot;some&quot;: &quot;some new data&quot;,
@@ -1882,14 +1886,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-txt code-copy"><code class="code-block">HTTP/1.1 200 Accepted
+    <pre class="language-txt code-copy" data-start="1"><code class="code-block">HTTP/1.1 200 Accepted
 
 {
   &quot;id&quot;: &quot;ID&quot;,
@@ -1970,14 +1974,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json code-copy"><code class="code-block">[
+    <pre class="language-json code-copy" data-start="1"><code class="code-block">[
   {
     &quot;id&quot;: &quot;CREATION1&quot;,
     &quot;body&quot;: {&quot;resource&#39;s&quot;: &quot;data&quot;}
@@ -2001,14 +2005,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json code-copy"><code class="code-block">{
+    <pre class="language-json code-copy" data-start="1"><code class="code-block">{
   &quot;CREATION1&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;},
   &quot;CREATION2&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;}
 }</code></pre>
@@ -2029,14 +2033,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json code-copy"><code class="code-block">{
+    <pre class="language-json code-copy" data-start="1"><code class="code-block">{
   &quot;ID1&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;},
   &quot;ID2&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;}
 }</code></pre>
@@ -2074,14 +2078,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-xml code-copy"><code class="code-block">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+    <pre class="language-xml code-copy" data-start="1"><code class="code-block">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
 &lt;d:multistatus xmlns:d=&quot;DAV:&quot;&gt;
   &lt;d:response&gt;
     &lt;d:href&gt;http://www.example.com/container/resource3&lt;/d:href&gt;
@@ -2116,14 +2120,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json code-copy"><code class="code-block">[
+    <pre class="language-json code-copy" data-start="1"><code class="code-block">[
   {
     &quot;id&quot;: &quot;ID1&quot;,
     &quot;status&quot;: &quot;201&quot;,
@@ -2162,14 +2166,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json code-copy"><code class="code-block">{
+    <pre class="language-json code-copy" data-start="1"><code class="code-block">{
   &quot;ID1&quot;: {
     &quot;status&quot;: &quot;201&quot;,
     &quot;headers&quot;: [
@@ -2215,14 +2219,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json code-copy"><code class="code-block">{
+    <pre class="language-json code-copy" data-start="1"><code class="code-block">{
   &quot;CREATION1&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;}
 }</code></pre>
   </div>
@@ -2243,14 +2247,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json code-copy"><code class="code-block">{&quot;resource&#39;s&quot;: &quot;data&quot;}</code></pre>
+    <pre class="language-json code-copy" data-start="1"><code class="code-block">{&quot;resource&#39;s&quot;: &quot;data&quot;}</code></pre>
   </div>
 </div>
 
@@ -2267,14 +2271,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json code-copy"><code class="code-block">{
+    <pre class="language-json code-copy" data-start="1"><code class="code-block">{
   &quot;CREATION1&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;}
   &quot;CREATION2&quot; : {&quot;resource&#39;s&quot;: &quot;data&quot;}
 }</code></pre>
@@ -2306,14 +2310,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json code-copy"><code class="code-block">[
+    <pre class="language-json code-copy" data-start="1"><code class="code-block">[
   {
     &quot;id&quot;: &quot;ID1&quot;,
     &quot;method&quot;: &quot;DELETE&quot;
@@ -2365,14 +2369,14 @@
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json code-copy"><code class="code-block">[
+    <pre class="language-json code-copy" data-start="1"><code class="code-block">[
   {
     &quot;id&quot;: &quot;ACTION1&quot;,
     &quot;uri&quot;: &quot;/resources/ID1&quot;,

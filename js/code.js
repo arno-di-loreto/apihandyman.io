@@ -17,6 +17,7 @@ function getCodeBlockCardHeader(element) {
 function expandCollapseCode(button) {
   const code = getCodeBlockPreCode(button)
   const cardHeader = getCodeBlockCardHeader(button)
+  console.log(code);
    
   if($(code).hasClass('code-collapsed')) {
     $(code).removeClass('code-collapsed')

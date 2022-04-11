@@ -12,6 +12,7 @@
 
 
 
+
 <html lang="en">
   <head>
   <title>API Handyman | Slide deck like live coding with titles and speaker's notes using OBS and VS Code</title>
@@ -858,6 +859,7 @@
   
   
 <link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/css/prism-synthwave84.css">
 
 
 
@@ -1240,6 +1242,7 @@
 
 
 
+
   <div class="row row-banner-small row-banner-small-">
     <div class="banner-small-container">
       <div class="banner-small-column-main">
@@ -1284,24 +1287,29 @@
   
   
     
-   <a class="dropdown-item selectable text-wrap" href="/setting-up-everything-to-record-myself-coding-and-talking/">1 - Setting up everything to record myself coding and talking</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/setting-up-everything-to-record-myself-coding-and-talking/">1 - Setting up everything to record myself coding and talking</a>
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/preparing-session-content-and-realizing-its-not-working-well/">2 - Preparing session content and realizing it's not working well</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/preparing-session-content-and-realizing-its-not-working-well/">2 - Preparing session content and realizing it's not working well</a>
+    
 
+    
     
     <a class="dropdown-item active disabled text-wrap">3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code</a>
-  
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/live-coding-at-light-speed-with-vs-code/">4 - Live coding at light speed with VS Code</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/live-coding-at-light-speed-with-vs-code/">4 - Live coding at light speed with VS Code</a>
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/">5 - Improving live coding session tuning and rehearsing with VS Code</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/">5 - Improving live coding session tuning and rehearsing with VS Code</a>
+    
 
 
 </div>
@@ -1577,6 +1585,7 @@
 
 
 
+
 <div class="page-content-text anchors">
   
   
@@ -1627,26 +1636,31 @@ It is the one that I actually used during the session.</p>
 </p>
       </div>
     </div>
-    <div class="col-md-5 series-toc-list">
+    <div class="col-md-5 series-toc-list border-left">
       
       <ul class="list-group list-group-flush">
         
+          
           
           <li class="list-group-item"><a href="/setting-up-everything-to-record-myself-coding-and-talking/">1 - Setting up everything to record myself coding and talking</a></li>
           
         
           
+          
           <li class="list-group-item"><a href="/preparing-session-content-and-realizing-its-not-working-well/">2 - Preparing session content and realizing it's not working well</a></li>
           
         
+          
           
           <li class="list-group-item active">3 - Slide deck like live coding with titles and speaker's notes using OBS and VS Code</li>
           
         
           
+          
           <li class="list-group-item"><a href="/live-coding-at-light-speed-with-vs-code/">4 - Live coding at light speed with VS Code</a></li>
           
         
+          
           
           <li class="list-group-item"><a href="/improving-live-coding-session-tuning-and-rehearsing-with-vs-code/">5 - Improving live coding session tuning and rehearsing with VS Code</a></li>
           
@@ -1748,14 +1762,14 @@ In its most basic version, this script did the following:</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers code-collapsed code-copy"><code class="code-block"># That&#39;s a trick I use in all my shell script
+    <pre class="language-bash line-numbers code-collapsed code-copy" data-start="1"><code class="code-block"># That&#39;s a trick I use in all my shell script
 # To get the script actual folder
 SCRIPT_DIR=&quot;$( cd &quot;$( dirname &quot;${BASH_SOURCE[0]}&quot; )&quot; &gt;/dev/null 2&gt;&amp;1 &amp;&amp; pwd )&quot;
 
@@ -1810,14 +1824,14 @@ This file define the custom tasks that will be available when this workspace/fol
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">{
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
   &quot;version&quot;: &quot;2.0.0&quot;,
   &quot;tasks&quot;: [
     {
@@ -1864,14 +1878,14 @@ Then click on the file icon on top right corner to see the json content of your 
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-json line-numbers code-copy"><code class="code-block">// Place your key bindings in this file to override the defaults
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">// Place your key bindings in this file to override the defaults
 [
     {
         &quot;key&quot;: &quot;ctrl+m&quot;,
@@ -1903,14 +1917,14 @@ I now had shiny neon styled titles.</p>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-html line-numbers code-copy"><code class="code-block">&lt;html&gt;
+    <pre class="language-html line-numbers code-copy" data-start="1"><code class="code-block">&lt;html&gt;
     &lt;head&gt;
         &lt;link rel=&quot;stylesheet&quot; href=&quot;index.css&quot;&gt;
     &lt;/head&gt;
@@ -1940,14 +1954,14 @@ So I added the missing values, struggle a bit to choose the various colors but I
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-html line-numbers code-copy"><code class="code-block">text-shadow: 0 0 2px #100c0f, 0 0 3px #61e2ff, 0 0 5px #61e2ff, 0 0 10px #03edf933;</code></pre>
+    <pre class="language-html line-numbers code-copy" data-start="1"><code class="code-block">text-shadow: 0 0 2px #100c0f, 0 0 3px #61e2ff, 0 0 5px #61e2ff, 0 0 10px #03edf933;</code></pre>
   </div>
 </div>
 

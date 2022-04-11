@@ -12,6 +12,7 @@
 
 
 
+
 <html lang="en">
   <head>
   <title>API Handyman | Using JQ command line arguments, functions and modules</title>
@@ -858,6 +859,7 @@
   
   
 <link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/css/prism-synthwave84.css">
 
 
 
@@ -1240,6 +1242,7 @@
 
 
 
+
   <div class="row row-banner-small row-banner-small-">
     <div class="banner-small-container">
       <div class="banner-small-column-main">
@@ -1284,20 +1287,24 @@
   
   
     
-   <a class="dropdown-item selectable text-wrap" href="/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">1 - Using JQ to extract data from OpenAPI files</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">1 - Using JQ to extract data from OpenAPI files</a>
+    
 
+    
     
     <a class="dropdown-item active disabled text-wrap">2 - Using JQ command line arguments, functions and modules</a>
-  
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/">3 - Modifying OpenAPI files with JQ</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/">3 - Modifying OpenAPI files with JQ</a>
+    
 
     
-   <a class="dropdown-item selectable text-wrap" href="/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/">4 - Bonus: Coloring JQ's raw output</a>
-  
+    
+    <a class="dropdown-item selectable text-wrap" href="/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/">4 - Bonus: Coloring JQ's raw output</a>
+    
 
 
 </div>
@@ -1681,6 +1688,7 @@
 
 
 
+
 <div class="page-content-text anchors">
   
   
@@ -1718,22 +1726,26 @@ JQ and OpenAPI Series - Part 2
 </p>
       </div>
     </div>
-    <div class="col-md-5 series-toc-list">
+    <div class="col-md-5 series-toc-list border-left">
       
       <ul class="list-group list-group-flush">
         
+          
           
           <li class="list-group-item"><a href="/api-toolbox-jq-and-openapi-part-1-using-jq-to-extract-data-from-openapi-files/">1 - Using JQ to extract data from OpenAPI files</a></li>
           
         
           
+          
           <li class="list-group-item active">2 - Using JQ command line arguments, functions and modules</li>
           
         
           
+          
           <li class="list-group-item"><a href="/api-toolbox-jq-and-openapi-part-3-modifying-openapi-files-with-jq/">3 - Modifying OpenAPI files with JQ</a></li>
           
         
+          
           
           <li class="list-group-item"><a href="/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/">4 - Bonus: Coloring JQ's raw output</a></li>
           
@@ -1774,14 +1786,14 @@ git checkout part-2
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ git clone https://github.com/arno-di-loreto/jq-and-openapi/
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ git clone https://github.com/arno-di-loreto/jq-and-openapi/
 [apihandyman.io]$ cd jq-and-openapi
 [apihandyman.io]$ git checkout part-2</code></pre>
   </div>
@@ -1813,14 +1825,14 @@ git checkout part-2
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -r -f list-operations.jq demo-api-openapi.json
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ jq -r -f list-operations.jq demo-api-openapi.json
 get     /accounts       List accounts
 get     /accounts/{id}  Get an account
 post    /beneficiaries  Register a beneficiary
@@ -1848,8 +1860,8 @@ delete  /transfers/{id} Cancel a money transfer</code></pre>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -1877,9 +1889,9 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-original.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-original.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -1948,8 +1960,8 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-original.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-original.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -1978,8 +1990,8 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2010,8 +2022,8 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2034,9 +2046,9 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations-with-to-text-function.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -2114,9 +2126,9 @@ oas_operations_to_text  # Function coming from module-openapi.jq file</code></pr
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -2195,8 +2207,8 @@ def oas_operations_to_text: # Defining a function that
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/list-operations.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2251,14 +2263,14 @@ jq -r -L jq-and-openapi &#39;include &quot;module-openapi&quot;; oas_operations[
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; demo-api-openapi.json
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; demo-api-openapi.json
 List accounts
 [apihandyman.io]$ cd ..
 [apihandyman.io]$ jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
@@ -2285,14 +2297,14 @@ jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; jq
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ mkdir ~/.jq
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ mkdir ~/.jq
 [apihandyman.io]$ cp jq-and-openapi/module-openapi.jq ~/.jq
 [apihandyman.io]$ jq -r &#39;include &quot;module-openapi&quot;; oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
 List accounts</code></pre>
@@ -2314,14 +2326,14 @@ jq -r &#39;oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ rm -rf ~/.jq
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ rm -rf ~/.jq
 [apihandyman.io]$ cp jq-and-openapi/module-openapi.jq ~/.jq
 [apihandyman.io]$ jq -r &#39;oas_operations[0].summary&#39; jq-and-openapi/demo-api-openapi.json
 List accounts</code></pre>
@@ -2358,14 +2370,14 @@ List accounts</code></pre>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -n --arg foo bar &#39;{foo: $foo}&#39;
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ jq -n --arg foo bar &#39;{foo: $foo}&#39;
 {
   &quot;foo&quot;: &quot;bar&quot;
 }</code></pre>
@@ -2387,14 +2399,14 @@ List accounts</code></pre>
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -r --arg scope transfer:admin -f search-operations-using-scope.jq demo-api-openapi.json 
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ jq -r --arg scope transfer:admin -f search-operations-using-scope.jq demo-api-openapi.json 
 post    /transfers      Transfer money
 get     /transfers      List money transfers
 get     /transfers/{id} Get a money transfer
@@ -2436,8 +2448,8 @@ According the OpenAPI Specification, <em>each name MUST correspond to a security
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/search-operations-using-scope.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/search-operations-using-scope.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2479,14 +2491,14 @@ oas_operations # Comes from module-operations.jq
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -r -f search-operations-using-scope.jq demo-api-openapi.json
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ jq -r -f search-operations-using-scope.jq demo-api-openapi.json
 jq: error: $scope is not defined at &lt;top-level&gt;, line 12:
         $scope # $scope value is provided on the command line        
 jq: 1 compile error</code></pre>
@@ -2530,14 +2542,14 @@ jq -n --arg foo hello &#39;{foo: $ARGS.named[&quot;foo&quot;], bar: $ARGS.named[
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -n --arg foo hello --arg bar world &#39;{foo: $foo, bar: $bar}&#39;
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ jq -n --arg foo hello --arg bar world &#39;{foo: $foo, bar: $bar}&#39;
 {
   &quot;foo&quot;: &quot;hello&quot;,
   &quot;bar&quot;: &quot;world&quot;
@@ -2564,8 +2576,8 @@ jq: 1 compile error
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-args.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-args.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2607,14 +2619,14 @@ def init_parameters(default_values):
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq -n --arg bar &quot;bar from command line&quot; &#39;include &quot;module-args&quot;; init_parameters({foo: &quot;default foo&quot;, bar: null}) as $parameters| {foo: $parameters.foo, bar: $parameters.bar}&#39;
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ jq -n --arg bar &quot;bar from command line&quot; &#39;include &quot;module-args&quot;; init_parameters({foo: &quot;default foo&quot;, bar: null}) as $parameters| {foo: $parameters.foo, bar: $parameters.bar}&#39;
 {
   &quot;foo&quot;: &quot;default foo&quot;,
   &quot;bar&quot;: &quot;bar from command line&quot;
@@ -2655,14 +2667,14 @@ def init_parameters(default_values):
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <pre class="language-bash line-numbers"><code class="code-block">[apihandyman.io]$ jq --arg path_contains sources --arg method get -r -f search-operations.jq *.json
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">[apihandyman.io]$ jq --arg path_contains sources --arg method get -r -f search-operations.jq *.json
 [demo-another-api-swa]  get     /resources
 [demo-api-openapi.jso]  get     /sources        List transfer sources
 [demo-api-openapi.jso]  get     /sources/{id}/destinations      List transfer source&#39;s destinations</code></pre>
@@ -2679,8 +2691,8 @@ def init_parameters(default_values):
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/search-operations.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/search-operations.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
           
         </div>
       </div>
@@ -2710,9 +2722,9 @@ oas_operations
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -2774,9 +2786,9 @@ def filter_oas_operations(filters):
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
@@ -2828,9 +2840,9 @@ def print_oas_operations(format):
       </div>
       <div class="col col-auto pr-0">
         <div class="btn-group" role="group" aria-label="code file controls">
-          <a role="button" class="btn btn-secondary border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
-          <a role="button" class="btn btn-secondary code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn btn-secondary border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/api-toolbox-jq-and-openapi/part-2/module-openapi-search.jq" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
         </div>
       </div>
     </div>
