@@ -1,4 +1,161 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-13T07:15:20-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">How to use Bootstrap in Postman Visualizer</title><link href="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/" rel="alternate" type="text/html" title="How to use Bootstrap in Postman Visualizer" /><published>2022-04-11T00:00:00-05:00</published><updated>2022-04-11T00:00:00-05:00</updated><id>https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer</id><content type="html" xml:base="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/"><![CDATA[<p>Postman Visualizer is perfect to tinker with data returned by an API and learn how it works. I found using <a href="https://handlebarsjs.com/">HandlebarJS</a> HTML templates quite convenient. But I was mindblown when I realized I could take advantage of <a href="https://getbootstrap.com/">Bootstrap</a> to generate outstanding visualization without much effort. Let’s see that with <a href="https://www.dnd5eapi.co/">The 5th Edition Dungeons and Dragons API</a> in its <a href="https://www.dnd5eapi.co/docs/#overview--graphql">GraphQL</a> version.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-13T12:44:01-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What is an API platform and what skills are needed to build it</title><link href="https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it/" rel="alternate" type="text/html" title="What is an API platform and what skills are needed to build it" /><published>2022-04-13T00:00:00-05:00</published><updated>2022-04-13T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it</id><content type="html" xml:base="https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it/"><![CDATA[<p>LEGO is looking for an <a href="https://www.lego.com/en-us/careers/job/60676511">associate API Engineer</a> for their API platform. LEGO+APIs! That looks awesome! But what is an API platform and what skills do you need to build it? Does the LEGO job offer list them all? Do you have them all? This post answers those questions and may help you apply to such offers or post the appropriate job offers to build your own API platform.
+<!--more--></p>
+
+<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
+
+<h1 id="what-is-an-api-platform">What is an API platform</h1>
+
+<p>An API Platform represents all of the infrastructures and tools a company will put in place in order to allow everyone inside the company to provide APIs easily and securely. It will allow also anyone inside the company and possibly (almost) anyone outside of the company to consume APIs also easily and securely.</p>
+
+<p>The interest of such a platform (like any other platform) is to avoid reinventing the (API) wheel in every line of business or team. It’s an accelerator of API exposition and consumption.</p>
+
+<p>Note that an “API platform” is not a single tool, it is usually composed of many tools that could be in-house ones, open-source ones, commercial ones (SAAS or on-premise).</p>
+
+<p>Let’s see a few domains where an API platform can help to understand what it is.</p>
+
+<h2 id="api-exposition">API Exposition</h2>
+
+<p>An API platform will allow API providers to easily expose their APIs (usually on API gateways) in a place easily accessible by anyone inside the organization (intranet) and possibly anyone outside of it (internet). That means providers have access to tools they can plug into their CI/CD and they must have access to the administration interfaces if needed (if that can be avoided, that would be great).</p>
+
+<h2 id="api-security">API Security</h2>
+
+<p>An API platform ensures a certain level of safety and consistency regarding API security. Indeed, if the platform is well done, API providers won’t have to work on Oauth, OpenId Connect, or any other high-level security framework. It could be handled by the API gateway(s) and Identity providers and the team managing them. The platform could also provide a virus scan system for file upload (because sometimes you’ll need to get files through your APIs). But whatever the high-level security measures the platform can provide, <a href="https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api/">this does not absolve API providers to care about security</a>.</p>
+
+<h2 id="api-consumption">API Consumption</h2>
+
+<p>An API platform should make consumers’ life easier. Requesting access to an API and obtaining credentials must be simple.  From the providers’ perspective, they must be sure to stay in control of who consumers their API and how.</p>
+
+<h2 id="api-monitoring">API Monitoring</h2>
+
+<p>An API platform must enable API providers to monitor their APIs. Know what are the request done, by who, the responses times, … It’s critical for both software and business perspectives. Providers needs to now how their implementation behave to prevent problems but also study how consumers use their APIs to enhance their business proposal, adding new features, fixing problems.</p>
+
+<h2 id="api-discovery-and-documentation">API discovery and documentation</h2>
+
+<p>But before consuming an API, people must be able to find it (easily again). Thanks to a central API catalog, such a  platform can also allow having an exhaustive vision of the API surface of the company, making APIs easier to find and consume. Beyond the catalog, the platform may provide more or less advanced API documentation systems. API documentation can take advantage of API specifications such as OpenAPI, and AsyncAPI which both take advantage of JSON Schema. The documentation could be more interactive and provide a “try it” feature, Postman collections, and “Run in Postman” buttons. But not all the documentation can be generated, the platform must allow providers human contributions.</p>
+
+<h2 id="api-design-and-governance">API design and governance</h2>
+
+<p>An API platform can also help to enhance your API surface and ensure a certain level of quality and consistency. Indeed either for existing or new APIs, an API platform may provide tools helping to ensure a certain consistency and avoid a few mistakes in their design. Linter such as Stoplight Spectral could be used in CI/CD pipelines. The platform may integrate with API design tools (taking advantage of such linters). It may also provide tools or plug into tools helping with governance processes.</p>
+
+<h2 id="api-first">API-First</h2>
+
+<p>Obviously, all tools used by the platform MUST propose APIs (look at my <a href="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/">recommendations regarding the choice of software solutions</a>). Without APIs, it will be complicated to integrate them together.</p>
+
+<p>But more than that, an API platform MUST offer most (if not all) of its features through APIs. For instance providing a tool that lint an API description (OpenAPI or AsyncAPI) solely in the form of a web application, the UI code holding the lining logic, is a critical mistake to avoid at all costs. It makes it totally un-reusable in CI/CD or other tools used by API providers.</p>
+
+<p>Being 100% API first will bring flexibility to the platform itself and also flexibility in how people will use it and help adoption.</p>
+
+<h2 id="people-first-and-product-first">People-first and product-first</h2>
+
+<p>A good API platform must never be a burden for its users and go against them, limit them. That seems obvious to say, but unfortunately, just like with API governance, terrible things can be done with API platforms. Being API-first can help avoid that, but that’s not enough. People building the platform must understand the needs of API providers and consumers. The platform must be a product (or set of products) that pleases and helps its users. The people owning the platform may have some other objectives, but they MUST never go against their users ones.</p>
+
+<h1 id="the-lego-job-offer">The LEGO job offer</h1>
+
+<p>Now that we have a better vision of what is an API platform, let’s look at the  <a href="https://www.lego.com/en-us/careers/job/60676511">LEGO associate API engineer job offer</a> (<em>you can find the job description at the end of this post if the link is dead</em>).</p>
+
+<p>Small digression beyond API platforms, this offer shows this company takes API very seriously from an IT perspective and seems possibly engaged in becoming API-First. The job offer talks about an “API journey” and “Digital Platforms department”, which could be a sign of an API-first strategy, but I wasn’t able to confirm it by looking at other API job offers, because this is the only one. But it’s sure that APIs are important from an IT perspective.</p>
+
+<p>The offer doesn’t go into too much detail about what an API platform for LEGO is, but in broad strokes, it looks pretty good. They are building an API platform “that must be the preferred platform […] when exposing APIs and events”. They must “create and maintain tools and infrastructure that can be reused and shared across all our product domains.”</p>
+
+<p>It’s really interesting to see they put APIs and events at the same level, I really think that is the future of API-in-a-broad-sense platforms.</p>
+
+<p>The LEGO API management team has a product vision, they want to build something that brings value to their users. That’s the right mindset!</p>
+
+<p>Regarding the expected skills, people are expected to have knowledge of API development, infrastructure, and security. They must know how to code, have created and hosted APIs, and have experience with CI/CD (Continuous Integration/Continuous Development) and IaC (infrastructure as code). Having some experience with API gateways, event brokers, Kubernetes, Oauth, and identity providers is welcomed.</p>
+
+<p>This skill list could gain adding some precisions and a few items:</p>
+
+<ul>
+  <li>The “Experience in creating and hosting an API” could be enhanced like this “Experience in creating (design, implementation), hosting and consuming APIs (DX)”.</li>
+  <li>The list of “must-have” skills could be completed by “Experience with API specifications such as OpenAPI, AsyncAPI, JSON Schema”</li>
+  <li>The list of nice-to-have skill could be completed by experience with
+    <ul>
+      <li>API governance practices and process</li>
+      <li>API tools such as Stoplight Studio, Spectral, Postman, curl, …</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="not-so-obvious-skills">Not-so-obvious skills</h1>
+
+<p>Beyond knowing how to code and build infrastructure, building an outstanding API platform for API builders requires knowledge of what API providers and API consumers use and their practices.</p>
+
+<h2 id="api-specifications">API Specifications</h2>
+
+<p>Building an efficient API platform requires taking advantage of API specifications such as OpenAPI, AsyncAPI, or JSON Schema. Knowing them will give you some ideas about how to make your platform more efficient, more integrable, and interoperable without reinventing the wheel. Usually, if you have built APIs seriously, you should have used those specifications.</p>
+
+<h2 id="api-tools">API Tools</h2>
+
+<p>Building an efficient API platform required knowing what tools people building API are using. Why they use them and how. Those tools could take advantage of API specifications or not. But building an API platform without such knowledge will lead to reinventing the wheel and loose time. It will also cripple flexibility because without knowing the existence of tools used by API builders, the platform team may not think to provide integration for those tools. Without knowledge of the possibility offered by those tools, you may miss some huge opportunities to bring value to the users of the platform.</p>
+
+<p>Having built or consumed APIs is usually a good way to acquire this knowldege.</p>
+
+<h2 id="api-design">API Design</h2>
+
+<p>Knowing the importance and the challenges of designing APIs can be of great help to build an outstanding platform. For instance, how many times, I have seen platform people ruin API designers’ efforts by doing too much control at the API gateway level, bypassing smart error handling the original API contract was supposed to provide. Or the terrible “you can’t return 4xx errors, that will make or monitors bug”. Having created API yourself may have helped you acquire such knowledge. Knowing how to design APIs, will also help you create great APIs for the platform (and will help you eat your own dog food as your APIs will be exposed … on the platform you build!).</p>
+
+<p>Creating APIs is the obvious way of getting such knowledge. But consuming APIs will also teach you a few things: you’ll quickly learn to make the difference between good and bad APIs.</p>
+
+<h2 id="api-governance">API Governance</h2>
+
+<p>Having some knowledge of what is API governance, the processes, and the tools that it requires can really help build outstanding API platforms. With such knowledge, you’ll have tons of ideas to facilitate API providers’ life and also avoid stepping on the API governance team’s toes and even help them (if they are a separate team from yours).</p>
+
+<p>That knowledge is not that common in my opinion. It requires to have work in organizations that takes API really seriously. A candidate with such knowledge is highly valuable.</p>
+
+<h2 id="all-users-experience">All users experience</h2>
+
+<p>Being kind and helpful to people will help you to build the best user experiences.</p>
+
+<p>When talking about API and user experience almost everyone thinks about developer experience or DX. It is the experience the API consumers have when using APIs. It concerns design but also security, how to subscribe to an API, getting credentials, revoking them, accessing documentation, playing with a sandbox, getting the right to use API in production, … It’s essential to know what API consumers expect to provide them the best platform.</p>
+
+<p>Beyond that, API’s DX has raised the bar of software quality in general.  And in the case of an API platform, the consumers are not the only users. The providers are users too. Their experience must not be neglected.</p>
+
+<p>For that aspect, the LEGO proposal which emphasizes the product vision is interesting. People having worked in product mode are keener to have that vision. Put IT API creators having only worked on their own APIs may not have that vision.</p>
+
+<h1 id="apux--api-platform-user-experience">APUX ( API Platform User Experience)</h1>
+
+<p>What is important regarding an API platform is that when building it you must take care of ALL users’ experience and so have experience on both provider and consumer sides.</p>
+
+<p>So I would have made a few additions to this job offer. To keep it short, the only items that really miss are the “API Specifications” and “consuming API”, all the rest can be guessed from the updated proposition. Especially now that you have read this post.</p>
+
+<p>I’m sure a candidate bringing the not-so-obvious skills and knowledge I’ve described will be in a good position to get the job. And if you are building a platform yourself and looking for people to help you, you know what to look for.</p>
+
+<h1 id="appendices-the-original-lego-job-description">Appendices: The original LEGO job description</h1>
+
+<p>Excerpt of LEGO’s <a href="https://www.lego.com/en-us/careers/job/60676511">associate API Engineer</a> job offer.</p>
+
+<p><strong>Do you want to be a part of our building and maintaining the new API platform to be used across the LEGO group?</strong></p>
+
+<p>Bring your energy and a willingness to learn into the APIs journey and help us build the platforms for all the software engineering teams across the business.</p>
+
+<p><strong>Core Responsibilities</strong></p>
+
+<p>• Be part of a team where we build our future API platform and the tooling around it. It is to be the preferred platform for our colleagues when exposing APIs and events.
+• With our skilled engineers team you will ensure that we deliver an API platform for the rest of the LEGO group.
+• Be a part of the full lifecycle in software development; understanding feature requests, development, testing and ensuring that our products are operating as expected in our live production environment.
+• See the value in automating operational tasks and are an aspiring site reliability engineer (SRE).</p>
+
+<p><strong>Play your part in our team succeeding</strong></p>
+
+<p>The API Management team is one of the pillars of our newly established Digital Platforms department. The goal is to create and maintain tools and infrastructure that can be reused and share across all our product domains.</p>
+
+<p>We apply platform engineering and product management practices to ensure we build what brings the most value to our customers (the other software engineers) and ensure a close feedback loop.</p>
+
+<p>We are eager to collaborate and love to share and receive feedback from both our colleagues and customers.</p>
+
+<p><strong>Do you have what it takes?</strong></p>
+
+<p>• Experience in creating and hosting an API
+• Proficient with one or more general purpose programming language like TypeScript, C#, Java…
+• Experience with CI/CD in a tool like GitHub actions, Jenkins, Team City…
+• Experience with IaC, could be CDK, Pulumi, Terraform…</p>
+
+<p>Nice to have experience with:</p>
+
+<p>• An event broker like Pulsar, RabbitMQ or Kafka
+• An API Gateway like Kong, AWS API Gateway, …
+• OAuth and Identity providers
+• Kubernetes</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[LEGO is looking for an associate API Engineer for their API platform. LEGO+APIs! That looks awesome! But what is an API platform and what skills do you need to build it? Does the LEGO job offer list them all? Do you have them all? This post answers those questions and may help you apply to such offers or post the appropriate job offers to build your own API platform.]]></summary></entry><entry><title type="html">How to use Bootstrap in Postman Visualizer</title><link href="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/" rel="alternate" type="text/html" title="How to use Bootstrap in Postman Visualizer" /><published>2022-04-11T00:00:00-05:00</published><updated>2022-04-11T00:00:00-05:00</updated><id>https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer</id><content type="html" xml:base="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/"><![CDATA[<p>Postman Visualizer is perfect to tinker with data returned by an API and learn how it works. I found using <a href="https://handlebarsjs.com/">HandlebarJS</a> HTML templates quite convenient. But I was mindblown when I realized I could take advantage of <a href="https://getbootstrap.com/">Bootstrap</a> to generate outstanding visualization without much effort. Let’s see that with <a href="https://www.dnd5eapi.co/">The 5th Edition Dungeons and Dragons API</a> in its <a href="https://www.dnd5eapi.co/docs/#overview--graphql">GraphQL</a> version.
 <!--more--></p>
 
 <div class="card series-toc">
@@ -4759,80 +4916,4 @@ The company will lose time and have a longer time to market</p>
 
 <p>Even when I try to talk about API from an IT perspective, I can’t do it without talking about their business perspective and their impact on organization.
 That’s because even if there are purely IT challenges, in the end, an IT led API initiative can benefit the whole organization from a busines perspective.
-It’s because APIs (and IT in general) and business are totally intertwined, that’s the spirit of being API-First.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[As an IT member, you convinced your boss that APIs were a thing and IT department should take them seriously. Congratulations! That’s good, very good. Not only for you and your IT but for your whole organization. All you need to do now is choose an API gateway solution and you’re done… So you think. The API journey, even just at IT level, is full of pitfalls.]]></summary></entry><entry><title type="html">Why do we need API design guidelines?</title><link href="https://apihandyman.io/why-do-we-need-api-design-guidelines/" rel="alternate" type="text/html" title="Why do we need API design guidelines?" /><published>2022-02-23T00:00:00-06:00</published><updated>2022-02-23T00:00:00-06:00</updated><id>https://apihandyman.io/why-do-we-need-api-design-guidelines</id><content type="html" xml:base="https://apihandyman.io/why-do-we-need-api-design-guidelines/"><![CDATA[<p>Why do we need API design guidelines?
-Why do I need this boring set of constraining rules telling me how to design APIs?
-Why can’t I design APIs the way I like (which is the best one by the way).
-What would I (and my organization) gain taking advantage of API design guidelines?
-<!--more--></p>
-
-<p><em>That’s yet another interesting question coming from the Internet, if you have such API questions don’t hesitate to ping me, I may be able to respond through a blog post.</em></p>
-
-<h1 id="consistent-apis">Consistent APIs</h1>
-
-<p>The first reason why you need API design guidelines is to ensure a certain level of consistency throughout your whole API surface.</p>
-
-<p>Creating consistent APIs, APIs that share the same look and feel, is key to build a great developer experience.
-Indeed, once someone has learned to use one of your APIs, using another one that looks and behaves in the same fashion as this first API is fairly easy.
-Just like when you use any app on your smartphone, they share common behaviors of the operating system.
-Just like when you use a mobile app, desktop app or website of a given company, those different “applications” in a broad sense share a look and feel defined by the company providing those services.
-With consistency, you can speed up learning, people can guess how things work.</p>
-
-<p>If you think that achieving consistency in API design can be done without really thinking about, without defining rules, let me tell you about a simple exercise that I do when teaching the fundamentals of (REST) API design.
-I love this exercise, because it never misses to make attendees realize they definitely need API design guidelines to design consistent APIs.
-I ask the attendees to choose the paths to represent a “list of users” and “a user”, the only constraint is that those paths must be valid from a REST perspective, hence being able to represent a resource in a unique way.
-We often end with the following responses:</p>
-
-<ul>
-  <li><code>/users</code> and <code>/users/{userId}</code></li>
-  <li><code>/users</code> and <code>/user/{id}</code> (<a href="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">seriously don’t do that</a>)</li>
-  <li><code>/user</code> and <code>/user/{userId}</code></li>
-  <li><code>/user</code> and <code>/user-{reference}</code></li>
-  <li><code>/utilisateurs</code> and <code>/utilisateurs/{referenceUtilisateur}</code> (that’s french)</li>
-</ul>
-
-<p>All those path are technically valid from a pure REST perspective, each one allows to represent the list of users and a single user.
-They are technically valid but each response is different from the others, these solutions are inconsistent.
-Even people working in the same organization working on the exact same use case can achieve inconsistent designs. 
-That’s why you need API design guidelines.
-They are many possible variations when having to design API, you need to choose a single way to “style” your APIs and write it down in your guidelines.</p>
-
-<h1 id="less-discussions">Less discussions</h1>
-
-<p>But what is the “right” way to represent a “list of users”, <code>/users</code> or <code>/user</code>?
-I have an <a href="https://apihandyman.io/resources-rules-and-resource-sucks-or-is-it-the-other-way-around/">opinion</a> on that topic, you may have another one.
-Without having settle this debate once and for all, be prepared to face endless debates about very basic API design concerns such as this one.
-Seriously, it’s not fun to waste time on such discussions.
-I prefer <code>/users</code>, but if the guidelines created before I arrive in the company say it’s <code>/user</code>, so be it.
-What really matter is what the API does, that’s on that topic we should “waste” our time, not choosing between turquoise and cyan.</p>
-
-<p>But that does not mean you should never discuss guidelines.
-Honestly, if the guidelines if my company says <code>/users</code> and <code>/user/{userId}</code> which is a total non-sense, leading to poor DX, we’ll have to discuss that again.
-But be professional, if the existing rules are just different from what you’re used to but make sense and create consistent APIs, don’t be an asshole, accept difference.</p>
-
-<h1 id="simpler-api-design">Simpler API design</h1>
-
-<p>Not all designers are seasoned one, not all designers have been working in the organization for years.
-Without guidelines, beginner designers will, at best loose their time chasing the response to the question <code>/users</code> or <code>/user</code>, or which HTTP status code use in “that” context, and at worst, randomly choose a way of designing APIs based on today’s humor.
-<a href="https://apihandyman.io/nobody-cares-about-api-design-guidelines/">Well-structured-designer-friendly API design guidelines</a> accompanied with a touch of automation (who said <a href="https://apihandyman.io/toolbox/spectral/">Spectral</a>) will speed up their learnings of the way of designing APIs in general and in your organization.</p>
-
-<p>And guidelines are not only of interest for beginners. 
-Seasoned designers may also loose their time looking for solutions to complex problems such as “how to handle long operations” or “how to handle gateway message size limitations”, problem which could be solved once and for all and put into the guidelines.</p>
-
-<h1 id="simpler-api-design-review">Simpler API design review</h1>
-
-<p>API designer reviewers are masters in API design able to spot the tiniest “imperfection” in a design, a not so clear naming, a design pattern that could cripple evolutions, … (Actually API design reviewers a far more than that, but that’s another story).
-But just like designers, though being “API Design Jedi Masters”, reviewers can be new to the organization, they can forget some specific point.
-So having a source of truth to refer to is a great help for reviewers to comfort their reviews and also having pacified discussions with designers (because “sorry, that’s not what you’re used to, but this is how we do here”).</p>
-
-<h1 id="the-source-of-automation">The source of automation</h1>
-
-<p>And last but not least, I mentioned automation (API design linting) with <a href="https://apihandyman.io/toolbox/spectral/">Spectral</a>): API design guidelines will be the source of any automated control of API design.
-Jumping right into writing some code controlling your design conforms to your organization’s way of designing APIs is a terrible idea.
-It would be just like writing an OpenAPI document, focusing on <code>GET /this</code> and <code>POST /that</code> without being sure of what the API is supposed to do, without being able to describe in natural language the needs that the API must fulfil.
-Also, even a must have in your toolbox, tools such as Spectral, will not be able to capture all that you can put in your design guidelines (such as when choose solution A over B).</p>
-
-<h1 id="you-need-api-design-guidelines">You need API design guidelines</h1>
-
-<p>So the question it not really “do you need API design guidelines?” but “what are you waiting for to create API design guidelines?”.
-It’s never too late to do so, indeed, you can create guidelines even when you already have existing APIs.
-But that’s another story.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Why do we need API design guidelines? Why do I need this boring set of constraining rules telling me how to design APIs? Why can’t I design APIs the way I like (which is the best one by the way). What would I (and my organization) gain taking advantage of API design guidelines?]]></summary></entry></feed>
+It’s because APIs (and IT in general) and business are totally intertwined, that’s the spirit of being API-First.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[As an IT member, you convinced your boss that APIs were a thing and IT department should take them seriously. Congratulations! That’s good, very good. Not only for you and your IT but for your whole organization. All you need to do now is choose an API gateway solution and you’re done… So you think. The API journey, even just at IT level, is full of pitfalls.]]></summary></entry></feed>
