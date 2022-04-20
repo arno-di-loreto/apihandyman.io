@@ -1,4 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-20T07:17:29-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What is an API platform and what skills are needed to build it</title><link href="https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it/" rel="alternate" type="text/html" title="What is an API platform and what skills are needed to build it" /><published>2022-04-13T00:00:00-05:00</published><updated>2022-04-13T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it</id><content type="html" xml:base="https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it/"><![CDATA[<p>LEGO is looking for an <a href="https://www.lego.com/en-us/careers/job/60676511">associate API Engineer</a> for their API platform. LEGO+APIs! That looks awesome! But what is an API platform and what skills do you need to build it? Does the LEGO job offer list them all? Do you have them all? This post answers those questions and may help you apply to such offers or post the appropriate job offers to build your own API platform.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-20T11:50:58-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">When internal API platform billing model collides with API-First strategy</title><link href="https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy/" rel="alternate" type="text/html" title="When internal API platform billing model collides with API-First strategy" /><published>2022-04-20T00:00:00-05:00</published><updated>2022-04-20T00:00:00-05:00</updated><id>https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy</id><content type="html" xml:base="https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy/"><![CDATA[<p>An internal API-first strategy will inevitably raise budgets questions; you must be aware of that. One of them is who will pay for the brand new API platform and how? The success of an internal API-first strategy may depend on the billing model of the API platform.</p>
+
+<!--more-->
+
+<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
+
+<h1 id="from-api-first-to-api-platform">From API-first to API platform</h1>
+
+<p>When an organization (a company, a subsidiary, a government agency, …) has understood the importance of APIs, at least from an internal perspective, it will engage in its internal API-first journey. So, among other things, everything has been done to build a (minimum viable) API platform that exposes internal APIs (also called private APIs). It could be a centralized or semi-centralized infrastructure.</p>
+
+<p>For instance, the API platform could be composed of a completely centralized API gateway, API portal/catalog, and CI/CD tools used by everyone to publish their APIs. Another way would be to have a central team preparing and packaging the API gateway, its security policies (pieces of code running on the gateway), and CI/CD plugins. It’s up to sub-organizations to spin up this package that will magically push all APIs to a centralized API portal.</p>
+
+<p>But, whatever the model used, an API platform means paying for people and infrastructure to maintain and host it. Who will pay for all that, and how?</p>
+
+<h1 id="who-will-pay-for-the-platform">Who will pay for the platform?</h1>
+
+<p>Just like they probably already pay for some other mutualized infrastructure, it seems obvious to make the sub-organizations that will expose their APIs on the platform pay.</p>
+
+<p>But in the beginning, it may be a bit too much for the one or two first users to support the whole cost. Everyone could be reluctant to actually use the platform facing its cost, and so reluctant to start their API-first journey. If the organization itself or the “central API team” can put some dedicated budget to reduce the (visible) cost for first-timers and ease the platform adoption, that’s for the best (even if we all know that in the end it will probably be billed to sub-organizations one way or another because central support team usually do not generate revenue directly).</p>
+
+<p>If it’s a significant investment at the whole company level, sub-organizations not (yet) working on APIs may give a hand. That may be a hard pill to swallow, but that may motivate some sub-organizations to actually start their API-first journey.</p>
+
+<p>Deciding who will pay is not that easy, but deciding how they will pay is even trickier.</p>
+
+<h1 id="whats-the-platforms-billing-model">What’s the platform’s billing model?</h1>
+
+<p>A terrible idea would be to charge based on the number of APIs exposed on the platform. What will happen in that case?</p>
+
+<p>Providers may merge small and well-defined APIs into big ball of mud APIs. Making them harder to understand and harder to use for consumers, and so it may slow their adoption and augment the cost to integrate them. It also has impact on API providers, they will lose time providing support (instead of creating new APIs or adding new features). Bigger APIs are also harder to manage for their providers (Who will own that big API? How harder will it be to make it evolve).</p>
+
+<p>If the platform’s pricing model has an impact on the design of APIs, that’s the wrong model. It will inevitably cripple the API-First initiative.</p>
+
+<p>Also, such behavior may be an indicator of “we don’t completely get what means being API-First” for both people defining such billing model and people taking the decision to merge APIs to reduce costs.</p>
+
+<p>And last but not least, this model is totally irrelevant because the number of APIs does not define the actual usage of an API platform and may lead to totally unfair bills. A small sub-organization may have to expose many APIs that won’t be used much, a bigger one may expose a single API heavily used. That leads to charging more for the one using the platform the less and probably having the less budget.</p>
+
+<p>Instead, the number of APIs calls (that can relate to CPU/RAM/infrastructure usage) could be a fairer way of charging for platform use. But again, some may be tempted to aggregate smaller operations into bigger ones. Also it’s not adapted to all types of API (GraphQL for instance). And some small, usually support function related, sub-organization without much budget may expose some heavily used APIs. So the organization will have to find a way to help them maybe providing dedicated budget (more about that in a later post).</p>
+
+<p>A fair API platform billing model could set aside API metrics and use a ratio based on actual IT budgets or generated revenue to divide the costs. That way every sub-organization can contribute according to their means. And most important, anyone can have access to the platform and so contribute to the success of the API-First initiative.</p>
+
+<h1 id="finding-a-balance">Finding a balance</h1>
+
+<p>The actual answers to who pays the bill and how will vary depending on the organization. What is sure is that the API platform billing model has a direct impact on an internal API-First strategy. Whoever pays, whatever the pricing model, the platform will have to bring valuable features to help sub-organization in their API-first journey. And it must do that using an adapted billing model that keeps the platform accessible for anyone and that does not impact API design (and so their quality). Without that in mind, the billing model may kill or cripple the organization’s internal API-First initiative</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[An internal API-first strategy will inevitably raise budgets questions; you must be aware of that. One of them is who will pay for the brand new API platform and how? The success of an internal API-first strategy may depend on the billing model of the API platform.]]></summary></entry><entry><title type="html">What is an API platform and what skills are needed to build it</title><link href="https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it/" rel="alternate" type="text/html" title="What is an API platform and what skills are needed to build it" /><published>2022-04-13T00:00:00-05:00</published><updated>2022-04-13T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it</id><content type="html" xml:base="https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it/"><![CDATA[<p>LEGO is looking for an <a href="https://www.lego.com/en-us/careers/job/60676511">associate API Engineer</a> for their API platform. LEGO+APIs! That looks awesome! But what is an API platform and what skills do you need to build it? Does the LEGO job offer list them all? Do you have them all? This post answers those questions and may help you apply to such offers or post the appropriate job offers to build your own API platform.
 <!--more--></p>
 
 <p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
@@ -4798,122 +4840,4 @@ But what can be done on both sides to ensure a healthy relationship profitable t
 
 <h1 id="to-be-continued">To be continued</h1>
 
-<p>This post is just the first one on that topic, the relationship between specifications and tools. There will be probably more to come as I investigate more on the concepts of implementers’ experiences and specification implementation scorecard/notation/evaluation.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[We may never have a clear answer to the question “what comes first? Tools or Specifications?”. What is sure is people create tools or specifications based on their needs. Those tools and specifications, like OpenAPI, AsyncAPI, or JSON Schema, are tightly intricated. What could be done to build a healthy and profitable relationship?]]></summary></entry><entry><title type="html">Underestimated and unexpected IT challenges of API initiatives</title><link href="https://apihandyman.io/underestimated-and-unexpected-it-challenges-of-api-initiatives/" rel="alternate" type="text/html" title="Underestimated and unexpected IT challenges of API initiatives" /><published>2022-03-02T00:00:00-06:00</published><updated>2022-03-02T00:00:00-06:00</updated><id>https://apihandyman.io/underestimated-and-unexpected-it-challenges-of-api-initiatives</id><content type="html" xml:base="https://apihandyman.io/underestimated-and-unexpected-it-challenges-of-api-initiatives/"><![CDATA[<p>As an IT member, you convinced your boss that APIs were a thing and IT department should take them seriously.
-Congratulations! 
-That’s good, very good.
-Not only for you and your IT but for your whole organization.
-All you need to do now is choose an API gateway solution and you’re done…
-So you think.
-The API journey, even just at IT level, is full of pitfalls. 
-<!--more--></p>
-
-<h1 id="it-is-often-where-apis-start">IT is often where APIs start</h1>
-
-<p>There are still plenty of companies, government agencies and various organizations that didn’t yet really took the API train.
-But when they finally take it, it’s often thanks to some IT initiative.
-Because, hey, APIs originally are software stuff.</p>
-
-<p>IT led API initiatives are not always perfect, but they can lead to not so minor and cool enhancements, and even initiate an organization’s total transformation, making it truly API-First.
-Indeed, at worst taking APIs seriously at IT level will make your IT systems become modular, make them capable of fulfilling new needs easily, achieving faster time to market.
-And at best, some IT people can start to advocate at business and exec level that APIs could be worth of interest outside of IT.
-When those people hear that company could make more business with APIs, they may listen, they may be contaminated by the API frenzy.
-But that’s another story.
-Let’s just focus on the challenges that can happen when a company’s IT start to take APIs seriously.</p>
-
-<h1 id="some-challenges">Some challenges</h1>
-
-<p>I’ll share here what I’ve witnessed myself on various API journeys.
-This post is not intended to be exhaustive and provide solutions to all challenges.</p>
-
-<h2 id="api-management-setup-and-management">API management setup and management</h2>
-
-<p>When someone says APIs, API management vendors come out of the woodwork, promising wonders.
-Their API management solutions will solve all of your organization’s API problems so easily!
-Since you were not born yesterday and you know that magic-software-that-solves-all-problems don’t exist, you guess it could be a little bit exaggerated.</p>
-
-<p>But what you may not realize is that even if API management solutions can actually help you to expose securely your APIs and manage their consumers.
-Also possibly gave you an idea of your existing APIs through the provided developer portal (well, once those APIs have been exposed on the gateway).
-Integrating and managing this solution can be far more complicated than you thought in the beginning.</p>
-
-<p>Who will be allowed to develop on this solution? 
-(Yes, you’ll need to develop on this solution).
-How to manage this solution lifecycle? (It will need to be updated regularly).
-How to connect it to your identity providers?
-How to connect it to CI/CD to automatically expose interface contracts?
-How to ensure that only API owner can actually deploy their APIs throught CI/CD?
-Will there be a single or multiple instance of API gateway(s)?
-Will there be a single API management solution or multiple ones?
-By who and how consumers will be managed? (defining which application can consumer which API)
-How consumers will get their credentials securely (and possibly automatically)?
-How will they be securely renewed regularly?</p>
-
-<p>Nothing unsolvable, but better study well this matter to have all aspects in mind when starting the API management part of your API initiative.</p>
-
-<h2 id="ensuring-existing-systems-capacity-and-security">Ensuring existing systems capacity and security</h2>
-
-<p>Let’s APIfy this system!
-That means, let’s add more load on this system which was quite protected in the guts of our IT. 
-Very often, APIs come as an addition to the load of a system, so better triple check the current status and if the system can absorb the new load without failing.
-That may also open systems that were quite protected, are you sure those new APIs don’t create security issues?</p>
-
-<h2 id="acquiring-api-design-skills">Acquiring API design skills</h2>
-
-<p>APIs are originally an IT matter.
-We, the IT, have been connecting pieces of software together for decades.
-So, obviously, we know perfectly how to do APIs, and how to do them well.</p>
-
-<p>While it can be sometimes true, it’s more often false.
-Not that people are totally bad at designing APIs, systems are actually running well.
-But those APIs are technical connectors usually requiring a high level of expertise of the underlying system.</p>
-
-<p>Most of the time there’s not much work to do, a few design reviews a bit of training and hello beautiful APIs.
-People magically realize the value of working on design (and icing on the cake it can have huge impact on code and architecture quality).
-But sometimes, changing mindsets on the importance of design is really hard because some developers/tech leads/architects are quite stubborn to stay polite.</p>
-
-<p>Also a side note, I can understand that seasoned developers never having seen another company for the last 3 decades may not be aware of the importance of designing an API to make it easy to understand and easy to use, or may not know how to do it.
-But I’m quite annoyed to see that university/engineering school absolutely don’t teach API design, at least in France (don’t know if this matter is covered by boot camps or in other countries).</p>
-
-<h2 id="avoiding-dictatorial-governance">Avoiding dictatorial governance</h2>
-
-<p>Creating consistent API is important for usability and security among many other things.
-That requires defining rules and organizing a bit of controls, all that can resumed in two words: API governance.
-If care is not taken, it can turn really bad in scary dictatorship, everyone fearing the API police.
-It can totally screw your IT led API initiative and cripple the future business led API initiative.
-If you want to learn more about this, <a href="/human-centered-api-governance/">watch my “Human Centered API Governance” session</a>.</p>
-
-<h2 id="including-api-design-in-software-lifecycle">Including API design in software lifecycle</h2>
-
-<p>When I was conducting API design review, I can’t count how many times I received a “can you check this design please, we push it in production tomorrow” email.
-Not only IT people will probably need to acquire design skills but also modify a bit their software lifecycle to include a design phase BEFORE development.
-It can be complicated when people are doing “agile” development (yeah “agile”, because it can be anything and everything).
-Not because of process, but because it requires to change habits, change mindsets, just like on design.</p>
-
-<p>Honestly it’s quite simple as long as you don’t fall into the “Big Design Up Front” (<a href="https://swiber.dev/launch-a-winning-strategy-for-api-design-first#big-design-up-front">thank to my colleague Kevin for putting a name on something I couldn’t name</a>) and ruin agile efforts.
-Adding a short design phase during the sprint before development or right at the beginning work pretty well (it takes only a few hours).</p>
-
-<h2 id="acquiring-provider-and-consumer-stances">Acquiring provider and consumer stances</h2>
-
-<p>When starting the API journey, even just at IT level, you have to realize that to create good APIs, they must be own by someone.
-And those API owners have to acquire the provider stance.
-I’ve seen teams so used to say yes to everything, resulting in highly specific software only working for the team requesting the evolutions, they continue to work the same way with APIs.
-That must be changed.
-API owner must learn, not to say no (well sometimes it’s needed), but to take request and put them in place for the greater good of their API product and ALL of its present and future consumers.
-On the other side, API consumers must learn to request new features without going crazy if it’s not exactly made as they would have imagined.</p>
-
-<h2 id="making-business-and-it-work-together-for-a-bright-public-api-future">Making business and IT work together for a bright public API future</h2>
-
-<p>And last but not least.
-Purely IT led API initiative, without any business perspective involved will only succeed to put a technical infrastructure in place.
-One way or another people having business knowledge, subject matter experts (SMEs) must be involved when defining the boundaries of APIs, what they do and how they do it.
-Both perspectives, IT and business, must be taken into account to define APIs that literally represent “this domain for dummies” (and we don’t care if those “dummies” are inside or outside the organization).
-Those APIs must be easy to understand and easy to use by anyone, reusable in various contexts, and easy to evolve.</p>
-
-<p>If you don’t do that, what do you think will happen when some high level business exec realizes the importance of APIs from a business perspective and take for granted that if IT has done APIs they can be provided easily to the outside world?
-They will not be happy, but more than that, a huge part of what was invested in the IT led API initiative will have been done for nothing.
-The company will lose time and have a longer time to market</p>
-
-<h1 id="oops-i-did-it-again">Oops, I did it again</h1>
-
-<p>Even when I try to talk about API from an IT perspective, I can’t do it without talking about their business perspective and their impact on organization.
-That’s because even if there are purely IT challenges, in the end, an IT led API initiative can benefit the whole organization from a busines perspective.
-It’s because APIs (and IT in general) and business are totally intertwined, that’s the spirit of being API-First.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[As an IT member, you convinced your boss that APIs were a thing and IT department should take them seriously. Congratulations! That’s good, very good. Not only for you and your IT but for your whole organization. All you need to do now is choose an API gateway solution and you’re done… So you think. The API journey, even just at IT level, is full of pitfalls.]]></summary></entry></feed>
+<p>This post is just the first one on that topic, the relationship between specifications and tools. There will be probably more to come as I investigate more on the concepts of implementers’ experiences and specification implementation scorecard/notation/evaluation.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[We may never have a clear answer to the question “what comes first? Tools or Specifications?”. What is sure is people create tools or specifications based on their needs. Those tools and specifications, like OpenAPI, AsyncAPI, or JSON Schema, are tightly intricated. What could be done to build a healthy and profitable relationship?]]></summary></entry></feed>
