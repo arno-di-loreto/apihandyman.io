@@ -1,0 +1,17 @@
+{%- if include.icon == "⛔" -%}
+{%- assign level="danger" -%}
+{%- elsif include.icon == "💡" -%}
+{%- assign level="warning" -%}
+{%- elsif include.icon == "🔗" -%}
+{%- assign level="primary" -%}
+{%- elsif include.icon == "ℹ️" -%}
+{%- assign level="info" -%}
+{%- endif -%}
+<div class="alert alert-{{level}}">
+  <div class="row">
+    <div class="col col-auto">
+      <h4 class="alert-heading" style="font-size:3rem;">{{include.icon}}</h4>
+    </div>
+    <div class="col">{{include.content | strip | markdownify }}</div>
+  </div>
+</div>

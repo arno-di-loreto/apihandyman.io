@@ -1,13 +1,14 @@
 ---
 title: What can we learn from tweets lookup error responses of Twitter v2 API?
+series: Twitter API v2 Tips and Tricks
 date: 2022-04-05
 author: Arnaud Lauret
 layout: post
 permalink: /what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api/
 category: post
-postman_collection_documentation: https://www.postman.com/apihandyman/workspace/twitter-v2-api-tips-and-tricks/documentation/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229
-postman_collection_run: https://god.gw.postman.com/run-collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=collection%2Ffork&collection-url=entityId%3D143378-8f12c1ed-f930-4e0d-8baf-c8a949910229%26entityType%3Dcollection%26workspaceId%3D16b83fae-c500-4387-b79c-0c72565d1d0f#?env%5BGuess%20how%20Tweets%20lookup%20parameters%20works%5D=W3sia2V5IjoidHdpdHRlcl90b2tlbiIsInZhbHVlIjoiUFVUIFlPVVIgVE9LRU4gSU4gQ1VSUkVOVCBWQUxVRSBPRiBUV0lUVEVSIFRPS0VOIEVOVklST05NRU5UIFZBUklBQkxFIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6InNlY3JldCJ9XQ==
-postman_collection_github: https://github.com/apihandyman/twitter-tips-and-tricks/tree/main/guess-how-tweets-lookup-parameters-work
+postman_collection_documentation: https://www.postman.com/apihandyman/workspace/16b83fae-c500-4387-b79c-0c72565d1d0f/collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=share&creator=143378
+postman_collection_run: https://god.gw.postman.com/run-collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=collection%2Ffork&collection-url=entityId%3D143378-8f12c1ed-f930-4e0d-8baf-c8a949910229%26entityType%3Dcollection%26workspaceId%3D16b83fae-c500-4387-b79c-0c72565d1d0f#?env%5BGuess%20how%20Tweets%20lookup%20parameters%20work%5D=W3sia2V5IjoidHdpdHRlcl90b2tlbiIsInZhbHVlIjoiUFVUIFlPVVIgVE9LRU4gSU4gQ1VSUkVOVCBWQUxVRSBPRiBUV0lUVEVSIFRPS0VOIEVOVklST05NRU5UIFZBUklBQkxFIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6InNlY3JldCIsInNlc3Npb25WYWx1ZSI6IkFBQUFBQUFBQUFBQUFBQUFBQUFBQVAlMkZFWXdFQUFBQUFkMjRIOURVeTZpNk5wbkpjTks4UzhjUnE2U1klM0ROT0pmZ3BvN1NDTDJiS2wxR2dXRjZERjd2RmQ3MnJPNEdKeWExSkRSM1RPTlZBdmFvZCIsInNlc3Npb25JbmRleCI6MH1d
+postman_collection_github: https://github.com/apihandyman/twitter-api-v2-tips-and-tricks/tree/main/guess-how-tweets-lookup-parameters-work
 tools:
     - Twitter API
     - Postman
