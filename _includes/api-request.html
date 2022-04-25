@@ -28,7 +28,7 @@
   {% endif %}
   <div class="card-body">
     <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
-      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-{{include.method | downcase }} mr-2" style="font-size:1em;">{{include.method | upcase}}</span><code class="language-http" style="background: transparent !important">{{include.url}}</code></div>
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-{{include.method | downcase }} mr-2" style="font-size:1em;">{{include.method | upcase}}</span><code class="language-http" style="background: transparent !important; overflow-wrap:break-word">{{include.url"}}</code></div>
     </div>
     {%if include.body %} 
     <div class="col col-auto pl-0 pr-0">
