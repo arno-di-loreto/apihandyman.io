@@ -1,4 +1,1188 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-22T10:37:07-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">When internal API platform billing model collides with API-First strategy</title><link href="https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy/" rel="alternate" type="text/html" title="When internal API platform billing model collides with API-First strategy" /><published>2022-04-20T00:00:00-05:00</published><updated>2022-04-20T00:00:00-05:00</updated><id>https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy</id><content type="html" xml:base="https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy/"><![CDATA[<p>An internal API-first strategy will inevitably raise budgets questions; you must be aware of that. One of them is who will pay for the brand new API platform and how? The success of an internal API-first strategy may depend on the billing model of the API platform.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-25T15:51:54-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Rendering simple text tweets with their authors</title><link href="https://apihandyman.io/rendering-simple-text-tweets-with-their-authors/" rel="alternate" type="text/html" title="Rendering simple text tweets with their authors" /><published>2022-04-25T00:00:00-05:00</published><updated>2022-04-25T00:00:00-05:00</updated><id>https://apihandyman.io/rendering-simple-text-tweets-with-their-authors</id><content type="html" xml:base="https://apihandyman.io/rendering-simple-text-tweets-with-their-authors/"><![CDATA[<p>Let’s learn to use Twitter v2 API tweets lookup operations to render simple text tweets and their author just like Twitter does. We’ll learn a few things about API design and API documentation in general and Postman based API documentation in particular in the making. I hope this will give you some ideas for the design and documentation of your API.</p>
+
+<!--more-->
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Twitter API v2 Tips and Tricks Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+<p>This post is a “Twitter v2 API Tips And Tricks Post” in which I share with Postman collections the tips and tricks I learn while using Twitter v2 API.
+You can either:</p>
+
+<ul>
+  <li>Read this post</li>
+  <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/twitter-api-v2-tips-and-tricks/documentation/143378-6459d6b0-46fb-44fd-ace4-7f5e587a1d95">Postman network</a></li>
+  <li>Use this <a href="https://god.gw.postman.com/run-collection/143378-6459d6b0-46fb-44fd-ace4-7f5e587a1d95?action=collection%2Ffork&amp;collection-url=entityId%3D143378-6459d6b0-46fb-44fd-ace4-7f5e587a1d95%26entityType%3Dcollection"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
+  <li>Get the collection from <a href="https://github.com/apihandyman/twitter-api-v2-tips-and-tricks/tree/main/rendering-simple-text-tweets-with-their-authors">Github</a> to import it in Postman. (Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after fork)</li>
+</ul>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list border-left">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          
+          <li class="list-group-item"><a href="/what-can-we-learn-from-tweets-lookup-error-responses-of-twitter-v2-api/">What can we learn from tweets lookup error responses of Twitter v2 API?</a></li>
+          
+        
+          
+          
+          <li class="list-group-item active">Rendering simple text tweets with their authors</li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p>We will concentrate on making the appropriate API calls and processing the data. We will not dive into the HandlebarJS + Bootstrap rendering, feel free to read this “<a href="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/">How to use Bootstrap in Postman Visualizer</a>” collection/post and look the tests scripts of the requests. You can also read more about how the collection works by looking at the Appendices section.</p>
+
+<p>If you’re more interested in the learnings on API design and API documentation, you can jump directly to the API design and documentation take aways section.</p>
+
+<h1 id="twitter-v2-api-tweets-lookup">Twitter v2 API tweets lookup</h1>
+
+<p>With Twitter v2 API, you can get tweets using <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/introduction">the lookup operations</a> <code>GET /2/tweets/:tweetid</code> (single tweet) and <code>GET /2/tweets?ids=:tweetId1,tweetId2,...tweetId100</code> (multiple tweets). By requesting additional fields and the expansions of some of them, you can get the exact same data that are shown on Twitter website or mobile application. We’ll learn to use those operations to get the data needed and process them to render simple text tweets (without hastags, mentions, urls, medias, polls, …) and their author just like Twitter does.</p>
+
+<h1 id="prerequisites">Prerequisites</h1>
+
+<p>The collection requires an environment containing the variables defined in the table below. You can fork the following environments:</p>
+
+<ul>
+  <li><a href="https://www.postman.com/apihandyman/workspace/twitter-v2-api-tips-and-tricks/environment/143378-4f632c31-7cc7-43bb-a0b0-1dcce3edbec9">Rendering simple text tweets with their authors Mock</a> environment: Use a mock. It’s ready to use, there’s nothing to modify. You’ll be limited to the data the mock returns and won’t be able to modify the requests but all visualizations will work.</li>
+  <li><a href="https://www.postman.com/apihandyman/workspace/twitter-v2-api-tips-and-tricks/environment/143378-5d07ba2d-7410-4670-b808-03657cb2ff04">Rendering simple text tweets with their authors Production</a> environment: Use the real Twitter v2 API. It requires you to set a Twitter API bearer token (see below) but you’ll be able to choose the tweets used in the requests and modify the requests.</li>
+</ul>
+
+<div class="alert alert-danger">
+  <div class="row">
+    <div class="col col-auto">
+      <h4 class="alert-heading" style="font-size:3rem;">⛔</h4>
+    </div>
+    <div class="col"><p>️Never store API tokens in initial value, use the current value. Read <a href="https://blog.postman.com/how-to-use-api-keys/">How to use API Keys</a> to learn more.</p>
+</div>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>VARIABLE</strong></th>
+      <th><strong>DESCRIPTION</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>api_server_basepath</td>
+      <td>The server and base path of the API. For the production Twitter it’s https://api.twitter.com/2 and for the mock it’s https://46c813b3-7bd4-4bf7-9eac-1f56f2ccc813.mock.pstmn.io</td>
+    </tr>
+    <tr>
+      <td>twitter_token</td>
+      <td>(Only for production environment) A Twitter API bearer token (Read <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens">Twitter API documentation</a> to get one) used in Authorization tab of the collection. Without this value <a href="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/">you’ll get a surprise error message</a> when sending a request.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="getting-the-same-data-as-twitter">Getting the same data as Twitter</h1>
+
+<p>To achieve the following result, we’ll start by constructing a request to retrieve the data we need to render a simple text tweet and its author.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/rendering-simple-text-tweets-with-their-authors/01-rendered-tweet.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<p>The pieces of data we need are:</p>
+
+<ul>
+  <li>The tweet’s text</li>
+  <li>Its creation date</li>
+  <li>The name of the application that created it</li>
+  <li>The author’s username</li>
+  <li>Their name</li>
+  <li>Their image profile URL</li>
+</ul>
+
+<h2 id="getting-a-tweet-with-default-data">Getting a tweet with default data</h2>
+
+<p>By default, <code>GET /tweets/:tweetId</code> only returns the <code>id</code> and the <code>text</code> of a tweet.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+   
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Request</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-get mr-2" style="font-size:1em;">GET</span><code class="language-http" style="background: transparent !important; overflow-wrap:break-word">https://api.twitter.com/2/tweets/:tweetId</code></div>
+    </div>
+     
+    <div class="col col-auto pl-0 pr-0">
+      <pre class="code-copy line-numbers language-"><code class="code-block"></code></pre>
+    </div>
+    
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Response</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
+    &quot;data&quot;: {
+        &quot;id&quot;: &quot;1511761169727565829&quot;,
+        &quot;text&quot;: &quot;This is a single line tweet&quot;
+    }
+}</code></pre>
+  </div>
+</div>
+
+<div class="alert alert-warning">
+  <div class="row">
+    <div class="col col-auto">
+      <h4 class="alert-heading" style="font-size:3rem;">💡</h4>
+    </div>
+    <div class="col"><p>In any response of Twitter v2 API, the returned data are encapsulated in a <code>data</code> property. This approach allows adding additional data and metadata without mixing them with the “real” business/subject matter data. The Twitter API design is similar to the <a href="https://jsonapi.org/">JSON:API</a> format.</p>
+</div>
+  </div>
+</div>
+
+<h2 id="adding-tweets-creation-date-and-source-fields">Adding tweet’s creation date and source fields</h2>
+
+<p>We can add the <code>tweet.fields</code> query parameter to request the other tweet’s data we need, hence <code>created_at</code> (creation date) and <code>source</code> (name of the application that sent the tweet).</p>
+
+<div class="alert alert-primary">
+  <div class="row">
+    <div class="col col-auto">
+      <h4 class="alert-heading" style="font-size:3rem;">🔗</h4>
+    </div>
+    <div class="col"><p>Check the <a href="https://www.postman.com/apihandyman/workspace/twitter-v2-api-tips-and-tricks/documentation/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229">Guess how Tweets lookup parameters work</a> collection to discover how to guess the other possible values (and other parameters).</p>
+</div>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+   
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Request</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-get mr-2" style="font-size:1em;">GET</span><code class="language-http" style="background: transparent !important; overflow-wrap:break-word">https://api.twitter.com/2/tweets/:tweetId?tweet.fields=created_at,source</code></div>
+    </div>
+     
+    <div class="col col-auto pl-0 pr-0">
+      <pre class="code-copy line-numbers language-"><code class="code-block"></code></pre>
+    </div>
+    
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Response</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy" data-line="5-6" data-start="1"><code class="code-block">{
+    &quot;data&quot;: {
+        &quot;id&quot;: &quot;1511761169727565829&quot;,
+        &quot;text&quot;: &quot;This is a single line tweet&quot;,
+        &quot;created_at&quot;: &quot;2022-04-06T17:42:04.000Z&quot;,
+        &quot;source&quot;: &quot;Twitter Web App&quot;
+    }
+}</code></pre>
+  </div>
+</div>
+
+<div class="alert alert-warning">
+  <div class="row">
+    <div class="col col-auto">
+      <h4 class="alert-heading" style="font-size:3rem;">💡</h4>
+    </div>
+    <div class="col"><p>Providing the possibility of selecting the field returned allows for reducing data volume and possibly the load on the server-side if the fields come from different subsystems. This is an approach that is quite useful but not often seen. It is similar to what JSON:API proposes with its <a href="https://jsonapi.org/format/#fetching-sparse-fieldsets">sparse fields</a> features.</p>
+</div>
+  </div>
+</div>
+
+<h2 id="expanding-author-data">Expanding author data</h2>
+
+<p>The only author’s piece of data that is directly available in a tweet is their id (<code>author_id</code>). Hopefully, we don’t need a separate call to the <a href="https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference">User lookup</a> <code>GET /users/:userId</code> operation. Indeed, we can request to expand resources linked to a tweet by using the <code>expansions</code> query parameter.</p>
+
+<div class="alert alert-warning">
+  <div class="row">
+    <div class="col col-auto">
+      <h4 class="alert-heading" style="font-size:3rem;">💡</h4>
+    </div>
+    <div class="col"><p>It’s pretty neat; it allows to get related data only when needed easily. Like with <code>tweet.fields</code>, it reduces data volume and possibly reduces response time and load on the server-side if the expanded elements come from other components.</p>
+</div>
+  </div>
+</div>
+
+<p>So to expand the author’s data, we put <code>author_id</code> in the <code>expansions</code> query parameter. It’s a comma-separated list; you can provide multiple values like with <code>tweet.fields</code>. Doing that will magically add the <code>author_id</code> field to the tweet. If you wish to get the <code>author_id</code> without expanding the author data, add it to the <code>tweet.fields</code> query parameter as we did in the previous request.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+   
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Request</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-get mr-2" style="font-size:1em;">GET</span><code class="language-http" style="background: transparent !important; overflow-wrap:break-word">https://api.twitter.com/2/tweets/:tweetId?tweet.fields=created_at,source&amp;expansions=author_id</code></div>
+    </div>
+     
+    <div class="col col-auto pl-0 pr-0">
+      <pre class="code-copy line-numbers language-"><code class="code-block"></code></pre>
+    </div>
+    
+  </div>
+</div>
+
+<p>The expanded elements will be returned in the <code>includes</code> property. In the case of user expanded data, they will be located in the <code>includes.users</code> list. We’ll see in a later request how to process them.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Response</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy" data-line="7,9-17" data-start="1"><code class="code-block">{
+    &quot;data&quot;: {
+        &quot;id&quot;: &quot;1511761169727565829&quot;,
+        &quot;text&quot;: &quot;This is a single line tweet&quot;,
+        &quot;source&quot;: &quot;Twitter Web App&quot;,
+        &quot;created_at&quot;: &quot;2022-04-06T17:42:04.000Z&quot;,
+        &quot;author_id&quot;: &quot;2943613557&quot;
+    },
+    &quot;includes&quot;: {
+        &quot;users&quot;: [
+            {
+                &quot;id&quot;: &quot;2943613557&quot;,
+                &quot;name&quot;: &quot;API Handyman&quot;,
+                &quot;username&quot;: &quot;apihandyman&quot;
+            }
+        ]
+    }
+}</code></pre>
+  </div>
+</div>
+
+<h2 id="adding-users-profile-image-url-field">Adding user’s profile image URL field</h2>
+
+<p>We only got a user’s default data when expanding the author’s data, hence their <code>id</code>, <code>username</code>, and <code>name</code>. But we need the author’s profile image URL. We can request it by using the <code>user.fields</code> query parameter. It works like the <code>tweet.fields</code> query parameter but for user resources (the author in our case).</p>
+
+<p>We set its value to <code>profile_image_url</code> to get the last piece of data we need. This additional field will go into the element representing the author in <code>includes.users</code> list.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+   
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Request</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-get mr-2" style="font-size:1em;">GET</span><code class="language-http" style="background: transparent !important; overflow-wrap:break-word">https://api.twitter.com/2/tweets/:tweetId?tweet.fields=created_at,source&amp;expansions=author_id&amp;user.fields=profile_image_url</code></div>
+    </div>
+     
+    <div class="col col-auto pl-0 pr-0">
+      <pre class="code-copy line-numbers language-"><code class="code-block"></code></pre>
+    </div>
+    
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Response</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy" data-line="15" data-start="1"><code class="code-block">{
+    &quot;data&quot;: {
+        &quot;id&quot;: &quot;1511761169727565829&quot;,
+        &quot;text&quot;: &quot;This is a single line tweet&quot;,
+        &quot;source&quot;: &quot;Twitter Web App&quot;,
+        &quot;created_at&quot;: &quot;2022-04-06T17:42:04.000Z&quot;,
+        &quot;author_id&quot;: &quot;2943613557&quot;
+    },
+    &quot;includes&quot;: {
+        &quot;users&quot;: [
+            {
+                &quot;id&quot;: &quot;2943613557&quot;,
+                &quot;name&quot;: &quot;API Handyman&quot;,
+                &quot;username&quot;: &quot;apihandyman&quot;,
+                &quot;profile_image_url&quot;: &quot;https://pbs.twimg.com/profile_images/966654273097490432/WPqaXZkf_normal.jpg&quot;
+            }
+        ]
+    }
+}</code></pre>
+  </div>
+</div>
+
+<h1 id="processing-and-rendering-the-data">Processing and rendering the data</h1>
+
+<p>Now we have all the data we need, let’s see how to process them to render simple text tweets and their authors à la Twitter.</p>
+
+<h2 id="rendering-a-one-line-tweet">Rendering a one line tweet</h2>
+
+<p>The directly related tweet data are pretty simple to get. The text (<code>text</code>), creation date (<code>created_at</code>), and name of the application that sent the tweet (<code>source</code>) are located in the <code>data</code> property that holds the requested tweet.</p>
+
+<p>The only transformation done on these pieces of data is formating the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> <code>created_at</code> date from <code>2022-04-06T17:42:04.000Z</code> to a local format.</p>
+
+<div class="alert alert-warning">
+  <div class="row">
+    <div class="col col-auto">
+      <h4 class="alert-heading" style="font-size:3rem;">💡</h4>
+    </div>
+    <div class="col"><p>It is recommended to return dates with time precision (<code>2022-04-06T17:42:04.000Z</code>) only when needed (which is the case here) because dealing with timezones is not always simple. You’ll notice the Z timezone is used which is also recommended. Dates with time precision should always be returned using this UTC offset (<a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">Coordinated universal time</a>).</p>
+</div>
+  </div>
+</div>
+
+<p>For the author’s data, you’ll need to get them from the <code>includes.users</code> list. Though there’s only one user, for now, it is recommended to select the user by looking for the one having an <code>id</code> equal to the tweet’s <code>author_id</code>.</p>
+
+<p>After sending the request, click on the Visualizer button in the response to see this rendering.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/rendering-simple-text-tweets-with-their-authors/02-rendering-a-one-line-tweet.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+   
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Request</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-get mr-2" style="font-size:1em;">GET</span><code class="language-http" style="background: transparent !important; overflow-wrap:break-word">https://api.twitter.com/2/tweets/:tweetId?tweet.fields=created_at,source&amp;expansions=author_id&amp;user.fields=profile_image_url</code></div>
+    </div>
+     
+    <div class="col col-auto pl-0 pr-0">
+      <pre class="code-copy line-numbers language-"><code class="code-block"></code></pre>
+    </div>
+    
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Response</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
+    &quot;data&quot;: {
+        &quot;author_id&quot;: &quot;2943613557&quot;,
+        &quot;created_at&quot;: &quot;2022-04-06T17:42:04.000Z&quot;,
+        &quot;id&quot;: &quot;1511761169727565829&quot;,
+        &quot;text&quot;: &quot;This is a single line tweet&quot;,
+        &quot;source&quot;: &quot;Twitter Web App&quot;
+    },
+    &quot;includes&quot;: {
+        &quot;users&quot;: [
+            {
+                &quot;name&quot;: &quot;API Handyman&quot;,
+                &quot;username&quot;: &quot;apihandyman&quot;,
+                &quot;profile_image_url&quot;: &quot;https://pbs.twimg.com/profile_images/966654273097490432/WPqaXZkf_normal.jpg&quot;,
+                &quot;id&quot;: &quot;2943613557&quot;
+            }
+        ]
+    }
+}</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Test script</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-js line-numbers code-collapsed code-copy" data-line="14-24,37" data-start="1"><code class="code-block">// Note: the HTTP status test is located in collection&#39;s Tests script
+
+
+const response = pm.response.json();
+if(response.data !== undefined){
+
+    /*-----------------------------------------------*/
+    /* Getting needed data from Twitter API response */
+    /*-----------------------------------------------*/
+
+
+    // The tweet author&#39;s data are returned only if expansions contains author_id
+    // The expanded data are located in include.users list
+    const author = response.includes.users.find(user =&gt; user.id === response.data.author_id);
+    const tweet = {
+        text: response.data.text, // Always returned
+        created_at: response.data.created_at, // Returned if requested in user.fields
+        source: response.data.source, // Returned if requested in user.fields 
+        author: {
+            name: author.name, // Always returned
+            username: author.username, //Always returned
+            profile_image_url: author.profile_image_url // Returned if requested in user.fields
+        }
+    }
+
+    /*------------*/
+    /* Visualizer */
+    /*------------*/
+
+    // Preparing data for HandlebarJS template
+    //----------------------------------------
+
+    // The tweet data (shown in upper left card)
+    const handlebarTweet =  {
+        text: tweet.text,
+        author: tweet.author,
+        created_at: new Date(tweet.created_at).toLocaleString(), // Formatting ISO8601 date returned by the API
+        source: tweet.source   
+    }
+
+    // The source of each tweet piece of data (shown in upper right card)
+    const handlebarTweetDataSource = {
+        text: &quot;data.text&quot;,
+        created_at: &quot;new Date(data.created_at).toLocaleString()&quot;,
+        source: &quot;data.source&quot;,
+        author: {
+            name: &quot;includes.users.find(user =&gt; user.id === data.author_id).name&quot;,
+            username: &quot;includes.users.find(user =&gt; user.id === data.author_id).username&quot;,
+            profile_image_url: `includes.users.find(
+    user =&gt; user.id === data.author_id)
+    .profile_image_url`
+        }
+
+    }
+
+    // The raw json data returned by Twitter API
+    const handlebarTweetJson = JSON.stringify(response, null, 2);
+
+    // Bootstrap and prismsjs css and js
+    const handlebarCssjs = {
+        bootstrap: pm.collectionVariables.get(&quot;template_cssjs_bootstrap&quot;),
+        prismsjs: pm.collectionVariables.get(&quot;template_cssjs_prismjs&quot;)
+    }
+
+    // Putting everything in a single object
+    // that will be passed to HandlebarJS template
+    const handlebarData = {
+        tweet: handlebarTweet,
+        tweetDataSource: handlebarTweetDataSource,
+        tweetJson: handlebarTweetJson,
+        cssjs: handlebarCssjs
+    };
+
+    // Handlebar HTML template
+    const handlebarTemplate = `
+        &lt;!-- CSS and JS --&gt;
+        {{{cssjs.bootstrap}}}
+        {{{cssjs.prismsjs}}}
+        &lt;!-- Content --&gt;
+        &lt;!-- Flex Container Start --&gt;
+        &lt;div class=&quot;d-flex flex-column&quot; style=&quot;font-size: larger;&quot;&gt;
+            &lt;!-- First Row Start --&gt;
+            &lt;div class=&quot;d-flex flex-row mb-2&quot;&gt;
+                &lt;!-- Rendered Data Card Start --&gt;
+                &lt;div class=&quot;card me-2&quot;&gt;
+                    &lt;h5 class=&quot;card-header&quot;&gt;Rendered Data&lt;/h5&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;div class=&quot;d-flex flex-row align-items-stretch&quot;&gt;
+                            &lt;div class=&quot;me-3&quot;&gt;
+                                &lt;img src=&quot;{{tweet.author.profile_image_url}}&quot; class=&quot;rounded-circle&quot;&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;&quot;&gt;
+                                &lt;h5 class=&quot;card-title&quot;&gt;{{tweet.author.name}}&lt;/h5&gt;
+                                &lt;h6 class=&quot;card-subtitle mb-2 text-muted&quot;&gt;@{{tweet.author.username}}&lt;/h6&gt;
+                                &lt;p class=&quot;card-text&quot;&gt;{{tweet.text}}&lt;/p&gt;
+                                &lt;p class=&quot;card-text text-muted&quot;&gt;{{tweet.created_at}} - {{tweet.source}}&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- Rendered Data Card End --&gt;
+                &lt;!-- Data Source Card Start --&gt;
+                &lt;div class=&quot;card me-2 flex-grow-1&quot; &gt;
+                    &lt;h5 class=&quot;card-header&quot;&gt;Data Source (JavaScript)&lt;/h5&gt;
+                    &lt;div class=&quot;card-body&quot; style=&quot;background-image:linear-gradient(to bottom,#2a2139 75%,#34294f)&quot;&gt;
+                        &lt;div class=&quot;d-flex flex-row align-items-stretch&quot;&gt;
+                            &lt;div class=&quot;me-3&quot;&gt;
+                                &lt;pre class=&quot;language-js p-0&quot; style=&quot;background: transparent !important&quot;&gt;&lt;code class=&quot;border-0 p-0&quot;&gt;{{tweetDataSource.author.profile_image_url}}&lt;/code&gt;&lt;/pre&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;&quot; &gt;
+                                &lt;h5 class=&quot;card-title&quot;&gt;&lt;code class=&quot;language-js border-0&quot; style=&quot;background: transparent !important&quot;&gt;{{tweetDataSource.author.name}}&lt;/code&gt;&lt;/h5&gt;
+                                &lt;h6 class=&quot;card-subtitle mb-2 text-muted&quot;&gt;@&lt;code class=&quot;language-js border-0&quot; style=&quot;background: transparent !important&quot;&gt;{{tweetDataSource.author.username}}&lt;/code&gt;&lt;/h6&gt;
+                                &lt;p class=&quot;card-text&quot;&gt;&lt;code class=&quot;language-js border-0&quot; style=&quot;background: transparent !important&quot;&gt;{{tweetDataSource.text}}&lt;/code&gt;&lt;/p&gt;
+                                &lt;p class=&quot;card-text text-muted&quot;&gt;&lt;code class=&quot;language-js border-0&quot; style=&quot;background: transparent !important&quot;&gt;{{tweetDataSource.created_at}}&lt;/code&gt; - &lt;code class=&quot;language-js border-0&quot; style=&quot;background: transparent !important&quot;&gt;{{data.source}}&lt;/code&gt;&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- Data Source Card End --&gt;
+            &lt;/div&gt;
+            &lt;!-- First Row End --&gt;
+            &lt;!-- Second Row Start --&gt;
+            &lt;div class=&quot;d-flex flex-row&quot;&gt;
+                &lt;!-- Response JSON Data Card Start --&gt;
+                &lt;div class=&quot;card me-2 mb-2 flex-grow-1&quot;&gt;
+                    &lt;h5 class=&quot;card-header&quot;&gt;Response Data (JSON)&lt;/h5&gt;
+                    &lt;div class=&quot;card-body p-0&quot;&gt;
+                        &lt;pre class=&quot;m-0 p-0&quot;&gt;&lt;code class=&quot;language-json border-0&quot;&gt;{{{tweetJson}}}&lt;/code&gt;&lt;/pre&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- Response JSON Data Card End --&gt;
+            &lt;/div&gt;
+            &lt;!-- Second Row End --&gt;
+        &lt;/div&gt;
+        &lt;!-- Flex Container End --&gt;
+    `;
+
+    // Set visualizer template and data
+    pm.visualizer.set(handlebarTemplate, handlebarData);
+}</code></pre>
+  </div>
+</div>
+
+<h2 id="rendering-a-multiline-tweet">Rendering a multiline tweet</h2>
+
+<p>If you replace the tweet id with one corresponding to a multiline tweet the rendering may not work very well, as all the text is shown on one line. In order to keep the newlines <code>\n</code> that may be present in the text field, you can add the style <code>white-space: pre-wrap</code> to the HTML tag holding that piece of data (in a true application you would do that using a separate CSS and not using an inline style).</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+   
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Request</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-get mr-2" style="font-size:1em;">GET</span><code class="language-http" style="background: transparent !important; overflow-wrap:break-word">https://api.twitter.com/2/tweets/:tweetId?tweet.fields=author_id,created_at,geo,id,source,text&amp;expansions=author_id&amp;user.fields=profile_image_url</code></div>
+    </div>
+     
+    <div class="col col-auto pl-0 pr-0">
+      <pre class="code-copy line-numbers language-"><code class="code-block"></code></pre>
+    </div>
+    
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Response</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy" data-line="3" data-start="1"><code class="code-block">{
+    &quot;data&quot;: {
+        &quot;text&quot;: &quot;This is a tweet\n- with\n- multiple\n- lines&quot;,
+        &quot;created_at&quot;: &quot;2022-04-06T17:43:08.000Z&quot;,
+        &quot;id&quot;: &quot;1511761439261925384&quot;,
+        &quot;source&quot;: &quot;Twitter Web App&quot;,
+        &quot;author_id&quot;: &quot;2943613557&quot;
+    },
+    &quot;includes&quot;: {
+        &quot;users&quot;: [
+            {
+                &quot;profile_image_url&quot;: &quot;https://pbs.twimg.com/profile_images/966654273097490432/WPqaXZkf_normal.jpg&quot;,
+                &quot;id&quot;: &quot;2943613557&quot;,
+                &quot;username&quot;: &quot;apihandyman&quot;,
+                &quot;name&quot;: &quot;API Handyman&quot;
+            }
+        ]
+    }
+}</code></pre>
+  </div>
+</div>
+
+<p>After sending the request, click on the Visualizer button in the response to see this rendering.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/rendering-simple-text-tweets-with-their-authors/03-rendering-a-multiline-tweet.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<h2 id="rendering-multiple-tweets-from-multiple-authors">Rendering multiple tweets from multiple authors</h2>
+
+<p>When retrieving multiple tweets from different authors, it works the same. The only difference is that when using <code>GET /tweets</code> the data field becomes a list to hold more than one tweet. We just have to go through that list and process each element just like we did with a single tweet.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+   
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Request</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-get mr-2" style="font-size:1em;">GET</span><code class="language-http" style="background: transparent !important; overflow-wrap:break-word">https://api.twitter.com/2/tweets?ids={{tweet_id_text}},{{tweet_id_text_multiline}},{{tweet_id_other_author}}&amp;tweet.fields=author_id,created_at,geo,id,source,text&amp;expansions=author_id&amp;user.fields=profile_image_url</code></div>
+    </div>
+     
+    <div class="col col-auto pl-0 pr-0">
+      <pre class="code-copy line-numbers language-"><code class="code-block"></code></pre>
+    </div>
+    
+  </div>
+</div>
+
+<p>In the provided example, there are 3 tweets from 2 different authors in the list. That means the <code>includes.users</code> list now contains the data for 2 authors, but it does not affect the way we look for their data. Looking for the user whose <code>id</code> matches some <code>author_id</code> works the same.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Response</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
+    &quot;data&quot;: [
+        {
+            &quot;text&quot;: &quot;This is a single line tweet&quot;,
+            &quot;source&quot;: &quot;Twitter Web App&quot;,
+            &quot;id&quot;: &quot;1511761169727565829&quot;,
+            &quot;created_at&quot;: &quot;2022-04-06T17:42:04.000Z&quot;,
+            &quot;author_id&quot;: &quot;2943613557&quot;
+        },
+        {
+            &quot;text&quot;: &quot;This is a tweet\n- with\n- multiple\n- lines&quot;,
+            &quot;source&quot;: &quot;Twitter Web App&quot;,
+            &quot;id&quot;: &quot;1511761439261925384&quot;,
+            &quot;created_at&quot;: &quot;2022-04-06T17:43:08.000Z&quot;,
+            &quot;author_id&quot;: &quot;2943613557&quot;
+        },
+        {
+            &quot;text&quot;: &quot;I’m on the verge of starting a new blog about non API stuff such as my Reaper/Midi/Helix tinkering (that would at help me not to forget obscure configuration stuff that is not easily found)&quot;,
+            &quot;source&quot;: &quot;Twitter for iPhone&quot;,
+            &quot;id&quot;: &quot;1291806136774074368&quot;,
+            &quot;created_at&quot;: &quot;2020-08-07T18:39:18.000Z&quot;,
+            &quot;author_id&quot;: &quot;1327524403&quot;
+        }
+    ],
+    &quot;includes&quot;: {
+        &quot;users&quot;: [
+            {
+                &quot;username&quot;: &quot;apihandyman&quot;,
+                &quot;name&quot;: &quot;API Handyman&quot;,
+                &quot;profile_image_url&quot;: &quot;https://pbs.twimg.com/profile_images/966654273097490432/WPqaXZkf_normal.jpg&quot;,
+                &quot;id&quot;: &quot;2943613557&quot;
+            },
+            {
+                &quot;username&quot;: &quot;arno_di_loreto&quot;,
+                &quot;name&quot;: &quot;Arnaud Lauret&quot;,
+                &quot;profile_image_url&quot;: &quot;https://pbs.twimg.com/profile_images/1342523325969477632/AuqZ5guV_normal.jpg&quot;,
+                &quot;id&quot;: &quot;1327524403&quot;
+            }
+        ]
+    }
+}</code></pre>
+  </div>
+</div>
+
+<div class="alert alert-warning">
+  <div class="row">
+    <div class="col col-auto">
+      <h4 class="alert-heading" style="font-size:3rem;">💡</h4>
+    </div>
+    <div class="col"><p>Having put the expanded author on the tweet is a very good design approach. It can greatly reduce the data volume in Twitter’s use case. Imagine retrieving a hundred tweets sent by a single person. Without that design, the data volume would be augmented by 99 x the author’s data volume. The downside is that some work is needed on the consumer side to put everything together, but it’s not that complicated to do. There’s a balance to find between providing ready-to-use data and data volume/server load, in this case, it’s pretty good.</p>
+</div>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Test script</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-js line-numbers code-collapsed code-copy" data-line="10-28" data-start="1"><code class="code-block">// Note: the HTTP status test is located in collection&#39;s Tests script
+
+const response = pm.response.json();
+if(response.data !== undefined){
+
+    /*-----------------------------------------------*/
+    /* Getting needed data from Twitter API response */
+    /*-----------------------------------------------*/
+
+    const tweets = [];
+    // When using GET /tweets, response.data is a list
+    response.data.forEach(dataItem =&gt; {
+        // The tweet author&#39;s data are returned only if expansions contains author_id
+        // The expanded data are located in include.users list at root level
+        // (that means includes are not at each tweet level)
+        const author = response.includes.users.find(user =&gt; user.id === dataItem.author_id);
+        const tweet = {
+            text: dataItem.text, // Always returned
+            created_at: dataItem.created_at, // Returned if requested in user.fields
+            source: dataItem.source, // Returned if requested in user.fields 
+            author: {
+                name: author.name, // Always returned
+                username: author.username, //Always returned
+                profile_image_url: author.profile_image_url // Returned if requested in user.fields
+            }
+        }
+        tweets.push(tweet);
+    });
+
+    /*------------*/
+    /* Visualizer */
+    /*------------*/
+
+    // Preparing data for HandlebarJS template
+    //----------------------------------------
+
+    const handlebarTweetsAndDataSources = [];
+    tweets.forEach(function callback(tweet,index){
+        // The tweets data (shown in first column cards)
+        const handlebarTweet = {
+            text: tweet.text,
+            author: tweet.author,
+            created_at: new Date(tweet.created_at).toLocaleString(), // Formatting ISO8601 date returned by the API
+            source: tweet.source   
+        };
+        // The source of each tweet piece of data (shown in upper right card)
+        const handlebarTweetDataSource = {
+            text: `data[${index}].text`,
+            created_at: `new Date(data[${index}].created_at).toLocaleString()`,
+            source: `data[${index}].source`,
+            author: {
+                name: `includes.users.find(user =&gt; user.id === data[${index}].author_id).name`,
+                username: `includes.users.find(user =&gt; user.id === data[${index}].author_id).username`,
+                profile_image_url: `includes.users.find(
+    user =&gt; user.id === data[${index}].author_id)
+    .profile_image_url`
+            }
+        };
+        handlebarTweetsAndDataSources.push({
+            tweet: handlebarTweet,
+            tweetDataSource: handlebarTweetDataSource
+        })
+    });
+    
+    // The raw json data returned by Twitter API
+    const handlebarTweetsJson = JSON.stringify(response, null, 2);
+
+    // Bootstrap and prismsjs css and js
+    const handlebarCssjs = {
+        bootstrap: pm.collectionVariables.get(&quot;template_cssjs_bootstrap&quot;),
+        prismsjs: pm.collectionVariables.get(&quot;template_cssjs_prismjs&quot;)
+    }
+
+    // Putting everything in a single object
+    // that will be passed to HandlebarJS template
+    const handlebarData = {
+        tweetsAndDataSources: handlebarTweetsAndDataSources,
+        tweetsJson: handlebarTweetsJson,
+        cssjs: handlebarCssjs
+    };
+console.log(handlebarData)
+    // Handlebar HTML template
+    const handlebarTemplate = `
+        &lt;!-- CSS and JS --&gt;
+        {{{cssjs.bootstrap}}}
+        {{{cssjs.prismsjs}}}
+        &lt;!-- Content --&gt;
+        &lt;!-- Flex Container Start --&gt;
+        &lt;div class=&quot;d-flex flex-column&quot; style=&quot;font-size: larger;&quot;&gt;
+            {{#each tweetsAndDataSources}}
+            &lt;!-- First Row Start --&gt;
+            &lt;div class=&quot;d-flex flex-row mb-2&quot;&gt;
+                &lt;!-- Rendered Data Card Start --&gt;
+                &lt;div class=&quot;card me-2&quot; style=&quot;width:40rem;&quot;&gt;
+                    &lt;h5 class=&quot;card-header&quot;&gt;Rendered Data&lt;/h5&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;div class=&quot;d-flex flex-row align-items-stretch&quot;&gt;
+                            &lt;div class=&quot;me-3&quot;&gt;
+                                &lt;img src=&quot;{{tweet.author.profile_image_url}}&quot; class=&quot;rounded-circle&quot;&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;&quot;&gt;
+                                &lt;h5 class=&quot;card-title&quot;&gt;{{tweet.author.name}}&lt;/h5&gt;
+                                &lt;h6 class=&quot;card-subtitle mb-2 text-muted&quot;&gt;@{{tweet.author.username}}&lt;/h6&gt;
+                                &lt;p class=&quot;card-text&quot; style=&quot;white-space: pre-wrap&quot;&gt;{{tweet.text}}&lt;/p&gt;
+                                &lt;p class=&quot;card-text text-muted&quot;&gt;{{tweet.created_at}} - {{tweet.source}}&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- Rendered Data Card End --&gt;
+                &lt;!-- Data Source Card Start --&gt;
+                &lt;div class=&quot;card me-2 flex-grow-1&quot; &gt;
+                    &lt;h5 class=&quot;card-header&quot;&gt;Data Source (JavaScript)&lt;/h5&gt;
+                    &lt;div class=&quot;card-body&quot; style=&quot;background-image:linear-gradient(to bottom,#2a2139 75%,#34294f)&quot;&gt;
+                        &lt;div class=&quot;d-flex flex-row align-items-stretch&quot;&gt;
+                            &lt;div class=&quot;me-3&quot;&gt;
+                                &lt;pre class=&quot;language-js p-0&quot; style=&quot;background: transparent !important&quot;&gt;&lt;code class=&quot;border-0 p-0&quot;&gt;{{tweetDataSource.author.profile_image_url}}&lt;/code&gt;&lt;/pre&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;&quot; &gt;
+                                &lt;h5 class=&quot;card-title&quot;&gt;&lt;code class=&quot;language-js border-0&quot; style=&quot;background: transparent !important&quot;&gt;{{tweetDataSource.author.name}}&lt;/code&gt;&lt;/h5&gt;
+                                &lt;h6 class=&quot;card-subtitle mb-2 text-muted&quot;&gt;@&lt;code class=&quot;language-js border-0&quot; style=&quot;background: transparent !important&quot;&gt;{{tweetDataSource.author.username}}&lt;/code&gt;&lt;/h6&gt;
+                                &lt;p class=&quot;card-text&quot;&gt;&lt;code class=&quot;language-js border-0&quot; style=&quot;background: transparent !important&quot;&gt;{{tweetDataSource.text}}&lt;/code&gt;&lt;/p&gt;
+                                &lt;p class=&quot;card-text text-muted&quot;&gt;&lt;code class=&quot;language-js border-0&quot; style=&quot;background: transparent !important&quot;&gt;{{tweetDataSource.created_at}}&lt;/code&gt; - &lt;code class=&quot;language-js border-0&quot; style=&quot;background: transparent !important&quot;&gt;{{data.source}}&lt;/code&gt;&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- Data Source Card End --&gt;
+            &lt;/div&gt;
+            &lt;!-- First Row End --&gt;
+            {{/each}}
+            &lt;!-- Second Row Start --&gt;
+            &lt;div class=&quot;d-flex flex-row&quot;&gt;
+                &lt;!-- Response JSON Data Card Start --&gt;
+                &lt;div class=&quot;card me-2 mb-2 flex-grow-1&quot;&gt;
+                    &lt;h5 class=&quot;card-header&quot;&gt;Response Data (JSON)&lt;/h5&gt;
+                    &lt;div class=&quot;card-body p-0&quot;&gt;
+                        &lt;pre class=&quot;m-0 p-0&quot;&gt;&lt;code class=&quot;language-json border-0&quot; style=&quot;overflow:scroll&quot;&gt;{{{tweetsJson}}}&lt;/code&gt;&lt;/pre&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!-- Response JSON Data Card End --&gt;
+            &lt;/div&gt;
+            &lt;!-- Second Row End --&gt;
+        &lt;/div&gt;
+        &lt;!-- Flex Container End --&gt;
+    `;
+
+    // Set visualizer template and data
+    pm.visualizer.set(handlebarTemplate, handlebarData);
+}</code></pre>
+  </div>
+</div>
+
+<p>After sending the request, click on the Visualizer button in the response to see this rendering.</p>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/rendering-simple-text-tweets-with-their-authors/04-rendering-multiple-tweets.png" class="figure-img img-fluid" /></figure>
+</div>
+
+<h1 id="api-design-and-documentation-take-aways">API design and documentation take aways</h1>
+
+<p>Retrieving, processing, and rendering simple text tweets should be quite simple now that you have read this tutorial. Let’s recap some interesting API design and documentation takeaways.</p>
+
+<h2 id="api-design">API Design</h2>
+
+<p>Here’s what we can learn from Twitter v2 API design:</p>
+
+<ul>
+  <li>Encapsulating data in a <code>data</code> (or other named) field allows adding additional data and metadata without mixing them with the “real” business/subject matter data. The Twitter API design is similar to the <a href="https://jsonapi.org/">JSON:API</a> format.</li>
+  <li>Providing the possibility of selecting the field returned and the sub-ressources expanded allows to reduce data volume and also possibly reduce the response time and the load on the server-side if those data come from different subsystems. This is an approach that is quite useful but not often seen. It is similar to what the <a href="https://jsonapi.org/">JSON:API</a> format proposes.</li>
+  <li>Putting the expanded sub-resources at the root level and not directly in each element allows for reducing data volumes.</li>
+  <li>Always keep a balance between solving problems (data volume, response time, server loads) and bothering consumers. In the Twitter case, that balance is very good when it comes to making the link between the tweets and the expanded users.</li>
+  <li>Using <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> date format with <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a> timezone is a good practice (I recommend reading this post by Jason Harmon on the topic: <a href="https://apiux.com/2013/03/20/5-laws-api-dates-and-times/">The 5 laws of API dates and times</a>)</li>
+</ul>
+
+<h2 id="api-documentation">API Documentation</h2>
+
+<p>API documentation is often split in 2 separate types (though there are actually more, but that’s another story): reference documentation and use case documentation. We can compare the reference documentation to ingredients if the use case documentation is a recipe. With this tutorial, I tried to create the ideal use case documentation I look for when using APIs. It’s far from perfect, but it’s a good start.</p>
+
+<p>Here are my takeaways on the topic:</p>
+
+<ul>
+  <li>Even a single operation can benefit from use-case-oriented documentation. In this case, I think it’s useful to understand how the Twitter API works globally (and avoid needless API calls, to get the tweet author for instance).</li>
+  <li>Use-case-oriented documentation should not only cover how to make API calls but also how to process the returned data. That’s especially true in that case because data need to be processed to be put together (though it’s not that complicated work).</li>
+  <li>When creating Postman collection-based documentation, providing several requests to show step by step how to build a complex one seems interesting. It allows explaining several features separately.</li>
+  <li>Providing annotated examples of code in test scripts showing how to manipulate the returned data is also interesting.</li>
+  <li>Providing a mock server returning the data needed by the request of the collection allows avoiding requiring creating an account to use the API (Twitter in this case). It has some limitations (not really possible to modify the requests) but all requests and their visualizations work.</li>
+  <li>And last but not least, taking advantage of the visualizer to show in a more visual way how to manipulate the returned data looks definitely promising.</li>
+</ul>
+
+<p>I will definitely push more in those directions for my next API tutorials.</p>
+
+<h1 id="appendices">Appendices</h1>
+
+<h2 id="notes-about-the-collection">Notes about the collection</h2>
+
+<p>The collection takes advantage of</p>
+
+<ul>
+  <li>Environment and collection variables</li>
+  <li>Collection level Pre-Request and Test scripts</li>
+  <li>Request level test scripts</li>
+  <li>Response visualizers</li>
+  <li>Third-party CSS and JS in the response visualizers</li>
+</ul>
+
+<h3 id="environment-variables">Environment variables</h3>
+
+<p>The collection requires an environment containing the variables defined in the table below. You can fork the following environments:</p>
+
+<ul>
+  <li><a href="https://www.postman.com/apihandyman/workspace/twitter-v2-api-tips-and-tricks/environment/143378-4f632c31-7cc7-43bb-a0b0-1dcce3edbec9">Rendering simple text tweets with their authors Mock</a> environment: Use a mock. It’s ready to use, there’s nothing to modify. You’ll be limited to the data the mock returns and won’t be able to modify the requests but all visualizations will work.</li>
+  <li><a href="https://www.postman.com/apihandyman/workspace/twitter-v2-api-tips-and-tricks/environment/143378-5d07ba2d-7410-4670-b808-03657cb2ff04">Rendering simple text tweets with their authors Production</a> environment: Use the real Twitter v2 API. It requires you to set a Twitter API bearer token (see below) but you’ll be able to choose the tweets used in the requests and modify the requests.</li>
+</ul>
+
+<div class="alert alert-danger">
+  <div class="row">
+    <div class="col col-auto">
+      <h4 class="alert-heading" style="font-size:3rem;">⛔</h4>
+    </div>
+    <div class="col"><p>️Never store API tokens in initial value, use the current value. Read <a href="https://blog.postman.com/how-to-use-api-keys/">How to use API Keys</a> to learn more.</p>
+</div>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>VARIABLE</strong></th>
+      <th><strong>DESCRIPTION</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>api_server_basepath</td>
+      <td>The server and base path of the API. For the production Twitter it’s <a href="https://api.twitter.com/2">https://api.twitter.com/2</a> and for the mock it’s <a href="https://46c813b3-7bd4-4bf7-9eac-1f56f2ccc813.mock.pstmn.io">https://46c813b3-7bd4-4bf7-9eac-1f56f2ccc813.mock.pstmn.io</a></td>
+    </tr>
+    <tr>
+      <td>twitter_token</td>
+      <td>(Only for production environment) A Twitter API bearer token (Read <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens">Twitter API documentation</a> to get one) used in Authorization tab of the collection. Without this value <a href="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/">you’ll get a surprise error message</a> when sending a request.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="collection-variables">Collection variables</h3>
+
+<p>The collection uses the following collection variables in the requests:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>VARIABLE</strong></th>
+      <th><strong>DESCRIPTION</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tweet_id_text</td>
+      <td>A real working tweet id. Feel free to update with one of your likings. To get this id, go to the Twitter website and open a tweet by clicking on it. You’ll see a URL like this one <a href="https://twitter.com/apihandyman/status/1387820661742112771">https://twitter.com/apihandyman/status/1387820661742112771</a> , the id is number number after status. Used in all requests except “Rendering a multiline tweet”.</td>
+    </tr>
+    <tr>
+      <td>tweet_id_text_multiline</td>
+      <td>The id of a multiline tweet. Feel free to update with one of your likings. To get this id, go to the Twitter website and open a tweet by clicking on it. You’ll see a URL like this one <a href="https://twitter.com/apihandyman/status/1387820661742112771">https://twitter.com/apihandyman/status/1387820661742112771</a> , the id is number number after status. Used only in the “Rendering a multiline tweet” and “Rendering multiple tweets from multiple authors” requests.</td>
+    </tr>
+    <tr>
+      <td>tweet_id_other_author</td>
+      <td>The id of a tweet of a different author than the previous ones. Feel free to update with one of your likings. To get this id, go to the Twitter website and open a tweet by clicking on it. You’ll see a URL like this one <a href="https://twitter.com/apihandyman/status/1387820661742112771">https://twitter.com/apihandyman/status/1387820661742112771</a> , the id is number number after status. Used only in the “Rendering multiple tweets from multiple authors” requests.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>There are other collection variables used by Pre-request and Test scripts that shouldn’t be modified (unless you want to break things):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>VARIABLE</strong></th>
+      <th><strong>DESCRIPTION</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>expected_environment_variables</td>
+      <td>The list of environment variable needed to make the collection work. Used by the collection level Pre-request script to avoid sending requests without the Twitter API bearer token. Look at <a href="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/">this collection/post</a> to learn more about that Postman trick (though the version here is slightly modified).</td>
+    </tr>
+    <tr>
+      <td>expected_environment_variables_defaults</td>
+      <td>Contains the default values of expected_environment_variables. If you forked the environment that comes with that collection without updating the Twitter API bearer token value, the collection Pre-request script will tell you.</td>
+    </tr>
+    <tr>
+      <td>template_cssjs_bootstrap</td>
+      <td>Bootstrap CSS and JS used in the Visualizer to simply bring a beautiful style to HTML Handlebar templates. Look at <a href="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/">this collection/post</a> to learn more about that Postman trick.</td>
+    </tr>
+    <tr>
+      <td>template_cssjs_prismjs</td>
+      <td>PrismJS CSS and JS used to style the code samples in the HTML Handlebar templates used in the visualizer. It’s the same Postman trick as the bootstrap one (importing third party CSS and JS in Visualizer).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="collection-level-pre-request-script">Collection level pre-request script</h3>
+
+<p>The collection level pre-request script contains some code that runs before sending any of the collection’s requests. Here, it checks an environment containing appropriate variables has been selected. It takes advantage of the <code>expected_environment_variables</code> and <code>expected_environment_variables_defaults</code> collection variables for its configuration.</p>
+
+<h3 id="collection-level-tests-script">Collection level tests script</h3>
+
+<p>The collection level tests script contains some code that runs after any of the collection’s requests has returned. Here it checks there’s no error. Note, at the moment of writing, there’s a bug in Twitter v2 API, a <code>GET /tweets/:tweeitId</code> with a non-existing tweet id returns a <code>200 OK</code> (with an errors property) instead of a <code>404 Not Found</code>.</p>
+
+<h3 id="request-level-tests-script">Request level tests script</h3>
+
+<p>The request level tests script contains code that runs after the request has returned. Here, in the requests of the “Processing and rendering the data” folder, if some data is returned by the Twitter API (data field is not undefined), the data are processed and then passed to a HandlebarJS template for the visualizer.</p>
+
+<h3 id="response-visualizer">Response visualizer</h3>
+
+<p>The visualizer code (in request level tests scripts) takes advantage of the standard HandlebarJS templates but adds some styling with:</p>
+
+<ul>
+  <li><a href="https://getbootstrap.com/">Bootstrap</a> for general HTML styling</li>
+  <li><a href="https://prismjs.com/">PrismJS</a> to highlight code snippets</li>
+</ul>
+
+<p>Check the “<a href="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/">How to use Bootstrap in Postman visualizer</a>” collection/post to learn more about how to use third-party CSS and JS in visualizer templates.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Let’s learn to use Twitter v2 API tweets lookup operations to render simple text tweets and their author just like Twitter does. We’ll learn a few things about API design and API documentation in general and Postman based API documentation in particular in the making. I hope this will give you some ideas for the design and documentation of your API.]]></summary></entry><entry><title type="html">When internal API platform billing model collides with API-First strategy</title><link href="https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy/" rel="alternate" type="text/html" title="When internal API platform billing model collides with API-First strategy" /><published>2022-04-20T00:00:00-05:00</published><updated>2022-04-20T00:00:00-05:00</updated><id>https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy</id><content type="html" xml:base="https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy/"><![CDATA[<p>An internal API-first strategy will inevitably raise budgets questions; you must be aware of that. One of them is who will pay for the brand new API platform and how? The success of an internal API-first strategy may depend on the billing model of the API platform.</p>
 
 <!--more-->
 
@@ -270,7 +1454,7 @@ You can either:</p>
   
   <div class="card-body">
     <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
-      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-post mr-2" style="font-size:1em;">POST</span><code class="language-http" style="background: transparent !important">https://www.dnd5eapi.co/graphql</code></div>
+      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-post mr-2" style="font-size:1em;">POST</span><code class="language-http" style="background: transparent !important; overflow-wrap:break-word">https://www.dnd5eapi.co/graphql</code></div>
     </div>
      
     <div class="col col-auto pl-0 pr-0">
@@ -762,17 +1946,44 @@ We may also learn a few API design, implementation, and documentation principles
 And icing on the cake, the technique shown in this post can be applied on any API.
 <!--more--></p>
 
-<div class="alert alert-info"><h4 class="alert-heading">Twitter v2 API Tip And Tricks</h4><hr />
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Twitter API v2 Tips and Tricks Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
 <p>This post is a “Twitter v2 API Tips And Tricks Post” in which I share with Postman collections the tips and tricks I learn while using Twitter v2 API.
 You can either:</p>
 
 <ul>
   <li>Read this post</li>
-  <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/twitter-v2-api-tips-and-tricks/documentation/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229">Postman network</a></li>
-  <li>Use this <a href="https://god.gw.postman.com/run-collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=collection%2Ffork&amp;collection-url=entityId%3D143378-8f12c1ed-f930-4e0d-8baf-c8a949910229%26entityType%3Dcollection%26workspaceId%3D16b83fae-c500-4387-b79c-0c72565d1d0f#?env%5BGuess%20how%20Tweets%20lookup%20parameters%20works%5D=W3sia2V5IjoidHdpdHRlcl90b2tlbiIsInZhbHVlIjoiUFVUIFlPVVIgVE9LRU4gSU4gQ1VSUkVOVCBWQUxVRSBPRiBUV0lUVEVSIFRPS0VOIEVOVklST05NRU5UIFZBUklBQkxFIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6InNlY3JldCJ9XQ=="><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
-  <li>Get the collection from <a href="https://github.com/apihandyman/twitter-tips-and-tricks/tree/main/guess-how-tweets-lookup-parameters-work">Github</a> to import it in Postman. (Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after fork)</li>
+  <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/16b83fae-c500-4387-b79c-0c72565d1d0f/collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=share&amp;creator=143378">Postman network</a></li>
+  <li>Use this <a href="https://god.gw.postman.com/run-collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=collection%2Ffork&amp;collection-url=entityId%3D143378-8f12c1ed-f930-4e0d-8baf-c8a949910229%26entityType%3Dcollection%26workspaceId%3D16b83fae-c500-4387-b79c-0c72565d1d0f#?env%5BGuess%20how%20Tweets%20lookup%20parameters%20work%5D=W3sia2V5IjoidHdpdHRlcl90b2tlbiIsInZhbHVlIjoiUFVUIFlPVVIgVE9LRU4gSU4gQ1VSUkVOVCBWQUxVRSBPRiBUV0lUVEVSIFRPS0VOIEVOVklST05NRU5UIFZBUklBQkxFIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6InNlY3JldCIsInNlc3Npb25WYWx1ZSI6IkFBQUFBQUFBQUFBQUFBQUFBQUFBQVAlMkZFWXdFQUFBQUFkMjRIOURVeTZpNk5wbkpjTks4UzhjUnE2U1klM0ROT0pmZ3BvN1NDTDJiS2wxR2dXRjZERjd2RmQ3MnJPNEdKeWExSkRSM1RPTlZBdmFvZCIsInNlc3Npb25JbmRleCI6MH1d"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
+  <li>Get the collection from <a href="https://github.com/apihandyman/twitter-api-v2-tips-and-tricks/tree/main/guess-how-tweets-lookup-parameters-work">Github</a> to import it in Postman. (Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after fork)</li>
 </ul>
-
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list border-left">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          
+          <li class="list-group-item active">What can we learn from tweets lookup error responses of Twitter v2 API?</li>
+          
+        
+          
+          
+          <li class="list-group-item"><a href="/rendering-simple-text-tweets-with-their-authors/">Rendering simple text tweets with their authors</a></li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
 </div>
 
 <h1 id="twitter-v2-api-tweets-lookup">Twitter v2 API Tweets Lookup</h1>
@@ -4730,114 +5941,4 @@ So all types of APIs belong to a business domain, the only visible ones being bu
   </tbody>
 </table>
 
-<p>In next post, we’ll discuss the importance of <a href="/organize-apis-around-business-domains-and-capabilities-not-tools/">organizing APIs around business domains and capabilities, not tools</a>.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry><entry><title type="html">Building a healthy and profitable relationship between tools and specifications</title><link href="https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications/" rel="alternate" type="text/html" title="Building a healthy and profitable relationship between tools and specifications" /><published>2022-03-09T00:00:00-06:00</published><updated>2022-03-09T00:00:00-06:00</updated><id>https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications</id><content type="html" xml:base="https://apihandyman.io/building-a-healthy-and-profitable-relationship-between-tools-and-specifications/"><![CDATA[<p>We may never have a clear answer to the question “what comes first? Tools or Specifications?”. What is sure is people create tools or specifications based on their needs. Those tools and specifications, like OpenAPI, AsyncAPI, or JSON Schema, are tightly intricated. What could be done to build a healthy and profitable relationship?
-<!--more--></p>
-
-<p><em>This post’s banner is a diagram of the six possible types of symbiotic relationship, from mutual benefit to mutual harm. Symbiosis (from Greek , symbíōsis, “living together”, from , sýn, “together”, and , bíōsis, “living”) is any type of a close and long-term biological interaction between two different biological organisms, be it mutualistic, commensalistic, or parasitic. The organisms, each termed a symbiont, must be of different species.
-Source <a href="https://en.wikipedia.org/wiki/Symbiosis">Symbiosis - Wikipedia</a></em></p>
-
-<p><em>Special thanks to <a href="https://twitter.com/bpedro/status/1501192001269776389?s=20&amp;t=w9IgXoM8o6sHIrcxXg5BJQ">Bruno Pedro for raising the “who’s first” question</a> while I was tweeting on that “no tools, no standard/specification” topic.</em></p>
-
-<h1 id="why-do-specifications-need-tools--and-reverse">Why do specifications need tools  and reverse?</h1>
-
-<p>Let’s take an example. I could talk about the OpenAPI Specification but to change I’ll talk about <a href="https://json-schema.org/">JSON Schema</a> (which is actually used by OpenAPI).</p>
-
-<p>JSON Schema aims to describe formally your data formats. For instance, if I build a command-line tool that needs a configuration file. I can define its structure using a JSON Schema without writing a single line of my application code (I’m in the design first/spec first team!).</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">A JSON Schema</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
-    &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
-    &quot;title&quot;: &quot;SuperCliConfiguration&quot;,
-    &quot;required&quot;: [
-        &quot;sourceRepository&quot;
-    ],
-    &quot;properties&quot;: {
-        &quot;sourceRepository&quot;: {
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;pattern&quot;: &quot;^https?://.*.git$&quot;
-        }
-    }
-}</code></pre>
-  </div>
-</div>
-
-<p>The JSON Schema specification is human-readable and as an (experienced) human being, I can see that, in the “SuperCliConfiguration” schema, the property “sourceRepository” is required and it must be a URL ending with “.git”.</p>
-
-<p>But not all human beings can read such a format easily, especially when it describes complex schemas. And not all of them are happy reading JSON. So it is nicer to show them a rendering that is more accessible.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/building-a-healthy-and-profitable-relationship-between-tools-and-specifications/json-schema-rendering.png" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>Such documentation tool taking advantage of JSON Schema is great in itself, that enhances my tool’s documentation. But it would be a pity to confine this format to documentation.</p>
-
-<p>Such a specification document is interestingly used in code. I can use this schema with the <a href="https://ajv.js.org/">ajv</a> library to check that a configuration file is valid without writing much code.</p>
-
-<p>And that’s not all, the schema I have created is not only interesting for me. If someone else wants to build a tool that generates my tool’s configuration file based on some data they have, they can take advantage of my JSON Schema to do so.</p>
-
-<p>A specification without tools will never be used widely and will probably disappear quickly. Indeed, without tools taking advantage of it, what’s the point of a specification? It’s like writing a musical score and never playing it.</p>
-
-<p>The tools specifications relationship is not a one-way one. People creating tools can avoid losing time reinventing the wheel by taking advantage of specifications.</p>
-
-<p>And even more important, tools enhance their interoperability by using specifications. They share a kind of “standard” (not all specifications are strictly standard anointed by some standard organization) easing communication with other tools (in a broad sense, it’s not only about APIs). And, icing on the cake, those interoperable tools using specifications become part of a greater whole, enhancing their visibility, letting them participate in various ecosystems.</p>
-
-<p>So, no specifications without tools.
-And “not no tools without specifications”, but better tools with specifications.
-But what can be done on both sides to ensure a healthy relationship profitable to everyone involved?</p>
-
-<h1 id="tools-perspective">Tools perspective</h1>
-
-<p>As someone involved in the creation of a tool that could take advantage of a specification, I would expect the following when looking for information about a specification:</p>
-
-<ul>
-  <li>A clean short description of what the specification does, what problems it is trying to solve</li>
-  <li>A few use cases examples that show me how the specification could be or actually is used in the real world, accompanied by short code samples</li>
-  <li>An exhaustive list of complete use cases, explaining everything in details</li>
-  <li>An exhaustive, example-based, description of every element of the specification</li>
-  <li>Some reference implementations</li>
-  <li>Obviously the technical documentation à la RFC (for the purists)</li>
-</ul>
-
-<p>I also hope any fashion of presenting information and teaching to be used. I expect not only text but also figures, interactive diagrams, tutorials, videos, ready-to-use git repositories, … In my wildest dreams, I would love to see also training and certifications.</p>
-
-<p>If you’ve read me or seen me talking about API DX (Developer eXperience) and documentation, what is described above should sound vaguely familiar. With modern web APIs, we’ve been used to be able to understand and use an API in no time, easily. Being provided with information and helper material/tools in many forms. That should be the same for anything, and specifications are no exception.</p>
-
-<p>Not taking care of the IX, Implementer eXperience may seriously hinder a specification adoption. It may also lead to incomplete and even invalid implementation, hindering, even more, the specification adoption.</p>
-
-<h1 id="specification-perspective">Specification perspective</h1>
-
-<p>As someone who is involved in the creation of a specification or as a user of the tool taking advantage of a specification, I expect the following from implementers:</p>
-
-<ul>
-  <li>Explain from a high perspective why the spec is used in the tool</li>
-  <li>Explicitly state which version(s) of the specification is (are) supported</li>
-  <li>Explicitly state which portion/feature/part of the spec is supported and for what purpose</li>
-  <li>Explicitly state which portion/feature/part of the spec is not supported (and possibly why)</li>
-  <li>Provide a roadmap of specification support (for instance, for OpenAPI, <a href="/we-need-to-talk-openapi-3-is-4-years-old-but-swagger-2-is-still-predominant/">knowing if 3.0 and 3.1 support is planned and for when is welcomed</a>)</li>
-</ul>
-
-<p>People creating specs AND tools’ users need to know how specifications are actually used.</p>
-
-<p>Regarding specification creators, some could object “why would I do extra work for them”. Well, “they” work hard on defining a specification for the community, so be nice to them, what they do is good for you remember? Your tool becomes part of a huge ecosystem thanks to their work (and yours actually). Not that means specifications creators should provide a standard way of stating what is used on how (and possibly a simple way of doing that).</p>
-
-<p>And in any case, you can’t get rid of providing that information to people who will possibly use your tools. Personally, if I had to choose, I’ll use the tool that tells me the whole story because I don’t want to discover too late that  “… oops, we said we support OpenAPI 3, well, … not totally, we don’t use the security definitions … and we do not support multi-document specifications”.</p>
-
-<h1 id="to-be-continued">To be continued</h1>
-
-<p>This post is just the first one on that topic, the relationship between specifications and tools. There will be probably more to come as I investigate more on the concepts of implementers’ experiences and specification implementation scorecard/notation/evaluation.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[We may never have a clear answer to the question “what comes first? Tools or Specifications?”. What is sure is people create tools or specifications based on their needs. Those tools and specifications, like OpenAPI, AsyncAPI, or JSON Schema, are tightly intricated. What could be done to build a healthy and profitable relationship?]]></summary></entry></feed>
+<p>In next post, we’ll discuss the importance of <a href="/organize-apis-around-business-domains-and-capabilities-not-tools/">organizing APIs around business domains and capabilities, not tools</a>.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry></feed>

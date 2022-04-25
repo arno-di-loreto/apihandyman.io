@@ -1276,6 +1276,30 @@
 </a>
 
   
+  <div class="nav-item dropdown dropright">
+    <a class="nav-link dropdown-toggle series-title text-wrap" href="#" id="navbarSeriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Series
+    </a>
+    
+<div class="dropdown-menu dropdown-menu-series rounded-0" aria-labelledby="navbarSerieDropdown">
+  <div class="dropdown-header">Twitter API v2 Tips and Tricks</div>
+  <div class="dropdown-divider"></div>
+  
+  
+    
+    
+    <a class="dropdown-item active disabled text-wrap">What can we learn from tweets lookup error responses of Twitter v2 API?</a>
+    
+
+    
+    
+    <a class="dropdown-item selectable text-wrap" href="/rendering-simple-text-tweets-with-their-authors/">Rendering simple text tweets with their authors</a>
+    
+
+
+</div>
+  </div>
+  
   <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
     
 
@@ -1306,11 +1330,6 @@
     
     
   
-    
-    
-    
-    
-      
     
     
     
@@ -1943,7 +1962,9 @@
     <div class="card-page-section page-section-title">
       <div class="body">
         
-        <h5 class="surtitle"></h5>
+        <h5 class="surtitle">
+Twitter API v2 Tips and Tricks Series
+</h5>
         
         
         <h1 class="title">What can we learn from tweets lookup error responses of Twitter v2 API?</h1>
@@ -1958,17 +1979,44 @@ We may also learn a few API design, implementation, and documentation principles
 And icing on the cake, the technique shown in this post can be applied on any API.
 <!--more--></p>
 
-<div class="alert alert-info"><h4 class="alert-heading">Twitter v2 API Tip And Tricks</h4><hr />
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Twitter API v2 Tips and Tricks Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
 <p>This post is a “Twitter v2 API Tips And Tricks Post” in which I share with Postman collections the tips and tricks I learn while using Twitter v2 API.
 You can either:</p>
 
 <ul>
   <li>Read this post</li>
-  <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/twitter-v2-api-tips-and-tricks/documentation/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229">Postman network</a></li>
-  <li>Use this <a href="https://god.gw.postman.com/run-collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=collection%2Ffork&amp;collection-url=entityId%3D143378-8f12c1ed-f930-4e0d-8baf-c8a949910229%26entityType%3Dcollection%26workspaceId%3D16b83fae-c500-4387-b79c-0c72565d1d0f#?env%5BGuess%20how%20Tweets%20lookup%20parameters%20works%5D=W3sia2V5IjoidHdpdHRlcl90b2tlbiIsInZhbHVlIjoiUFVUIFlPVVIgVE9LRU4gSU4gQ1VSUkVOVCBWQUxVRSBPRiBUV0lUVEVSIFRPS0VOIEVOVklST05NRU5UIFZBUklBQkxFIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6InNlY3JldCJ9XQ=="><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
-  <li>Get the collection from <a href="https://github.com/apihandyman/twitter-tips-and-tricks/tree/main/guess-how-tweets-lookup-parameters-work">Github</a> to import it in Postman. (Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after fork)</li>
+  <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/16b83fae-c500-4387-b79c-0c72565d1d0f/collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=share&amp;creator=143378">Postman network</a></li>
+  <li>Use this <a href="https://god.gw.postman.com/run-collection/143378-8f12c1ed-f930-4e0d-8baf-c8a949910229?action=collection%2Ffork&amp;collection-url=entityId%3D143378-8f12c1ed-f930-4e0d-8baf-c8a949910229%26entityType%3Dcollection%26workspaceId%3D16b83fae-c500-4387-b79c-0c72565d1d0f#?env%5BGuess%20how%20Tweets%20lookup%20parameters%20work%5D=W3sia2V5IjoidHdpdHRlcl90b2tlbiIsInZhbHVlIjoiUFVUIFlPVVIgVE9LRU4gSU4gQ1VSUkVOVCBWQUxVRSBPRiBUV0lUVEVSIFRPS0VOIEVOVklST05NRU5UIFZBUklBQkxFIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6InNlY3JldCIsInNlc3Npb25WYWx1ZSI6IkFBQUFBQUFBQUFBQUFBQUFBQUFBQVAlMkZFWXdFQUFBQUFkMjRIOURVeTZpNk5wbkpjTks4UzhjUnE2U1klM0ROT0pmZ3BvN1NDTDJiS2wxR2dXRjZERjd2RmQ3MnJPNEdKeWExSkRSM1RPTlZBdmFvZCIsInNlc3Npb25JbmRleCI6MH1d"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
+  <li>Get the collection from <a href="https://github.com/apihandyman/twitter-api-v2-tips-and-tricks/tree/main/guess-how-tweets-lookup-parameters-work">Github</a> to import it in Postman. (Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after fork)</li>
 </ul>
-
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list border-left">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          
+          <li class="list-group-item active">What can we learn from tweets lookup error responses of Twitter v2 API?</li>
+          
+        
+          
+          
+          <li class="list-group-item"><a href="/rendering-simple-text-tweets-with-their-authors/">Rendering simple text tweets with their authors</a></li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
 </div>
 
 
