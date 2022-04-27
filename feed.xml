@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-27T07:17:45-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Rendering simple text tweets with their authors</title><link href="https://apihandyman.io/rendering-simple-text-tweets-with-their-authors/" rel="alternate" type="text/html" title="Rendering simple text tweets with their authors" /><published>2022-04-25T00:00:00-05:00</published><updated>2022-04-25T00:00:00-05:00</updated><id>https://apihandyman.io/rendering-simple-text-tweets-with-their-authors</id><content type="html" xml:base="https://apihandyman.io/rendering-simple-text-tweets-with-their-authors/"><![CDATA[<p>Let’s learn to use Twitter v2 API tweets lookup operations to render simple text tweets and their author just like Twitter does. We’ll learn a few things about API design and API documentation in general and Postman based API documentation in particular in the making. I hope this will give you some ideas for the design and documentation of your API.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-04-27T08:14:13-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">When internal API development and hosting costs collide with API-First strategy</title><link href="https://apihandyman.io/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy/" rel="alternate" type="text/html" title="When internal API development and hosting costs collide with API-First strategy" /><published>2022-04-27T00:00:00-05:00</published><updated>2022-04-27T00:00:00-05:00</updated><id>https://apihandyman.io/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy</id><content type="html" xml:base="https://apihandyman.io/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy/"><![CDATA[<p>An often unintended consequence of an internal API-first strategy is having teams with not much IT jumping, willingly or not, in the API train. That inevitably will raise budget questions which answers will determine the success of the API-first strategy.</p>
+
+<!--more-->
+
+<h1 id="jumping-into-the-api-train">Jumping into the API train</h1>
+
+<p>When engaging on the API-first journey, they are often parts (business lines, departments, teams, …) of the organizations that are left behind. The focus is often put on the parts that directly create value. The ones that could take advantage of APIs to provide new services to direct customers or the ones that will possibly provide APIs to the outside world. But (big) organizations often rely on more or less hidden support teams to operate. Those support functions could be HR, the risk department (if you’re a bank), or some teams managing central data repositories.</p>
+
+<p>Depending on their nature and relationships with other parts of the organization, they will more or less willingly jump into the API train. The HR department may need to choose better software solutions that provide APIs and hide them behind API façades though they never do developments. The risk department which was providing data through database extractions could be overwhelmed with “please create an API providing risk processing services” requests. The central data repositories department which was also relying on data extraction may want to create many APIs rapidly to enhance their services by providing real-time data.</p>
+
+<h1 id="less-it-harder-api">Less IT, harder API</h1>
+
+<p>Jumping into the API train means new developments and new infrastructures to host the APIs. Depending on the size of your IT, it may be more or less complicated. That may not be a big problem for the ultra-hyper-visible-making-much-money departments, but for those support departments, APIs have a huge impact on how they operate their small IT. The API train ticket may be too high for them.</p>
+
+<p>The capacity to deliver new developments depends on many factors but one important one is how many people you can allocate to work on something. And often those support departments don’t have many people working on IT. So they may have to rob Peter to pay Paul and choose between some existing initiative and the new API one.</p>
+
+<p>More than the number of people, there are also skills to take care of. Indeed sometimes such departments never have built APIs or even web applications. Train them will take time, and so money. In the beginning, delivering APIs will take a longer time, and so much money. Hiring new developers even temporarily will cost money.</p>
+
+<p>And even if development capacities and skills are there, the support departments often have a limited budget for their infrastructure. Why? Because they didn’t need much infrastructure before APIs came to change everything. Hosting a simple new application (an API in that case) may be a huge problem.</p>
+
+<h1 id="how-to-help-them">How to help them?</h1>
+
+<p>Engaging in becoming API-first, even at an internal level, may lead to a huge transformation. Some departments which were not “very IT”, will more or less forcibly need to invest more in IT. That requires the whole organization to help them. Here are a few ideas:</p>
+
+<ul>
+  <li>If the public-facing API-first initiative generates new revenue it may be used to increase the budget of the hidden support departments.</li>
+  <li>Providing a ready-to-use API platform for free or very low cost (see <a href="https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy/">When internal API platform billing model collides with API-First strategy</a>) will help them not raise too much their infrastructure costs.</li>
+  <li>Providing temporary development support (provided by the “central API team”) for free could help deliver the awaited APIs faster. It could also them grow their API skills in the making. But that should only be done if the department keeps control of what is built and if what is built is done like they’re used to.</li>
+</ul>
+
+<p>There is another option that could be used, but I keep it for another post.</p>
+
+<h1 id="no-money-no-api">No money, no API</h1>
+
+<p>What is sure is that if those small-budget departments are not helped with their development and infrastructure, they will probably continue operating like before without APIs or take an awfully long time to deliver much-awaited APIs. Some other departments with more budget may decide to build APIs they are not supposed to build because of that (that’s a terrible idea, read <a href="https://apihandyman.io/dont-organize-apis-against-ownership/">Don’t organize APIs against ownership</a>). All that may hinder the success of the organization’s API-first initiative.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[An often unintended consequence of an internal API-first strategy is having teams with not much IT jumping, willingly or not, in the API train. That inevitably will raise budget questions which answers will determine the success of the API-first strategy.]]></summary></entry><entry><title type="html">Rendering simple text tweets with their authors</title><link href="https://apihandyman.io/rendering-simple-text-tweets-with-their-authors/" rel="alternate" type="text/html" title="Rendering simple text tweets with their authors" /><published>2022-04-25T00:00:00-05:00</published><updated>2022-04-25T00:00:00-05:00</updated><id>https://apihandyman.io/rendering-simple-text-tweets-with-their-authors</id><content type="html" xml:base="https://apihandyman.io/rendering-simple-text-tweets-with-their-authors/"><![CDATA[<p>Let’s learn to use Twitter v2 API tweets lookup operations to render simple text tweets and their author just like Twitter does. We’ll learn a few things about API design and API documentation in general and Postman based API documentation in particular in the making. I hope this will give you some ideas for the design and documentation of your API.</p>
 
 <!--more-->
 
@@ -5794,151 +5828,4 @@ So all types of APIs belong to a business domain, the only visible ones being bu
         <img src="/images/organize-apis-around-business-domains-and-capabilities-not-tools/all-apis-belong-to-a-domain.png" class="figure-img img-fluid" /></figure>
 </div>
 
-<p>In the next post, we’ll talk about the third and probably most important dimension of API organization: Ownership.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[People don’t want drills, they want to make holes. APIs are interfaces exposed by pieces of software, our modern tools. But it would be a terrible idea to think of APIs just as interfaces to tools. APIs must be organized around our business domains and capabilities. This post is the second of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry><entry><title type="html">Organizing APIs in System, Business, and Experience Layers</title><link href="https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis/" rel="alternate" type="text/html" title="Organizing APIs in System, Business, and Experience Layers" /><published>2022-03-16T00:00:00-05:00</published><updated>2022-03-16T00:00:00-05:00</updated><id>https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis</id><content type="html" xml:base="https://apihandyman.io/organizing-apis-in-layers-system-business-and-experience-apis/"><![CDATA[<p>Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.
-<!--more--></p>
-
-<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
-
-<div class="card series-toc">
-  <div class="card-header series-toc-title">
-    <h5 id="series">3 dimensions to consider for a successful API-First strategy Series</h5>
-  </div>
-  <div class="row series-toc_content">
-    <div class="col-md-7 series-toc-summary">
-      <div class="card-body">
-        <p class="card-text"><p>When talking about “organizing”, “classifying” or “categorizing” APIs, the private/partner/public classification is the one that comes first very often. But that’s not the only way of labeling APIs and this classification alone is far from sufficient to understand the implications of making APIs a first-class citizen in your organization.</p>
-
-<p>In the past years, when I was advocating APIs to business and IT people in a company engaged in an API-First journey (though it has decades-old legacy systems), I very often described APIs being organized in 3 dimensions in order to help them discover and grasp some important API-first challenges and benefits: API Layers, Business domains (or capabilities), and Ownership.</p>
-</p>
-      </div>
-    </div>
-    <div class="col-md-5 series-toc-list border-left">
-      
-      <ul class="list-group list-group-flush">
-        
-          
-          
-          <li class="list-group-item active">1 - Organizing APIs in System, Business, and Experience Layers</li>
-          
-        
-          
-          
-          <li class="list-group-item"><a href="/organize-apis-around-business-domains-and-capabilities-not-tools/">2 - Organize APIs around business domains and capabilities, not tools</a></li>
-          
-        
-          
-          
-          <li class="list-group-item"><a href="/dont-organize-apis-against-ownership/">3 - Don't organize APIs against ownership</a></li>
-          
-        
-        
-      </ul>
-    </div>
-  </div>
-</div>
-
-<p>In this first post, we’ll talk about organizing APIs in layers (system, business, experience). That allows uncovering some architecture questions such as “how can I APIfy my IT mess” while instilling the importance and benefits of “don’t make me think” APIs.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/organizing-apis-in-layers-system-business-and-experience-apis/api-layers.png" class="figure-img img-fluid" /></figure>
-</div>
-
-<h1 id="system-apis-layer">System APIs Layer</h1>
-
-<p>The lowest or most hidden API layer is the system APIs layer. System APIs aim to simplify access to software solutions, but just from a technical perspective.</p>
-
-<p>If you have a good old mainframe system, you may build (or buy) an HTTP access layer façade to put it on top of it to facilitate access to its COBOL programs. Not-so-old Commercial-Off-The-Shelf software products (COTS) are unfortunately known to provide terrible APIs (when they provide some).  Software-As-A-Service (SAAS) solutions usually provide APIs. They usually are less terrible than COTS ones but not always, unfortunately.</p>
-
-<p>These different APIs are system APIs. They give direct access to the heart of a system, can be tainted by the provider’s technical perspective, or often require a high level of technical or business/subject matter expertise and possibly some knowledge of the underlying implementation.</p>
-
-<p>They MUST stay private and never be exposed publicly to the outside world. Exposing them to other teams inside the organization should be done cautiously. If that can be avoided, that would be much better.</p>
-
-<p>They offer a terrible DX. It takes an awfully long time to integrate them into other systems for the uninitiated consumers. Their provider will also lose time in the making as they will have to accompany closely consumers, answers to their many questions.</p>
-
-<p>Using them leads to a detrimental tight coupling because they require a high level of expertise. Such coupling must only exist with very few other systems.</p>
-
-<p>And the icing on the cake, they are prone to cause security issues. That’s less true for SAAS but almost a certainty for COTS. More often than not they do not propose standard security like OAuth 2, instead, you may have a basic auth with static login and password. Hopefully, that could possibly be solved by adding an API gateway on top of it. But that will never solve permissions/rights issues that will inevitably arise.</p>
-
-<p>So, system APIs are not what we could call “good” APIs nowadays but at least they exist! They at least allow other systems (you own) to be plugged into the system that exposes them. And no worries if they are complex and not totally secured, that’s the job of the next layer to simplify all that.</p>
-
-<h1 id="business-apis-layer">Business APIs Layer</h1>
-
-<p>Business APIs aim to propose a computerized version of an organization’s (either a company’s, a business unit’s, or a team’s) added value skills, knowledge, and expertise. (Maybe I should talk about “subject matter” APIs?)</p>
-
-<p>Note that “business” means the organization’s business in a broad sense, hence “what they do”. For instance, an insurance company may provide APIs allowing to subscribe to a home insurance contract. On the “opposite” of the spectrum, if the organization’s job is providing databases-as-a-service because it’s a cloud provider or an infrastructure team, a business API may allow creating databases.</p>
-
-<p>This API layer is the only mandatory one. Those business APIs can be private or public (or partner), consumed inside or outside the organization. They can exist on their own or be built on top of system APIs or other business APIs.</p>
-
-<p>Their main purpose is to expose the “organization stuff for dummies”. They require a low level of expertise to be used. They hide as much as possible the internal mess, especially those ugly system APIs, to make them easy to use and reduce coupling with consumers.</p>
-
-<p>They are totally secured, they especially have to fix possible holes that exist in their underlying system APIs. They can be reused in many different contexts. That’s possible because they focus on fulfilling business needs from the outside-of-the-organization-providing-them perspective.</p>
-
-<p>In an ideal world, as they are secured and easy to use, they can be used by anyone inside or outside of the organization (see Jeff Bezos mandate).</p>
-
-<p>Such vision has a nice side effect on costs of development and time-to-market. It takes a few minutes for anyone inside the organization to use a business API without the need of bothering the provider with thousands of questions (like with system APIs). Pushed to the extreme, a private API can be turned into a profitable (public or partner) product in a matter of minutes.</p>
-
-<p>But even if they are supposed to be highly reusable, sometimes, these business APIs can be not enough when used alone or need to be tweaked for specific needs.</p>
-
-<h1 id="experience-apis-layer">Experience APIs Layer</h1>
-
-<p>Experience APIs are created to adapt and orchestrate business APIs for specific technical or business needs.</p>
-
-<p>The most known examples of experience APIs are BFFs, not Best Friends Forever but Backend For Frontends. Usually, for performance concerns, some mobile application development teams create such BFFs to transform and aggregate API calls and avoid mobile applications triggering multiple calls. It’s not uncommon to have GraphQL experience APIs built on top of REST business APIs.</p>
-
-<p>Sometimes such experience APIs do not do that many modifications to their underlying APIs. They just act as a buffer of change, allowing to decouple consumers from business APIs. That could be useful when a modification made on a business APIs must not be reported on consumers outside of the organization. But that possibly leads to an API anti-pattern: not eating your own API dog food.</p>
-
-<p>Experience APIs can also be created for pure business concerns. An organization may want to create a totally new product by aggregating various business APIs. Such experience APIs are supposed to be created quickly. Someone has an idea, boom an experience API is created minutes later to test it. What may have started as a proof of concept must in the end become a new business API in case of success.</p>
-
-<p>Experience APIs must be used with caution when they are not BFFs owned by the consumers. Indeed without care, an organization could end with as many specific variations of its business APIs as it has consumers or partners. That’s a nightmare to maintain (talk to that about software vendors who customize their products for their customers).</p>
-
-<h1 id="the-api-layer-cake">The API layer cake</h1>
-
-<p>So, as you can see, not all APIs are equals, they’re not on the same level. It’s critical to understand that existing raw APIs (the system ones) are not to be accessible by many, are too complex and possibly unsecured. Building business-oriented easy-to-use API façades are a good way to put lipstick on the API pig. Those business APIs will provide a cleaner API surface, allowing anyone to build anything on top of them. In last resort, for highly specific needs, you can build experience APIs providing tailor-made features. But don’t fall into the one partner/consumer equals one experience API trap.</p>
-
-<p>Here’s a recap of the 3 API layers:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>API Layer</th>
-      <th>Purpose</th>
-      <th>Public APIs</th>
-      <th>Private APIs</th>
-      <th>Security</th>
-      <th>Usability</th>
-      <th>Reusability</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>System APIs</td>
-      <td>Technically simplifies access</td>
-      <td>Never</td>
-      <td>Reduce at all cost</td>
-      <td>⭐️</td>
-      <td>⭐️</td>
-      <td>⭐️</td>
-    </tr>
-    <tr>
-      <td>Business APIs</td>
-      <td>You stuff for dummies</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>⭐️⭐️⭐️⭐️⭐️</td>
-      <td>⭐️⭐️⭐️⭐️⭐️</td>
-      <td>⭐️⭐️⭐️⭐️⭐️</td>
-    </tr>
-    <tr>
-      <td>Experience APIs</td>
-      <td>Adapt and/or aggregate</td>
-      <td>No for BFFs, Yes for Products</td>
-      <td>Yes</td>
-      <td>⭐️⭐️⭐️⭐️⭐️</td>
-      <td>⭐️ to ⭐️⭐️⭐️⭐️⭐️</td>
-      <td>⭐️ to ⭐️⭐️⭐️⭐️⭐️</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>In next post, we’ll discuss the importance of <a href="/organize-apis-around-business-domains-and-capabilities-not-tools/">organizing APIs around business domains and capabilities, not tools</a>.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Either for historical, organizational, or technical reasons, not all APIs are at the same level, especially in organizations that do not start their API-First journey from scratch. APIs can be organized into three different layers: system APIs, business APIs, and experience APIs. This post is the first of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry></feed>
+<p>In the next post, we’ll talk about the third and probably most important dimension of API organization: Ownership.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[People don’t want drills, they want to make holes. APIs are interfaces exposed by pieces of software, our modern tools. But it would be a terrible idea to think of APIs just as interfaces to tools. APIs must be organized around our business domains and capabilities. This post is the second of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry></feed>
