@@ -1,5 +1,7 @@
 ---
 title: When internal API development and hosting costs collide with API-First strategy
+series: Internal/private APIs and money
+series_number: 2
 date: 2022-04-27
 author: Arnaud Lauret
 layout: post
