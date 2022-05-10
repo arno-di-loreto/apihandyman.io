@@ -2,6 +2,8 @@
 #series: When budgets and internal API-First strategy collide
 date: 2022-04-20
 title: When internal API platform billing model collides with API-First strategy
+series: Internal/private APIs and money
+series_number: 1
 author: Arnaud Lauret
 layout: post
 permalink: /when-internal-api-platform-billing-model-collides-with-apifirst-strategy/
