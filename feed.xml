@@ -1,4 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-05-04T07:18:23-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">When internal API development and hosting costs collide with API-First strategy</title><link href="https://apihandyman.io/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy/" rel="alternate" type="text/html" title="When internal API development and hosting costs collide with API-First strategy" /><published>2022-04-27T00:00:00-05:00</published><updated>2022-04-27T00:00:00-05:00</updated><id>https://apihandyman.io/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy</id><content type="html" xml:base="https://apihandyman.io/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy/"><![CDATA[<p>An often unintended consequence of an internal API-first strategy is having teams with not much IT jumping, willingly or not, in the API train. That inevitably will raise budget questions which answers will determine the success of the API-first strategy.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-05-11T07:19:14-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Why monetizing and crowdfunding internal/private APIs?</title><link href="https://apihandyman.io/why-monetizing-and-crowdfunding-internal-private-apis/" rel="alternate" type="text/html" title="Why monetizing and crowdfunding internal/private APIs?" /><published>2022-05-11T00:00:00-05:00</published><updated>2022-05-11T00:00:00-05:00</updated><id>https://apihandyman.io/what-about-monetizing-and-crowdfunding-internal-private-apis</id><content type="html" xml:base="https://apihandyman.io/why-monetizing-and-crowdfunding-internal-private-apis/"><![CDATA[<p>Jumping into the API-first train, even only focusing on private/internal APIs, will have an impact on budgets. Organizations need to find ways to redistribute budgets in order to enable any team that needs to provide APIs to do it in the best possible conditions. Is monetizing private/internal API the solution? Would crowdfunding private make sense?
+<!--more--></p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">Internal/private APIs and money Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+<p>An internal API-first strategy focusing on private APIs will inevitably raise budget questions.
+Who will pay for the brand new mutualized API platform?
+Who will pay for the new infrastructure needed to host API implementations?
+Who will pay for the developments?
+Neglecting those questions or choosing the wrong answers will negatively impact the API-first strategy, possibly leading it to its doom.</p>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list border-left">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          
+          <li class="list-group-item"><a href="/when-internal-api-platform-billing-model-collides-with-apifirst-strategy/">1 - When internal API platform billing model collides with API-First strategy</a></li>
+          
+        
+          
+          
+          <li class="list-group-item"><a href="/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy/">2 - When internal API development and hosting costs collide with API-First strategy</a></li>
+          
+        
+          
+          
+          <li class="list-group-item active">3 - Why monetizing and crowdfunding internal/private APIs?</li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h1 id="what-a-privateinternal-api-is">What a private/internal API is</h1>
+
+<p>In the API world, there are 2 types of APIs. The ones an organization provides to the outside world and the ones that are only used by the organization itself.</p>
+
+<p>When providing APIs to the outside world, APIs are “public APIs” if anyone can use them in a self-service fashion and “partner APIs” if their access is restricted to selected partners or customers.</p>
+
+<p>All other APIs that are only used by the organization which has created them are called “private APIs” or “internal APIs”. While it’s obvious an API exposed and consumed inside the organization’s infrastructure is private, know that an API such as a mobile backend for frontend API exposed on the internet is also private … as long as it is consumed only by the organization itself.</p>
+
+<p>Note that according to Jeff Bezos’ mandate, a private API should be able to become a partner or a public one instantly.</p>
+
+<h1 id="private-apis-may-affect-the-budget-balance">Private APIs may affect the budget balance</h1>
+
+<p>Jumping into the API-first train, even only focusing on private APIs, has many benefits like a better architecture and faster time to market. But it has also more concerning consequences, especially on the budget balance. Indeed as we have seen in the two previous posts of this series, an organization may need to build an API platform, and some teams without much IT may raise their investments in that domain. In the end, the global balance of investing in private APIs will be positive, but money may have to move from one pocket to another.</p>
+
+<p>While budgeting a central API platform may more or less easily pass in the “business as usual shared by all business lines/teams” budget, the teams without much IT desperately need to see their budget increased, especially if they are support teams that do not generate value directly. If they don’t get more money, they won’t be able to build and provide APIs. The same goes for teams with a more comfortable budget, having their APIs used more means they will need more infrastructure-horse-power and so more money.</p>
+
+<p>As we are talking about API and the need for money: why not explore the monetization solution?</p>
+
+<h1 id="what-monetizing-an-api-means">What monetizing an API means</h1>
+
+<p>Monetizing an API means generating value from its consumption. It often means charging for its use. The most common business model is charging consumers based on the number of API calls they do.</p>
+
+<p>But a monetized API can generate indirect revenue. For instance, a bank will provide access to its “Loan subscription API” to anyone because it will bring new customers and so generate revenue. Consumers make money in the process, they are usually paid for the new customer they bring.</p>
+
+<p>While public or partner API monetization is a no-brainer, monetizing private APIs is quite uncommon. To be precise, we’re not talking about taking a private API and making it public, but keeping it private and making other teams inside the organization pay to use it.</p>
+
+<h1 id="monetizing-private-apis">Monetizing private APIs</h1>
+
+<p>From the private API provider’s perspective, making other teams pay to use their APIs could be interesting to pay for API enhancements, infrastructure maintenance, and scalable infrastructure for instance.</p>
+
+<p>From the consumers’ perspective, that’s another story. They must understand the value they get from paying to use other teams’ APIs. But it’s not that complicated to find arguments. For instance, getting real-time data over HTTP is far more interesting than retrieving files over FTP daily (which means data storage and rebuilding an API on top of that; imagine 10 teams doing the same thing). It could also mean no more need to do some error-prone data processing on their side, which means safer business processes and probably less money spent fixing the faulty ones. All that being usually synonym of a faster time-to-market (time-to-delivery).</p>
+
+<p>But if providers have no money in the first place, they won’t be able to build APIs at all.</p>
+
+<h1 id="crowdfunding-to-kickstart-private-apis">Crowdfunding to kickstart private APIs</h1>
+
+<p>Indeed, API monetization brings money only once the APIs are consumed. Teams with not much IT budgets will need an initial investment to get started. As their API will probably benefit many inside the organization, why not ask them to participate in that initial investment. Joining budgets (and forces) will definitely help less-IT teams jump into the API-first train.</p>
+
+<p>So, as a future API product owner, you should analyze how others interact with your team to detect the use cases where putting API in place will benefit you and other teams. More often than not, you already know them as they are probably already listed in some “pain points” list. Then contact the other teams to start the API conversation, you may be surprised by the results.</p>
+
+<h1 id="invest-for-the-greater-good">Invest for the greater good</h1>
+
+<p>Will internal/private API monetization and crowdfunding succeed? That depends on the practice and relationships in your organization, but these are options that should be investigated. What is sure is that the organization as a whole will have to invest wisely to ensure the success of its private/internal API-first strategy. The return on investment will be huge, so don’t be afraid, at any level, to invest for the greater good in private/internal APIs.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Jumping into the API-first train, even only focusing on private/internal APIs, will have an impact on budgets. Organizations need to find ways to redistribute budgets in order to enable any team that needs to provide APIs to do it in the best possible conditions. Is monetizing private/internal API the solution? Would crowdfunding private make sense?]]></summary></entry><entry><title type="html">When internal API development and hosting costs collide with API-First strategy</title><link href="https://apihandyman.io/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy/" rel="alternate" type="text/html" title="When internal API development and hosting costs collide with API-First strategy" /><published>2022-04-27T00:00:00-05:00</published><updated>2022-04-27T00:00:00-05:00</updated><id>https://apihandyman.io/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy</id><content type="html" xml:base="https://apihandyman.io/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy/"><![CDATA[<p>An often unintended consequence of an internal API-first strategy is having teams with not much IT jumping, willingly or not, in the API train. That inevitably will raise budget questions which answers will determine the success of the API-first strategy.</p>
 
 <!--more-->
 
@@ -5737,95 +5823,4 @@ if(message) {
   <li>Save the environment</li>
   <li>Select the environment</li>
   <li>Send the <code>Get a tweet</code> request</li>
-</ol>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[When using Postman, it’s a best practice to store API token values in environment secret variables. Environment variables can also be used to store other variables uses in scripts. But when opening a collection, we often forget to select an environment and spend a few seconds if not minutes or more trying to figure out what the problem is with a request. Just to realize in the end that we just forgot to select an environment. How can this be avoided?]]></summary></entry><entry><title type="html">Organize APIs around business domains and capabilities, not tools</title><link href="https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools/" rel="alternate" type="text/html" title="Organize APIs around business domains and capabilities, not tools" /><published>2022-03-23T00:00:00-05:00</published><updated>2022-03-23T00:00:00-05:00</updated><id>https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools</id><content type="html" xml:base="https://apihandyman.io/organize-apis-around-business-domains-and-capabilities-not-tools/"><![CDATA[<p>People don’t want drills, they want to make holes. APIs are interfaces exposed by pieces of software, our modern tools. But it would be a terrible idea to think of APIs just as interfaces to tools. APIs must be organized around our business domains and capabilities.
-This post is the second of the “3 dimensions to consider for a successful API-First strategy” series.</p>
-
-<!--more-->
-
-<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
-
-<div class="card series-toc">
-  <div class="card-header series-toc-title">
-    <h5 id="series">3 dimensions to consider for a successful API-First strategy Series</h5>
-  </div>
-  <div class="row series-toc_content">
-    <div class="col-md-7 series-toc-summary">
-      <div class="card-body">
-        <p class="card-text"><p>When talking about “organizing”, “classifying” or “categorizing” APIs, the private/partner/public classification is the one that comes first very often. But that’s not the only way of labeling APIs and this classification alone is far from sufficient to understand the implications of making APIs a first-class citizen in your organization.</p>
-
-<p>In the past years, when I was advocating APIs to business and IT people in a company engaged in an API-First journey (though it has decades-old legacy systems), I very often described APIs being organized in 3 dimensions in order to help them discover and grasp some important API-first challenges and benefits: API Layers, Business domains (or capabilities), and Ownership.</p>
-</p>
-      </div>
-    </div>
-    <div class="col-md-5 series-toc-list border-left">
-      
-      <ul class="list-group list-group-flush">
-        
-          
-          
-          <li class="list-group-item"><a href="/organizing-apis-in-layers-system-business-and-experience-apis/">1 - Organizing APIs in System, Business, and Experience Layers</a></li>
-          
-        
-          
-          
-          <li class="list-group-item active">2 - Organize APIs around business domains and capabilities, not tools</li>
-          
-        
-          
-          
-          <li class="list-group-item"><a href="/dont-organize-apis-against-ownership/">3 - Don't organize APIs against ownership</a></li>
-          
-        
-        
-      </ul>
-    </div>
-  </div>
-</div>
-
-<p>In this second post, we’ll talk about organizing APIs around business domains and capabilities and not tools. This perspective is critical in order to build APIs that will be easy-to-understand, easy-to-use, easy-to-evolve, and limit coupling.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/organize-apis-around-business-domains-and-capabilities-not-tools/organize-around-business-not-tools.png" class="figure-img img-fluid" /></figure>
-</div>
-
-<h1 id="wrong-organization-around-tools">Wrong organization around tools</h1>
-
-<p>APIs are Application Programming Interfaces, they allow pieces of software to interact with each other. They allow tools to talk to each other, great! But let’s be honest, people don’t want to use your tools. And you don’t want to give them access to your tools. Both of you’ll regret it. What terrible things will irremediably happen when giving access to API “A” that brutally maps tool “A”?</p>
-
-<p>People may have a hard time grasping what they can do with this “A” API just because its name does not mean anything. Choosing the right name for an API is far more important than you may think, especially for internal APIs. You should Read my <a href="/pink-fluffy-unicorn-api-wtf-or-3-reasons-why-choosing-a-not-meaningful-API-name-can-be-a-problem/">Pink Fluffy Unicorn API? WTF? (or 3 reasons why choosing a not meaningful API name can be a problem)</a> to discover more about this topic.</p>
-
-<p>Even if you give a meaningful name to the API of Tool A, you’ll still have problems. Indeed, API giving direct access to tools does not usually provide a user-friendly interface. They can be quite cryptic and usually requires a high level of expertise. Most of the time they’re made to make the tool work, not let people fulfill their needs. People can also be overwhelmed by the amount of function available.</p>
-
-<p>As people have hard times using them, they will lose time. You’ll also lose time too accompanying them, answering all of their questions. It costs a lot of time and so a lot of money to use them. If people have the choice they will probably not use them.</p>
-
-<p>And if people use such “Tool API” that increases the coupling between systems, because they require a high level of expertise. What will happen when the vendor tool evolves? Everyone using it will be impacted, it will be a total nightmare to coordinate everyone.</p>
-
-<p>If you read the previous post in this series, that should sound familiar: the API of a tool is usually a terrible system API and must be hidden at all costs, only used by a handful of trusted and expert consumers.</p>
-
-<h1 id="business-domain-driven-design">Business domain driven design</h1>
-
-<p>To fulfill what it’s supposed to do, an organization takes advantage of various capabilities offered by its business domains. For a company selling products, the apparent business domains are doing the company “stuff” such as sales or R&amp;D., and there are also less obvious support business domains like HR or accounting. Each domain will rely on people and their tools to function.</p>
-
-<p>A business domain may expose one or more APIs, depending on the domain’s composition. As this matter is often related to microservices, know that size does not matter when deciding if you should put all capabilities of a domain inside a single or many APIs. What matters is that each API is a meaningful and independent set of operations. Meaningful because it offers capabilities that make sense together and are helpful to the “outside world” outside the domain. Independent because the API can be used without any other one. That does not forbid using an API in conjunction with others, but if that’s always necessary, there’s probably something wrong with how the domains are organized or split.</p>
-
-<p>A business API may rely on more than one tool’s system APIs. That’s pretty convenient to hide you have two different software solutions to do the same thing. Such architecture often happens with fusion and acquisition. It can also come from organizational constraints. Two separate teams doing the same tasks but targeting different regions or customers may use various tools (because of actual regulation constraints or lack of tooling governance).</p>
-
-<p>A business domain is under no obligation to expose all of its capabilities (and so its APIs). There are tools that people from the outside will never see; that’s absolutely fine. A business domain is also under no obligation to expose its capabilities precisely as they work inside. The less a domain shows what is happening in its black box, the better; it reduces coupling between systems.</p>
-
-<p>A business domain may rely on other domains, but a bi-directional relationship is usually problematic, especially when it concerns a specific business process. That usually leads to less reusable APIs.</p>
-
-<p>Taking advantage of methods such as <a href="https://en.wikipedia.org/wiki/Domain-driven_design">domain-driven design</a> or <a href="https://en.wikipedia.org/wiki/Event_storming">event storming</a> can be helpful to figure out how to divide an organization or a domain.</p>
-
-<h1 id="whatever-the-layer-apis-belong-to-a-domain">Whatever the layer, APIs belong to a domain</h1>
-
-<p>This second organizational perspective (the first one being the API layers), shows that system APIs and business APIs both belong to business domains. Is that also the case of experience APIs? Yes, experience APIs can belong to a consumer-oriented or provider-oriented business domain.
-A backend-for-frontend (BFF) built by a mobile application team belongs to this team’s domain (a “consumer domain”). A tailor-made product experience API may belong to its underlying domain or to an entirely independent one.
-So all types of APIs belong to a business domain, the only visible ones being business and experience APIs.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/organize-apis-around-business-domains-and-capabilities-not-tools/all-apis-belong-to-a-domain.png" class="figure-img img-fluid" /></figure>
-</div>
-
-<p>In the next post, we’ll talk about the third and probably most important dimension of API organization: Ownership.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[People don’t want drills, they want to make holes. APIs are interfaces exposed by pieces of software, our modern tools. But it would be a terrible idea to think of APIs just as interfaces to tools. APIs must be organized around our business domains and capabilities. This post is the second of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry></feed>
+</ol>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[When using Postman, it’s a best practice to store API token values in environment secret variables. Environment variables can also be used to store other variables uses in scripts. But when opening a collection, we often forget to select an environment and spend a few seconds if not minutes or more trying to figure out what the problem is with a request. Just to realize in the end that we just forgot to select an environment. How can this be avoided?]]></summary></entry></feed>
