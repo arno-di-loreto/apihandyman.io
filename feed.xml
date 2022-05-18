@@ -1,4 +1,311 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-05-18T07:18:12-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Why monetizing and crowdfunding internal/private APIs?</title><link href="https://apihandyman.io/why-monetizing-and-crowdfunding-internal-private-apis/" rel="alternate" type="text/html" title="Why monetizing and crowdfunding internal/private APIs?" /><published>2022-05-11T00:00:00-05:00</published><updated>2022-05-11T00:00:00-05:00</updated><id>https://apihandyman.io/what-about-monetizing-and-crowdfunding-internal-private-apis</id><content type="html" xml:base="https://apihandyman.io/why-monetizing-and-crowdfunding-internal-private-apis/"><![CDATA[<p>Jumping into the API-first train, even only focusing on private/internal APIs, will have an impact on budgets. Organizations need to find ways to redistribute budgets in order to enable any team that needs to provide APIs to do it in the best possible conditions. Is monetizing private/internal API the solution? Would crowdfunding private make sense?
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-05-18T12:11:12-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What is the OpenAPI Specification?</title><link href="https://apihandyman.io/what-is-the-openapi-specification/" rel="alternate" type="text/html" title="What is the OpenAPI Specification?" /><published>2022-05-18T00:00:00-05:00</published><updated>2022-05-18T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-the-openapi-specification</id><content type="html" xml:base="https://apihandyman.io/what-is-the-openapi-specification/"><![CDATA[<p>OpenAPI, or the OpenAPI Specification, formerly known as the Swagger Specification, is a machine-readable and human-friendly API description format. That short description is correct but does not help to understand what it is OpenAPI: it’s the Rosetta Stone of the Web API world. Let’s see why.
+<!--more--></p>
+
+<div class="alert alert-info"><p>️This post is an expansion of my “What is OpenAPI in 60 seconds” video.</p>
+
+<div class="third-party-content third-party-content-youtube">
+    <div class="card third-party-content-warning">
+        <img class="card-img" src="/images/thirdpartycontents/what-is-openapi.jpg" alt="Card image" />
+        <div class="card-img-overlay d-flex">
+            <div class="my-auto mx-auto text-center">
+                <p>This content is hosted on youtube.com.</p>
+                <p>By showing this third party content you accept YouTube (Google)'s 
+                    <a class="privacy-policy" href="https://policies.google.com/privacy" target="_blank">privacy policy</a>.
+                </p>
+                <form>
+                    <a href="javascript:thirdPartyConsent('', 'youtube')" class="btn btn-primary" role="button">Show third party content</a>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input third-party-content-remember" />
+                        <label class="form-check-label" for="exampleCheck1">Remember my choice</label>
+                        <p>(can be changed in <a class="privacy-policy" href="/privacy/">privacy settings</a>)</p>
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="iframe-container third-party-content-iframe third-party-content-iframe-disabled">
+        <iframe class="iframe-responsive" data-src="https://www.youtube-nocookie.com/embed/?color=white&amp;theme=light" frameborder="0" allowfullscreen="">
+        </iframe>
+    </div>
+</div>
+
+</div>
+
+<h1 id="openapi-is-a-format-describing-web-apis">OpenAPI is a format describing web APIs</h1>
+
+<p>OpenAPI is a format describing “RESTish” web APIs. That means APIs that take advantage of the HTTP protocol semantic, relying on <code>GET /this</code> and <code>POST /that</code> operations, can be described using that format.</p>
+
+<h2 id="its-a-json-or-yaml-document">It’s a JSON or YAML document</h2>
+
+<p>An OpenAPI document can be in JSON or YAML formats. Note that the official name for a file using the OpenAPI Specification format is “OpenAPI document.” Still, many say “OpenAPI,” “OpenAPI file,” and even “OpenAPI specification” or “OpenAPI spec.” I recommend using YAML, but you can use the format you prefer.</p>
+
+<p>YAML format brings the possibility of adding comments. Though considered more human-friendly than JSON, the YAML format can be tricky because of indentations.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">YAML</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="1"><code class="code-block">openapi: 3.1.0
+# A comment
+...</code></pre>
+  </div>
+</div>
+
+<p>JSON format doesn’t have the indentation problem but writing all those brackets and quotes can be annoying. It also does not facilitates the writing of long texts (that you may need when using the <code>description</code>  properties to describe the API,  an operation, a response, or a property)</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">json</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-json line-numbers code-copy" data-start="1"><code class="code-block">{
+  &quot;openapi&quot;: &quot;3.1.0&quot;,
+  ...
+}</code></pre>
+  </div>
+</div>
+
+<h2 id="it-describes-web-apis-their-operations-and-inputsoutputs">It describes web APIs, their operations, and inputs/outputs</h2>
+
+<p>A basic OpenAPI document will contain:</p>
+
+<ul>
+  <li>The version of the specification used</li>
+  <li>General information about the API, such as its name and version</li>
+  <li>Its paths and their operations</li>
+  <li>The operations inputs (query parameters, for instance) and success and error outputs (HTTP status codes and data, for example)</li>
+</ul>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A basic OpenAPI document</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-openapi-specification/openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-collapsed code-copy"><code class="code-block"># The Version of the spec used
+openapi: "3.1.0"
+
+# General information about the API
+info:
+  title: Library
+  version: "1.0"
+
+# Paths
+paths:
+  /books:
+    # An operation (GET /books)
+    get:
+      summary: Search for books
+      parameters:
+        - name: title
+          in: query
+          # A JSON Schema
+          schema:
+            type: string
+      responses:
+        200:
+          description: Found books
+          content:
+            application/json:
+              # A JSON Schema
+              schema:
+                type: array
+                items:
+                  properties:
+                    isbn:
+                      type: string
+                    title:
+                      type: string
+                    author:
+                      type: string</code></pre>
+  </div>
+</div>
+
+<h2 id="it-relies-on-the-json-schema-specification-to-describe-data">It relies on the JSON Schema Specification to describe data</h2>
+
+<p><a href="https://json-schema.org/">JSON Schema</a> is a specification, independent from OpenAPI, dedicated to describing data. It can be used standalone to describe and then validate data. In the OpenAPI Specification, every single piece of data, from bodies to headers and parameters, is described with JSON schema. Note that OpenAPI 3.0 relies on a slightly modified <a href="https://spec.openapis.org/oas/v3.0.3#schema-object">JSON Schema draft 00</a>. OpenAPI 3.1 uses <a href="https://spec.openapis.org/oas/v3.1.0#schema-object">JSON Schema draft 2012-12</a>.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A query parameter</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-openapi-specification/openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="19"><code class="code-block">          schema:
+            type: string
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A response body</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-openapi-specification/openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="27"><code class="code-block">              schema:
+                type: array
+                items:
+                  properties:
+                    isbn:
+                      type: string
+                    title:
+                      type: string
+                    author:
+                      type: string</code></pre>
+  </div>
+</div>
+
+<h1 id="openapi-is-based-on-and-replaces-the-swagger-20-specification">OpenAPI is based on and replaces the Swagger 2.0 specification</h1>
+
+<p>You may know OpenAPI by another name: Swagger. OpenAPI is both Swagger and not Swagger.</p>
+
+<h2 id="it-is-based-on-the-swagger-20-specification">It is based on the Swagger 2.0 Specification</h2>
+
+<p>The OpenAPI Specification is formerly known as the Swagger Specification. This API description format was initially created for the Swagger project which aimed to facilitate the generation of documentation (Swagger UI) and SDK (Swagger Codegen) of the API of the <a href="https://www.wordnik.com/">Wordnik</a> online dictionary.</p>
+
+<p>The libraries and related Swagger tools were rapidly widely adopted, but the release of Swagger 2.0 and the Swagger Editor in September 2014 put the underlying Swagger specification to the forefront. The specification became a first-class citizen and started to be used by teams having an API design-first approach (designing APIs before implementing them).</p>
+
+<h2 id="it-replaces-the-swagger-20-specification">It replaces the Swagger 2.0 Specification</h2>
+
+<p>In 2015, thanks to the work of a group of forward-looking API experts, the Swagger specification was donated to the API community by Smartbear, who owns the Swagger brand: The OpenAPI Specification was born.</p>
+
+<p>The OpenAPI Specification was born, but in the beginning, it was still the Swagger Specification 2.0. The first “true” OpenAPI Specification, the 3.0 version, was released in July 2017, followed by 3.1 in February 2021. Among many new features, the most emblematic and visible change between the Swagger Specification and OpenAPI is the replacement of <code>Swagger: 2.0</code> by <code>openapi: 3.x.x</code> .</p>
+
+<h2 id="it-does-not-replace-the-swagger-tools-and-brand">It does not replace the Swagger tools and brand</h2>
+
+<p>Smartbear still owns the Swagger brand. They maintain and create Swagger-named tools that take advantage of the OpenAPI Specification (SwaggerHub, for instance). Nowadays, most proprietary and open source “swagger-named” tools are now supporting at least OpenAPI 3.0. If they don’t, I recommend sending a pull request to propose an update (open source), request an upgrade (proprietary), or not use them anymore. Note that now, open source tools taking advantage of the OpenAPI Specification usually have OpenAPI-based names.</p>
+
+<h1 id="openapi-is-an-open-source-and-vendor-neutral-format">OpenAPI is an open source and vendor-neutral format</h1>
+
+<p>The OpenAPI does not evolve by itself randomly; a community and rules are guiding its evolution.</p>
+
+<h2 id="its-managed-by-the-openapi-initiative">It’s managed by the OpenAPI Initiative</h2>
+
+<p>When the Swagger Specification was donated to the API community in 2015, it was donated to a newly created organization named the <a href="https://www.openapis.org/">OpenAPI Initiative</a> (OAI). The OAI is an open governance structure operating under the Linux Foundation.</p>
+
+<blockquote>
+  <p>The OpenAPI Initiative (OAI) was created by a consortium of forward-looking industry experts who recognize the immense value of standardizing on how APIs are described.</p>
+</blockquote>
+
+<p>The OpenAPI not only aims to evolve the OpenAPI format, but it also promotes it. For instance, the OpenAPI organizes the <a href="https://events.linuxfoundation.org/openapi-asc/">API Specification Conference (ASC)</a>, where all practitioners of all API specifications (OpenAPI, AsyncAPI, JSON Schema, GraphQL, gRPC, …) gather to share their knowledge, stories, questions, …</p>
+
+<h2 id="its-a-vendor-neutral-format">It’s a vendor-neutral format</h2>
+
+<p>Though various vendors support the OpenAPI Initiative, it is a vendor-neutral format. The OpenAPI format will evolve for the greater good and not the specific needs of a vendor solution (but don’t worry, there is a solution for that in a few paragraphs).</p>
+
+<h2 id="its-a-community-driven-open-source-format">It’s a community-driven open source format</h2>
+
+<p>The Technical Steering Committee guides the evolution of the OpenAPI Specification by bringing their expertise and incorporating the community’s feedback.</p>
+
+<p>The API community can also contribute simply by using the OpenAPI Specification and sharing what they do with it.</p>
+
+<p>Individuals and organizations can participate and don’t hesitate to <a href="https://www.openapis.org/participate/how-to-contribute">contribute</a>.</p>
+
+<h1 id="openapi-is-open-but-not-only-for-open-apis">OpenAPI is “open” but not only for open APIs</h1>
+
+<p><a href="https://martinfowler.com/bliki/TwoHardThings.html">Naming</a> is hard. Let’s be honest the “OpenAPI Specification” name has left more than one of us dubious about its meaning and even how to write it. To be honest, we didn’t know what Swagger was about either (especially when you speak Frenglish), but it sounded cooler.</p>
+
+<h2 id="its-openapi-and-not-open-api">It’s “OpenAPI” and not “Open API”</h2>
+
+<p>It is pretty prosaic but interesting to know, as it shows consistency in design can be challenging. In the beginning, everyone was unsure if it was “Open API” or “OpenAPI.” The original website was presenting the “OpenAPI initiative” and the “Open API Specification” (or was it the opposite?). Everything is settled; it’s the OpenAPI (1 word) Specification and the OpenAPI (1 word also) Initiative.</p>
+
+<h2 id="its-not-reserved-to-open-apis-public-apis">It’s not reserved to open APIs (public APIs)</h2>
+
+<p>As the OpenAPI Specification contains the words “open” and “API,” it is not that rare to hear “OpenAPI is for public/open APIs” or “Will using OpenAPI make my APIs public/open?”.</p>
+
+<p>An “Open API” or “Public API” is an API that an organization provides to almost anyone willing to accept its terms of service. For instance, companies such as Stripe or Twilio provide public/open APIs. Thanks (or because) of European PSD2 regulations, all European Union banks provide some public/open APIs (accessible to authorized third parties).</p>
+
+<p>The OpenAPI Specification is unrelated to the open/public APIs concerns. Any API can be described using the OpenAPI Specification, and using it does not change its visibility. So, you can use it safely for your private and partner APIs (the ones you build only for yourself or the ones you provide to a few selected partners). And you can also use it for your public/open APIs.</p>
+
+<h2 id="its-an-open-format-bringing-interoperability">It’s an open format bringing interoperability</h2>
+
+<p>The specification itself is “open” because it’s open source. What is “open” is also the consequence of using the specification. It facilitates the creation of APIs and so enables the opening of systems. It brings interoperability between solutions and opens software solutions using it to others.</p>
+
+<h1 id="openapi-is-a-source-of-endless-possibilities-for-api-tools-and-practices">OpenAPI is a source of endless possibilities for API tools and practices</h1>
+
+<p>The OpenAPI Specification already offers many opportunities, and the API community has only scratched the surface.</p>
+
+<h2 id="it-is-a-design-first-and-api-first-pillar">It is a design-first and API-first pillar</h2>
+
+<p>The OpenAPI specification can be used during the design phase of an API. It can be written in a code editor like VS Code or generated by an API design tool like Stoplight Studio. That way of using OpenAPI helped to change the mindset of many regarding how to create APIs and help promoted design-first and API-first strategies.</p>
+
+<h2 id="it-has-numerous-other-usages">It has numerous other usages</h2>
+
+<p>The possibilities are endless because it’s a machine-readable and machine-writable format. It can be of great of for API governance: use Spectral to lint an OpenAPI document to ensure it respects some API design guidelines. It can be used at the infrastructure level to configure an API gateway. It can be used to generate documentation (HTML, Postman Collection …), generate server or client code, validate incoming API requests, and generate tests… It can be generated from logs to reverse engineer an existing API.</p>
+
+<h2 id="its-extensible">It’s extensible</h2>
+
+<p>The possibilities are also endless because the OpenAPI Specification is extensible. Though the format is vendor-neutral, so you can’t add specific elements shared by all in the original specification, it allows you to add customs information by yourself. You have to add the custom information in  <code>x-named</code> properties (that can be atomic values or objects), and standard OpenAPI parsers will ignore those properties. For instance, while an API gateway solution may take advantage of the OpenAPI format for most configurations, it may sometimes need gateway-specific elements, which could be put under an <code>x-gateway-configuration</code>  inside each API operation.</p>
+
+<h1 id="openapi-is-the-rosetta-stone-of-the-web-api-world">OpenAPI is the Rosetta Stone of the Web API world</h1>
+
+<p>What precedes is all “what is OpenAPI,” making it the Rosetta Stone of the Web API world. If you’re not familiar with this part of history and its use in the English language, the Merriam-Webster dictionary says the Rosetta stone <em>is:</em></p>
+
+<ol>
+  <li>A black basalt stone found in 1799 that bears an inscription in hieroglyphics, demotic characters, and Greek and is celebrated for having given the first clue to the decipherment of Egyptian hieroglyphics</li>
+  <li>One that gives a clue to understanding</li>
+</ol>
+
+<p>The OpenAPI Specification is the Rosetta Stone of the Web API world because:</p>
+
+<ol>
+  <li>Like the Rosetta Stone, a bridge between Egyptian hieroglyphics and Greek, OpenAPI is a bridge. It’s a bridge between API tools (vendors, open source). It helps build a bridge between all people involved in creating and consuming APIs (business stakeholders, product owners, designers, implementers, consumers, etc…)</li>
+  <li>OpenAPI gives an understanding of what an API or a set of APIs is. It’s a guide when you define them. It helps you understand APIs you didn’t create yourself. It can help you understand the API surface of a system, an organization, or a domain across many organizations</li>
+</ol>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[OpenAPI, or the OpenAPI Specification, formerly known as the Swagger Specification, is a machine-readable and human-friendly API description format. That short description is correct but does not help to understand what it is OpenAPI: it’s the Rosetta Stone of the Web API world. Let’s see why.]]></summary></entry><entry><title type="html">Why monetizing and crowdfunding internal/private APIs?</title><link href="https://apihandyman.io/why-monetizing-and-crowdfunding-internal-private-apis/" rel="alternate" type="text/html" title="Why monetizing and crowdfunding internal/private APIs?" /><published>2022-05-11T00:00:00-05:00</published><updated>2022-05-11T00:00:00-05:00</updated><id>https://apihandyman.io/what-about-monetizing-and-crowdfunding-internal-private-apis</id><content type="html" xml:base="https://apihandyman.io/why-monetizing-and-crowdfunding-internal-private-apis/"><![CDATA[<p>Jumping into the API-first train, even only focusing on private/internal APIs, will have an impact on budgets. Organizations need to find ways to redistribute budgets in order to enable any team that needs to provide APIs to do it in the best possible conditions. Is monetizing private/internal API the solution? Would crowdfunding private make sense?
 <!--more--></p>
 
 <div class="card series-toc">
@@ -5536,291 +5843,4 @@ pm.request.url.query.all().forEach((param) =&gt; {
   <li>API Layers: 3 different types of APIs with different purposes (system, business experience). Only the business layer is required.</li>
   <li>Business domains and capabilities: Organize around business domains and not tools to create independent and reusable APIs fulfilling business needs without exposing all domain features (and so its complexity). An API is a domain or a sub-domain for dummies.</li>
   <li>Ownership: Each API must have a single owner with full power from decisions to implementation. Take Conway’s law into account when defining the teams managing the APIs.</li>
-</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[It doesn’t matter how APIs are organized, in layers, by business domain or any other dimension if you don’t take care of the most important one. The one dimension that rules them all: ownership. This post is the third and last of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry><entry><title type="html">We always forget to select a Postman environment</title><link href="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/" rel="alternate" type="text/html" title="We always forget to select a Postman environment" /><published>2022-03-26T00:00:00-05:00</published><updated>2022-03-26T00:00:00-05:00</updated><id>https://apihandyman.io/we-always-forget-to-select-a-postman-environment</id><content type="html" xml:base="https://apihandyman.io/we-always-forget-to-select-a-postman-environment/"><![CDATA[<p>When using Postman, it’s a best practice to store API token values in environment secret variables.
-Environment variables can also be used to store other variables uses in scripts.
-But when opening a collection, we often forget to select an environment and spend a few seconds if not minutes or more trying to figure out what the problem is with a request. Just to realize in the end that we just forgot to select an environment.
-How can this be avoided?
-<!--more--></p>
-
-<div class="card series-toc">
-  <div class="card-header series-toc-title">
-    <h5 id="series">Postman Tips and Tricks Series</h5>
-  </div>
-  <div class="row series-toc_content">
-    <div class="col-md-7 series-toc-summary">
-      <div class="card-body">
-        <p class="card-text">
-<p>This post is a “Postman Tips And Tricks Post” in which I share the tips and tricks I learn while using Postman.
-You can either:</p>
-
-<ul>
-  <li>Read this post</li>
-  <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4">Postman network</a></li>
-  <li>Use this <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-215afe9b-9b7d-459d-b020-361dbf1c5bf4"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
-  <li>Get the collection from <a href="https://github.com/apihandyman/postman-tips-and-tricks/tree/main/dont-forget-to-select-an-environment">Github</a> to import it in Postman.</li>
-</ul>
-
-<p><em>(Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after import or fork)</em></p>
-
-<p>You can also see all of the collections of this series in my <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/overview">Postman Tips and Tricks</a> Postman Workspace.</p>
-</p>
-      </div>
-    </div>
-    <div class="col-md-5 series-toc-list border-left">
-      
-      <ul class="list-group list-group-flush">
-        
-          
-          
-          <li class="list-group-item active">We always forget to select a Postman environment</li>
-          
-        
-          
-          
-          <li class="list-group-item"><a href="/how-to-use-bootstrap-in-postman-visualizer/">How to use Bootstrap in Postman Visualizer</a></li>
-          
-        
-        
-      </ul>
-    </div>
-  </div>
-</div>
-
-<p>This post demonstrates how to take advantage of <code>pm.environment.name</code> in Pre-Scripts to prevent sending a request and have a clear error message when an environment is not selected. The use case that will be used to demonstrate all that is retrieving a tweet with Twitter v2 API. The aim of this collection being error handling, you’ll need to have an actual access to Twitter v2 API only if you want to make the request succeed.</p>
-
-<h1 id="how-it-works">How it works</h1>
-
-<p>The magic is mostly handled in the Pre-request script regarding checking an environment is selected. But what happens there allows to have more precise error message on 401 errors in Test script.</p>
-
-<h2 id="collection-pre-request-script">Collection Pre-request Script</h2>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Pre-request Script</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-javascript line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">/*******************************************/
-/*  Checks a valid environment containing  */
-/*  a specific variable used as bearer     */
-/*  token is selected                      */
-/*******************************************/
-
-/* The name and default value of the variable used in Authorization
-   and checked here is defined at collection level.
-   That way, this code snippet can be easily copied to other
-   collections */
-const tokenVariableName = pm.collectionVariables.get(&quot;token_variable_name&quot;);
-const tokenVariableDefaultValue = pm.collectionVariables.get(&quot;token_variable_default_value&quot;);
-// The message indicating how to solve the problem
-let message;
-// Get selected environment name (undefined if none is selected)
-const selectedEnvironment = pm.environment.name;
-// Get token environment variable value (undefined if none exists or if current value is empty) 
-const tokenVariableValue = pm.environment.get(tokenVariableName);
-
-if(selectedEnvironment === undefined) {
-    message = `No environment containing a ${tokenVariableName} variable has been selected`;
-}
-else if(tokenVariableValue === undefined) {
-    message = `Selected environment (${selectedEnvironment}) does not contain a ${tokenVariableName} variable`;
-}
-else if(tokenVariableValue.length === 0) {
-    message = `Selected environment (${selectedEnvironment}) contains a ${tokenVariableName} variable but its current value is empty`;
-}
-else if(tokenVariableValue === tokenVariableDefaultValue) {
-    message = `Selected environment (${selectedEnvironment}) contains a ${tokenVariableName} variable but its current value is the default one (${tokenVariableDefaultValue})`;
-}
-
-if(message) {
-    throw new Error(message);
-}</code></pre>
-  </div>
-</div>
-
-<p>The collection level Pre-Request script checks that an environment is selected by verifying the value of <code>pm.environment.name</code> .</p>
-
-<p>It also checks a specific variable is defined and has a correct value. The name of that variable is defined in the <code>token_variable_name</code> collection variable. The script also verifies the the variable has a value and that value is not the default one.</p>
-
-<p>If there’s anything wrong with one of the checks, the request is not sent and a red message explaining exactly what the problem is appears on screen thanks to <code>throw new Error(message)</code>.</p>
-
-<h2 id="collection-tests">Collection Tests</h2>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Test Script</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-javascript line-numbers code-copy" data-start="1"><code class="code-block">if(pm.response.code === 401) {
-    const selectedEnvironment = pm.environment.name;
-    const tokenVariableName = pm.collectionVariables.get(&quot;token_variable_name&quot;);
-    const tokenVariableValue = pm.environment.get(tokenVariableName);
-    const message = `Selected environment (${selectedEnvironment}) contains` +
-                    `a ${tokenVariableName} variable but its value is` +
-                    `probably not valid`;
-    pm.test(&quot;Unauthorized request (401)&quot;, function() {
-        pm.expect.fail(message);
-    });
-}</code></pre>
-  </div>
-</div>
-
-<p>The collection level Tests script take for granted that the Pre-Request script has done its job. As there was an environment selected and it contains the expected variable which is not empty or does not have a default value, the test script can guess the token sent is invalid when receiving a 401 Unauthorized response.</p>
-
-<h2 id="collection-variables">Collection variables</h2>
-
-<p>In order to make the code easily reusable across various collection, some collection variable are used:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th><strong>VARIABLE</strong></th>
-      <th><strong>VALUE</strong></th>
-      <th><strong>DESCRIPTION</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>token_variable_name</td>
-      <td>twitter_token</td>
-      <td>The name of variable used in the token field in collection Authorization configuration.</td>
-    </tr>
-    <tr>
-      <td>token_variable_default_value</td>
-      <td>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</td>
-      <td>The default value of the variable (hence, the one in INITIAL VALUE)</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="environment-variables">Environment variables</h2>
-
-<p>This collection requires the creation of an environment containing the following variables. This workspace comes with ready-to-use environment to test the various behaviors of the scripts (see Test cases below).</p>
-
-<div class="alert alert-danger">
-<p>Never store API tokens in initial value. Read <a href="https://blog.postman.com/how-to-use-api-keys/">How to use API Keys</a> to learn more.</p>
-
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th><strong>VARIABLE</strong></th>
-      <th><strong>TYPE</strong></th>
-      <th><strong>INITIAL VALUE</strong></th>
-      <th><strong>CURRENT VALUE</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>twitter_token</td>
-      <td>secret</td>
-      <td>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</td>
-      <td>A Twitter API bearer token (Read <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens">Twitter API documentation</a> to get one)</td>
-    </tr>
-  </tbody>
-</table>
-
-<h1 id="test-cases">Test cases</h1>
-
-<p>Use one of the following test cases to see the collection level Pre-Script and Tests scripts in action.</p>
-
-<div class="alert alert-info">
-<p>Note that you can make the environment drop list larger to see full environment names.</p>
-
-</div>
-
-<h2 id="no-environment-selected">No environment selected</h2>
-
-<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-0.png" alt="" /></p>
-
-<ol>
-  <li>Set environment drop list on “No Environment” (It’s the default value when opening the collection)</li>
-  <li>Send the <code>Get a tweet</code> request</li>
-</ol>
-
-<h2 id="empty-environment">Empty environment</h2>
-
-<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-1.png" alt="" /></p>
-
-<ol>
-  <li>Create an environment (don’t create any variable)</li>
-  <li>Select the environment</li>
-  <li>Send the <code>Get a tweet</code> request</li>
-</ol>
-
-<h2 id="wrong-name">Wrong name</h2>
-
-<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-2.png" alt="" /></p>
-
-<ol>
-  <li>Create an environment</li>
-  <li>Add a <code>twitter_tokenn</code> variable to your environment (yes, 2 n’s, it does not match the <code>token_variable_name</code> collection variable value)</li>
-  <li>Set INITIAL VALUE to <code>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</code> (it matches <code>token_variable_default_value</code> collection variable value)</li>
-  <li>Save the environment</li>
-  <li>Select the environment</li>
-  <li>Send the <code>Get a tweet</code> request</li>
-</ol>
-
-<h2 id="default-value">Default value</h2>
-
-<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-3.png" alt="" /></p>
-
-<ol>
-  <li>Create an environment</li>
-  <li>Add a <code>twitter_token</code> variable to your environment (it matches the <code>token_variable_name</code> collection variable value)</li>
-  <li>Set INITIAL VALUE to <code>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</code> (it matches <code>token_variable_default_value</code> collection variable value)</li>
-  <li>Save the environment</li>
-  <li>Select the environment</li>
-  <li>Send the <code>Get a tweet</code> request</li>
-</ol>
-
-<h2 id="invalid-token">Invalid token</h2>
-
-<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-4.png" alt="" /></p>
-
-<ol>
-  <li>Create an environment</li>
-  <li>Add a <code>twitter_token</code> variable to your environment (it matches the <code>token_variable_name</code> collection variable value)</li>
-  <li>Set INITIAL VALUE to <code>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</code> (it matches <code>token_variable_default_value</code> collection variable value)</li>
-  <li>Set CURRENT VALUE to <code>INVALID_TOKEN</code></li>
-  <li>Save the environment</li>
-  <li>Select the environment</li>
-  <li>Send the <code>Get a tweet</code> request</li>
-</ol>
-
-<h2 id="valid-token">Valid token</h2>
-
-<p><img src="https://apihandyman.io/postman-images/postman-tips-and-tricks/dont-forget-to-select-an-environment/use-case-5.png" alt="" /></p>
-
-<ol>
-  <li>Read <a href="https://developer.twitter.com/en/docs/authentication/oauth-2-0/bearer-tokens">Twitter API documentation</a> to get a bearer token</li>
-  <li>Create an environment</li>
-  <li>Add a <code>twitter_token</code> variable to your environment (it matches the <code>token_variable_name</code> collection variable value)</li>
-  <li>Set INITIAL VALUE to <code>PUT_YOUR_TOKEN_IN_CURRENT_VALUE</code> (it matches <code>token_variable_default_value</code> collection variable value)</li>
-  <li>Put the bearer token value in <code>twitter_token</code> variable current value (NOT the initial value!)</li>
-  <li>Save the environment</li>
-  <li>Select the environment</li>
-  <li>Send the <code>Get a tweet</code> request</li>
-</ol>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[When using Postman, it’s a best practice to store API token values in environment secret variables. Environment variables can also be used to store other variables uses in scripts. But when opening a collection, we often forget to select an environment and spend a few seconds if not minutes or more trying to figure out what the problem is with a request. Just to realize in the end that we just forgot to select an environment. How can this be avoided?]]></summary></entry></feed>
+</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[It doesn’t matter how APIs are organized, in layers, by business domain or any other dimension if you don’t take care of the most important one. The one dimension that rules them all: ownership. This post is the third and last of the “3 dimensions to consider for a successful API-First strategy” series.]]></summary></entry></feed>

@@ -1,0 +1,36 @@
+# The Version of the spec used
+openapi: "3.1.0"
+
+# General information about the API
+info:
+  title: Library
+  version: "1.0"
+
+# Paths
+paths:
+  /books:
+    # An operation (GET /books)
+    get:
+      summary: Search for books
+      parameters:
+        - name: title
+          in: query
+          # A JSON Schema
+          schema:
+            type: string
+      responses:
+        200:
+          description: Found books
+          content:
+            application/json:
+              # A JSON Schema
+              schema:
+                type: array
+                items:
+                  properties:
+                    isbn:
+                      type: string
+                    title:
+                      type: string
+                    author:
+                      type: string
