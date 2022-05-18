@@ -10,6 +10,11 @@ category: post
 OpenAPI, or the OpenAPI Specification, formerly known as the Swagger Specification, is a machine-readable and human-friendly API description format. That short description is correct but does not help to understand what it is OpenAPI: it's the Rosetta Stone of the Web API world. Let's see why.
 <!--more-->
 
+{% capture content %}️This post is an expansion of my "What is OpenAPI in 60 seconds" video.
+
+{% include video.html title="what-is-openapi" %}{% endcapture %}
+{% include alert.html level="info" content=content %}
+
 # OpenAPI is a format describing web APIs
 
 OpenAPI is a format describing "RESTish" web APIs. That means APIs that take advantage of the HTTP protocol semantic, relying on `GET /this` and `POST /that` operations, can be described using that format.
