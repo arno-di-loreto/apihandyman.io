@@ -12,6 +12,7 @@ category: post
 Jumping into the API-first train, even only focusing on private/internal APIs, will have an impact on budgets. Organizations need to find ways to redistribute budgets in order to enable any team that needs to provide APIs to do it in the best possible conditions. Is monetizing private/internal API the solution? Would crowdfunding private make sense?
 <!--more-->
 
+{% include banner-author-link.md %}
 {% include _postincludes/internal-private-apis-and-money.md %}
 
 # What a private/internal API is

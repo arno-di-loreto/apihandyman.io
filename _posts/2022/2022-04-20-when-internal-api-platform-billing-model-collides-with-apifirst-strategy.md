@@ -15,7 +15,7 @@ An internal API-first strategy will inevitably raise budgets questions; you must
 <!--more-->
 
 {% include banner-author-link.md %}
-
+{% include _postincludes/internal-private-apis-and-money.md %}
 # From API-first to API platform
 
 When an organization (a company, a subsidiary, a government agency, ...) has understood the importance of APIs, at least from an internal perspective, it will engage in its internal API-first journey. So, among other things, everything has been done to build a (minimum viable) API platform that exposes internal APIs (also called private APIs). It could be a centralized or semi-centralized infrastructure.  

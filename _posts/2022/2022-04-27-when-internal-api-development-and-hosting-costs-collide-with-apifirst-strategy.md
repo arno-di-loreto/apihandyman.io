@@ -12,7 +12,8 @@ category: post
 An often unintended consequence of an internal API-first strategy is having teams with not much IT jumping, willingly or not, in the API train. That inevitably will raise budget questions which answers will determine the success of the API-first strategy.
 
 <!--more-->
-
+{% include banner-author-link.md %}
+{% include _postincludes/internal-private-apis-and-money.md %}
 # Jumping into the API train
 
 When engaging on the API-first journey, they are often parts (business lines, departments, teams, ...) of the organizations that are left behind. The focus is often put on the parts that directly create value. The ones that could take advantage of APIs to provide new services to direct customers or the ones that will possibly provide APIs to the outside world. But (big) organizations often rely on more or less hidden support teams to operate. Those support functions could be HR, the risk department (if you're a bank), or some teams managing central data repositories.
