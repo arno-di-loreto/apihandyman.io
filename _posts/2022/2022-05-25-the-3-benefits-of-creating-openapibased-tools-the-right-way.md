@@ -5,6 +5,8 @@ author: Arnaud Lauret
 layout: post
 permalink: /the-3-benefits-of-creating-openapibased-tools-the-right-way/
 category: post
+tools:
+  - OpenAPI Specification
 ---
 
 Supporting The OpenAPI Specification (fka. Swagger Specification) format when creating Web API tools is a must-have.
