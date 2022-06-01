@@ -38,3 +38,8 @@ Well, everybody wins only if you follow the rules of the OpenAPI-based tools clu
 1. Share your stories in a "how we create amazing features thanks to OpenAPI" mode. Avoid just proposing "What is OpenAPI + clickbait" content.
 1. Give feedback, propose ideas, and participate in the OpenAPI community.
 1. Talk about the OpenAPI-based tools club as much as possible and share the rules.
+
+Feel overwhelmed?
+Fear of not being able to follow all the rules?
+No problem, remember rule #1; as a Web API tool creator, you're de-facto a lifetime club member.
+Please do your best and ask for help from [OpenAPI](https://www.openapis.org/) and [JSON Schema](https://json-schema.org/) communities to provide the best possible support to the OpenAPI Specification in your tool and the API space; it's good for you and the community.
