@@ -1,4 +1,175 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-06-15T07:16:26-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">The 15 rules of the OpenAPI-based tools club</title><link href="https://apihandyman.io/the-15-rules-of-the-openapi-based-tools-club/" rel="alternate" type="text/html" title="The 15 rules of the OpenAPI-based tools club" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://apihandyman.io/the-15-rules-of-the-openapi-based-tools-club</id><content type="html" xml:base="https://apihandyman.io/the-15-rules-of-the-openapi-based-tools-club/"><![CDATA[<p>The OpenAPI Specification can facilitate everyone’s life and participate in the creation of better APIs and a better API ecosystem.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-06-15T08:55:42-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Lint APIs with Spectral</title><link href="https://apihandyman.io/lint-apis-with-spectral/" rel="alternate" type="text/html" title="Lint APIs with Spectral" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://apihandyman.io/lint-apis-with-spectral</id><content type="html" xml:base="https://apihandyman.io/lint-apis-with-spectral/"><![CDATA[<p>Are you struggling to design consistent APIs? On the verge of losing sanity while checking every single property of every schema is camelCased? Never remembering the parameters to use for pagination? Spectral is the tool you need: it will lint JSON Schema, AsyncAPI, and OpenAPI documents and do those checks for you.
+<!--more--></p>
+
+<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
+
+<h1 id="spectral-is-a-json-and-yaml-linter">Spectral is a JSON and YAML linter</h1>
+
+<p><a href="https://github.com/stoplightio/spectral">Spectral</a> is an open-source JSON and YAML linter created by <a href="https://stoplight.io/">Stoplight</a>. Imagine ESLint or SonarQube but for JSON and YAML.</p>
+
+<blockquote class="blockquote">
+    <p class="mb-0">Lint, or a linter, is a static code analysis tool used to flag programming errors, bugs, stylistic errors and suspicious constructs.</p><footer class="blockquote-footer">
+        <cite title="Source Title"><a href="https://en.wikipedia.org/wiki/Lint_(software)">Wikipedia</a></cite>
+    </footer></blockquote>
+
+<p>Spectral checks that a JSON or YAML document respects some out-of-the-box or user-defined rules. Linting JSON or YAML documents allows ensuring different documents, possibly created by different persons are consistent with each other; that they share a similar look and feel. It makes them easier to read, and easier to maintain. Beyond styling, linting can also help avoid the use of wrong patterns.</p>
+
+<p>As Spectral works on any JSON or YAML document, it can be used on formats like Kubernetes configuration file, Postman collection, Github action, JSON Schema, AsyncAPI, or OpenAPI. For instance, using Spectral, you can check that in a Github action file, all jobs have <code>snake_case</code> names or that any job’s step using <a href="https://github.com/marketplace/actions/deploy-to-github-pages"><code>github-pages-deploy-action</code></a> defines a <code>commit-message</code>. Linting a Postman collection, you can check that every request comes with at least an example.</p>
+
+<h1 id="how-spectral-works">How Spectral works</h1>
+
+<p>Using Spectral requires defining a ruleset and then using Spectral CLI to lint (analyze) a document with it.</p>
+
+<h2 id="creating-a-ruleset">Creating a ruleset</h2>
+
+<p>A Spectral ruleset can be defined in a JSON or YAML document. The following code snippet shows the content of a YAML Spectral ruleset file named <code>rules.spectral.yaml</code>. It defines a <code>title-no-api</code> rule that checks the name of an API (defined in an OpenAPI document) does not contain the word “API”.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">rules.spectral.yaml</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="3,7,9" data-start="1"><code class="code-block">rules:
+    # Rule&#39;s name
+    title-no-api:
+        # Rule&#39;s description
+        description: The title must not contain the word API
+        # JSON Path to target
+        given: $.info.title
+        # Control applied on the target&#39;s value
+        then:
+            function: pattern
+            functionOptions:
+                notMatch: /\b(api)\b/ich: /\b(api)\b/i</code></pre>
+  </div>
+</div>
+
+<p>Each Spectral rule works like this one, hence “given some path then do some controls”:</p>
+
+<ul>
+  <li>The “target” of the rule is defined in <code>given</code> using a <a href="https://jsonpath-plus.github.io/JSONPath/docs/ts/">JSON Path</a> expression. The  <code>$.info.title</code> path targets the <code>title</code> property of the <code>info</code> object which is located at the root (<code>$</code> ) of the OpenAPI document, hence the name of the API.</li>
+  <li>The control that is done to the value of all the elements matching the given JSON path is defined in <code>then</code> by providing a <code>function</code> name and some options (<code>functionOptions</code> ) if required by the function. The <code>pattern</code> function used here ensures that the title doesn’t match a regular expression.</li>
+</ul>
+
+<h2 id="linting-a-document">Linting a document</h2>
+
+<p>To install Spectral, run the following command (check the <a href="https://github.com/stoplightio/spectral#-installation-and-Usage">documentation</a> for other installation methods):</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">npm install -g @stoplight/spectral-cli
+</pre>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Installing Spectral CLI</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">apihandyman&gt; npm install -g @stoplight/spectral-cli</code></pre>
+  </div>
+</div>
+
+<p>Linting a document named <code>openapi.yml</code> with the <code>rules.spectral.yaml</code> created previously is done has follow:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <pre class="copy-hidden code-copy">spectral lint openapi.yaml -r rules.spectral.yaml
+</pre>
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Linting a document</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-bash line-numbers" data-start="1"><code class="code-block">apihandyman&gt; spectral lint openapi.yaml -r rules.spectral.yaml
+
+/path/to/documents/openapi.yaml
+
+ 4:10  warning  title-no-api  The name of the API must not contain the word API  info.title
+
+✖ 1 problem (0 errors, 1 warning, 0 infos, 0 hints)</code></pre>
+  </div>
+</div>
+
+<p>For each problem, you get:</p>
+
+<ul>
+  <li>The problem’s location (<code>4:10</code> )as line and character numbers</li>
+  <li>The triggered rule’s severity (<code>warning</code>, the default level when the rule doesn’t define it)</li>
+  <li>The triggered rule name ( <code>title-no-api</code> )</li>
+  <li>The description of the problem</li>
+  <li>The path that triggered the rule( <code>info.title</code> )</li>
+</ul>
+
+<p>And indeed, the document that has been linted, contains the word “API” on line 4 in <code>info.title</code>  as shown below:</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">openapi.yaml</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code snippet control">
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="4" data-start="1"><code class="code-block">openapi: &quot;3.1.0&quot;
+
+info:
+  title: Demo API
+  version: &quot;1.0&quot;
+
+paths: {}</code></pre>
+  </div>
+</div>
+
+<h1 id="spectral-is-an-api-linter">Spectral is an API linter</h1>
+
+<p>Spectral comes with handy and ready-to-use rules and functions that will make JSON Schema, OpenAPI, and AsyncAPI documents easier. But even without them, Spectral is an awesome tool when working on APIs.</p>
+
+<p>Spectral really speeds up designing APIs your organization’s way and reviewing them. Using Spectral, you won’t lose time ensuring that the name of an API does not contain the word “API,” that all of your JSON schema properties are in camelCase, that every operation returning a list proposes the right pagination parameters, or that every operation returns at least a 2XX response. It can also tell you’re using a non-evolvable data structure such as a list of string or non-user-friendly required query parameters. Triggered Spectral rules will tell you what is wrong and how to fix it.</p>
+
+<p>That means API designers and API reviewers lose less time on designing APIs the right way, with the right look and feel, and spend more time on creating the right APIs. Spectral also makes APIs more user-friendly, participating in the building of a great developer experience (DX).</p>
+
+<h1 id="with-great-powers-comes-great-responsabilities">With great powers comes great responsabilities</h1>
+
+<p>Spectral is a powerful tool that can be of great help to design consistent, evolvable,  and user-friendly APIs easily, in the long run, and at scale. But that will happen only if you know how to fully take advantage of it.</p>
+
+<p>Spectral is a powerful tool that comes with a few challenges such as mastering JSON Path, mastering the functions, creating your own functions only when needed, designing user-friendly rules, governing rules, or being sure your rules actually work.
+Spectral is a powerful tool that can be used in some not obvious ways to take even more advantage of it: it can output JSON and it’s also a library.</p>
+
+<p>Hopefully, these are topics that will be covered in upcoming posts.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Are you struggling to design consistent APIs? On the verge of losing sanity while checking every single property of every schema is camelCased? Never remembering the parameters to use for pagination? Spectral is the tool you need: it will lint JSON Schema, AsyncAPI, and OpenAPI documents and do those checks for you.]]></summary></entry><entry><title type="html">The 15 rules of the OpenAPI-based tools club</title><link href="https://apihandyman.io/the-15-rules-of-the-openapi-based-tools-club/" rel="alternate" type="text/html" title="The 15 rules of the OpenAPI-based tools club" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://apihandyman.io/the-15-rules-of-the-openapi-based-tools-club</id><content type="html" xml:base="https://apihandyman.io/the-15-rules-of-the-openapi-based-tools-club/"><![CDATA[<p>The OpenAPI Specification can facilitate everyone’s life and participate in the creation of better APIs and a better API ecosystem.
 But it will work only if the members of the OpenAPI-based tools club follow the rules. 
 <!--more--></p>
 
@@ -2479,56 +2650,4 @@ const handlebarTemplate = `
 // Set visualizer
 pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
   </div>
-</div>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Postman Visualizer is perfect to tinker with data returned by an API and learn how it works. I found using HandlebarJS HTML templates quite convenient. But I was mindblown when I realized I could take advantage of Bootstrap to generate outstanding visualization without much effort. Let’s see that with The 5th Edition Dungeons and Dragons API in its GraphQL version.]]></summary></entry><entry><title type="html">Choosing a public API style when a private API style already exists</title><link href="https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists/" rel="alternate" type="text/html" title="Choosing a public API style when a private API style already exists" /><published>2022-04-06T00:00:00-05:00</published><updated>2022-04-06T00:00:00-05:00</updated><id>https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists</id><content type="html" xml:base="https://apihandyman.io/choosing-a-public-api-style-when-a-private-api-style-already-exists/"><![CDATA[<p>“What will be the style of our public/partner APIs? Should we reuse our existing private APIs style? Should we restart from scratch and use a totally different style?” This discussion happens quite often in organizations starting their public API journey (and if it did not happen, it must happen.) This discussion can have important consequences that must be carefully evaluated.
-<!--more--></p>
-
-<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em>
-<em>In case you don’t get the reference: The API Handyman is represented with a 80s mullet haircut, “business up front, party in the back”.</em></p>
-
-<h1 id="from-look-and-feel-to-life-and-death">From look and feel to life and death</h1>
-
-<p>After taking private APIs more or less seriously, your organization is ready for the next step on its API journey: providing APIs to the outside world. It could be partner APIs, provided to a few selected partners or customers who have been through a good old “let’s meet and sign some papers” process. It could also be public APIs that will be consumed in a self-service fashion by almost anyone.</p>
-
-<p>In either case: the DX (developer experience) offered by those APIs will be critical to their success. An API’s DX is determined by multiple factors from its purpose to how it’s simple to make API calls and everything in between (and beyond). Among all those factors, the design of an API plays a critical role in DX. A well-designed API will be easy to understand and easy to use. Such APIs will have a higher adoption rate and requires less support. On the opposite, terribly-designed public/partner APIs will not be used, and if they are used they will require a high level of support.</p>
-
-<p>A good way to avoid miserably failing your public/partner API initiative is to ensure that your APIs share a common style, a common “look and feel”. But that’s not enough, this common style must participate in the creation of “easy-to-understand-easy-to-use” APIs. Indeed you can create terrible APIs that all look the same. And last but not least, if that style ease designers’ job that is more than welcomed. A complicated style will only lead to terrible APIs because only a few experts will be capable of applying it.</p>
-
-<p>Hence the importance of the question, of which “style” to use for public/partner APIs. The style, the “look and feel” of your APIs have a major impact on their life and death.</p>
-
-<p>Choosing the API Style of public/partner APIs is a choice that must not be done by default (without choosing) but knowingly. Because once APIs start to be consumed by third parties, it’s extremely difficult to modify anything.</p>
-
-<h1 id="usual-scenarios">Usual scenarios</h1>
-
-<p>When that question arises (and remember it MUST arise) in a context where private APIs already exist, I often present the possibilities with the 3 following scenarios.</p>
-
-<ul>
-  <li>Keeping existing style as it is</li>
-  <li>Simplify existing style to target common practices</li>
-  <li>Redefined from scratch a totally new style targeting common practices or a standard</li>
-</ul>
-
-<p>The first option is to simply stick to the existing style. That’s a totally valid option if the existing style leads to easy-to-understand and easy-to-use APIs hence is free of bizarre local specificities and close to outside world common practices. If that’s not the case, I recommend studying the second scenario. Indeed, APIs that are uniform between themselves but go against common practices will be hard-to-understand and hard-to-use.</p>
-
-<p>The second scenario consists in taking the existing style and trying to simplify it in a backward-compatible fashion if that’s possible. The idea is to limit the breaking changes to what is absolutely necessary, or at least keep a certain spirit of the original style. It could simply consist in removing certain edge cases from the guidelines. But if there are too many changes to do, maybe it would be better to restart from scratch with the third option.</p>
-
-<p>The third option consists in redefining the public/partner API style from scratch without taking care of the existing API style. It could even be interesting to see if there are no standards to take advantage of (I’ll write a dedicated post on that topic).</p>
-
-<p>The problem is that if we stop here, we only envision that question from the public/partner API perspective: “Let’s choose the style that will work the best with the outside world”. The choice cannot be made without evaluating the impacts on the whole organization and all of its APIs.</p>
-
-<h1 id="different-styles-or-same-style">Different styles or same style</h1>
-
-<p>Behind the “which style will we use for our public/partner APIs?” question lies an even more critical one: “will we have the same or a different style for public/partner vs private APIs?”.</p>
-
-<p>In my opinion, the question is definitely no in the long run. While it’s totally understandable to have a transitional period where existing private APIs may not be updated until needed. It could cost a lot of money to update all existing private APIs to the new style. I highly recommend applying the new public/partner style to private APIs as soon as possible, starting at least with any new API.</p>
-
-<p>Indeed, using different styles for private and public/partner APIs forbid applying the Jeff Bezos mandate, you can’t turn a private API into a public/partner one easily. You’ll need a bit of work to transform the private style into the public/partner one.</p>
-
-<p>That also prevents eating your own dog food at two levels. First, if your public/partner APIs are not private, you won’t use them, you won’t discover their flaws, and you won’t improve them. Second level: the style itself. It will be less used and so less improved. Only a few experts will learn to design APIs the public/partner way, they won’t have many opportunities to grow their skill and propose style improvements as there are usually that less public/partner APIs created than private ones.</p>
-
-<p>That may to an extent promote a counter-productive organizational repartition between the team creating public/partner APIs and the other creating private APIs. That would severely cripple the API-First initiative at the organization level. Indeed, why should we care about our private APIs if the public/partner team will clean the mess when necessary?</p>
-
-<p>And even if you take the strict “2 styles” path, the public/partner style will win in the long run. People of your organization will use the public/partner APIs and be fed up with how they are different (and better) than private APIs. People will be fed up with spending time and money adapting API for public-facing consumers. People building private APIs will be fed up with being considered second-class citizens (vs people building public/partner APIs). People will question the legitimacy of that “2 styles” decision.</p>
-
-<h1 id="choose-knowingly">Choose knowingly</h1>
-
-<p>So don’t take the public/partner API style question lightly. This question is critical for the success of your public/partner API initiative but it will also have a huge impact on your whole organization’s API-first initiative.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[“What will be the style of our public/partner APIs? Should we reuse our existing private APIs style? Should we restart from scratch and use a totally different style?” This discussion happens quite often in organizations starting their public API journey (and if it did not happen, it must happen.) This discussion can have important consequences that must be carefully evaluated.]]></summary></entry></feed>
+</div>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Postman Visualizer is perfect to tinker with data returned by an API and learn how it works. I found using HandlebarJS HTML templates quite convenient. But I was mindblown when I realized I could take advantage of Bootstrap to generate outstanding visualization without much effort. Let’s see that with The 5th Edition Dungeons and Dragons API in its GraphQL version.]]></summary></entry></feed>
