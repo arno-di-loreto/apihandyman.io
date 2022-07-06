@@ -1,4 +1,244 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-07-06T07:19:03-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Lint APIs with Spectral</title><link href="https://apihandyman.io/lint-apis-with-spectral/" rel="alternate" type="text/html" title="Lint APIs with Spectral" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://apihandyman.io/lint-apis-with-spectral</id><content type="html" xml:base="https://apihandyman.io/lint-apis-with-spectral/"><![CDATA[<p>Are you struggling to design consistent APIs? On the verge of losing sanity while checking every single property of every schema is camelCased? Never remembering the parameters to use for pagination? Spectral is the tool you need: it will lint JSON Schema, AsyncAPI, and OpenAPI documents and do those checks for you.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-07-06T11:47:09-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What is the openapi property?</title><link href="https://apihandyman.io/what-is-the-openapi-property/" rel="alternate" type="text/html" title="What is the openapi property?" /><published>2022-07-06T00:00:00-05:00</published><updated>2022-07-06T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-the-openapi-property</id><content type="html" xml:base="https://apihandyman.io/what-is-the-openapi-property/"><![CDATA[<p>No OpenAPI document without the openapi property, but what does it represent? How did it evolve across the OpenAPI Specification versions? And how to take advantage of it? This is the first post in the OpenAPI Specification Reference series.
+<!--more--></p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">OpenAPI Specification Reference Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+<p>This series aims to provide complete cross-version reference documentation about the OpenAPI Specification aggregating different sources of information. For each analyzed element, you’ll find its definition, how it evolved across the different versions of the specification, how it is used and misused and where to find more information about it. This structure may evolve with future posts.</p>
+
+<p>This series’ posts are not intended to be actionable tutorials, they may be of interest to people involved in the evolution of the specification or creating tools, and also advanced OpenAPI nerds. Most of this content will probably be incorporated in the next version of the <a href="https://apihandyman.io/toolbox/openapi-map/">OpenAPI Map</a> and be useful for more actionable series/posts about OpenAPI and Spectral.</p>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list border-left">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          
+          <li class="list-group-item active">1 - What is the openapi property?</li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h1 id="definition">Definition</h1>
+
+<p>What represents the <code>openapi</code> property, is it required, and where it is located.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">An OpenAPI 3.1 document</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/openapi-reference/openapi/version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="1"><code class="code-block">openapi: 3.1.0
+
+info:
+  title: Demo API
+  version: "1.0"
+
+paths: {}</code></pre>
+  </div>
+</div>
+
+<p>The <code>openapi</code> property (line 1 in the document above) specifies the version of the OpenAPI Specification used in the document. It does not participate in the description of an API itself; it could be considered the only “OpenAPI metadata” in an OpenAPI document.</p>
+
+<p>The version of the OpenAPI Specification takes advantage of <a href="https://semver.org/">semantic versioning</a> <code>major.minor.patch</code>, <code>3.1.0</code> , for instance. Therefore, the <code>openapi</code> property is a string (not a number).  Note that some minor non-backward compatible modifications could happen (see Changelog).</p>
+
+<p>The <code>openapi</code> property is required; an OpenAPI document will be considered invalid without it.</p>
+
+<p>The <code>openapi</code> property is defined in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#oasObject">OpenAPI object</a> and located at the document’s root. It appears only once in a document.</p>
+
+<h1 id="changelog">Changelog</h1>
+
+<p>How the <code>openapi</code> property evolved across the different versions of the specification.</p>
+
+<h2 id="version-20">Version 2.0</h2>
+
+<p>In version 2.0 and earlier, the specification’s version was stored in a <code>swagger</code> property (at the same location) because that was the name of the specification at that time (read <a href="https://apihandyman.io/what-is-the-openapi-specification/">What is the OpenAPI Specification?</a> to learn more about this).</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A Swagger 2.0 document</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/openapi-reference/openapi/version-20.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="1"><code class="code-block">swagger: "2.0"
+
+info:
+  title: Demo API
+  version: "1.0"
+
+paths: {}</code></pre>
+  </div>
+</div>
+
+<h2 id="version-30">Version 3.0</h2>
+
+<p>The new “OpenAPI Specification” name was introduced in the 3.0 version, hence the modification of the property’s name specifying the version of the specification to <code>openapi</code>.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">An OpenAPI 3.0 document</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/openapi-reference/openapi/version-30.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="1"><code class="code-block">openapi: 3.0.3
+
+info:
+  title: Demo API
+  version: "1.0"
+
+paths: {}</code></pre>
+  </div>
+</div>
+
+<h2 id="version-31">Version 3.1</h2>
+
+<p>While version 3.1 did not bring any structural change regarding the openapi property; it modified the interpretation of its value. Strict semantic versioning was used in version 3.0: a modification of the minor version (3.0.0 to 3.1.0, for instance) must be backward compatible. Version 3.1 introduces a “loose semantic versioning” where non-backward compatible minor version changes (3.1.0 to 3.2.0, for example) may be introduced if the impact is considered sufficiently low compared to the benefits.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">An OpenAPI 3.1 document</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/openapi-reference/openapi/version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="1"><code class="code-block">openapi: 3.1.0
+
+info:
+  title: Demo API
+  version: "1.0"
+
+paths: {}</code></pre>
+  </div>
+</div>
+
+<h1 id="usage">Usage</h1>
+
+<p>How the <code>openapi</code> property can be used and misused.</p>
+
+<h2 id="use-case-examples">Use case examples</h2>
+
+<p>While the <code>openapi</code> property has no use inside a document, it is pretty helpful for the tools and processes that take advantage of the OpenAPI Specification. By the way, if you plan to create a format (for whatever VALID reasons), I would highly recommend putting the version inside documents.</p>
+
+<h3 id="openapi-parsers">OpenAPI Parsers</h3>
+
+<ul>
+  <li>Check you’re reading an OpenAPI document: if the property is absent, the document may not be an OpenAPI one.</li>
+  <li>Choose an adapted parser or JSON Schema based on the name of the property (swagger, openapi) and its value (2.0, 3.0.X, 3.1.X).</li>
+</ul>
+
+<h3 id="api-tools">API Tools</h3>
+
+<ul>
+  <li>Check the document is compatible with the tools you’re using (version 3.1 is not supported in all tools yet at the moment this is written).</li>
+  <li>Check the tools you plan to use are compatible with your existing documents.</li>
+  <li>Raise warnings or errors when linting documents to enforce moving from Swagger 2.0 to OpenAPI 3 to stop using outdated and with-less-features tools.</li>
+</ul>
+
+<h3 id="api-governance">API Governance</h3>
+
+<ul>
+  <li>Raise warnings or errors when linting documents to enforce moving from Swagger 2.0 to OpenAPI 3 to allow describing and documenting APIs more precisely.</li>
+  <li>Apply linting rules only on specific version(s) of the specification</li>
+</ul>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>The usual problems encountered with the <code>openapi</code> property.</p>
+
+<h3 id="not-the-version-of-the-api">Not the version of the API</h3>
+
+<p>When starting to use the OpenAPI Specification, the property and its value can be confounded with the version of the API described in the document (which is specified in <code>info.version</code>). Hopefully, most of the time, parsers will raise an error, but not straightforward like “did you try to put the API’s version in the <code>openapi</code> property instead of <code>info.version</code>?</p>
+
+<h3 id="almost-semantic-versioning">Almost semantic versioning</h3>
+
+<p>Be cautious with version 3.1 (and above) when working on OpenAPI-based tools because it introduces a “loose semantic versioning” where a minor version change may not be backward compatible (see Changelog). Version 3.1 introduces a few <a href="https://www.openapis.org/blog/2021/02/16/migrating-from-openapi-3-0-to-3-1-0">non-backward-compatible-but-with-limited-impact changes</a>, mainly around schema definitions.</p>
+
+<h3 id="missing-quotes">Missing quotes</h3>
+
+<p>This is a concern only in version 2.0. It is recommended put quotes around the value in YAML because 2.0 would be interpreted as a number instead of a string.</p>
+
+<h1 id="documentation">Documentation</h1>
+
+<p>Where to find more information about the <code>openapi</code> property.</p>
+
+<h2 id="official-documentation">Official documentation</h2>
+
+<ul>
+  <li>Version 3.1
+    <ul>
+      <li><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#versions">OpenAPI Specification version description</a></li>
+      <li><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#oasObject">openapi property definition in OpenAPI object</a></li>
+    </ul>
+  </li>
+  <li>Version 3.0
+    <ul>
+      <li><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#versions">OpenAPI Specification version description</a></li>
+      <li><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#oasObject">openapi property definition in OpenAPI object</a></li>
+    </ul>
+  </li>
+  <li>Version 2.0
+    <ul>
+      <li><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#swagger-object">swagger property definition in Swagger object</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="api-handyman-resources">API Handyman resources</h2>
+
+<ul>
+  <li>All examples shown in this post can be found in my <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/openapi-property">openapi-samples</a> Github repository.</li>
+</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[No OpenAPI document without the openapi property, but what does it represent? How did it evolve across the OpenAPI Specification versions? And how to take advantage of it? This is the first post in the OpenAPI Specification Reference series.]]></summary></entry><entry><title type="html">Lint APIs with Spectral</title><link href="https://apihandyman.io/lint-apis-with-spectral/" rel="alternate" type="text/html" title="Lint APIs with Spectral" /><published>2022-06-15T00:00:00-05:00</published><updated>2022-06-15T00:00:00-05:00</updated><id>https://apihandyman.io/lint-apis-with-spectral</id><content type="html" xml:base="https://apihandyman.io/lint-apis-with-spectral/"><![CDATA[<p>Are you struggling to design consistent APIs? On the verge of losing sanity while checking every single property of every schema is camelCased? Never remembering the parameters to use for pagination? Spectral is the tool you need: it will lint JSON Schema, AsyncAPI, and OpenAPI documents and do those checks for you.
 <!--more--></p>
 
 <p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
@@ -2143,511 +2383,4 @@ Neglecting those questions or choosing the wrong answers will negatively impact 
 <p>• An event broker like Pulsar, RabbitMQ or Kafka
 • An API Gateway like Kong, AWS API Gateway, …
 • OAuth and Identity providers
-• Kubernetes</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[LEGO is looking for an associate API Engineer for their API platform. LEGO+APIs! That looks awesome! But what is an API platform and what skills do you need to build it? Does the LEGO job offer list them all? Do you have them all? This post answers those questions and may help you apply to such offers or post the appropriate job offers to build your own API platform.]]></summary></entry><entry><title type="html">How to use Bootstrap in Postman Visualizer</title><link href="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/" rel="alternate" type="text/html" title="How to use Bootstrap in Postman Visualizer" /><published>2022-04-11T00:00:00-05:00</published><updated>2022-04-11T00:00:00-05:00</updated><id>https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer</id><content type="html" xml:base="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/"><![CDATA[<p>Postman Visualizer is perfect to tinker with data returned by an API and learn how it works. I found using <a href="https://handlebarsjs.com/">HandlebarJS</a> HTML templates quite convenient. But I was mindblown when I realized I could take advantage of <a href="https://getbootstrap.com/">Bootstrap</a> to generate outstanding visualization without much effort. Let’s see that with <a href="https://www.dnd5eapi.co/">The 5th Edition Dungeons and Dragons API</a> in its <a href="https://www.dnd5eapi.co/docs/#overview--graphql">GraphQL</a> version.
-<!--more--></p>
-
-<div class="card series-toc">
-  <div class="card-header series-toc-title">
-    <h5 id="series">Postman Tips and Tricks Series</h5>
-  </div>
-  <div class="row series-toc_content">
-    <div class="col-md-7 series-toc-summary">
-      <div class="card-body">
-        <p class="card-text">
-<p>This post is a “Postman Tips And Tricks Post” in which I share the tips and tricks I learn while using Postman.
-You can either:</p>
-
-<ul>
-  <li>Read this post</li>
-  <li>Read the collection documentation on <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/documentation/143378-0c503013-a7a9-4374-bdc2-7307ae777740">Postman network</a></li>
-  <li>Use this <a href="https://god.gw.postman.com/run-collection/143378-0c503013-a7a9-4374-bdc2-7307ae777740?action=collection%2Ffork&amp;collection-url=entityId%3D143378-0c503013-a7a9-4374-bdc2-7307ae777740%26entityType%3Dcollection"><img src="/images/commons/run-in-postman.svg" alt="Run in Postman" /></a> button to fork the collection directly in Postman</li>
-  <li>Get the collection from <a href="https://github.com/apihandyman/postman-tips-and-tricks/tree/main/use-bootstrap-in-visualizer">Github</a> to import it in Postman.</li>
-</ul>
-
-<p><em>(Click on the “View complete collection documentation” link in lower right corner to see documentation in full screen after import or fork)</em></p>
-
-<p>You can also see all of the collections of this series in my <a href="https://www.postman.com/apihandyman/workspace/postman-tips-and-tricks/overview">Postman Tips and Tricks</a> Postman Workspace.</p>
-</p>
-      </div>
-    </div>
-    <div class="col-md-5 series-toc-list border-left">
-      
-      <ul class="list-group list-group-flush">
-        
-          
-          
-          <li class="list-group-item"><a href="/we-always-forget-to-select-a-postman-environment/">We always forget to select a Postman environment</a></li>
-          
-        
-          
-          
-          <li class="list-group-item active">How to use Bootstrap in Postman Visualizer</li>
-          
-        
-        
-      </ul>
-    </div>
-  </div>
-</div>
-
-<h1 id="use-vizualiser">Use vizualiser</h1>
-
-<p>With this first request, we’ll discover the Dnd GraphQL API by retrieving a list of magic items and how to set up a “standard” visualizer to show them in a simple HTML table.</p>
-
-<h2 id="use-visualizer-with-pure-html">Use visualizer with pure HTML</h2>
-
-<p>The request body contains a GraphQL query requesting “the name, desc(ription) and rarity name of all magic items”. We’ll use the exact same query for all requests. Note that I do not recommend using abbreviations in property names (or whatever names) when designing APIs. Abbreviations make APIs harder to use. In that case, it looks really awkward because it seems there are no other abbreviations used in the entire API, all names are cristal clear full names. And yes, spotting the only “mistake” in an otherwise well-designed API is my super-power (or my curse 😅). Hopefully, as Postman loads the GraphQL schema, it proposed me “desc” when I started to type “des(cription)” in my query. (But that’s not a reason to underestimate the importance of design for GraphQL APIs.)</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-   
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Request</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="card-body">
-    <div class="row m-0 pt-2 align-items-start" style="background-color: #2a2139;">
-      <div class="col col-auto pl-3 pr-0 pb-1"><span class="badge http-post mr-2" style="font-size:1em;">POST</span><code class="language-http" style="background: transparent !important; overflow-wrap:break-word">https://www.dnd5eapi.co/graphql</code></div>
-    </div>
-     
-    <div class="col col-auto pl-0 pr-0">
-      <pre class="code-copy line-numbers language-graphql"><code class="code-block">{
-    magicItems {
-        name
-        desc
-        rarity {
-            name
-        }
-    }
-}</code></pre>
-    </div>
-    
-  </div>
-</div>
-
-<p>Ok, this digression on design aside, according to how GraphQL works and to the <a href="https://www.dnd5eapi.co/docs/#get-/api/magic-items/-index-">documentation</a>, that means we’ll get a list of objects <code>data.magicItems</code> containing a string <code>name</code>, an array of string <code>desc</code>, and an object <code>rarity</code> containing a string <code>name</code>.</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Response</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-json line-numbers code-collapsed code-copy" data-start="1"><code class="code-block">{
-    &quot;data&quot;: {
-        &quot;magicItems&quot;: [
-            {
-                &quot;name&quot;: &quot;Ammunition, +1, +2, or +3&quot;,
-                &quot;desc&quot;: [
-                    &quot;Weapon (any ammunition), uncommon (+1), rare (+2), or very rare (+3)&quot;,
-                    &quot;You have a bonus to attack and damage rolls made with this piece of magic ammunition. The bonus is determined by the rarity of the ammunition. Once it hits a target, the ammunition is no longer magical.&quot;
-                ],
-                &quot;rarity&quot;: {
-                    &quot;name&quot;: &quot;Varies&quot;
-                }
-            },
-            {
-                &quot;name&quot;: &quot;Adamantine Armor&quot;,
-                &quot;desc&quot;: [
-                    &quot;Armor (medium or heavy, but not hide), uncommon&quot;,
-                    &quot;This suit of armor is reinforced with adamantine, one of the hardest substances in existence. While you&#39;re wearing it, any critical hit against you becomes a normal hit.&quot;
-                ],
-                &quot;rarity&quot;: {
-                    &quot;name&quot;: &quot;Uncommon&quot;
-                }
-            }
-        ]
-    }
-}</code></pre>
-  </div>
-</div>
-
-<p>The visualization magic stands in the Test script. It defines a basic <a href="https://handlebarsjs.com/">HandlebarJS</a> template and then passes it to the Postman visualizer along with the data to use (the list of magic items). The template contains an HTML table with an <code>{{#each}}</code> loop on its rows. On each row, we have the name, rarity name, and the first line of description of each magic item.</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Test script</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-js line-numbers code-collapsed code-copy" data-line="1,3,14,26" data-start="1"><code class="code-block">const handlebarData = pm.response.json().data.magicItems;
-
-const handlebarTemplate = `
-    &lt;h1&gt;DnD Magic Items&lt;/h1&gt;
-    &lt;table&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th scope=&quot;col&quot;&gt;Name&lt;/th&gt;
-            &lt;th scope=&quot;col&quot;&gt;Rarity&lt;/th&gt;
-            &lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        {{#each .}}
-        &lt;tr&gt;
-            &lt;th scope=&quot;row&quot;&gt;{{name}}&lt;/th&gt;
-            &lt;td&gt;{{rarity.name}}&lt;/td&gt;
-            &lt;td&gt;{{desc.[0]}}&lt;/td&gt;
-        &lt;/tr&gt;
-        {{/each}}
-    &lt;/tbody&gt;
-    &lt;/table&gt;
-`;
-
-// Set visualizer
-pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
-  </div>
-</div>
-
-<p>After sending the request, the HTML result is visible by clicking on the “Visualize” button in the response’s “Body” tab.</p>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/how-to-use-bootstrap-in-postman-visualizer/use-bootstrap-in-visualizer-1.png" class="figure-img img-fluid" /></figure>
-</div>
-
-<h1 id="add-bootstratp-to-template">Add Bootstratp to template</h1>
-
-<p>By default, the visualization is already easier to read than the JSON data. But let’s add Bootstrap JS and CSS to have better styling.</p>
-
-<h2 id="add-bootstrap-js-and-css">Add Bootstrap JS and CSS</h2>
-
-<p>Adding Bootstrap to the template only requires adding the link to CSS and JS (found in <a href="https://getbootstrap.com/docs/5.1/getting-started/introduction/#quick-start">Boostrap Quick Start</a>) at the beginning of our template in the Test script of our request.</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Test script</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-js line-numbers code-collapsed code-copy" data-line="4-6" data-start="1"><code class="code-block">const handlebarData = pm.response.json().data.magicItems;
-
-const handlebarTemplate = `
-    &lt;!-- Bootstrap --&gt;
-    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3&quot; crossorigin=&quot;anonymous&quot;&gt;
-    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
-    &lt;!-- Content --&gt;
-    &lt;h1&gt;DnD Magic Items&lt;/h1&gt;
-    &lt;table&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th scope=&quot;col&quot;&gt;Name&lt;/th&gt;
-            &lt;th scope=&quot;col&quot;&gt;Rarity&lt;/th&gt;
-            &lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        {{#each .}}
-        &lt;tr&gt;
-            &lt;th scope=&quot;row&quot;&gt;{{name}}&lt;/th&gt;
-            &lt;td&gt;{{rarity.name}}&lt;/td&gt;
-            &lt;td&gt;{{desc.[0]}}&lt;/td&gt;
-        &lt;/tr&gt;
-        {{/each}}
-    &lt;/tbody&gt;
-    &lt;/table&gt;
-`;
-
-// Set visualizer
-pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
-  </div>
-</div>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/how-to-use-bootstrap-in-postman-visualizer/use-bootstrap-in-visualizer-2.png" class="figure-img img-fluid" /></figure>
-</div>
-
-<h2 id="style-table-and-fix-font-size">Style table and fix font size</h2>
-
-<p>Unfortunately, the table is not totally styled the Boostrap way and the font is rather small. Let’s fix that by:</p>
-
-<ul>
-  <li>Adding a <code>div</code> with a <code>font-style: larger</code> style around the header and table</li>
-  <li>Adding the <code>table</code> class to the table</li>
-</ul>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Test script</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-js line-numbers code-collapsed code-copy" data-line="8,10" data-start="1"><code class="code-block">const handlebarData = pm.response.json().data.magicItems;
-
-const handlebarTemplate = `
-    &lt;!-- Bootstrap --&gt;
-    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3&quot; crossorigin=&quot;anonymous&quot;&gt;
-    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
-    &lt;!-- Content --&gt;
-    &lt;div style=&quot;font-size: larger;&quot;&gt; &lt;!-- adding style to increase font size --&gt;
-        &lt;h1&gt;DnD Magic Items&lt;/h1&gt;
-        &lt;table class=&quot;table&quot;&gt; &lt;!-- Adding table css class to get Bootstrap styling --&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th scope=&quot;col&quot;&gt;Name&lt;/th&gt;
-                &lt;th scope=&quot;col&quot;&gt;Rarity&lt;/th&gt;
-                &lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            {{#each .}}
-            &lt;tr&gt;
-                &lt;th scope=&quot;row&quot;&gt;{{name}}&lt;/th&gt;
-                &lt;td&gt;{{rarity.name}}&lt;/td&gt;
-                &lt;td&gt;{{desc.[0]}}&lt;/td&gt;
-            &lt;/tr&gt;
-            {{/each}}
-        &lt;/tbody&gt;
-        &lt;/table&gt;
-`;
-
-// Set visualizer
-pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
-  </div>
-</div>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/how-to-use-bootstrap-in-postman-visualizer/use-bootstrap-in-visualizer-3.png" class="figure-img img-fluid" /></figure>
-</div>
-
-<h2 id="use-more-boostrap-features-and-beyond">Use more Boostrap features (and beyond)</h2>
-
-<p>And once Boostrap is in place the only limit is your imagination. And if you added Bootstrap CSS and JS imagine what other things you could include.</p>
-
-<p>The template has been modified as follows:</p>
-
-<ul>
-  <li>The <a href="https://getbootstrap.com/docs/5.1/content/tables/#variants">table header is dark</a> and sticky (thanks to some custom CSS)</li>
-  <li>The <a href="https://getbootstrap.com/docs/5.1/content/tables/#striped-rows">table has striped rows</a></li>
-  <li>Rarity is a <a href="https://getbootstrap.com/docs/5.1/components/badge/">badge</a> whose color depends on rarity value (thanks to HandlebarJS <code>{{lookup}}</code> helper)</li>
-</ul>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Test script</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-js line-numbers code-collapsed code-copy" data-line="1-10,21-25,30,31" data-start="1"><code class="code-block">// Defining which Bootstrap color apply on rarity badge
-const rarityColors = {
-    Varies: &quot;bg-light text-danger&quot;,
-    Common: &quot;bg-secondary&quot;,
-    Uncommon: &quot;bg-primary&quot;,
-    Rare: &quot;bg-success&quot;,
-    &quot;Very Rare&quot;: &quot;bg-info&quot;,
-    Legendary: &quot;bg-warning&quot;,
-    Artifact: &quot;bg-danger&quot;, 
-}
-// Handlebar data now holds the list of magic items and rarity colors
-const handlebarData = {
-    data: pm.response.json().data.magicItems,
-    rarityColors: rarityColors
-}
-const handlebarTemplate = `
-    &lt;!-- Bootstrap --&gt;
-    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3&quot; crossorigin=&quot;anonymous&quot;&gt;
-    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
-    &lt;!-- Why not using some custom css? --&gt;
-    &lt;style&gt;
-        .sticky{
-            position:sticky;
-            top: 0 ;
-        }
-    &lt;/style&gt;
-    &lt;!-- Content --&gt;
-    &lt;div style=&quot;font-size: larger;&quot;&gt;
-        &lt;h1&gt;DnD Magic Items&lt;/h1&gt;
-        &lt;table class=&quot;table table-striped table-hover&quot;&gt; &lt;!-- Striped table --&gt;
-        &lt;thead class=&quot;table-dark sticky&quot;&gt; &lt;!-- Sticky (custom css) Dark header (Bootstrap) --&gt;
-            &lt;tr&gt;
-                &lt;th scope=&quot;col&quot;&gt;Magic Item Name&lt;/th&gt;
-                &lt;th scope=&quot;col&quot;&gt;Rarity&lt;/th&gt;
-                &lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            {{#each data}}
-            &lt;tr&gt;
-                &lt;th scope=&quot;row&quot;&gt;{{name}}&lt;/th&gt;
-                &lt;!-- Rarity badge color changes depending on its value --&gt;
-                &lt;td&gt;&lt;span class=&quot;badge rounded-pill {{lookup ../rarityColors rarity.name}}&quot;&gt;{{rarity.name}}&lt;/span&gt;&lt;/td&gt;
-                &lt;td&gt;{{desc.[0]}}&lt;/td&gt;
-            &lt;/tr&gt;
-            {{/each}}
-        &lt;/tbody&gt;
-        &lt;/table&gt;
-`;
-
-// Set visualizer
-pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
-  </div>
-</div>
-
-<div class="image ">
-    <figure class="figure">
-        <img src="/images/how-to-use-bootstrap-in-postman-visualizer/use-bootstrap-in-visualizer-4.png" class="figure-img img-fluid" /></figure>
-</div>
-
-<h1 id="take-advantage-of-variables">Take advantage of variables</h1>
-
-<p>In order to avoid redefining custom, Bootstrap, or other CSS and JS for each template, you can take advantage of a collection variable to store them.</p>
-
-<h2 id="add-bootstrap-js-and-css-using-a-variable">Add Bootstrap JS and CSS using a variable</h2>
-
-<p>Here, the Bootstrap CSS and JS, and custom style tag have been put in the <code>cssjs</code> collection variable.</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Collection variable <code>cssjs</code> value</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-html line-numbers code-copy" data-start="1"><code class="code-block">&lt;!-- Bootstrap --&gt;
-    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3&quot; crossorigin=&quot;anonymous&quot;&gt;
-    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
-    &lt;!-- Why not using some custom css? --&gt;
-    &lt;style&gt;
-        .sticky{
-            position:sticky;
-            top: 0 ;
-        }
-    &lt;/style&gt;</code></pre>
-  </div>
-</div>
-
-<p>It is then loaded by <code>pm.collectionVariable("cssjs")</code> in the Test script and passed to the HandlebarJS template and used like any other data.</p>
-
-<div class="card card-code text-white bg-dark border-dark">
-  
-  <div class="card-header">
-    <div class="row m-0">
-      <div class="col align-self-center">
-        <p class="m-0 title">Test script</p>
-      </div>
-      <div class="col col-auto pr-0">
-        <div class="btn-group" role="group" aria-label="code snippet control">
-          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
-          <a role="button" class="btn border-0 rounded-0 code-expandcollapse-btn" aria-label="expand or shrink" onclick="expandCollapseCode(this)" data-toggle="tooltip" data-placement="top" title="Expand/Shrink"><img class="btn-icon" src="/images/commons/icons/maximize.svg" /></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <pre class="language-js line-numbers code-collapsed code-copy" data-line="17,20" data-start="1"><code class="code-block">// Defining which Bootstrap color apply on rarity badge
-const rarityColors = {
-    Varies: &quot;bg-light text-danger&quot;,
-    Common: &quot;bg-secondary&quot;,
-    Uncommon: &quot;bg-primary&quot;,
-    Rare: &quot;bg-success&quot;,
-    &quot;Very Rare&quot;: &quot;bg-info&quot;,
-    Legendary: &quot;bg-warning&quot;,
-    Artifact: &quot;bg-danger&quot;, 
-}
-// Handlebar data now holds the list of magic items and rarity colors
-const handlebarData = {
-    data: pm.response.json().data.magicItems,
-    rarityColors: rarityColors,
-    // Now bootstrap and custom css are store in a variable
-    // That way, they can easilty reused
-    cssjs: pm.collectionVariables.get(&quot;cssjs&quot;), 
-}
-const handlebarTemplate = `
-    {{{cssjs}}}
-    &lt;!-- Content --&gt;
-    &lt;div style=&quot;font-size: larger;&quot;&gt;
-        &lt;h1&gt;DnD Magic Items&lt;/h1&gt;
-        &lt;table class=&quot;table table-striped table-hover&quot;&gt;
-        &lt;thead class=&quot;table-dark sticky&quot;&gt;
-            &lt;tr&gt;
-                &lt;th scope=&quot;col&quot;&gt;Magic Item Name&lt;/th&gt;
-                &lt;th scope=&quot;col&quot;&gt;Rarity&lt;/th&gt;
-                &lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            {{#each data}}
-            &lt;tr&gt;
-                &lt;th scope=&quot;row&quot;&gt;{{name}}&lt;/th&gt;
-                &lt;td&gt;&lt;span class=&quot;badge rounded-pill {{lookup ../rarityColors rarity.name}}&quot;&gt;{{rarity.name}}&lt;/span&gt;&lt;/td&gt;
-                &lt;td&gt;{{desc.[0]}}&lt;/td&gt;
-            &lt;/tr&gt;
-            {{/each}}
-        &lt;/tbody&gt;
-        &lt;/table&gt;
-`;
-
-// Set visualizer
-pm.visualizer.set(handlebarTemplate, handlebarData);</code></pre>
-  </div>
-</div>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Postman Visualizer is perfect to tinker with data returned by an API and learn how it works. I found using HandlebarJS HTML templates quite convenient. But I was mindblown when I realized I could take advantage of Bootstrap to generate outstanding visualization without much effort. Let’s see that with The 5th Edition Dungeons and Dragons API in its GraphQL version.]]></summary></entry></feed>
+• Kubernetes</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[LEGO is looking for an associate API Engineer for their API platform. LEGO+APIs! That looks awesome! But what is an API platform and what skills do you need to build it? Does the LEGO job offer list them all? Do you have them all? This post answers those questions and may help you apply to such offers or post the appropriate job offers to build your own API platform.]]></summary></entry></feed>
