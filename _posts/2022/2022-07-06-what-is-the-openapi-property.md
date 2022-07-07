@@ -8,6 +8,8 @@ layout: post
 permalink: /what-is-the-openapi-property/
 codefiles: openapi-reference/openapi
 category: post
+tools:
+  - OpenAPI Specification
 ---
 
 No OpenAPI document without the openapi property, but what does it represent? How did it evolve across the OpenAPI Specification versions? And how to take advantage of it? This is the first post in the OpenAPI Specification Reference series.

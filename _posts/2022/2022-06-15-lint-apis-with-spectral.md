@@ -5,6 +5,9 @@ author: Arnaud Lauret
 layout: post
 permalink: /lint-apis-with-spectral/
 category: post
+tools:
+  - OpenAPI Specification
+  - Spectral
 ---
 
 Are you struggling to design consistent APIs? On the verge of losing sanity while checking every single property of every schema is camelCased? Never remembering the parameters to use for pagination? Spectral is the tool you need: it will lint JSON Schema, AsyncAPI, and OpenAPI documents and do those checks for you.
