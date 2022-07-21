@@ -1,0 +1,252 @@
+specification:
+  openapi-specification:
+    type: specification
+    links:
+      specification:
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md
+        "2.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md
+      schema:
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/main/schemas/v3.1/schema.json
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/main/schemas/v3.0/schema.json
+        "2.0": https://github.com/OAI/OpenAPI-Specification/blob/main/schemas/v2.0/schema.json
+  versioning:
+    name: Versioning policy
+    type: concept
+    description: OpenAPI Specification versioning policy
+    links:
+      specification:
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#versions 
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#versions
+        "2.0": null
+  openapi-property:
+    name: "`openapi` property"
+    type: property
+    related: [versioning, openapi-object]
+    links:
+      schema:
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.1/schema.json#L7
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.0/schema.json#L12
+        "2.0": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v2.0/schema.json#L18
+  openapi-object:
+    name: OpenAPI
+    type: object
+    links:
+      specification:
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#oasObject
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#oasObject
+        "2.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#swagger-object
+  info-object:
+    name: Info
+    type: object
+    related: [contact-object, license-object]
+    links:
+      specification:
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#infoObject
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#infoObject
+        "2.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#info-object
+      schema:
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.1/schema.json#L80
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.0/schema.json#L66
+        "2.0": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v2.0/schema.json#L87
+
+  contact-object:
+    name: Contact
+    type: object
+    links:
+      specification:
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#contactObject
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#contactObject
+        "2.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#contact-object
+      schema:
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.1/schema.json#L114
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.0/schema.json#L99
+        "2.0": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v2.0/schema.json#L125
+  license-object:
+    name: License
+    type: Object
+    links:
+      specification:
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#licenseObject
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#licenseObject
+        "2.0": https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#license-object
+      schema:
+        "3.1": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.1/schema.json#L133
+        "3.0": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.0/schema.json#L120
+        "2.0": https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v2.0/schema.json#L151
+
+discussions:
+  - title: termsOfService should be a URL
+    versions:
+      - "2.0" 
+    elements:
+      info-object: 
+        - termsOfService
+    links:
+      - name: Make clear that termsOfService should be an URL
+        url: https://github.com/OAI/OpenAPI-Specification/pull/255
+        type: pull request
+      - name: Make clear that info/termsOfService should be an URL.
+        url: https://github.com/OAI/OpenAPI-Specification/pull/661
+        type: pull request
+  - title: Rich text markdown descriptions
+    versions: 
+      - "2.0"
+      - "3.0"
+      - "3.1"
+    elements:
+      info-object:
+        - description
+    concept: rich-text
+    links:
+      - name: Change markdown standard from GFM to CommonMark
+        url: https://github.com/OAI/OpenAPI-Specification/pull/720
+        type: pull request
+      - name: Suggest we reference a specific version of CommonMark 
+        url: https://github.com/OAI/OpenAPI-Specification/issues/972
+        type: issue
+      - name: Provide guidance on Markdown table syntax
+        url: https://github.com/OAI/OpenAPI-Specification/issues/1867
+        type: issue
+      - name: CommonMark allows HTML tags, should some be prohibited/ignored?
+        url: https://github.com/OAI/OpenAPI-Specification/issues/1078
+        type: issue
+      - name: Permit tooling to limit commonmark usage
+        url: https://github.com/OAI/OpenAPI-Specification/pull/1090
+        type: pull request
+  - title: Adding summary to Info object
+    versions:
+      - "3.1"
+    elements:
+      info-object: 
+        - summary
+    links:
+      - name: Summary field in Info Object
+        url: https://github.com/OAI/OpenAPI-Specification/issues/832
+        type: issue
+      - name: 832 add info.summary
+        url: https://github.com/OAI/OpenAPI-Specification/pull/1779
+        type: pull request
+  - title: Adding a license identifier
+    versions:
+      - "3.1"
+    elements: 
+      license-object:
+        - identifier
+    links:
+      - name: identifier field for License Objects
+        url: https://github.com/OAI/OpenAPI-Specification/issues/1599
+        type: issue
+      - name: Add SPDX identifier field to license object, fixes #1599
+        url: https://github.com/OAI/OpenAPI-Specification/pull/2105
+        type: pull request
+  - title: License and terms of service clarifications
+    versions:
+      - "2.0"
+      - "3.0"
+      - "3.1"
+    elements:
+      info-object:
+        - termsOfService
+      license-object: []
+    links:
+      - name: Clarification on the purpose of the API license?
+        url: https://github.com/OAI/OpenAPI-Specification/issues/726
+        type: issue
+      - name: Provide additional detail in the documentation regarding the differences in Licensing vs. Terms of Service
+        url: https://github.com/OAI/OpenAPI-Specification/issues/1672
+        type: issue
+  - title: The url and identifier are optional in specification and required in schema
+    versions:
+      - "3.1"
+    elements:
+      license-object:
+        - url
+        - identifier
+    links:
+      - name: The mutually-exclusive url and identifier properties of License object are optional in specification and required in schema
+        url: https://github.com/OAI/OpenAPI-Specification/issues/2975
+
+samples:
+  info-object-complete:
+    name: Complete Info Object
+    elements:
+      info-object: []
+      contact-object: []
+      license-object: []
+    samples:
+      - name: Complete Info, Contact and License (url property) Objects
+        links:
+          "3.1": complete-license-url-version-31.openapi.yaml
+          "3.0": null
+          "2.0": null
+      - name: Complete Info, Contact and License (identifier property) Objects
+        links:
+          "3.1": complete-license-url-version-31.openapi.yaml
+          "3.0": null
+          "2.0": null
+      - name: Complete Info, Contact and License Objects
+        links:
+          "3.1": null
+          "3.0": complete-version-30.openapi.yaml
+          "2.0": complete-version-20.openapi.yaml
+  info-object-minimal:
+    name: Minimal Info Object
+    elements:
+      info-object: []
+      contact-object: []
+      license-object: []
+    samples:
+      - name: Minimal Info Object
+        links:
+          "3.1": minimal-version-31.openapi.yaml
+          "3.0": minimal-version-30.openapi.yaml
+          "2.0": minimal-version-20.openapi.yaml
+      - name: Minimal Info, Contact and License Objects
+        links:
+          "3.1": minimal-contact-license-version-31.openapi.yaml
+          "3.0": minimal-contact-license-version-30.openapi.yaml
+          "2.0": minimal-contact-license-version-20.openapi.yaml
+  info-object-description:
+    name: Info description and markdown
+    elements:
+      info-object:
+        - description
+      rich-text: []
+    samples:
+      - name: Text only description
+        links:
+          "3.1": description-text-one-line-version-31.openapi.yaml
+          "3.0": description-text-one-line-version-30.openapi.yaml
+          "2.0": description-text-one-line-version-20.openapi.yaml
+      - name: Multiline text only description
+        links:
+          "3.1": description-text-multiline-version-31.openapi.yaml
+          "3.0": description-text-multiline-version-30.openapi.yaml
+          "2.0": description-text-multiline-version-20.openapi.yaml
+      - name: One line markdown description
+        links:
+          "3.1": description-markdown-one-line-version-31.openapi.yaml
+          "3.0": description-markdown-one-line-version-30.openapi.yaml
+          "2.0": description-markdown-one-line-version-20.openapi.yaml
+      - name: Multiline markdown description
+        links:
+          "3.1": description-markdown-multiline-version-31.openapi.yaml
+          "3.0": description-markdown-multiline-version-30.openapi.yaml
+          "2.0": description-markdown-multiline-version-20.openapi.yaml
+  info-object-tos-text:
+    name: Text or URL termsOfService
+    elements:
+      info-object:
+        - termsOfService
+    samples:
+      - name: Text termsOfService
+        links:
+          "3.1": null
+          "3.0": null
+          "2.0": tos-text-version-20.openapi.yaml
+      - name: URL termsOfService
+        links:
+          "3.1": null
+          "3.0": null
+          "2.0": tos-url-version-20.openapi.yaml

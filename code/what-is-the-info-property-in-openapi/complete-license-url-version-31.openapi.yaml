@@ -1,0 +1,15 @@
+openapi: 3.1.0
+info:
+  title: Dummy Bookshop
+  summary: A fictitious API demonstrating the OpenAPI Specification's features
+  version: '1.0'
+  description: The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+  termsOfService: https://www.dummy-book.shop/tos
+  contact:
+    name: Bookshop Support team
+    url: https://www.dummy-book.shop/support
+    email: support@dummy-book.shop
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+paths: {}
