@@ -1,0 +1,15 @@
+openapi: 3.1.0
+info:
+  title: Dummy Bookshop
+  version: '1.0'
+  description: |
+    The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+
+    # How to get an access token?
+
+    Go to the [consumer settings page](https://www.dummy-book.shop/consumer-settings) and follow the instructions.
+
+    # Concepts
+
+    The Dummy Bookshop API deals with book, authors and many other book related topics.
+paths: {}

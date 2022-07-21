@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-07-20T07:17:16-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What is the openapi property?</title><link href="https://apihandyman.io/what-is-the-openapi-property/" rel="alternate" type="text/html" title="What is the openapi property?" /><published>2022-07-06T00:00:00-05:00</published><updated>2022-07-06T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-the-openapi-property</id><content type="html" xml:base="https://apihandyman.io/what-is-the-openapi-property/"><![CDATA[<p>No OpenAPI document without the openapi property, but what does it represent? How did it evolve across the OpenAPI Specification versions? And how to take advantage of it? This is the first post in the OpenAPI Specification Reference series.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-07-21T12:55:40-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What is the info property in OpenAPI?</title><link href="https://apihandyman.io/what-is-the-info-property-in-openapi/" rel="alternate" type="text/html" title="What is the info property in OpenAPI?" /><published>2022-07-21T00:00:00-05:00</published><updated>2022-07-21T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-the-info-property-in-openapi</id><content type="html" xml:base="https://apihandyman.io/what-is-the-info-property-in-openapi/"><![CDATA[<p>The info property of an OpenAPI document contains metadata that provides an overview of an API, but what does it represent exactly? How did it evolve across the OpenAPI Specification versions? And how to can it be used and misused? This is the second post in the OpenAPI Specification Reference series.
 <!--more--></p>
 
 <div class="card series-toc">
@@ -11,7 +11,1589 @@
         <p class="card-text">
 <p>This series aims to provide complete cross-version reference documentation about the OpenAPI Specification aggregating different sources of information. For each analyzed element, you’ll find its definition, how it evolved across the different versions of the specification, how it is used and misused and where to find more information about it. This structure may evolve with future posts.</p>
 
-<p>This series’ posts are not intended to be actionable tutorials, they may be of interest to people involved in the evolution of the specification or creating tools, and also advanced OpenAPI nerds. Most of this content will probably be incorporated in the next version of the <a href="https://apihandyman.io/toolbox/openapi-map/">OpenAPI Map</a> and be useful for more actionable series/posts about OpenAPI and Spectral.</p>
+<p>This series’ posts are not intended to be actionable tutorials, they may be of interest to people involved in the evolution of the specification or creating tools, and also advanced OpenAPI users. Most of this content will probably be incorporated in the next version of the <a href="https://apihandyman.io/toolbox/openapi-map/">OpenAPI Map</a> and be useful for more actionable series/posts about OpenAPI and Spectral.</p>
+</p>
+      </div>
+    </div>
+    <div class="col-md-5 series-toc-list border-left">
+      
+      <ul class="list-group list-group-flush">
+        
+          
+          
+          <li class="list-group-item"><a href="/what-is-the-openapi-property/">1 - What is the openapi property?</a></li>
+          
+        
+          
+          
+          <li class="list-group-item active">2 - What is the info property in OpenAPI?</li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h1 id="definition">Definition</h1>
+
+<p>What represents the <code>info</code> property, how it is structured, is it required, and where it is located.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">An OpenAPI 3.1 document with a complete info property (license url variant)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/complete-license-url-version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="2-14"><code class="code-block">openapi: 3.1.0
+info:
+  title: Dummy Bookshop
+  summary: A fictitious API demonstrating the OpenAPI Specification's features
+  version: '1.0'
+  description: The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+  termsOfService: https://www.dummy-book.shop/tos
+  contact:
+    name: Bookshop Support team
+    url: https://www.dummy-book.shop/support
+    email: support@dummy-book.shop
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+paths: {}
+</code></pre>
+  </div>
+</div>
+
+<h2 id="what-does-it-represent">What does it represent?</h2>
+
+<p>The <code>info</code> property (lines 2 to 15 in the document above) contains metadata that provides an overview of an API, what can be done with it, who to contact about it, and its limitations and conditions of use. It contains:</p>
+
+<ul>
+  <li>The API’s version (<code>version</code> properties). The OpenAPI Specification doesn’t enforce any way of versioning an API, the version just needs to be set as a string.</li>
+  <li>Various descriptions of the API, such as its name (<code>title</code> ) and a short and long description (<code>summary</code> and <code>description</code> ).</li>
+  <li>Contact information (<code>contact</code> property) to get more details or support.</li>
+  <li>Legal information pointing to documents outside of the OpenAPI document describing the API’s conditions of use and limitations (<code>termsOfService</code> and <code>license</code> properties).</li>
+</ul>
+
+<h2 id="how-is-it-structured">How is it structured?</h2>
+
+<p>The <code>info</code> property is an Info object and relies on two other objects; the <code>contact</code> property is a Contact object, and the <code>license</code> one is a License object. Those three object are <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#specificationExtensions">extensible</a>. All other properties are of type <code>string</code> (especially the <code>version</code>, see “<a href="#how-to-write-a-multiline-description-in-yaml">Missing quotes around the version of the API</a>”). Some may require a specific format (<code>url</code> or <code>email,</code> for example).</p>
+
+<table>
+<thead><tr>
+<th>Property</th><th>Required</th><th>Type</th><th>Description</th>
+</tr></thead>
+<tr>
+<td>title</td><td>✅</td><td><code>string</code></td><td>The name of the API.</td>
+</tr><tr><td>summary</td><td></td><td><code>string</code></td><td>A short summary of the API.</td>
+</tr><tr>
+  <td>version</td>
+  <td>✅</td>
+  <td><code>string</code></td>
+  <td>The version of the API (which is distinct from the <a href="#what-is-the-openapi-property">OpenAPI Specification version defined in the <code>openapi</code> property</a> or the <a href="#version-is-not-the-interfaces-contract-one">API implementation version</a>).</td>
+</tr><tr><td>description</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>A description of the API. Supports markdown (<a href="https://spec.commonmark.org/">Commonmark</a>) to propose rich text formatting (see "<a href="#using-rich-text-formatting-in-description">Using rich text formatting in description</a>").</td>
+</tr><tr><td>termsOfService</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>A URL to the terms of service for the API.</td>
+</tr>
+<tr>
+  <td>contact</td>
+  <td></td>
+  <td>Contact Object</td>
+  <td>The contact information for the exposed API.</td>
+</tr>
+<tr>
+  <td>contact.name</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>The identifying name of the contact person/organization.</td>
+</tr>
+<tr>
+  <td>contact.url</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>The URL pointing to the contact information.</td>
+</tr>
+<tr>
+  <td>contact.email</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>email</code>)</td>
+  <td>The email address of the contact person/organization.</td>
+</tr>
+<tr>
+  <td>license</td>
+  <td></td>
+  <td>License Object</td>
+  <td>The license that is applicable to the interface contract which is described in the OpenAPI document. See <a href="#what-is-a-license-for-an-api">What is a license for an API?</a>)</td>
+</tr>
+<tr>
+  <td>license.name</td>
+  <td>✅</td>
+  <td><code>string</code></td>
+  <td>The license name used for the API.</td>
+</tr><tr><td>license.identifier</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>An <a href="https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60">SPDX</a> license expression for the API. The <code>identifier</code> field is mutually exclusive of the <code>url</code> field.</td>
+</tr><tr>
+  <td>license.url</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>A URL to the license used for the API.The <code>url</code> field is mutually exclusive of the <code>identifier</code> field.</td>
+</tr>
+</table>
+
+<h2 id="is-it-required">Is it required?</h2>
+
+<p>The <code>info</code> property itself is required; an OpenAPI document will be considered invalid without it. It may be more or less complete; a minimal <code>info</code> property will contain the API’s name (<code>title</code>) and version (<code>version</code>).</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A minimal Info object</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/minimal-version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="2-4"><code class="code-block">openapi: 3.1.0
+info:
+  title: Dummy Bookshop
+  version: '1.0'
+paths: {}
+</code></pre>
+  </div>
+</div>
+
+<p>When a <code>license</code> property is present, the License object must include at least a license <code>name</code>, <code>identifier</code> and <code>url</code> are optional. According to specification and schema, when the <code>contact</code> property could be empty as all properties of the Contact object are optional. Obviously, a minimal instance must contain at least one of its <code>name</code>,<code>email</code> , or <code>url</code> properties.</p>
+
+<div class="alert alert-warning">
+<p>Note that there’s an inconsistency between the optional status of <code>identifier</code> and <code>url</code> described in the specification and the official JSON Schema which makes them required (see <a href="https://github.com/OAI/OpenAPI-Specification/issues/2975">Issue 2975</a>, <em>I’m waiting a confirmation before proposing a fix</em>).</p>
+
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">Minimal License and Contact objects</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/minimal-contact-license-version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5"><code class="code-block">openapi: 3.1.0
+info:
+  title: Dummy Bookshop
+  version: '1.0'
+  contact:
+    url: https://www.dummy-book.shop/support
+  license:
+    name: Apache 2.0
+paths: {}
+</code></pre>
+  </div>
+</div>
+
+<p>The <code>identifier</code> and <code>url</code> of the License object (<code>license</code> property of the Info Object) are mutually exclusive. That means only one of them can be provided and so a License object can’t contain them both at the same time.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A complete License object (identifier variant)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/complete-license-identifier-version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="13"><code class="code-block">    name: Apache 2.0
+    identifier: Apache-2.0
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A complete License object (url variant)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/complete-license-url-version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="13"><code class="code-block">    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+</code></pre>
+  </div>
+</div>
+
+<h2 id="where-is-it-located">Where is it located?</h2>
+
+<p>The <code>info</code> property is a property of the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#oasObject">OpenAPI object</a> and so is located at the OpenAPI document’s root. This property and the related Info, License and Contact objects appear only once in a document.</p>
+
+<h1 id="changelog">Changelog</h1>
+
+<p>How the <code>info</code> property and its components evolved across the different versions of the specification.</p>
+
+<p>The Info object hasn’t much structurally changed between version 2.0 and 3.1. Some clarifications and more-or-less non-backward compatible modifications have been made to the content of some values and some optional data have been added.</p>
+
+<h2 id="version-20-2014">Version 2.0 (2014)</h2>
+
+<p>The <code>info</code> property structure in version 2.0 is almost the same as in the 3.x versions minus the additions made in 3.1. Two properties, <code>termsOfService</code> and <code>description</code> have some “specific” behaviors that must be noted.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A Swagger 2.0 document with a complete info property</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/complete-version-20.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5-6"><code class="code-block">swagger: '2.0'
+info:
+  title: Dummy Bookshop
+  version: '1.0'
+  description: The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+  termsOfService: https://www.dummy-book.shop/tos
+  contact:
+    name: Bookshop Support team
+    url: https://www.dummy-book.shop/support
+    email: support@dummy-book.shop
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+paths: {}
+</code></pre>
+  </div>
+</div>
+
+<table>
+<thead><tr>
+<th>Property</th><th>Required</th><th>Type</th><th>Description</th>
+</tr></thead>
+<tr>
+<td>title</td><td>✅</td><td><code>string</code></td><td>The name of the API.</td>
+</tr><tr>
+  <td>version</td>
+  <td>✅</td>
+  <td><code>string</code></td>
+  <td>The version of the API (which is distinct from the <a href="#what-is-the-openapi-property">OpenAPI Specification version defined in the <code>swagger</code> property</a> or the <a href="#version-is-not-the-interfaces-contract-one">API implementation version</a>).</td>
+</tr><tr class="table-primary">
+<td>description</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>A description of the API. Supports markdown (<a href="https://github.github.com/gfm/">GFM</a>) to propose rich text formatting (see "<a href="#using-rich-text-formatting-in-description">Using rich text formatting in description</a>").</td>
+</tr><tr class="table-primary">
+<td>termsOfService</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>The Terms of Service for the API.</td>
+</tr>
+<tr>
+  <td>contact</td>
+  <td></td>
+  <td>Contact Object</td>
+  <td>The contact information for the exposed API.</td>
+</tr>
+<tr>
+  <td>contact.name</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>The identifying name of the contact person/organization.</td>
+</tr>
+<tr>
+  <td>contact.url</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>The URL pointing to the contact information.</td>
+</tr>
+<tr>
+  <td>contact.email</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>email</code>)</td>
+  <td>The email address of the contact person/organization.</td>
+</tr>
+<tr>
+  <td>license</td>
+  <td></td>
+  <td>License Object</td>
+  <td>The license that is applicable to the interface contract which is described in the OpenAPI document. See <a href="#what-is-a-license-for-an-api">What is a license for an API?</a>)</td>
+</tr>
+<tr>
+  <td>license.name</td>
+  <td>✅</td>
+  <td><code>string</code></td>
+  <td>The license name used for the API.</td>
+</tr><tr>
+  <td>license.url</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>A URL to the license used for the API.</td>
+</tr>
+</table>
+
+<h3 id="terms-of-service-is-implicitly-a-url">Terms of service is implicitly a URL</h3>
+
+<p>Though the <code>termsOfService</code> property is a string without any specific format, most parsers and tools expect its value to be a URL like in 3.x versions.</p>
+
+<h3 id="description-markdown-syntax-is-different-from-later-versions">Description markdown syntax is different from later versions</h3>
+
+<p>The <code>description</code> property supports the <a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#GitHub-flavored-markdown">GFM (Github Flavored Markdown)</a> syntax, which differs from the one used in 3.x versions (see “<a href="#which-markdown-syntax-to-support-in-description">Which Markdown syntax to support in description?</a>”).</p>
+
+<h2 id="version-30-2017">Version 3.0 (2017)</h2>
+
+<p>There is no structural modification in version 3.0. Still, the descriptions of two existing properties, <code>termsOfService</code> and <code>description</code>, have been modified, introducing more-or-less non-backward compatible changes.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">An OpenAPI 3.0 document with a complete info property</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/complete-version-30.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5-6"><code class="code-block">openapi: 3.0.3
+info:
+  title: Dummy Bookshop
+  version: '1.0'
+  description: The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+  termsOfService: https://www.dummy-book.shop/tos
+  contact:
+    name: Bookshop Support team
+    url: https://www.dummy-book.shop/support
+    email: support@dummy-book.shop
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+paths: {}
+</code></pre>
+  </div>
+</div>
+
+<table>
+<thead><tr>
+<th>Property</th><th>Required</th><th>Type</th><th>Description</th>
+</tr></thead>
+<tr>
+<td>title</td><td>✅</td><td><code>string</code></td><td>The name of the API.</td>
+</tr><tr>
+  <td>version</td>
+  <td>✅</td>
+  <td><code>string</code></td>
+  <td>The version of the API (which is distinct from the <a href="#what-is-the-openapi-property">OpenAPI Specification version defined in the <code>openapi</code> property</a> or the <a href="#version-is-not-the-interfaces-contract-one">API implementation version</a>).</td>
+</tr><tr class="table-danger"><td>description</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>A description of the API. Supports markdown (<a href="https://spec.commonmark.org/">Commonmark</a>) to propose rich text formatting (see "<a href="#using-rich-text-formatting-in-description">Using rich text formatting in description</a>").</td>
+</tr><tr class="table-warning"><td>termsOfService</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>A URL to the terms of service for the API.</td>
+</tr>
+<tr>
+  <td>contact</td>
+  <td></td>
+  <td>Contact Object</td>
+  <td>The contact information for the exposed API.</td>
+</tr>
+<tr>
+  <td>contact.name</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>The identifying name of the contact person/organization.</td>
+</tr>
+<tr>
+  <td>contact.url</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>The URL pointing to the contact information.</td>
+</tr>
+<tr>
+  <td>contact.email</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>email</code>)</td>
+  <td>The email address of the contact person/organization.</td>
+</tr>
+<tr>
+  <td>license</td>
+  <td></td>
+  <td>License Object</td>
+  <td>The license that is applicable to the interface contract which is described in the OpenAPI document. See <a href="#what-is-a-license-for-an-api">What is a license for an API?</a>)</td>
+</tr>
+<tr>
+  <td>license.name</td>
+  <td>✅</td>
+  <td><code>string</code></td>
+  <td>The license name used for the API.</td>
+</tr><tr>
+  <td>license.url</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>A URL to the license used for the API.</td>
+</tr>
+</table>
+
+<h3 id="terms-of-service-is-explicitly-a-url">Terms of service is explicitly a URL</h3>
+
+<p>The <code>termsOfService</code> property is now explicitly a URL (<a href="https://github.com/OAI/OpenAPI-Specification/pull/661">Issue #661</a>, <a href="https://github.com/OAI/OpenAPI-Specification/pull/255">Pull Request #255</a>). Out of context, it is an actual non-backward compatible change, but it is not, based on the typical property usage in version 2.0.</p>
+
+<h3 id="description-now-uses-commonmark-markdown-syntax">Description now uses CommonMark markdown syntax</h3>
+
+<p>The <code>description</code> property now supports markdown using the <a href="https://spec.commonmark.org/">CommonMark</a> syntax instead of GFM syntax (<a href="https://github.com/OAI/OpenAPI-Specification/pull/720">Pull Request #720</a>). This modification was introduced because the definition of GFM and its differences from the original Markdown format were unclear then. Conversely, the CommonMark specification was considered well documented, rigorously defined, and would facilitate tool creators’ work. It seems not to be the case anymore in 2022; see <a href="https://github.github.com/gfm/">GFM specification</a>, which was probably not available in 2017 and is equivalent to CommonMark specification quality. Question: At equivalent quality, could another argument in favor of such a change be to avoid using a “proprietary” format? CommonMark is a “non-proprietary” attempt to specify the Markdown syntax formally. That was a knowingly accepted non-backward compatible lossy change; markdown table support loss, among other less-used features, was considered acceptable because there was a work-around, using HTML tables, and <a href="https://talk.commonmark.org/t/tables-in-pure-markdown/81/186">CommonMark was supposed to evolve to support this feature</a> (<a href="https://github.com/OAI/OpenAPI-Specification/issues/1867">see issue #1867</a> and Markdown support section in Troubleshooting).</p>
+
+<h3 id="tools-may-ignore-some-markdown-features-in-rich-text-for-security-reasons">Tools may ignore some markdown features in rich text for security reasons</h3>
+
+<p>Regardless of which markdown syntax is used in <code>description</code>, or any other rich text value, version 3.0 adds some precisions about markdown parsing and security: <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#richText">tools may ignore certain markdown features for security concerns</a> (See <a href="https://github.com/OAI/OpenAPI-Specification/issues/1078">issue 1078</a>, <a href="https://github.com/OAI/OpenAPI-Specification/pull/1090">Pull Request #1090</a>, and <a href="#">Security issues with Markdown support in description</a> in Troubleshooting)</p>
+
+<h2 id="version-31-2021">Version 3.1 (2021)</h2>
+
+<p>In version 3.1, two optional properties were added; <code>summary</code> was added to the Info object and <code>identifier</code> was added to the License one. These are backward compatible modifications.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">An OpenAPI 3.1 document with a complete info property (license identifier variant)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/complete-license-identifier-version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="2-14"><code class="code-block">openapi: 3.1.0
+info:
+  title: Dummy Bookshop
+  summary: A fictitious API demonstrating the OpenAPI Specification's features
+  version: '1.0'
+  description: The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+  termsOfService: https://www.dummy-book.shop/tos
+  contact:
+    name: Bookshop Support team
+    url: https://www.dummy-book.shop/support
+    email: support@dummy-book.shop
+  license:
+    name: Apache 2.0
+    identifier: Apache-2.0
+paths: {}
+</code></pre>
+  </div>
+</div>
+
+<table>
+<thead><tr>
+<th>Property</th><th>Required</th><th>Type</th><th>Description</th>
+</tr></thead>
+<tr>
+<td>title</td><td>✅</td><td><code>string</code></td><td>The name of the API.</td>
+</tr><tr class="table-success"><td>summary</td><td></td><td><code>string</code></td><td>A short summary of the API.</td>
+</tr><tr>
+  <td>version</td>
+  <td>✅</td>
+  <td><code>string</code></td>
+  <td>The version of the API (which is distinct from the <a href="#what-is-the-openapi-property">OpenAPI Specification version defined in the <code>openapi</code> property</a> or the <a href="#version-is-not-the-interfaces-contract-one">API implementation version</a>).</td>
+</tr><tr><td>description</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>A description of the API. Supports markdown (<a href="https://spec.commonmark.org/">Commonmark</a>) to propose rich text formatting (see "<a href="#using-rich-text-formatting-in-description">Using rich text formatting in description</a>").</td>
+</tr><tr><td>termsOfService</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>A URL to the terms of service for the API.</td>
+</tr>
+<tr>
+  <td>contact</td>
+  <td></td>
+  <td>Contact Object</td>
+  <td>The contact information for the exposed API.</td>
+</tr>
+<tr>
+  <td>contact.name</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>The identifying name of the contact person/organization.</td>
+</tr>
+<tr>
+  <td>contact.url</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>The URL pointing to the contact information.</td>
+</tr>
+<tr>
+  <td>contact.email</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>email</code>)</td>
+  <td>The email address of the contact person/organization.</td>
+</tr>
+<tr>
+  <td>license</td>
+  <td></td>
+  <td>License Object</td>
+  <td>The license that is applicable to the interface contract which is described in the OpenAPI document. See <a href="#what-is-a-license-for-an-api">What is a license for an API?</a>)</td>
+</tr>
+<tr>
+  <td>license.name</td>
+  <td>✅</td>
+  <td><code>string</code></td>
+  <td>The license name used for the API.</td>
+</tr><tr class="table-success"><td>license.identifier</td>
+  <td></td>
+  <td><code>string</code></td>
+  <td>An <a href="https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60">SPDX</a> license expression for the API. The <code>identifier</code> field is mutually exclusive of the <code>url</code> field.</td>
+</tr><tr>
+  <td>license.url</td>
+  <td></td>
+  <td><code>string</code>&nbsp;(<code>url</code>)</td>
+  <td>A URL to the license used for the API.The <code>url</code> field is mutually exclusive of the <code>identifier</code> field.</td>
+</tr>
+</table>
+
+<h3 id="apis-summary-added-to-info-object">API’s summary added to Info Object</h3>
+
+<p>The <code>summary</code> property has been added to the Info object (<a href="https://github.com/OAI/OpenAPI-Specification/issues/832">Issue #832</a>, <a href="https://github.com/OAI/OpenAPI-Specification/pull/1779">Pull request #1779</a>). It’s a short description of the API which is similar to the summary found on a path or an operation. That simplifies documentation tools work which would take the first sentence or first nth characters as a summary in previous version (See <a href="#api-documentation">API documentation use case examples</a>). That can also help better set the boundaries of the API (see <a href="#api-design">API design use case examples</a>).</p>
+
+<h3 id="spdx-identifier-added-to-license-object">SPDX identifier added to License Object</h3>
+
+<p>The <code>identifier</code> property has been added to the License object (<a href="https://github.com/OAI/OpenAPI-Specification/issues/1599">Issue #1599</a>, <a href="https://github.com/OAI/OpenAPI-Specification/pull/2105">Pull Request #2105</a>). It is a <a href="https://spdx.dev/spdx-specification-21-web-version/#h.jxpfx0ykyb60">SPDX (Software Package Data eXchange) license expression</a> which  “provides a way for one to construct expressions that more accurately represent the licensing terms typically found in open source software source code.” The value can be an <a href="https://spdx.org/licenses/">official SPDX identifier</a> or a custom one.</p>
+
+<p>This new <code>identifier</code> property is optional but mutually exclusive with the <code>url</code> one. No information were found in the specification, issues or pull requests explaining this mutual exclusive relationship.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A complete License object (identifier variant)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/complete-license-identifier-version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="13"><code class="code-block">    name: Apache 2.0
+    identifier: Apache-2.0
+</code></pre>
+  </div>
+</div>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A complete License object (url variant)</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/complete-license-url-version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="13"><code class="code-block">    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+</code></pre>
+  </div>
+</div>
+
+<h1 id="usage">Usage</h1>
+
+<p>How the <code>info</code> property and its components can be used and misused.</p>
+
+<h2 id="notes-about-certain-properties">Notes about certain properties</h2>
+
+<h3 id="using-rich-text-formatting-in-description">Using rich text formatting in description</h3>
+
+<p>The <code>description</code> property supports markdown to propose rich text formatting (see “<a href="#which-markdown-syntax-to-support-in-description">Which Markdown syntax to support in description?</a>”).</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A rich text (markdown) description</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/complete-license-url-version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-start="6"><code class="code-block">  description: The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+</code></pre>
+  </div>
+</div>
+
+<div class="image ">
+    <figure class="figure">
+        <img src="/images/what-is-the-info-property-in-openapi/rich-text-rendered.jpg" class="figure-img img-fluid" /></figure>
+</div>
+
+<h2 id="use-case-examples">Use case examples</h2>
+
+<p>The <code>info</code> property can be used for API design, governance, documentation, and tools. Here are a few examples; some of them may deserve more complete articles.</p>
+
+<h3 id="api-design">API design</h3>
+
+<ul>
+  <li>In the early stage of design, designers can take advantage of almost empty documents containing only an <code>info</code> property (empty <code>paths</code> or empty <code>components</code>) to describe the API in natural language briefly. Giving a name (<code>title</code>) and crafting a short description (<code>summary</code> ) of an API can be an excellent start to set boundaries. The longer markdown-compatible <code>description</code> can be used to list the use cases to fulfill.</li>
+</ul>
+
+<h3 id="api-governance">API governance</h3>
+
+<ul>
+  <li>The <code>version</code> property can be used in conjunction with a <a href="https://semver.org/">semantic version</a> (<code>2.1,</code> for example) to inform about the type of changes introduced. Note that the version can be anything that fits into a string. For example, it could be an ISO8601 date (<code>2022-07-19</code>).</li>
+  <li>An organization can ensure that an API has an identified owner by enforcing providing the <code>contact</code> information.</li>
+</ul>
+
+<h3 id="api-documentation">API documentation</h3>
+
+<ul>
+  <li>An API catalog can take advantage of the <code>title</code> and <code>summary</code> properties of OpenAPI documents to generate a list of APIs.</li>
+  <li>A UI showing an API’s detailed information can take advantage of the markdown sections (<code># level 1</code>  and <code>## level 2,</code> for example) present in <code>the description to build a menu and</code> various pages.</li>
+  <li>The <code>description</code> can list the modifications a new version brings (in a <code># Changelog</code> section, for instance).</li>
+  <li>The support form of an API on an API portal could take advantage of the <code>contact</code> property.</li>
+  <li>The <code>description</code> can be used to fill the gap in the OpenAPI Specification and add (non-machine readable) information that can’t be put elsewhere in the document, though it may be preferable to use machine-readable extensions (See <a href="#description-vs-extension">Description vs extension</a>).</li>
+</ul>
+
+<h3 id="api-tools">API Tools</h3>
+
+<ul>
+  <li>Depending on the type of change indicated by a semantic <code>version</code> , the tool in charge of deploying an API on an API gateway may choose to update (minor change<code>1.7</code>  to <code>1.8</code>  for example) or recreate the API (major change, <code>1.8</code>  to <code>2.0</code>  for example), leaving the previous version unmodified.</li>
+  <li>Monitoring and logging tools may use the API <code>title</code> as an identifier of the API (hoping there are governance controls ensuring it is unique).</li>
+</ul>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>The usual problems, concerns, and questions encountered when using the <code>info</code> property (Info, Contact, and License objects). Some of the elements evoked here may deserve more complete articles.</p>
+
+<ul>
+  <li><a href="#info-may-be-more-than-metadata">Info may be more than metadata</a></li>
+  <li><a href="#version-is-not-the-interfaces-contract-one">Version is not the interface’s contract one</a></li>
+  <li><a href="#missing-quotes-around-the-version-of-the-api">Missing quotes around the version of the API</a></li>
+  <li><a href="#how-to-write-a-multiline-description-in-yaml">How to write a multiline description in YAML?</a></li>
+  <li><a href="#description-as-a-substitute-or-copy-of-some-openapi-elements">Description as a substitute or copy of some OpenAPI elements</a></li>
+  <li><a href="#description-vs-extension">Description vs extension</a></li>
+  <li><a href="#which-markdown-syntax-to-support-in-description">Which Markdown syntax to support in description?</a></li>
+  <li><a href="#security-issues-with-markdown-support-in-description">Security issues with Markdown support in description</a></li>
+  <li><a href="#non-url-terms-of-service">Non URL terms of service</a></li>
+  <li><a href="#what-is-a-license-for-an-api">What is a license for an API?</a></li>
+  <li><a href="#is-it-possible-to-use-a-custom-license-identifier">Is it possible to use a custom license identifier?</a></li>
+  <li><a href="#license-used-for-terms-of-service">License used for terms of service</a></li>
+</ul>
+
+<h3 id="info-may-be-more-than-metadata">Info may be more than metadata</h3>
+
+<p>The <code>info</code> property is described as “metadata” and could be seen as not being part of the API contract. But this property may directly or indirectly describe behavior and provide information impacting the overall API’s contract. For instance, the document(s) linked in <code>termsOfService</code> could define rate limits or the <code>description</code> may describe some of the API’s behavior in human-readable fashion only.</p>
+
+<h3 id="version-is-not-the-interfaces-contract-one">Version is not the interface’s contract one</h3>
+
+<p>When generating an OpenAPI document from code, the <code>version</code> property may contain the implementation’s version or build number instead of the interface’s contract version. The framework or library used may need some configuration tuning to ensure that the correct expected value is put in this property.</p>
+
+<h3 id="missing-quotes-around-the-version-of-the-api">Missing quotes around the version of the API</h3>
+
+<p>Many APIs use a <code>major.minor</code> semantic versioning, so the <code>info.version</code> value could be <code>1.0</code> for instance. Not putting quotes around this value will cause an error because <code>info.version</code> is defined as a string and such value will be interpreted as a number by OpenAPI parsers either the document is in JSON or YAML.</p>
+
+<h3 id="how-to-write-a-multiline-description-in-yaml">How to write a multiline description in YAML?</h3>
+
+<p>A complex and long markdown <code>description</code> can be a burden to write on a single line. Hopefully YAML supports multiline string values. Right after <code>description: </code> add a <code>|</code> followed by a new line, this allows to write multiline string values. Read more about multiline strings in YAML <a href="https://yaml-multiline.info/">here</a>.</p>
+
+<div class="card card-code text-white bg-dark border-dark">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col align-self-center">
+        <p class="m-0 title">A multiline description</p>
+      </div>
+      <div class="col col-auto pr-0">
+        <div class="btn-group" role="group" aria-label="code file controls">
+          <a role="button" class="btn border-0 rounded-0" aria-label="download file" target="_blank" href="/code/what-is-the-info-property-in-openapi/description-markdown-multiline-version-31.openapi.yaml" data-toggle="tooltip" data-placement="top" title="Download"><img class="btn-icon" src="/images/commons/icons/download.svg" /></a>
+          <a role="button" class="btn code-copy-btn border-0 rounded-0" aria-label="copy" data-toggle="tooltip" data-placement="top" title="Copy"><img class="btn-icon" src="/images/commons/icons/copy.svg" /></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <pre class="language-yaml line-numbers code-copy" data-line="5-14"><code class="code-block">openapi: 3.1.0
+info:
+  title: Dummy Bookshop
+  version: '1.0'
+  description: |
+    The **Dummy Bookshop API** is a _fictitious_ API aiming to demonstrate the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification)'s features.
+
+    # How to get an access token?
+
+    Go to the [consumer settings page](https://www.dummy-book.shop/consumer-settings) and follow the instructions.
+
+    # Concepts
+
+    The Dummy Bookshop API deals with book, authors and many other book related topics.
+paths: {}
+</code></pre>
+  </div>
+</div>
+
+<h3 id="description-as-a-substitute-or-copy-of-some-openapi-elements">Description as a substitute or copy of some OpenAPI elements</h3>
+
+<p>An axis of OpenAPI documents analysis (that can be done during an API review process) is to ensure the <code>description</code> property doesn’t contain information that could have been described in a machine-readable way with other OpenAPI elements or information that has been already formally described elsewhere.</p>
+
+<h3 id="description-vs-extension">Description vs extension</h3>
+
+<p>The description property could be used to fill the gap in the OpenAPI Specification, but the information provided are mostly human-readable only (though it could be partially machine-interpreted taking advantage of rich text features like sections). It could be preferable to take advantage of <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#specificationExtensions">extensions (custom x- properties)</a>.</p>
+
+<p><em>API Handyman note: A dedicated post about extensions in planned in this OpenAPI Reference series.</em></p>
+
+<h3 id="which-markdown-syntax-to-support-in-description">Which Markdown syntax to support in description?</h3>
+
+<p>The use of <a href="https://commonmark.org/">CommonMark</a> was introduced in 3.0 (<a href="https://github.com/OAI/OpenAPI-Specification/pull/720">Pull Request #720</a>) in replacement of GFM (Github Flavored Markdown) used in previous version, see <a href="#version-30-2017">version 3.0 changelog</a>.</p>
+
+<p>According to what is said in the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#rich-text-formatting">3.1 specification</a> and in the <a href="https://github.com/OAI/OpenAPI-Specification/issues/972">issue #972</a> discussion, tools should support CommonMark 0.27 and above (the latest version as of the moment of writing is 0.30).</p>
+
+<p>The problem is that transitioning from GFM to CommonMark markdown syntax came with some loss, especially the (non-HTML) table support (see <a href="https://github.com/OAI/OpenAPI-Specification/issues/1867">Issue #1867</a>) and many people are used to <a href="https://github.github.com/gfm/#tables-extension-">table GFM syntax</a>. The <a href="https://talk.commonmark.org/t/tables-in-pure-markdown/81/186">discussion about supporting table in CommonMark exists</a> but is not yet settle even in 2022. In 2017, the table issue was known and it was decided that as CommonMark supported HTML and markdown table was possibly coming to CommonMark, it was OK to switch.</p>
+
+<p>Hopefully, according to the <a href="https://talk.commonmark.org/t/tables-in-pure-markdown/81/186">CommonMark table discussion</a> it seems “there are plenty of CommonMark implementations out there that offer table extensions compatible with what GitHub uses.</p>
+
+<p><em>API Handyman note: Based on those elements, I would (I’m not speaking in the name of OAI) recommend to support the most common markdown syntax(es), especially GFM tables, and not just pure CommonMark. That way it is possible to easily deal with all versions of OpenAPI from 2.0 to 3.1 and what most users will expect regarding markdown support.</em></p>
+
+<h3 id="security-issues-with-markdown-support-in-description">Security issues with Markdown support in description</h3>
+
+<p>This is not an OpenAPI specific topic, any tool/format relying on markdown is subject to security issues like <a href="https://www.akamai.com/blog/security/markdown-menace">local file inclusion</a> or <a href="https://michelf.ca/blog/2010/markdown-and-xss/">XSS</a>. Therefore, it is accepted and even up to the tools to ignore some normally supported markdown feature for security concerns (See <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#richText">Rich Text Formatting section</a>,  <a href="https://github.com/OAI/OpenAPI-Specification/issues/1078">issue 1078</a> and <a href="https://github.com/OAI/OpenAPI-Specification/pull/1090">Pull Request #1090</a>). But, as always with security measures, a balance has to be found with user experience (completely forbidding HTML support could be a problem for instance).</p>
+
+<h3 id="non-url-terms-of-service">Non URL terms of service</h3>
+
+<p>In version 2.0, it was not clearly stated that <code>termsOfService</code> was a URL, so some documents may contain a text value which is not a URL. Based on a search on the APIs.guru directory, it can be assumed it is quite rare, if not non-existing on public APIs, though the situation may be different on the millions on private APIs. Nevertheless, most tools parsing 2.0 documents will expect a URL and ignore other values, but maybe silently. This is not an issue anymore in 3.x documents as the specifications clearly states the expected format.</p>
+
+<h3 id="what-is-a-license-for-an-api">What is a license for an API?</h3>
+
+<p>According to <a href="https://github.com/OAI/OpenAPI-Specification/issues/726">issue #726</a>, the <code>license</code> property describes the license (like Apache 2.0 for instance) that is applicable to the interface contract itself which is described in the OpenAPI document. It tells if one can re-implement or re-license the API, it does not apply to the implementation.</p>
+
+<p><em>API Handyman note, I’ll need to investigate that topic, as despite what is said above, I’m not sure about what means a license for an API and even if an API can be licensed. Also does it relate to copyright (as in the <a href="https://en.wikipedia.org/wiki/Google_LLC_v._Oracle_America_Inc.">Google vs Oracle API case</a>)?</em></p>
+
+<h3 id="is-it-possible-to-use-a-custom-license-identifier">Is it possible to use a custom license identifier?</h3>
+
+<p>It is possible to use custom license <code>identifier</code> in the License object? Yes and no. The property only expects a <a href="https://spdx.dev/spdx-specification-21-web-version/#h.jxpfx0ykyb60">SPDX expression</a> value and not an actual <a href="https://spdx.org/licenses/">official SPDX identifier</a> or a combination of those.</p>
+
+<p>A pseudo-custom identifier which is a combination of existing ones can be used. The information available on the <a href="https://spdx.org/licenses/">official license list</a> will allow to parse it.</p>
+
+<p>But if the <code>identifier</code> is a completely custom one (which is not based on existing license identifiers), impossible to understand using the official list, how people or machine reading the document are supposed to understand that code? I wouldn’t recommend to use such an identifier unless you’re sure that people and machine using the document know what to do with it, but how to be 100% sure? In that case, it would be more secure to use a <code>url</code> instead of an <code>identifier</code>.</p>
+
+<p>Note that the SPDX documentation can be overwhelming. On <a href="https://github.com/OAI/OpenAPI-Specification/issues/1599">Issue #1599</a>, silverhook <a href="https://github.com/OAI/OpenAPI-Specification/issues/1599#issuecomment-510819281">shows an example of completely custom SPDX identifier</a>:</p>
+
+<blockquote>
+  <p>If a license is not listed on the SPDX License List, you can still use SPDX annotation to indicate a unique license by prepending LicenseRef- to the (unique) license name. E.g. LicenseRef-My_Very_Own_Look_But_Do_Not_Touch_License-2.0 is a valid SPDX license identifier.</p>
+</blockquote>
+
+<h3 id="license-used-for-terms-of-service">License used for terms of service</h3>
+
+<p>Some OpenAPI document may use the license object to point to their terms of service (or terms and conditions). That is not correct according to the definition (and clarification) of what is the <code>license</code> property. See <a href="https://github.com/OAI/OpenAPI-Specification/issues/1672">issue #1672</a>.</p>
+
+<h1 id="documentation">Documentation</h1>
+
+<p>Where to find more information about the <code>info</code> property and its components.</p>
+
+<h2 id="specification-and-schemas">Specification and schemas</h2>
+
+<table>
+
+
+    <thead>
+    <tr>
+      <th>Info object</th>
+      <th class="text-center" colspan="3">Links</th>
+    </tr>
+    </thead>
+    <tr>
+      <td>Specification</td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#infoObject"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#infoObject"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#info-object"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a></td>
+      
+    </tr>
+    <tr>
+      <td>JSON schema</td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.1/schema.json#L80"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.0/schema.json#L66"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v2.0/schema.json#L87"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a></td>
+      
+    </tr>
+
+
+    <thead>
+    <tr>
+      <th>Contact object</th>
+      <th class="text-center" colspan="3">Links</th>
+    </tr>
+    </thead>
+    <tr>
+      <td>Specification</td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#contactObject"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#contactObject"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#contact-object"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a></td>
+      
+    </tr>
+    <tr>
+      <td>JSON schema</td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.1/schema.json#L114"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.0/schema.json#L99"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v2.0/schema.json#L125"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a></td>
+      
+    </tr>
+
+
+    <thead>
+    <tr>
+      <th>License Object</th>
+      <th class="text-center" colspan="3">Links</th>
+    </tr>
+    </thead>
+    <tr>
+      <td>Specification</td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#licenseObject"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#licenseObject"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#license-object"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a></td>
+      
+    </tr>
+    <tr>
+      <td>JSON schema</td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.1/schema.json#L133"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v3.0/schema.json#L120"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a></td>
+      
+      
+      <td class="text-center"><a href="https://github.com/OAI/OpenAPI-Specification/blob/aa91a19c43f8a12c02efa42d64794e396473f3b1/schemas/v2.0/schema.json#L151"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a></td>
+      
+    </tr>
+
+</table>
+
+<h2 id="discussions">Discussions</h2>
+
+<table class="table-documentation-links">
+
+  <thead>
+    <tr>
+      <th colspan="3" scope="col">termsOfService should be a URL</th>
+    </tr>
+    </thead>
+  <tr>
+    <td>Components</td>
+    <td>Versions</td>
+    <td>Issues and pull requests</td>
+  </tr>
+  <tr>
+    <td>
+      <ul class="list-group">
+      
+        
+        
+        
+        
+          
+            <li class="list-group-item border-0 p-1"><code>Info.termsOfService</code></li> 
+          
+        
+      
+      </ul>
+    </td>
+    <td>
+      <ul class="list-group text-center">
+      
+        <li class="list-group-item border-0 p-1">
+          <span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span>
+        </li>
+      
+      </ul>
+    </td>
+    <td>
+      <ul>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/pull/255">Make clear that termsOfService should be an URL</a></li>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/pull/661">Make clear that info/termsOfService should be an URL.</a></li>
+      
+      </ul>
+    </td>
+  </tr>
+
+  <thead>
+    <tr>
+      <th colspan="3" scope="col">Rich text markdown descriptions</th>
+    </tr>
+    </thead>
+  <tr>
+    <td>Components</td>
+    <td>Versions</td>
+    <td>Issues and pull requests</td>
+  </tr>
+  <tr>
+    <td>
+      <ul class="list-group">
+      
+        
+        
+        
+        
+          
+            <li class="list-group-item border-0 p-1"><code>Info.description</code></li> 
+          
+        
+      
+      </ul>
+    </td>
+    <td>
+      <ul class="list-group text-center">
+      
+        <li class="list-group-item border-0 p-1">
+          <span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span>
+        </li>
+      
+        <li class="list-group-item border-0 p-1">
+          <span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span>
+        </li>
+      
+        <li class="list-group-item border-0 p-1">
+          <span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span>
+        </li>
+      
+      </ul>
+    </td>
+    <td>
+      <ul>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/pull/720">Change markdown standard from GFM to CommonMark</a></li>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/issues/972">Suggest we reference a specific version of CommonMark</a></li>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/issues/1867">Provide guidance on Markdown table syntax</a></li>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/issues/1078">CommonMark allows HTML tags, should some be prohibited/ignored?</a></li>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/pull/1090">Permit tooling to limit commonmark usage</a></li>
+      
+      </ul>
+    </td>
+  </tr>
+
+  <thead>
+    <tr>
+      <th colspan="3" scope="col">Adding summary to Info object</th>
+    </tr>
+    </thead>
+  <tr>
+    <td>Components</td>
+    <td>Versions</td>
+    <td>Issues and pull requests</td>
+  </tr>
+  <tr>
+    <td>
+      <ul class="list-group">
+      
+        
+        
+        
+        
+          
+            <li class="list-group-item border-0 p-1"><code>Info.summary</code></li> 
+          
+        
+      
+      </ul>
+    </td>
+    <td>
+      <ul class="list-group text-center">
+      
+        <li class="list-group-item border-0 p-1">
+          <span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span>
+        </li>
+      
+      </ul>
+    </td>
+    <td>
+      <ul>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/issues/832">Summary field in Info Object</a></li>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/pull/1779">832 add info.summary</a></li>
+      
+      </ul>
+    </td>
+  </tr>
+
+  <thead>
+    <tr>
+      <th colspan="3" scope="col">Adding a license identifier</th>
+    </tr>
+    </thead>
+  <tr>
+    <td>Components</td>
+    <td>Versions</td>
+    <td>Issues and pull requests</td>
+  </tr>
+  <tr>
+    <td>
+      <ul class="list-group">
+      
+        
+        
+        
+        
+          
+            <li class="list-group-item border-0 p-1"><code>License.identifier</code></li> 
+          
+        
+      
+      </ul>
+    </td>
+    <td>
+      <ul class="list-group text-center">
+      
+        <li class="list-group-item border-0 p-1">
+          <span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span>
+        </li>
+      
+      </ul>
+    </td>
+    <td>
+      <ul>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/issues/1599">identifier field for License Objects</a></li>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/pull/2105">Add SPDX identifier field to license object, fixes</a></li>
+      
+      </ul>
+    </td>
+  </tr>
+
+  <thead>
+    <tr>
+      <th colspan="3" scope="col">License and terms of service clarifications</th>
+    </tr>
+    </thead>
+  <tr>
+    <td>Components</td>
+    <td>Versions</td>
+    <td>Issues and pull requests</td>
+  </tr>
+  <tr>
+    <td>
+      <ul class="list-group">
+      
+        
+        
+        
+        
+          
+            <li class="list-group-item border-0 p-1"><code>Info.termsOfService</code></li> 
+          
+        
+      
+        
+        
+        
+        
+          <li class="list-group-item border-0 p-1"><code>License</code></li>
+        
+      
+      </ul>
+    </td>
+    <td>
+      <ul class="list-group text-center">
+      
+        <li class="list-group-item border-0 p-1">
+          <span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span>
+        </li>
+      
+        <li class="list-group-item border-0 p-1">
+          <span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span>
+        </li>
+      
+        <li class="list-group-item border-0 p-1">
+          <span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span>
+        </li>
+      
+      </ul>
+    </td>
+    <td>
+      <ul>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/issues/726">Clarification on the purpose of the API license?</a></li>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/issues/1672">Provide additional detail in the documentation regarding the differences in Licensing vs. Terms of Service</a></li>
+      
+      </ul>
+    </td>
+  </tr>
+
+  <thead>
+    <tr>
+      <th colspan="3" scope="col">The url and identifier are optional in specification and required in schema</th>
+    </tr>
+    </thead>
+  <tr>
+    <td>Components</td>
+    <td>Versions</td>
+    <td>Issues and pull requests</td>
+  </tr>
+  <tr>
+    <td>
+      <ul class="list-group">
+      
+        
+        
+        
+        
+          
+            <li class="list-group-item border-0 p-1"><code>License.url</code></li> 
+          
+            <li class="list-group-item border-0 p-1"><code>License.identifier</code></li> 
+          
+        
+      
+      </ul>
+    </td>
+    <td>
+      <ul class="list-group text-center">
+      
+        <li class="list-group-item border-0 p-1">
+          <span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span>
+        </li>
+      
+      </ul>
+    </td>
+    <td>
+      <ul>
+      
+        <li><a href="https://github.com/OAI/OpenAPI-Specification/issues/2975">The mutually-exclusive url and identifier properties of License object are optional in specification and required in schema</a></li>
+      
+      </ul>
+    </td>
+  </tr>
+
+</table>
+
+<h2 id="samples">Samples</h2>
+
+<p>All examples shown in this post and some others are listed below, they can be found in my <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/">openapi-samples</a> Github repository.</p>
+
+<table>
+
+  <thead>
+  <tr>
+    <th>Complete Info Object</th>
+    <th class="text-center" colspan="3">Links</th>
+  </tr>
+  </thead>
+  
+  <tr>
+    <td>Complete Info, Contact and License (url property) Objects</td>
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/complete-license-url-version-31.openapi.yaml"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      </td>
+
+    
+      
+      <td class="text-center">
+      </td>
+
+    
+  </tr>
+  
+  <tr>
+    <td>Complete Info, Contact and License (identifier property) Objects</td>
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/complete-license-url-version-31.openapi.yaml"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      </td>
+
+    
+      
+      <td class="text-center">
+      </td>
+
+    
+  </tr>
+  
+  <tr>
+    <td>Complete Info, Contact and License Objects</td>
+    
+      
+      <td class="text-center">
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/complete-version-30.openapi.yaml"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/complete-version-20.openapi.yaml"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a>
+      </td>
+
+    
+  </tr>
+  
+
+  <thead>
+  <tr>
+    <th>Minimal Info Object</th>
+    <th class="text-center" colspan="3">Links</th>
+  </tr>
+  </thead>
+  
+  <tr>
+    <td>Minimal Info Object</td>
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/minimal-version-31.openapi.yaml"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/minimal-version-30.openapi.yaml"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/minimal-version-20.openapi.yaml"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a>
+      </td>
+
+    
+  </tr>
+  
+  <tr>
+    <td>Minimal Info, Contact and License Objects</td>
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/minimal-contact-license-version-31.openapi.yaml"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/minimal-contact-license-version-30.openapi.yaml"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/minimal-contact-license-version-20.openapi.yaml"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a>
+      </td>
+
+    
+  </tr>
+  
+
+  <thead>
+  <tr>
+    <th>Info description and markdown</th>
+    <th class="text-center" colspan="3">Links</th>
+  </tr>
+  </thead>
+  
+  <tr>
+    <td>Text only description</td>
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-text-one-line-version-31.openapi.yaml"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-text-one-line-version-30.openapi.yaml"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-text-one-line-version-20.openapi.yaml"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a>
+      </td>
+
+    
+  </tr>
+  
+  <tr>
+    <td>Multiline text only description</td>
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-text-multiline-version-31.openapi.yaml"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-text-multiline-version-30.openapi.yaml"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-text-multiline-version-20.openapi.yaml"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a>
+      </td>
+
+    
+  </tr>
+  
+  <tr>
+    <td>One line markdown description</td>
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-markdown-one-line-version-31.openapi.yaml"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-markdown-one-line-version-30.openapi.yaml"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-markdown-one-line-version-20.openapi.yaml"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a>
+      </td>
+
+    
+  </tr>
+  
+  <tr>
+    <td>Multiline markdown description</td>
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-markdown-multiline-version-31.openapi.yaml"><span class="badge badge-pill badge-success" style="font-size:1rem;">3.1</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-markdown-multiline-version-30.openapi.yaml"><span class="badge badge-pill badge-warning" style="font-size:1rem;">3.0</span></a>
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/description-markdown-multiline-version-20.openapi.yaml"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a>
+      </td>
+
+    
+  </tr>
+  
+
+  <thead>
+  <tr>
+    <th>Text or URL termsOfService</th>
+    <th class="text-center" colspan="3">Links</th>
+  </tr>
+  </thead>
+  
+  <tr>
+    <td>Text termsOfService</td>
+    
+      
+      <td class="text-center">
+      </td>
+
+    
+      
+      <td class="text-center">
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/tos-text-version-20.openapi.yaml"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a>
+      </td>
+
+    
+  </tr>
+  
+  <tr>
+    <td>URL termsOfService</td>
+    
+      
+      <td class="text-center">
+      </td>
+
+    
+      
+      <td class="text-center">
+      </td>
+
+    
+      
+      <td class="text-center">
+      
+      <a href="https://github.com/arno-di-loreto/openapi-samples/tree/main/reference/info-property/tos-url-version-20.openapi.yaml"><span class="badge badge-pill badge-danger" style="font-size:1rem;">2.0</span></a>
+      </td>
+
+    
+  </tr>
+  
+
+</table>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[The info property of an OpenAPI document contains metadata that provides an overview of an API, but what does it represent exactly? How did it evolve across the OpenAPI Specification versions? And how to can it be used and misused? This is the second post in the OpenAPI Specification Reference series.]]></summary></entry><entry><title type="html">What is the openapi property?</title><link href="https://apihandyman.io/what-is-the-openapi-property/" rel="alternate" type="text/html" title="What is the openapi property?" /><published>2022-07-06T00:00:00-05:00</published><updated>2022-07-06T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-the-openapi-property</id><content type="html" xml:base="https://apihandyman.io/what-is-the-openapi-property/"><![CDATA[<p>No OpenAPI document without the openapi property, but what does it represent? How did it evolve across the OpenAPI Specification versions? And how to take advantage of it? This is the first post in the OpenAPI Specification Reference series.
+<!--more--></p>
+
+<div class="card series-toc">
+  <div class="card-header series-toc-title">
+    <h5 id="series">OpenAPI Specification Reference Series</h5>
+  </div>
+  <div class="row series-toc_content">
+    <div class="col-md-7 series-toc-summary">
+      <div class="card-body">
+        <p class="card-text">
+<p>This series aims to provide complete cross-version reference documentation about the OpenAPI Specification aggregating different sources of information. For each analyzed element, you’ll find its definition, how it evolved across the different versions of the specification, how it is used and misused and where to find more information about it. This structure may evolve with future posts.</p>
+
+<p>This series’ posts are not intended to be actionable tutorials, they may be of interest to people involved in the evolution of the specification or creating tools, and also advanced OpenAPI users. Most of this content will probably be incorporated in the next version of the <a href="https://apihandyman.io/toolbox/openapi-map/">OpenAPI Map</a> and be useful for more actionable series/posts about OpenAPI and Spectral.</p>
 </p>
       </div>
     </div>
@@ -22,6 +1604,11 @@
           
           
           <li class="list-group-item active">1 - What is the openapi property?</li>
+          
+        
+          
+          
+          <li class="list-group-item"><a href="/what-is-the-info-property-in-openapi/">2 - What is the info property in OpenAPI?</a></li>
           
         
         
@@ -2226,161 +3813,4 @@ Neglecting those questions or choosing the wrong answers will negatively impact 
 
 <h1 id="finding-a-balance">Finding a balance</h1>
 
-<p>The actual answers to who pays the bill and how will vary depending on the organization. What is sure is that the API platform billing model has a direct impact on an internal API-First strategy. Whoever pays, whatever the pricing model, the platform will have to bring valuable features to help sub-organization in their API-first journey. And it must do that using an adapted billing model that keeps the platform accessible for anyone and that does not impact API design (and so their quality). Without that in mind, the billing model may kill or cripple the organization’s internal API-First initiative</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[An internal API-first strategy will inevitably raise budgets questions; you must be aware of that. One of them is who will pay for the brand new API platform and how? The success of an internal API-first strategy may depend on the billing model of the API platform.]]></summary></entry><entry><title type="html">What is an API platform and what skills are needed to build it</title><link href="https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it/" rel="alternate" type="text/html" title="What is an API platform and what skills are needed to build it" /><published>2022-04-13T00:00:00-05:00</published><updated>2022-04-13T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it</id><content type="html" xml:base="https://apihandyman.io/what-is-an-api-platform-and-what-skills-are-needed-to-build-it/"><![CDATA[<p>LEGO is looking for an <a href="https://www.lego.com/en-us/careers/job/60676511">associate API Engineer</a> for their API platform. LEGO+APIs! That looks awesome! But what is an API platform and what skills do you need to build it? Does the LEGO job offer list them all? Do you have them all? This post answers those questions and may help you apply to such offers or post the appropriate job offers to build your own API platform.
-<!--more--></p>
-
-<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
-
-<h1 id="what-is-an-api-platform">What is an API platform</h1>
-
-<p>An API Platform represents all of the infrastructures and tools a company will put in place in order to allow everyone inside the company to provide APIs easily and securely. It will allow also anyone inside the company and possibly (almost) anyone outside of the company to consume APIs also easily and securely.</p>
-
-<p>The interest of such a platform (like any other platform) is to avoid reinventing the (API) wheel in every line of business or team. It’s an accelerator of API exposition and consumption.</p>
-
-<p>Note that an “API platform” is not a single tool, it is usually composed of many tools that could be in-house ones, open-source ones, commercial ones (SAAS or on-premise).</p>
-
-<p>Let’s see a few domains where an API platform can help to understand what it is.</p>
-
-<h2 id="api-exposition">API Exposition</h2>
-
-<p>An API platform will allow API providers to easily expose their APIs (usually on API gateways) in a place easily accessible by anyone inside the organization (intranet) and possibly anyone outside of it (internet). That means providers have access to tools they can plug into their CI/CD and they must have access to the administration interfaces if needed (if that can be avoided, that would be great).</p>
-
-<h2 id="api-security">API Security</h2>
-
-<p>An API platform ensures a certain level of safety and consistency regarding API security. Indeed, if the platform is well done, API providers won’t have to work on Oauth, OpenId Connect, or any other high-level security framework. It could be handled by the API gateway(s) and Identity providers and the team managing them. The platform could also provide a virus scan system for file upload (because sometimes you’ll need to get files through your APIs). But whatever the high-level security measures the platform can provide, <a href="https://apihandyman.io/an-api-gateway-alone-will-not-secure-your-api/">this does not absolve API providers to care about security</a>.</p>
-
-<h2 id="api-consumption">API Consumption</h2>
-
-<p>An API platform should make consumers’ life easier. Requesting access to an API and obtaining credentials must be simple.  From the providers’ perspective, they must be sure to stay in control of who consumers their API and how.</p>
-
-<h2 id="api-monitoring">API Monitoring</h2>
-
-<p>An API platform must enable API providers to monitor their APIs. Know what are the request done, by who, the responses times, … It’s critical for both software and business perspectives. Providers needs to now how their implementation behave to prevent problems but also study how consumers use their APIs to enhance their business proposal, adding new features, fixing problems.</p>
-
-<h2 id="api-discovery-and-documentation">API discovery and documentation</h2>
-
-<p>But before consuming an API, people must be able to find it (easily again). Thanks to a central API catalog, such a  platform can also allow having an exhaustive vision of the API surface of the company, making APIs easier to find and consume. Beyond the catalog, the platform may provide more or less advanced API documentation systems. API documentation can take advantage of API specifications such as OpenAPI, and AsyncAPI which both take advantage of JSON Schema. The documentation could be more interactive and provide a “try it” feature, Postman collections, and “Run in Postman” buttons. But not all the documentation can be generated, the platform must allow providers human contributions.</p>
-
-<h2 id="api-design-and-governance">API design and governance</h2>
-
-<p>An API platform can also help to enhance your API surface and ensure a certain level of quality and consistency. Indeed either for existing or new APIs, an API platform may provide tools helping to ensure a certain consistency and avoid a few mistakes in their design. Linter such as Stoplight Spectral could be used in CI/CD pipelines. The platform may integrate with API design tools (taking advantage of such linters). It may also provide tools or plug into tools helping with governance processes.</p>
-
-<h2 id="api-first">API-First</h2>
-
-<p>Obviously, all tools used by the platform MUST propose APIs (look at my <a href="https://apihandyman.io/analyzing-a-software-solution-from-an-api-perspective/">recommendations regarding the choice of software solutions</a>). Without APIs, it will be complicated to integrate them together.</p>
-
-<p>But more than that, an API platform MUST offer most (if not all) of its features through APIs. For instance providing a tool that lint an API description (OpenAPI or AsyncAPI) solely in the form of a web application, the UI code holding the lining logic, is a critical mistake to avoid at all costs. It makes it totally un-reusable in CI/CD or other tools used by API providers.</p>
-
-<p>Being 100% API first will bring flexibility to the platform itself and also flexibility in how people will use it and help adoption.</p>
-
-<h2 id="people-first-and-product-first">People-first and product-first</h2>
-
-<p>A good API platform must never be a burden for its users and go against them, limit them. That seems obvious to say, but unfortunately, just like with API governance, terrible things can be done with API platforms. Being API-first can help avoid that, but that’s not enough. People building the platform must understand the needs of API providers and consumers. The platform must be a product (or set of products) that pleases and helps its users. The people owning the platform may have some other objectives, but they MUST never go against their users ones.</p>
-
-<h1 id="the-lego-job-offer">The LEGO job offer</h1>
-
-<p>Now that we have a better vision of what is an API platform, let’s look at the  <a href="https://www.lego.com/en-us/careers/job/60676511">LEGO associate API engineer job offer</a> (<em>you can find the job description at the end of this post if the link is dead</em>).</p>
-
-<p>Small digression beyond API platforms, this offer shows this company takes API very seriously from an IT perspective and seems possibly engaged in becoming API-First. The job offer talks about an “API journey” and “Digital Platforms department”, which could be a sign of an API-first strategy, but I wasn’t able to confirm it by looking at other API job offers, because this is the only one. But it’s sure that APIs are important from an IT perspective.</p>
-
-<p>The offer doesn’t go into too much detail about what an API platform for LEGO is, but in broad strokes, it looks pretty good. They are building an API platform “that must be the preferred platform […] when exposing APIs and events”. They must “create and maintain tools and infrastructure that can be reused and shared across all our product domains.”</p>
-
-<p>It’s really interesting to see they put APIs and events at the same level, I really think that is the future of API-in-a-broad-sense platforms.</p>
-
-<p>The LEGO API management team has a product vision, they want to build something that brings value to their users. That’s the right mindset!</p>
-
-<p>Regarding the expected skills, people are expected to have knowledge of API development, infrastructure, and security. They must know how to code, have created and hosted APIs, and have experience with CI/CD (Continuous Integration/Continuous Development) and IaC (infrastructure as code). Having some experience with API gateways, event brokers, Kubernetes, Oauth, and identity providers is welcomed.</p>
-
-<p>This skill list could gain adding some precisions and a few items:</p>
-
-<ul>
-  <li>The “Experience in creating and hosting an API” could be enhanced like this “Experience in creating (design, implementation), hosting and consuming APIs (DX)”.</li>
-  <li>The list of “must-have” skills could be completed by “Experience with API specifications such as OpenAPI, AsyncAPI, JSON Schema”</li>
-  <li>The list of nice-to-have skill could be completed by experience with
-    <ul>
-      <li>API governance practices and process</li>
-      <li>API tools such as Stoplight Studio, Spectral, Postman, curl, …</li>
-    </ul>
-  </li>
-</ul>
-
-<h1 id="not-so-obvious-skills">Not-so-obvious skills</h1>
-
-<p>Beyond knowing how to code and build infrastructure, building an outstanding API platform for API builders requires knowledge of what API providers and API consumers use and their practices.</p>
-
-<h2 id="api-specifications">API Specifications</h2>
-
-<p>Building an efficient API platform requires taking advantage of API specifications such as OpenAPI, AsyncAPI, or JSON Schema. Knowing them will give you some ideas about how to make your platform more efficient, more integrable, and interoperable without reinventing the wheel. Usually, if you have built APIs seriously, you should have used those specifications.</p>
-
-<h2 id="api-tools">API Tools</h2>
-
-<p>Building an efficient API platform required knowing what tools people building API are using. Why they use them and how. Those tools could take advantage of API specifications or not. But building an API platform without such knowledge will lead to reinventing the wheel and loose time. It will also cripple flexibility because without knowing the existence of tools used by API builders, the platform team may not think to provide integration for those tools. Without knowledge of the possibility offered by those tools, you may miss some huge opportunities to bring value to the users of the platform.</p>
-
-<p>Having built or consumed APIs is usually a good way to acquire this knowldege.</p>
-
-<h2 id="api-design">API Design</h2>
-
-<p>Knowing the importance and the challenges of designing APIs can be of great help to build an outstanding platform. For instance, how many times, I have seen platform people ruin API designers’ efforts by doing too much control at the API gateway level, bypassing smart error handling the original API contract was supposed to provide. Or the terrible “you can’t return 4xx errors, that will make or monitors bug”. Having created API yourself may have helped you acquire such knowledge. Knowing how to design APIs, will also help you create great APIs for the platform (and will help you eat your own dog food as your APIs will be exposed … on the platform you build!).</p>
-
-<p>Creating APIs is the obvious way of getting such knowledge. But consuming APIs will also teach you a few things: you’ll quickly learn to make the difference between good and bad APIs.</p>
-
-<h2 id="api-governance">API Governance</h2>
-
-<p>Having some knowledge of what is API governance, the processes, and the tools that it requires can really help build outstanding API platforms. With such knowledge, you’ll have tons of ideas to facilitate API providers’ life and also avoid stepping on the API governance team’s toes and even help them (if they are a separate team from yours).</p>
-
-<p>That knowledge is not that common in my opinion. It requires to have work in organizations that takes API really seriously. A candidate with such knowledge is highly valuable.</p>
-
-<h2 id="all-users-experience">All users experience</h2>
-
-<p>Being kind and helpful to people will help you to build the best user experiences.</p>
-
-<p>When talking about API and user experience almost everyone thinks about developer experience or DX. It is the experience the API consumers have when using APIs. It concerns design but also security, how to subscribe to an API, getting credentials, revoking them, accessing documentation, playing with a sandbox, getting the right to use API in production, … It’s essential to know what API consumers expect to provide them the best platform.</p>
-
-<p>Beyond that, API’s DX has raised the bar of software quality in general.  And in the case of an API platform, the consumers are not the only users. The providers are users too. Their experience must not be neglected.</p>
-
-<p>For that aspect, the LEGO proposal which emphasizes the product vision is interesting. People having worked in product mode are keener to have that vision. Put IT API creators having only worked on their own APIs may not have that vision.</p>
-
-<h1 id="apux--api-platform-user-experience">APUX ( API Platform User Experience)</h1>
-
-<p>What is important regarding an API platform is that when building it you must take care of ALL users’ experience and so have experience on both provider and consumer sides.</p>
-
-<p>So I would have made a few additions to this job offer. To keep it short, the only items that really miss are the “API Specifications” and “consuming API”, all the rest can be guessed from the updated proposition. Especially now that you have read this post.</p>
-
-<p>I’m sure a candidate bringing the not-so-obvious skills and knowledge I’ve described will be in a good position to get the job. And if you are building a platform yourself and looking for people to help you, you know what to look for.</p>
-
-<h1 id="appendices-the-original-lego-job-description">Appendices: The original LEGO job description</h1>
-
-<p>Excerpt of LEGO’s <a href="https://www.lego.com/en-us/careers/job/60676511">associate API Engineer</a> job offer.</p>
-
-<p><strong>Do you want to be a part of our building and maintaining the new API platform to be used across the LEGO group?</strong></p>
-
-<p>Bring your energy and a willingness to learn into the APIs journey and help us build the platforms for all the software engineering teams across the business.</p>
-
-<p><strong>Core Responsibilities</strong></p>
-
-<p>• Be part of a team where we build our future API platform and the tooling around it. It is to be the preferred platform for our colleagues when exposing APIs and events.
-• With our skilled engineers team you will ensure that we deliver an API platform for the rest of the LEGO group.
-• Be a part of the full lifecycle in software development; understanding feature requests, development, testing and ensuring that our products are operating as expected in our live production environment.
-• See the value in automating operational tasks and are an aspiring site reliability engineer (SRE).</p>
-
-<p><strong>Play your part in our team succeeding</strong></p>
-
-<p>The API Management team is one of the pillars of our newly established Digital Platforms department. The goal is to create and maintain tools and infrastructure that can be reused and share across all our product domains.</p>
-
-<p>We apply platform engineering and product management practices to ensure we build what brings the most value to our customers (the other software engineers) and ensure a close feedback loop.</p>
-
-<p>We are eager to collaborate and love to share and receive feedback from both our colleagues and customers.</p>
-
-<p><strong>Do you have what it takes?</strong></p>
-
-<p>• Experience in creating and hosting an API
-• Proficient with one or more general purpose programming language like TypeScript, C#, Java…
-• Experience with CI/CD in a tool like GitHub actions, Jenkins, Team City…
-• Experience with IaC, could be CDK, Pulumi, Terraform…</p>
-
-<p>Nice to have experience with:</p>
-
-<p>• An event broker like Pulsar, RabbitMQ or Kafka
-• An API Gateway like Kong, AWS API Gateway, …
-• OAuth and Identity providers
-• Kubernetes</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[LEGO is looking for an associate API Engineer for their API platform. LEGO+APIs! That looks awesome! But what is an API platform and what skills do you need to build it? Does the LEGO job offer list them all? Do you have them all? This post answers those questions and may help you apply to such offers or post the appropriate job offers to build your own API platform.]]></summary></entry></feed>
+<p>The actual answers to who pays the bill and how will vary depending on the organization. What is sure is that the API platform billing model has a direct impact on an internal API-First strategy. Whoever pays, whatever the pricing model, the platform will have to bring valuable features to help sub-organization in their API-first journey. And it must do that using an adapted billing model that keeps the platform accessible for anyone and that does not impact API design (and so their quality). Without that in mind, the billing model may kill or cripple the organization’s internal API-First initiative</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[An internal API-first strategy will inevitably raise budgets questions; you must be aware of that. One of them is who will pay for the brand new API platform and how? The success of an internal API-first strategy may depend on the billing model of the API platform.]]></summary></entry></feed>
