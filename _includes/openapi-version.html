@@ -1,0 +1,10 @@
+{%- if include.version == "2.0" -%}
+{%- assign versionColor="badge-danger" -%}
+{%- elsif include.version == "3.0" -%}
+{%- assign versionColor="badge-warning" -%}
+{%- elsif include.version == "3.1" -%}
+{%- assign versionColor="badge-success" -%}
+{%- else -%}
+{%- assign versionColor="badge-info" -%}
+{%- endif -%}
+<span class="badge badge-pill {{versionColor}}" style="font-size:1rem;">{{include.version}}</span>

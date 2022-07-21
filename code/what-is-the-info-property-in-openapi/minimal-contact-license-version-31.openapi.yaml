@@ -1,0 +1,9 @@
+openapi: 3.1.0
+info:
+  title: Dummy Bookshop
+  version: '1.0'
+  contact:
+    url: https://www.dummy-book.shop/support
+  license:
+    name: Apache 2.0
+paths: {}
