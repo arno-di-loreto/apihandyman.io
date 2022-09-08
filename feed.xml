@@ -1,4 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-09-07T07:21:04-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">What is the info property in OpenAPI?</title><link href="https://apihandyman.io/what-is-the-info-property-in-openapi/" rel="alternate" type="text/html" title="What is the info property in OpenAPI?" /><published>2022-07-21T00:00:00-05:00</published><updated>2022-07-21T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-the-info-property-in-openapi</id><content type="html" xml:base="https://apihandyman.io/what-is-the-info-property-in-openapi/"><![CDATA[<p>The info property of an OpenAPI document contains metadata that provides an overview of an API, but what does it represent exactly? How did it evolve across the OpenAPI Specification versions? And how to can it be used and misused? This is the second post in the OpenAPI Specification Reference series.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://apihandyman.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://apihandyman.io/" rel="alternate" type="text/html" /><updated>2022-09-08T11:41:22-05:00</updated><id>https://apihandyman.io/feed.xml</id><title type="html">API Handyman</title><subtitle>Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I like to share what I do, struggle with, learn, and teach while working in the API space.</subtitle><author><name>Arnaud Lauret</name></author><entry><title type="html">Attempting to define API governance</title><link href="https://apihandyman.io/attempting-to-define-api-governance/" rel="alternate" type="text/html" title="Attempting to define API governance" /><published>2022-09-08T00:00:00-05:00</published><updated>2022-09-08T00:00:00-05:00</updated><id>https://apihandyman.io/attempting-to-define-api-governance</id><content type="html" xml:base="https://apihandyman.io/attempting-to-define-api-governance/"><![CDATA[<p>In the collective unconscious, API governance often rhymes with API police. Reducing API governance to the need for order caused by the chaos of an organization’s myriad APIs is too reductive, and it risks not looking at the problem at hand from the right angle. Why not define API governance relatively to IT governance, corporate governance, and governance to better understand what it is?
+<!--more--></p>
+
+<p><em>This post’s banner is a detail of the frontispiece of the “Encyclopédie ou Dictionnaire raisonné des sciences, des arts et des métiers” (Encyclopedia or Reasoned Dictionary of Sciences, Arts and Crafts) drawn by Charles-Nicolas Cochin and engraved by Bonaventure-Louis Prévost.</em></p>
+
+<h1 id="the-origin-of-api-governance">The origin of API governance</h1>
+<p>It’s not that easy to find a definition of API governance. My ideas on the topic were not entirely clear, so I decided to work on its definition relative to other governance. I think API governance should be seen as a direct descendant of IT governance which descends from corporate governance, which descends from governance.</p>
+
+<p>Governance is managing and overseeing an organization’s control and the <em>system</em> for doing this. It is also the decision-making among the actors involved in a collective problem by which stable practices, social norms, customs, or institutions (an organization founded for religious, educational, professional, or social purposes) are established, reinforced, and reproduced.</p>
+
+<p>Corporate governance is externally and indirectly guiding, controlling, and evaluating a company and the system for doing this. It provides the structure through which the company’s objectives, the means to achieve them, and how to monitor performance are defined. It implies balancing all organization’s stakeholders’ interests. Responsibility, accountability, ethical behavior, corporate strategy, compliance, and risk management are the main areas of governance. Other areas are, for example, environmental awareness or talent acquisition. It differs from management; the people exercising governance, the governing agents, don’t have direct control and are not part of what they govern.</p>
+
+<p>Information Technology (IT) governance is a subset of corporate governance that focuses on taking advantage of IT efficiently to enable the organization to achieve its goals, to maximize the creation of value. It aims to align business and IT strategies while identifying and addressing risks, ensuring compliance with regulations, and monitoring performance.</p>
+
+<h1 id="how-api-governance-relates-to-its-ascendants">How API governance relates to its ascendants</h1>
+<p>Like any governance, API governance refers to the decision-making among the actors involved in a collective problem (creating APIs helping the organization achieve its goals), by which stable practices, processes, policies, or institutions (organizations created for educational or professional purposes) are established, reinforced, and reproduced. For example, defining security, API design or API cataloging policies, having an API design review process, or creating an API center of enablement are part of API governance. These elements aim to facilitate, guide, and standardize the creation of the right APIs in the right way to help the organization to achieve its goals (and bring order to the API chaos in the making).</p>
+
+<p>Like Corporate governance, API governance is <em>externally and indirectly</em> guiding, controlling, and evaluating a company’s APIs and the system for doing this. API governance is not creating APIs (API product management) or managing APIs (API management). People will make and manage APIs taking advantage of the institutions and following the processes and rules defined by API governance. The resulting APIs are being evaluated with the indicators defined by API governance. Though often people directly involved in the creation of APIs participate in governance (it is even highly recommended to ensure realistic governance), API governance agents should act as if they don’t have direct control over APIs.</p>
+
+<p>Like corporate governance or IT governance, API governance implies balancing <em>all</em> stakeholders’ interests and the company’s objectives. The primary API stakeholders are the API providers (all members of API product teams) and the present and future API consumers. But many of the organization’s stakeholders are interested in APIs, for example, the security teams, the infrastructure teams, the business line managers, and even the board members or regulators.</p>
+
+<p>Like IT governance, API governance is about what should be done and how it should be done and is both driven by IT and business. It requires aligning both IT and business. It covers all aspects of APIs, from their business inception and business model definition to design, implementation, exposition, and cataloging to (API) talent management (API design skills, internal API evangelization). It covers all types of APIs, whatever their visibility, so it concerns all public, partner, and private APIs. It’s about everything that will help maximize all APIs’ value.</p>
+
+<h1 id="attempting-to-define-api-governance">Attempting to define API governance</h1>
+<p>Now that all that is said, how to define API governance?</p>
+
+<h2 id="paraphrasing-other-governances-definitions">Paraphrasing other governances definitions</h2>
+<p>As a descendant of governance, corporate governance, and IT governance, and paraphrasing their definitions, API governance could be defined as follow:</p>
+
+<blockquote>
+  <p>API governance is establishing and overseeing decision-making, policies, practices, processes, and institutions to enable an organization’s people to collectively achieve its goals by efficiently taking advantage of private, partner, or public APIs. It aims to align APIs with business and IT strategies, to monitor and maximize the value created from them while identifying and addressing risks and ensuring compliance with regulations.</p>
+</blockquote>
+
+<h2 id="trying-to-simplify-the-definition">Trying to simplify the definition</h2>
+<p>Simplifying the previous definition leads to this:</p>
+
+<blockquote>
+  <p>API governance is enabling and facilitating people to work together on the right APIs, the right way to maximize the value created by APIs in alignment with the organization’s goals and constraints.</p>
+</blockquote>
+
+<h1 id="the-tree-that-hides-the-forest">The tree that hides the forest</h1>
+<p>I’m pretty satisfied with those definitions, although they do not provide all the tiny details of API governance. I feel the global ideas they describe are relevant and cover the topic from a high-level perspective. I’ll keep the small details for other posts.</p>
+
+<h1 id="sources">Sources</h1>
+<ul>
+  <li>Governance:  <a href="https://www.merriam-webster.com/dictionary/governance">Merriam-Webster dictionary</a>, <a href="https://dictionary.cambridge.org/dictionary/english/governance">Cambridge dictionary</a>,  <a href="https://en.wikipedia.org/wiki/Governance">Wikipedia</a>, <a href="https://en.wikipedia.org/wiki/Governance#cite_note-Hufty_2011-2">Huffy, 2011</a>; <a href="https://en.wikipedia.org/wiki/Governance#cite_note-13">Lijun, 1988</a></li>
+  <li>Corporate Governance: <a href="https://en.wikipedia.org/wiki/Corporate_governance">Wikipedia</a>,  <a href="https://www.investopedia.com/terms/c/corporategovernance.asp">Investopedia</a>, <a href="http://www.grcglossary.org/terms/governance">GRC glossary</a></li>
+  <li>IT Governance: <a href="https://en.wikipedia.org/wiki/Corporate_governance_of_information_technology">Wikipedia</a>, <a href="https://www.gartner.com/en/information-technology/glossary/it-governance">Gartner</a>, <a href="https://www.thoughtworks.com/insights/articles/lightweight-technology-governance">Thoughtworks</a></li>
+  <li>API Governance:  <a href="https://apievangelist.com/2021/11/13/some-thoughts-on-api-governance/">Some thoughts on API Governance (API Evangelist, 2021)</a>, <a href="https://youtu.be/lakFsqIiiLU">What is API governance (Erik Wilde, 2020)</a>,  <a href="https://apihandyman.io/human-centered-api-governance/">Human Centered API Governance (Arnaud Lauret, 2021)</a></li>
+</ul>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[In the collective unconscious, API governance often rhymes with API police. Reducing API governance to the need for order caused by the chaos of an organization’s myriad APIs is too reductive, and it risks not looking at the problem at hand from the right angle. Why not define API governance relatively to IT governance, corporate governance, and governance to better understand what it is?]]></summary></entry><entry><title type="html">What is the info property in OpenAPI?</title><link href="https://apihandyman.io/what-is-the-info-property-in-openapi/" rel="alternate" type="text/html" title="What is the info property in OpenAPI?" /><published>2022-07-21T00:00:00-05:00</published><updated>2022-07-21T00:00:00-05:00</updated><id>https://apihandyman.io/what-is-the-info-property-in-openapi</id><content type="html" xml:base="https://apihandyman.io/what-is-the-info-property-in-openapi/"><![CDATA[<p>The info property of an OpenAPI document contains metadata that provides an overview of an API, but what does it represent exactly? How did it evolve across the OpenAPI Specification versions? And how to can it be used and misused? This is the second post in the OpenAPI Specification Reference series.
 <!--more--></p>
 
 <div class="card series-toc">
@@ -3731,86 +3780,4 @@ console.log(handlebarData)
   <li><a href="https://prismjs.com/">PrismJS</a> to highlight code snippets</li>
 </ul>
 
-<p>Check the “<a href="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/">How to use Bootstrap in Postman visualizer</a>” collection/post to learn more about how to use third-party CSS and JS in visualizer templates.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Let’s learn to use Twitter v2 API tweets lookup operations to render simple text tweets and their author just like Twitter does. We’ll learn a few things about API design and API documentation in general and Postman based API documentation in particular in the making. I hope this will give you some ideas for the design and documentation of your API.]]></summary></entry><entry><title type="html">When internal API platform billing model collides with API-First strategy</title><link href="https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy/" rel="alternate" type="text/html" title="When internal API platform billing model collides with API-First strategy" /><published>2022-04-20T00:00:00-05:00</published><updated>2022-04-20T00:00:00-05:00</updated><id>https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy</id><content type="html" xml:base="https://apihandyman.io/when-internal-api-platform-billing-model-collides-with-apifirst-strategy/"><![CDATA[<p>An internal API-first strategy will inevitably raise budgets questions; you must be aware of that. One of them is who will pay for the brand new API platform and how? The success of an internal API-first strategy may depend on the billing model of the API platform.</p>
-
-<!--more-->
-
-<p><em>Banner by my partner in crime <a href="https://linktr.ee/mrlapindesign">Mister Lapin</a>.</em></p>
-
-<div class="card series-toc">
-  <div class="card-header series-toc-title">
-    <h5 id="series">Internal/private APIs and money Series</h5>
-  </div>
-  <div class="row series-toc_content">
-    <div class="col-md-7 series-toc-summary">
-      <div class="card-body">
-        <p class="card-text">
-<p>An internal API-first strategy focusing on private APIs will inevitably raise budget questions.
-Who will pay for the brand new mutualized API platform?
-Who will pay for the new infrastructure needed to host API implementations?
-Who will pay for the developments?
-Neglecting those questions or choosing the wrong answers will negatively impact the API-first strategy, possibly leading it to its doom.</p>
-</p>
-      </div>
-    </div>
-    <div class="col-md-5 series-toc-list border-left">
-      
-      <ul class="list-group list-group-flush">
-        
-          
-          
-          <li class="list-group-item active">1 - When internal API platform billing model collides with API-First strategy</li>
-          
-        
-          
-          
-          <li class="list-group-item"><a href="/when-internal-api-development-and-hosting-costs-collide-with-apifirst-strategy/">2 - When internal API development and hosting costs collide with API-First strategy</a></li>
-          
-        
-          
-          
-          <li class="list-group-item"><a href="/why-monetizing-and-crowdfunding-internal-private-apis/">3 - Why monetizing and crowdfunding internal/private APIs?</a></li>
-          
-        
-        
-      </ul>
-    </div>
-  </div>
-</div>
-<h1 id="from-api-first-to-api-platform">From API-first to API platform</h1>
-
-<p>When an organization (a company, a subsidiary, a government agency, …) has understood the importance of APIs, at least from an internal perspective, it will engage in its internal API-first journey. So, among other things, everything has been done to build a (minimum viable) API platform that exposes internal APIs (also called private APIs). It could be a centralized or semi-centralized infrastructure.</p>
-
-<p>For instance, the API platform could be composed of a completely centralized API gateway, API portal/catalog, and CI/CD tools used by everyone to publish their APIs. Another way would be to have a central team preparing and packaging the API gateway, its security policies (pieces of code running on the gateway), and CI/CD plugins. It’s up to sub-organizations to spin up this package that will magically push all APIs to a centralized API portal.</p>
-
-<p>But, whatever the model used, an API platform means paying for people and infrastructure to maintain and host it. Who will pay for all that, and how?</p>
-
-<h1 id="who-will-pay-for-the-platform">Who will pay for the platform?</h1>
-
-<p>Just like they probably already pay for some other mutualized infrastructure, it seems obvious to make the sub-organizations that will expose their APIs on the platform pay.</p>
-
-<p>But in the beginning, it may be a bit too much for the one or two first users to support the whole cost. Everyone could be reluctant to actually use the platform facing its cost, and so reluctant to start their API-first journey. If the organization itself or the “central API team” can put some dedicated budget to reduce the (visible) cost for first-timers and ease the platform adoption, that’s for the best (even if we all know that in the end it will probably be billed to sub-organizations one way or another because central support team usually do not generate revenue directly).</p>
-
-<p>If it’s a significant investment at the whole company level, sub-organizations not (yet) working on APIs may give a hand. That may be a hard pill to swallow, but that may motivate some sub-organizations to actually start their API-first journey.</p>
-
-<p>Deciding who will pay is not that easy, but deciding how they will pay is even trickier.</p>
-
-<h1 id="whats-the-platforms-billing-model">What’s the platform’s billing model?</h1>
-
-<p>A terrible idea would be to charge based on the number of APIs exposed on the platform. What will happen in that case?</p>
-
-<p>Providers may merge small and well-defined APIs into big ball of mud APIs. Making them harder to understand and harder to use for consumers, and so it may slow their adoption and augment the cost to integrate them. It also has impact on API providers, they will lose time providing support (instead of creating new APIs or adding new features). Bigger APIs are also harder to manage for their providers (Who will own that big API? How harder will it be to make it evolve).</p>
-
-<p>If the platform’s pricing model has an impact on the design of APIs, that’s the wrong model. It will inevitably cripple the API-First initiative.</p>
-
-<p>Also, such behavior may be an indicator of “we don’t completely get what means being API-First” for both people defining such billing model and people taking the decision to merge APIs to reduce costs.</p>
-
-<p>And last but not least, this model is totally irrelevant because the number of APIs does not define the actual usage of an API platform and may lead to totally unfair bills. A small sub-organization may have to expose many APIs that won’t be used much, a bigger one may expose a single API heavily used. That leads to charging more for the one using the platform the less and probably having the less budget.</p>
-
-<p>Instead, the number of APIs calls (that can relate to CPU/RAM/infrastructure usage) could be a fairer way of charging for platform use. But again, some may be tempted to aggregate smaller operations into bigger ones. Also it’s not adapted to all types of API (GraphQL for instance). And some small, usually support function related, sub-organization without much budget may expose some heavily used APIs. So the organization will have to find a way to help them maybe providing dedicated budget (more about that in a later post).</p>
-
-<p>A fair API platform billing model could set aside API metrics and use a ratio based on actual IT budgets or generated revenue to divide the costs. That way every sub-organization can contribute according to their means. And most important, anyone can have access to the platform and so contribute to the success of the API-First initiative.</p>
-
-<h1 id="finding-a-balance">Finding a balance</h1>
-
-<p>The actual answers to who pays the bill and how will vary depending on the organization. What is sure is that the API platform billing model has a direct impact on an internal API-First strategy. Whoever pays, whatever the pricing model, the platform will have to bring valuable features to help sub-organization in their API-first journey. And it must do that using an adapted billing model that keeps the platform accessible for anyone and that does not impact API design (and so their quality). Without that in mind, the billing model may kill or cripple the organization’s internal API-First initiative</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[An internal API-first strategy will inevitably raise budgets questions; you must be aware of that. One of them is who will pay for the brand new API platform and how? The success of an internal API-first strategy may depend on the billing model of the API platform.]]></summary></entry></feed>
+<p>Check the “<a href="https://apihandyman.io/how-to-use-bootstrap-in-postman-visualizer/">How to use Bootstrap in Postman visualizer</a>” collection/post to learn more about how to use third-party CSS and JS in visualizer templates.</p>]]></content><author><name>Arnaud Lauret</name></author><category term="post" /><summary type="html"><![CDATA[Let’s learn to use Twitter v2 API tweets lookup operations to render simple text tweets and their author just like Twitter does. We’ll learn a few things about API design and API documentation in general and Postman based API documentation in particular in the making. I hope this will give you some ideas for the design and documentation of your API.]]></summary></entry></feed>

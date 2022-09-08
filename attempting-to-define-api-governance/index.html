@@ -15,25 +15,25 @@
 
 <html lang="en">
   <head>
-  <title>API Handyman | Spectral</title>
-  <meta name="description" content="I use Spectral while designing APIs and during API design reviews. It is a JSON/YAML linter with built-in support for OpenAPI 2 and 3 (and also AsyncAPI). I use it to check that API designs conform to my guidelines and also to spot unusual design patterns that needs to be discussed with the people in charge of the API. It really speeds up my reviews and help me avoid oversights.">
+  <title>API Handyman | Attempting to define API governance</title>
+  <meta name="description" content="In the collective unconscious, API governance often rhymes with API police. Reducing API governance to the need for order caused by the chaos of an organization’s myriad APIs is too reductive, and it risks not looking at the problem at hand from the right angle. Why not define API governance relatively to IT governance, corporate governance, and governance to better understand what it is?">
 <meta name="keywords" content="API,Web API,Web Service">
 <meta name="author" content="Arnaud Lauret">
 
 <!-- Open Graph -->
-<meta property="og:title"         content="Spectral"/>
+<meta property="og:title"         content="Attempting to define API governance"/>
 <meta property="og:type"          content="article"/>
-<meta property="og:description"   content="I use Spectral while designing APIs and during API design reviews. It is a JSON/YAML linter with built-in support for OpenAPI 2 and 3 (and also AsyncAPI). I use it to check that API designs conform to my guidelines and also to spot unusual design patterns that needs to be discussed with the people in charge of the API. It really speeds up my reviews and help me avoid oversights."/>
-<meta property="og:url"           content="https://apihandyman.io/toolbox/spectral/"/>
+<meta property="og:description"   content="In the collective unconscious, API governance often rhymes with API police. Reducing API governance to the need for order caused by the chaos of an organization’s myriad APIs is too reductive, and it risks not looking at the problem at hand from the right angle. Why not define API governance relatively to IT governance, corporate governance, and governance to better understand what it is?"/>
+<meta property="og:url"           content="https://apihandyman.io/attempting-to-define-api-governance/"/>
 <meta property="og:site_name"     content="API Handyman">
-<meta property="og:image"         content="https://apihandyman.io/images/toolbox/spectral/banner.png"/><meta property="article:published_time" content="2022-09-08"/><!-- Twitter Card -->
+<meta property="og:image"         content="https://apihandyman.io/images/attempting-to-define-api-governance/banner.jpg"/><meta property="article:published_time" content="2022-09-08"/><!-- Twitter Card -->
 <meta name="twitter:card"         content="summary_large_image">
 <meta name="twitter:site"         content="@apihandyman">
 <meta name="twitter:creator"      content="@apihandyman" />
-<meta name="twitter:title"        content="Spectral">
-<meta name="twitter:url"          content="https://apihandyman.io/toolbox/spectral/">
-<meta name="twitter:description"  content="I use Spectral while designing APIs and during API design reviews. It is a JSON/YAML linter with built-in support for OpenAPI 2 and 3 (and also AsyncAPI). I use it to check that API designs conform to my guidelines and also to spot unusual design patterns that needs to be discussed with the people in charge of the API. It really speeds up my reviews and help me avoid oversights.">
-<meta name="twitter:image:src"    content="https://apihandyman.io/images/toolbox/spectral/banner.png">
+<meta name="twitter:title"        content="Attempting to define API governance">
+<meta name="twitter:url"          content="https://apihandyman.io/attempting-to-define-api-governance/">
+<meta name="twitter:description"  content="In the collective unconscious, API governance often rhymes with API police. Reducing API governance to the need for order caused by the chaos of an organization’s myriad APIs is too reductive, and it risks not looking at the problem at hand from the right angle. Why not define API governance relatively to IT governance, corporate governance, and governance to better understand what it is?">
+<meta name="twitter:image:src"    content="https://apihandyman.io/images/attempting-to-define-api-governance/banner.jpg">
 
   
   
@@ -1244,7 +1244,7 @@
   <div class="row row-banner-small row-banner-small-">
     <div class="banner-small-container">
       <div class="banner-small-column-main">
-        <img src="https://apihandyman.io/images/toolbox/spectral/banner.png" class="img-fluid" alt="">
+        <img src="https://apihandyman.io/images/attempting-to-define-api-governance/banner.jpg" class="img-fluid" alt="">
       </div>
     </div>
   </div>
@@ -1260,9 +1260,9 @@
 
 
 
-<div class="left-book-ad left-book-ad-no-border d-desktop-only">
-  <img src="/images/commons/book/book-left-menu-full.png" class="card-img" alt="The Design of Web APIs book cover">
-  <div class="card-img-overlay message-full">
+<div class="left-book-ad left-book-ad-border d-desktop-only">
+  <img src="/images/commons/book/book-left-menu-cropped.png" class="card-img" alt="The Design of Web APIs book cover">
+  <div class="card-img-overlay message-cropped">
     <a class="stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >
       <p class="card-text">Special offer on my book</p>
     </a>
@@ -1273,13 +1273,211 @@
   <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
 </a>
 
+  
+  <div class="flex-grow-1 overflow-auto m-0 left-menu-toggler" id="scrollable-toc">
+    
+
+
+
+
+
+  <nav class="nav flex-column" id="toc">
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#the-origin-of-api-governance">The origin of API governance</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#how-api-governance-relates-to-its-ascendants">How API governance relates to its ascendants</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#attempting-to-define-api-governance">Attempting to define API governance</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        <nav class="nav flex-column rounded-0">
+          <a class="nav-link toc-level-2" href="#paraphrasing-other-governances-definitions">Paraphrasing other governances definitions</a>
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-2" href="#trying-to-simplify-the-definition">Trying to simplify the definition</a>
+          
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+        </nav>
+          <a class="nav-link toc-level-1" href="#the-tree-that-hides-the-forest">The tree that hides the forest</a>
+        
+      
+      
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+        
+          <a class="nav-link toc-level-1" href="#sources">Sources</a>
+          
+      
+      
+    
+  
+  </nav>
+  </div>
+
         </div>
       </div>
         
       
       <div class="page-column-main page-column-main-with-left">
         
-<div class="page-content-text anchors page-content-text-tool">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="page-content-text anchors">
   
   
   
@@ -1291,141 +1489,128 @@
     <div class="card-page-section page-section-title">
       <div class="body">
         
-        <h5 class="surtitle">Stoplight's</h5>
+        <h5 class="surtitle"></h5>
         
         
-        <h1 class="title">Spectral</h1>
+        <h1 class="title">Attempting to define API governance</h1>
         
         
-        <p>I use Spectral while designing APIs and during API design reviews. It is a JSON/YAML linter with built-in support for OpenAPI 2 and 3 (and also AsyncAPI). I use it to check that API designs conform to my guidelines and also to spot unusual design patterns that needs to be discussed with the people in charge of the API. It really speeds up my reviews and help me avoid oversights.
+        <h6 class="subtitle">By Arnaud Lauret, September 8, 2022</h6>
+        <hr/>
+        
+        <p>In the collective unconscious, API governance often rhymes with API police. Reducing API governance to the need for order caused by the chaos of an organization’s myriad APIs is too reductive, and it risks not looking at the problem at hand from the right angle. Why not define API governance relatively to IT governance, corporate governance, and governance to better understand what it is?
 <!--more--></p>
 
+<p><em>This post’s banner is a detail of the frontispiece of the “Encyclopédie ou Dictionnaire raisonné des sciences, des arts et des métiers” (Encyclopedia or Reasoned Dictionary of Sciences, Arts and Crafts) drawn by Charles-Nicolas Cochin and engraved by Bonaventure-Louis Prévost.</em></p>
 
-        <p class="tool-link"><a href="https://stoplight.io/open-source/spectral" target="_blank"><span class="icon-inline " aria-label="webpage button icon"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><path d="M0,0v20h20V0H0z M18,4H6V2h12V4z M4,2v2H2V2H4z M2,18V6h16v12H2z"></path></svg></span><span class="icon-text">Spectral Website</span></a>
-    </p><p class="tool-link"><a href="https://github.com/stoplightio/spectral" target="_blank"><span class="icon-inline " aria-label="github button icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></span><span class="icon-text">Spectral Github Repository</span></a>
-    </p>
+
+        
       </div>
     </div><!-- First card with page title END -->
       
     
   
-  <div class="card-page-section page-section-not-title tool-related-links">
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
       <div class="card-body">
-        <h1>Related Posts</h1>
+      
+        <h1 id="the-origin-of-api-governance">The origin of API governance</h1>
+<p>It’s not that easy to find a definition of API governance. My ideas on the topic were not entirely clear, so I decided to work on its definition relative to other governance. I think API governance should be seen as a direct descendant of IT governance which descends from corporate governance, which descends from governance.</p>
+
+<p>Governance is managing and overseeing an organization’s control and the <em>system</em> for doing this. It is also the decision-making among the actors involved in a collective problem by which stable practices, social norms, customs, or institutions (an organization founded for religious, educational, professional, or social purposes) are established, reinforced, and reproduced.</p>
+
+<p>Corporate governance is externally and indirectly guiding, controlling, and evaluating a company and the system for doing this. It provides the structure through which the company’s objectives, the means to achieve them, and how to monitor performance are defined. It implies balancing all organization’s stakeholders’ interests. Responsibility, accountability, ethical behavior, corporate strategy, compliance, and risk management are the main areas of governance. Other areas are, for example, environmental awareness or talent acquisition. It differs from management; the people exercising governance, the governing agents, don’t have direct control and are not part of what they govern.</p>
+
+<p>Information Technology (IT) governance is a subset of corporate governance that focuses on taking advantage of IT efficiently to enable the organization to achieve its goals, to maximize the creation of value. It aims to align business and IT strategies while identifying and addressing risks, ensuring compliance with regulations, and monitoring performance.</p>
 
 
-
-
-
-
-
-
-
-
-
-
-
-<div class="card tool-link-summary rounded-0 border-0 ">
+      </div>
+    </div><!-- Next cards END -->
+    
   
-  <div class="card-body">
     
     
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="how-api-governance-relates-to-its-ascendants">How API governance relates to its ascendants</h1>
+<p>Like any governance, API governance refers to the decision-making among the actors involved in a collective problem (creating APIs helping the organization achieve its goals), by which stable practices, processes, policies, or institutions (organizations created for educational or professional purposes) are established, reinforced, and reproduced. For example, defining security, API design or API cataloging policies, having an API design review process, or creating an API center of enablement are part of API governance. These elements aim to facilitate, guide, and standardize the creation of the right APIs in the right way to help the organization to achieve its goals (and bring order to the API chaos in the making).</p>
+
+<p>Like Corporate governance, API governance is <em>externally and indirectly</em> guiding, controlling, and evaluating a company’s APIs and the system for doing this. API governance is not creating APIs (API product management) or managing APIs (API management). People will make and manage APIs taking advantage of the institutions and following the processes and rules defined by API governance. The resulting APIs are being evaluated with the indicators defined by API governance. Though often people directly involved in the creation of APIs participate in governance (it is even highly recommended to ensure realistic governance), API governance agents should act as if they don’t have direct control over APIs.</p>
+
+<p>Like corporate governance or IT governance, API governance implies balancing <em>all</em> stakeholders’ interests and the company’s objectives. The primary API stakeholders are the API providers (all members of API product teams) and the present and future API consumers. But many of the organization’s stakeholders are interested in APIs, for example, the security teams, the infrastructure teams, the business line managers, and even the board members or regulators.</p>
+
+<p>Like IT governance, API governance is about what should be done and how it should be done and is both driven by IT and business. It requires aligning both IT and business. It covers all aspects of APIs, from their business inception and business model definition to design, implementation, exposition, and cataloging to (API) talent management (API design skills, internal API evangelization). It covers all types of APIs, whatever their visibility, so it concerns all public, partner, and private APIs. It’s about everything that will help maximize all APIs’ value.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
     
-    <a href="https://apihandyman.io/lint-apis-with-spectral/" class="stretched-link"><h4 class="card-title">Lint APIs with Spectral</h4></a>
-    
-    <h6 class="card-subtitle mb-2 text-muted">By Arnaud Lauret, June 15, 2022</h6>
-    
-    <div class="card-text card-content text-justify"><p>Are you struggling to design consistent APIs? On the verge of losing sanity while checking every single property of every schema is camelCased? Never remembering the parameters to use for pagination? Spectral is the tool you need: it will lint JSON Schema, AsyncAPI, and OpenAPI documents and do those checks for you.</p>
-</div>
-  </div>
   
-</div>
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="attempting-to-define-api-governance">Attempting to define API governance</h1>
+<p>Now that all that is said, how to define API governance?</p>
+
+<h2 id="paraphrasing-other-governances-definitions">Paraphrasing other governances definitions</h2>
+<p>As a descendant of governance, corporate governance, and IT governance, and paraphrasing their definitions, API governance could be defined as follow:</p>
+
+<blockquote>
+  <p>API governance is establishing and overseeing decision-making, policies, practices, processes, and institutions to enable an organization’s people to collectively achieve its goals by efficiently taking advantage of private, partner, or public APIs. It aims to align APIs with business and IT strategies, to monitor and maximize the value created from them while identifying and addressing risks and ensuring compliance with regulations.</p>
+</blockquote>
+
+<h2 id="trying-to-simplify-the-definition">Trying to simplify the definition</h2>
+<p>Simplifying the previous definition leads to this:</p>
+
+<blockquote>
+  <p>API governance is enabling and facilitating people to work together on the right APIs, the right way to maximize the value created by APIs in alignment with the organization’s goals and constraints.</p>
+</blockquote>
 
 
-
-
-
-
-
-
-
-
-
-
-
-<div class="card tool-link-summary rounded-0 border-0 ">
+      </div>
+    </div><!-- Next cards END -->
+    
   
-  <div class="card-body">
     
     
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="the-tree-that-hides-the-forest">The tree that hides the forest</h1>
+<p>I’m pretty satisfied with those definitions, although they do not provide all the tiny details of API governance. I feel the global ideas they describe are relevant and cover the topic from a high-level perspective. I’ll keep the small details for other posts.</p>
+
+
+      </div>
+    </div><!-- Next cards END -->
     
-    <a href="https://apihandyman.io/taking-advantage-of-openapi-for-api-design-reviews/" class="stretched-link"><h4 class="card-title">Taking advantage of OpenAPI for API Design reviews</h4></a>
-    
-    <h6 class="card-subtitle mb-2 text-muted">By Arnaud Lauret, September 28, 2021</h6>
-    
-    <div class="card-text card-content text-justify"><p>After my first recorded live demo session, here comes my first non recorded actually live session in which I show how I take advantage of the OpenAPI Specification during API design reviews.
-Note that I experienced some technical issues during this session, <a href="/barely-surviving-my-first-live-non-recorded-demo-session/">you’ll find the story in my “Barely surviving my first live (non recorded) demo session” post</a>.</p>
-</div>
-  </div>
   
-</div>
+    
+    
+    <!-- Next cards -->
+    <div class="card-page-section page-section-not-title">
+      <div class="card-body">
+      
+        <h1 id="sources">Sources</h1>
+<ul>
+  <li>Governance:  <a href="https://www.merriam-webster.com/dictionary/governance">Merriam-Webster dictionary</a>, <a href="https://dictionary.cambridge.org/dictionary/english/governance">Cambridge dictionary</a>,  <a href="https://en.wikipedia.org/wiki/Governance">Wikipedia</a>, <a href="https://en.wikipedia.org/wiki/Governance#cite_note-Hufty_2011-2">Huffy, 2011</a>; <a href="https://en.wikipedia.org/wiki/Governance#cite_note-13">Lijun, 1988</a></li>
+  <li>Corporate Governance: <a href="https://en.wikipedia.org/wiki/Corporate_governance">Wikipedia</a>,  <a href="https://www.investopedia.com/terms/c/corporategovernance.asp">Investopedia</a>, <a href="http://www.grcglossary.org/terms/governance">GRC glossary</a></li>
+  <li>IT Governance: <a href="https://en.wikipedia.org/wiki/Corporate_governance_of_information_technology">Wikipedia</a>, <a href="https://www.gartner.com/en/information-technology/glossary/it-governance">Gartner</a>, <a href="https://www.thoughtworks.com/insights/articles/lightweight-technology-governance">Thoughtworks</a></li>
+  <li>API Governance:  <a href="https://apievangelist.com/2021/11/13/some-thoughts-on-api-governance/">Some thoughts on API Governance (API Evangelist, 2021)</a>, <a href="https://youtu.be/lakFsqIiiLU">What is API governance (Erik Wilde, 2020)</a>,  <a href="https://apihandyman.io/human-centered-api-governance/">Human Centered API Governance (Arnaud Lauret, 2021)</a></li>
+</ul>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="card tool-link-summary rounded-0 border-0 ">
+      </div>
+    </div><!-- Next cards END -->
+    
   
-  <div class="card-body">
-    
-    
-    
-    <a href="https://apihandyman.io/reading-thoughtworks-technology-radar-24/" class="stretched-link"><h4 class="card-title">Adopt and not assess OpenAPI linters and other thoughts reading Thoughtworks Technology Radar 24</h4></a>
-    
-    <h6 class="card-subtitle mb-2 text-muted">By Arnaud Lauret, April 28, 2021</h6>
-    
-    <div class="card-text card-content text-justify"><p>Thoughtworks Technology Radar 24, an “opinionated guide to technology frontiers”, came out last 15th of April, 2021 and I thought it could be interesting to read it from an API perspective, hence this post sharing my thoughts on it.
-As always it is really interesting and full of valuable insights, though I nearly fell off my chair while reading the Tools section which talks about OpenAPI linters (if it’s not a click bait, I don’t know what it is).</p>
-</div>
-  </div>
   
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="card tool-link-summary rounded-0 border-0 ">
-  
-  <div class="card-body">
-    
-    
-    
-    <a href="https://apihandyman.io/the-augmented-api-design-reviewer/" class="stretched-link"><h4 class="card-title">The Augmented API Design Reviewer</h4></a>
-    
-    <h6 class="card-subtitle mb-2 text-muted">By Arnaud Lauret, December 13, 2020</h6>
-    
-    <div class="card-text card-content text-justify">API Design Reviews can be a total nightmare when it comes to check API Design Guidelines conformance. Hopefully, this can be automated using the OpenAPI Specification and Spectral, helping you to focus on real API design matters.</div>
-  </div>
-  
-</div></div>
-    </div>
 </div><!-- class="page-content-text"-->
 
       </div>
@@ -1437,6 +1622,8 @@ As always it is really interesting and full of valuable insights, though I nearl
   <div class="container-fluid container-lg">
     <nav class="nav-page " aria-label="Page navigation">
       <a class="nav-page-btn back-to-top d-none" aria-label="back to top" data-toggle="tooltip" data-placement="right" title="Back to top"><svg height='100px' width='100px' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><polygon points="4.1,10 5.5,11.4 9,7.8 9,20 11,20 11,7.8 14.5,11.4 16,10 10,4  "></polygon><rect x="0" width="20" height="2"></rect></g></svg></a>
+      
+      <a class="nav-page-btn left-menu-toggler d-mobile-only" aria-label="table of content toggler" data-toggle="tooltip" data-placement="right" title="Table of content"><svg height='100px' width='100px'  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><g><rect x="0" y="2" width="4" height="4"></rect><rect x="0" y="8" width="4" height="4"></rect><rect x="0" y="14" width="4" height="4"></rect><rect x="6" y="3" width="14" height="2"></rect><rect x="6" y="9" width="14" height="2"></rect><rect x="6" y="15" width="14" height="2"></rect></g></svg></a>
       
     </nav>
   </div>
