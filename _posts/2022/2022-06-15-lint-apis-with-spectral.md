@@ -35,17 +35,17 @@ A Spectral ruleset can be defined in a JSON or YAML document. The following code
 
 {% code language:"yaml" title:"rules.spectral.yaml" highlight:"3,7,9" %}
 rules:
-    # Rule's name
-    title-no-api:
-        # Rule's description
-        description: The title must not contain the word API
-        # JSON Path to target
-        given: $.info.title
-        # Control applied on the target's value
-        then:
-            function: pattern
-            functionOptions:
-                notMatch: /\b(api)\b/ich: /\b(api)\b/i
+  # Rule's name
+  title-no-api:
+    # Rule's description
+    description: The title must not contain the word API
+    # JSON Path to target
+    given: $.info.title
+    # Control applied on the target's value
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: /\b(api)\b/i
 {% endcode %}
 
 Each Spectral rule works like this one, hence "given some path then do some controls":
