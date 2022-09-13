@@ -1546,17 +1546,17 @@
   </div>
   <div class="card-body">
     <pre class="language-yaml line-numbers code-copy" data-line="3,7,9" data-start="1"><code class="code-block">rules:
-    # Rule&#39;s name
-    title-no-api:
-        # Rule&#39;s description
-        description: The title must not contain the word API
-        # JSON Path to target
-        given: $.info.title
-        # Control applied on the target&#39;s value
-        then:
-            function: pattern
-            functionOptions:
-                notMatch: /\b(api)\b/ich: /\b(api)\b/i</code></pre>
+  # Rule&#39;s name
+  title-no-api:
+    # Rule&#39;s description
+    description: The title must not contain the word API
+    # JSON Path to target
+    given: $.info.title
+    # Control applied on the target&#39;s value
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: /\b(api)\b/i</code></pre>
   </div>
 </div>
 
