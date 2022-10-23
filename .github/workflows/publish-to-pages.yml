@@ -38,13 +38,6 @@ jobs:
       uses: actions/upload-pages-artifact@main
       with:
         path: ${{env.PUBLISH_BRANCH_FOLDER}}
-    #- name: 🚀 Push on ${{env.PUBLISH_BRANCH}}
-    #  uses: JamesIves/github-pages-deploy-action@4.1.4
-    #  with:
-    #    branch: ${{env.PUBLISH_BRANCH}} # The branch the action should deploy to.
-    #    folder: ${{ github.workspace }}/${{env.PUBLISH_BRANCH_FOLDER}} # The folder the action should deploy.        
-    #    clean: true
-    #    commit-message: Publish
   deploy:
     environment:
       name: github-pages
