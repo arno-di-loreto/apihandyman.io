@@ -18,6 +18,8 @@ jobs:
       uses: actions/checkout@main
       with:
           fetch-depth: 1
+    - name: 📝 Setup Pages
+      uses: actions/configure-pages@v2
     - name: 👷🏻‍♂️ Build with jekyll/builder container
       run: |
         docker run \
