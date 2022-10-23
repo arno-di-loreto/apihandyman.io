@@ -7,6 +7,16 @@ on:
   #  - cron: "0 12 * * WED"
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     env:
@@ -18,8 +28,6 @@ jobs:
       uses: actions/checkout@main
       with:
           fetch-depth: 1
-    - name: 📝 Setup Pages
-      uses: actions/configure-pages@v2
     - name: 👷🏻‍♂️ Build with jekyll/builder container
       run: |
         docker run \
