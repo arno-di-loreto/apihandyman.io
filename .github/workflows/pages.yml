@@ -1,10 +1,10 @@
 name: Publish to pages
 
 on:
-  push:
-    branches: [ main ]
-  schedule:
-    - cron: "0 12 * * WED"
+  #push:
+  #  branches: [ main ]
+  #schedule:
+  #  - cron: "0 12 * * WED"
   workflow_dispatch:
 
 jobs:
