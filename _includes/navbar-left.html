@@ -15,15 +15,13 @@
   {% assign border_class = "left-book-ad-no-border" %}
 {% endif %}
 <div class="left-book-ad {{border_class}} d-desktop-only">
-  <img src="{{book_image}}" class="card-img" alt="The Design of Web APIs book cover">
+  <img src="{{book_image}}" class="card-img" alt="The Design of Web APIs book">
   <div class="card-img-overlay {{book_text_class}}">
-    <a class="stretched-link" data-toggle="modal" data-target="#bookModal" role="button" >
-      <p class="card-text">Special offer on my book</p>
-    </a>
+    <a href="{{site.mybook}}" class="stretched-link" role="button" ></a>
   </div>
 </div>
-<a class="left-book-ad-small left-menu-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button">
-  Special offer on my book
+<a href="{{site.mybook}}" class="left-book-ad-small left-menu-hider d-mobile-only" role="button">
+  Read my book
   <img src="/images/commons/book/title.png" class="img-fluid" alt="The Design of Web APIs book">
 </a>
 {% if show_toc %}

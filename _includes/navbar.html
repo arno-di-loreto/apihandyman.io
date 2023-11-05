@@ -37,11 +37,11 @@
           <a class="nav-item nav-link" href="/toolbox/">Toolbox</a>
           <a class="nav-item nav-link" href="/about/">About</a>
           {% include search.html %}
-          <a class="nav-item-book left-column-hider d-mobile-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
+          <a href="{{site.mybook}}" class="nav-item-book left-column-hider d-mobile-only" role="button" ><div class="img"></div></a>
         </div>
       </div>
       {% if layout.book_in_nav or page.book_in_nav%}
-        <a class="nav-item-book left-column-hider d-desktop-only" data-toggle="modal" data-target="#bookModal" role="button" ><div class="img"></div></a>
+        <a href="{{site.mybook}}" class="nav-item-book left-column-hider d-desktop-only" role="button" ><div class="img"></div></a>
       {% endif %}
     </nav> <!-- class="navbar navbar-expand-md" -->
   </div> <!--  class="container" -->

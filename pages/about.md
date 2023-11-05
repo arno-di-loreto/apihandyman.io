@@ -9,9 +9,7 @@ Hi! I'm Arnaud Lauret, the API Handyman and author of The Design of Web APIs. I 
 
 ## Arnaud Lauret
 
-My name is Arnaud Lauret, I'm an Senior API Architect in Paris, France. I have been working in the financial industry for 18 years and my job was always around connecting pieces of software together, hence creating and using web services or APIs.
-
-My current daily job is helping people, from executive to developers and everything in between, to understand what are APIs, why they matters and how to do them. I also help dozens of different teams to design their APIs by reviewing and challenging their designs, training them to design API and also building API design guidelines.
+My name is Arnaud Lauret, I'm API Governance Lead at Postman. Before that, I have been working in the financial industry for 20 years and my job was always around connecting pieces of software together, hence creating and using web services or APIs.
 
 ## API Handyman
 
@@ -31,13 +29,4 @@ Born on the 7th of February 2015, the API Handyman blog is about sharing my view
 ## My book The Design of Web APIs
 
 In 2018, I started to write a book on API design with Manning.
-If you're interested in API design, you should read my book <a href="#" data-toggle="modal" data-target="#bookModal" role="button" >The Design of Web API</a>, it's for both beginners and seasoned API designers. Every aspects of API design are covered: requirements gathering, usability, security, evolution, documentation and even architecture and network concerns. 
-
-## Consultancy
-
-If you need more than my blog and my book, I'm also open to consultancy request:
-
-- I can help you on API design related tasks like give you a hand to design APIs, review you designs, train your API designers or help you build your API design guidelines.
-- I can also do API evangelism and explain to CEOs, executives, business people, product owners or developers what are APIs, why they matter and how do them.
-
-Do not hesitate to contact me on [LinkedIn]({{site.data.links.me.linkedin}}) or [Twitter]({{site.data.links.me.twitter}}).
+If you're interested in API design, you should read my book <a href="{{site.mybook}}" role="button" >The Design of Web API</a>, it's for both beginners and seasoned API designers. Every aspects of API design are covered: requirements gathering, usability, security, evolution, documentation and even architecture and network concerns. 

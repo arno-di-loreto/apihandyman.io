@@ -7,7 +7,7 @@ layout: post
 category: post
 ---
 
-I'm thrilled to announce that I'm writing a book about API design: _The Design of Everyday APIs_ (edit: the book has been renamed _The Design of Web APIs_ since this post has been written). This book is published by _Manning Publications_ and the first two chapters are now available on the Manning Early Access Program or {% include _book/meap-link.md %}. This book is for everyone who wants to learn API design.
+I'm thrilled to announce that I'm writing a book about API design: _The Design of Everyday APIs_ (edit: the book has been renamed _The Design of Web APIs_ since this post has been written). This book is published by _Manning Publications_ and the first two chapters are now available on the [Manning Early Access Program]({% include _book/book-url.md %}). This book is for everyone who wants to learn API design.
 But, what's the story behind this book about API design? To answer this question, let's talk about my other passion: guitar. <!--more-->
 
 {% img file:"guitar-tabs.png" label:"Guitar tabs"%}
@@ -15,8 +15,6 @@ But, what's the story behind this book about API design? To answer this question
 I have been playing the guitar for quite a long time. I'm definitely not an outstanding guitar player, I do that just for fun. Even if I have basic knowledge of solfeggio, I mostly use tablatures (or tabs) to learn to play songs. The guitar strings are represented by lines. And numbers on the lines indicate where to put fingers on the fret board. Pretty simple. I can play any song. Well, as long as my fingers dexterity allows it. So, I can play almost any song without even kwnowing which musical note I'm doing. But it can take me a long time to master songs, because I mostly do not get immediately how it works. I cannot play a song without a tablature by just listening to it. I'm also unable to compose music, I'm unable to improvise. And if I want to play another musical instrument like the piano, I would have to relearn everything. All this because I simply (but with dexterity!) move my fingers on a guitar fretboard without really understanding what I'm doing and why. When you really know music, it's quite different. A friend of mine is a music teacher. He knows everything about solfeggio and music theory. He can improvise and compose. He can play any musical instrument as long as he understand how doing notes.
 
 But what has this to do with API design?
-
-{% include _book/big-banner.html %}
 
 I've been doing distributed software and working with web services and web APIs for a long time now, designing, building, using and providing them. Like many others, I've learned many things from the trenches about API design by practicing ... and doing many mistakes. Mistakes, that I could have probably easily avoided if I had been warned. I have discovered the not so obvious scope of the API designer's job and you know what? Choosing HTTP methods and designing URLs is only a part of it. I have also learned how to design APIs that do exactly what they have been created for. And I have also learned how to shape APIs in order to make them easy-to-understand and easy-to-use.
 
@@ -33,4 +31,4 @@ APIs are interfaces like any others. Look at this _UDRC 1138_ control panel, its
 What seems ridiculous for everyday objects interfaces is as ridiculous for application programming interface. And the opposite is quite true, what works for everyday objects interfaces works for APIs.
 
 So, while _The Design of Everyday APIs_ (edit: the book has been renamed _The Design of Web APIs_ since this post has been written) book is a practical one showing every aspects of API design and many techniques, tips and tricks to design great APIs. It will also explain _why_ you should design APIs that way and therefore, I hope, give you the eye of the API designer.
-I hope you'll enjoy this book and find it useful to design your everyday APIs and build an API designer mindset. As you can read it on {% include _book/meap-link.md %} while it is written, I look forward to your feedbacks on MEAP forum.
+I hope you'll enjoy this book and find it useful to design your everyday APIs and build an API designer mindset. As you can read it on [Manning.com]({% include _book/book-url.md %}) while it is written, I look forward to your feedbacks on MEAP forum.
