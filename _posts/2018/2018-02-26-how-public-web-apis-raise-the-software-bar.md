@@ -7,7 +7,7 @@ layout: post
 category: post
 ---
 
-While answering some question on my [Design of Web APIs]({% include _book/meap-url.md %}) book's [forum](https://forums.manning.com/posts/list/42828.page), I wrote:
+While answering some question on my [Design of Web APIs]({% include _book/book-url.md %}) book's [forum](https://forums.manning.com/posts/list/42828.page), I wrote:
 
 > Now that I have seen brilliant Web APIs that can be used so easily because of their design but also the overall experience some can provide (the famous "DX") I have become far more demanding and challenging with software in general
 

@@ -50,7 +50,7 @@ pagination:
     after: 1  # The number of links after the current page
 
 # Third party parameters
-google_analytics: UA-58046291-1
+google_analytics: G-VPHTRSG5P3
 
 # Build settings
 markdown: kramdown
@@ -67,9 +67,8 @@ codeblocksize: 20
 codeblock_hidden_copy_separator: ---COPY_CONTENT_SEPARATOR---
 
 # Links
-mybook: http://bit.ly/designwebapis
-mybook_discount_code: fcclauret
-mybook_discount_rate: 37% off
+mybook: /the-design-of-web-apis/
+manning: https://www.manning.com/books/the-design-of-web-apis
 
 collections:
   tools:

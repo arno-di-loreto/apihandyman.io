@@ -1,1 +1,0 @@
-{% if include.target %%}[{{include.link.name}}]({{include.link.url}}){:target="{{include.target}}"}{% else %}[{{include.link.name}}]({{include.link.url}}){% endif %}
