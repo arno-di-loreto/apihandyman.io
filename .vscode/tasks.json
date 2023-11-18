@@ -71,6 +71,15 @@
                 "reveal": "always"
             }
         },
+        {
+            "label": "📰 Publish",
+            "type": "shell",
+            "command": "scripts/publish.sh",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always"
+            }
+        },
     ],
     "inputs": [
         {

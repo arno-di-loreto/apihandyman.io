@@ -35,6 +35,7 @@ echo "And file [$FILE]"
 git checkout main
 git pull
 git checkout -b $BRANCH
+git push --set-upstream origin $BRANCH
 cp $ROOT_DIR/_templates/draft.md $ROOT_DIR/$FILE
 
 sed -e "s/TITLE/$TITLE/" -i "" $ROOT_DIR/$FILE
