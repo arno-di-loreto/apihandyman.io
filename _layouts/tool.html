@@ -35,6 +35,8 @@ hide_toc: true
       {%- endif -%}
     {%- elsif link.type == 'github' -%}
       {%- assign link_text = page.title | append: " Github Repository" -%}
+    {%- elsif link.type == 'mastodon' -%}
+      {%- assign link_text = "Follow " | append: page.author | append: " on Mastodon" -%}
     {%- elsif link.subtype == 'newsletter' -%}
       {%- assign link_text = page.title | prepend:'Subscribe to ' -%}
     {%- elsif link.subtype == 'blog' -%}

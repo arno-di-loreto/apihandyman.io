@@ -43,7 +43,7 @@ And those needs are not `GET /this` and `POST /that`, those needs are more like 
 
 Before thinking about HTTP methods and resource paths, you must have a clear understanding of the needs.
 And you must describe them using crystal clear natural language.
-You usually start with high level needs like "buying some products" and decompose them in flows, each step being an actual operation of your API, like "Search products", "Add product to basket" and "Place an order" (read more about all that in my book [The Design of Web APIs](https://www.manning.com/books/the-design-of-web-apis)).
+You usually start with high level needs like "buying some products" and decompose them in flows, each step being an actual operation of your API, like "Search products", "Add product to basket" and "Place an order" (read more about all that in my book [The Design of Web APIs](https://www.manning.com/books/the-design-of-web-apis-second-edition)).
 Working using natural language allows to include everyone in the conversation and to focus on the business perspective while keeping REST & HTTP heated discussions for later.
 Actually having a clear description of what the API should do in natural language facilitate those later discussions.
  

@@ -13,6 +13,7 @@
 
 // book
 $book-blue: #014E68;
+$book-brown: #7d2518;
 $book-grey: #bcbdc0;
 $book-orange: #e66c2a;
 $ghost-white: #F9F8F9;
@@ -250,7 +251,7 @@ a:hover {
 /* Home */
 /********/
 
-$book-gradient: linear-gradient(to right,  $book-blue 0%,$book-blue 50%,white 50%,white 100%);
+$book-gradient: linear-gradient(to right,  $book-brown 0%,$book-brown 50%,white 50%,white 100%);
 
 .home-book-cover-left {
   @extend .d-none, .d-md-block;
