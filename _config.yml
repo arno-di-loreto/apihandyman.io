@@ -68,7 +68,7 @@ codeblock_hidden_copy_separator: ---COPY_CONTENT_SEPARATOR---
 
 # Links
 mybook: /the-design-of-web-apis/
-manning: https://www.manning.com/books/the-design-of-web-apis
+manning: https://www.manning.com/books/the-design-of-web-apis-second-edition
 
 collections:
   tools:

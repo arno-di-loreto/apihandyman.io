@@ -431,7 +431,7 @@ https://api.twitter.com/2/tweets/{{tweet_id}}?expansions=author_id,referenced_tw
                     "start": 89,
                     "end": 112,
                     "url": "https://t.co/jocUbds6ki",
-                    "expanded_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0",
+                    "expanded_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition",
                     "display_url": "manning.com/books/the-desi…",
                     "images": [
                         {
@@ -448,7 +448,7 @@ https://api.twitter.com/2/tweets/{{tweet_id}}?expansions=author_id,referenced_tw
                     "status": 200,
                     "title": "The Design of Web APIs",
                     "description": "The Design of Web APIs is a practical, example-packed guide to crafting extraordinary web APIs. Author Arnaud Lauret demonstrates fantastic design principles and techniques you can apply to both public and private web APIs.",
-                    "unwound_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"
+                    "unwound_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition"
                 },
                 {
                     "start": 126,
@@ -1050,7 +1050,7 @@ https://api.twitter.com/2/tweets?ids={{tweet_id}}
                         "start": 89,
                         "end": 112,
                         "url": "https://t.co/jocUbds6ki",
-                        "expanded_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0",
+                        "expanded_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition",
                         "display_url": "manning.com/books/the-desi…",
                         "images": [
                             {
@@ -1067,7 +1067,7 @@ https://api.twitter.com/2/tweets?ids={{tweet_id}}
                         "status": 200,
                         "title": "The Design of Web APIs",
                         "description": "The Design of Web APIs is a practical, example-packed guide to crafting extraordinary web APIs. Author Arnaud Lauret demonstrates fantastic design principles and techniques you can apply to both public and private web APIs.",
-                        "unwound_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"
+                        "unwound_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition"
                     },
                     {
                         "start": 126,
@@ -1366,7 +1366,7 @@ https://api.twitter.com/2/tweets?ids={{unknown_tweet_id}},{{tweet_id}}
                         "start": 89,
                         "end": 112,
                         "url": "https://t.co/jocUbds6ki",
-                        "expanded_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0",
+                        "expanded_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition",
                         "display_url": "manning.com/books/the-desi…",
                         "images": [
                             {
@@ -1383,7 +1383,7 @@ https://api.twitter.com/2/tweets?ids={{unknown_tweet_id}},{{tweet_id}}
                         "status": 200,
                         "title": "The Design of Web APIs",
                         "description": "The Design of Web APIs is a practical, example-packed guide to crafting extraordinary web APIs. Author Arnaud Lauret demonstrates fantastic design principles and techniques you can apply to both public and private web APIs.",
-                        "unwound_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"
+                        "unwound_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition"
                     },
                     {
                         "start": 126,
@@ -1641,7 +1641,7 @@ https://api.twitter.com/2/tweets/{{tweet_id}}?expansions=author_id,referenced_tw
                     "start": 89,
                     "end": 112,
                     "url": "https://t.co/jocUbds6ki",
-                    "expanded_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0",
+                    "expanded_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition",
                     "display_url": "manning.com/books/the-desi…",
                     "images": [
                         {
@@ -1658,7 +1658,7 @@ https://api.twitter.com/2/tweets/{{tweet_id}}?expansions=author_id,referenced_tw
                     "status": 200,
                     "title": "The Design of Web APIs",
                     "description": "The Design of Web APIs is a practical, example-packed guide to crafting extraordinary web APIs. Author Arnaud Lauret demonstrates fantastic design principles and techniques you can apply to both public and private web APIs.",
-                    "unwound_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"
+                    "unwound_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition"
                 },
                 {
                     "start": 126,
@@ -1947,7 +1947,7 @@ https://api.twitter.com/2/tweets/{{tweet_id}}?expansions=author_id,referenced_tw
                     "start": 89,
                     "end": 112,
                     "url": "https://t.co/jocUbds6ki",
-                    "expanded_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0",
+                    "expanded_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition",
                     "display_url": "manning.com/books/the-desi…",
                     "images": [
                         {
@@ -1964,7 +1964,7 @@ https://api.twitter.com/2/tweets/{{tweet_id}}?expansions=author_id,referenced_tw
                     "status": 200,
                     "title": "The Design of Web APIs",
                     "description": "The Design of Web APIs is a practical, example-packed guide to crafting extraordinary web APIs. Author Arnaud Lauret demonstrates fantastic design principles and techniques you can apply to both public and private web APIs.",
-                    "unwound_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"
+                    "unwound_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition"
                 },
                 {
                     "start": 126,
@@ -2260,7 +2260,7 @@ https://api.twitter.com/2/tweets/{{tweet_id}}?expansions={{expansions_default_va
                     "start": 89,
                     "end": 112,
                     "url": "https://t.co/jocUbds6ki",
-                    "expanded_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0",
+                    "expanded_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition",
                     "display_url": "manning.com/books/the-desi…",
                     "images": [
                         {
@@ -2277,7 +2277,7 @@ https://api.twitter.com/2/tweets/{{tweet_id}}?expansions={{expansions_default_va
                     "status": 200,
                     "title": "The Design of Web APIs",
                     "description": "The Design of Web APIs is a practical, example-packed guide to crafting extraordinary web APIs. Author Arnaud Lauret demonstrates fantastic design principles and techniques you can apply to both public and private web APIs.",
-                    "unwound_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"
+                    "unwound_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition"
                 },
                 {
                     "start": 126,
@@ -2488,7 +2488,7 @@ https://api.twitter.com/2/tweets?ids={{tweet_id}}
                         "start": 89,
                         "end": 112,
                         "url": "https://t.co/jocUbds6ki",
-                        "expanded_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0",
+                        "expanded_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition",
                         "display_url": "manning.com/books/the-desi…",
                         "images": [
                             {
@@ -2505,7 +2505,7 @@ https://api.twitter.com/2/tweets?ids={{tweet_id}}
                         "status": 200,
                         "title": "The Design of Web APIs",
                         "description": "The Design of Web APIs is a practical, example-packed guide to crafting extraordinary web APIs. Author Arnaud Lauret demonstrates fantastic design principles and techniques you can apply to both public and private web APIs.",
-                        "unwound_url": "https://www.manning.com/books/the-design-of-web-apis?a_aid=everyday_apis&a_bid=ad5a0fe0"
+                        "unwound_url": "https://www.manning.com/books/the-design-of-web-apis-second-edition"
                     },
                     {
                         "start": 126,

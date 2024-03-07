@@ -4,7 +4,6 @@ layout: tool
 banner: /images/projects/apistylebook-1280-400.png
 permalink: /toolbox/apistylebook/
 author: Arnaud Lauret
-tool_top_2: 1
 links:
   - type: main
     subtype: website
