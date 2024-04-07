@@ -13,6 +13,10 @@ It's almost a new book. It's complete rewrite of the first edition expanded with
 
 [![The Design of Web APIs Second Edition](/images/commons/books/the-design-of-web-apis-second-edition/cover-meap.png)](https://www.manning.com/books/the-design-of-web-apis-second-edition)
 
+## Assets
+
+- [An example of API Capabilities Canvas](https://docs.google.com/spreadsheets/d/1MQKIYcd49Xadc7wFDw0lDfdaJIQNTLMrpfcSvI5D7h0/edit?usp=sharing)
+
 # The Design of Web APIs, First Edition
 
 The Design of Web APIs, First Edition is available in English, Japanese, Korean, and Russian.
