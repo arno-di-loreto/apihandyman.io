@@ -16,6 +16,7 @@ It's almost a new book. It's complete rewrite of the first edition expanded with
 ## Assets
 
 - [An example of API Capabilities Canvas](https://docs.google.com/spreadsheets/d/1MQKIYcd49Xadc7wFDw0lDfdaJIQNTLMrpfcSvI5D7h0/edit?usp=sharing)
+- [GitHub repository with OpenAPI and Spectral examples](https://github.com/arno-di-loreto/design-of-web-apis-2e)
 
 # The Design of Web APIs, First Edition
 
