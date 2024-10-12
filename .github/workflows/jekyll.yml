@@ -1,4 +1,4 @@
-name: Deploy Jekyll site to Pages
+name: 🚀 Deploy Jekyll site to Pages
 
 on:
   #push:
@@ -19,29 +19,51 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout
         uses: actions/checkout@v4
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
           bundler-cache: true
-      - name: Setup Pages
+      - name: 👷🏻‍♂️ Setup Pages
         uses: actions/configure-pages@v3
-      - name: Build site
+      - name: 📦 Build site
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
-      - name: Upload artifact
+      - name: ⬆️ Upload artifact
         uses: actions/upload-pages-artifact@v2
 
-  #deploy:
-  #  environment:
-  #    name: github-pages
-  #    url: ${{ steps.deployment.outputs.page_url }}
-  #  runs-on: ubuntu-latest
-  #  needs: build
-  #  steps:
-  #    - name: Deploy to GitHub Pages
-  #      id: deployment
-  #      uses: actions/deploy-pages@v2
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  clear_cdn_cache:
+    needs: [ deploy ]
+    env:
+      POSTMAN_COLLECTION_BRANCH: main
+      POSTMAN_COLLECTION_FOLDER: scripts
+      CLOUDFLARE_WEBSITE: apihandyman.io
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Download Cloudflare Clear Cache Postman collection
+        uses: actions/checkout@main
+        with:
+          ref: ${{env.POSTMAN_COLLECTION_BRANCH}}
+          fetch-depth: 1
+      - name: 💥 Clear Cloudflare cache
+        run: |
+          docker run \
+          -v ${{ github.workspace }}/${{env.POSTMAN_COLLECTION_FOLDER}}:/etc/newman \
+          -t postman/newman:alpine run \
+          --global-var token=${{secrets.CLOUDFLARE_TOKEN}} \
+          --global-var website=${{env.CLOUDFLARE_WEBSITE}} \
+          cloudflare-clearcache.postman_collection.json
